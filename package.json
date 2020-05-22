@@ -4,5 +4,10 @@
   "main": "app.js",
   "devDependencies": {
     "homey": "^2.3.5"
+  },
+  "dependencies": {
+    "date-fns": "^2.14.0",
+    "ical2json": "^3.0.0",
+    "node-ical": "^0.11.3"
   }
 }
