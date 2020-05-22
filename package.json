@@ -1,0 +1,8 @@
+{
+  "name": "no.runely.calendar",
+  "version": "0.0.1",
+  "main": "app.js",
+  "devDependencies": {
+    "homey": "^2.3.5"
+  }
+}
