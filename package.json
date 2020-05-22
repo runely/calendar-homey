@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-athom": "^2.1.0",
     "homey": "^2.3.5"
   },
   "dependencies": {
