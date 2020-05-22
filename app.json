@@ -7,6 +7,10 @@
     "en": "Calendar",
     "no": "Kalender"
   },
+  "tags": {
+    "en": ["calendar", "ics", "ical"],
+    "no": ["kalender", "ics", "ical"]
+  },
   "description": {
     "en": "Read ical and trigger on events",
     "no": "Les ical og aktiver på oppføringer"
