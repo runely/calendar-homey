@@ -26,5 +26,9 @@
   "author": {
     "name": "Rune Moskvil Lyngås",
     "email": "runely85@gmail.com"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/runely/calendar-homey/issues"
+  },
+  "source": "https://github.com/runely/calendar-homey"
 }
