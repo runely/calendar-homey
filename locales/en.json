@@ -1,6 +1,5 @@
 {
     "settings": {
-        "title": "Calendar Settings",
-        "subtitle": "Give an URI to the .ics to work on"
+        "title": "Set an URI to the .ics to work on"
     }
 }
