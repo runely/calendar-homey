@@ -35,8 +35,87 @@
     "name": "Rune Moskvil Lyngås",
     "email": "runely85@gmail.com"
   },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Rune Moskvil Lyngås",
+        "email": "runely85@gmail.com"
+      }
+    ]
+  },
   "bugs": {
     "url": "https://github.com/runely/calendar-homey/issues"
   },
-  "source": "https://github.com/runely/calendar-homey"
+  "source": "https://github.com/runely/calendar-homey",
+  "flow": {
+    "triggers": [
+      {
+        "id": "event_soon",
+        "title": {
+          "en": "Event starts in 15 minutes"
+        }
+      },
+      {
+        "id": "event_start",
+        "title": {
+          "en": "Event started"
+        }
+      },
+      {
+        "id": "event_stop",
+        "title": {
+          "en": "Event ended"
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "event_ongoing",
+        "title": {
+          "en": "Event !{{is|isn't}} ongoing"
+        }
+      },
+      {
+        "id": "event_in",
+        "title": {
+          "en": "Event is ongoing in..."
+        },
+        "titleFormatted": {
+          "en": "Event !{{is|isn't}} ongoing in [[when]]"
+        },
+        "args": [
+          {
+            "name": "when",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "5",
+                "label": {
+                  "en": "5 minutes"
+                }
+              },
+              {
+                "id": "10",
+                "label": {
+                  "en": "10 minutes"
+                }
+              },
+              {
+                "id": "15",
+                "label": {
+                  "en": "15 minutes"
+                }
+              },
+              {
+                "id": "30",
+                "label": {
+                  "en": "30 minutes"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
