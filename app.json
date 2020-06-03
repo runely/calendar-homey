@@ -7,7 +7,7 @@
     "en": "IcalCalendar"
   },
   "description": {
-    "en": "Read ical"
+    "en": "Monitor ical url and check if events are ongoing or starting soon"
   },
   "category": [
     "tools"
