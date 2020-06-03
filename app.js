@@ -64,7 +64,7 @@ class IcalCalendar extends Homey.App {
 			return Promise.reject(false);
 		}
 		this.log("checkEvent: " + filteredEvents.length)
-		this.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name);
+		this.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
 
 		if (type === 'ongoing') {
 			eventCondition = this.isEventOngoing(filteredEvents);
@@ -72,7 +72,7 @@ class IcalCalendar extends Homey.App {
 		}
 		else if (type === 'in') {
 			eventCondition = this.isEventIn(filteredEvents, args.when);
-			this.log("checkEvent: Starting exactly in " + args.when + " minutes? " + eventCondition);
+			this.log("checkEvent: Starting in " + args.when + " minutes or less? " + eventCondition);
 		}
 
 		return Promise.resolve(eventCondition);
