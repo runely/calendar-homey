@@ -1,0 +1,15 @@
+{
+    "id": "event_ongoing",
+    "title": {
+      "en": "Event !{{is|isn't}} ongoing"
+    },
+    "args": [
+        {
+          "name": "event",
+          "type": "autocomplete",
+          "placeholder": {
+            "en": "Select event..."
+          }
+        }
+    ]
+}

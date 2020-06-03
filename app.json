@@ -1,32 +1,17 @@
 {
   "id": "no.runely.calendar",
   "version": "0.0.1",
-  "compatibility": ">=1.5.0",
+  "compatibility": ">=2.0.0",
   "sdk": 2,
   "name": {
-    "en": "Calendar",
-    "no": "Kalender"
-  },
-  "tags": {
-    "en": [
-      "calendar",
-      "ics",
-      "ical"
-    ],
-    "no": [
-      "kalender",
-      "ics",
-      "ical"
-    ]
+    "en": "IcalCalendar"
   },
   "description": {
-    "en": "Read ical and trigger on events",
-    "no": "Les ical og aktiver på oppføringer"
+    "en": "Read ical"
   },
   "category": [
     "tools"
   ],
-  "permissions": [],
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
@@ -43,45 +28,23 @@
       }
     ]
   },
+  "tags": {
+    "en": [
+      "calendar",
+      "ics",
+      "ical"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/runely/calendar-homey/issues"
   },
   "source": "https://github.com/runely/calendar-homey",
   "flow": {
-    "triggers": [
-      {
-        "id": "event_soon",
-        "title": {
-          "en": "Event starts in 15 minutes"
-        }
-      },
-      {
-        "id": "event_start",
-        "title": {
-          "en": "Event started"
-        }
-      },
-      {
-        "id": "event_stop",
-        "title": {
-          "en": "Event ended"
-        }
-      }
-    ],
     "conditions": [
-      {
-        "id": "event_ongoing",
-        "title": {
-          "en": "Event !{{is|isn't}} ongoing"
-        }
-      },
       {
         "id": "event_in",
         "title": {
-          "en": "Event is ongoing in..."
-        },
-        "titleFormatted": {
-          "en": "Event !{{is|isn't}} ongoing in [[when]]"
+          "en": "Event !{{is|isn't}} ongoing in..."
         },
         "args": [
           {
@@ -113,6 +76,28 @@
                 }
               }
             ]
+          },
+          {
+            "name": "event",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Select event..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "event_ongoing",
+        "title": {
+          "en": "Event !{{is|isn't}} ongoing"
+        },
+        "args": [
+          {
+            "name": "event",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Select event..."
+            }
           }
         ]
       }

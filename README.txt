@@ -1,1 +1,1 @@
-Read ical and trigger on events
+Monitor ical url and check if events are ongoing or starting soon

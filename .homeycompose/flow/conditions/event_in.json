@@ -1,0 +1,63 @@
+{
+    "id": "event_in",
+    "title": {
+      "en": "Event !{{starts|doesn't start}} in..."
+    },
+    "args": [
+      {
+        "name": "when",
+        "type": "dropdown",
+        "values": [
+          {
+            "id": "5",
+            "label": {
+              "en": "5 minutes"
+            }
+          },
+          {
+            "id": "10",
+            "label": {
+              "en": "10 minutes"
+            }
+          },
+          {
+            "id": "15",
+            "label": {
+              "en": "15 minutes"
+            }
+          },
+          {
+            "id": "20",
+            "label": {
+              "en": "20 minutes"
+            }
+          },
+          {
+            "id": "25",
+            "label": {
+              "en": "25 minutes"
+            }
+          },
+          {
+            "id": "30",
+            "label": {
+              "en": "30 minutes"
+            }
+          },
+          {
+            "id": "60",
+            "label": {
+              "en": "60 minutes"
+            }
+          }
+        ]
+      },
+      {
+        "name": "event",
+        "type": "autocomplete",
+        "placeholder": {
+          "en": "Select event..."
+        }
+      }
+    ]
+}
