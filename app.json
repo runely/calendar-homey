@@ -44,7 +44,7 @@
       {
         "id": "event_in",
         "title": {
-          "en": "Event !{{is|isn't}} ongoing in..."
+          "en": "Event !{{starts|doesn't start}} in..."
         },
         "args": [
           {
@@ -70,9 +70,27 @@
                 }
               },
               {
+                "id": "20",
+                "label": {
+                  "en": "20 minutes"
+                }
+              },
+              {
+                "id": "25",
+                "label": {
+                  "en": "25 minutes"
+                }
+              },
+              {
                 "id": "30",
                 "label": {
                   "en": "30 minutes"
+                }
+              },
+              {
+                "id": "60",
+                "label": {
+                  "en": "60 minutes"
                 }
               }
             ]
