@@ -11,10 +11,12 @@ const SETTING_ICAL_URI = 'uri';
 
 var events = "";
 
+var eventToken = new Homey.FlowToken('eventToken');
+
 class IcalCalendar extends Homey.App {
 	
 	onInit() {
-		this.log('IcalCalendar is running...');
+		this.log(Homey.manifest.name.en + " V" + Homey.manifest.version + " is running...");
 
 		// register condition flow cards
 		new Homey.FlowCardCondition('event_ongoing')
@@ -29,6 +31,22 @@ class IcalCalendar extends Homey.App {
 		.getArgument('event')
 		.registerAutocompleteListener((query, args) => this.onEventAutocomplete(query, args));
 
+		new Homey.FlowCardCondition('any_event_ongoing')
+		.register()
+		.registerRunListener((args, state) => this.checkAnyEvent(args, state, 'any_ongoing'));
+
+		new Homey.FlowCardCondition('any_event_in')
+		.register()
+		.registerRunListener((args, state) => this.checkAnyEvent(args, state, 'any_in'));
+
+		new Homey.FlowCardTrigger('event_starts')
+		.register()
+		.registerRunListener((args, state) => {
+			this.log("event_starts", {args, state});
+		});
+
+		eventToken.register().then((token) => token.setValue('TestEventTOken'));
+
 		// get ical
 		this.getEvents();
 
@@ -40,8 +58,6 @@ class IcalCalendar extends Homey.App {
 	}
 
 	onEventAutocomplete(query, args) {
-		//this.log("onEventAutocomplete called with query '" + query + "'");
-
 		if (!events) {
 			this.log("onEventAutocomplete: Events not set yet. Nothing to show...");
 			return Promise.reject(false);
@@ -54,21 +70,39 @@ class IcalCalendar extends Homey.App {
 		}
 	}
 
+	async checkAnyEvent(args, state, type) {
+		var eventCondition = false;
+		var filteredEvents = tools.filterIcalBySummary(events, '');
+		if (!filteredEvents || !filteredEvents.length) {
+			this.log("checkAnyEvent: filteredEvents empty... Resolving with false");
+			return Promise.resolve(false);
+		}
+
+		if (type === 'any_ongoing') {
+			eventCondition = this.isEventOngoing(filteredEvents);
+			this.log("checkAnyEvent: Is any of the " + filteredEvents.length + " events ongoing? " + eventCondition);
+		}
+		else if (type === 'any_in') {
+			eventCondition = this.isEventIn(filteredEvents, args.when);
+			this.log("checkAnyEvent: Is any of the " + filteredEvents.length + " events starting in " + args.when + " minutes or less? " + eventCondition);
+		}
+
+		return Promise.resolve(eventCondition);
+	}
+
 	async checkEvent(args, state, type) {
-		//this.log("checkEvent called from " + type)
-		
 		var eventCondition = false;
 		var filteredEvents = tools.filterIcalByUID(events, args.event.id);
 		if (!filteredEvents || !filteredEvents.length) {
-			this.log("checkEvent: filteredEvents empty... Rejecting with false");
-			return Promise.reject(false);
+			this.log("checkEvent: filteredEvents empty... Resolving with false");
+			return Promise.resolve(false);
 		}
-		this.log("checkEvent: " + filteredEvents.length)
+		this.log("checkEvent: " + filteredEvents.length + " event")
 		this.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
 
 		if (type === 'ongoing') {
 			eventCondition = this.isEventOngoing(filteredEvents);
-			 this.log("checkEvent: Ongoing? " + eventCondition);
+			this.log("checkEvent: Ongoing? " + eventCondition);
 		}
 		else if (type === 'in') {
 			eventCondition = this.isEventIn(filteredEvents, args.when);
@@ -95,15 +129,16 @@ class IcalCalendar extends Homey.App {
 
 		// get ical file
 		if (uri) {
+			this.log("getEvents: Using url '" + uri + "'");
 			tools.getIcal(uri)
 			.then(data => {
 				events = tools.parseIcalToJson(data);
-				this.log("getEvents: Events updated. Events: " + events.VEVENT.length);
+				this.log("getEvents: Events updated. Events count: " + events.VEVENT.length);
 				
 				return true;
 			})
 			.catch(err => {
-				this.log("getEvents: Failed to retrieve ical content from '" + uri + "'", err);
+				this.log("getEvents: Failed to retrieve ical content from '" + uri + "':", err);
 				
 				return false;
 			});
@@ -121,7 +156,7 @@ class IcalCalendar extends Homey.App {
 			this.log("unregisterCronTask: Unregistered task '" + CRONTASK + "'");
 		}
 		catch (err) {
-			this.log("unregisterCronTask: Error unregistering task '" + CRONTASK + "'", err);
+			this.log("unregisterCronTask: Error unregistering task '" + CRONTASK + "':", err);
 		}
 	}
 	
@@ -134,7 +169,7 @@ class IcalCalendar extends Homey.App {
 			this.log("registerCronTask: Registered task '" + CRONTASK + "' with cron format '" + CRONTASK_SCHEDULE + "'");
 		}
 		catch (err) {
-			this.log("registerCronTask: Error registering task '" + CRONTASK + "' with cron format '" + CRONTASK_SCHEDULE + "'", err);
+			this.log("registerCronTask: Error registering task '" + CRONTASK + "' with cron format '" + CRONTASK_SCHEDULE + "':", err);
 		}
 	}
 
@@ -190,8 +225,9 @@ class IcalCalendar extends Homey.App {
 			let now = moment();
 			let start = moment(startStamp);
 			let startDiff = now.diff(start, 'minutes');
-			let result = (startDiff >= whenMinutes);
-			this.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + whenMinutes + " minutes or less -- In: " + result);
+			//let result = (startDiff <= whenMinutes && startDiff >= 0);
+			let result = (startDiff >= when && startDiff <= 0)
+			this.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
 		});
 	}
