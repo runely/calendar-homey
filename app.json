@@ -41,7 +41,89 @@
   },
   "source": "https://github.com/runely/calendar-homey",
   "flow": {
+    "triggers": [
+      {
+        "id": "event_starts",
+        "title": {
+          "en": "Any event starts"
+        },
+        "tokens": [
+          {
+            "type": "string",
+            "name": "eventToken",
+            "title": {
+              "en": "Event name"
+            },
+            "example": {
+              "en": "Name of the event"
+            }
+          }
+        ]
+      }
+    ],
     "conditions": [
+      {
+        "id": "any_event_in",
+        "title": {
+          "en": "Any event !{{starts|doesn't start}} in..."
+        },
+        "args": [
+          {
+            "name": "when",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "5",
+                "label": {
+                  "en": "5 minutes"
+                }
+              },
+              {
+                "id": "10",
+                "label": {
+                  "en": "10 minutes"
+                }
+              },
+              {
+                "id": "15",
+                "label": {
+                  "en": "15 minutes"
+                }
+              },
+              {
+                "id": "20",
+                "label": {
+                  "en": "20 minutes"
+                }
+              },
+              {
+                "id": "25",
+                "label": {
+                  "en": "25 minutes"
+                }
+              },
+              {
+                "id": "30",
+                "label": {
+                  "en": "30 minutes"
+                }
+              },
+              {
+                "id": "60",
+                "label": {
+                  "en": "60 minutes"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "any_event_ongoing",
+        "title": {
+          "en": "Any event !{{is|isn't}} ongoing"
+        }
+      },
       {
         "id": "event_in",
         "title": {
