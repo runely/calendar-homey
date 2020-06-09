@@ -25,7 +25,6 @@
             <legend>URI settings</legend>
 
             <div class="field row">
-                <!-- <label for="uri">URI to .ics</label> -->
                 <input id="uri" type="text" value="" />
             </div>
 
@@ -33,9 +32,8 @@
 
         <button id="save" class="right">Save changes</button>
 
-        <!-- <hr /> -->
         <p class="icons-info">Icons by <a href="https://icons8.com/">Icons8</a></p>
-
+        
         <script type="text/javascript">
             // a method named 'onHomeyReady' must be present in your code
             function onHomeyReady(Homey) {
@@ -46,8 +44,8 @@
                 var saveElement = document.getElementById('save');
 
                 Homey.get('uri', function( err, uri ) {
-                if (err) return Homey.alert(err);
-                uriElement.value = uri;
+                    if (err) return Homey.alert(err);
+                    uriElement.value = uri;
                 });
 
                 saveElement.addEventListener('click', function(e) {
