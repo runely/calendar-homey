@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "compatibility": ">=2.0.0",
   "sdk": 2,
-  "brandColor": "#00FF00",
+  "brandColor": "#05A22C",
   "name": {
     "en": "IcalCalendar"
   },
   "description": {
-    "en": "Monitor ical url and check if events are ongoing or starting soon"
+    "en": "Gives Homey flow cards to trigger on your calendar events"
   },
   "category": [
     "tools"
@@ -49,13 +49,24 @@
         },
         "tokens": [
           {
+            "name": "event_name",
             "type": "string",
-            "name": "eventToken",
             "title": {
               "en": "Event name"
-            },
-            "example": {
-              "en": "Name of the event"
+            }
+          },
+          {
+            "name": "event_description",
+            "type": "string",
+            "title": {
+              "en": "Event description"
+            }
+          },
+          {
+            "name": "event_location",
+            "type": "string",
+            "title": {
+              "en": "Event location"
             }
           }
         ]
