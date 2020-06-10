@@ -90,13 +90,9 @@ class IcalCalendar extends Homey.App {
 		var eventCondition = false;
 		var filteredEvents;
 		if (type === 'ongoing' || type === 'in') {
-			this.log("checkEvent: Fetching events by 'ongoing' or 'in':", type);
-			//filteredEvents = tools.filterIcalByUID(events, args.event.id);
 			filteredEvents = tools.filterIcalByUID(variableMgmt.EVENTS, args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in') {
-			this.log("checkEvent: Fetching events by 'any_ongoing' or 'any_in':", type);
-			//filteredEvents = tools.filterIcalBySummary(events, '');
 			filteredEvents = tools.filterIcalBySummary(variableMgmt.EVENTS, '');
 		}
 		if (!filteredEvents || !filteredEvents.length) {
@@ -129,7 +125,6 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async getEvents(args) {
-		// args = the setting name that changed
 		if (args) {
 			this.log("getEvents: Called from " + args);
 			var settingName = args;
@@ -148,9 +143,7 @@ class IcalCalendar extends Homey.App {
 			this.log("getEvents: Using url '" + uri + "'");
 			tools.getIcal(uri)
 				.then(data => {
-					//events = tools.parseIcalToJson(data);
 					variableMgmt.EVENTS = tools.parseIcalToJson(data);
-					//this.log("getEvents: Events updated. Events count: " + events.VEVENT.length);
 					this.log("getEvents: Events updated. Events count: " + variableMgmt.EVENTS.VEVENT.length);
 					
 					return true;
@@ -169,20 +162,25 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async triggerEvents() {
-		var filteredEvents = tools.filterIcalBySummary(variableMgmt.EVENTS, '');
-		this.log("triggerEvents:", "Checking if any of the " + filteredEvents.length + " events starts now or has started in the last minute");
-		var eventStartedNow = this.isAnyEventStartingNow(filteredEvents);
+		if (variableMgmt.EVENTS) {
+			var filteredEvents = tools.filterIcalBySummary(variableMgmt.EVENTS, '');
+			this.log("triggerEvents:", "Checking if any of the " + filteredEvents.length + " events starts now or has started in the last minute");
+			var eventStartedNow = this.isAnyEventStartingNow(filteredEvents);
 
-		if (eventStartedNow) {
-			// trigger flow card
-			let tokens = {
-				'event_name': eventStartedNow.SUMMARY,
-				'event_description': eventStartedNow.DESCRIPTION,
-				'event_location': eventStartedNow.LOCATION
-			};
-			this.log("triggerEvents: Found started event:", tokens);
-			Homey.ManagerFlow.getCard('trigger', 'event_starts').trigger(tokens);
-			this.log("triggerEvents:", "Trigger triggered!");
+			if (eventStartedNow) {
+				// trigger flow card
+				let tokens = {
+					'event_name': this.getTokenValue(eventStartedNow.SUMMARY),
+					'event_description': this.getTokenValue(eventStartedNow.DESCRIPTION),
+					'event_location': this.getTokenValue(eventStartedNow.LOCATION)
+				};
+
+				this.log("triggerEvents: Found started event:", tokens);
+				Homey.ManagerFlow.getCard('trigger', 'event_starts').trigger(tokens);
+			}
+		}
+		else {
+			this.log("triggerEvents:", "'" + variableMgmt.SETTING.ICAL_URI + "' has not been set in Settings yet");
 		}
 	}
 
@@ -248,15 +246,14 @@ class IcalCalendar extends Homey.App {
 				stopStamp = event.DTEND_DATE;
 			}
 			else {
-				this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
+				//this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
 				return false;
 			}
-			this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
+			//this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
 
 			let now = moment();
 			let start = moment(startStamp);
 			let stop = moment(stopStamp);
-			//let startDiff = now.diff(start, 'minutes');
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
@@ -276,10 +273,10 @@ class IcalCalendar extends Homey.App {
 				startStamp = event.DTSTART_DATE;
 			}
 			else {
-				this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start not present. Skipping event...")
+				//this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start not present. Skipping event...")
 				return false;
 			}
-			this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "'")
+			//this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "'")
 
 			let whenMinutes = parseInt(when);
 			whenMinutes = -whenMinutes;
@@ -306,17 +303,17 @@ class IcalCalendar extends Homey.App {
 				stopStamp = event.DTEND_DATE;
 			}
 			else {
-				this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
+				//this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
 				return false;
 			}
-			this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
+			//this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
 
 			let now = moment();
 			let start = moment(startStamp);
 			let stop = moment(stopStamp);
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
-			let result = (startDiff >= 0 && startDiff <= 60 && stopDiff <= 0);
+			let result = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
 			this.log("isAnyEventStartingNow: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + result);
 			if (result) e = event;
 			return result;
@@ -324,6 +321,17 @@ class IcalCalendar extends Homey.App {
 
 		if (starting) return e;
 		else return null;
+	}
+
+	getTokenValue(key) {
+		if (!key) {
+			return '';
+		}
+		else if (key === "" || key === " " || key === "\n" || key === "\\n" || key === "\n " || key === "\\n " || key === "\r" || key === "\\r" || key === "\r " || key === "\\r " || key === "\r\n" || key === "\\r\\n" || key === "\r\n " || key === "\\r\\n " || key === "\n\r" || key === "\\n\\r" || key === "\n\r " || key === "\\n\\r ") {
+			return '';
+		}
+
+		return key;
 	}
 }
 
