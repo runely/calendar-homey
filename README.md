@@ -1,22 +1,35 @@
 # IcalCalendar
 
-Monitor ical url and check if events are ongoing or starting soon
+The IcalCalendar can trigger on your calendar events to let you know when events starts
 
 ## Setup
 
-- Install app from Homey store
 - Open settings and paste in url to ics file
 
 ## Usage
 
-### ConditionCard "Event is ongoing"
-- Add card as a condition
-- Choose which event
+### ConditionCard "Event is ongoing" (will check if specified event is|isn't ongoing)
+- Add card as a condition in a flow
+- Choose the event
 
-### ConditionCard "Event starts in"
-- Add card as a condition
+### ConditionCard "Event starts in" (will check if specified event starts|doesn't start in when specified)
+- Add card as a condition in a flow
 - Choose when
-- Choose which event
+- Choose the event
+
+### ConditionCard "Any event is ongoing" (will check if any event is|isn't ongoing)
+- Add card as a condition in a flow
+
+### ConditionCard "Any event starts in" (will check if any event starts|doesn't start in when specified)
+- Add card as a condition in a flow
+- Choose when
+
+### Trigger "Any event starts" (will trigger when any event starts)
+- Add card as a trigger in a flow
+- Tokens:
+    - 'Event name'
+    - 'Event description'
+    - 'Event location'
 
 ## Find Exchange Online ics url
 
@@ -34,9 +47,14 @@ Monitor ical url and check if events are ongoing or starting soon
 1. Copy the link from Secret address in ical format
 1. Paste the ics link in settings of Homey app
 
-## Known problems
+## Known bugs
 
-- Searching events in condition card, returns empty when search query has a space
+- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
+
+## ToDo
+
+- Add support for recurring events
+- Add support for multiple calendars
 
 ## Changelog
 

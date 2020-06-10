@@ -1,4 +1,4 @@
-The IcalCalendar can trigger on your calendar events to let you know when events starts and ends
+The IcalCalendar can trigger on your calendar events to let you know when events starts
 
 Setup
 
@@ -36,6 +36,18 @@ ConditionCard "Any event starts in" (will check if any event starts|doesn't star
 - Add card as a condition in a flow
 - Choose when
 
-Known problems
+Trigger "Any event starts" (will trigger when any event starts)
+- Add card as a trigger in a flow
+- Tokens:
+    - 'Event name'
+    - 'Event description'
+    - 'Event location'
 
-- Searching events in condition card, returns no events when search query has a space followed with a character
+Known bugs
+
+- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
+
+ToDo list
+
+- Add support for recurring events
+- Add support for multiple calendars
