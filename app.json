@@ -53,6 +53,9 @@
             "type": "string",
             "title": {
               "en": "Event name"
+            },
+            "example": {
+              "en": "Pick up in kindergarden"
             }
           },
           {
@@ -60,6 +63,9 @@
             "type": "string",
             "title": {
               "en": "Event description"
+            },
+            "example": {
+              "en": "Pick up kids in kindergarden"
             }
           },
           {
@@ -67,6 +73,9 @@
             "type": "string",
             "title": {
               "en": "Event location"
+            },
+            "example": {
+              "en": "Kindergarden street, 30"
             }
           }
         ]
