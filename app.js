@@ -111,6 +111,11 @@ class IcalCalendar extends Homey.App {
 	async getEvents(args) {
 		if (args) {
 			this.log("getEvents: Called from " + args);
+			
+			if (args === variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE) {
+				return false;
+			}
+			
 			var settingName = args;
 		}
 		else {
@@ -127,13 +132,22 @@ class IcalCalendar extends Homey.App {
 			this.log("getEvents: Using url '" + uri + "'");
 			tools.getIcal(uri)
 				.then(data => {
+					// remove uri_failed settings value if it exists
+					if (Homey.ManagerSettings.get(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE)) {
+						Homey.ManagerSettings.unset(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE);
+						this.log("getEvents: '" + variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE + "' settings value removed");
+					}
+
 					variableMgmt.EVENTS = tools.parseIcalToJson(data);
 					this.log("getEvents: Events updated. Events count: " + variableMgmt.EVENTS.VEVENT.length);
 					
 					return true;
 				})
 				.catch(err => {
-					this.log("getEvents: Failed to retrieve ical content from '" + uri + "':", err);
+					this.log("getEvents: Failed to retrieve ical content from '" + uri + "':", err.statusCode);
+
+					// set a settings value to show a error message on settings page
+					Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE, err.statusCode);
 					
 					return false;
 				});

@@ -6,6 +6,16 @@
                 color: grey;
                 font-size: smaller;
             }
+
+            .uri-error-hidden {
+                display: none;
+            }
+
+            .uri-error-show {
+                display: block;
+                color: red;
+                font-weight: bold;
+            }
         </style>
 
         <!-- Homey settings -->
@@ -32,6 +42,8 @@
 
         <button id="save" class="right">Save changes</button>
 
+        <div id="uri_error" class="uri-error-hidden"></div>
+
         <p class="icons-info">Icons by <a href="https://icons8.com/">Icons8</a></p>
         
         <script type="text/javascript">
@@ -43,17 +55,51 @@
                 var uriElement = document.getElementById('uri');
                 var saveElement = document.getElementById('save');
 
-                Homey.get('uri', function( err, uri ) {
+                // get uri from settings
+                Homey.get('uri', (err, uri) => {
                     if (err) return Homey.alert(err);
                     uriElement.value = uri;
                 });
 
+                // save uri to settings
                 saveElement.addEventListener('click', function(e) {
                     Homey.set('uri', uriElement.value, function(err) {
                         if(err) return Homey.alert(err);
                     });
 
+                    hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
+                });
+
+                // if uri_failed exists as a setting, show error div
+                getUriFailedSetting();
+
+                setInterval(() => getUriFailedSetting(), 3000);
+            }
+
+            function hideError() {
+                var errorElement = document.getElementById('uri_error');
+
+                errorElement.classList = 'uri-error-hidden';
+            }
+
+            function showError(statusCode) {
+                var errorElement = document.getElementById('uri_error');
+
+                errorElement.innerHTML = Homey.__('settings.uri_load_failure') + ": '" + statusCode + "'";
+                errorElement.classList = 'uri-error-show';
+            }
+
+            function getUriFailedSetting() {
+                Homey.get('uri_failed', (err, statusCode) => {
+                    if (err) {
+                        hideError();
+                        return;
+                    }
+
+                    if (statusCode) {
+                        showError(statusCode);
+                    }
                 });
             }
         </script>
