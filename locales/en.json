@@ -1,6 +1,7 @@
 {
     "settings": {
         "title": "URI to the .ics file",
-        "saved_alert": "URI saved"
+        "saved_alert": "URI saved",
+        "uri_load_failure": "Failed to load ics file"
     }
 }
