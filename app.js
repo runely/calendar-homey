@@ -73,13 +73,11 @@ class IcalCalendar extends Homey.App {
 	}
 
 	onEventAutocomplete(query, args) {
-		//if (!events) {
 		if (!variableMgmt.EVENTS) {
 			this.log("onEventAutocomplete: Events not set yet. Nothing to show...");
 			return Promise.reject(false);
 		}
 		else {
-			//var filtered = tools.filterIcalBySummary(events, query)
 			var filtered = tools.filterIcalBySummary(variableMgmt.EVENTS, query)
 			this.log("onEventAutocomplete: Filtered events count: " + filtered.length);
 			return Promise.resolve(this.getEventList(filtered));
@@ -224,13 +222,40 @@ class IcalCalendar extends Homey.App {
 		}
 	}
 
-	getEventList(filtered) {
-		if (filtered.length === 0) {
+	getEventList(events) {
+		if (events.length === 0) {
 			this.log("getEventList: No events. Returning empty array");
-			return filtered;
+			return events;
 		}
 
-		return filtered.map(event => ({ "id": event.UID, "name": event.SUMMARY }));
+		return events.map(event => {
+			let startStamp = "";
+			if (event.DTSTART_TIMESTAMP) {
+				try {
+					startStamp = moment(event.DTSTART_TIMESTAMP).format('DD.MM HH:mm')
+				}
+				catch (err) {
+					console.log("eventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
+					startStamp = "";
+				}
+			}
+			else if (event.DTSTART_DATE) {
+				try {
+					startStamp = moment(event.DTSTART_DATE).format('DD.MM')
+				}
+				catch (err) {
+					console.log("eventList: Failed to parse 'DTSTART_DATE'", err);
+					startStamp = "";
+				}
+			}
+
+			if (startStamp === "") {
+				return { "id": event.UID, "name": `${event.SUMMARY}` };
+			}
+			else {
+				return { "id": event.UID, "name": `(${startStamp}) - ${event.SUMMARY}` };
+			}
+		});
 	}
 
 	isEventOngoing(events) {
