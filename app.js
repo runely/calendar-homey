@@ -8,7 +8,7 @@ const variableMgmt = require('./lib/variableMgmt');
 class IcalCalendar extends Homey.App {
 	
 	onInit() {
-		this.log(Homey.manifest.name.en + " V" + Homey.manifest.version + " is running...");
+		this.log(Homey.manifest.name.en + " v" + Homey.manifest.version + " is running...");
 
 		// register trigger flow cards
 		this.registerTriggerFlowCards();
@@ -25,7 +25,6 @@ class IcalCalendar extends Homey.App {
 		// remove cron tasks on unload
 		Homey.on('unload', () => {
 			this.unregisterCronTasks()
-			clearInterval(variableMgmt.INTERVAL.eventStartsTrigger);
 		});
 
 		// register cron tasks for updateCalendar and triggerEvents
@@ -35,19 +34,6 @@ class IcalCalendar extends Homey.App {
 	registerTriggerFlowCards() {
 		// registering trigger with Homey
 		new Homey.FlowCardTrigger('event_starts').register();
-		
-		/*// mock trigger
-		variableMgmt.INTERVAL.eventStartsTrigger = setInterval(() => {
-			this.log("setInterval:", "Triggering flow");
-
-			let tokens = {
-				'event_name': 'Postmann Pat',
-				'event_description': 'Opplæring i bomgiring',
-				'event_location': 'Greendale'
-			};
-
-			Homey.ManagerFlow.getCard('trigger', 'event_starts').trigger(tokens).then(this.log);
-		}, 45000);*/
 	}
 	
 	registerConditionFlowCards() {
