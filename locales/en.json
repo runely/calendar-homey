@@ -1,5 +1,6 @@
 {
     "settings": {
-        "title": "URI to the .ics file"
+        "title": "URI to the .ics file",
+        "saved_alert": "URI saved"
     }
 }

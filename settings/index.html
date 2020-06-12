@@ -52,6 +52,8 @@
                     Homey.set('uri', uriElement.value, function(err) {
                         if(err) return Homey.alert(err);
                     });
+
+                    Homey.alert(Homey.__('settings.saved_alert'), 'info');
                 });
             }
         </script>
