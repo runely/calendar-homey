@@ -64,7 +64,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - Show message in settings if uri fails to load
 - 0.0.2: 
     - Bugfix: "triggerEvents" failed when events were not imported yet
-    - Bugfix: Tokens are validated before set (replacing '\d' or '\r' or null with '')
+    - Bugfix: Tokens are validated before set (replacing '\n' or '\r' or null with '')
     - Added trigger for any events started
     - Bugfix: "Event is ongoing" validated to true when a started event was missing a stop time
     - Updated README.txt with info from README.md (and make it look good)
