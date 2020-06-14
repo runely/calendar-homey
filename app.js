@@ -64,9 +64,15 @@ class IcalCalendar extends Homey.App {
 			return Promise.reject(false);
 		}
 		else {
-			var filtered = tools.filterIcalBySummary(variableMgmt.EVENTS, query)
-			this.log("onEventAutocomplete: Filtered events count: " + filtered.length);
-			return Promise.resolve(this.getEventList(filtered));
+			if (query && query !== "") {
+				var filtered = tools.filterIcalBySummary(variableMgmt.EVENTS, query)
+				this.log("onEventAutocomplete: Filtered events count: " + filtered.length);
+				return Promise.resolve(this.getEventList(filtered));
+			}
+			else {
+				this.log("onEventAutocomplete: Events count: " + variableMgmt.EVENTS.length);
+				return Promise.resolve(this.getEventList(variableMgmt.EVENTS));
+			}
 		}
 	}
 
@@ -77,7 +83,7 @@ class IcalCalendar extends Homey.App {
 			filteredEvents = tools.filterIcalByUID(variableMgmt.EVENTS, args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in') {
-			filteredEvents = tools.filterIcalBySummary(variableMgmt.EVENTS, '');
+			filteredEvents = variableMgmt.EVENTS;
 		}
 		if (!filteredEvents || !filteredEvents.length) {
 			this.log("checkEvent: filteredEvents empty... Resolving with false");
@@ -138,8 +144,10 @@ class IcalCalendar extends Homey.App {
 						this.log("getEvents: '" + variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE + "' settings value removed");
 					}
 
-					variableMgmt.EVENTS = tools.parseIcalToJson(data);
-					this.log("getEvents: Events updated. Events count: " + variableMgmt.EVENTS.VEVENT.length);
+					let json = tools.parseIcalToJson(data);
+					let activeEvents = tools.filterActiveEvents(json);
+					variableMgmt.EVENTS = activeEvents;
+					this.log("getEvents: Events updated. Events count: " + variableMgmt.EVENTS.length);
 					
 					return true;
 				})
@@ -161,9 +169,8 @@ class IcalCalendar extends Homey.App {
 
 	async triggerEvents() {
 		if (variableMgmt.EVENTS) {
-			var filteredEvents = tools.filterIcalBySummary(variableMgmt.EVENTS, '');
-			this.log("triggerEvents:", "Checking if any of the " + filteredEvents.length + " events starts now or has started in the last minute");
-			var eventStartedNow = this.isAnyEventStartingNow(filteredEvents);
+			this.log("triggerEvents:", "Checking if any of the " + variableMgmt.EVENTS.length + " events starts now or has started in the last minute");
+			var eventStartedNow = this.isAnyEventStartingNow(variableMgmt.EVENTS);
 
 			if (eventStartedNow) {
 				// trigger flow card
@@ -235,7 +242,7 @@ class IcalCalendar extends Homey.App {
 					startStamp = moment(event.DTSTART_TIMESTAMP).format('DD.MM HH:mm')
 				}
 				catch (err) {
-					console.log("eventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
+					this.log("eventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
 					startStamp = "";
 				}
 			}
@@ -244,7 +251,7 @@ class IcalCalendar extends Homey.App {
 					startStamp = moment(event.DTSTART_DATE).format('DD.MM')
 				}
 				catch (err) {
-					console.log("eventList: Failed to parse 'DTSTART_DATE'", err);
+					this.log("eventList: Failed to parse 'DTSTART_DATE'", err);
 					startStamp = "";
 				}
 			}
@@ -271,10 +278,8 @@ class IcalCalendar extends Homey.App {
 				stopStamp = event.DTEND_DATE;
 			}
 			else {
-				//this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
 				return false;
 			}
-			//this.log("isEventOngoing: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
 
 			let now = moment();
 			let start = moment(startStamp);
@@ -282,7 +287,6 @@ class IcalCalendar extends Homey.App {
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
-			//this.log("isEventOngoing: " + startDiff + " minutes since start -- " + stopDiff + " minutes since stop -- Ongoing: " + result);
 			this.log("isEventOngoing: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Ongoing: " + result);
 			return result;
 		});
@@ -298,10 +302,8 @@ class IcalCalendar extends Homey.App {
 				startStamp = event.DTSTART_DATE;
 			}
 			else {
-				//this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start not present. Skipping event...")
 				return false;
 			}
-			//this.log("isEventIn: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "'")
 
 			let whenMinutes = parseInt(when);
 			whenMinutes = -whenMinutes;
@@ -328,10 +330,8 @@ class IcalCalendar extends Homey.App {
 				stopStamp = event.DTEND_DATE;
 			}
 			else {
-				//this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start or Stop not present. Skipping event...");
 				return false;
 			}
-			//this.log("isAnyEventStartingNow: Summary: '" + event.SUMMARY + "' :: Start: '" + startStamp + "' <--> Stop: '" + stopStamp + "'");
 
 			let now = moment();
 			let start = moment(startStamp);
