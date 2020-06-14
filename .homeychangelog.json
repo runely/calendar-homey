@@ -4,5 +4,8 @@
   },
   "0.0.2": {
     "en": "App failed when events were not imported yet. Tokens are validated. Added trigger for any events started. 'Event is ongoing' validated to true when a started event was missing a stop time"
+  },
+  "0.0.3": {
+    "en": "See above"
   }
 }
