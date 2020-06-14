@@ -237,6 +237,8 @@ class IcalCalendar extends Homey.App {
 
 		return events.map(event => {
 			let startStamp = "";
+			let fullDayEvent = false;
+
 			if (event.DTSTART_TIMESTAMP) {
 				try {
 					startStamp = moment(event.DTSTART_TIMESTAMP).format('DD.MM HH:mm')
@@ -248,6 +250,7 @@ class IcalCalendar extends Homey.App {
 			}
 			else if (event.DTSTART_DATE) {
 				try {
+					fullDayEvent = true;
 					startStamp = moment(event.DTSTART_DATE).format('DD.MM')
 				}
 				catch (err) {
@@ -256,12 +259,29 @@ class IcalCalendar extends Homey.App {
 				}
 			}
 
+			let name = "";
+			let description = "";
+
 			if (startStamp === "") {
-				return { "id": event.UID, "name": `${event.SUMMARY}` };
+				name = event.SUMMARY;
 			}
 			else {
-				return { "id": event.UID, "name": `(${startStamp}) - ${event.SUMMARY}` };
+				name = `(${startStamp}) - ${event.SUMMARY}`;
 			}
+
+			if (event.RRULE) {
+				description = Homey.__('conditions_event_description_recurring');
+			}
+			if (fullDayEvent) {
+				if (description === "") {
+					description = Homey.__('conditions_event_description_fullday');
+				}
+				else {
+					description += " -- " + Homey.__('conditions_event_description_fullday');
+				}
+			}
+
+			return { "id": event.UID, "name": name, "description": description };
 		});
 	}
 

@@ -3,5 +3,7 @@
         "title": "URI to the .ics file",
         "saved_alert": "URI saved",
         "uri_load_failure": "Failed to load ics file"
-    }
+    },
+    "conditions_event_description_recurring": "Recurring event",
+    "conditions_event_description_fullday": "Full day event"
 }
