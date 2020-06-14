@@ -1,4 +1,4 @@
-The IcalCalendar can trigger on your calendar events to let you know when events starts
+The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 Setup
 
