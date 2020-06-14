@@ -93,6 +93,18 @@
             "type": "dropdown",
             "values": [
               {
+                "id": "1",
+                "label": {
+                  "en": "1 minute"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "2 minutes"
+                }
+              },
+              {
                 "id": "5",
                 "label": {
                   "en": "5 minutes"
@@ -154,6 +166,18 @@
             "name": "when",
             "type": "dropdown",
             "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "1 minute"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "2 minutes"
+                }
+              },
               {
                 "id": "5",
                 "label": {
