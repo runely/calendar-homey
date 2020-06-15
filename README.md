@@ -58,6 +58,8 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 ## Changelog
 
+- 0.0.4
+    - Changelog moved out of readme...
 - 0.0.3
     - Events in condition card is now presented with a date (and time if present) -> [Issue #2](https://github.com/runely/calendar-homey/issues/2)
     - Alert when settings saved -> [Issue #9](https://github.com/runely/calendar-homey/issues/9)
