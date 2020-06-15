@@ -6,6 +6,6 @@
     "en": "App failed when events were not imported yet. Tokens are validated. Added trigger for any events started. 'Event is ongoing' validated to true when a started event was missing a stop time"
   },
   "0.0.3": {
-    "en": "See above"
+    "en": "Events in condition card is now presented with a date (and time if present). Importing only active events. This is a significantly performance improvement! Event list in condition card shows if the event is recurring and/or full day"
   }
 }
