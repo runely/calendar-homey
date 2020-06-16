@@ -1,0 +1,12 @@
+{
+    "settings": {
+        "title": "Innstillinger",
+        "legend": "Link til .ics-filen",
+        "save_button": "Lagre",
+        "saved_alert": "Innstillinger lagret",
+        "uri_load_failure": "Feilet ved innlasting av .ics-filen",
+        "icons_info": "Ikoner av"
+    },
+    "conditions_event_description_recurring": "Gjentagende avtale",
+    "conditions_event_description_fullday": "Heldagsavtale"
+}

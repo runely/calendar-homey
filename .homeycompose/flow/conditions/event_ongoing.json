@@ -1,14 +1,16 @@
 {
     "id": "event_ongoing",
     "title": {
-      "en": "Event !{{is|isn't}} ongoing"
+      "en": "Event !{{is|isn't}} ongoing",
+      "no": "Avtale !{{pågår|pågår ikke}}"
     },
     "args": [
         {
           "name": "event",
           "type": "autocomplete",
           "placeholder": {
-            "en": "Select event..."
+            "en": "Select event...",
+            "no": "Velg avtale..."
           }
         }
     ]

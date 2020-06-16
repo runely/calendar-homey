@@ -244,7 +244,7 @@ class IcalCalendar extends Homey.App {
 					startStamp = moment(event.DTSTART_TIMESTAMP).format('DD.MM HH:mm')
 				}
 				catch (err) {
-					this.log("eventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
+					this.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
 					startStamp = "";
 				}
 			}
@@ -254,7 +254,7 @@ class IcalCalendar extends Homey.App {
 					startStamp = moment(event.DTSTART_DATE).format('DD.MM')
 				}
 				catch (err) {
-					this.log("eventList: Failed to parse 'DTSTART_DATE'", err);
+					this.log("getEventList: Failed to parse 'DTSTART_DATE'", err);
 					startStamp = "";
 				}
 			}

@@ -1,8 +1,11 @@
 {
     "settings": {
-        "title": "URI to the .ics file",
-        "saved_alert": "URI saved",
-        "uri_load_failure": "Failed to load ics file"
+        "title": "Settings",
+        "legend": "URI to the .ics file",
+        "save_button": "Save",
+        "saved_alert": "Settings saved",
+        "uri_load_failure": "Failed to load .ics file",
+        "icons_info": "Icons by"
     },
     "conditions_event_description_recurring": "Recurring event",
     "conditions_event_description_fullday": "Full day event"

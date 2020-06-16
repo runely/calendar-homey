@@ -1,7 +1,8 @@
 {
     "id": "any_event_in",
     "title": {
-      "en": "Any event !{{starts|doesn't start}} in..."
+      "en": "Any event !{{starts|doesn't start}} in...",
+      "no": "En avtale !{{starter|starter ikke}} om..."
     },
     "args": [
       {
@@ -11,55 +12,64 @@
           {
             "id": "1",
             "label": {
-              "en": "1 minute"
+              "en": "1 minute",
+              "no": "1 minutt"
             }
           },
           {
             "id": "2",
             "label": {
-              "en": "2 minutes"
+              "en": "2 minutes",
+              "no": "2 minutter"
             }
           },
           {
             "id": "5",
             "label": {
-              "en": "5 minutes"
+              "en": "5 minutes",
+              "no": "5 minutter"
             }
           },
           {
             "id": "10",
             "label": {
-              "en": "10 minutes"
+              "en": "10 minutes",
+              "no": "10 minutter"
             }
           },
           {
             "id": "15",
             "label": {
-              "en": "15 minutes"
+              "en": "15 minutes",
+              "no": "15 minutter"
             }
           },
           {
             "id": "20",
             "label": {
-              "en": "20 minutes"
+              "en": "20 minutes",
+              "no": "20 minutter"
             }
           },
           {
             "id": "25",
             "label": {
-              "en": "25 minutes"
+              "en": "25 minutes",
+              "no": "25 minutter"
             }
           },
           {
             "id": "30",
             "label": {
-              "en": "30 minutes"
+              "en": "30 minutes",
+              "no": "30 minutter"
             }
           },
           {
             "id": "60",
             "label": {
-              "en": "60 minutes"
+              "en": "60 minutes",
+              "no": "60 minutter"
             }
           }
         ]
