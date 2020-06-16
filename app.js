@@ -16,6 +16,9 @@ class IcalCalendar extends Homey.App {
 		// register condition flow cards
 		this.registerConditionFlowCards();
 
+		// register action flow cards
+		this.registerActionFlowCards();
+
 		// get ical
 		this.getEvents();
 
@@ -56,6 +59,14 @@ class IcalCalendar extends Homey.App {
 		new Homey.FlowCardCondition('any_event_in')
 			.register()
 			.registerRunListener((args, state) => this.checkEvent(args, state, 'any_in'));
+	}
+
+	registerActionFlowCards() {
+		new Homey.FlowCardAction('sync-calendar')
+			.register()
+			.registerRunListener((args, state) => {
+				return Promise.resolve(this.getEvents());
+			})
 	}
 
 	onEventAutocomplete(query, args) {
@@ -125,7 +136,7 @@ class IcalCalendar extends Homey.App {
 			var settingName = args;
 		}
 		else {
-			this.log("getEvents: Called from onInit/cron");
+			this.log("getEvents: Called from onInit/cron/action");
 			var settingName = variableMgmt.SETTING.ICAL_URI;
 		}
 
