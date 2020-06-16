@@ -58,6 +58,8 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 ## Changelog
 
+- 0.0.5
+    - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
 - 0.0.4
     - Changelog moved out of readme...
 - 0.0.3
