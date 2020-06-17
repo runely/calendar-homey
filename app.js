@@ -77,11 +77,11 @@ class IcalCalendar extends Homey.App {
 		else {
 			if (query && query !== "") {
 				var filtered = tools.filterIcalBySummary(variableMgmt.EVENTS, query)
-				this.log("onEventAutocomplete: Filtered events count: " + filtered.length);
+				//this.log("onEventAutocomplete: Filtered events count: " + filtered.length);
 				return Promise.resolve(this.getEventList(filtered));
 			}
 			else {
-				this.log("onEventAutocomplete: Events count: " + variableMgmt.EVENTS.length);
+				//this.log("onEventAutocomplete: Events count: " + variableMgmt.EVENTS.length);
 				return Promise.resolve(this.getEventList(variableMgmt.EVENTS));
 			}
 		}
@@ -185,10 +185,13 @@ class IcalCalendar extends Homey.App {
 
 			if (eventStartedNow) {
 				// trigger flow card
+				let duration = this.getTokenDuration(eventStartedNow);
 				let tokens = {
 					'event_name': this.getTokenValue(eventStartedNow.SUMMARY),
 					'event_description': this.getTokenValue(eventStartedNow.DESCRIPTION),
-					'event_location': this.getTokenValue(eventStartedNow.LOCATION)
+					'event_location': this.getTokenValue(eventStartedNow.LOCATION),
+					'event_duration_readable': duration.duration,
+					'event_duration': duration.durationMinutes
 				};
 
 				this.log("triggerEvents: Found started event:", tokens);
@@ -298,23 +301,15 @@ class IcalCalendar extends Homey.App {
 
 	isEventOngoing(events) {
 		return events.some(event => {
-			var startStamp = "";
-			var stopStamp = "";
-			if (event.DTSTART_TIMESTAMP && event.DTEND_TIMESTAMP) {
-				startStamp = event.DTSTART_TIMESTAMP;
-				stopStamp = event.DTEND_TIMESTAMP;
-			}
-			else if (event.DTSTART_DATE && event.DTEND_DATE) {
-				startStamp = event.DTSTART_DATE;
-				stopStamp = event.DTEND_DATE;
-			}
-			else {
+			let timestamps = tools.getTimestamps(event, true, true);
+
+			if (Object.keys(timestamps).length !== 2) {
 				return false;
 			}
 
 			let now = moment();
-			let start = moment(startStamp);
-			let stop = moment(stopStamp);
+			let start = moment(timestamps.start);
+			let stop = moment(timestamps.stop);
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
@@ -325,21 +320,16 @@ class IcalCalendar extends Homey.App {
 
 	isEventIn(events, when) {
 		return events.some(event => {
-			var startStamp = "";
-			if (event.DTSTART_TIMESTAMP) {
-				startStamp = event.DTSTART_TIMESTAMP;
-			}
-			else if (event.DTSTART_DATE) {
-				startStamp = event.DTSTART_DATE;
-			}
-			else {
+			let timestamps = tools.getTimestamps(event, true, false);
+
+			if (Object.keys(timestamps).length !== 1) {
 				return false;
 			}
 
 			let whenMinutes = parseInt(when);
 			whenMinutes = -whenMinutes;
 			let now = moment();
-			let start = moment(startStamp);
+			let start = moment(timestamps.start);
 			let startDiff = now.diff(start, 'minutes');
 			let result = (startDiff >= when && startDiff <= 0)
 			this.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
@@ -350,23 +340,15 @@ class IcalCalendar extends Homey.App {
 	isAnyEventStartingNow(events) {
 		var e;
 		const starting = events.some(event => {
-			var startStamp = "";
-			var stopStamp = "";
-			if (event.DTSTART_TIMESTAMP && event.DTEND_TIMESTAMP) {
-				startStamp = event.DTSTART_TIMESTAMP;
-				stopStamp = event.DTEND_TIMESTAMP;
-			}
-			else if (event.DTSTART_DATE && event.DTEND_DATE) {
-				startStamp = event.DTSTART_DATE;
-				stopStamp = event.DTEND_DATE;
-			}
-			else {
+			let timestamps = tools.getTimestamps(event, true, true);
+
+			if (Object.keys(timestamps).length !== 2) {
 				return false;
 			}
 
 			let now = moment();
-			let start = moment(startStamp);
-			let stop = moment(stopStamp);
+			let start = moment(timestamps.start);
+			let stop = moment(timestamps.stop);
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
@@ -388,6 +370,44 @@ class IcalCalendar extends Homey.App {
 		}
 
 		return key;
+	}
+
+	getTokenDuration(event) {
+		let timestamps = tools.getTimestamps(event, true, true);
+		let duration = {};
+
+		if (Object.keys(timestamps).length !== 2) {
+			return { duration: '', durationMinutes: -1 };
+		}
+
+		// get duration
+		let start = moment(timestamps.start);
+		let stop = moment(timestamps.stop);
+		let diff = stop.diff(start, 'minutes');
+		//this.log("getTokenDuration: '" + event.SUMMARY + "' -- Start: " + timestamps.start + " -- Stop: " + timestamps.stop);
+
+		// add duration
+		let hours = diff/60;
+		let output = "";
+		if (hours >= 1 && hours < 2) {
+			output = hours + " " + Homey.__('token_duration_hour');
+		}
+		else if (hours >= 2) {
+			output = hours + " " + Homey.__('token_duration_hours');
+		}
+		else if (hours < 1) {
+			output = diff + " " + Homey.__('token_duration_minutes');
+		}
+		else {
+			output = ''
+		}
+		// must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
+		duration['duration'] = output.replace('.', ',')
+
+		// add durationMinutes
+		duration['durationMinutes'] = diff;
+
+		return duration;
 	}
 }
 
