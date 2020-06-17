@@ -8,5 +8,8 @@
         "icons_info": "Ikoner av"
     },
     "conditions_event_description_recurring": "Gjentagende avtale",
-    "conditions_event_description_fullday": "Heldagsavtale"
+    "conditions_event_description_fullday": "Heldagsavtale",
+    "token_duration_minutes": "minutter",
+    "token_duration_hour": "time",
+    "token_duration_hours": "timer"
 }
