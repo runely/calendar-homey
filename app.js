@@ -37,6 +37,8 @@ class IcalCalendar extends Homey.App {
 	registerTriggerFlowCards() {
 		// registering trigger with Homey
 		new Homey.FlowCardTrigger('event_starts').register();
+
+		new Homey.FlowCardTrigger('event_stops').register();
 	}
 	
 	registerConditionFlowCards() {
@@ -180,23 +182,9 @@ class IcalCalendar extends Homey.App {
 
 	async triggerEvents() {
 		if (variableMgmt.EVENTS) {
-			this.log("triggerEvents:", "Checking if any of the " + variableMgmt.EVENTS.length + " events starts now or has started in the last minute");
-			var eventStartedNow = this.isAnyEventStartingNow(variableMgmt.EVENTS);
-
-			if (eventStartedNow) {
-				// trigger flow card
-				let duration = this.getTokenDuration(eventStartedNow);
-				let tokens = {
-					'event_name': this.getTokenValue(eventStartedNow.SUMMARY),
-					'event_description': this.getTokenValue(eventStartedNow.DESCRIPTION),
-					'event_location': this.getTokenValue(eventStartedNow.LOCATION),
-					'event_duration_readable': duration.duration,
-					'event_duration': duration.durationMinutes
-				};
-
-				this.log("triggerEvents: Found started event:", tokens);
-				Homey.ManagerFlow.getCard('trigger', 'event_starts').trigger(tokens);
-			}
+			this.log("triggerEvents:", "Checking if any of the " + variableMgmt.EVENTS.length + " events ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))");
+			let eventsStartingOrStoppingNow = this.eventsStartingOrStoppingNow(variableMgmt.EVENTS) || [];
+			eventsStartingOrStoppingNow.forEach(event => this.startTrigger(event));
 		}
 		else {
 			this.log("triggerEvents:", "'" + variableMgmt.SETTING.ICAL_URI + "' has not been set in Settings yet");
@@ -337,9 +325,10 @@ class IcalCalendar extends Homey.App {
 		});
 	}
 
-	isAnyEventStartingNow(events) {
-		var e;
-		const starting = events.some(event => {
+	eventsStartingOrStoppingNow(events) {
+		var filteredEvents = [];
+
+		events.forEach(event => {
 			let timestamps = tools.getTimestamps(event, true, true);
 
 			if (Object.keys(timestamps).length !== 2) {
@@ -351,17 +340,19 @@ class IcalCalendar extends Homey.App {
 			let stop = moment(timestamps.stop);
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
-			let result = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
-			this.log("isAnyEventStartingNow: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + result);
-			if (result) e = event;
-			return result;
+			let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
+			let resultStop = (stopDiff >= 0 && stopDiff <= 55);
+			this.log("eventsStartingOrStoppingNow: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
+			this.log("eventsStartingOrStoppingNow: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
+			
+			if (resultStart) filteredEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
+			if (resultStop) filteredEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
 		});
 
-		if (starting) return e;
-		else return null;
+		return filteredEvents;
 	}
 
-	getTokenValue(key) {
+	getTriggerTokenValue(key) {
 		if (!key) {
 			return '';
 		}
@@ -372,7 +363,7 @@ class IcalCalendar extends Homey.App {
 		return key;
 	}
 
-	getTokenDuration(event) {
+	getTriggerTokenDuration(event) {
 		let timestamps = tools.getTimestamps(event, true, true);
 		let duration = {};
 
@@ -384,7 +375,7 @@ class IcalCalendar extends Homey.App {
 		let start = moment(timestamps.start);
 		let stop = moment(timestamps.stop);
 		let diff = stop.diff(start, 'minutes');
-		//this.log("getTokenDuration: '" + event.SUMMARY + "' -- Start: " + timestamps.start + " -- Stop: " + timestamps.stop);
+		//this.log("getTriggerTokenDuration: '" + event.SUMMARY + "' -- Start: " + timestamps.start + " -- Stop: " + timestamps.stop);
 
 		// add duration
 		let hours = diff/60;
@@ -408,6 +399,21 @@ class IcalCalendar extends Homey.App {
 		duration['durationMinutes'] = diff;
 
 		return duration;
+	}
+
+	startTrigger(event) {
+		// trigger flow card
+		let duration = this.getTriggerTokenDuration(event);
+		let tokens = {
+			'event_name': this.getTriggerTokenValue(event.SUMMARY),
+			'event_description': this.getTriggerTokenValue(event.DESCRIPTION),
+			'event_location': this.getTriggerTokenValue(event.LOCATION),
+			'event_duration_readable': duration.duration,
+			'event_duration': duration.durationMinutes
+		};
+
+		this.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}':`, tokens);
+		Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
 	}
 }
 
