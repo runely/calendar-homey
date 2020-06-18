@@ -61,6 +61,16 @@ class IcalCalendar extends Homey.App {
 		new Homey.FlowCardCondition('any_event_in')
 			.register()
 			.registerRunListener((args, state) => this.checkEvent(args, state, 'any_in'));
+
+		new Homey.FlowCardCondition('event_stops_in')
+			.register()
+			.registerRunListener((args, state) => this.checkEvent(args, state, 'stops_in'))
+			.getArgument('event')
+			.registerAutocompleteListener((query, args) => this.onEventAutocomplete(query, args));
+		
+		new Homey.FlowCardCondition('any_event_stops_in')
+			.register()
+			.registerRunListener((args, state) => this.checkEvent(args, state, 'any_stops_in'));
 	}
 
 	registerActionFlowCards() {
@@ -90,12 +100,12 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async checkEvent(args, state, type) {
-		var eventCondition = false;
-		var filteredEvents;
-		if (type === 'ongoing' || type === 'in') {
+		let eventCondition = false;
+		let filteredEvents;
+		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
 			filteredEvents = tools.filterIcalByUID(variableMgmt.EVENTS, args.event.id);
 		}
-		else if (type === 'any_ongoing' || type === 'any_in') {
+		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
 			filteredEvents = variableMgmt.EVENTS;
 		}
 		if (!filteredEvents || !filteredEvents.length) {
@@ -115,6 +125,11 @@ class IcalCalendar extends Homey.App {
 			eventCondition = this.isEventIn(filteredEvents, args.when);
 			this.log("checkEvent: Starting in " + args.when + " minutes or less? " + eventCondition);
 		}
+		else if (type === 'stops_in') {
+			this.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+			eventCondition = this.willEventNotIn(filteredEvents, args.when);
+			this.log("checkEvent: Stopping in less than " + args.when + " minutes? " + eventCondition);
+		}
 		else if (type === 'any_ongoing') {
 			eventCondition = this.isEventOngoing(filteredEvents);
 			this.log("checkEvent: Is any of the " + filteredEvents.length + " events ongoing? " + eventCondition);
@@ -122,6 +137,10 @@ class IcalCalendar extends Homey.App {
 		else if (type === 'any_in') {
 			eventCondition = this.isEventIn(filteredEvents, args.when);
 			this.log("checkEvent: Is any of the " + filteredEvents.length + " events starting in " + args.when + " minutes or less? " + eventCondition);
+		}
+		else if (type === 'any_stops_in') {
+			eventCondition = this.willEventNotIn(filteredEvents, args.when);
+			this.log("checkEvent: Is any of the " + filteredEvents.length + " events stopping in " + args.when + " minutes or less? " + eventCondition);
 		}
 
 		return Promise.resolve(eventCondition);
@@ -314,13 +333,37 @@ class IcalCalendar extends Homey.App {
 				return false;
 			}
 
-			let whenMinutes = parseInt(when);
-			whenMinutes = -whenMinutes;
 			let now = moment();
 			let start = moment(timestamps.start);
 			let startDiff = now.diff(start, 'minutes');
 			let result = (startDiff >= when && startDiff <= 0)
 			this.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
+			return result;
+		});
+	}
+
+	willEventNotIn(events, when) {
+		return events.some(event => {
+			let timestamps = tools.getTimestamps(event, false, true);
+			const flipNumber = number => {
+				if (number > 0)
+					return -number;
+				else if (number < 0)
+					return Math.abs(number);
+				else
+					return 0;
+			}
+
+			if (Object.keys(timestamps).length !== 1) {
+				return false;
+			}
+
+			let now = moment();
+			let stop = moment(timestamps.stop);
+			let stopDiff = flipNumber(now.diff(stop, 'minutes'));
+			let result = (stopDiff < when && stopDiff >= 0);
+			this.log("willEventNotIn: '" + event.SUMMARY + "' -- ", stop);
+			this.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting less than " + when + " minutes -- In: " + result);
 			return result;
 		});
 	}
