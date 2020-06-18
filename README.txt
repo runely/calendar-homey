@@ -20,28 +20,51 @@ Find Gmail ics url
 4. Copy the link from Secret address in ical format
 5. Paste the ics link in settings of Homey app
 
-ConditionCard "Event is ongoing" (will check if specified event is|isn't ongoing)
-- Add card as a condition in a flow
-- Choose the event
-
-ConditionCard "Event starts in" (will check if specified event starts|doesn't start in when specified)
-- Add card as a condition in a flow
-- Choose when
-- Choose the event
-
-ConditionCard "Any event is ongoing" (will check if any event is|isn't ongoing)
-- Add card as a condition in a flow
-
-ConditionCard "Any event starts in" (will check if any event starts|doesn't start in when specified)
-- Add card as a condition in a flow
-- Choose when
-
-Trigger "Any event starts" (will trigger when any event starts)
+Trigger "Event starts" (will trigger when any event starts)
 - Add card as a trigger in a flow
 - Tokens:
-    - 'Event name'
+    - 'Event title'
     - 'Event description'
     - 'Event location'
+    - 'Event duration'
+    - 'Event duration (mintes)'
+
+Trigger "Event stops" (will trigger when any event stops)
+- Add card as a trigger in a flow
+- Tokens:
+    - 'Event title'
+    - 'Event description'
+    - 'Event location'
+    - 'Event duration'
+    - 'Event duration (mintes)'
+
+Condition "Event is ongoing" (will check if specified event is|isn't ongoing)
+- Add card as a condition in a flow
+- Choose the event
+
+Condition "Event starts in" (will check if specified event starts|doesn't start in when specified)
+- Add card as a condition in a flow
+- Choose when
+- Choose the event
+
+Condition "Event stops in" (will check if specified event stops|doesn't stop in when specified)
+- Add card as a condition in a flow
+- Choose when
+- Choose the event
+
+Condition "Any event is ongoing" (will check if any event is|isn't ongoing)
+- Add card as a condition in a flow
+
+Condition "Any event starts in" (will check if any event starts|doesn't start in when specified)
+- Add card as a condition in a flow
+- Choose when
+
+Condition "Any event stops in" (will check if any event stops|doesn't stop in when specified)
+- Add card as a condition in a flow
+- Choose when
+
+Action "Sync calendar" (will download a new .ics file to update current events)
+- Add card as an action in a flow
 
 Known bugs
 
