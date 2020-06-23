@@ -192,8 +192,8 @@
       {
         "id": "any_event_in",
         "title": {
-          "en": "Any event !{{starts|doesn't start}} in...",
-          "no": "En avtale !{{starter|starter ikke}} om..."
+          "en": "Any event !{{starts|doesn't start}} within...",
+          "no": "En avtale !{{starter|starter ikke}} innen..."
         },
         "args": [
           {
@@ -277,8 +277,8 @@
       {
         "id": "any_event_stops_in",
         "title": {
-          "en": "Any event !{{stops|doesn't stop}} in...",
-          "no": "En avtale !{{stopper|stopper ikke}} om..."
+          "en": "Any event !{{stops|doesn't stop}} within...",
+          "no": "En avtale !{{stopper|stopper ikke}} innen..."
         },
         "args": [
           {
@@ -355,8 +355,8 @@
       {
         "id": "event_in",
         "title": {
-          "en": "Event !{{starts|doesn't start}} in...",
-          "no": "Avtale !{{starter|starter ikke}} om..."
+          "en": "Event !{{starts|doesn't start}} within...",
+          "no": "Avtale !{{starter|starter ikke}} innen..."
         },
         "args": [
           {
@@ -458,8 +458,8 @@
       {
         "id": "event_stops_in",
         "title": {
-          "en": "Event !{{stops|doesn't stop}} in...",
-          "no": "Avtale !{{stopper|stopper ikke}} om..."
+          "en": "Event !{{stops|doesn't stop}} within...",
+          "no": "Avtale !{{stopper|stopper ikke}} innen..."
         },
         "args": [
           {
@@ -546,12 +546,12 @@
       {
         "id": "sync-calendar",
         "title": {
-          "en": "Sync calendar",
-          "no": "Synkroniser kalenderen"
+          "en": "Sync calendars",
+          "no": "Synkroniser kalenderene"
         },
         "hint": {
-          "en": "Will download a new .ics file to update current events",
-          "no": "Henter ned en ny .ics-fil for å oppdatere nåværende avtaler"
+          "en": "Will download new .ics files to update current events",
+          "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler"
         }
       }
     ]

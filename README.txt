@@ -42,12 +42,12 @@ Condition "Event is ongoing" (will check if specified event is|isn't ongoing)
 - Add card as a condition in a flow
 - Choose the event
 
-Condition "Event starts in" (will check if specified event starts|doesn't start in when specified)
+Condition "Event starts within" (will check if specified event starts|doesn't start within when specified)
 - Add card as a condition in a flow
 - Choose when
 - Choose the event
 
-Condition "Event stops in" (will check if specified event stops|doesn't stop in when specified)
+Condition "Event stops within" (will check if specified event stops|doesn't stop within when specified)
 - Add card as a condition in a flow
 - Choose when
 - Choose the event
@@ -55,11 +55,11 @@ Condition "Event stops in" (will check if specified event stops|doesn't stop in 
 Condition "Any event is ongoing" (will check if any event is|isn't ongoing)
 - Add card as a condition in a flow
 
-Condition "Any event starts in" (will check if any event starts|doesn't start in when specified)
+Condition "Any event starts within" (will check if any event starts|doesn't start within when specified)
 - Add card as a condition in a flow
 - Choose when
 
-Condition "Any event stops in" (will check if any event stops|doesn't stop in when specified)
+Condition "Any event stops within" (will check if any event stops|doesn't stop within when specified)
 - Add card as a condition in a flow
 - Choose when
 
@@ -73,4 +73,3 @@ Known bugs
 ToDo list
 
 - Add support for recurring events
-- Add support for multiple calendars

@@ -1,11 +1,11 @@
 {
   "id": "sync-calendar",
   "title": {
-    "en": "Sync calendar",
-    "no": "Synkroniser kalenderen"
+    "en": "Sync calendars",
+    "no": "Synkroniser kalenderene"
   },
   "hint": {
-    "en": "Will download a new .ics file to update current events",
-    "no": "Henter ned en ny .ics-fil for å oppdatere nåværende avtaler"
+    "en": "Will download new .ics files to update current events",
+    "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler"
   }
 }

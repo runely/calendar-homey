@@ -108,11 +108,13 @@ module.exports = async (app) => {
 
 module.exports.triggerEvents = async (app) => {
     if (app.variableMgmt.EVENTS) {
-        app.log("triggerEvents:", "Checking if any of the " + app.variableMgmt.EVENTS.length + " events ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))");
-        let triggeringEvents = getTriggeringEvents(app.variableMgmt.EVENTS, app) || [];
-        triggeringEvents.forEach(event => startTrigger(event, app));
+        app.variableMgmt.EVENTS.forEach(calendar => {
+            app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
+            let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
+            triggeringEvents.forEach(event => startTrigger(event, app));
+        });
     }
     else {
-        app.log("triggerEvents:", "'" + app.variableMgmt.SETTING.ICAL_URI + "' has not been set in Settings yet");
+        app.log("triggerEvents:", "Calendars has not been set in Settings yet");
     }
 }

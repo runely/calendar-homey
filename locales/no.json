@@ -2,13 +2,18 @@
     "settings": {
         "title": "Innstillinger",
         "legend": "Link til .ics-filen",
+        "calendar_name": "Kalendarnavn",
+        "calendar_uri": "URI",
+        "new_item_button": "Ny kalender",
         "save_button": "Lagre",
         "saved_alert": "Innstillinger lagret",
-        "uri_load_failure": "Feilet ved innlasting av .ics-filen",
+        "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
         "icons_info": "Ikoner av"
     },
     "conditions_event_description_recurring": "Gjentagende avtale",
     "conditions_event_description_fullday": "Heldagsavtale",
+    "conditions_event_name_date_time_format": "DD.MM HH:mm",
+    "conditions_event_name_date_format": "DD.MM",
     "token_duration_minutes": "minutter",
     "token_duration_hour": "time",
     "token_duration_hours": "timer"

@@ -1,8 +1,8 @@
 {
     "id": "any_event_in",
     "title": {
-      "en": "Any event !{{starts|doesn't start}} in...",
-      "no": "En avtale !{{starter|starter ikke}} om..."
+      "en": "Any event !{{starts|doesn't start}} within...",
+      "no": "En avtale !{{starter|starter ikke}} innen..."
     },
     "args": [
       {
