@@ -80,7 +80,7 @@ class IcalCalendar extends Homey.App {
 					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}': ${err.statusCode} (${err.message})`);
 
 					// set a failed setting value to show a error message on settings page
-					calendars[i] = { name, uri, failed: err.statusCode };
+					calendars[i] = { name, uri, failed: err.message };
 					Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URIS, calendars);
 					this.log("getEvents: 'failed' setting value added to calendar '" + name + "'");
 				});
