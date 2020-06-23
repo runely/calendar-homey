@@ -9,6 +9,15 @@ class IcalCalendar extends Homey.App {
 	onInit() {
 		this.log(Homey.manifest.name.en + " v" + Homey.manifest.version + " is running...");
 
+		// move uri value to uris (support version <= v0.0.4)
+		let legacyCalendar = Homey.ManagerSettings.get(variableMgmt.SETTING.ICAL_URI);
+		if (legacyCalendar) {
+			this.log("onInit: Moving legacy calendar to new calendar!");
+			Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URIS, [{ name: 'Default', uri: legacyCalendar }]);
+			Homey.ManagerSettings.unset(variableMgmt.SETTING.ICAL_URI);
+			this.log("onInit: Legacy calendar moved");
+		}
+
 		// instantiate triggers
 		this.Triggers = require('./handlers/triggers')(this);
 		
@@ -26,7 +35,7 @@ class IcalCalendar extends Homey.App {
 
 		// register callback when a settings has been set
 		Homey.ManagerSettings.on('set', args => {
-			if (args && args === variableMgmt.SETTING.ICAL_URI) {
+			if (args && args === variableMgmt.SETTING.ICAL_URIS) {
 				this.log("Homey.ManagerSettings.on:", args);
 				this.getEvents();
 			}
@@ -43,41 +52,46 @@ class IcalCalendar extends Homey.App {
 
 	async getEvents() {
 		// get URI from settings
-		this.log("getEvents: Getting url from setting '" + variableMgmt.SETTING.ICAL_URI + "'");
-		var uri = Homey.ManagerSettings.get(variableMgmt.SETTING.ICAL_URI);
+		var calendars = Homey.ManagerSettings.get(variableMgmt.SETTING.ICAL_URIS);
+		var events = [];
 
-		// get ical file
-		if (uri) {
-			this.log("getEvents: Using url '" + uri + "'");
-			tools.getIcal(uri)
+		// get ical events
+		if (calendars) {
+			this.log("getEvents: Getting calendars:", calendars.length);
+			for (var i = 0; i < calendars.length; i++) {
+				var { name, uri } = calendars[i];
+				this.log(`getEvents: Getting events for calendar '${name}', using url '${uri}'`);
+
+				await tools.getIcal(uri)
 				.then(data => {
-					// remove uri_failed settings value if it exists
-					if (Homey.ManagerSettings.get(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE)) {
-						Homey.ManagerSettings.unset(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE);
-						this.log("getEvents: '" + variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE + "' settings value removed");
+					// remove failed setting if it exists for calendar
+					if (calendars[i].failed) {
+						calendars[i] = { name, uri };
+						Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URIS, calendars);
+						this.log("getEvents: 'failed' setting value removed from calendar '" + name + "'");
 					}
 
 					let json = tools.parseIcalToJson(data);
 					let activeEvents = tools.filterActiveEvents(json);
-					variableMgmt.EVENTS = activeEvents;
-					this.log("getEvents: Events updated. Events count: " + variableMgmt.EVENTS.length);
-					
-					return true;
+					this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`);
+					events.push({ name, events: activeEvents });
 				})
 				.catch(err => {
-					this.log("getEvents: Failed to retrieve ical content from '" + uri + "':", err.statusCode);
+					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}': ${err.statusCode} (${err.message})`);
 
-					// set a settings value to show a error message on settings page
-					Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URI_LOAD_FAILURE, err.statusCode);
-					
-					return false;
+					// set a failed setting value to show a error message on settings page
+					calendars[i] = { name, uri, failed: err.statusCode };
+					Homey.ManagerSettings.set(variableMgmt.SETTING.ICAL_URIS, calendars);
+					this.log("getEvents: 'failed' setting value added to calendar '" + name + "'");
 				});
+			}
 		}
 		else {
-			this.log("getEvents: '" + variableMgmt.SETTING.ICAL_URI + "' has not been set in Settings yet");
-			
-			return false;
+			this.log("getEvents: Calendars has not been set in Settings yet");
 		}
+
+		variableMgmt.EVENTS = events;
+		return true;
 	}
 
 	async triggerEvents() {

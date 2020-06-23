@@ -30,12 +30,12 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 - Add card as a condition in a flow
 - Choose the event
 
-### Condition "Event starts in" (will check if specified event starts|doesn't start in when specified)
+### Condition "Event starts within" (will check if specified event starts|doesn't start within when specified)
 - Add card as a condition in a flow
 - Choose when
 - Choose the event
 
-### Condition "Event stops in" (will check if specified event stops|doesn't stop in when specified)
+### Condition "Event stops within" (will check if specified event stops|doesn't stop within when specified)
 - Add card as a condition in a flow
 - Choose when
 - Choose the event
@@ -43,15 +43,15 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 ### Condition "Any event is ongoing" (will check if any event is|isn't ongoing)
 - Add card as a condition in a flow
 
-### Condition "Any event starts in" (will check if any event starts|doesn't start in when specified)
+### Condition "Any event starts within" (will check if any event starts|doesn't start within when specified)
 - Add card as a condition in a flow
 - Choose when
 
-### Condition "Any event stops in" (will check if any event stops|doesn't stop in when specified)
+### Condition "Any event stops within" (will check if any event stops|doesn't stop within when specified)
 - Add card as a condition in a flow
 - Choose when
 
-### Action "Sync calendar" (will download a new .ics file to update current events)
+### Action "Sync calendars" (will download new .ics files to update current events)
 - Add card as an action in a flow
 
 ## Find Exchange Online ics url
@@ -73,11 +73,11 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 ## Known bugs
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
+- When Homey looses internet and tries to sync calendars, app crashes...
 
 ## ToDo
 
 - Add support for recurring events
-- Add support for multiple calendars
 
 ## Changelog
 
@@ -87,6 +87,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - Added duration tokens to trigger 'Event starts' -> [Issue #16](https://github.com/runely/calendar-homey/issues/16)
     - Added trigger 'Event stops' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
     - Added conditions 'Any event stops in...' and 'Event stops in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
+    - Added support for multiple calendars -> [Issue #17](https://github.com/runely/calendar-homey/issues/17)
 - 0.0.4 (current)
     - Changelog moved out of readme...
 - 0.0.3

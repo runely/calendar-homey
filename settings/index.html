@@ -16,6 +16,18 @@
                 color: red;
                 font-weight: bold;
             }
+
+            table, td {
+                width: 450px;
+            }
+
+            .input-name {
+                width: 170px;
+            }
+            
+            .input-uri {
+                width: 300px;
+            }
         </style>
 
         <!-- Homey settings -->
@@ -34,11 +46,23 @@
         <fieldset>
             <legend data-i18n="settings.legend"></legend>
 
-            <div class="field row">
-                <input id="uri" type="text" value="" />
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="settings.calendar_name"></th>
+                        <th data-i18n="settings.calendar_uri"></th>
+                    </tr>
+                </thead>
+                <tbody id="calendars">
+                    <tr class="clonable">
+                        <td><input class="input-name" id="uri-name" type="text" value="" maxlength="30" /></td>
+                        <td><input class="input-uri" id="uri-uri" type="text" value="" /></td>
+                    </tr>
+                </tbody>
+            </table>
         </fieldset>
 
+        <button id="newItem" class="right" data-i18n="settings.new_item_button"></button>
         <button id="save" class="right" data-i18n="settings.save_button"></button>
 
         <div id="uri_error" class="uri-error-hidden"></div>
@@ -51,23 +75,28 @@
                 // Tell Homey we're ready to be displayed
                 Homey.ready();
 
-                var uriElement = document.getElementById('uri');
+                var newItemElement = document.getElementById('newItem');
                 var saveElement = document.getElementById('save');
 
                 // get uri from settings
-                Homey.get('uri', (err, uri) => {
+                Homey.get('uris', (err, uris) => {
                     if (err) return Homey.alert(err);
-                    uriElement.value = uri;
+                    getCalendarItems(uris);
                 });
 
                 // save uri to settings
                 saveElement.addEventListener('click', function(e) {
-                    Homey.set('uri', uriElement.value, function(err) {
+                    Homey.set('uris', saveCalendarItems(), function(err) {
                         if(err) return Homey.alert(err);
                     });
 
                     hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
+                });
+
+                // add new calendar item
+                newItemElement.addEventListener('click', function (e) {
+                    newCalendarItem();
                 });
 
                 // if uri_failed exists as a setting, show error div
@@ -76,30 +105,104 @@
                 setInterval(() => getUriFailedSetting(), 3000);
             }
 
+            function newCalendarItem(name = null, uri = null) {
+                let calendars = document.getElementById('calendars');
+                let newElementIndex = (calendars.children.length + 1);
+                let newElement = document.getElementsByClassName('clonable')[0].cloneNode(1);
+
+                newElement.classList = '';
+                newElement.children[0].children[0].id = `uri-name${newElementIndex}`;
+                newElement.children[1].children[0].id = `uri-uri${newElementIndex}`;
+                if (name == null) {
+                    newElement.children[0].children[0].value = '';
+                }
+                else {
+                    newElement.children[0].children[0].value = name;
+                }
+                if (uri == null) {
+                    newElement.children[1].children[0].value = '';
+                }
+                else {
+                    newElement.children[1].children[0].value = uri;
+                }
+
+                calendars.appendChild(newElement);
+            }
+
+            function getCalendarItems(calendars) {
+                if (calendars && calendars.length > 0) {
+                    document.getElementById('uri-name').value = calendars[0].name;
+                    document.getElementById('uri-uri').value = calendars[0].uri;
+                }
+
+                for (var i = 1; i < calendars.length; i++) {
+                    newCalendarItem(calendars[i].name, calendars[i].uri);
+                }
+            }
+
+            function saveCalendarItems() {
+                let calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
+                
+                return calendars.filter(calendar => calendar.localName === "tr").map(calendar => {
+                    let name = calendar.children[0].children[0].value;
+                    let uri = calendar.children[1].children[0].value;
+
+                    return {
+                        name: name,
+                        uri: uri
+                    };
+                });
+            }
+
+            function getUriFailedSetting() {
+                Homey.get('uris', (err, uris) => {
+                    if (err) {
+                        hideError();
+                        return Homey.alert(err);
+                    }
+
+                    var text = "";
+                    uris.forEach(item => {
+                        if (item.failed) {
+                            if (text === "") {
+                                text = item.name + " : " + item.failed;
+                            }
+                            else {
+                                text += "<br>" + item.name + " : " + item.failed;
+                            }
+                        }
+                    });
+
+                    if (text !== "") {
+                        showError(text);
+                    }
+                    else {
+                        hideError();
+                    }
+                });
+            }
+            
             function hideError() {
                 var errorElement = document.getElementById('uri_error');
 
                 errorElement.classList = 'uri-error-hidden';
             }
 
-            function showError(statusCode) {
-                var errorElement = document.getElementById('uri_error');
+            function showError(text) {
+                let errorElement = document.getElementById('uri_error');
 
-                errorElement.innerHTML = Homey.__('settings.uri_load_failure') + ": '" + statusCode + "'";
+                errorElement.innerHTML = Homey.__('settings.uri_load_failure') + "<br>" + text;
                 errorElement.classList = 'uri-error-show';
             }
 
-            function getUriFailedSetting() {
-                Homey.get('uri_failed', (err, statusCode) => {
-                    if (err) {
-                        hideError();
-                        return;
-                    }
+            function unfuckHtmlFuck(fucker) {
+                var fucky = [];
 
-                    if (statusCode) {
-                        showError(statusCode);
-                    }
-                });
+                for (const fuck in fucker) {
+                    fucky.push(fucker[fuck]);
+                }
+
+                return fucky;
             }
         </script>
 

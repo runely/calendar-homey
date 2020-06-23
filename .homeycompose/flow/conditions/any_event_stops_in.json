@@ -1,8 +1,8 @@
 {
     "id": "any_event_stops_in",
     "title": {
-      "en": "Any event !{{stops|doesn't stop}} in...",
-      "no": "En avtale !{{stopper|stopper ikke}} om..."
+      "en": "Any event !{{stops|doesn't stop}} within...",
+      "no": "En avtale !{{stopper|stopper ikke}} innen..."
     },
     "args": [
       {

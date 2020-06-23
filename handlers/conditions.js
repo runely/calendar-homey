@@ -62,58 +62,61 @@ module.exports = async (app) => {
 			return events;
 		}
 
-		return events.map(event => {
-			let startStamp = "";
-			let fullDayEvent = false;
+		let eventList = [];
 
-			if (event.DTSTART_TIMESTAMP) {
-				try {
-					startStamp = moment(event.DTSTART_TIMESTAMP).format('DD.MM HH:mm')
-				}
-				catch (err) {
-					app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
-					startStamp = "";
-				}
-			}
-			else if (event.DTSTART_DATE) {
-				try {
-					fullDayEvent = true;
-					startStamp = moment(event.DTSTART_DATE).format('DD.MM')
-				}
-				catch (err) {
-					app.log("getEventList: Failed to parse 'DTSTART_DATE'", err);
-					startStamp = "";
-				}
-			}
+		events.forEach(calendar => {
+			//app.log(`getEventList: Converting ${calendar.events.length} events from '${calendar.name}' to list`);
 
-			let name = "";
-			let description = "";
+			calendar.events.forEach(event => {
+				//app.log(`getEventList: Converting '${event.SUMMARY}' from '${calendar.name}'`);
+				let startStamp = "";
+				let fullDayEvent = false;
 
-			if (startStamp === "") {
-				name = event.SUMMARY;
-			}
-			else {
-				name = `(${startStamp}) - ${event.SUMMARY}`;
-			}
+				if (event.DTSTART_TIMESTAMP) {
+					try {
+						startStamp = moment(event.DTSTART_TIMESTAMP).format(Homey.__('conditions_event_name_date_time_format'))
+					}
+					catch (err) {
+						app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
+						startStamp = "";
+					}
+				}
+				else if (event.DTSTART_DATE) {
+					try {
+						fullDayEvent = true;
+						startStamp = moment(event.DTSTART_DATE).format(Homey.__('conditions_event_name_date_format'))
+					}
+					catch (err) {
+						app.log("getEventList: Failed to parse 'DTSTART_DATE'", err);
+						startStamp = "";
+					}
+				}
 
-			if (event.RRULE) {
-				description = Homey.__('conditions_event_description_recurring');
-			}
-			if (fullDayEvent) {
-				if (description === "") {
-					description = Homey.__('conditions_event_description_fullday');
+				let name = "";
+				let description = calendar.name;
+
+				if (startStamp === "") {
+					name = event.SUMMARY;
 				}
 				else {
+					name = `(${startStamp}) - ${event.SUMMARY}`;
+				}
+
+				if (event.RRULE) {
+					description += " -- " + Homey.__('conditions_event_description_recurring');
+				}
+				if (fullDayEvent) {
 					description += " -- " + Homey.__('conditions_event_description_fullday');
 				}
-			}
 
-			return { "id": event.UID, "name": name, "description": description };
+				eventList.push({ "id": event.UID, name, description });
+			});
 		});
+
+		return eventList;
 	}
 
     const checkEvent = async (args, state, type) => {
-		let eventCondition = false;
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
 			filteredEvents = tools.filterIcalByUID(app.variableMgmt.EVENTS, args.event.id);
@@ -126,37 +129,44 @@ module.exports = async (app) => {
 			return Promise.resolve(false);
 		}
 
-		app.log("checkEvent: " + filteredEvents.length + " event")
+		return Promise.resolve(filteredEvents.some(calendar => {
+			if (calendar.events.length <= 0) {
+				return false;
+			}
 
-		if (type === 'ongoing') {
-			app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
-			eventCondition = isEventOngoing(filteredEvents);
-			app.log("checkEvent: Ongoing? " + eventCondition);
-		}
-		else if (type === 'in') {
-			app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
-			eventCondition = isEventIn(filteredEvents, args.when);
-			app.log("checkEvent: Starting in " + args.when + " minutes or less? " + eventCondition);
-		}
-		else if (type === 'stops_in') {
-			app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
-			eventCondition = willEventNotIn(filteredEvents, args.when);
-			app.log("checkEvent: Stopping in less than " + args.when + " minutes? " + eventCondition);
-		}
-		else if (type === 'any_ongoing') {
-			eventCondition = isEventOngoing(filteredEvents);
-			app.log("checkEvent: Is any of the " + filteredEvents.length + " events ongoing? " + eventCondition);
-		}
-		else if (type === 'any_in') {
-			eventCondition = isEventIn(filteredEvents, args.when);
-			app.log("checkEvent: Is any of the " + filteredEvents.length + " events starting in " + args.when + " minutes or less? " + eventCondition);
-		}
-		else if (type === 'any_stops_in') {
-			eventCondition = willEventNotIn(filteredEvents, args.when);
-			app.log("checkEvent: Is any of the " + filteredEvents.length + " events stopping in " + args.when + " minutes or less? " + eventCondition);
-		}
+			app.log(`checkEvent: Checking ${calendar.events.length} events from '${calendar.name}'`);
+			let eventCondition = false;
 
-		return Promise.resolve(eventCondition);
+			if (type === 'ongoing') {
+				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				eventCondition = isEventOngoing(calendar.events);
+				app.log("checkEvent: Ongoing? " + eventCondition);
+			}
+			else if (type === 'in') {
+				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				eventCondition = isEventIn(calendar.events, args.when);
+				app.log("checkEvent: Starting within " + args.when + " minutes or less? " + eventCondition);
+			}
+			else if (type === 'stops_in') {
+				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				eventCondition = willEventNotIn(calendar.events, args.when);
+				app.log("checkEvent: Stopping within less than " + args.when + " minutes? " + eventCondition);
+			}
+			else if (type === 'any_ongoing') {
+				eventCondition = isEventOngoing(calendar.events);
+				app.log("checkEvent: Is any of the " + calendar.events.length + " events ongoing? " + eventCondition);
+			}
+			else if (type === 'any_in') {
+				eventCondition = isEventIn(calendar.events, args.when);
+				app.log("checkEvent: Is any of the " + calendar.events.length + " events starting within " + args.when + " minutes or less? " + eventCondition);
+			}
+			else if (type === 'any_stops_in') {
+				eventCondition = willEventNotIn(calendar.events, args.when);
+				app.log("checkEvent: Is any of the " + calendar.events.length + " events stopping within " + args.when + " minutes or less? " + eventCondition);
+			}
+
+			return eventCondition;
+		}));
     }
 
     const isEventOngoing = (events) => {
@@ -188,8 +198,8 @@ module.exports = async (app) => {
 
 			let now = moment();
 			let start = moment(timestamps.start);
-			let startDiff = now.diff(start, 'minutes');
-			let result = (startDiff >= when && startDiff <= 0)
+			let startDiff = tools.flipNumber(now.diff(start, 'minutes'));
+			let result = (startDiff <= when && startDiff >= 0)
 			app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
 		});
@@ -198,14 +208,6 @@ module.exports = async (app) => {
 	const willEventNotIn = (events, when) => {
 		return events.some(event => {
 			let timestamps = tools.getTimestamps(event, false, true);
-			const flipNumber = number => {
-				if (number > 0)
-					return -number;
-				else if (number < 0)
-					return Math.abs(number);
-				else
-					return 0;
-			}
 
 			if (Object.keys(timestamps).length !== 1) {
 				return false;
@@ -213,10 +215,9 @@ module.exports = async (app) => {
 
 			let now = moment();
 			let stop = moment(timestamps.stop);
-			let stopDiff = flipNumber(now.diff(stop, 'minutes'));
+			let stopDiff = tools.flipNumber(now.diff(stop, 'minutes'));
 			let result = (stopDiff < when && stopDiff >= 0);
-			app.log("willEventNotIn: '" + event.SUMMARY + "' -- ", stop);
-			app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting less than " + when + " minutes -- In: " + result);
+			app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
 		});
 	}
