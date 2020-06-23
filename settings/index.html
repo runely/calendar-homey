@@ -17,16 +17,12 @@
                 font-weight: bold;
             }
 
-            table, td {
-                width: 450px;
-            }
-
             .input-name {
-                width: 170px;
+                width: 110px;
             }
             
             .input-uri {
-                width: 300px;
+                width: 200px;
             }
         </style>
 
@@ -43,24 +39,17 @@
         	-->
         </h1>
 
-        <fieldset>
-            <legend data-i18n="settings.legend"></legend>
+        <div id="calendars">
+            <fieldset class="clonable">
+                <legend data-i18n="settings.legend"></legend>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th data-i18n="settings.calendar_name"></th>
-                        <th data-i18n="settings.calendar_uri"></th>
-                    </tr>
-                </thead>
-                <tbody id="calendars">
-                    <tr class="clonable">
-                        <td><input class="input-name" id="uri-name" type="text" value="" maxlength="30" /></td>
-                        <td><input class="input-uri" id="uri-uri" type="text" value="" /></td>
-                    </tr>
-                </tbody>
-            </table>
-        </fieldset>
+                <strong data-i18n="settings.calendar_name"></strong><br>
+                <input class="input-name" id="uri-name" type="text" value="" /><br><br>
+
+                <strong data-i18n="settings.calendar_uri"></strong><br>
+                <input class="input-uri" id="uri-uri" type="text" value="" />
+            </fieldset>
+        </div>
 
         <button id="newItem" class="right" data-i18n="settings.new_item_button"></button>
         <button id="save" class="right" data-i18n="settings.save_button"></button>
@@ -111,19 +100,19 @@
                 let newElement = document.getElementsByClassName('clonable')[0].cloneNode(1);
 
                 newElement.classList = '';
-                newElement.children[0].children[0].id = `uri-name${newElementIndex}`;
-                newElement.children[1].children[0].id = `uri-uri${newElementIndex}`;
+                newElement.children[3].id = `uri-name${newElementIndex}`;
+                newElement.children[8].id = `uri-uri${newElementIndex}`;
                 if (name == null) {
-                    newElement.children[0].children[0].value = '';
+                    newElement.children[3].value = '';
                 }
                 else {
-                    newElement.children[0].children[0].value = name;
+                    newElement.children[3].value = name;
                 }
                 if (uri == null) {
-                    newElement.children[1].children[0].value = '';
+                    newElement.children[8].value = '';
                 }
                 else {
-                    newElement.children[1].children[0].value = uri;
+                    newElement.children[8].value = uri;
                 }
 
                 calendars.appendChild(newElement);
@@ -143,9 +132,9 @@
             function saveCalendarItems() {
                 let calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
                 
-                return calendars.filter(calendar => calendar.localName === "tr").map(calendar => {
-                    let name = calendar.children[0].children[0].value;
-                    let uri = calendar.children[1].children[0].value;
+                return calendars.filter(calendar => calendar.localName === "fieldset").map(calendar => {
+                    let name = calendar.children[3].value;
+                    let uri = calendar.children[8].value;
 
                     return {
                         name: name,
