@@ -72,8 +72,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 ## Known bugs
 
-- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
-- When Homey looses internet and tries to sync calendars, app crashes...
+- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f'
 
 ## ToDo
 
@@ -88,6 +87,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - Added trigger 'Event stops' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
     - Added conditions 'Any event stops in...' and 'Event stops in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
     - Added support for multiple calendars -> [Issue #17](https://github.com/runely/calendar-homey/issues/17)
+    - Bugfix: "When Homey looses internet and tries to sync calendars, app crashes..." -> [Issue #20](https://github.com/runely/calendar-homey/issues/20)
 - 0.0.4 (current)
     - Changelog moved out of readme...
 - 0.0.3
