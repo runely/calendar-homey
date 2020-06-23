@@ -80,7 +80,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 ## Changelog
 
-- 0.0.5
+- 0.0.5 (current)
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
     - Added duration tokens to trigger 'Event starts' -> [Issue #16](https://github.com/runely/calendar-homey/issues/16)
@@ -88,7 +88,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - Added conditions 'Any event stops in...' and 'Event stops in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
     - Added support for multiple calendars -> [Issue #17](https://github.com/runely/calendar-homey/issues/17)
     - Bugfix: "When Homey looses internet and tries to sync calendars, app crashes..." -> [Issue #20](https://github.com/runely/calendar-homey/issues/20)
-- 0.0.4 (current)
+- 0.0.4
     - Changelog moved out of readme...
 - 0.0.3
     - Events in condition card is now presented with a date (and time if present) -> [Issue #2](https://github.com/runely/calendar-homey/issues/2)
