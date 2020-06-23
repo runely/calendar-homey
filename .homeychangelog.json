@@ -10,5 +10,8 @@
   },
   "0.0.4": {
     "en": "Events in condition card is now presented with a date (and time if present). Importing only active events. This is a significantly performance improvement! Event list in condition card shows if the event is recurring and/or full day"
+  },
+  "0.0.5": {
+    "en": "Norwegian language. New sync action. New tokens. New event stops trigger. Supports multiple calendars"
   }
 }
