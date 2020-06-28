@@ -94,6 +94,7 @@ class IcalCalendar extends Homey.App {
 		}
 
 		variableMgmt.events = events;
+		tools.sortEvents(variableMgmt.events);
 		return true;
 	}
 
