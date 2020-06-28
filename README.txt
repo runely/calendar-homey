@@ -66,6 +66,18 @@ Condition "Any event stops within" (will check if any event stops|doesn't stop w
 Action "Sync calendar" (will download a new .ics file to update current events)
 - Add card as an action in a flow
 
+Global flow tokens (can be used in any app and service)
+- Next event title
+- Next event start time
+- Next event stop time
+- Next event duration
+- Next event duration (minutes)
+- Next event starts in (minutes)
+- Next event stops in (minutes)
+- Calendar name of next event
+- Todays events, title and time
+- Todays events (count)
+
 Known bugs
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')

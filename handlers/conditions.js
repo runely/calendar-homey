@@ -39,19 +39,19 @@ module.exports = async (app) => {
     };
 
     const onEventAutocomplete = async (query, args) => {
-        if (!app.variableMgmt.EVENTS) {
+        if (!app.variableMgmt.events) {
             app.log("onEventAutocomplete: Events not set yet. Nothing to show...");
             return Promise.reject(false);
         }
         else {
             if (query && query !== "") {
-                var filtered = tools.filterIcalBySummary(app.variableMgmt.EVENTS, query)
+                var filtered = tools.filterIcalBySummary(app.variableMgmt.events, query)
                 //app.log("onEventAutocomplete: Filtered events count: " + filtered.length);
                 return Promise.resolve(getEventList(filtered));
             }
             else {
-                //app.log("onEventAutocomplete: Events count: " + app.variableMgmt.EVENTS.length);
-                return Promise.resolve(getEventList(app.variableMgmt.EVENTS));
+                //app.log("onEventAutocomplete: Events count: " + app.variableMgmt.events.length);
+                return Promise.resolve(getEventList(app.variableMgmt.events));
             }
         }
     }
@@ -119,10 +119,10 @@ module.exports = async (app) => {
     const checkEvent = async (args, state, type) => {
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
-			filteredEvents = tools.filterIcalByUID(app.variableMgmt.EVENTS, args.event.id);
+			filteredEvents = tools.filterIcalByUID(app.variableMgmt.events, args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
-			filteredEvents = app.variableMgmt.EVENTS;
+			filteredEvents = app.variableMgmt.events;
 		}
 		if (!filteredEvents || !filteredEvents.length) {
 			app.log("checkEvent: filteredEvents empty... Resolving with false");

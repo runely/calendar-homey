@@ -54,6 +54,18 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 ### Action "Sync calendars" (will download new .ics files to update current events)
 - Add card as an action in a flow
 
+### Global flow tokens (can be used in any app and service)
+- Next event title
+- Next event start time
+- Next event stop time
+- Next event duration
+- Next event duration (minutes)
+- Next event starts in (minutes)
+- Next event stops in (minutes)
+- Calendar name of next event
+- Todays events, title and time
+- Todays events (count)
+
 ## Find Exchange Online ics url
 
 1. Go to https://outlook.office.com/mail/inbox
@@ -80,6 +92,8 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 ## Changelog
 
+- 0.0.6
+    - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5 (current)
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
