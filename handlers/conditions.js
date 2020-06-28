@@ -46,11 +46,9 @@ module.exports = async (app) => {
         else {
             if (query && query !== "") {
                 var filtered = tools.filterIcalBySummary(app.variableMgmt.events, query)
-                //app.log("onEventAutocomplete: Filtered events count: " + filtered.length);
                 return Promise.resolve(getEventList(filtered));
             }
             else {
-                //app.log("onEventAutocomplete: Events count: " + app.variableMgmt.events.length);
                 return Promise.resolve(getEventList(app.variableMgmt.events));
             }
         }
@@ -65,10 +63,7 @@ module.exports = async (app) => {
 		let eventList = [];
 
 		events.forEach(calendar => {
-			//app.log(`getEventList: Converting ${calendar.events.length} events from '${calendar.name}' to list`);
-
 			calendar.events.forEach(event => {
-				//app.log(`getEventList: Converting '${event.SUMMARY}' from '${calendar.name}'`);
 				let startStamp = "";
 				let fullDayEvent = false;
 
@@ -140,29 +135,29 @@ module.exports = async (app) => {
 			if (type === 'ongoing') {
 				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
 				eventCondition = isEventOngoing(calendar.events);
-				app.log("checkEvent: Ongoing? " + eventCondition);
+				//app.log("checkEvent: Ongoing? " + eventCondition);
 			}
 			else if (type === 'in') {
 				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
 				eventCondition = isEventIn(calendar.events, args.when);
-				app.log("checkEvent: Starting within " + args.when + " minutes or less? " + eventCondition);
+				//app.log("checkEvent: Starting within " + args.when + " minutes or less? " + eventCondition);
 			}
 			else if (type === 'stops_in') {
 				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
 				eventCondition = willEventNotIn(calendar.events, args.when);
-				app.log("checkEvent: Stopping within less than " + args.when + " minutes? " + eventCondition);
+				//app.log("checkEvent: Stopping within less than " + args.when + " minutes? " + eventCondition);
 			}
 			else if (type === 'any_ongoing') {
 				eventCondition = isEventOngoing(calendar.events);
-				app.log("checkEvent: Is any of the " + calendar.events.length + " events ongoing? " + eventCondition);
+				//app.log("checkEvent: Is any of the " + calendar.events.length + " events ongoing? " + eventCondition);
 			}
 			else if (type === 'any_in') {
 				eventCondition = isEventIn(calendar.events, args.when);
-				app.log("checkEvent: Is any of the " + calendar.events.length + " events starting within " + args.when + " minutes or less? " + eventCondition);
+				//app.log("checkEvent: Is any of the " + calendar.events.length + " events starting within " + args.when + " minutes or less? " + eventCondition);
 			}
 			else if (type === 'any_stops_in') {
 				eventCondition = willEventNotIn(calendar.events, args.when);
-				app.log("checkEvent: Is any of the " + calendar.events.length + " events stopping within " + args.when + " minutes or less? " + eventCondition);
+				//app.log("checkEvent: Is any of the " + calendar.events.length + " events stopping within " + args.when + " minutes or less? " + eventCondition);
 			}
 
 			return eventCondition;
@@ -183,7 +178,7 @@ module.exports = async (app) => {
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
-			app.log("isEventOngoing: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Ongoing: " + result);
+			//app.log("isEventOngoing: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Ongoing: " + result);
 			return result;
 		});
 	}
@@ -200,7 +195,7 @@ module.exports = async (app) => {
 			let start = moment(timestamps.start);
 			let startDiff = tools.flipNumber(now.diff(start, 'minutes'));
 			let result = (startDiff <= when && startDiff >= 0)
-			app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
+			//app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
 		});
 	}
@@ -217,7 +212,7 @@ module.exports = async (app) => {
 			let stop = moment(timestamps.stop);
 			let stopDiff = tools.flipNumber(now.diff(stop, 'minutes'));
 			let result = (stopDiff < when && stopDiff >= 0);
-			app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
+			//app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
 		});
 	}

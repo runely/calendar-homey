@@ -6,6 +6,7 @@ const tools = require('../lib/tools');
 
 const getTriggeringEvents = (events, app) => {
     var filteredEvents = [];
+    app.log("getTriggeringEvents");
 
     events.forEach(event => {
         let timestamps = tools.getTimestamps(event, true, true);
@@ -21,8 +22,8 @@ const getTriggeringEvents = (events, app) => {
         let stopDiff = now.diff(stop, 'seconds');
         let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
         let resultStop = (stopDiff >= 0 && stopDiff <= 55);
-        app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
-        app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
+        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
+        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
         
         if (resultStart) filteredEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
         if (resultStop) filteredEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
@@ -54,7 +55,6 @@ const getTriggerTokenDuration = (event) => {
     let start = moment(timestamps.start);
     let stop = moment(timestamps.stop);
     let diff = stop.diff(start, 'minutes');
-    //app.log("getTriggerTokenDuration: '" + event.SUMMARY + "' -- Start: " + timestamps.start + " -- Stop: " + timestamps.stop);
 
     // add duration
     let hours = diff/60;
@@ -71,6 +71,7 @@ const getTriggerTokenDuration = (event) => {
     else {
         output = ''
     }
+
     // must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
     duration['duration'] = output.replace('.', ',')
 
@@ -91,7 +92,7 @@ const startTrigger = (event, app) => {
         'event_duration': duration.durationMinutes
     };
 
-    app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}':`, tokens);
+    app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
     Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
 }
 
@@ -105,11 +106,9 @@ const updateFlowTokens = (event, app) => {
 
     app.variableMgmt.flowTokens.map(token => {
         if (token.id === 'event_next_title') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? event.event.SUMMARY : '');
         }
         else if (token.id === 'event_next_startstamp') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             if (event) {
                 if (event.event.DTSTART_TIMESTAMP) {
                     token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
@@ -123,7 +122,6 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_stopstamp') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             if (event) {
                 if (event.event.DTSTART_TIMESTAMP) {
                     token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
@@ -137,27 +135,21 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_duration') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? eventDuration.duration : '');
         }
         else if (token.id === 'event_next_duration_minutes') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? eventDuration.durationMinutes : -1);
         }
         else if (token.id === 'event_next_starts_in_minutes') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? event.startsIn : -1);
         }
         else if (token.id === 'event_next_stops_in_minutes') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? event.stopsIn : -1);
         }
         else if (token.id === 'event_next_calendar_name') {
-            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
             token.setValue(event ? event.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
-            app.log(`updateFlowToken: Updating '${token.id}'`);
             let value = '';
             todaysEvents.map(item => {
                 item.events.map(event => {
@@ -182,7 +174,6 @@ const updateFlowTokens = (event, app) => {
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
-            app.log(`updateFlowToken: Updating '${token.id}'`);
             let todaysEventsCount = 0;
             todaysEvents.map(item => {
                 todaysEventsCount += item.events.length;
@@ -206,7 +197,7 @@ module.exports = async (app) => {
             new Homey.FlowToken(definition.id, { type: definition.type, title: Homey.__(definition.id)})
                 .register()
                 .then(token => {
-                    app.log(`registerFlowToken: ${definition.id} registered`);
+                    //app.log(`registerFlowToken: ${definition.id} registered`);
                     app.variableMgmt.flowTokens.push(token);
                 });
         });
@@ -214,9 +205,6 @@ module.exports = async (app) => {
 
     await registerTriggerFlowCards();
     await registerFlowTokens();
-
-    // mock in some test variables
-    //setTimeout(() => updateFlowTokens([], app), 1500);
 }
 
 module.exports.triggerEvents = async (app) => {

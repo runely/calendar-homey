@@ -40,7 +40,6 @@ class IcalCalendar extends Homey.App {
 		// register callback when a settings has been set
 		Homey.ManagerSettings.on('set', args => {
 			if (args && args === variableMgmt.setting.icalUris) {
-				this.log("Homey.ManagerSettings.on:", args);
 				this.getEvents();
 			}
 		});
@@ -64,7 +63,7 @@ class IcalCalendar extends Homey.App {
 			this.log("getEvents: Getting calendars:", calendars.length);
 			for (var i = 0; i < calendars.length; i++) {
 				var { name, uri } = calendars[i];
-				this.log(`getEvents: Getting events for calendar '${name}', using url '${uri}'`);
+				this.log(`getEvents: Getting events for calendar '${name}'`);
 
 				await tools.getIcal(uri)
 				.then(data => {
@@ -109,7 +108,6 @@ class IcalCalendar extends Homey.App {
 	async unregisterCronTasks() {
 		try {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.updateCalendar);
-			this.log("unregisterCronTask: Unregistered task '" + variableMgmt.crontask.id.updateCalendar + "'");
 		}
 		catch (err) {
 			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
@@ -117,7 +115,6 @@ class IcalCalendar extends Homey.App {
 
 		try {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.triggerEvents);
-			this.log("unregisterCronTask: Unregistered task '" + variableMgmt.crontask.id.triggerEvents + "'");
 		}
 		catch (err) {
 			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
