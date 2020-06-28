@@ -94,6 +94,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 
 - 0.0.6
     - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
+    - Added token 'Calendar name' to 'Event starts' and 'Event stops' triggers
 - 0.0.5 (current)
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
