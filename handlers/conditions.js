@@ -61,6 +61,7 @@ module.exports = async (app) => {
 		}
 
 		let eventList = [];
+		let now = moment();
 
 		events.forEach(calendar => {
 			calendar.events.forEach(event => {
@@ -69,7 +70,13 @@ module.exports = async (app) => {
 
 				if (event.DTSTART_TIMESTAMP) {
 					try {
-						startStamp = moment(event.DTSTART_TIMESTAMP).format(Homey.__('conditions_event_name_date_time_format'))
+						let startMoment = moment(event.DTSTART_TIMESTAMP);
+						if (startMoment.isSame(now, 'year')) {
+							startStamp = startMoment.format(Homey.__('conditions_event_name_date_time_format'))
+						}
+						else {
+							startStamp = startMoment.format(Homey.__('conditions_event_name_date_year_time_format'))
+						}
 					}
 					catch (err) {
 						app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
@@ -79,7 +86,13 @@ module.exports = async (app) => {
 				else if (event.DTSTART_DATE) {
 					try {
 						fullDayEvent = true;
-						startStamp = moment(event.DTSTART_DATE).format(Homey.__('conditions_event_name_date_format'))
+						let startMoment = moment(event.DTSTART_DATE);
+						if (startMoment.isSame(now, 'year')) {
+							startStamp = startMoment.format(Homey.__('conditions_event_name_date_format'))
+						}
+						else {
+							startStamp = startMoment.format(Homey.__('conditions_event_name_date_year_format'))
+						}
 					}
 					catch (err) {
 						app.log("getEventList: Failed to parse 'DTSTART_DATE'", err);
