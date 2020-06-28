@@ -183,7 +183,11 @@ const updateFlowTokens = (event, app) => {
         }
         else if (token.id === 'events_today_count') {
             app.log(`updateFlowToken: Updating '${token.id}'`);
-            token.setValue(todaysEvents.length);
+            let todaysEventsCount = 0;
+            todaysEvents.map(item => {
+                todaysEventsCount += item.events.length;
+            });
+            token.setValue(todaysEventsCount);
         }
     });
 }
