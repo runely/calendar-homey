@@ -16,5 +16,22 @@
     "conditions_event_name_date_format": "MM.DD",
     "token_duration_minutes": "minutes",
     "token_duration_hour": "hour",
-    "token_duration_hours": "hours"
+    "token_duration_hours": "hours",
+    "event_next_title": "Next event title",
+    "event_next_startstamp": "Next event start time",
+    "event_next_startstamp_date_time_format": "MM.DD.YYYY HH:mm",
+    "event_next_startstamp_date_format": "MM.DD.YYYY",
+    "event_next_stopstamp": "Next event stop time",
+    "event_next_stopstamp_date_time_format": "MM.DD.YYYY HH:mm",
+    "event_next_stopstamp_date_format": "MM.DD.YYYY",
+    "event_next_duration": "Next event duration",
+    "event_next_duration_minutes": "Next event duration (minutes)",
+    "event_next_starts_in_minutes": "Next event starts in (minutes)",
+    "event_next_stops_in_minutes": "Next event stops in (minutes)",
+    "event_next_calendar_name": "Calendar name of next event",
+    "events_today_title_stamps": "Todays events, title and time",
+    "events_today_title_stamps_pre": "Todays events:",
+    "events_today_title_stamps_starts": "starts",
+    "events_today_title_stamps_stops": "stops",
+    "events_today_count": "Todays events (count)"
 }

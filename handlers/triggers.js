@@ -95,6 +95,99 @@ const startTrigger = (event, app) => {
     Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
 }
 
+const updateFlowTokens = (event, app) => {
+    let todaysEvents = tools.getTodaysEvents(app.variableMgmt.events);
+    let eventDuration;
+
+    if (event) {
+        eventDuration = getTriggerTokenDuration(event.event);
+    }
+
+    app.variableMgmt.flowTokens.map(token => {
+        if (token.id === 'event_next_title') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? event.event.SUMMARY : '');
+        }
+        else if (token.id === 'event_next_startstamp') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            if (event) {
+                if (event.event.DTSTART_TIMESTAMP) {
+                    token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
+                }
+                else if (event.event.DTSTART_DATE) {
+                    token.setValue(moment(event.event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format')));
+                }
+            }
+            else {
+                token.setValue('');
+            }
+        }
+        else if (token.id === 'event_next_stopstamp') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            if (event) {
+                if (event.event.DTSTART_TIMESTAMP) {
+                    token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
+                }
+                else if (event.event.DTSTART_DATE) {
+                    token.setValue(moment(event.event.DTEND_DATE).format(Homey.__('event_next_startstamp_date_format')));
+                }
+            }
+            else {
+                token.setValue('');
+            }
+        }
+        else if (token.id === 'event_next_duration') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? eventDuration.duration : '');
+        }
+        else if (token.id === 'event_next_duration_minutes') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? eventDuration.durationMinutes : -1);
+        }
+        else if (token.id === 'event_next_starts_in_minutes') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? event.startsIn : -1);
+        }
+        else if (token.id === 'event_next_stops_in_minutes') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? event.stopsIn : -1);
+        }
+        else if (token.id === 'event_next_calendar_name') {
+            app.log(`updateFlowToken: ${event ? 'Updating' : 'Resetting'} '${token.id}'`);
+            token.setValue(event ? event.calendarName : '');
+        }
+        else if (token.id === 'events_today_title_stamps') {
+            app.log(`updateFlowToken: Updating '${token.id}'`);
+            let value = '';
+            todaysEvents.map(item => {
+                item.events.map(event => {
+                    if (event.DTSTART_TIMESTAMP) {
+                        if (value === '') {
+                            value = `${Homey.__('events_today_title_stamps_pre')} ${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_time_format'))}`;
+                        }
+                        else {
+                            value += `.\n${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_time_format'))}`;
+                        }
+                    }
+                    else if (event.DTSTART_DATE) {
+                        if (value === '') {
+                            value = `${Homey.__('events_today_title_stamps_pre')} ${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_format'))}`;
+                        }
+                        else {
+                            value += `.\n${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_format'))}`;
+                        }
+                    }
+                });
+            });
+            token.setValue(value);
+        }
+        else if (token.id === 'events_today_count') {
+            app.log(`updateFlowToken: Updating '${token.id}'`);
+            token.setValue(todaysEvents.length);
+        }
+    });
+}
+
 module.exports = async (app) => {
     // register trigger flow cards
     const registerTriggerFlowCards = async () => {
@@ -103,12 +196,28 @@ module.exports = async (app) => {
         new Homey.FlowCardTrigger('event_stops').register();
     }
 
+    // register flow tokens
+    const registerFlowTokens = async () => {
+        app.variableMgmt.tokens.map(definition => {
+            new Homey.FlowToken(definition.id, { type: definition.type, title: Homey.__(definition.id)})
+                .register()
+                .then(token => {
+                    app.log(`registerFlowToken: ${definition.id} registered`);
+                    app.variableMgmt.flowTokens.push(token);
+                });
+        });
+    }
+
     await registerTriggerFlowCards();
+    await registerFlowTokens();
+
+    // mock in some test variables
+    //setTimeout(() => updateFlowTokens([], app), 1500);
 }
 
 module.exports.triggerEvents = async (app) => {
-    if (app.variableMgmt.EVENTS) {
-        app.variableMgmt.EVENTS.forEach(calendar => {
+    if (app.variableMgmt.events) {
+        app.variableMgmt.events.forEach(calendar => {
             app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
             let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
             triggeringEvents.forEach(event => startTrigger(event, app));
@@ -116,5 +225,17 @@ module.exports.triggerEvents = async (app) => {
     }
     else {
         app.log("triggerEvents:", "Calendars has not been set in Settings yet");
+    }
+}
+
+module.exports.updateTokens = async (app) => {
+    let nextEvent = tools.getNextEvent(app.variableMgmt.events);
+    app.log("updateTokens: Updating flow tokens");
+
+    if (nextEvent) {
+        updateFlowTokens(nextEvent, app);
+    }
+    else {
+        updateFlowTokens(null, app);
     }
 }
