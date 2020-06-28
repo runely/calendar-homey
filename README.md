@@ -16,6 +16,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - 'Event location'
     - 'Event duration'
     - 'Event duration (mintes)'
+    - 'Calendar name'
 
 ### Trigger "Event stops" (will trigger when any event stops)
 - Add card as a trigger in a flow
@@ -25,6 +26,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
     - 'Event location'
     - 'Event duration'
     - 'Event duration (mintes)'
+    - 'Calendar name'
 
 ### Condition "Event is ongoing" (will check if specified event is|isn't ongoing)
 - Add card as a condition in a flow
