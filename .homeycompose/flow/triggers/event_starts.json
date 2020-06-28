@@ -64,6 +64,18 @@
         "en": "90",
         "no": "90"
       }
+    },
+    {
+      "name": "event_calendar_name",
+      "type": "string",
+      "title": {
+        "en": "Calendar name",
+        "no": "Kalendernavn"
+      },
+      "example": {
+        "en": "Gmail",
+        "no": "Gmail"
+      }
     }
   ]
 }

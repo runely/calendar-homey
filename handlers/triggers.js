@@ -81,7 +81,7 @@ const getTriggerTokenDuration = (event) => {
     return duration;
 }
 
-const startTrigger = (event, app) => {
+const startTrigger = (calendarName, event, app) => {
     // trigger flow card
     let duration = getTriggerTokenDuration(event);
     let tokens = {
@@ -89,7 +89,8 @@ const startTrigger = (event, app) => {
         'event_description': getTriggerTokenValue(event.DESCRIPTION),
         'event_location': getTriggerTokenValue(event.LOCATION),
         'event_duration_readable': duration.duration,
-        'event_duration': duration.durationMinutes
+        'event_duration': duration.durationMinutes,
+        'event_calendar_name': calendarName
     };
 
     app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
@@ -212,7 +213,7 @@ module.exports.triggerEvents = async (app) => {
         app.variableMgmt.events.forEach(calendar => {
             app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
             let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
-            triggeringEvents.forEach(event => startTrigger(event, app));
+            triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
         });
     }
     else {
