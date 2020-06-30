@@ -99,11 +99,12 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async triggerEvents() {
-		// trigger events
-		triggersHandler.triggerEvents(this);
-
-		// update flow tokens
-		triggersHandler.updateTokens(this);
+		// first, update flow tokens, then trigger events
+		triggersHandler.updateTokens(this)
+			.then(nextEvent => triggersHandler.triggerEvents(this, nextEvent))
+			.catch(error => {
+				this.log("triggerEvents: Failed in triggerEvents Promise flow:", error);
+			});
 	}
 
 	async unregisterCronTasks() {
