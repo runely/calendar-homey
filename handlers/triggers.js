@@ -112,10 +112,10 @@ const updateFlowTokens = (event, app) => {
         else if (token.id === 'event_next_startstamp') {
             if (event) {
                 if (event.event.DTSTART_TIMESTAMP) {
-                    token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
+                    token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('flowTokens.event_next_startstamp_date_time_format')));
                 }
                 else if (event.event.DTSTART_DATE) {
-                    token.setValue(moment(event.event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format')));
+                    token.setValue(moment(event.event.DTSTART_DATE).format(Homey.__('flowTokens.event_next_startstamp_date_format')));
                 }
             }
             else {
@@ -125,10 +125,10 @@ const updateFlowTokens = (event, app) => {
         else if (token.id === 'event_next_stopstamp') {
             if (event) {
                 if (event.event.DTSTART_TIMESTAMP) {
-                    token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format')));
+                    token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('flowTokens.event_next_stopstamp_date_time_format')));
                 }
                 else if (event.event.DTSTART_DATE) {
-                    token.setValue(moment(event.event.DTEND_DATE).format(Homey.__('event_next_startstamp_date_format')));
+                    token.setValue(moment(event.event.DTEND_DATE).format(Homey.__('flowTokens.event_next_stopstamp_date_format')));
                 }
             }
             else {
@@ -155,19 +155,21 @@ const updateFlowTokens = (event, app) => {
             todaysEvents.map(item => {
                 item.events.map(event => {
                     if (event.DTSTART_TIMESTAMP) {
+                        let eventValue = `${event.SUMMARY}, ${Homey.__('flowTokens.events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('flowTokens.events_today_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('flowTokens.events_today_stopstamp_time_format'))}`;
                         if (value === '') {
-                            value = `${Homey.__('events_today_title_stamps_pre')} ${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_time_format'))}`;
+                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
                         }
                         else {
-                            value += `.\n${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('event_next_startstamp_date_time_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_time_format'))}`;
+                            value += `.\n${eventValue}`;
                         }
                     }
                     else if (event.DTSTART_DATE) {
+                        let eventValue = `${event.SUMMARY}, ${Homey.__('flowTokens.events_today_startstamp_fullday')}`;
                         if (value === '') {
-                            value = `${Homey.__('events_today_title_stamps_pre')} ${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_format'))}`;
+                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
                         }
                         else {
-                            value += `.\n${event.SUMMARY}, ${Homey.__('events_today_title_stamps_starts')} ${moment(event.DTSTART_DATE).format(Homey.__('event_next_startstamp_date_format'))}, ${Homey.__('events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('event_next_stopstamp_date_format'))}`;
+                            value += `.\n${eventValue}`;
                         }
                     }
                 });
@@ -195,7 +197,7 @@ module.exports = async (app) => {
     // register flow tokens
     const registerFlowTokens = async () => {
         app.variableMgmt.tokens.map(definition => {
-            new Homey.FlowToken(definition.id, { type: definition.type, title: Homey.__(definition.id)})
+            new Homey.FlowToken(definition.id, { type: definition.type, title: Homey.__(`flowTokens.${definition.id}`)})
                 .register()
                 .then(token => {
                     //app.log(`registerFlowToken: ${definition.id} registered`);
