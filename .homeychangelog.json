@@ -13,5 +13,8 @@
   },
   "0.0.5": {
     "en": "Norwegian language. New sync action. New tokens. New event stops trigger. Supports multiple calendars"
+  },
+  "0.0.6": {
+    "en": "Global flow tokens. Calendar name token on triggers. New trigger: 'Event starts in'"
   }
 }
