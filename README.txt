@@ -2,26 +2,37 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 Setup
 
-- Open settings and paste in url to ics file
+- Open settings (configure app) and paste in the ical link
 
-Find Exchange Online ics url
+Find Exchange Online ical link
 
 1. Go to https://outlook.office.com/mail/inbox
 2. Click settings -> Show all outlook setting
 3. Go to Calendar -> Shared calenders
 4. Publish a calendar, click the ics link and choose copy
-5. Paste the ics link in settings of Homey app
+5. Paste the ical link in settings of Homey app
 
-Find Gmail ics url
+Find Gmail ical url
 
 1. Go to https://calendar.google.com/
 2. Click the three dots next to the calendar you want to share -> Click Settings and sharing
 3. Scroll all the way down to the bottom
 4. Copy the link from Secret address in ical format
-5. Paste the ics link in settings of Homey app
+5. Paste the ical link in settings of Homey app
 
 Trigger "Event starts" (will trigger when any event starts)
 - Add card as a trigger in a flow
+- Tokens:
+    - 'Event title'
+    - 'Event description'
+    - 'Event location'
+    - 'Event duration'
+    - 'Event duration (mintes)'
+    - 'Calendar name'
+
+Trigger "Event starts in" (will trigger when any event starts in when specified)
+- Add card as a trigger in a flow
+- Choose when
 - Tokens:
     - 'Event title'
     - 'Event description'
@@ -65,7 +76,7 @@ Condition "Any event stops within" (will check if any event stops|doesn't stop w
 - Add card as a condition in a flow
 - Choose when
 
-Action "Sync calendar" (will download a new .ics file to update current events)
+Action "Sync calendars" (will download new .ics files to update current events)
 - Add card as an action in a flow
 
 Global flow tokens (can be used in any app and service)

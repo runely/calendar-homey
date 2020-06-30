@@ -1,15 +1,26 @@
 # IcalCalendar
 
-The IcalCalendar can trigger on your calendar events to let you know when events starts
+The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Setup
 
-- Open settings and paste in url to ics file
+- Open settings (configure app) and paste in the ical link
 
 ## Usage
 
 ### Trigger "Event starts" (will trigger when any event starts)
 - Add card as a trigger in a flow
+- Tokens:
+    - 'Event title'
+    - 'Event description'
+    - 'Event location'
+    - 'Event duration'
+    - 'Event duration (mintes)'
+    - 'Calendar name'
+
+### Trigger "Event starts in" (will trigger when any event starts in when specified)
+- Add card as a trigger in a flow
+- Choose when
 - Tokens:
     - 'Event title'
     - 'Event description'
@@ -68,25 +79,25 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 - Todays events, title and time
 - Todays events (count)
 
-## Find Exchange Online ics url
+## Find Exchange Online ical link
 
 1. Go to https://outlook.office.com/mail/inbox
 1. Click settings -> Show all outlook setting
 1. Go to Calendar -> Shared calenders
 1. Publish a calendar, click the ics link and choose copy
-1. Paste the ics link in settings of Homey app
+1. Paste the ical link in settings of Homey app
 
-## Find Gmail ics url
+## Find Gmail ical url
 
 1. Go to https://calendar.google.com/
 1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
 1. Scroll all the way down to the bottom
 1. Copy the link from Secret address in ical format
-1. Paste the ics link in settings of Homey app
+1. Paste the ical link in settings of Homey app
 
 ## Known bugs
 
-- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f'
+- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
 ## ToDo
 
@@ -97,6 +108,7 @@ The IcalCalendar can trigger on your calendar events to let you know when events
 - 0.0.6
     - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
     - Added token 'Calendar name' to 'Event starts' and 'Event stops' triggers
+    - Added trigger 'Event starts in' -> [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5 (current)
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
