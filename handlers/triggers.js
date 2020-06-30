@@ -81,7 +81,7 @@ const getTriggerTokenDuration = (event) => {
     return duration;
 }
 
-const startTrigger = (calendarName, event, app) => {
+const startTrigger = (calendarName, event, app, state) => {
     // trigger flow card
     let duration = getTriggerTokenDuration(event);
     let tokens = {
@@ -93,8 +93,13 @@ const startTrigger = (calendarName, event, app) => {
         'event_calendar_name': calendarName
     };
 
-    app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
-    Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
+    if (state === undefined) {
+        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
+        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
+    }
+    else {
+        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
+    }
 }
 
 const updateFlowTokens = (event, app) => {
@@ -192,6 +197,14 @@ module.exports = async (app) => {
         new Homey.FlowCardTrigger('event_starts').register();
 
         new Homey.FlowCardTrigger('event_stops').register();
+
+        new Homey.FlowCardTrigger('event_starts_in')
+            .registerRunListener((args, state) => {
+                let result = (args.when == state.when);
+                if (result) app.log(`Triggered 'event_starts_in' with state: ${state.when}`);
+                return Promise.resolve(result);
+            })
+            .register();
     }
 
     // register flow tokens
@@ -210,27 +223,39 @@ module.exports = async (app) => {
     await registerFlowTokens();
 }
 
-module.exports.triggerEvents = async (app) => {
-    if (app.variableMgmt.events) {
-        app.variableMgmt.events.forEach(calendar => {
-            app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
-            let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
-            triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
-        });
-    }
-    else {
-        app.log("triggerEvents:", "Calendars has not been set in Settings yet");
-    }
+module.exports.triggerEvents = async (app, nextEvent) => {
+    return new Promise((resolve, reject) => {
+        if (app.variableMgmt.events) {
+            app.variableMgmt.events.forEach(calendar => {
+                app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
+                let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
+                triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
+            });
+        }
+        else {
+            app.log("triggerEvents:", "Calendars has not been set in Settings yet");
+        }
+
+        // fire event_starts_in trigger as well with nextEvent.startsIn as state
+        let startsInEvent = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' }
+        startTrigger(nextEvent.calendarName, startsInEvent, app, nextEvent.startsIn)
+
+        resolve();
+    });
 }
 
 module.exports.updateTokens = async (app) => {
-    let nextEvent = tools.getNextEvent(app.variableMgmt.events);
-    app.log("updateTokens: Updating flow tokens");
+    return new Promise((resolve, reject) => {
+        let nextEvent = tools.getNextEvent(app.variableMgmt.events);
+        app.log("updateTokens: Updating flow tokens");
 
-    if (nextEvent) {
-        updateFlowTokens(nextEvent, app);
-    }
-    else {
-        updateFlowTokens(null, app);
-    }
+        if (nextEvent) {
+            updateFlowTokens(nextEvent, app);
+        }
+        else {
+            updateFlowTokens(null, app);
+        }
+        
+        resolve(nextEvent);
+    });
 }
