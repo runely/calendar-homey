@@ -20,64 +20,21 @@ Hvordan finne Gmail ical-lenken
 4. Kopier lenken fra feltet Hemmelig adresse i iCal-format
 5. Lim inn ical-lenken i innstillinger i Homey appen
 
-Trigger "En avtale starter" (utløses når en avtale starter)
-- Legg kortet til som en trigger i en flyt
-- Tokens:
-    - 'Avtaletittel'
-    - 'Avtalebeskrivelse'
-    - 'Avtalested'
-    - 'Avtale varighet'
-    - 'Avtale varighet (minutter)'
-    - 'Kalendernavn'
+Triggers
+- En avtale starter
+- En avtale starter om
+- En avtale ender
 
-Trigger "En avtale starter om" (utløses når en avtale starter om gitt tid)
-- Legg kortet til som en trigger i en flyt
-- Velg tid
-- Tokens:
-    - 'Avtaletittel'
-    - 'Avtalebeskrivelse'
-    - 'Avtalested'
-    - 'Avtale varighet'
-    - 'Avtale varighet (minutter)'
-    - 'Kalendernavn'
+Conditions
+- Avtale pågår
+- Avtale starter innen
+- Avtale stopper innen
+- En avtale pågår
+- En avtale starter innen
+- En avtale stopper innen
 
-Trigger "En avtale ender" (utløses når en avtale ender)
-- Legg kortet til som en trigger i en flyt
-- Tokens:
-    - 'Avtaletittel'
-    - 'Avtalebeskrivelse'
-    - 'Avtalested'
-    - 'Avtale varighet'
-    - 'Avtale varighet (minutter)'
-    - 'Kalendernavn'
-
-Condition "Avtale pågår" (sjekker om valgt avtale pågår|pågår ikke akkurat nå)
-- Legg kortet til som en condition i en flyt
-- Velg avtale
-
-Condition "Avtale starter innen" (sjekker om valgt avtale starter|starter ikke innenfor tiden angitt)
-- Legg kortet til som en condition i en flyt
-- Velg tid
-- Velg avtale
-
-Condition "Avtale stopper innen" (sjekker om valgt avtale stopper|stopper ikke innenfor tiden angitt)
-- Legg kortet til som en condition i en flyt
-- Velg tid
-- Velg avtale
-
-Condition "En avtale pågår" (sjekker om det finnes noen avtaler som pågår|pågår ikke akkuart nå)
-- Legg kortet til som en condition i en flyt
-
-Condition "En avtale starter innen" (sjekker om det finnes noen avtaler som starter|starter ikke innenfor tiden angitt)
-- Legg kortet til som en condition i en flyt
-- Velg tid
-
-Condition "En avtale stopper innen" (sjekker om det finnes noen avtaler som stopper|stopper ikke innenfor tiden angitt)
-- Legg kortet til som en condition i en flyt
-- Velg tid
-
-Action "Synkroniser kalenderene" (Henter ned nye .ics-filer for å oppdatere nåværende avtaler)
-- Legg kortet til som en condition i en flyt
+Actions
+- Synkroniser kalenderene
 
 Globale flyt tokens (kan bli brukt i alle apper og servicer)
 - Tittel neste avtale
@@ -90,12 +47,3 @@ Globale flyt tokens (kan bli brukt i alle apper og servicer)
 - Kalendernavn for neste avtale
 - Dagens avtaler, tittel og tidspunkt
 - Dagens avtaler (antall)
-
-Kjente feil
-
-- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
-- Søk i avtaler i condition kort returnerer ingen avtaler når søkekriteriet har et mellomrom etterfulgt av en bokstav (Eksempel: 'Test f')
-
-ToDo-liste
-
-- Legg til støtte for gjentagende avtaler

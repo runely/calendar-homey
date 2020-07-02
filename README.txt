@@ -20,64 +20,21 @@ Find Gmail ical url
 4. Copy the link from Secret address in ical format
 5. Paste the ical link in settings of Homey app
 
-Trigger "Event starts" (will trigger when any event starts)
-- Add card as a trigger in a flow
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
+Triggers
+- Event starts
+- Event starts in
+- Event stops
 
-Trigger "Event starts in" (will trigger when any event starts in when specified)
-- Add card as a trigger in a flow
-- Choose when
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
+Conditions
+- Event is ongoing
+- Event starts within
+- Event stops within
+- Any event is ongoing
+- Any event starts within
+- Any event stops within
 
-Trigger "Event stops" (will trigger when any event stops)
-- Add card as a trigger in a flow
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
-
-Condition "Event is ongoing" (will check if specified event is|isn't ongoing)
-- Add card as a condition in a flow
-- Choose the event
-
-Condition "Event starts within" (will check if specified event starts|doesn't start within when specified)
-- Add card as a condition in a flow
-- Choose when
-- Choose the event
-
-Condition "Event stops within" (will check if specified event stops|doesn't stop within when specified)
-- Add card as a condition in a flow
-- Choose when
-- Choose the event
-
-Condition "Any event is ongoing" (will check if any event is|isn't ongoing)
-- Add card as a condition in a flow
-
-Condition "Any event starts within" (will check if any event starts|doesn't start within when specified)
-- Add card as a condition in a flow
-- Choose when
-
-Condition "Any event stops within" (will check if any event stops|doesn't stop within when specified)
-- Add card as a condition in a flow
-- Choose when
-
-Action "Sync calendars" (will download new .ics files to update current events)
-- Add card as an action in a flow
+Actions
+- Sync calendars
 
 Global flow tokens (can be used in any app and service)
 - Next event title
@@ -90,11 +47,3 @@ Global flow tokens (can be used in any app and service)
 - Calendar name of next event
 - Todays events, title and time
 - Todays events (count)
-
-Known bugs
-
-- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
-
-ToDo list
-
-- Add support for recurring events
