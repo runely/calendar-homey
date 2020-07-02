@@ -105,11 +105,11 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
-- 0.0.6 (review)
+- 0.0.6
     - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
     - Added token 'Calendar name' to 'Event starts' and 'Event stops' triggers
     - Added trigger 'Event starts in' -> [Issue #7](https://github.com/runely/calendar-homey/issues/7)
-- 0.0.5 (current)
+- 0.0.5
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
     - Added duration tokens to trigger 'Event starts' -> [Issue #16](https://github.com/runely/calendar-homey/issues/16)
