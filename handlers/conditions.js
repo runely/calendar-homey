@@ -2,7 +2,10 @@
 
 const Homey = require('homey');
 const moment = require('moment');
-const tools = require('../lib/tools');
+const filterBySummary = require('../lib/filter-by-summary');
+const filterByUID = require('../lib/filter-by-uid');
+const getTimestamps = require('../lib/get-timestamps');
+const flipNumber = require('../lib/flip-number');
 
 module.exports = async (app) => {
     // register condition flow cards
@@ -45,7 +48,7 @@ module.exports = async (app) => {
         }
         else {
             if (query && query !== "") {
-                var filtered = tools.filterIcalBySummary(app.variableMgmt.events, query)
+                var filtered = filterBySummary(app.variableMgmt.events, query)
                 return Promise.resolve(getEventList(filtered));
             }
             else {
@@ -127,7 +130,7 @@ module.exports = async (app) => {
     const checkEvent = async (args, state, type) => {
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
-			filteredEvents = tools.filterIcalByUID(app.variableMgmt.events, args.event.id);
+			filteredEvents = filterByUID(app.variableMgmt.events, args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
 			filteredEvents = app.variableMgmt.events;
@@ -179,7 +182,7 @@ module.exports = async (app) => {
 
     const isEventOngoing = (events) => {
 		return events.some(event => {
-			let timestamps = tools.getTimestamps(event, true, true);
+			let timestamps = getTimestamps(event, true, true);
 
 			if (Object.keys(timestamps).length !== 2) {
 				return false;
@@ -198,7 +201,7 @@ module.exports = async (app) => {
 
 	const isEventIn = (events, when) => {
 		return events.some(event => {
-			let timestamps = tools.getTimestamps(event, true, false);
+			let timestamps = getTimestamps(event, true, false);
 
 			if (Object.keys(timestamps).length !== 1) {
 				return false;
@@ -206,7 +209,7 @@ module.exports = async (app) => {
 
 			let now = moment();
 			let start = moment(timestamps.start);
-			let startDiff = tools.flipNumber(now.diff(start, 'minutes'));
+			let startDiff = flipNumber(now.diff(start, 'minutes'));
 			let result = (startDiff <= when && startDiff >= 0)
 			//app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
@@ -215,7 +218,7 @@ module.exports = async (app) => {
 
 	const willEventNotIn = (events, when) => {
 		return events.some(event => {
-			let timestamps = tools.getTimestamps(event, false, true);
+			let timestamps = getTimestamps(event, false, true);
 
 			if (Object.keys(timestamps).length !== 1) {
 				return false;
@@ -223,7 +226,7 @@ module.exports = async (app) => {
 
 			let now = moment();
 			let stop = moment(timestamps.stop);
-			let stopDiff = tools.flipNumber(now.diff(stop, 'minutes'));
+			let stopDiff = flipNumber(now.diff(stop, 'minutes'));
 			let result = (stopDiff < when && stopDiff >= 0);
 			//app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;

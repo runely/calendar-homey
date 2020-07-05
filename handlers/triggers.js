@@ -2,14 +2,16 @@
 
 const Homey = require('homey');
 const moment = require('moment');
-const tools = require('../lib/tools');
+const getNextEvent = require('../lib/get-next-event');
+const getTodaysEvents = require('../lib/get-todays-events');
+const getTimestamps = require('../lib/get-timestamps');
 
 const getTriggeringEvents = (events, app) => {
     var filteredEvents = [];
     app.log("getTriggeringEvents");
 
     events.forEach(event => {
-        let timestamps = tools.getTimestamps(event, true, true);
+        let timestamps = getTimestamps(event, true, true);
 
         if (Object.keys(timestamps).length !== 2) {
             return false;
@@ -44,7 +46,7 @@ const getTriggerTokenValue = (key) => {
 }
 
 const getTriggerTokenDuration = (event) => {
-    let timestamps = tools.getTimestamps(event, true, true);
+    let timestamps = getTimestamps(event, true, true);
     let duration = {};
 
     if (Object.keys(timestamps).length !== 2) {
@@ -103,7 +105,7 @@ const startTrigger = (calendarName, event, app, state) => {
 }
 
 const updateFlowTokens = (event, app) => {
-    let todaysEvents = tools.getTodaysEvents(app.variableMgmt.events);
+    let todaysEvents = getTodaysEvents(app.variableMgmt.events);
     let eventDuration;
 
     if (event) {
@@ -246,7 +248,7 @@ module.exports.triggerEvents = async (app, nextEvent) => {
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        let nextEvent = tools.getNextEvent(app.variableMgmt.events);
+        let nextEvent = getNextEvent(app.variableMgmt.events);
         app.log("updateTokens: Updating flow tokens");
 
         if (nextEvent) {

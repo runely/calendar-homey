@@ -1,7 +1,10 @@
 'use strict';
 
 const Homey = require('homey');
-const tools = require('./lib/tools');
+const getContent = require('./lib/get-ical-content');
+const parseContent = require('./lib/parse-content-to-json');
+const getActiveEvents = require('./lib/get-active-events');
+const sortEvents = require('./lib/sort-events');
 const variableMgmt = require('./lib/variableMgmt');
 
 const triggersHandler = require('./handlers/triggers');
@@ -65,7 +68,7 @@ class IcalCalendar extends Homey.App {
 				var { name, uri } = calendars[i];
 				this.log(`getEvents: Getting events for calendar '${name}'`);
 
-				await tools.getIcal(uri)
+				await getContent(uri)
 				.then(data => {
 					// remove failed setting if it exists for calendar
 					if (calendars[i].failed) {
@@ -74,8 +77,8 @@ class IcalCalendar extends Homey.App {
 						this.log("getEvents: 'failed' setting value removed from calendar '" + name + "'");
 					}
 
-					let json = tools.parseIcalToJson(data);
-					let activeEvents = tools.filterActiveEvents(json);
+					let json = parseContent(data);
+					let activeEvents = getActiveEvents(json);
 					this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`);
 					events.push({ name, events: activeEvents });
 				})
@@ -94,7 +97,7 @@ class IcalCalendar extends Homey.App {
 		}
 
 		variableMgmt.events = events;
-		tools.sortEvents(variableMgmt.events);
+		sortEvents(variableMgmt.events);
 		return true;
 	}
 
