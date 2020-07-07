@@ -1,6 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
+
 const getContent = require('./lib/get-ical-content');
 const parseContent = require('./lib/parse-content-to-json');
 const getActiveEvents = require('./lib/get-active-events');
