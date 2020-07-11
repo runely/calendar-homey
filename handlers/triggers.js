@@ -108,16 +108,16 @@ const updateFlowTokens = (event, app) => {
     let todaysEvents = getTodaysEvents(app.variableMgmt.events);
     let eventDuration;
 
-    if (event) {
+    if (event.event) {
         eventDuration = getTriggerTokenDuration(event.event);
     }
 
     app.variableMgmt.flowTokens.map(token => {
         if (token.id === 'event_next_title') {
-            token.setValue(event ? event.event.SUMMARY : '');
+            token.setValue(event.event ? event.event.SUMMARY : '');
         }
         else if (token.id === 'event_next_startstamp') {
-            if (event) {
+            if (event.event) {
                 if (event.event.DTSTART_TIMESTAMP) {
                     token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('flowTokens.event_next_startstamp_date_time_format')));
                 }
@@ -130,7 +130,7 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_stopstamp') {
-            if (event) {
+            if (event.event) {
                 if (event.event.DTSTART_TIMESTAMP) {
                     token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('flowTokens.event_next_stopstamp_date_time_format')));
                 }
@@ -143,19 +143,19 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_duration') {
-            token.setValue(event ? eventDuration.duration : '');
+            token.setValue(event.event ? eventDuration.duration : '');
         }
         else if (token.id === 'event_next_duration_minutes') {
-            token.setValue(event ? eventDuration.durationMinutes : -1);
+            token.setValue(event.event ? eventDuration.durationMinutes : -1);
         }
         else if (token.id === 'event_next_starts_in_minutes') {
-            token.setValue(event ? event.startsIn : -1);
+            token.setValue(event.event ? event.startsIn : -1);
         }
         else if (token.id === 'event_next_stops_in_minutes') {
-            token.setValue(event ? event.stopsIn : -1);
+            token.setValue(event.event ? event.stopsIn : -1);
         }
         else if (token.id === 'event_next_calendar_name') {
-            token.setValue(event ? event.calendarName : '');
+            token.setValue(event.event ? event.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
             let value = '';
@@ -239,8 +239,10 @@ module.exports.triggerEvents = async (app, nextEvent) => {
         }
 
         // fire event_starts_in trigger as well with nextEvent.startsIn as state
-        let startsInEvent = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' }
-        startTrigger(nextEvent.calendarName, startsInEvent, app, nextEvent.startsIn)
+        if (nextEvent.event) {
+            let startsInEvent = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
+            startTrigger(nextEvent.calendarName, startsInEvent, app, nextEvent.startsIn);
+        }
 
         resolve();
     });
