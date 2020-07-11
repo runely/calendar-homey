@@ -116,14 +116,14 @@ class IcalCalendar extends Homey.App {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.updateCalendar);
 		}
 		catch (err) {
-			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
+			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
 		}
 
 		try {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.triggerEvents);
 		}
 		catch (err) {
-			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
+			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
 		}
 	}
 	
