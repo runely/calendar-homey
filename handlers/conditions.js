@@ -4,6 +4,7 @@ const Homey = require('homey');
 const moment = require('moment');
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
+const sortEvent = require('../lib/sort-event');
 const getTimestamps = require('../lib/get-timestamps');
 const flipNumber = require('../lib/flip-number');
 
@@ -142,9 +143,16 @@ module.exports = async (app) => {
 					description += ` -- (${startStamp})`;
 				}
 
-				eventList.push({ "id": event.UID, name, description });
+				if (event.DTSTART_TIMESTAMP) {
+					eventList.push({ "id": event.UID, name, description, "DTSTART_TIMESTAMP": event.DTSTART_TIMESTAMP });
+				}
+				else if (event.DTSTART_DATE) {
+					eventList.push({ "id": event.UID, name, description, "DTSTART_DATE": event.DTSTART_DATE });
+				}
 			});
 		});
+
+		eventList.sort((a, b) => sortEvent(a, b));
 
 		return eventList;
 	}
