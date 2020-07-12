@@ -95,13 +95,16 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 1. Copy the link from Secret address in ical format
 1. Paste the ical link in settings of Homey app
 
+## Recurring events
+
+### Be aware of multiple/duplicate "recurring" events:
+- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event.
+
 ## Known bugs
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
 ## ToDo
-
-- Add support for recurring events
 
 ## Changelog
 
