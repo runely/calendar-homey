@@ -6,6 +6,22 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 - Open settings (configure app) and paste in the ical link
 
+### Find Exchange Online ical link
+
+1. Go to https://outlook.office.com/mail/inbox
+1. Click settings -> Show all outlook setting
+1. Go to Calendar -> Shared calenders
+1. Publish a calendar, click the ics link and choose copy
+1. Paste the ical link in settings of Homey app
+
+### Find Gmail ical url
+
+1. Go to https://calendar.google.com/
+1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
+1. Scroll all the way down to the bottom
+1. Copy the link from Secret address in ical format
+1. Paste the ical link in settings of Homey app
+
 ## Usage
 
 ### Triggers
@@ -44,26 +60,10 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Todays events, title and time
 - Todays events (count)
 
-## Find Exchange Online ical link
-
-1. Go to https://outlook.office.com/mail/inbox
-1. Click settings -> Show all outlook setting
-1. Go to Calendar -> Shared calenders
-1. Publish a calendar, click the ics link and choose copy
-1. Paste the ical link in settings of Homey app
-
-## Find Gmail ical url
-
-1. Go to https://calendar.google.com/
-1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
-1. Scroll all the way down to the bottom
-1. Copy the link from Secret address in ical format
-1. Paste the ical link in settings of Homey app
-
 ## Recurring events
 
 ### Be aware of *multiple/duplicate* "recurring" events:
-- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event.
+- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event. This will result in two similar events, both have the same name and date.
 
 ## Known bugs
 
