@@ -224,7 +224,7 @@ module.exports = async (app) => {
 			let startDiff = now.diff(start, 'seconds');
 			let stopDiff = now.diff(stop, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
-			//app.log("isEventOngoing: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Ongoing: " + result);
+			//app.log(`isEventOngoing: '${event.SUMMARY}' (${event.UID}) -- ${startDiff} seconds since start -- ${stopDiff} seconds since stop -- Ongoing: ${result}`);
 			return result;
 		});
 	}
