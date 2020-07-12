@@ -69,55 +69,77 @@ module.exports = async (app) => {
 		events.forEach(calendar => {
 			calendar.events.forEach(event => {
 				let startStamp = "";
-				let fullDayEvent = false;
+				let stopStamp = "";
 
 				if (event.DTSTART_TIMESTAMP) {
 					try {
 						let startMoment = moment(event.DTSTART_TIMESTAMP);
 						if (startMoment.isSame(now, 'year')) {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_date_time_format'))
+							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_time_format'))
 						}
 						else {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_date_year_time_format'))
+							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_year_time_format'))
+						}
+
+						let stopMoment = moment(event.DTEND_TIMESTAMP);
+						if (stopMoment.isSame(startMoment, 'year')) {
+							if (stopMoment.isSame(startMoment, 'date')) {
+								stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_time_format'))
+
+								startStamp = startStamp.replace(' ', ' - ');
+							}
+							else {
+								stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_date_time_format'))
+							}
+						}
+						else {
+							stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_date_year_time_format'))
 						}
 					}
 					catch (err) {
-						app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP'", err);
+						app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP' or 'DTEND_TIMESTAMP'", err);
 						startStamp = "";
+						stopStamp = "";
 					}
 				}
 				else if (event.DTSTART_DATE) {
 					try {
-						fullDayEvent = true;
 						let startMoment = moment(event.DTSTART_DATE);
 						if (startMoment.isSame(now, 'year')) {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_date_format'))
+							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_format'))
 						}
 						else {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_date_year_format'))
+							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
+						}
+
+						let stopMoment = moment(event.DTEND_DATE);
+						if (stopMoment.isSame(now, 'year')) {
+							if (stopMoment.isSame(startMoment, 'date')) {
+								stopStamp = "";
+							}
+							else {
+								stopStamp = stopMoment.format(Homey.__('conditions_event_name_start_stop_date_format'))
+							}
+						}
+						else {
+							stopStamp = stopMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
 						}
 					}
 					catch (err) {
-						app.log("getEventList: Failed to parse 'DTSTART_DATE'", err);
+						app.log("getEventList: Failed to parse 'DTSTART_DATE' or 'DTEND_DATE'", err);
 						startStamp = "";
+						stopStamp = "";
 					}
 				}
 
-				let name = "";
+				let name = event.SUMMARY;
 				let description = calendar.name;
 
-				if (startStamp === "") {
-					name = event.SUMMARY;
+				if (startStamp !== '' && stopStamp !== '') {
+					description += ` -- (${startStamp} -> ${stopStamp})`;
 				}
-				else {
-					name = `(${startStamp}) - ${event.SUMMARY}`;
-				}
-
-				if (event.RRULE) {
-					description += " -- " + Homey.__('conditions_event_description_recurring');
-				}
-				if (fullDayEvent) {
-					description += " -- " + Homey.__('conditions_event_description_fullday');
+				else if (stopStamp === '') {
+					description += ` -- (${startStamp})`;
 				}
 
 				eventList.push({ "id": event.UID, name, description });
