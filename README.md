@@ -81,6 +81,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Bugfix: Flow tokens/triggers were evaluated even before any events existed
     - Condition event chooser rewritten
     - Event list sorted by start date
+    - New icon
 - 0.0.6
     - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
     - Added token 'Calendar name' to 'Event starts' and 'Event stops' triggers
