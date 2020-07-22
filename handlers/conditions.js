@@ -5,7 +5,6 @@ const moment = require('moment');
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
 const sortEvent = require('../lib/sort-event');
-const getTimestamps = require('../lib/get-timestamps');
 const flipNumber = require('../lib/flip-number');
 
 module.exports = async (app) => {
@@ -43,38 +42,40 @@ module.exports = async (app) => {
     };
 
     const onEventAutocomplete = async (query, args) => {
-        if (!app.variableMgmt.events) {
-            app.log("onEventAutocomplete: Events not set yet. Nothing to show...");
+        if (!app.variableMgmt.calendars) {
+            app.log("onEventAutocomplete: Calendars not set yet. Nothing to show...");
             return Promise.reject(false);
         }
         else {
             if (query && query !== "") {
-                var filtered = filterBySummary(app.variableMgmt.events, query)
+                var filtered = filterBySummary(app.variableMgmt.calendars, query)
                 return Promise.resolve(getEventList(filtered));
             }
             else {
-                return Promise.resolve(getEventList(app.variableMgmt.events));
+                return Promise.resolve(getEventList(app.variableMgmt.calendars));
             }
         }
     }
 
-    const getEventList = (events) => {
-		if (events.length === 0) {
-			app.log("getEventList: No events. Returning empty array");
-			return events;
+    const getEventList = (calendars) => {
+		let eventList = [];
+
+		if (calendars.length === 0) {
+			app.log("getEventList: No calendars. Returning empty array");
+			return eventList;
 		}
 
-		let eventList = [];
 		let now = moment();
 
-		events.forEach(calendar => {
+		calendars.forEach(calendar => {
 			calendar.events.forEach(event => {
 				let startStamp = "";
 				let stopStamp = "";
+				let startMoment = event.start;
+				let stopMoment = event.end;
 
-				if (event.DTSTART_TIMESTAMP) {
-					try {
-						let startMoment = moment(event.DTSTART_TIMESTAMP);
+				try {
+					if (event.datetype === 'date-time') {
 						if (startMoment.isSame(now, 'year')) {
 							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_time_format'))
 						}
@@ -82,7 +83,6 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_year_time_format'))
 						}
 
-						let stopMoment = moment(event.DTEND_TIMESTAMP);
 						if (stopMoment.isSame(startMoment, 'year')) {
 							if (stopMoment.isSame(startMoment, 'date')) {
 								stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_time_format'))
@@ -97,15 +97,7 @@ module.exports = async (app) => {
 							stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_date_year_time_format'))
 						}
 					}
-					catch (err) {
-						app.log("getEventList: Failed to parse 'DTSTART_TIMESTAMP' or 'DTEND_TIMESTAMP'", err);
-						startStamp = "";
-						stopStamp = "";
-					}
-				}
-				else if (event.DTSTART_DATE) {
-					try {
-						let startMoment = moment(event.DTSTART_DATE);
+					else if (event.datetype === "date") {
 						if (startMoment.isSame(now, 'year')) {
 							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_format'))
 						}
@@ -113,7 +105,6 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
 						}
 
-						let stopMoment = moment(event.DTEND_DATE);
 						if (stopMoment.isSame(now, 'year')) {
 							if (stopMoment.isSame(startMoment, 'date')) {
 								stopStamp = "";
@@ -126,14 +117,14 @@ module.exports = async (app) => {
 							stopStamp = stopMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
 						}
 					}
-					catch (err) {
-						app.log("getEventList: Failed to parse 'DTSTART_DATE' or 'DTEND_DATE'", err);
-						startStamp = "";
-						stopStamp = "";
-					}
+				}
+				catch (err) {
+					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${stopMoment}):`, err);
+					startStamp = "";
+					stopStamp = "";
 				}
 
-				let name = event.SUMMARY;
+				let name = event.summary;
 				let description = calendar.name;
 
 				if (startStamp !== '' && stopStamp !== '') {
@@ -143,12 +134,7 @@ module.exports = async (app) => {
 					description += ` -- (${startStamp})`;
 				}
 
-				if (event.DTSTART_TIMESTAMP) {
-					eventList.push({ "id": event.UID, name, description, "DTSTART_TIMESTAMP": event.DTSTART_TIMESTAMP });
-				}
-				else if (event.DTSTART_DATE) {
-					eventList.push({ "id": event.UID, name, description, "DTSTART_DATE": event.DTSTART_DATE });
-				}
+				eventList.push({ "id": event.uid, name, description, start: event.start });
 			});
 		});
 
@@ -160,10 +146,10 @@ module.exports = async (app) => {
     const checkEvent = async (args, state, type) => {
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
-			filteredEvents = filterByUID(app.variableMgmt.events, args.event.id);
+			filteredEvents = filterByUID(app.variableMgmt.calendars, args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
-			filteredEvents = app.variableMgmt.events;
+			filteredEvents = app.variableMgmt.calendars;
 		}
 		if (!filteredEvents || !filteredEvents.length) {
 			app.log("checkEvent: filteredEvents empty... Resolving with false");
@@ -212,17 +198,9 @@ module.exports = async (app) => {
 
     const isEventOngoing = (events) => {
 		return events.some(event => {
-			let timestamps = getTimestamps(event, true, true);
-
-			if (Object.keys(timestamps).length !== 2) {
-				return false;
-			}
-
 			let now = moment();
-			let start = moment(timestamps.start);
-			let stop = moment(timestamps.stop);
-			let startDiff = now.diff(start, 'seconds');
-			let stopDiff = now.diff(stop, 'seconds');
+			let startDiff = now.diff(event.start, 'seconds');
+			let stopDiff = now.diff(event.end, 'seconds');
 			let result = (startDiff >= 0 && stopDiff <= 0);
 			//app.log(`isEventOngoing: '${event.SUMMARY}' (${event.UID}) -- ${startDiff} seconds since start -- ${stopDiff} seconds since stop -- Ongoing: ${result}`);
 			return result;
@@ -231,15 +209,8 @@ module.exports = async (app) => {
 
 	const isEventIn = (events, when) => {
 		return events.some(event => {
-			let timestamps = getTimestamps(event, true, false);
-
-			if (Object.keys(timestamps).length !== 1) {
-				return false;
-			}
-
 			let now = moment();
-			let start = moment(timestamps.start);
-			let startDiff = flipNumber(now.diff(start, 'minutes'));
+			let startDiff = flipNumber(now.diff(event.start, 'minutes'));
 			let result = (startDiff <= when && startDiff >= 0)
 			//app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
@@ -248,15 +219,8 @@ module.exports = async (app) => {
 
 	const willEventNotIn = (events, when) => {
 		return events.some(event => {
-			let timestamps = getTimestamps(event, false, true);
-
-			if (Object.keys(timestamps).length !== 1) {
-				return false;
-			}
-
 			let now = moment();
-			let stop = moment(timestamps.stop);
-			let stopDiff = flipNumber(now.diff(stop, 'minutes'));
+			let stopDiff = flipNumber(now.diff(event.end, 'minutes'));
 			let result = (stopDiff < when && stopDiff >= 0);
 			//app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;

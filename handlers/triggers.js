@@ -4,24 +4,24 @@ const Homey = require('homey');
 const moment = require('moment');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
-const getTimestamps = require('../lib/get-timestamps');
+
+const getNumber = num => {
+    if (Number.isInteger(num)) {
+        return num;
+    }
+    else {
+        return num.toFixed(2);
+    }
+}
 
 const getTriggeringEvents = (events, app) => {
     var filteredEvents = [];
     app.log("getTriggeringEvents");
 
     events.forEach(event => {
-        let timestamps = getTimestamps(event, true, true);
-
-        if (Object.keys(timestamps).length !== 2) {
-            return false;
-        }
-
         let now = moment();
-        let start = moment(timestamps.start);
-        let stop = moment(timestamps.stop);
-        let startDiff = now.diff(start, 'seconds');
-        let stopDiff = now.diff(stop, 'seconds');
+        let startDiff = now.diff(event.start, 'seconds');
+        let stopDiff = now.diff(event.end, 'seconds');
         let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
         let resultStop = (stopDiff >= 0 && stopDiff <= 55);
         //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
@@ -46,26 +46,19 @@ const getTriggerTokenValue = (key) => {
 }
 
 const getTriggerTokenDuration = (event) => {
-    let timestamps = getTimestamps(event, true, true);
     let duration = {};
 
-    if (Object.keys(timestamps).length !== 2) {
-        return { duration: '', durationMinutes: -1 };
-    }
-
     // get duration
-    let start = moment(timestamps.start);
-    let stop = moment(timestamps.stop);
-    let diff = stop.diff(start, 'minutes');
+    let diff = event.end.diff(event.start, 'minutes');
 
     // add duration
     let hours = diff/60;
     let output = "";
     if (hours >= 1 && hours < 2) {
-        output = hours + " " + Homey.__('token_duration_hour');
+        output = getNumber(hours) + " " + Homey.__('token_duration_hour');
     }
     else if (hours >= 2) {
-        output = hours + " " + Homey.__('token_duration_hours');
+        output = getNumber(hours) + " " + Homey.__('token_duration_hours');
     }
     else if (hours < 1) {
         output = diff + " " + Homey.__('token_duration_minutes');
@@ -75,10 +68,10 @@ const getTriggerTokenDuration = (event) => {
     }
 
     // must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
-    duration['duration'] = output.replace('.', ',')
+    duration.duration = output.replace('.', ',')
 
     // add durationMinutes
-    duration['durationMinutes'] = diff;
+    duration.durationMinutes = diff;
 
     return duration;
 }
@@ -87,9 +80,9 @@ const startTrigger = (calendarName, event, app, state) => {
     // trigger flow card
     let duration = getTriggerTokenDuration(event);
     let tokens = {
-        'event_name': getTriggerTokenValue(event.SUMMARY),
-        'event_description': getTriggerTokenValue(event.DESCRIPTION),
-        'event_location': getTriggerTokenValue(event.LOCATION),
+        'event_name': getTriggerTokenValue(event.summary),
+        'event_description': getTriggerTokenValue(event.description),
+        'event_location': getTriggerTokenValue(event.location),
         'event_duration_readable': duration.duration,
         'event_duration': duration.durationMinutes,
         'event_calendar_name': calendarName
@@ -104,25 +97,25 @@ const startTrigger = (calendarName, event, app, state) => {
     }
 }
 
-const updateFlowTokens = (event, app) => {
-    let todaysEvents = getTodaysEvents(app.variableMgmt.events);
+const updateFlowTokens = (nextEvent, app) => {
+    let calendarsToday = getTodaysEvents(app.variableMgmt.calendars);
     let eventDuration;
 
-    if (event.event) {
-        eventDuration = getTriggerTokenDuration(event.event);
+    if (nextEvent.event) {
+        eventDuration = getTriggerTokenDuration(nextEvent.event);
     }
 
     app.variableMgmt.flowTokens.map(token => {
         if (token.id === 'event_next_title') {
-            token.setValue(event.event ? event.event.SUMMARY : '');
+            token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startstamp') {
-            if (event.event) {
-                if (event.event.DTSTART_TIMESTAMP) {
-                    token.setValue(moment(event.event.DTSTART_TIMESTAMP).format(Homey.__('flowTokens.event_next_startstamp_date_time_format')));
+            if (nextEvent.event) {
+                if (nextEvent.event.datetype === 'date-time') {
+                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_startstamp_date_time_format')));
                 }
-                else if (event.event.DTSTART_DATE) {
-                    token.setValue(moment(event.event.DTSTART_DATE).format(Homey.__('flowTokens.event_next_startstamp_date_format')));
+                else if (nextEvent.event.datetype === 'date') {
+                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_startstamp_date_format')));
                 }
             }
             else {
@@ -130,12 +123,12 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_stopstamp') {
-            if (event.event) {
-                if (event.event.DTSTART_TIMESTAMP) {
-                    token.setValue(moment(event.event.DTEND_TIMESTAMP).format(Homey.__('flowTokens.event_next_stopstamp_date_time_format')));
+            if (nextEvent.event) {
+                if (nextEvent.event.datetype === 'date-time') {
+                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_stopstamp_date_time_format')));
                 }
-                else if (event.event.DTSTART_DATE) {
-                    token.setValue(moment(event.event.DTEND_DATE).format(Homey.__('flowTokens.event_next_stopstamp_date_format')));
+                else if (nextEvent.event.datetype === 'date') {
+                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_stopstamp_date_format')));
                 }
             }
             else {
@@ -143,26 +136,26 @@ const updateFlowTokens = (event, app) => {
             }
         }
         else if (token.id === 'event_next_duration') {
-            token.setValue(event.event ? eventDuration.duration : '');
+            token.setValue(nextEvent.event ? eventDuration.duration : '');
         }
         else if (token.id === 'event_next_duration_minutes') {
-            token.setValue(event.event ? eventDuration.durationMinutes : -1);
+            token.setValue(nextEvent.event ? eventDuration.durationMinutes : -1);
         }
         else if (token.id === 'event_next_starts_in_minutes') {
-            token.setValue(event.event ? event.startsIn : -1);
+            token.setValue(nextEvent.event ? nextEvent.startsIn : -1);
         }
         else if (token.id === 'event_next_stops_in_minutes') {
-            token.setValue(event.event ? event.stopsIn : -1);
+            token.setValue(nextEvent.event ? nextEvent.stopsIn : -1);
         }
         else if (token.id === 'event_next_calendar_name') {
-            token.setValue(event.event ? event.calendarName : '');
+            token.setValue(nextEvent.event ? nextEvent.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
             let value = '';
-            todaysEvents.map(item => {
-                item.events.map(event => {
-                    if (event.DTSTART_TIMESTAMP) {
-                        let eventValue = `${event.SUMMARY}, ${Homey.__('flowTokens.events_today_title_stamps_starts')} ${moment(event.DTSTART_TIMESTAMP).format(Homey.__('flowTokens.events_today_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today_title_stamps_stops')} ${moment(event.DTEND_TIMESTAMP).format(Homey.__('flowTokens.events_today_stopstamp_time_format'))}`;
+            calendarsToday.map(calendar => {
+                calendar.events.map(event => {
+                    if (event.datetype === 'date-time') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today_stopstamp_time_format'))}`;
                         if (value === '') {
                             value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
                         }
@@ -170,8 +163,8 @@ const updateFlowTokens = (event, app) => {
                             value += `.\n${eventValue}`;
                         }
                     }
-                    else if (event.DTSTART_DATE) {
-                        let eventValue = `${event.SUMMARY}, ${Homey.__('flowTokens.events_today_startstamp_fullday')}`;
+                    else if (event.datetype === 'date') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today_startstamp_fullday')}`;
                         if (value === '') {
                             value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
                         }
@@ -184,11 +177,11 @@ const updateFlowTokens = (event, app) => {
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
-            let todaysEventsCount = 0;
-            todaysEvents.map(item => {
-                todaysEventsCount += item.events.length;
+            let todaysEventCount = 0;
+            calendarsToday.map(calendar => {
+                todaysEventCount += calendar.events.length;
             });
-            token.setValue(todaysEventsCount);
+            token.setValue(todaysEventCount);
         }
     });
 }
@@ -227,8 +220,8 @@ module.exports = async (app) => {
 
 module.exports.triggerEvents = async (app, nextEvent) => {
     return new Promise((resolve, reject) => {
-        if (app.variableMgmt.events) {
-            app.variableMgmt.events.forEach(calendar => {
+        if (app.variableMgmt.calendars) {
+            app.variableMgmt.calendars.forEach(calendar => {
                 app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
                 let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
                 triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
@@ -250,7 +243,7 @@ module.exports.triggerEvents = async (app, nextEvent) => {
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        let nextEvent = getNextEvent(app.variableMgmt.events);
+        let nextEvent = getNextEvent(app.variableMgmt.calendars);
         app.log("updateTokens: Updating flow tokens");
 
         if (nextEvent) {
