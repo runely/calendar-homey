@@ -15,7 +15,7 @@ const getNumber = num => {
 }
 
 const getTriggeringEvents = (events, app) => {
-    var filteredEvents = [];
+    var triggeringEvents = [];
     app.log("getTriggeringEvents");
 
     events.forEach(event => {
@@ -27,11 +27,11 @@ const getTriggeringEvents = (events, app) => {
         //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
         //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
         
-        if (resultStart) filteredEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
-        if (resultStop) filteredEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
+        if (resultStart) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
+        if (resultStop) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
     });
 
-    return filteredEvents;
+    return triggeringEvents;
 }
 
 const getTriggerTokenValue = (key) => {
@@ -93,6 +93,7 @@ const startTrigger = (calendarName, event, app, state) => {
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
+        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
     }
 }
@@ -233,8 +234,8 @@ module.exports.triggerEvents = async (app, nextEvent) => {
 
         // fire event_starts_in trigger as well with nextEvent.startsIn as state
         if (nextEvent.event) {
-            let startsInEvent = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
-            startTrigger(nextEvent.calendarName, startsInEvent, app, nextEvent.startsIn);
+            let startsInObj = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
+            startTrigger(nextEvent.calendarName, startsInObj, app, nextEvent.startsIn);
         }
 
         resolve();
