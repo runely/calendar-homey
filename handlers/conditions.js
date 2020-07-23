@@ -5,7 +5,6 @@ const moment = require('moment');
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
 const sortEvent = require('../lib/sort-event');
-const flipNumber = require('../lib/flip-number');
 
 module.exports = async (app) => {
     // register condition flow cards
@@ -210,7 +209,7 @@ module.exports = async (app) => {
 	const isEventIn = (events, when) => {
 		return events.some(event => {
 			let now = moment();
-			let startDiff = flipNumber(now.diff(event.start, 'minutes'));
+			let startDiff = event.start.diff(now, 'minutes', true);
 			let result = (startDiff <= when && startDiff >= 0)
 			//app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
@@ -220,7 +219,7 @@ module.exports = async (app) => {
 	const willEventNotIn = (events, when) => {
 		return events.some(event => {
 			let now = moment();
-			let stopDiff = flipNumber(now.diff(event.end, 'minutes'));
+			let stopDiff = event.end.diff(now, 'minutes', true);
 			let result = (stopDiff < when && stopDiff >= 0);
 			//app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
 			return result;
