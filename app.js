@@ -1,7 +1,10 @@
 'use strict';
 
 const Homey = require('homey');
-const tools = require('./lib/tools');
+
+const getContent = require('./lib/get-ical-content');
+const getActiveEvents = require('./lib/get-active-events');
+const sortEvents = require('./lib/sort-events');
 const variableMgmt = require('./lib/variableMgmt');
 
 const triggersHandler = require('./handlers/triggers');
@@ -56,36 +59,36 @@ class IcalCalendar extends Homey.App {
 	async getEvents() {
 		// get URI from settings
 		var calendars = Homey.ManagerSettings.get(variableMgmt.setting.icalUris);
-		var events = [];
+		var calendarsEvents = [];
 
 		// get ical events
 		if (calendars) {
 			this.log("getEvents: Getting calendars:", calendars.length);
+
 			for (var i = 0; i < calendars.length; i++) {
 				var { name, uri } = calendars[i];
 				this.log(`getEvents: Getting events for calendar '${name}'`);
 
-				await tools.getIcal(uri)
+				await getContent(uri)
 				.then(data => {
 					// remove failed setting if it exists for calendar
 					if (calendars[i].failed) {
 						calendars[i] = { name, uri };
 						Homey.ManagerSettings.set(variableMgmt.setting.icalUris, calendars);
-						this.log("getEvents: 'failed' setting value removed from calendar '" + name + "'");
+						this.log(`getEvents: 'failed' setting value removed from calendar '${name}'`);
 					}
 
-					let json = tools.parseIcalToJson(data);
-					let activeEvents = tools.filterActiveEvents(json);
+					let activeEvents = getActiveEvents(data);
 					this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`);
-					events.push({ name, events: activeEvents });
+					calendarsEvents.push({ name, events: activeEvents });
 				})
 				.catch(err => {
-					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}': ${err.statusCode} (${err.message})`);
+					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}':`, err.toString());
 
 					// set a failed setting value to show a error message on settings page
-					calendars[i] = { name, uri, failed: err.message };
+					calendars[i] = { name, uri, failed: err.toString() };
 					Homey.ManagerSettings.set(variableMgmt.setting.icalUris, calendars);
-					this.log("getEvents: 'failed' setting value added to calendar '" + name + "'");
+					this.log(`getEvents: 'failed' setting value added to calendar '${name}'`);
 				});
 			}
 		}
@@ -93,18 +96,20 @@ class IcalCalendar extends Homey.App {
 			this.log("getEvents: Calendars has not been set in Settings yet");
 		}
 
-		variableMgmt.events = events;
-		tools.sortEvents(variableMgmt.events);
+		variableMgmt.calendars = calendarsEvents;
+		sortEvents(variableMgmt.calendars);
+
 		return true;
 	}
 
 	async triggerEvents() {
-		// first, update flow tokens, then trigger events
-		triggersHandler.updateTokens(this)
-			.then(nextEvent => triggersHandler.triggerEvents(this, nextEvent))
-			.catch(error => {
-				this.log("triggerEvents: Failed in triggerEvents Promise flow:", error);
-			});
+		// update flow tokens and trigger events IF events exists
+		if (variableMgmt.calendars) {
+			// first, update flow tokens, then trigger events
+			triggersHandler.updateTokens(this)
+				.then(nextEvents => triggersHandler.triggerEvents(this, nextEvents))
+				.catch(error => this.log("triggerEvents: Failed in triggerEvents Promise flow:", error));
+		}
 	}
 
 	async unregisterCronTasks() {
@@ -112,14 +117,14 @@ class IcalCalendar extends Homey.App {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.updateCalendar);
 		}
 		catch (err) {
-			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
+			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
 		}
 
 		try {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.triggerEvents);
 		}
 		catch (err) {
-			this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
+			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
 		}
 	}
 	

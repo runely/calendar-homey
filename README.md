@@ -6,66 +6,47 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 - Open settings (configure app) and paste in the ical link
 
+### Find Exchange Online ical link
+
+1. Go to https://outlook.office.com/mail/inbox
+1. Click settings -> Show all outlook setting
+1. Go to Calendar -> Shared calenders
+1. Publish a calendar, click the ics link and choose copy
+1. Paste the ical link in settings of Homey app
+
+### Find Gmail ical url
+
+1. Go to https://calendar.google.com/
+1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
+1. Scroll all the way down to the bottom
+1. Copy the link from Secret address in ical format
+1. Paste the ical link in settings of Homey app
+
 ## Usage
 
-### Trigger "Event starts" (will trigger when any event starts)
-- Add card as a trigger in a flow
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
+### Triggers
+- **Event starts** - *will trigger when any event starts*
+- **Event starts in** - *will trigger when any event starts in when specified*
+- **Event stops** - *will trigger when any event stops*
 
-### Trigger "Event starts in" (will trigger when any event starts in when specified)
-- Add card as a trigger in a flow
-- Choose when
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
+### Conditions
+- **Event is ongoing** - *will check if specified event is|isn't ongoing*
+- **Event starts within** - *will check if specified event starts|doesn't start within when specified*
+- **Event stops within** - *will check if specified event stops|doesn't stop within when specified*
+- **Any event is ongoing** - *will check if any event is|isn't ongoing*
+- **Any event starts within** - *will check if any event starts|doesn't start within when specified*
+- **Any event stops within** - *will check if any event stops|doesn't stop within when specified*
 
-### Trigger "Event stops" (will trigger when any event stops)
-- Add card as a trigger in a flow
-- Tokens:
-    - 'Event title'
-    - 'Event description'
-    - 'Event location'
-    - 'Event duration'
-    - 'Event duration (mintes)'
-    - 'Calendar name'
+### Actions
+- **Sync calendars** - *will download new .ics files to update current events*
 
-### Condition "Event is ongoing" (will check if specified event is|isn't ongoing)
-- Add card as a condition in a flow
-- Choose the event
-
-### Condition "Event starts within" (will check if specified event starts|doesn't start within when specified)
-- Add card as a condition in a flow
-- Choose when
-- Choose the event
-
-### Condition "Event stops within" (will check if specified event stops|doesn't stop within when specified)
-- Add card as a condition in a flow
-- Choose when
-- Choose the event
-
-### Condition "Any event is ongoing" (will check if any event is|isn't ongoing)
-- Add card as a condition in a flow
-
-### Condition "Any event starts within" (will check if any event starts|doesn't start within when specified)
-- Add card as a condition in a flow
-- Choose when
-
-### Condition "Any event stops within" (will check if any event stops|doesn't stop within when specified)
-- Add card as a condition in a flow
-- Choose when
-
-### Action "Sync calendars" (will download new .ics files to update current events)
-- Add card as an action in a flow
+### Flow tokens on triggers
+- Event title
+- Event description
+- Event location
+- Event duration
+- Event duration (mintes)
+- Calendar name
 
 ### Global flow tokens (can be used in any app and service)
 - Next event title
@@ -79,21 +60,10 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Todays events, title and time
 - Todays events (count)
 
-## Find Exchange Online ical link
+## Recurring events
 
-1. Go to https://outlook.office.com/mail/inbox
-1. Click settings -> Show all outlook setting
-1. Go to Calendar -> Shared calenders
-1. Publish a calendar, click the ics link and choose copy
-1. Paste the ical link in settings of Homey app
-
-## Find Gmail ical url
-
-1. Go to https://calendar.google.com/
-1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
-1. Scroll all the way down to the bottom
-1. Copy the link from Secret address in ical format
-1. Paste the ical link in settings of Homey app
+### Be aware of *multiple/duplicate* "recurring" events:
+- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event. This will result in two similar events, both have the same name and date.
 
 ## Known bugs
 
@@ -101,10 +71,17 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## ToDo
 
-- Add support for recurring events
-
 ## Changelog
 
+- 0.1.0
+    - Added support for Mailfence (DTSTART;VALUE=DATE-TIME / DTEND;VALUE=DATE-TIME)
+    - Added support for recurring events :D
+    - Bugfix: Todays events did not show events with stop date greater than start date
+    - Bugfix: Global tokens were not proparly set as empty before calendars were set
+    - Bugfix: Flow tokens/triggers were evaluated even before any events existed
+    - Condition event chooser rewritten
+    - Event list sorted by start date
+    - New icon
 - 0.0.6
     - Added global flow tokens for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
     - Added token 'Calendar name' to 'Event starts' and 'Event stops' triggers
