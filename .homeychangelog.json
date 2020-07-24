@@ -16,5 +16,8 @@
   },
   "0.0.6": {
     "en": "Global flow tokens. Calendar name token on triggers. New trigger: 'Event starts in'"
+  },
+  "0.1.0": {
+    "en": "Recurring events. Bugfixes: Flow tokens. New conditions event chooser. New icon"
   }
 }
