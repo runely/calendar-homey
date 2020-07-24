@@ -2,7 +2,7 @@
 
 const Homey = require('homey');
 const moment = require('moment');
-const getNextEvent = require('../lib/get-next-event');
+const getNextEvents = require('../lib/get-next-events');
 const getTodaysEvents = require('../lib/get-todays-events');
 
 const getNumber = num => {
@@ -219,7 +219,7 @@ module.exports = async (app) => {
     await registerFlowTokens();
 }
 
-module.exports.triggerEvents = async (app, nextEvent) => {
+module.exports.triggerEvents = async (app, nextEvents) => {
     return new Promise((resolve, reject) => {
         if (app.variableMgmt.calendars) {
             app.variableMgmt.calendars.forEach(calendar => {
@@ -232,28 +232,30 @@ module.exports.triggerEvents = async (app, nextEvent) => {
             app.log("triggerEvents:", "Calendars has not been set in Settings yet");
         }
 
-        // fire event_starts_in trigger as well with nextEvent.startsIn as state
-        if (nextEvent.event) {
-            let startsInObj = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
-            startTrigger(nextEvent.calendarName, startsInObj, app, nextEvent.startsIn);
+        // fire event_starts_in trigger for all next events as well with nextEvent.startsIn as state
+        if (nextEvents.length > 0) {
+            nextEvents.map(nextEvent => {
+                let startsInObj = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
+                startTrigger(nextEvent.calendarName, startsInObj, app, nextEvent.startsIn);
+            });
         }
 
-        resolve();
+        resolve(true);
     });
 }
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        let nextEvent = getNextEvent(app.variableMgmt.calendars);
+        let nextEvents = getNextEvents(app.variableMgmt.calendars);
         app.log("updateTokens: Updating flow tokens");
 
-        if (nextEvent) {
-            updateFlowTokens(nextEvent, app);
+        if (nextEvents.length > 0 && nextEvents[0].event) {
+            updateFlowTokens(nextEvents[0], app);
         }
         else {
             updateFlowTokens(null, app);
         }
         
-        resolve(nextEvent);
+        resolve(nextEvents);
     });
 }
