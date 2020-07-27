@@ -2,7 +2,7 @@
     "settings": {
         "title": "Innstillinger",
         "legend": "Link til .ics-filen",
-        "calendar_name": "Kalendarnavn",
+        "calendar_name": "Kalendernavn",
         "calendar_uri": "URI",
         "new_item_button": "Ny kalender",
         "save_button": "Lagre",
