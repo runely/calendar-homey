@@ -132,6 +132,7 @@
       },
       {
         "id": "event_starts_in",
+        "deprecated": true,
         "title": {
           "en": "Event starts in",
           "no": "En avtale starter om"
@@ -279,6 +280,98 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "event_starts_in_custom",
+        "title": {
+          "en": "Event starts in",
+          "no": "En avtale starter om"
+        },
+        "tokens": [
+          {
+            "name": "event_name",
+            "type": "string",
+            "title": {
+              "en": "Title",
+              "no": "Tittel"
+            },
+            "example": {
+              "en": "Pick up in kindergarden",
+              "no": "Hente i barnehagen"
+            }
+          },
+          {
+            "name": "event_description",
+            "type": "string",
+            "title": {
+              "en": "Description",
+              "no": "Beskrivelse"
+            },
+            "example": {
+              "en": "Pick up kids in kindergarden",
+              "no": "Hente barna fra barnehagen"
+            }
+          },
+          {
+            "name": "event_location",
+            "type": "string",
+            "title": {
+              "en": "Location",
+              "no": "Sted"
+            },
+            "example": {
+              "en": "Kindergarden street, 30",
+              "no": "Barnehagegata, 30"
+            }
+          },
+          {
+            "name": "event_duration_readable",
+            "type": "string",
+            "title": {
+              "en": "Duration",
+              "no": "Varighet"
+            },
+            "example": {
+              "en": "1,5 hour",
+              "no": "1,5 time"
+            }
+          },
+          {
+            "name": "event_duration",
+            "type": "number",
+            "title": {
+              "en": "Duration in minutes",
+              "no": "Varighet i minutter"
+            },
+            "example": {
+              "en": "90",
+              "no": "90"
+            }
+          },
+          {
+            "name": "event_calendar_name",
+            "type": "string",
+            "title": {
+              "en": "Calendar name",
+              "no": "Kalendernavn"
+            },
+            "example": {
+              "en": "Gmail",
+              "no": "Gmail"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "when",
+            "type": "number",
+            "min": 1,
+            "placeholder": {
+              "en": "minutes",
+              "no": "minutter"
+            }
           }
         ]
       },

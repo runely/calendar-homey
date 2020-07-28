@@ -14,24 +14,30 @@ const getNumber = num => {
     }
 }
 
-const getTriggeringEvents = (events, app) => {
-    var triggeringEvents = [];
-    app.log("getTriggeringEvents");
+const triggerAllEvents = (calendars, app) => {
+    let now = moment();
 
-    events.forEach(event => {
-        let now = moment();
-        let startDiff = now.diff(event.start, 'seconds');
-        let stopDiff = now.diff(event.end, 'seconds');
-        let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
-        let resultStop = (stopDiff >= 0 && stopDiff <= 55);
-        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
-        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
-        
-        if (resultStart) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
-        if (resultStop) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
+    calendars.map(calendar => {
+        calendar.events.map(event => {
+            let startDiff = now.diff(event.start, 'seconds');
+            let stopDiff = now.diff(event.end, 'seconds');
+            let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
+            let resultStop = (stopDiff >= 0 && stopDiff <= 55);
+            let resultStartCustom = (!resultStart && !resultStop && startDiff < 0);
+
+            if (resultStart) {
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
+            }
+            if (resultStop) {
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops' }, app);
+            }
+            if (resultStartCustom) {
+                let startDiff = Math.round(event.start.diff(now, 'minutes', true));
+                
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in_custom' }, app, startDiff);
+            }
+        });
     });
-
-    return triggeringEvents;
 }
 
 const getTriggerTokenValue = (key) => {
@@ -89,11 +95,11 @@ const startTrigger = (calendarName, event, app, state) => {
     };
 
     if (state === undefined) {
-        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
+        //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
-        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
+        //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
     }
 }
@@ -194,10 +200,19 @@ module.exports = async (app) => {
 
         new Homey.FlowCardTrigger('event_stops').register();
 
+        // flow card deprecated
         new Homey.FlowCardTrigger('event_starts_in')
             .registerRunListener((args, state) => {
                 let result = (args.when == state.when);
                 if (result) app.log(`Triggered 'event_starts_in' with state: ${state.when}`);
+                return Promise.resolve(result);
+            })
+            .register();
+
+        new Homey.FlowCardTrigger('event_starts_in_custom')
+            .registerRunListener((args, state) => {
+                let result = (args.when == state.when);
+                if (result) app.log(`Triggered 'event_starts_in_custom' with state: ${state.when}`);
                 return Promise.resolve(result);
             })
             .register();
@@ -222,11 +237,7 @@ module.exports = async (app) => {
 module.exports.triggerEvents = async (app, nextEvents) => {
     return new Promise((resolve, reject) => {
         if (app.variableMgmt.calendars) {
-            app.variableMgmt.calendars.forEach(calendar => {
-                app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
-                let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
-                triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
-            });
+            triggerAllEvents(app.variableMgmt.calendars, app);
         }
         else {
             app.log("triggerEvents:", "Calendars has not been set in Settings yet");
