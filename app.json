@@ -277,6 +277,55 @@
                   "en": "60 minutes",
                   "no": "60 minutter"
                 }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours",
+                  "no": "1.5 time"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours",
+                  "no": "2 timer"
+                }
+              },
+              {
+                "id": "180",
+                "label": {
+                  "en": "3 hours",
+                  "no": "3 timer"
+                }
+              },
+              {
+                "id": "300",
+                "label": {
+                  "en": "5 hours",
+                  "no": "5 timer"
+                }
+              },
+              {
+                "id": "600",
+                "label": {
+                  "en": "10 hours",
+                  "no": "10 timer"
+                }
+              },
+              {
+                "id": "900",
+                "label": {
+                  "en": "15 hours",
+                  "no": "15 timer"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "1 day",
+                  "no": "1 døgn"
+                }
               }
             ]
           }
@@ -438,6 +487,55 @@
                   "en": "60 minutes",
                   "no": "60 minutter"
                 }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours",
+                  "no": "1.5 time"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours",
+                  "no": "2 timer"
+                }
+              },
+              {
+                "id": "180",
+                "label": {
+                  "en": "3 hours",
+                  "no": "3 timer"
+                }
+              },
+              {
+                "id": "300",
+                "label": {
+                  "en": "5 hours",
+                  "no": "5 timer"
+                }
+              },
+              {
+                "id": "600",
+                "label": {
+                  "en": "10 hours",
+                  "no": "10 timer"
+                }
+              },
+              {
+                "id": "900",
+                "label": {
+                  "en": "15 hours",
+                  "no": "15 timer"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "1 day",
+                  "no": "1 døgn"
+                }
               }
             ]
           }
@@ -523,6 +621,55 @@
                   "en": "60 minutes",
                   "no": "60 minutter"
                 }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours",
+                  "no": "1.5 time"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours",
+                  "no": "2 timer"
+                }
+              },
+              {
+                "id": "180",
+                "label": {
+                  "en": "3 hours",
+                  "no": "3 timer"
+                }
+              },
+              {
+                "id": "300",
+                "label": {
+                  "en": "5 hours",
+                  "no": "5 timer"
+                }
+              },
+              {
+                "id": "600",
+                "label": {
+                  "en": "10 hours",
+                  "no": "10 timer"
+                }
+              },
+              {
+                "id": "900",
+                "label": {
+                  "en": "15 hours",
+                  "no": "15 timer"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "1 day",
+                  "no": "1 døgn"
+                }
               }
             ]
           }
@@ -600,6 +747,55 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours",
+                  "no": "1.5 time"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours",
+                  "no": "2 timer"
+                }
+              },
+              {
+                "id": "180",
+                "label": {
+                  "en": "3 hours",
+                  "no": "3 timer"
+                }
+              },
+              {
+                "id": "300",
+                "label": {
+                  "en": "5 hours",
+                  "no": "5 timer"
+                }
+              },
+              {
+                "id": "600",
+                "label": {
+                  "en": "10 hours",
+                  "no": "10 timer"
+                }
+              },
+              {
+                "id": "900",
+                "label": {
+                  "en": "15 hours",
+                  "no": "15 timer"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "1 day",
+                  "no": "1 døgn"
                 }
               }
             ]
@@ -703,6 +899,55 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours",
+                  "no": "1.5 time"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours",
+                  "no": "2 timer"
+                }
+              },
+              {
+                "id": "180",
+                "label": {
+                  "en": "3 hours",
+                  "no": "3 timer"
+                }
+              },
+              {
+                "id": "300",
+                "label": {
+                  "en": "5 hours",
+                  "no": "5 timer"
+                }
+              },
+              {
+                "id": "600",
+                "label": {
+                  "en": "10 hours",
+                  "no": "10 timer"
+                }
+              },
+              {
+                "id": "900",
+                "label": {
+                  "en": "15 hours",
+                  "no": "15 timer"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "1 day",
+                  "no": "1 døgn"
                 }
               }
             ]
