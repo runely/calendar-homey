@@ -136,6 +136,9 @@
                     let name = calendar.children[3].value;
                     let uri = calendar.children[8].value;
 
+                    // Replace webcal:// urls (from iCloud) with https://
+                    uri = uri.toLowerCase().replace("webcal://", "https://");
+
                     return {
                         name: name,
                         uri: uri
