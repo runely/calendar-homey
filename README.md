@@ -22,6 +22,15 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 1. Copy the link from Secret address in ical format
 1. Paste the ical link in settings of Homey app
 
+### Find Apple iCloud ical url
+
+1. Go to https://www.icloud.com/calendar/
+1. Click on the icon next to the calendar name in the left pane
+1. Tick the checkbox for **Public calendar**
+1. Copy the webcal:// link
+1. Replace webcal:// with https://
+1. Paste the ical link in settings of Homey app
+
 ## Usage
 
 ### Triggers
