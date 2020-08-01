@@ -20,14 +20,13 @@ Find Gmail ical url
 4. Copy the link from Secret address in ical format
 5. Paste the ical link in settings of Homey app
 
-Find Apple iCloud ical url
+Find Apple iCloud url
 
-1. Go to https://www.icloud.com/calendar/
+1. Go to https://www.icloud.com/calendar/, or open the Calendar app on your iOS device
 2. Click on the icon next to the calendar name in the left pane
 3. Tick the checkbox for **Public calendar**
-4. Copy the webcal:// link
-5. Replace webcal:// with https://
-6. Paste the ical link in settings of Homey app
+4. Copy the link
+5. Paste the calendar link in the Homey app settings
 
 Triggers
 - Event starts

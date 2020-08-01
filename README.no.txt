@@ -10,7 +10,7 @@ Hvordan finne Exchange Online ical-lenken
 2. Klikk på instillinger -> Vis alle Outlook-innstillinger
 3. Gå til Kalender -> Delte kalendere
 4. Publiser en kalender, klikk på ics-lenken og velg kopier kobling
-5. Lim inn ical-lenken i innstillinger i Homey appen
+5. Lim inn ical-lenken i innstillinger i Homey-appen
 
 Hvordan finne Gmail ical-lenken
 
@@ -18,7 +18,15 @@ Hvordan finne Gmail ical-lenken
 2. Klikk på de tre dottene ved siden av kalenderen du ønsker å dele -> Klikk Innstillinger og deling
 3. Scroll helt ned til bunnen
 4. Kopier lenken fra feltet Hemmelig adresse i iCal-format
-5. Lim inn ical-lenken i innstillinger i Homey appen
+5. Lim inn ical-lenken i innstillinger i Homey-appen
+
+Hvordan finne Apple iCloud-lenken
+
+1. Gå til https://www.icloud.com/calendar/, eller åpne Kalenderen på din iOS-enhet
+2. Klikk på ikonet til høyre for navnet på kalenderen du vil legge inn
+3. Huk av "Ekstern kalender"
+4. Kopier koblingen
+5. Lim inn lenken i innstillingene i Homey-appen
 
 Hvordan finne Apple iCloud ical-lenken
 
