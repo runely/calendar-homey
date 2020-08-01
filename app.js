@@ -67,7 +67,13 @@ class IcalCalendar extends Homey.App {
 
 			for (var i = 0; i < calendars.length; i++) {
 				var { name, uri } = calendars[i];
-				this.log(`getEvents: Getting events for calendar '${name}'`);
+				if (uri === '') {
+					this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`);
+					continue;
+				}
+				else {
+					this.log(`getEvents: Getting events for calendar '${name}'`);
+				}
 
 				await getContent(uri)
 				.then(data => {

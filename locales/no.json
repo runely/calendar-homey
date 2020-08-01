@@ -6,6 +6,7 @@
         "calendar_uri": "URI",
         "new_item_button": "Ny kalender",
         "save_button": "Lagre",
+        "remove_button": "Fjern",
         "saved_alert": "Innstillinger lagret",
         "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
         "icons_info": "Ikoner av"

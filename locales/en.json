@@ -6,6 +6,7 @@
         "calendar_uri": "URI",
         "new_item_button": "New calendar",
         "save_button": "Save",
+        "remove_button": "Remove",
         "saved_alert": "Settings saved",
         "uri_load_failure": "Failed to load .ics file(s):",
         "icons_info": "Icons by"
