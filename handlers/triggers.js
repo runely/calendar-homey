@@ -108,8 +108,8 @@ const startTrigger = (calendarName, event, app, state) => {
 }
 
 const updateFlowTokens = (nextEvent, app) => {
-    let calendarsToday = getTodaysEvents(app.variableMgmt.calendars);
-    let calendarsTomorrow = getTomorrowsEvents(app.variableMgmt.calendars);
+    let eventsToday = getTodaysEvents(app.variableMgmt.calendars);
+    let eventsTomorrow = getTomorrowsEvents(app.variableMgmt.calendars);
     let eventDuration;
 
     if (nextEvent.event) {
@@ -163,69 +163,57 @@ const updateFlowTokens = (nextEvent, app) => {
         }
         else if (token.id === 'events_today_title_stamps') {
             let value = '';
-            calendarsToday.map(calendar => {
-                calendar.events.map(event => {
-                    if (event.datetype === 'date-time') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
-                        if (value === '') {
-                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
-                        }
-                        else {
-                            value += `.\n${eventValue}`;
-                        }
+            eventsToday.map(event => {
+                if (event.datetype === 'date-time') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                    if (value === '') {
+                        value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
                     }
-                    else if (event.datetype === 'date') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
-                        if (value === '') {
-                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
-                        }
-                        else {
-                            value += `.\n${eventValue}`;
-                        }
+                    else {
+                        value += `.\n${eventValue}`;
                     }
-                });
+                }
+                else if (event.datetype === 'date') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                    if (value === '') {
+                        value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
             });
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
-            let todaysEventCount = 0;
-            calendarsToday.map(calendar => {
-                todaysEventCount += calendar.events.length;
-            });
-            token.setValue(todaysEventCount);
+            token.setValue(eventsToday.length);
         }
         else if (token.id === 'events_tomorrow_title_stamps') {
             let value = '';
-            calendarsTomorrow.map(calendar => {
-                calendar.events.map(event => {
-                    if (event.datetype === 'date-time') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
-                        if (value === '') {
-                            value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
-                        }
-                        else {
-                            value += `.\n${eventValue}`;
-                        }
+            eventsTomorrow.map(event => {
+                if (event.datetype === 'date-time') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                    if (value === '') {
+                        value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
                     }
-                    else if (event.datetype === 'date') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
-                        if (value === '') {
-                            value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
-                        }
-                        else {
-                            value += `.\n${eventValue}`;
-                        }
+                    else {
+                        value += `.\n${eventValue}`;
                     }
-                });
+                }
+                else if (event.datetype === 'date') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                    if (value === '') {
+                        value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
             });
             token.setValue(value);
         }
         else if (token.id === 'events_tomorrow_count') {
-            let tomorrowsEventCount = 0;
-            calendarsTomorrow.map(calendar => {
-                tomorrowsEventCount += calendar.events.length;
-            });
-            token.setValue(tomorrowsEventCount);
+            token.setValue(eventsTomorrow.length);
         }
     });
 }

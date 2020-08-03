@@ -4,7 +4,7 @@ const Homey = require('homey');
 
 const getContent = require('./lib/get-ical-content');
 const getActiveEvents = require('./lib/get-active-events');
-const sortEvents = require('./lib/sort-events');
+const sortCalendarsEvents = require('./lib/sort-calendars');
 const variableMgmt = require('./lib/variableMgmt');
 
 const triggersHandler = require('./handlers/triggers');
@@ -103,7 +103,7 @@ class IcalCalendar extends Homey.App {
 		}
 
 		variableMgmt.calendars = calendarsEvents;
-		sortEvents(variableMgmt.calendars);
+		sortCalendarsEvents(variableMgmt.calendars);
 
 		return true;
 	}
