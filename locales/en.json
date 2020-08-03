@@ -35,12 +35,15 @@
         "event_next_stops_in_minutes": "Next event stops in (minutes)",
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
+        "events_tomorrow_title_stamps": "Tomorrows events, title and time",
         "events_today_title_stamps_pre": "Todays events:",
-        "events_today_startstamp_time_format": "HH:mm",
-        "events_today_startstamp_fullday": "full day",
-        "events_today_stopstamp_time_format": "HH:mm",
-        "events_today_title_stamps_starts": "starts at",
-        "events_today_title_stamps_stops": "stops at",
-        "events_today_count": "Todays events (count)"
+        "events_tomorrow_title_stamps_pre": "Tomorrows events:",
+        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_startstamp_fullday": "full day",
+        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
+        "events_today-tomorrow_title_stamps_starts": "starts at",
+        "events_today-tomorrow_title_stamps_stops": "stops at",
+        "events_today_count": "Todays events (count)",
+        "events_tomorrow_count": "Tomorrows events (count)"
     }
 }
