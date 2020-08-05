@@ -25,6 +25,9 @@ class IcalCalendar extends Homey.App {
 			this.log("onInit: Legacy calendar moved");
 		}
 
+		// register variableMgmt to this app class
+		this.variableMgmt = variableMgmt;
+
 		// instantiate triggers
 		this.Triggers = triggersHandler(this);
 		
@@ -33,9 +36,6 @@ class IcalCalendar extends Homey.App {
 
 		// instantiate actions
 		this.Actions = actionsHandler(this);
-
-		// register variableMgmt to this app class
-		this.variableMgmt = variableMgmt;
 
 		// get ical events
 		this.getEvents();
