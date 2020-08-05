@@ -107,7 +107,8 @@ const startTrigger = (calendarName, event, app, state) => {
     }
 }
 
-const updateFlowTokens = (nextEvent, app) => {
+const updateFlowTokens = (app) => {
+    let nextEvent = getNextEvent(app.variableMgmt.calendars);
     let eventsToday = getTodaysEvents(app.variableMgmt.calendars);
     let eventsTomorrow = getTomorrowsEvents(app.variableMgmt.calendars);
     let eventDuration;
@@ -264,15 +265,9 @@ module.exports.triggerEvents = async (app) => {
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        let nextEvent = getNextEvent(app.variableMgmt.calendars);
         app.log("updateTokens: Updating flow tokens");
 
-        if (nextEvent) {
-            updateFlowTokens(nextEvent, app);
-        }
-        else {
-            updateFlowTokens(null, app);
-        }
+        updateFlowTokens(app);
         
         resolve(true);
     });
