@@ -117,6 +117,7 @@ const updateFlowTokens = (app) => {
         eventDuration = getTriggerTokenDuration(nextEvent.event);
     }
 
+    // loop through flow tokens
     app.variableMgmt.flowTokens.map(token => {
         if (token.id === 'event_next_title') {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
@@ -216,6 +217,68 @@ const updateFlowTokens = (app) => {
         else if (token.id === 'events_tomorrow_count') {
             token.setValue(eventsTomorrow.length);
         }
+    });
+
+    // loop through calendar tokens
+    app.variableMgmt.calendarTokens.map(token => {
+        let calendarId = token.id.replace('ical_calendar_', '');
+        let calendarName = calendarId.replace('_today', '').replace('_tomorrow', '');
+        let calendarType = calendarId.replace(`${calendarName}_`, '');
+    
+        app.variableMgmt.calendars.filter(calendar => calendar.name === calendarName).map(calendar => {
+            let value = '';
+
+            if (calendarType === 'today') {
+                let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
+                app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
+                todaysEventsCalendar.map(event => {
+                    if (event.datetype === 'date-time') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                    else if (event.datetype === 'date') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                });
+                token.setValue(value);
+            }
+            else if (calendarType === 'tomorrow') {
+                let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
+                app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
+                tomorrowsEventsCalendar.map(event => {
+                    if (event.datetype === 'date-time') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                    else if (event.datetype === 'date') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                });
+                token.setValue(value);
+            }
+        });
     });
 }
 

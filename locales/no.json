@@ -21,6 +21,10 @@
     "token_duration_minutes": "minutter",
     "token_duration_hour": "time",
     "token_duration_hours": "timer",
+    "calendarTokens": {
+        "events_today_calendar_title_stamps": "Dagens avtaler i",
+        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
+    },
     "flowTokens": {
         "event_next_title": "Tittel neste avtale",
         "event_next_startstamp": "Starttidspunkt neste avtale",

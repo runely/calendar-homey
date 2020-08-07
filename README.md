@@ -67,6 +67,11 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Calendar name of next event
 - Todays events, title and time
 - Todays events (count)
+- Tomorrows events, title and time
+- Tomorrows events (count)
+- Todays events (pr calendar)
+- Tomorrows events (pr calendar)
+
 
 ## Recurring events
 
@@ -87,6 +92,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Added possibility to remove calendars from settings
     - Added global flow tokens for tomorrows events -> [Issue #36](https://github.com/runely/calendar-homey/issues/36)
     - Todays events and Tomorrows events are now sorted by start time -> [Issue #51](https://github.com/runely/calendar-homey/issues/51)
+    - Todays and tomorrows events pr calendar -> [Issue #44](https://github.com/runely/calendar-homey/issues/44)
 - 0.1.0
     - Added support for Mailfence (DTSTART;VALUE=DATE-TIME / DTEND;VALUE=DATE-TIME)
     - Added support for recurring events :D
