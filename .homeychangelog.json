@@ -19,5 +19,8 @@
   },
   "0.1.0": {
     "en": "Recurring events. Bugfixes: Flow tokens. New conditions event chooser. New icon"
+  },
+  "0.1.1": {
+    "en": "More timespan choices for triggers/conditions. Possibility to remove calendars from settings. Global flow tokens for tomorrows events. Todays and tomorrows events pr calendar. "
   }
 }
