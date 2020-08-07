@@ -2,8 +2,9 @@
 
 const Homey = require('homey');
 const moment = require('moment');
-const getNextEvents = require('../lib/get-next-events');
+const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
+const getTomorrowsEvents = require('../lib/get-tomorrows-events');
 
 const getNumber = num => {
     if (Number.isInteger(num)) {
@@ -14,24 +15,32 @@ const getNumber = num => {
     }
 }
 
-const getTriggeringEvents = (events, app) => {
-    var triggeringEvents = [];
-    app.log("getTriggeringEvents");
+const triggerAllEvents = (calendars, app) => {
+    let now = moment();
 
-    events.forEach(event => {
-        let now = moment();
-        let startDiff = now.diff(event.start, 'seconds');
-        let stopDiff = now.diff(event.end, 'seconds');
-        let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
-        let resultStop = (stopDiff >= 0 && stopDiff <= 55);
-        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Started now or in the last minute: " + resultStart);
-        //app.log("getTriggeringEvents: " + startDiff + " seconds since start -- " + stopDiff + " seconds since stop -- Stopped now or in the last minute: " + resultStop);
-        
-        if (resultStart) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_starts' });
-        if (resultStop) triggeringEvents.push({ ...event, TRIGGER_ID: 'event_stops' });
+    calendars.map(calendar => {
+        app.log(`triggerAllEvents: Triggering events from calendar '${calendar.name}'`);
+        calendar.events.map(event => {
+            let startDiff = now.diff(event.start, 'seconds');
+            let stopDiff = now.diff(event.end, 'seconds');
+
+            let resultStart = (startDiff >= 0 && startDiff <= 55 && stopDiff <= 0);
+            let resultStop = (stopDiff >= 0 && stopDiff <= 55);
+            let resultStartInCheck = (!resultStart && !resultStop && startDiff < 0);
+
+            if (resultStart) {
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
+            }
+            if (resultStop) {
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops' }, app);
+            }
+            if (resultStartInCheck) {
+                let startsIn = Math.round(event.start.diff(now, 'minutes', true));
+
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, startsIn);
+            }
+        });
     });
-
-    return triggeringEvents;
 }
 
 const getTriggerTokenValue = (key) => {
@@ -89,23 +98,26 @@ const startTrigger = (calendarName, event, app, state) => {
     };
 
     if (state === undefined) {
-        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}'`);
+        app.log(`Triggered '${event.TRIGGER_ID}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
-        app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
+        //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
     }
 }
 
-const updateFlowTokens = (nextEvent, app) => {
-    let calendarsToday = getTodaysEvents(app.variableMgmt.calendars);
+const updateFlowTokens = (app) => {
+    let nextEvent = getNextEvent(app.variableMgmt.calendars);
+    let eventsToday = getTodaysEvents(app.variableMgmt.calendars);
+    let eventsTomorrow = getTomorrowsEvents(app.variableMgmt.calendars);
     let eventDuration;
 
     if (nextEvent.event) {
         eventDuration = getTriggerTokenDuration(nextEvent.event);
     }
 
+    // loop through flow tokens
     app.variableMgmt.flowTokens.map(token => {
         if (token.id === 'event_next_title') {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
@@ -153,37 +165,120 @@ const updateFlowTokens = (nextEvent, app) => {
         }
         else if (token.id === 'events_today_title_stamps') {
             let value = '';
-            calendarsToday.map(calendar => {
-                calendar.events.map(event => {
+            eventsToday.map(event => {
+                if (event.datetype === 'date-time') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                    if (value === '') {
+                        value = `${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
+                else if (event.datetype === 'date') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                    if (value === '') {
+                        value = `${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
+            });
+            token.setValue(value);
+        }
+        else if (token.id === 'events_today_count') {
+            token.setValue(eventsToday.length);
+        }
+        else if (token.id === 'events_tomorrow_title_stamps') {
+            let value = '';
+            eventsTomorrow.map(event => {
+                if (event.datetype === 'date-time') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                    if (value === '') {
+                        value = `${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
+                else if (event.datetype === 'date') {
+                    let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                    if (value === '') {
+                        value = `${eventValue}`;
+                    }
+                    else {
+                        value += `.\n${eventValue}`;
+                    }
+                }
+            });
+            token.setValue(value);
+        }
+        else if (token.id === 'events_tomorrow_count') {
+            token.setValue(eventsTomorrow.length);
+        }
+    });
+
+    // loop through calendar tokens
+    app.variableMgmt.calendarTokens.map(token => {
+        let calendarId = token.id.replace('ical_calendar_', '');
+        let calendarName = calendarId.replace('_today', '').replace('_tomorrow', '');
+        let calendarType = calendarId.replace(`${calendarName}_`, '');
+    
+        app.variableMgmt.calendars.filter(calendar => calendar.name === calendarName).map(calendar => {
+            let value = '';
+
+            if (calendarType === 'today') {
+                let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
+                app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
+                todaysEventsCalendar.map(event => {
                     if (event.datetype === 'date-time') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today_stopstamp_time_format'))}`;
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
                         if (value === '') {
-                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
+                            value = `${eventValue}`;
                         }
                         else {
                             value += `.\n${eventValue}`;
                         }
                     }
                     else if (event.datetype === 'date') {
-                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today_startstamp_fullday')}`;
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
                         if (value === '') {
-                            value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
+                            value = `${eventValue}`;
                         }
                         else {
                             value += `.\n${eventValue}`;
                         }
                     }
                 });
-            });
-            token.setValue(value);
-        }
-        else if (token.id === 'events_today_count') {
-            let todaysEventCount = 0;
-            calendarsToday.map(calendar => {
-                todaysEventCount += calendar.events.length;
-            });
-            token.setValue(todaysEventCount);
-        }
+                token.setValue(value);
+            }
+            else if (calendarType === 'tomorrow') {
+                let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
+                app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
+                tomorrowsEventsCalendar.map(event => {
+                    if (event.datetype === 'date-time') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                    else if (event.datetype === 'date') {
+                        let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
+                        if (value === '') {
+                            value = `${eventValue}`;
+                        }
+                        else {
+                            value += `.\n${eventValue}`;
+                        }
+                    }
+                });
+                token.setValue(value);
+            }
+        });
     });
 }
 
@@ -209,7 +304,6 @@ module.exports = async (app) => {
             new Homey.FlowToken(definition.id, { type: definition.type, title: Homey.__(`flowTokens.${definition.id}`)})
                 .register()
                 .then(token => {
-                    //app.log(`registerFlowToken: ${definition.id} registered`);
                     app.variableMgmt.flowTokens.push(token);
                 });
         });
@@ -219,25 +313,13 @@ module.exports = async (app) => {
     await registerFlowTokens();
 }
 
-module.exports.triggerEvents = async (app, nextEvents) => {
+module.exports.triggerEvents = async (app) => {
     return new Promise((resolve, reject) => {
         if (app.variableMgmt.calendars) {
-            app.variableMgmt.calendars.forEach(calendar => {
-                app.log("triggerEvents:", `Checking if any of the ${calendar.events.length} events in calendar '${calendar.name}' ((starts now or has started in the last minute) || (stops now or has stopped in the last minute))`);
-                let triggeringEvents = getTriggeringEvents(calendar.events, app) || [];
-                triggeringEvents.forEach(event => startTrigger(calendar.name, event, app));
-            });
+            triggerAllEvents(app.variableMgmt.calendars, app);
         }
         else {
             app.log("triggerEvents:", "Calendars has not been set in Settings yet");
-        }
-
-        // fire event_starts_in trigger for all next events as well with nextEvent.startsIn as state
-        if (nextEvents.length > 0) {
-            nextEvents.map(nextEvent => {
-                let startsInObj = { ...nextEvent.event, TRIGGER_ID: 'event_starts_in' };
-                startTrigger(nextEvent.calendarName, startsInObj, app, nextEvent.startsIn);
-            });
         }
 
         resolve(true);
@@ -246,16 +328,10 @@ module.exports.triggerEvents = async (app, nextEvents) => {
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        let nextEvents = getNextEvents(app.variableMgmt.calendars);
         app.log("updateTokens: Updating flow tokens");
 
-        if (nextEvents.length > 0 && nextEvents[0].event) {
-            updateFlowTokens(nextEvents[0], app);
-        }
-        else {
-            updateFlowTokens(null, app);
-        }
+        updateFlowTokens(app);
         
-        resolve(nextEvents);
+        resolve(true);
     });
 }

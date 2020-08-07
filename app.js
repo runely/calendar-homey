@@ -4,7 +4,7 @@ const Homey = require('homey');
 
 const getContent = require('./lib/get-ical-content');
 const getActiveEvents = require('./lib/get-active-events');
-const sortEvents = require('./lib/sort-events');
+const sortCalendarsEvents = require('./lib/sort-calendars');
 const variableMgmt = require('./lib/variableMgmt');
 
 const triggersHandler = require('./handlers/triggers');
@@ -25,6 +25,9 @@ class IcalCalendar extends Homey.App {
 			this.log("onInit: Legacy calendar moved");
 		}
 
+		// register variableMgmt to this app class
+		this.variableMgmt = variableMgmt;
+
 		// instantiate triggers
 		this.Triggers = triggersHandler(this);
 		
@@ -33,9 +36,6 @@ class IcalCalendar extends Homey.App {
 
 		// instantiate actions
 		this.Actions = actionsHandler(this);
-
-		// register variableMgmt to this app class
-		this.variableMgmt = variableMgmt;
 
 		// get ical events
 		this.getEvents();
@@ -67,7 +67,13 @@ class IcalCalendar extends Homey.App {
 
 			for (var i = 0; i < calendars.length; i++) {
 				var { name, uri } = calendars[i];
-				this.log(`getEvents: Getting events for calendar '${name}'`);
+				if (uri === '') {
+					this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`);
+					continue;
+				}
+				else {
+					this.log(`getEvents: Getting events for calendar '${name}'`);
+				}
 
 				await getContent(uri)
 				.then(data => {
@@ -97,7 +103,30 @@ class IcalCalendar extends Homey.App {
 		}
 
 		variableMgmt.calendars = calendarsEvents;
-		sortEvents(variableMgmt.calendars);
+		sortCalendarsEvents(variableMgmt.calendars);
+
+		// unregister calendar tokens
+        await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
+			await token.unregister();
+		}));
+		variableMgmt.calendarTokens = [];
+		this.log("getEvents: Calendar tokens flushed");
+
+		// register calendar tokens
+        if (variableMgmt.calendars.length > 0) {
+            await Promise.all(variableMgmt.calendars.map(async (calendar) => {
+				new Homey.FlowToken(`ical_calendar_${calendar.name}_today`, { type: 'string', title: `${Homey.__('calendarTokens.events_today_calendar_title_stamps')} ${calendar.name}`}).register()
+					.then(token => {
+						variableMgmt.calendarTokens.push(token);
+						this.log(`getEvents: Registered calendarToken '${token.id}'`);
+				});
+                new Homey.FlowToken(`ical_calendar_${calendar.name}_tomorrow`, { type: 'string', title: `${Homey.__('calendarTokens.events_tomorrow_calendar_title_stamps')} ${calendar.name}`}).register()
+					.then(token => {
+						variableMgmt.calendarTokens.push(token);
+						this.log(`getEvents: Registered calendarToken '${token.id}'`);
+				});
+			}));
+        }
 
 		return true;
 	}
@@ -107,8 +136,10 @@ class IcalCalendar extends Homey.App {
 		if (variableMgmt.calendars) {
 			// first, update flow tokens, then trigger events
 			triggersHandler.updateTokens(this)
-				.then(nextEvents => triggersHandler.triggerEvents(this, nextEvents))
-				.catch(error => this.log("triggerEvents: Failed in triggerEvents Promise flow:", error));
+				.catch(error => this.log("triggerEvents: Failed in updateTokens Promise:", error));
+
+			triggersHandler.triggerEvents(this)
+				.catch(error => this.log("triggerEvents: Failed in triggerEvents Promise:", error));
 		}
 	}
 

@@ -2,10 +2,11 @@
     "settings": {
         "title": "Innstillinger",
         "legend": "Link til .ics-filen",
-        "calendar_name": "Kalendarnavn",
+        "calendar_name": "Kalendernavn",
         "calendar_uri": "URI",
         "new_item_button": "Ny kalender",
         "save_button": "Lagre",
+        "remove_button": "Fjern",
         "saved_alert": "Innstillinger lagret",
         "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
         "icons_info": "Ikoner av"
@@ -20,6 +21,10 @@
     "token_duration_minutes": "minutter",
     "token_duration_hour": "time",
     "token_duration_hours": "timer",
+    "calendarTokens": {
+        "events_today_calendar_title_stamps": "Dagens avtaler i",
+        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
+    },
     "flowTokens": {
         "event_next_title": "Tittel neste avtale",
         "event_next_startstamp": "Starttidspunkt neste avtale",
@@ -34,12 +39,13 @@
         "event_next_stops_in_minutes": "Neste avtale stopper om (minutter)",
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
-        "events_today_title_stamps_pre": "Dagens avtaler:",
-        "events_today_startstamp_time_format": "HH:mm",
-        "events_today_startstamp_fullday": "hele dagen",
-        "events_today_stopstamp_time_format": "HH:mm",
-        "events_today_title_stamps_starts": "starter klokken",
-        "events_today_title_stamps_stops": "stopper klokken",
-        "events_today_count": "Dagens avtaler (antall)"
+        "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
+        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_startstamp_fullday": "hele dagen",
+        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
+        "events_today-tomorrow_title_stamps_starts": "starter klokken",
+        "events_today-tomorrow_title_stamps_stops": "stopper klokken",
+        "events_today_count": "Dagens avtaler (antall)",
+        "events_tomorrow_count": "Morgendagens avtaler (antall)"
     }
 }

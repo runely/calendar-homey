@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "eslint": "7.5.0",
+    "eslint": "7.6.0",
     "eslint-config-athom": "2.1.0",
-    "homey": "2.5.2"
+    "homey": "2.6.1"
   },
   "dependencies": {
     "moment": "^2.26.0",
