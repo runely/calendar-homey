@@ -105,6 +105,29 @@ class IcalCalendar extends Homey.App {
 		variableMgmt.calendars = calendarsEvents;
 		sortCalendarsEvents(variableMgmt.calendars);
 
+		// unregister calendar tokens
+        await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
+			await token.unregister();
+		}));
+		variableMgmt.calendarTokens = [];
+		this.log("getEvents: Calendar tokens flushed");
+
+		// register calendar tokens
+        if (variableMgmt.calendars.length > 0) {
+            await Promise.all(variableMgmt.calendars.map(async (calendar) => {
+				new Homey.FlowToken(`ical_calendar_${calendar.name}_today`, { type: 'string', title: `${Homey.__('calendarTokens.events_today_calendar_title_stamps')} ${calendar.name}`}).register()
+					.then(token => {
+						variableMgmt.calendarTokens.push(token);
+						this.log(`getEvents: Registered calendarToken '${token.id}'`);
+				});
+                new Homey.FlowToken(`ical_calendar_${calendar.name}_tomorrow`, { type: 'string', title: `${Homey.__('calendarTokens.events_tomorrow_calendar_title_stamps')} ${calendar.name}`}).register()
+					.then(token => {
+						variableMgmt.calendarTokens.push(token);
+						this.log(`getEvents: Registered calendarToken '${token.id}'`);
+				});
+			}));
+        }
+
 		return true;
 	}
 
