@@ -169,7 +169,7 @@ const updateFlowTokens = (app) => {
                 if (event.datetype === 'date-time') {
                     let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
                     if (value === '') {
-                        value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
+                        value = `${eventValue}`;
                     }
                     else {
                         value += `.\n${eventValue}`;
@@ -178,7 +178,7 @@ const updateFlowTokens = (app) => {
                 else if (event.datetype === 'date') {
                     let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
                     if (value === '') {
-                        value = `${Homey.__('flowTokens.events_today_title_stamps_pre')}\n${eventValue}`;
+                        value = `${eventValue}`;
                     }
                     else {
                         value += `.\n${eventValue}`;
@@ -196,7 +196,7 @@ const updateFlowTokens = (app) => {
                 if (event.datetype === 'date-time') {
                     let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
                     if (value === '') {
-                        value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
+                        value = `${eventValue}`;
                     }
                     else {
                         value += `.\n${eventValue}`;
@@ -205,7 +205,7 @@ const updateFlowTokens = (app) => {
                 else if (event.datetype === 'date') {
                     let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_startstamp_fullday')}`;
                     if (value === '') {
-                        value = `${Homey.__('flowTokens.events_tomorrow_title_stamps_pre')}\n${eventValue}`;
+                        value = `${eventValue}`;
                     }
                     else {
                         value += `.\n${eventValue}`;

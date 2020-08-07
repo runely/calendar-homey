@@ -40,8 +40,6 @@
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",
-        "events_today_title_stamps_pre": "Todays events:",
-        "events_tomorrow_title_stamps_pre": "Tomorrows events:",
         "events_today-tomorrow_startstamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "full day",
         "events_today-tomorrow_stopstamp_time_format": "HH:mm",

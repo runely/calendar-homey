@@ -40,8 +40,6 @@
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
         "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
-        "events_today_title_stamps_pre": "Dagens avtaler:",
-        "events_tomorrow_title_stamps_pre": "Morgendagens avtaler:",
         "events_today-tomorrow_startstamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "hele dagen",
         "events_today-tomorrow_stopstamp_time_format": "HH:mm",
