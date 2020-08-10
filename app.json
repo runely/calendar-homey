@@ -7,10 +7,12 @@
   "name": {
     "en": "IcalCalendar",
     "no": "IcalCalendar"
+    "nl": "IcalCalender"
   },
   "description": {
     "en": "Stay on top of your planning with Homey",
     "no": "Ha full kontroll på planleggingen med Homey"
+    "nl": "Blijf op de hoogte van je planning met Homey"
   },
   "category": [
     "tools"
@@ -54,6 +56,7 @@
         "title": {
           "en": "Event starts",
           "no": "En avtale starter"
+          "nl": "Event start"
         },
         "tokens": [
           {
@@ -62,10 +65,12 @@
             "title": {
               "en": "Title",
               "no": "Tittel"
+              "nl": "Titel"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen"
+              "nl": "Kinderen ophalen"
             }
           },
           {
@@ -74,10 +79,12 @@
             "title": {
               "en": "Description",
               "no": "Beskrivelse"
+              "nl": "Omschrijving"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen"
+              "nl": "Haal de kinderen van school op"
             }
           },
           {
@@ -86,10 +93,12 @@
             "title": {
               "en": "Location",
               "no": "Sted"
+              "nl": "Lokatie"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30"
+              "nl": "Schoolstraat 30"
             }
           },
           {
@@ -98,10 +107,12 @@
             "title": {
               "en": "Duration",
               "no": "Varighet"
+              "nl": "Looptijd"
             },
             "example": {
-              "en": "1,5 hour",
-              "no": "1,5 time"
+              "en": "1.5 hour",
+              "no": "1.5 time"
+              "nl": "1.5 uur"
             }
           },
           {
@@ -110,10 +121,12 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter"
+              "nl": "Looptijd in minuten"
             },
             "example": {
               "en": "90",
               "no": "90"
+              "nl": "90"
             }
           },
           {
@@ -122,10 +135,12 @@
             "title": {
               "en": "Calendar name",
               "no": "Kalendernavn"
+              "nl": "Kalender naam"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail"
+              "nl": "Gmail"
             }
           }
         ]
@@ -135,6 +150,7 @@
         "title": {
           "en": "Event starts in",
           "no": "En avtale starter om"
+          "nl": "Event start over"
         },
         "tokens": [
           {
@@ -143,10 +159,12 @@
             "title": {
               "en": "Title",
               "no": "Tittel"
+              "nl": "Titel"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen"
+              "nl": "Kinderen ophalen"
             }
           },
           {
@@ -155,10 +173,12 @@
             "title": {
               "en": "Description",
               "no": "Beskrivelse"
+              "nl": "Omschrijving"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen"
+              "nl": "Haal de kinderen van school op"
             }
           },
           {
@@ -167,10 +187,12 @@
             "title": {
               "en": "Location",
               "no": "Sted"
+              "nl": "Lokatie"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30"
+              "nl": "Schoolstraat 30"
             }
           },
           {
@@ -179,10 +201,12 @@
             "title": {
               "en": "Duration",
               "no": "Varighet"
+              "nl": "Looptijd"
             },
             "example": {
-              "en": "1,5 hour",
-              "no": "1,5 time"
+              "en": "1.5 hour",
+              "no": "1.5 time"
+              "nl": "1.5 uur"
             }
           },
           {
@@ -191,10 +215,12 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter"
+              "nl": "Looptijd in minuten"
             },
             "example": {
               "en": "90",
               "no": "90"
+              "nl": "90"
             }
           },
           {
@@ -203,10 +229,12 @@
             "title": {
               "en": "Calendar name",
               "no": "Kalendernavn"
+              "nl": "Kalender naam"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail"
+              "nl": "Gmail"
             }
           }
         ],
@@ -220,6 +248,7 @@
                 "label": {
                   "en": "1 minute",
                   "no": "1 minutt"
+                  "nl": "1 minuut"
                 }
               },
               {
@@ -227,6 +256,7 @@
                 "label": {
                   "en": "2 minutes",
                   "no": "2 minutter"
+                  "nl": "2 minuten"
                 }
               },
               {
@@ -234,6 +264,7 @@
                 "label": {
                   "en": "5 minutes",
                   "no": "5 minutter"
+                  "nl": "5 minuten"
                 }
               },
               {
@@ -241,6 +272,7 @@
                 "label": {
                   "en": "10 minutes",
                   "no": "10 minutter"
+                  "nl": "10 minuten"
                 }
               },
               {
@@ -248,6 +280,7 @@
                 "label": {
                   "en": "15 minutes",
                   "no": "15 minutter"
+                  "nl": "15 minuten"
                 }
               },
               {
@@ -255,6 +288,7 @@
                 "label": {
                   "en": "20 minutes",
                   "no": "20 minutter"
+                  "nl": "20 minuten"
                 }
               },
               {
@@ -262,6 +296,7 @@
                 "label": {
                   "en": "25 minutes",
                   "no": "25 minutter"
+                  "nl": "25 minuten"
                 }
               },
               {
@@ -269,6 +304,7 @@
                 "label": {
                   "en": "30 minutes",
                   "no": "30 minutter"
+                  "nl": "30 minuten"
                 }
               },
               {
@@ -276,6 +312,7 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                  "nl": "60 minuten"
                 }
               },
               {
@@ -283,6 +320,7 @@
                 "label": {
                   "en": "1.5 hours",
                   "no": "1.5 time"
+                  "nl": "1.5 uur"
                 }
               },
               {
@@ -290,6 +328,7 @@
                 "label": {
                   "en": "2 hours",
                   "no": "2 timer"
+                  "nl": "2 uur"
                 }
               },
               {
@@ -297,6 +336,7 @@
                 "label": {
                   "en": "3 hours",
                   "no": "3 timer"
+                  "nl": "3 uur"
                 }
               },
               {
@@ -304,6 +344,7 @@
                 "label": {
                   "en": "5 hours",
                   "no": "5 timer"
+                  "nl": "5 uur"
                 }
               },
               {
@@ -311,6 +352,7 @@
                 "label": {
                   "en": "10 hours",
                   "no": "10 timer"
+                  "nl": "10 uur"
                 }
               },
               {
@@ -318,6 +360,7 @@
                 "label": {
                   "en": "15 hours",
                   "no": "15 timer"
+                  "nl": "15 uur"
                 }
               },
               {
@@ -325,6 +368,7 @@
                 "label": {
                   "en": "1 day",
                   "no": "1 døgn"
+                  "nl": "1 dag"
                 }
               }
             ]
@@ -336,6 +380,7 @@
         "title": {
           "en": "Event stops",
           "no": "En avtale ender"
+          "nl": "Event stopt"
         },
         "tokens": [
           {
@@ -344,10 +389,12 @@
             "title": {
               "en": "Title",
               "no": "Tittel"
+              "nl": "Titel"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen"
+              "nl": "Kinderen ophalen"
             }
           },
           {
@@ -356,10 +403,12 @@
             "title": {
               "en": "Description",
               "no": "Beskrivelse"
+              "nl": "Omschrijving"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen"
+              "nl": "Haal de kinderen van school op"
             }
           },
           {
@@ -368,10 +417,12 @@
             "title": {
               "en": "Location",
               "no": "Sted"
+              "nl": "Lokatie"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30"
+              "nl": "Schoolstraat 30"
             }
           },
           {
@@ -380,10 +431,12 @@
             "title": {
               "en": "Duration",
               "no": "Varighet"
+              "nl": "Looptijd"
             },
             "example": {
-              "en": "1,5 hour",
-              "no": "1,5 time"
+              "en": "1.5 hour",
+              "no": "1.5 time"
+              "nl": "1.5 uur"
             }
           },
           {
@@ -392,10 +445,12 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter"
+              "nl": "Looptijd in minuten"
             },
             "example": {
               "en": "90",
               "no": "90"
+              "nl": "90"
             }
           },
           {
@@ -404,10 +459,12 @@
             "title": {
               "en": "Calendar name",
               "no": "Kalendernavn"
+              "nl": "Kalender naam"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail"
+              "nl": "Gmail"
             }
           }
         ]
@@ -419,6 +476,7 @@
         "title": {
           "en": "Any event !{{starts|doesn't start}} within...",
           "no": "En avtale !{{starter|starter ikke}} innen..."
+          "nl": "Een event !{{start|start niet}} over..."
         },
         "args": [
           {
@@ -430,6 +488,7 @@
                 "label": {
                   "en": "1 minute",
                   "no": "1 minutt"
+                  "nl": "1 minuut"
                 }
               },
               {
@@ -437,6 +496,7 @@
                 "label": {
                   "en": "2 minutes",
                   "no": "2 minutter"
+                  "nl": "2 minuten"
                 }
               },
               {
@@ -444,6 +504,7 @@
                 "label": {
                   "en": "5 minutes",
                   "no": "5 minutter"
+                  "nl": "5 minuten"
                 }
               },
               {
@@ -451,6 +512,7 @@
                 "label": {
                   "en": "10 minutes",
                   "no": "10 minutter"
+                  "nl": "10 minuten"
                 }
               },
               {
@@ -458,6 +520,7 @@
                 "label": {
                   "en": "15 minutes",
                   "no": "15 minutter"
+                  "nl": "15 minuten"
                 }
               },
               {
@@ -465,6 +528,7 @@
                 "label": {
                   "en": "20 minutes",
                   "no": "20 minutter"
+                  "nl": "20 minuten"
                 }
               },
               {
@@ -472,6 +536,7 @@
                 "label": {
                   "en": "25 minutes",
                   "no": "25 minutter"
+                  "nl": "25 minuten"
                 }
               },
               {
@@ -479,6 +544,7 @@
                 "label": {
                   "en": "30 minutes",
                   "no": "30 minutter"
+                  "nl": "30 minuten"
                 }
               },
               {
@@ -486,6 +552,7 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                  "nl": "60 minuten"
                 }
               },
               {
@@ -493,6 +560,7 @@
                 "label": {
                   "en": "1.5 hours",
                   "no": "1.5 time"
+                  "nl": "1.5 uur"
                 }
               },
               {
@@ -500,6 +568,7 @@
                 "label": {
                   "en": "2 hours",
                   "no": "2 timer"
+                  "nl": "2 uur"
                 }
               },
               {
@@ -507,6 +576,7 @@
                 "label": {
                   "en": "3 hours",
                   "no": "3 timer"
+                  "nl": "3 uur"
                 }
               },
               {
@@ -514,6 +584,7 @@
                 "label": {
                   "en": "5 hours",
                   "no": "5 timer"
+                  "nl": "5 uur"
                 }
               },
               {
@@ -521,6 +592,7 @@
                 "label": {
                   "en": "10 hours",
                   "no": "10 timer"
+                  "nl": "10 uur"
                 }
               },
               {
@@ -528,6 +600,7 @@
                 "label": {
                   "en": "15 hours",
                   "no": "15 timer"
+                  "nl": "15 uur"
                 }
               },
               {
@@ -535,6 +608,7 @@
                 "label": {
                   "en": "1 day",
                   "no": "1 døgn"
+                  "nl": "1 dag"
                 }
               }
             ]
@@ -546,6 +620,7 @@
         "title": {
           "en": "Any event !{{is|isn't}} ongoing",
           "no": "En avtale !{{pågår|pågår ikke}}"
+          "nl": "Een event !{{is|is niet}} bezig"
         }
       },
       {
@@ -553,6 +628,7 @@
         "title": {
           "en": "Any event !{{stops|doesn't stop}} within...",
           "no": "En avtale !{{stopper|stopper ikke}} innen..."
+          "nl": "Een event !{{stopt|stopt niet}} over..."
         },
         "args": [
           {
@@ -564,6 +640,7 @@
                 "label": {
                   "en": "1 minute",
                   "no": "1 minutt"
+                  "nl": "1 minuut"
                 }
               },
               {
@@ -571,6 +648,7 @@
                 "label": {
                   "en": "2 minutes",
                   "no": "2 minutter"
+                  "nl": "2 minuten"
                 }
               },
               {
@@ -578,6 +656,7 @@
                 "label": {
                   "en": "5 minutes",
                   "no": "5 minutter"
+                  "nl": "5 minuten"
                 }
               },
               {
@@ -585,6 +664,7 @@
                 "label": {
                   "en": "10 minutes",
                   "no": "10 minutter"
+                  "nl": "10 minuten"
                 }
               },
               {
@@ -592,6 +672,7 @@
                 "label": {
                   "en": "15 minutes",
                   "no": "15 minutter"
+                  "nl": "15 minuten"
                 }
               },
               {
@@ -599,6 +680,7 @@
                 "label": {
                   "en": "20 minutes",
                   "no": "20 minutter"
+                  "nl": "20 minuten"
                 }
               },
               {
@@ -606,6 +688,7 @@
                 "label": {
                   "en": "25 minutes",
                   "no": "25 minutter"
+                  "nl": "25 minuten"
                 }
               },
               {
@@ -613,6 +696,7 @@
                 "label": {
                   "en": "30 minutes",
                   "no": "30 minutter"
+                  "nl": "30 minuten"
                 }
               },
               {
@@ -620,6 +704,7 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                  "nl": "60 minuten"
                 }
               },
               {
@@ -627,6 +712,7 @@
                 "label": {
                   "en": "1.5 hours",
                   "no": "1.5 time"
+                  "nl": "1.5 uur"
                 }
               },
               {
@@ -634,6 +720,7 @@
                 "label": {
                   "en": "2 hours",
                   "no": "2 timer"
+                  "nl": "2 uur"
                 }
               },
               {
@@ -641,6 +728,7 @@
                 "label": {
                   "en": "3 hours",
                   "no": "3 timer"
+                  "nl": "3 uur"
                 }
               },
               {
@@ -648,6 +736,7 @@
                 "label": {
                   "en": "5 hours",
                   "no": "5 timer"
+                  "nl": "5 uur"
                 }
               },
               {
@@ -655,6 +744,7 @@
                 "label": {
                   "en": "10 hours",
                   "no": "10 timer"
+                  "nl": "10 uur"
                 }
               },
               {
@@ -662,6 +752,7 @@
                 "label": {
                   "en": "15 hours",
                   "no": "15 timer"
+                  "nl": "15 uur"
                 }
               },
               {
@@ -669,6 +760,7 @@
                 "label": {
                   "en": "1 day",
                   "no": "1 døgn"
+                  "nl": "1 dag"
                 }
               }
             ]
@@ -680,6 +772,7 @@
         "title": {
           "en": "Event !{{starts|doesn't start}} within...",
           "no": "Avtale !{{starter|starter ikke}} innen..."
+          "nl": "Event !{{start|start niet}} over..."
         },
         "args": [
           {
@@ -691,6 +784,7 @@
                 "label": {
                   "en": "1 minute",
                   "no": "1 minutt"
+                  "nl": "1 minuut"
                 }
               },
               {
@@ -698,6 +792,7 @@
                 "label": {
                   "en": "2 minutes",
                   "no": "2 minutter"
+                  "nl": "2 minuten"
                 }
               },
               {
@@ -705,6 +800,7 @@
                 "label": {
                   "en": "5 minutes",
                   "no": "5 minutter"
+                  "nl": "5 minuten"
                 }
               },
               {
@@ -712,6 +808,7 @@
                 "label": {
                   "en": "10 minutes",
                   "no": "10 minutter"
+                  "nl": "10 minuten"
                 }
               },
               {
@@ -719,6 +816,7 @@
                 "label": {
                   "en": "15 minutes",
                   "no": "15 minutter"
+                  "nl": "15 minuten"
                 }
               },
               {
@@ -726,6 +824,7 @@
                 "label": {
                   "en": "20 minutes",
                   "no": "20 minutter"
+                  "nl": "20 minuten"
                 }
               },
               {
@@ -733,6 +832,7 @@
                 "label": {
                   "en": "25 minutes",
                   "no": "25 minutter"
+                  "nl": "25 minuten"
                 }
               },
               {
@@ -740,6 +840,7 @@
                 "label": {
                   "en": "30 minutes",
                   "no": "30 minutter"
+                  "nl": "30 minuten"
                 }
               },
               {
@@ -747,6 +848,7 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                  "nl": "60 minuten"
                 }
               },
               {
@@ -754,6 +856,7 @@
                 "label": {
                   "en": "1.5 hours",
                   "no": "1.5 time"
+                  "nl": "1.5 uur"
                 }
               },
               {
@@ -761,6 +864,7 @@
                 "label": {
                   "en": "2 hours",
                   "no": "2 timer"
+                  "nl": "2 uur"
                 }
               },
               {
@@ -768,6 +872,7 @@
                 "label": {
                   "en": "3 hours",
                   "no": "3 timer"
+                  "nl": "3 uur"
                 }
               },
               {
@@ -775,6 +880,7 @@
                 "label": {
                   "en": "5 hours",
                   "no": "5 timer"
+                  "nl": "5 uur"
                 }
               },
               {
@@ -782,6 +888,7 @@
                 "label": {
                   "en": "10 hours",
                   "no": "10 timer"
+                  "nl": "10 uur"
                 }
               },
               {
@@ -789,6 +896,7 @@
                 "label": {
                   "en": "15 hours",
                   "no": "15 timer"
+                  "nl": "15 uur"
                 }
               },
               {
@@ -796,6 +904,7 @@
                 "label": {
                   "en": "1 day",
                   "no": "1 døgn"
+                  "nl": "1 dag"
                 }
               }
             ]
@@ -806,6 +915,7 @@
             "placeholder": {
               "en": "Select event...",
               "no": "Velg avtale..."
+              "nl": "Selecteer event"
             }
           }
         ]
@@ -815,6 +925,7 @@
         "title": {
           "en": "Event !{{is|isn't}} ongoing",
           "no": "Avtale !{{pågår|pågår ikke}}"
+          "nl": "Event !{{is|is niet}} bezig"
         },
         "args": [
           {
@@ -823,6 +934,7 @@
             "placeholder": {
               "en": "Select event...",
               "no": "Velg avtale..."
+              "nl": "Selecteer event"
             }
           }
         ]
@@ -832,6 +944,7 @@
         "title": {
           "en": "Event !{{stops|doesn't stop}} within...",
           "no": "Avtale !{{stopper|stopper ikke}} innen..."
+          "nl": "Event !{{stopt|stopt niet}} over..."
         },
         "args": [
           {
@@ -843,6 +956,7 @@
                 "label": {
                   "en": "1 minute",
                   "no": "1 minutt"
+                  "nl": "1 minuut"
                 }
               },
               {
@@ -850,6 +964,7 @@
                 "label": {
                   "en": "2 minutes",
                   "no": "2 minutter"
+                  "nl": "2 minuten"
                 }
               },
               {
@@ -857,6 +972,7 @@
                 "label": {
                   "en": "5 minutes",
                   "no": "5 minutter"
+                  "nl": "5 minuten"
                 }
               },
               {
@@ -864,6 +980,7 @@
                 "label": {
                   "en": "10 minutes",
                   "no": "10 minutter"
+                  "nl": "10 minuten"
                 }
               },
               {
@@ -871,6 +988,7 @@
                 "label": {
                   "en": "15 minutes",
                   "no": "15 minutter"
+                  "nl": "15 minuten"
                 }
               },
               {
@@ -878,6 +996,7 @@
                 "label": {
                   "en": "20 minutes",
                   "no": "20 minutter"
+                  "nl": "20 minuten"
                 }
               },
               {
@@ -885,6 +1004,7 @@
                 "label": {
                   "en": "25 minutes",
                   "no": "25 minutter"
+                  "nl": "25 minuten"
                 }
               },
               {
@@ -892,6 +1012,7 @@
                 "label": {
                   "en": "30 minutes",
                   "no": "30 minutter"
+                  "nl": "30 minuten"
                 }
               },
               {
@@ -899,6 +1020,7 @@
                 "label": {
                   "en": "60 minutes",
                   "no": "60 minutter"
+                  "nl": "60 minuten"
                 }
               },
               {
@@ -906,6 +1028,7 @@
                 "label": {
                   "en": "1.5 hours",
                   "no": "1.5 time"
+                  "nl": "1.5 uur"
                 }
               },
               {
@@ -913,6 +1036,7 @@
                 "label": {
                   "en": "2 hours",
                   "no": "2 timer"
+                  "nl": "2 uur"
                 }
               },
               {
@@ -920,6 +1044,7 @@
                 "label": {
                   "en": "3 hours",
                   "no": "3 timer"
+                  "nl": "3 uur"
                 }
               },
               {
@@ -927,6 +1052,7 @@
                 "label": {
                   "en": "5 hours",
                   "no": "5 timer"
+                  "nl": "5 uur"
                 }
               },
               {
@@ -934,6 +1060,7 @@
                 "label": {
                   "en": "10 hours",
                   "no": "10 timer"
+                  "nl": "10 uur"
                 }
               },
               {
@@ -941,6 +1068,7 @@
                 "label": {
                   "en": "15 hours",
                   "no": "15 timer"
+                  "nl": "15 uur"
                 }
               },
               {
@@ -948,6 +1076,7 @@
                 "label": {
                   "en": "1 day",
                   "no": "1 døgn"
+                  "nl": "1 dag"
                 }
               }
             ]
@@ -958,6 +1087,7 @@
             "placeholder": {
               "en": "Select event...",
               "no": "Velg avtale..."
+              "nl": "Selecteer event"
             }
           }
         ]
@@ -969,10 +1099,12 @@
         "title": {
           "en": "Sync calendars",
           "no": "Synkroniser kalenderene"
+          "nl": "Synchroniseer kalender"
         },
         "hint": {
           "en": "Will download new .ics files to update current events",
           "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler"
+          "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werken"
         }
       }
     ]
