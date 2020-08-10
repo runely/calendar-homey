@@ -22,5 +22,8 @@
   },
   "0.1.1": {
     "en": "More timespan choices for triggers/conditions. Possibility to remove calendars from settings. Global flow tokens for tomorrows events. Todays and tomorrows events pr calendar. "
+  },
+  "0.1.2": {
+    "en": "'Apple calendar' load issue fixed. Added dutch translation"
   }
 }
