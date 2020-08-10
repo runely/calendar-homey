@@ -29,6 +29,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 1. Tick the checkbox for **Public calendar**
 1. Copy the link
 1. Paste the calendar link in the Homey app settings
+    - **It must be the original link (*Apple Calendar has case sensitive urls*)**
 
 ## Usage
 
@@ -69,20 +70,18 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Todays events (count)
 - Tomorrows events, title and time
 - Tomorrows events (count)
-- Todays events (pr calendar)
-- Tomorrows events (pr calendar)
+- Todays events (per calendar)
+- Tomorrows events (per calendar)
 
 
 ## Recurring events
 
 ### Be aware of *multiple/duplicate* "recurring" events:
-- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event. This will result in two similar events, both have the same name and date.
+- On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event. This can result in two similar events, both have the same name and date.
 
 ## Known bugs
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
-
-## ToDo
 
 ## Changelog
 

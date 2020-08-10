@@ -27,6 +27,7 @@ Find Apple iCloud url
 3. Tick the checkbox for **Public calendar**
 4. Copy the link
 5. Paste the calendar link in the Homey app settings
+    a. It must be the original link (Apple Calendar has case sensitive urls)
 
 Triggers
 - Event starts

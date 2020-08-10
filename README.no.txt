@@ -27,6 +27,7 @@ Hvordan finne Apple iCloud-lenken
 3. Huk av "Ekstern kalender"
 4. Kopier koblingen
 5. Lim inn lenken i innstillingene i Homey-appen
+    a. Det må være den orginale lenken (Apple Kalender skiller på store og små bokstaver i lenkene)
 
 Triggers
 - En avtale starter

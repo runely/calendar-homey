@@ -27,6 +27,7 @@ Apple iCloud url
 3. Vink de checkbox aan voor **Publieke Agenda**
 4. Kopieer de link
 5. Plake de link van de agenda in de Homey icalCalender app
+    a. Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
 Triggers
 - Event start
