@@ -57,5 +57,5 @@ Algemene flow tokens (kunenn worden gebruikt in elke app en service)
 - Vandaag event (aantal)
 - Events morgen, Titel en tijd
 - Events morgen (aantal)
-- Events vandaag per kalender
+- Events morgen per kalender
 - Events morgen per kalender
