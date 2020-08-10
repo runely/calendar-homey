@@ -3,6 +3,7 @@
     "title": {
       "en": "Event !{{is|isn't}} ongoing",
       "no": "Avtale !{{pågår|pågår ikke}}"
+      "nl": "Event !{{is|is niet}} bezig"
     },
     "args": [
         {
@@ -11,6 +12,7 @@
           "placeholder": {
             "en": "Select event...",
             "no": "Velg avtale..."
+            "nl": "Selecteer event"
           }
         }
     ]
