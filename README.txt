@@ -55,3 +55,7 @@ Global flow tokens (can be used in any app and service)
 - Calendar name of next event
 - Todays events, title and time
 - Todays events (count)
+- Tomorrows events, title and time
+- Tomorrows events (count)
+- Todays events pr calendar
+- Tomorrows events pr calendar

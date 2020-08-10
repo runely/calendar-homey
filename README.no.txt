@@ -28,15 +28,6 @@ Hvordan finne Apple iCloud-lenken
 4. Kopier koblingen
 5. Lim inn lenken i innstillingene i Homey-appen
 
-Hvordan finne Apple iCloud ical-lenken
-
-1. Gå til https://www.icloud.com/calendar/
-2. Klikk på ikonet ved siden av kalendernavnet i venstresiden
-3. Huk på avmerkingsboksen **Ekstern kalender**
-4. Kopier webcal:// lenken
-5. Bytt ut webcal:// med https://
-6. Lim inn ical-lenken i innstillinger i Homey appen
-
 Triggers
 - En avtale starter
 - En avtale starter om
@@ -64,3 +55,7 @@ Globale flyt tokens (kan bli brukt i alle apper og servicer)
 - Kalendernavn for neste avtale
 - Dagens avtaler, tittel og tidspunkt
 - Dagens avtaler (antall)
+- Morgendagens avtaler, tittel og tidspunkt
+- Morgendagens avtaler (antall)
+- Dagens avtaler pr kalender
+- Morgendagens avtaler pr kalender
