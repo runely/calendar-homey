@@ -109,7 +109,7 @@
                 removeButton.onclick = function () {
                     document.getElementById('calendars').removeChild(this.parentNode);
                 }
-                removeButton.textContent = "Fjern";
+                removeButton.textContent = Homey.__('settings.remove_button');
                 newElement.appendChild(document.createElement("br"));
                 newElement.appendChild(document.createElement("br"));
                 newElement.appendChild(removeButton);
@@ -141,7 +141,7 @@
                     let uri = calendar.children[8].value;
 
                     // Replace webcal:// urls (from iCloud) with https://
-                    uri = uri.toLowerCase().replace("webcal://", "https://");
+                    uri = uri.replace("webcal://", "https://");
 
                     return {
                         name: name,
