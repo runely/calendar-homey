@@ -57,5 +57,5 @@ Global flow tokens (can be used in any app and service)
 - Todays events (count)
 - Tomorrows events, title and time
 - Tomorrows events (count)
-- Todays events pr calendar
-- Tomorrows events pr calendar
+- Todays events per calendar
+- Tomorrows events per calendar
