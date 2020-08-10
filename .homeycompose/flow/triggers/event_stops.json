@@ -2,7 +2,7 @@
   "id": "event_stops",
   "title": {
     "en": "Event stops",
-    "no": "En avtale ender"
+    "no": "En avtale ender",
     "nl": "Event stopt"
   },
   "tokens": [
@@ -11,12 +11,12 @@
       "type": "string",
       "title": {
         "en": "Title",
-        "no": "Tittel"
+        "no": "Tittel",
         "nl": "Titel"
       },
       "example": {
         "en": "Pick up in kindergarden",
-        "no": "Hente i barnehagen"
+        "no": "Hente i barnehagen",
         "nl": "Kinderen ophalen"
       }
     },
@@ -25,12 +25,12 @@
       "type": "string",
       "title": {
         "en": "Description",
-        "no": "Beskrivelse"
+        "no": "Beskrivelse",
         "nl": "Beschrijving"
       },
       "example": {
         "en": "Pick up kids in kindergarden",
-        "no": "Hente barna fra barnehagen"
+        "no": "Hente barna fra barnehagen",
         "nl": "Haal de kinderen van school op"
       }
     },
@@ -39,12 +39,12 @@
       "type": "string",
       "title": {
         "en": "Location",
-        "no": "Sted"
+        "no": "Sted",
         "nl": "Lokatie"
       },
       "example": {
         "en": "Kindergarden street, 30",
-        "no": "Barnehagegata, 30"
+        "no": "Barnehagegata, 30",
         "nl": "Schoolstraat 30"
       }
     },
@@ -53,12 +53,12 @@
       "type": "string",
       "title": {
         "en": "Duration",
-        "no": "Varighet"
+        "no": "Varighet",
         "nl": "Looptijd"
       },
       "example": {
         "en": "1.5 hour",
-        "no": "1.5 time"
+        "no": "1.5 time",
         "nl": "1.5 uur"
       }
     },
@@ -67,12 +67,12 @@
       "type": "number",
       "title": {
         "en": "Duration in minutes",
-        "no": "Varighet i minutter"
+        "no": "Varighet i minutter",
         "nl": "Looptijd in minuten"
       },
       "example": {
         "en": "90",
-        "no": "90"
+        "no": "90",
         "nl": "90"
       }
     },
@@ -81,12 +81,12 @@
       "type": "string",
       "title": {
         "en": "Calendar name",
-        "no": "Kalendernavn"
+        "no": "Kalendernavn",
         "nl": "Kalender naam"
       },
       "example": {
         "en": "Gmail",
-        "no": "Gmail"
+        "no": "Gmail",
         "nl": "Gmail"
       }
     }

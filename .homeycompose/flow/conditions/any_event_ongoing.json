@@ -2,7 +2,7 @@
     "id": "any_event_ongoing",
     "title": {
       "en": "Any event !{{is|isn't}} ongoing",
-      "no": "En avtale !{{pågår|pågår ikke}}"
+      "no": "En avtale !{{pågår|pågår ikke}}",
       "nl": "Een event !{{is|is niet}} bezig"
     }
 }
