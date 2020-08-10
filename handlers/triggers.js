@@ -230,7 +230,7 @@ const updateFlowTokens = (app) => {
 
             if (calendarType === 'today') {
                 let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
-                app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
+                //app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
                 todaysEventsCalendar.map(event => {
                     if (event.datetype === 'date-time') {
                         let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;
@@ -255,7 +255,7 @@ const updateFlowTokens = (app) => {
             }
             else if (calendarType === 'tomorrow') {
                 let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
-                app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
+                //app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
                 tomorrowsEventsCalendar.map(event => {
                     if (event.datetype === 'date-time') {
                         let eventValue = `${event.summary}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_starts')} ${event.start.format(Homey.__('flowTokens.events_today-tomorrow_startstamp_time_format'))}, ${Homey.__('flowTokens.events_today-tomorrow_title_stamps_stops')} ${event.end.format(Homey.__('flowTokens.events_today-tomorrow_stopstamp_time_format'))}`;

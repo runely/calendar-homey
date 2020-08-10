@@ -106,11 +106,13 @@ class IcalCalendar extends Homey.App {
 		sortCalendarsEvents(variableMgmt.calendars);
 
 		// unregister calendar tokens
-        await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
-			await token.unregister();
-		}));
-		variableMgmt.calendarTokens = [];
-		this.log("getEvents: Calendar tokens flushed");
+		if (variableMgmt.calendarTokens.length > 0) {
+			await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
+				await token.unregister();
+			}));
+			variableMgmt.calendarTokens = [];
+			this.log("getEvents: Calendar tokens flushed");
+		}
 
 		// register calendar tokens
         if (variableMgmt.calendars.length > 0) {
