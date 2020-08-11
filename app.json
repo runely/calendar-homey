@@ -408,7 +408,7 @@
             "title": {
               "en": "Description",
               "no": "Beskrivelse",
-              "nl": "Beschrijving"
+              "nl": "Omschrijving"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
@@ -1104,7 +1104,7 @@
         "title": {
           "en": "Sync calendars",
           "no": "Synkroniser kalenderene",
-          "nl": "Synchroniseer Kalender"
+          "nl": "Synchroniseer kalender"
         },
         "hint": {
           "en": "Will download new .ics files to update current events",
