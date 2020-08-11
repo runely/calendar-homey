@@ -29,6 +29,13 @@ Hvordan finne Apple iCloud-lenken
 5. Lim inn lenken i innstillingene i Homey-appen
     a. Det må være den orginale lenken (Apple Kalender skiller på store og små bokstaver i lenkene)
 
+Sync
+- Avtaler hentes automatisk hvert 15. minutt
+- Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering
+
+- Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, vil bli hentet
+- Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet
+
 Triggers
 - En avtale starter
 - En avtale starter om

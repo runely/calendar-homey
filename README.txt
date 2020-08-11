@@ -29,6 +29,13 @@ Find Apple iCloud url
 5. Paste the calendar link in the Homey app settings
     a. It must be the original link (Apple Calendar has case sensitive urls)
 
+Sync
+- Events are fetched automatically every 15 minutes
+- The "Sync calendars" action flow card can also be used to trigger a sync
+
+- Only events not started yet or events started but not finished will be fetched
+- Recurring events where start date is within 2 months or less will be fetched
+
 Triggers
 - Event starts
 - Event starts in

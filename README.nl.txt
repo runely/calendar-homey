@@ -29,6 +29,13 @@ Apple iCloud url
 5. Plake de link van de agenda in de Homey icalCalender app
     a. Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
+Sync
+- Gebeurtenissen worden automatisch elke 15 minuten opgehaald
+- De actiestroomkaart "Sync kalenders" kan ook worden gebruikt om een synchronisatie te activeren
+
+- Alleen evenementen die nog niet zijn gestart of evenementen die zijn gestart maar niet zijn voltooid, worden opgehaald
+- Terugkerende evenementen waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald
+
 Triggers
 - Event start
 - Event start over

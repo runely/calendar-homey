@@ -33,6 +33,13 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Usage
 
+### Sync
+- Events are fetched automatically every 15 minutes
+- The **Sync calendars** action flow card can also be used to trigger a sync
+
+- Only events not started yet or events started but not finished will be fetched
+- Recurring events where start date is within 2 months or less will be fetched
+
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
