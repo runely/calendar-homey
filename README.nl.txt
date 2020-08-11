@@ -10,7 +10,7 @@ Exchange Online ical link
 2. klik op settings -> Show all outlook setting
 3. Ga naa Kalender -> Gedeelde kalenders
 4. Deel een kalender, klik op de ics link en selecteer copy
-5. Plak de Paste ical link in de settings van de Homey icalCalendar app
+5. Plak de ical link in de settings van de Homey icalCalendar app
 
 Gmail ical url
 
@@ -36,8 +36,8 @@ Triggers
 
 Condities
 - Event is bezig
-- Event starts over
-- Event stops over
+- Event start over
+- Event stopt over
 - Een event is bezig
 - Een event start over
 - Een event stop over
@@ -56,7 +56,7 @@ Algemene flow tokens (kunenn worden gebruikt in elke app en service)
 - Kalender naan van het volgende event
 - Vandaag event, naam en tijd
 - Vandaag event (aantal)
-- Events morgen, Titel en tijd
+- Events morgen, titel en tijd
 - Events morgen (aantal)
 - Events vandaag per kalender
 - Events morgen per kalender
