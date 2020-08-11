@@ -2,7 +2,7 @@
     "settings": {
         "title": "Instellingen",
         "legend": "URI naar .ics bestand",
-        "calendar_name": "Calendar naam",
+        "calendar_name": "Kalender naam",
         "calendar_uri": "URI",
         "new_item_button": "Nieuwe kalender",
         "save_button": "Opslaan",
