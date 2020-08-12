@@ -14,7 +14,7 @@
     "en": "Stay on top of your planning with Homey",
     "no": "Ha full kontroll på planleggingen med Homey",
     "nl": "Blijf op de hoogte van je planning met Homey",
-    "de": "
+    "de": "Behalten Sie mit Homey den Überblick über Ihre Planungen"
   },
   "category": [
     "tools"
@@ -1061,7 +1061,7 @@
         "title": {
           "en": "Event !{{stops|doesn't stop}} within...",
           "no": "Avtale !{{stopper|stopper ikke}} innen...",
-          "nl": "Event !{{stopt|stopt niet}} over..."
+          "nl": "Event !{{stopt|stopt niet}} over...",
           "de": "Ereignis !{{endet|endet nicht}} innerhalb..."
         },
         "args": [
@@ -1234,13 +1234,13 @@
         "title": {
           "en": "Sync calendars",
           "no": "Synkroniser kalenderene",
-          "nl": "Synchroniseer kalender"
+          "nl": "Synchroniseer kalender",
           "de": "Kalender synchronisieren"
         },
         "hint": {
           "en": "Will download new .ics files to update current events",
           "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
-          "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werkenr"
+          "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werkenr",
           "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren"
         }
       }
