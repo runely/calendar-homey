@@ -32,6 +32,7 @@ Die Apple iCloud URL finden
 Sync
 - Ereignisse werden alle 15 Minuten automatisch abgerufen
 - Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen
+
 - Nur noch nicht begonnene Ereignisse oder Ereignisse, die begonnen, aber noch nicht beendet wurden, werden abgerufen
 - Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen
 
