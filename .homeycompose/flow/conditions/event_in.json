@@ -163,7 +163,8 @@
         "placeholder": {
           "en": "Select event...",
           "no": "Velg avtale...",
-          "nl": "Selecteer event"
+          "nl": "Selecteer event...",
+          "de": "Ereignis auswählen..."
         }
       }
     ]
