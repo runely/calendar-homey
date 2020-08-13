@@ -33,6 +33,13 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Usage
 
+### Sync
+- Events are fetched automatically every 15 minutes
+- The **Sync calendars** action flow card can also be used to trigger a sync
+
+- Only events not started yet or events started but not finished will be fetched
+- Recurring events where start date is within 2 months or less will be fetched
+
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
@@ -85,6 +92,8 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
+- 0.1.4
+    - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
     - 'Remove button' in Settings now follows language
     - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... -> [Issue #61](https://github.com/runely/calendar-homey/issues/61)

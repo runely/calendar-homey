@@ -3,7 +3,8 @@
   "title": {
     "en": "Event starts",
     "no": "En avtale starter",
-    "nl": "Event start"
+    "nl": "Event start",
+    "de": "Ereignis beginnt"
   },
   "tokens": [
     {
@@ -12,12 +13,14 @@
       "title": {
         "en": "Title",
         "no": "Tittel",
-        "nl": "Titel"
+        "nl": "Titel",
+        "de": "Titel"
       },
       "example": {
         "en": "Pick up in kindergarden",
         "no": "Hente i barnehagen",
-        "nl": "Kinderen ophalen"
+        "nl": "Kinderen ophalen",
+        "de": "Im Kindergarten abholen"
       }
     },
     {
@@ -26,12 +29,14 @@
       "title": {
         "en": "Description",
         "no": "Beskrivelse",
-        "nl": "Omschrijving"
+        "nl": "Omschrijving",
+        "de": "Beschreibung"
       },
       "example": {
         "en": "Pick up kids in kindergarden",
         "no": "Hente barna fra barnehagen",
-        "nl": "Haal de kinderen van school op"
+        "nl": "Haal de kinderen van school op",
+        "de": "Kinder im Kindergarten abholen"
       }
     },
     {
@@ -40,12 +45,14 @@
       "title": {
         "en": "Location",
         "no": "Sted",
-        "nl": "Lokatie"
+        "nl": "Lokatie",
+        "de": "Ort"
       },
       "example": {
         "en": "Kindergarden street, 30",
         "no": "Barnehagegata, 30",
-        "nl": "Schoolstraat 30"
+        "nl": "Schoolstraat 30",
+        "de": "Kindergartenstraße 30"
       }
     },
     {
@@ -54,12 +61,14 @@
       "title": {
         "en": "Duration",
         "no": "Varighet",
-        "nl": "Looptijd"
+        "nl": "Looptijd",
+        "de": "Dauer"
       },
       "example": {
         "en": "1.5 hour",
         "no": "1.5 time",
-        "nl": "1.5 uur"
+        "nl": "1.5 uur",
+        "de": "1.5 Stunden"
       }
     },
     {
@@ -68,12 +77,14 @@
       "title": {
         "en": "Duration in minutes",
         "no": "Varighet i minutter",
-        "nl": "Looptijd in minuten"
+        "nl": "Looptijd in minuten",
+        "de": "Dauer in Minuten"
       },
       "example": {
         "en": "90",
         "no": "90",
-        "nl": "90"
+        "nl": "90",
+        "de": "90"
       }
     },
     {
@@ -82,12 +93,14 @@
       "title": {
         "en": "Calendar name",
         "no": "Kalendernavn",
-        "nl": "Kalender naam"
+        "nl": "Kalender naam",
+        "de": "Kalenderbezeichnung"
       },
       "example": {
         "en": "Gmail",
         "no": "Gmail",
-        "nl": "Gmail"
+        "nl": "Gmail",
+        "de": "Gmail"
       }
     }
   ]

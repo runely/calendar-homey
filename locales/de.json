@@ -1,0 +1,51 @@
+{
+    "settings": {
+        "title": "Einstellungen",
+        "legend": "URI zur .ics-Datei",
+        "calendar_name": "Kalenderbezeichnung",
+        "calendar_uri": "URI",
+        "new_item_button": "Neuer Kalender",
+        "save_button": "Speichern",
+        "remove_button": "Löschen",
+        "saved_alert": "Einstellungen gespeichert",
+        "uri_load_failure": "Das Laden der .ics-Datei(en) ist fehlgeschlagen:",
+        "icons_info": "Icons von"
+    },
+    "conditions_event_name_start_date_time_format": "MM.DD HH:mm",
+    "conditions_event_name_start_date_year_time_format": "MM.DD.YY HH:mm",
+    "conditions_event_name_stop_time_format": "HH:mm",
+    "conditions_event_name_stop_date_time_format": "MM.DD HH:mm",
+    "conditions_event_name_stop_date_year_time_format": "MM.DD.YY HH:mm",
+    "conditions_event_name_start_stop_date_format": "MM.DD",
+    "conditions_event_name_start_stop_date_year_format": "MM.DD.YY",
+    "token_duration_minutes": "Minuten",
+    "token_duration_hour": "Stunde",
+    "token_duration_hours": "Stunden",
+    "calendarTokens": {
+        "events_today_calendar_title_stamps": "Heutige Ereignisse in",
+        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in"
+    },
+    "flowTokens": {
+        "event_next_title": "Nächster Ereignistitel",
+        "event_next_startstamp": "Beginn des nächsten Ereignisses",
+        "event_next_startstamp_date_time_format": "MM.DD HH:mm",
+        "event_next_startstamp_date_format": "MM.DD",
+        "event_next_stopstamp": "Ende des nächsten Ereignisses",
+        "event_next_stopstamp_date_time_format": "MM.DD HH:mm",
+        "event_next_stopstamp_date_format": "MM.DD",
+        "event_next_duration": "Nächste Ereignisdauer",
+        "event_next_duration_minutes": "Nächste Ereignisdauer (Minuten)",
+        "event_next_starts_in_minutes": "Nächstes Ereignis beginnt in (Minuten)",
+        "event_next_stops_in_minutes": "Nächstes Ereignis endet in (Minuten)",
+        "event_next_calendar_name": "Kalenderbezeichnung des nächsten Ereignisses",
+        "events_today_title_stamps": "Heutige Ereignisse, Titel und Zeit",
+        "events_tomorrow_title_stamps": "Morgige Ereignisse, Titel und Zeit",
+        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_startstamp_fullday": "ganztägig",
+        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
+        "events_today-tomorrow_title_stamps_starts": "startet um",
+        "events_today-tomorrow_title_stamps_stops": "endet um",
+        "events_today_count": "Heutige Ereignisse (Anzahl)",
+        "events_tomorrow_count": "Morgige Ereignisse (Anzahl)"
+    }
+}

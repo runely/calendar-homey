@@ -3,11 +3,13 @@
   "title": {
     "en": "Sync calendars",
     "no": "Synkroniser kalenderene",
-    "nl": "Synchroniseer kalender"
+    "nl": "Synchroniseer kalender",
+    "de": "Kalender synchronisieren"
   },
   "hint": {
     "en": "Will download new .ics files to update current events",
     "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
-    "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werkenr"
+    "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werkenr",
+    "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren"
   }
 }
