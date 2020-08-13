@@ -6,7 +6,7 @@ Setup
 
 Den Exchange Online ical-Link finden
 
-1. Öfnnen Sie https://outlook.office.com/mail/inbox
+1. Öffnen Sie https://outlook.office.com/mail/inbox
 2. Klicken Sie auf Einstellungen -> Alle Outlook-Einstellungen anzeigen
 3. Gehe zu Kalender -> Geteilte Kalender
 4. Veröffentlichen Sie einen Kalender, klicken Sie auf den ics-Link und wählen Sie Kopie
@@ -27,7 +27,7 @@ Die Apple iCloud URL finden
 3. Kreuzen Sie das Kontrollkästchen an bzw. aktivieren Sie den Schieber für **Öffentlicher Kalender**
 4. Kopieren Sie den Link
 5. Fügen Sie den Kalenderlink in die Einstellungen der Homey-App ein
-    a. Es muss der Originallink sein (Apple Kalendar hat Case Sensitive URLs)
+    a. Es muss der Originallink sein (Apple Kalender hat Case Sensitive URLs)
 
 Sync
 - Ereignisse werden alle 15 Minuten automatisch abgerufen
