@@ -92,6 +92,8 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
+- 0.1.4
+    - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
     - 'Remove button' in Settings now follows language
     - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... -> [Issue #61](https://github.com/runely/calendar-homey/issues/61)
