@@ -92,6 +92,10 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
+- 0.1.5
+    - Fixed German typo's
+    - Fixed Dutch typo's
+    - Bugfix: Hopefully fixed an app crash "Cannot read property 'uris' of undefined"
 - 0.1.4
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
