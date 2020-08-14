@@ -158,16 +158,18 @@
                     }
 
                     var text = "";
-                    uris.forEach(item => {
-                        if (item.failed) {
-                            if (text === "") {
-                                text = item.name + " : " + item.failed;
+                    if (uris != undefined) {
+                        uris.forEach(item => {
+                            if (item.failed) {
+                                if (text === "") {
+                                    text = item.name + " : " + item.failed;
+                                }
+                                else {
+                                    text += "<br>" + item.name + " : " + item.failed;
+                                }
                             }
-                            else {
-                                text += "<br>" + item.name + " : " + item.failed;
-                            }
-                        }
-                    });
+                        });
+                    }
 
                     if (text !== "") {
                         showError(text);
