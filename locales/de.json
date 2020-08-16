@@ -29,7 +29,7 @@
         "event_next_title": "Nächster Ereignistitel",
         "event_next_startdate": "Startdatum der nächsten Ereignisses",
         "event_next_startstamp": "Beginn des nächsten Ereignisses",
-        "event_next_start-stop_date_format": "MM.DD",
+        "event_next_start-stop_date_format": "MM/DD/YY",
         "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Enddatum der nächsten Ereignisses",
         "event_next_stopstamp": "Ende des nächsten Ereignisses",
