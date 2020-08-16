@@ -105,6 +105,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Flow card 'Event stops within' changed to enter minutes in free text (number)
     - Global token 'Next event start time' split up to 'Next event start date' and 'Next event start time'
     - Global token 'Next event stop time' split up to 'Next event stop date' and 'Next event stop time'
+    - 'Next event start date' and 'Next event stop date' made more Google TTS friendly
 - 0.1.4
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
