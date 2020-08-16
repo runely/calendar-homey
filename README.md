@@ -92,6 +92,17 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
+- 0.2.0
+    - Fixed German typo's
+    - Fixed Dutch typo's
+    - Bugfix: Hopefully fixed an app crash "Cannot read property 'uris' of undefined"
+    - Flow card 'Event starts in' changed to enter minutes in free text (number)
+    - Flow card 'Any event starts within' changed to enter minutes in free text (number)
+    - Flow card 'Any event stops within' changed to enter minutes in free text (number)
+    - Flow card 'Event starts within' changed to enter minutes in free text (number)
+    - Flow card 'Event stops within' changed to enter minutes in free text (number)
+    - Global token 'Next event start time' split up to 'Next event start date' and 'Next event start time'
+    - Global token 'Next event stop time' split up to 'Next event stop date' and 'Next event stop time'
 - 0.1.4
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3

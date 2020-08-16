@@ -122,26 +122,32 @@ const updateFlowTokens = (app) => {
         if (token.id === 'event_next_title') {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
+        else if (token.id === 'event_next_startdate') {
+            token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+        }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_startstamp_date_time_format')));
+                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_startstamp_date_format')));
+                    token.setValue("00:00");
                 }
             }
             else {
                 token.setValue('');
             }
         }
+        else if (token.id === 'event_next_stopdate') {
+            token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+        }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_stopstamp_date_time_format')));
+                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_stopstamp_date_format')));
+                    token.setValue("00:00");
                 }
             }
             else {
