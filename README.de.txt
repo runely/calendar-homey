@@ -54,7 +54,9 @@ Aktionen
 
 Globale Flow-Token (können in jeder Anwendung und jedem Dienst verwendet werden)
 - Nächster Ereignistitel
+- Startdatum der nächsten Ereignisses
 - Beginn des nächsten Ereignisses
+- Enddatum der nächsten Ereignisses
 - Ende des nächsten Ereignisses
 - Nächste Ereignisdauer
 - Nächste Ereignisdauer (Minuten)

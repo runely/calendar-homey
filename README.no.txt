@@ -54,7 +54,9 @@ Actions
 
 Globale flyt tokens (kan bli brukt i alle apper og servicer)
 - Tittel neste avtale
+- Startdato neste avtale
 - Starttidspunkt neste avtale
+- Stoppdato neste avtale
 - Stopptidspunkt neste avtale
 - Varighet neste avtale
 - Varighet neste avtale (minutter)

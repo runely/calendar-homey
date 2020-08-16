@@ -54,7 +54,9 @@ Acties
 
 Algemene flow tokens (kunenn worden gebruikt in elke app en service)
 - Volgende event naam
+- Volgende event startdatum
 - Volgende event start tijd
+- Volgende event stopdatum
 - Volgende event stop tijd
 - Volgende event looptijd
 - Volgende event looptijd (minuten)

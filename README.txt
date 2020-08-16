@@ -54,7 +54,9 @@ Actions
 
 Global flow tokens (can be used in any app and service)
 - Next event title
+- Next event start date
 - Next event start time
+- Next event stop date
 - Next event stop time
 - Next event duration
 - Next event duration (minutes)
