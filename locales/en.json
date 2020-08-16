@@ -29,7 +29,7 @@
         "event_next_title": "Next event title",
         "event_next_startdate": "Next event start date",
         "event_next_startstamp": "Next event start time",
-        "event_next_start-stop_date_format": "MM.DD",
+        "event_next_start-stop_date_format": "MM/DD/YY",
         "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Next event stop date",
         "event_next_stopstamp": "Next event stop time",

@@ -29,7 +29,7 @@
         "event_next_title": "Tittel neste avtale",
         "event_next_startdate": "Startdato neste avtale",
         "event_next_startstamp": "Starttidspunkt neste avtale",
-        "event_next_start-stop_date_format": "DD.MM",
+        "event_next_start-stop_date_format": "DD.MM.YY",
         "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Stoppdato neste avtale",
         "event_next_stopstamp": "Stopptidspunkt neste avtale",
