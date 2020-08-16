@@ -34,5 +34,8 @@
   },
   "0.2.0": {
     "en": "Bugfix. Triggers/Conditions changed to enter minutes freely. Global tokens 'Next event start/stop time' split up into 'Next event start/stop date' and 'Next event start/stop time'"
+  },
+  "0.2.1": {
+    "en": "Bugfix. Triggers/Conditions changed to enter minutes freely. Global tokens 'Next event start/stop time' split up into 'Next event start/stop date' and 'Next event start/stop time'. 'Next event start date' and 'Next event stop date' made more Google TTS friendly"
   }
 }
