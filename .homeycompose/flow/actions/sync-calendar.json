@@ -9,7 +9,7 @@
   "hint": {
     "en": "Will download new .ics files to update current events",
     "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
-    "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werken",
+    "nl": "Nieuw .ics bestand wordt gedownload om de icalCalendar app bij te werken",
     "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren"
   }
 }
