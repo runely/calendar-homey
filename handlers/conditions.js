@@ -5,6 +5,7 @@ const moment = require('moment');
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
 const sortEvent = require('../lib/sort-event');
+const convertToMinutes = require('../lib/convert-to-minutes');
 
 module.exports = async (app) => {
     // register condition flow cards
@@ -170,12 +171,12 @@ module.exports = async (app) => {
 			}
 			else if (type === 'in') {
 				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
-				eventCondition = isEventIn(calendar.events, args.when);
+				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
 				//app.log("checkEvent: Starting within " + args.when + " minutes or less? " + eventCondition);
 			}
 			else if (type === 'stops_in') {
 				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
-				eventCondition = willEventNotIn(calendar.events, args.when);
+				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
 				//app.log("checkEvent: Stopping within less than " + args.when + " minutes? " + eventCondition);
 			}
 			else if (type === 'any_ongoing') {
@@ -183,11 +184,11 @@ module.exports = async (app) => {
 				//app.log("checkEvent: Is any of the " + calendar.events.length + " events ongoing? " + eventCondition);
 			}
 			else if (type === 'any_in') {
-				eventCondition = isEventIn(calendar.events, args.when);
+				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
 				//app.log("checkEvent: Is any of the " + calendar.events.length + " events starting within " + args.when + " minutes or less? " + eventCondition);
 			}
 			else if (type === 'any_stops_in') {
-				eventCondition = willEventNotIn(calendar.events, args.when);
+				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
 				//app.log("checkEvent: Is any of the " + calendar.events.length + " events stopping within " + args.when + " minutes or less? " + eventCondition);
 			}
 
