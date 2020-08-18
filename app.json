@@ -281,11 +281,53 @@
             "min": 1,
             "step": 1,
             "placeholder": {
-              "en": "Minutes",
-              "no": "Minutter",
-              "nl": "Minuten",
-              "de": "Minuten"
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Bedrag",
+              "de": "Menge"
             }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minuten",
+                  "de": "Minuten"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "Uur",
+                  "de": "Stunden"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dagen",
+                  "de": "Tage"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "Weken",
+                  "de": "Wochen"
+                }
+              }
+            ]
           }
         ]
       },
@@ -413,11 +455,53 @@
             "min": 1,
             "step": 1,
             "placeholder": {
-              "en": "Minutes",
-              "no": "Minutter",
-              "nl": "Minuten",
-              "de": "Minuten"
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Bedrag",
+              "de": "Menge"
             }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minuten",
+                  "de": "Minuten"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "Uur",
+                  "de": "Stunden"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dagen",
+                  "de": "Tage"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "Weken",
+                  "de": "Wochen"
+                }
+              }
+            ]
           }
         ]
       },
@@ -445,11 +529,53 @@
             "min": 1,
             "step": 1,
             "placeholder": {
-              "en": "Minutes",
-              "no": "Minutter",
-              "nl": "Minuten",
-              "de": "Minuten"
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Bedrag",
+              "de": "Menge"
             }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minuten",
+                  "de": "Minuten"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "Uur",
+                  "de": "Stunden"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dagen",
+                  "de": "Tage"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "Weken",
+                  "de": "Wochen"
+                }
+              }
+            ]
           }
         ]
       },
@@ -463,18 +589,6 @@
         },
         "args": [
           {
-            "name": "when",
-            "type": "number",
-            "min": 1,
-            "step": 1,
-            "placeholder": {
-              "en": "Minutes",
-              "no": "Minutter",
-              "nl": "Minuten",
-              "de": "Minuten"
-            }
-          },
-          {
             "name": "event",
             "type": "autocomplete",
             "placeholder": {
@@ -483,6 +597,60 @@
               "nl": "Selecteer event...",
               "de": "Ereignis auswählen..."
             }
+          },
+          {
+            "name": "when",
+            "type": "number",
+            "min": 1,
+            "step": 1,
+            "placeholder": {
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Bedrag",
+              "de": "Menge"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minuten",
+                  "de": "Minuten"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "Uur",
+                  "de": "Stunden"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dagen",
+                  "de": "Tage"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "Weken",
+                  "de": "Wochen"
+                }
+              }
+            ]
           }
         ]
       },
@@ -517,18 +685,6 @@
         },
         "args": [
           {
-            "name": "when",
-            "type": "number",
-            "min": 1,
-            "step": 1,
-            "placeholder": {
-              "en": "Minutes",
-              "no": "Minutter",
-              "nl": "Minuten",
-              "de": "Minuten"
-            }
-          },
-          {
             "name": "event",
             "type": "autocomplete",
             "placeholder": {
@@ -537,6 +693,60 @@
               "nl": "Selecteer event",
               "de": "Ereignis auswählen..."
             }
+          },
+          {
+            "name": "when",
+            "type": "number",
+            "min": 1,
+            "step": 1,
+            "placeholder": {
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Bedrag",
+              "de": "Menge"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minuten",
+                  "de": "Minuten"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "Uur",
+                  "de": "Stunden"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dagen",
+                  "de": "Tage"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "Weken",
+                  "de": "Wochen"
+                }
+              }
+            ]
           }
         ]
       }
@@ -547,13 +757,13 @@
         "title": {
           "en": "Sync calendars",
           "no": "Synkroniser kalenderene",
-          "nl": "Synchroniseer kalender",
+          "nl": "Synchroniseer kalenders",
           "de": "Kalender synchronisieren"
         },
         "hint": {
           "en": "Will download new .ics files to update current events",
           "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
-          "nl": "Nieuw .ics bestand wordt gedownload om de kalender bij te werkenr",
+          "nl": "Nieuw .ics bestand wordt gedownload om de icalCalendar app bij te werken",
           "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren"
         }
       }

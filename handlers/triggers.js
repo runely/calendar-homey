@@ -5,6 +5,7 @@ const moment = require('moment');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
 const getTomorrowsEvents = require('../lib/get-tomorrows-events');
+const convertToMinutes = require('../lib/convert-to-minutes');
 
 const getNumber = num => {
     if (Number.isInteger(num)) {
@@ -297,7 +298,8 @@ module.exports = async (app) => {
 
         new Homey.FlowCardTrigger('event_starts_in')
             .registerRunListener((args, state) => {
-                let result = (args.when == state.when);
+                let minutes = convertToMinutes(args.when, args.type);
+                let result = (minutes == state.when);
                 if (result) app.log(`Triggered 'event_starts_in' with state: ${state.when}`);
                 return Promise.resolve(result);
             })
