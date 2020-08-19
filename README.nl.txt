@@ -1,4 +1,4 @@
-De icalCalendar geeft Homey flow kaarten een trigger op kalender events
+De IcalCalendar geeft Homey flow kaarten een trigger op kalender events
 
 Instellingen
 
@@ -10,7 +10,7 @@ Exchange Online ical link
 2. klik op settings -> Show all outlook setting
 3. Ga naa Kalender -> Gedeelde kalenders
 4. Deel een kalender, klik op de ics link en selecteer copy
-5. Plak de ical link in de settings van de Homey icalCalendar app
+5. Plak de ical link in de settings van de Homey IcalCalendar app
 
 Gmail ical url
 
@@ -18,7 +18,7 @@ Gmail ical url
 2. Klik op de drie puntjes naar de kalender die je wilt delen. -> Klik op Settings en delen
 3. Scroll helemaal naar onder toe
 4. Copy de link van de Secret address in ical formaat
-5. Plak de ical link in de settings van de Homey icalCalender app
+5. Plak de ical link in de settings van de Homey IcalCalender app
 
 Apple iCloud url
 
@@ -26,7 +26,7 @@ Apple iCloud url
 2. Klik on het icoontje naast de agenda naam in het linker gedeelte van het scherm
 3. Vink de checkbox aan voor **Publieke Agenda**
 4. Kopieer de link
-5. Plake de link van de agenda in de Homey icalCalender app
+5. Plake de link van de agenda in de Homey IcalCalender app
     a. Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
 Sync

@@ -94,9 +94,11 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Changelog
 
+- 0.2.3
+    - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.2
     - Conditions/Trigger improved by setting amount in minute(s)/hour(s)/day(s)/week(s)
-    - @RobHomey: Fixed dutch translation
+    - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.1
     - Next event more Google TTS friendly
 - 0.2.0
