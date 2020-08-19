@@ -40,5 +40,8 @@
   },
   "0.2.2": {
     "en": "Improved Conditions/Trigger cards. Dutch translation fix"
+  },
+  "0.2.3": {
+    "en": "Bugfix. Improved Conditions/Trigger cards. Global tokens 'Next event start/stop time' split up into 'Next event start/stop date' and 'Next event start/stop time'. 'Next event start date' and 'Next event stop date' made more Google TTS friendly. Dutch translation fix"
   }
 }
