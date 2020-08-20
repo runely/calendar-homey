@@ -173,8 +173,8 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Changed brandColor
 - 0.0.1:
     - Initial version
-    
 
+---
 If you like the app, buy me a cup of :coffee:
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5L63S5KQFBRYL&currency_code=NOK&source=url)
