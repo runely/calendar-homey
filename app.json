@@ -582,10 +582,10 @@
       {
         "id": "event_in",
         "title": {
-          "en": "Event !{{starts|doesn't start}} within...",
-          "no": "Avtale !{{starter|starter ikke}} innen...",
-          "nl": "Event !{{start|start niet}} over...",
-          "de": "Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
+          "en": "Specific event !{{starts|doesn't start}} within...",
+          "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
+          "nl": "Specifiek event !{{start|start niet}} over...",
+          "de": "Spezifisches ereignis !{{beginnt|beginnt nicht}} innerhalb..."
         },
         "args": [
           {
@@ -657,10 +657,10 @@
       {
         "id": "event_ongoing",
         "title": {
-          "en": "Event !{{is|isn't}} ongoing",
-          "no": "Avtale !{{pågår|pågår ikke}}",
-          "nl": "Event !{{is|is niet}} bezig",
-          "de": "Ereignis !{{ist|ist nicht}} laufend"
+          "en": "Specific event !{{is|isn't}} ongoing",
+          "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
+          "nl": "Specifiek event !{{is|is niet}} bezig",
+          "de": "Spezifisches ereignis !{{ist|ist nicht}} laufend"
         },
         "args": [
           {
@@ -678,10 +678,10 @@
       {
         "id": "event_stops_in",
         "title": {
-          "en": "Event !{{stops|doesn't stop}} within...",
-          "no": "Avtale !{{stopper|stopper ikke}} innen...",
-          "nl": "Event !{{stopt|stopt niet}} over...",
-          "de": "Ereignis !{{endet|endet nicht}} innerhalb..."
+          "en": "Specific event !{{stops|doesn't stop}} within...",
+          "no": "Spesifikk avtale !{{stopper|stopper ikke}} innen...",
+          "nl": "Specifiek event !{{stopt|stopt niet}} over...",
+          "de": "Spezifisches ereignis !{{endet|endet nicht}} innerhalb..."
         },
         "args": [
           {

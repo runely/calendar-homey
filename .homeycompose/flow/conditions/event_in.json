@@ -1,10 +1,10 @@
 {
     "id": "event_in",
     "title": {
-      "en": "Event !{{starts|doesn't start}} within...",
-      "no": "Avtale !{{starter|starter ikke}} innen...",
-      "nl": "Event !{{start|start niet}} over...",
-      "de": "Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
+      "en": "Specific event !{{starts|doesn't start}} within...",
+      "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
+      "nl": "Specifiek event !{{start|start niet}} over...",
+      "de": "Spezifisches ereignis !{{beginnt|beginnt nicht}} innerhalb..."
     },
     "args": [
       {
