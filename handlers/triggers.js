@@ -228,8 +228,8 @@ const updateFlowTokens = (app) => {
 
     // loop through calendar tokens
     app.variableMgmt.calendarTokens.map(token => {
-        let calendarId = token.id.replace('ical_calendar_', '');
-        let calendarName = calendarId.replace('_today', '').replace('_tomorrow', '');
+        let calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '');
+        let calendarName = calendarId.replace(app.variableMgmt.calendarTokensPostTodayId, '').replace(app.variableMgmt.calendarTokensPostTomorrowId, '');
         let calendarType = calendarId.replace(`${calendarName}_`, '');
     
         app.variableMgmt.calendars.filter(calendar => calendar.name === calendarName).map(calendar => {

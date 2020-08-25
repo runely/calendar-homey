@@ -38,12 +38,12 @@ class IcalCalendar extends Homey.App {
 		this.Actions = actionsHandler(this);
 
 		// get ical events
-		this.getEvents();
+		this.getEvents(true);
 
 		// register callback when a settings has been set
 		Homey.ManagerSettings.on('set', args => {
 			if (args && args === variableMgmt.setting.icalUris) {
-				this.getEvents();
+				this.getEvents(true);
 			}
 		});
 
@@ -56,7 +56,7 @@ class IcalCalendar extends Homey.App {
 		this.registerCronTasks();
 	}
 
-	async getEvents() {
+	async getEvents(reregisterCalendarTokens = false) {
 		// get URI from settings
 		var calendars = Homey.ManagerSettings.get(variableMgmt.setting.icalUris);
 		var calendarsEvents = [];
@@ -105,30 +105,32 @@ class IcalCalendar extends Homey.App {
 		variableMgmt.calendars = calendarsEvents;
 		sortCalendarsEvents(variableMgmt.calendars);
 
-		// unregister calendar tokens
-		if (variableMgmt.calendarTokens.length > 0) {
-			await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
-				await token.unregister();
-			}));
-			variableMgmt.calendarTokens = [];
-			this.log("getEvents: Calendar tokens flushed");
-		}
+		if (reregisterCalendarTokens) {
+			// unregister calendar tokens
+			if (variableMgmt.calendarTokens.length > 0) {
+				await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
+					await token.unregister();
+				}));
+				variableMgmt.calendarTokens = [];
+				this.log("getEvents: Calendar tokens flushed");
+			}
 
-		// register calendar tokens
-        if (variableMgmt.calendars.length > 0) {
-            await Promise.all(variableMgmt.calendars.map(async (calendar) => {
-				new Homey.FlowToken(`ical_calendar_${calendar.name}_today`, { type: 'string', title: `${Homey.__('calendarTokens.events_today_calendar_title_stamps')} ${calendar.name}`}).register()
-					.then(token => {
-						variableMgmt.calendarTokens.push(token);
-						this.log(`getEvents: Registered calendarToken '${token.id}'`);
-				});
-                new Homey.FlowToken(`ical_calendar_${calendar.name}_tomorrow`, { type: 'string', title: `${Homey.__('calendarTokens.events_tomorrow_calendar_title_stamps')} ${calendar.name}`}).register()
-					.then(token => {
-						variableMgmt.calendarTokens.push(token);
-						this.log(`getEvents: Registered calendarToken '${token.id}'`);
-				});
-			}));
-        }
+			// register calendar tokens
+			if (variableMgmt.calendars.length > 0) {
+				await Promise.all(variableMgmt.calendars.map(async (calendar) => {
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostTodayId}`, { type: 'string', title: `${Homey.__('calendarTokens.events_today_calendar_title_stamps')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostTomorrowId}`, { type: 'string', title: `${Homey.__('calendarTokens.events_tomorrow_calendar_title_stamps')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+				}));
+			}
+		}
 
 		return true;
 	}
