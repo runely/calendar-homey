@@ -96,6 +96,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 - 0.2.4
     - Specific event conditions made more readable
+    - Bugfix: Tokens for todays and tomorrows events pr calendar were flushed completely every time calendars were synced
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.3
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
