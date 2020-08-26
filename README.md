@@ -97,6 +97,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - 0.2.4
     - Specific event conditions made more readable
     - Bugfix: Tokens for todays and tomorrows events pr calendar were flushed completely every time calendars were synced
+    - Tokens 'Todays events, title and time', 'Tomorrows events, title and time', Todays events (per calendar) and Tomorrows events (per calendar) made more TTS friendly
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.3
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
@@ -104,7 +105,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Conditions/Trigger improved by setting amount in minute(s)/hour(s)/day(s)/week(s)
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.1
-    - Next event more Google TTS friendly
+    - Next event more TTS friendly
 - 0.2.0
     - Fixed German typo's
     - Fixed Dutch typo's
@@ -116,7 +117,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Flow card 'Event stops within' changed to enter minutes in free text (number)
     - Global token 'Next event start time' split up to 'Next event start date' and 'Next event start time'
     - Global token 'Next event stop time' split up to 'Next event stop date' and 'Next event stop time'
-    - 'Next event start date' and 'Next event stop date' made more Google TTS friendly
+    - 'Next event start date' and 'Next event stop date' made more TTS friendly
 - 0.1.4
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3

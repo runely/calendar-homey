@@ -40,11 +40,9 @@
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
         "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
-        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "hele dagen",
-        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
-        "events_today-tomorrow_title_stamps_starts": "starter klokken",
-        "events_today-tomorrow_title_stamps_stops": "stopper klokken",
+        "events_today-tomorrow_start-stop_stamps_pre": "til",
         "events_today_count": "Dagens avtaler (antall)",
         "events_tomorrow_count": "Morgendagens avtaler (antall)"
     }

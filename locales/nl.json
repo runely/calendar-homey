@@ -40,11 +40,9 @@
         "event_next_calendar_name": "Kalender naam van het volgende event",
         "events_today_title_stamps": "Events vandaag, titel en tijd",
         "events_tomorrow_title_stamps": "Event morgen, titel en tijd",
-        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "Hele dag",
-        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
-        "events_today-tomorrow_title_stamps_starts": "start om",
-        "events_today-tomorrow_title_stamps_stops": "stopt om",
+        "events_today-tomorrow_start-stop_stamps_pre": "tot",
         "events_today_count": "Events vandaag (aantal)",
         "events_tomorrow_count": "Events morgen (aantal)"
     }

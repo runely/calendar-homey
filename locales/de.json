@@ -40,11 +40,9 @@
         "event_next_calendar_name": "Kalenderbezeichnung des nächsten Ereignisses",
         "events_today_title_stamps": "Heutige Ereignisse, Titel und Zeit",
         "events_tomorrow_title_stamps": "Morgige Ereignisse, Titel und Zeit",
-        "events_today-tomorrow_startstamp_time_format": "HH:mm",
+        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "ganztägig",
-        "events_today-tomorrow_stopstamp_time_format": "HH:mm",
-        "events_today-tomorrow_title_stamps_starts": "startet um",
-        "events_today-tomorrow_title_stamps_stops": "endet um",
+        "events_today-tomorrow_start-stop_stamps_pre": "bis",
         "events_today_count": "Heutige Ereignisse (Anzahl)",
         "events_tomorrow_count": "Morgige Ereignisse (Anzahl)"
     }

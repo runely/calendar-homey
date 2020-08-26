@@ -172,16 +172,14 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
-            let value = '';
-            eventsToday.map(event => value += getEventsForToken(event));
+            let value = getEventsForToken(eventsToday) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
             token.setValue(eventsToday.length);
         }
         else if (token.id === 'events_tomorrow_title_stamps') {
-            let value = '';
-            eventsTomorrow.map(event => value += getEventsForToken(event));
+            let value = getEventsForToken(eventsTomorrow) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_tomorrow_count') {
@@ -199,12 +197,12 @@ const updateFlowTokens = (app) => {
         if (calendarType === 'today') {
             let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
-            todaysEventsCalendar.map(event => value += getEventsForToken(event));
+            value = getEventsForToken(todaysEventsCalendar) || '';
         }
         else if (calendarType === 'tomorrow') {
             let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
-            tomorrowsEventsCalendar.map(event => value += getEventsForToken(event));
+            value = getEventsForToken(tomorrowsEventsCalendar) || '';
         }
         token.setValue(value);
     });
