@@ -92,6 +92,10 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
+## Tutorial
+
+Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calendar-events/34017) created by [@RobHomey](https://github.com/RobHomey) for a good summary of the apps possibilities!
+
 ## Changelog
 
 - 0.2.4
@@ -178,6 +182,12 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
     - Changed brandColor
 - 0.0.1:
     - Initial version
+
+# Thanks
+
+- Translators
+    - [@RobHomey](https://github.com/RobHomey) : Dutch
+    - [@dirkg173](https://github.com/dirkg173) : German
 
 ---
 If you like the app, buy me a cup of :coffee:
