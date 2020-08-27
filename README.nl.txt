@@ -42,9 +42,9 @@ Triggers
 - Event stopt
 
 Condities
-- Event is bezig
-- Event start over
-- Event stopt over
+- Specifiek event is bezig
+- Specifiek event start over
+- Specifiek event stopt over
 - Een event is bezig
 - Een event start over
 - Een event stop over

@@ -42,9 +42,9 @@ Triggers
 - En avtale ender
 
 Conditions
-- Avtale pågår
-- Avtale starter innen
-- Avtale stopper innen
+- Spesifikk avtale pågår
+- Spesifikk avtale starter innen
+- Spesifikk avtale stopper innen
 - En avtale pågår
 - En avtale starter innen
 - En avtale stopper innen

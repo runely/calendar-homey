@@ -42,9 +42,9 @@ Trigger
 - Ereignis endet
 
 Bedingungen
-- Ereignis ist laufend
-- Ereignis beginnt innerhalb
-- Ereignis endet innerhalb
+- Spezifisches ereignis ist laufend
+- Spezifisches ereignis beginnt innerhalb
+- Spezifisches ereignis endet innerhalb
 - Irgendein Ereignis ist laufend
 - Irgendein Ereignis beginnt innerhalb
 - Irgendein Ereignis endet innerhalb

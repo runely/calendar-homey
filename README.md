@@ -46,9 +46,9 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - **Event stops** - *will trigger when any event stops*
 
 ### Conditions
-- **Event is ongoing** - *will check if specified event is|isn't ongoing*
-- **Event starts within** - *will check if specified event starts|doesn't start within when specified*
-- **Event stops within** - *will check if specified event stops|doesn't stop within when specified*
+- **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
+- **Specific event starts within** - *will check if specified event starts|doesn't start within when specified*
+- **Specific event stops within** - *will check if specified event stops|doesn't stop within when specified*
 - **Any event is ongoing** - *will check if any event is|isn't ongoing*
 - **Any event starts within** - *will check if any event starts|doesn't start within when specified*
 - **Any event stops within** - *will check if any event stops|doesn't stop within when specified*
