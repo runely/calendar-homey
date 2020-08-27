@@ -1,10 +1,10 @@
 {
     "id": "event_in",
     "title": {
-      "en": "Event !{{starts|doesn't start}} within...",
-      "no": "Avtale !{{starter|starter ikke}} innen...",
-      "nl": "Event !{{start|start niet}} over...",
-      "de": "Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
+      "en": "Specific event !{{starts|doesn't start}} within...",
+      "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
+      "nl": "Specifiek event !{{start|start niet}} over...",
+      "de": "Spezifisches ereignis !{{beginnt|beginnt nicht}} innerhalb..."
     },
     "args": [
       {
@@ -25,7 +25,7 @@
         "placeholder": {
           "en": "Amount",
           "no": "Antall",
-          "nl": "Bedrag",
+          "nl": "Aantal",
           "de": "Menge"
         }
       },
@@ -38,7 +38,7 @@
             "label": {
               "en": "Minute(s)",
               "no": "Minutt(er)",
-              "nl": "Minuten",
+              "nl": "Minu(u)t(en)",
               "de": "Minuten"
             }
           },
@@ -47,7 +47,7 @@
             "label": {
               "en": "Hour(s)",
               "no": "Time(r)",
-              "nl": "Uur",
+              "nl": "U(u)r(en)",
               "de": "Stunden"
             }
           },
@@ -56,7 +56,7 @@
             "label": {
               "en": "Day(s)",
               "no": "Dag(er)",
-              "nl": "Dagen",
+              "nl": "Dag(en)",
               "de": "Tage"
             }
           },
@@ -65,7 +65,7 @@
             "label": {
               "en": "Week(s)",
               "no": "Uke(r)",
-              "nl": "Weken",
+              "nl": "We(e)k(en)",
               "de": "Wochen"
             }
           }

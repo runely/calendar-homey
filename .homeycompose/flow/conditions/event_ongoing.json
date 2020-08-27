@@ -1,10 +1,10 @@
 {
     "id": "event_ongoing",
     "title": {
-      "en": "Event !{{is|isn't}} ongoing",
-      "no": "Avtale !{{pågår|pågår ikke}}",
-      "nl": "Event !{{is|is niet}} bezig",
-      "de": "Ereignis !{{ist|ist nicht}} laufend"
+      "en": "Specific event !{{is|isn't}} ongoing",
+      "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
+      "nl": "Specifiek event !{{is|is niet}} bezig",
+      "de": "Spezifisches ereignis !{{ist|ist nicht}} laufend"
     },
     "args": [
         {

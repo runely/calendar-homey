@@ -42,9 +42,9 @@ Triggers
 - Event stops
 
 Conditions
-- Event is ongoing
-- Event starts within
-- Event stops within
+- Specific event is ongoing
+- Specific event starts within
+- Specific event stops within
 - Any event is ongoing
 - Any event starts within
 - Any event stops within
