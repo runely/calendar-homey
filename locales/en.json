@@ -28,9 +28,11 @@
             "remove": "Remove"
         }
     },
-    "token_duration_minutes": "minutes",
-    "token_duration_hour": "hour",
-    "token_duration_hours": "hours",
+    "tokens": {
+        "duration_minutes": "minutes",
+        "duration_hour": "hour",
+        "duration_hours": "hours"
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Todays events in",
         "events_tomorrow_calendar_title_stamps": "Tomorrows events in"
@@ -48,9 +50,9 @@
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",
-        "events_today-tomorrow_startstamp_fullday": "full day",
-        "events_today-tomorrow_start-stop_stamps_pre": "to",
         "events_today_count": "Todays events (count)",
-        "events_tomorrow_count": "Tomorrows events (count)"
+        "events_tomorrow_count": "Tomorrows events (count)",
+        "events_today-tomorrow_startstamp_fullday": "full day",
+        "events_today-tomorrow_start-stop_stamps_pre": "to"
     }
 }

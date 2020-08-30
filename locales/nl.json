@@ -28,9 +28,11 @@
             "remove": "Verwijderen"
         }
     },
-    "token_duration_minutes": "minuten",
-    "token_duration_hour": "uur",
-    "token_duration_hours": "uren",
+    "tokens": {
+        "duration_minutes": "minuten",
+        "duration_hour": "uur",
+        "duration_hours": "uren"
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
         "events_tomorrow_calendar_title_stamps": "Events morgen over"
@@ -48,9 +50,9 @@
         "event_next_calendar_name": "Kalender naam van het volgende event",
         "events_today_title_stamps": "Events vandaag, titel en tijd",
         "events_tomorrow_title_stamps": "Event morgen, titel en tijd",
-        "events_today-tomorrow_startstamp_fullday": "Hele dag",
-        "events_today-tomorrow_start-stop_stamps_pre": "tot",
         "events_today_count": "Events vandaag (aantal)",
-        "events_tomorrow_count": "Events morgen (aantal)"
+        "events_tomorrow_count": "Events morgen (aantal)",
+        "events_today-tomorrow_startstamp_fullday": "Hele dag",
+        "events_today-tomorrow_start-stop_stamps_pre": "tot"
     }
 }

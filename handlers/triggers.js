@@ -66,13 +66,13 @@ const getTriggerTokenDuration = (event) => {
     let hours = diff/60;
     let output = "";
     if (hours >= 1 && hours < 2) {
-        output = getNumber(hours) + " " + Homey.__('token_duration_hour');
+        output = getNumber(hours) + " " + Homey.__('tokens.duration_hour');
     }
     else if (hours >= 2) {
-        output = getNumber(hours) + " " + Homey.__('token_duration_hours');
+        output = getNumber(hours) + " " + Homey.__('tokens.duration_hours');
     }
     else if (hours < 1) {
-        output = diff + " " + Homey.__('token_duration_minutes');
+        output = diff + " " + Homey.__('tokens.duration_minutes');
     }
     else {
         output = ''

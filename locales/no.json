@@ -28,9 +28,11 @@
             "remove": "Fjern"
         }
     },
-    "token_duration_minutes": "minutter",
-    "token_duration_hour": "time",
-    "token_duration_hours": "timer",
+    "tokens": {
+        "duration_minutes": "minutter",
+        "duration_hour": "time",
+        "duration_hours": "timer"
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
         "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
@@ -48,9 +50,9 @@
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
         "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
-        "events_today-tomorrow_startstamp_fullday": "hele dagen",
-        "events_today-tomorrow_start-stop_stamps_pre": "til",
         "events_today_count": "Dagens avtaler (antall)",
-        "events_tomorrow_count": "Morgendagens avtaler (antall)"
+        "events_tomorrow_count": "Morgendagens avtaler (antall)",
+        "events_today-tomorrow_startstamp_fullday": "hele dagen",
+        "events_today-tomorrow_start-stop_stamps_pre": "til"
     }
 }
