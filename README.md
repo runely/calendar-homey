@@ -98,6 +98,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.2.5
+    - Date and Time format used in the app can now be changed in the settings. If not changed, default is used.
 - 0.2.4
     - Specific event conditions made more readable
     - Bugfix: Tokens for todays and tomorrows events pr calendar were flushed completely every time calendars were synced

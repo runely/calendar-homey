@@ -1,23 +1,33 @@
 {
     "settings": {
         "title": "Instellingen",
-        "legend": "URI naar .ics bestand",
-        "calendar_name": "Kalender naam",
-        "calendar_uri": "URI",
-        "new_item_button": "Nieuwe kalender",
-        "save_button": "Opslaan",
-        "remove_button": "Verwijderen",
         "saved_alert": "Instellingen opgeslagen",
         "uri_load_failure": "Fout bij het laden van .ics bestand(en):",
-        "icons_info": "Icons by"
+        "icons_info": "Icons by",
+        "calendars": {
+            "legend": "URI naar .ics bestand",
+            "name": "Kalender naam",
+            "uri": "URI"
+        },
+        "datetime": {
+            "legend": "Datum/Tijd",
+            "date": {
+                "description": "<b>Gewenste datumnotatie</b><br>DD = dag, MM = maand, YY of YYYY = jaar<br>Gescheiden door /, - of .",
+                "name": "Datumnotatie",
+                "default": "DD-MM-YY"
+            },
+            "time": {
+                "description": "<b>Gewenste tijdnotatie</b><br>HH of hh = uur, mm = minuut<br>Gescheiden door : of .",
+                "name": "Tijd formaat",
+                "default": "HH:mm"
+            }
+        },
+        "buttons": {
+            "new_item": "Nieuwe kalender",
+            "save": "Opslaan",
+            "remove": "Verwijderen"
+        }
     },
-    "conditions_event_name_start_date_time_format": "MM.DD HH:mm",
-    "conditions_event_name_start_date_year_time_format": "MM.DD.YY HH:mm",
-    "conditions_event_name_stop_time_format": "HH:mm",
-    "conditions_event_name_stop_date_time_format": "MM.DD HH:mm",
-    "conditions_event_name_stop_date_year_time_format": "MM.DD.YY HH:mm",
-    "conditions_event_name_start_stop_date_format": "MM.DD",
-    "conditions_event_name_start_stop_date_year_format": "MM.DD.YY",
     "token_duration_minutes": "minuten",
     "token_duration_hour": "uur",
     "token_duration_hours": "uren",
@@ -29,8 +39,6 @@
         "event_next_title": "Volgende event title",
         "event_next_startdate": "Volgende event startdatum",
         "event_next_startstamp": "Volgende event start tijd",
-        "event_next_start-stop_date_format": "MM/DD/YY",
-        "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Volgende event stopdatum",
         "event_next_stopstamp": "Volgende event stop tijd",
         "event_next_duration": "Looptijd volgende event",
@@ -40,7 +48,6 @@
         "event_next_calendar_name": "Kalender naam van het volgende event",
         "events_today_title_stamps": "Events vandaag, titel en tijd",
         "events_tomorrow_title_stamps": "Event morgen, titel en tijd",
-        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "Hele dag",
         "events_today-tomorrow_start-stop_stamps_pre": "tot",
         "events_today_count": "Events vandaag (aantal)",

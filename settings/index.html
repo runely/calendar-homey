@@ -16,14 +16,6 @@
                 color: red;
                 font-weight: bold;
             }
-
-            .input-name {
-                width: 110px;
-            }
-            
-            .input-uri {
-                width: 200px;
-            }
         </style>
 
         <!-- Homey settings -->
@@ -41,18 +33,32 @@
 
         <div id="calendars">
             <fieldset class="clonable">
-                <legend data-i18n="settings.legend"></legend>
+                <legend data-i18n="settings.calendars.legend"></legend>
 
-                <strong data-i18n="settings.calendar_name"></strong><br>
-                <input class="input-name" id="uri-name" type="text" value="" /><br><br>
+                <strong data-i18n="settings.calendars.name"></strong><br>
+                <input id="uri-name" type="text" value="" /><br><br>
 
-                <strong data-i18n="settings.calendar_uri"></strong><br>
-                <input class="input-uri" id="uri-uri" type="text" value="" />
+                <strong data-i18n="settings.calendars.uri"></strong><br>
+                <input id="uri-uri" type="text" value="" />
             </fieldset>
         </div>
 
-        <button id="newItem" class="right" data-i18n="settings.new_item_button"></button>
-        <button id="save" class="right" data-i18n="settings.save_button"></button>
+        <div class="datetime">
+            <fieldset>
+                <legend data-i18n="settings.datetime.legend"></legend>
+
+                <p data-i18n="settings.datetime.date.description"></p>
+                <strong data-i18n="settings.datetime.date.name"></strong><br>
+                <input id="datetime-date" type="text" value="" minlength="6" maxlength="10" pattern="[DM]{1,2}[/.-][DM]{1,2}[/.-][Y]{2,4}" /><br><br>
+
+                <p data-i18n="settings.datetime.time.description"></p>
+                <strong data-i18n="settings.datetime.time.name"></strong><br>
+                <input id="datetime-time" type="text" value="" minlength="3" maxlength="5" pattern="[Hh]{1,2}[:.][m]{1,2}" />
+            </fieldset>
+        </div>
+
+        <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
+        <button id="save" class="right" data-i18n="settings.buttons.save"></button>
 
         <div id="uri_error" class="uri-error-hidden"></div>
 
@@ -64,20 +70,55 @@
                 // Tell Homey we're ready to be displayed
                 Homey.ready();
 
+                var settingsUris = 'uris';
+                var settingsDateFormat = 'dateFormat';
+                var settingsTimeFormat = 'timeFormat';
                 var newItemElement = document.getElementById('newItem');
                 var saveElement = document.getElementById('save');
 
                 // get uri from settings
-                Homey.get('uris', (err, uris) => {
+                Homey.get(settingsUris, (err, uris) => {
                     if (err) return Homey.alert(err);
                     getCalendarItems(uris);
                 });
 
+                // get date from settings
+                Homey.get(settingsDateFormat, (err, date) => {
+                    if (err) return Homey.alert(err);
+                    getDateTimeFormat('date', date);
+                });
+
+                // get time from settings
+                Homey.get(settingsTimeFormat, (err, time) => {
+                    if (err) return Homey.alert(err);
+                    getDateTimeFormat('time', time);
+                });
+
                 // save uri to settings
                 saveElement.addEventListener('click', function(e) {
-                    Homey.set('uris', saveCalendarItems(), function(err) {
+                    Homey.set(settingsUris, saveCalendarItems(), function(err) {
                         if(err) return Homey.alert(err);
                     });
+
+                    let savedDateFormat = saveDateTimeFormat('date');
+                    if (savedDateFormat) {
+                        Homey.set(settingsDateFormat, savedDateFormat, function(err) {
+                            if (err) return Homey.alert(err);
+                        });
+
+                        let savedTimeFormat = saveDateTimeFormat('time');
+                        if (savedTimeFormat) {
+                            Homey.set(settingsTimeFormat, savedTimeFormat, function(err) {
+                                if (err) return Homey.alert(err);
+                            });
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    else {
+                        return;
+                    }
 
                     hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
@@ -89,9 +130,9 @@
                 });
 
                 // if uri_failed exists as a setting, show error div
-                getUriFailedSetting();
+                getUriFailedSetting(settingsUris);
 
-                setInterval(() => getUriFailedSetting(), 3000);
+                setInterval(() => getUriFailedSetting(settingsUris), 3000);
             }
 
             function newCalendarItem(name = null, uri = null) {
@@ -109,7 +150,7 @@
                 removeButton.onclick = function () {
                     document.getElementById('calendars').removeChild(this.parentNode);
                 }
-                removeButton.textContent = Homey.__('settings.remove_button');
+                removeButton.textContent = Homey.__('settings.buttons.remove');
                 newElement.appendChild(document.createElement("br"));
                 newElement.appendChild(document.createElement("br"));
                 newElement.appendChild(removeButton);
@@ -133,6 +174,14 @@
                 }
             }
 
+            function getDateTimeFormat(type, format) {
+                if (!format) {
+                    format = Homey.__(`settings.datetime.${type}.default`);
+                }
+
+                document.getElementById(`datetime-${type}`).value = format;
+            }
+
             function saveCalendarItems() {
                 let calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
                 
@@ -150,8 +199,29 @@
                 });
             }
 
-            function getUriFailedSetting() {
-                Homey.get('uris', (err, uris) => {
+            function saveDateTimeFormat(type) {
+                let inputField = document.getElementById(`datetime-${type}`);
+                if (inputField.validity.patternMismatch) {
+                    Homey.alert(`${type} has invalid pattern`);
+                }
+                else if (inputField.validity.tooShort) {
+                    Homey.alert(`${type} is too short`);
+                }
+                else if (inputField.validity.tooLong) {
+                    Homey.alert(`${type} is too long`);
+                }
+
+                if (inputField.validity.valid) {
+                    //Homey.alert(`${type} is validated successfully. Returning '${inputField.value}'`);
+                    return inputField.value;
+                }
+                else {
+                    return null;
+                }
+            }
+
+            function getUriFailedSetting(setting) {
+                Homey.get(setting, (err, uris) => {
                     if (err) {
                         hideError();
                         return Homey.alert(err);

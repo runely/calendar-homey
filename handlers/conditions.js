@@ -77,32 +77,32 @@ module.exports = async (app) => {
 				try {
 					if (event.datetype === 'date-time') {
 						if (startMoment.isSame(now, 'year')) {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_time_format'))
+							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 						else {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_start_date_year_time_format'))
+							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 
 						if (stopMoment.isSame(startMoment, 'year')) {
 							if (stopMoment.isSame(startMoment, 'date')) {
-								stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_time_format'))
+								stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.time.time);
 
 								startStamp = startStamp.replace(' ', ' - ');
 							}
 							else {
-								stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_date_time_format'))
+								stopStamp = stopMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
 							}
 						}
 						else {
-							stopStamp = stopMoment.format(Homey.__('conditions_event_name_stop_date_year_time_format'))
+							stopStamp = stopMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 					}
 					else if (event.datetype === "date") {
 						if (startMoment.isSame(now, 'year')) {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_format'))
+							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 						}
 						else {
-							startStamp = startMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
+							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 
 						if (stopMoment.isSame(now, 'year')) {
@@ -110,11 +110,11 @@ module.exports = async (app) => {
 								stopStamp = "";
 							}
 							else {
-								stopStamp = stopMoment.format(Homey.__('conditions_event_name_start_stop_date_format'))
+								stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 							}
 						}
 						else {
-							stopStamp = stopMoment.format(Homey.__('conditions_event_name_start_stop_date_year_format'))
+							stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 					}
 				}

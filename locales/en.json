@@ -1,23 +1,33 @@
 {
     "settings": {
         "title": "Settings",
-        "legend": "URI to the .ics file",
-        "calendar_name": "Calendar name",
-        "calendar_uri": "URI",
-        "new_item_button": "New calendar",
-        "save_button": "Save",
-        "remove_button": "Remove",
         "saved_alert": "Settings saved",
         "uri_load_failure": "Failed to load .ics file(s):",
-        "icons_info": "Icons by"
+        "icons_info": "Icons by",
+        "calendars": {
+            "legend": "URI to the .ics file",
+            "name": "Calendar name",
+            "uri": "URI"
+        },
+        "datetime": {
+            "legend": "Date/Time",
+            "date": {
+                "description": "<b>Wanted date format</b><br>MM = month, DD = day, YY or YYYY = year<br>Separated by /, - or .",
+                "name": "Date format",
+                "default": "MM/DD/YY"
+            },
+            "time": {
+                "description": "<b>Wanted time format</b><br>HH or hh = hour, mm = minute<br>Separated by : or .",
+                "name": "Time format",
+                "default": "HH:mm"
+            }
+        },
+        "buttons": {
+            "new_item": "New calendar",
+            "save": "Save",
+            "remove": "Remove"
+        }
     },
-    "conditions_event_name_start_date_time_format": "MM.DD HH:mm",
-    "conditions_event_name_start_date_year_time_format": "MM.DD.YY HH:mm",
-    "conditions_event_name_stop_time_format": "HH:mm",
-    "conditions_event_name_stop_date_time_format": "MM.DD HH:mm",
-    "conditions_event_name_stop_date_year_time_format": "MM.DD.YY HH:mm",
-    "conditions_event_name_start_stop_date_format": "MM.DD",
-    "conditions_event_name_start_stop_date_year_format": "MM.DD.YY",
     "token_duration_minutes": "minutes",
     "token_duration_hour": "hour",
     "token_duration_hours": "hours",
@@ -29,8 +39,6 @@
         "event_next_title": "Next event title",
         "event_next_startdate": "Next event start date",
         "event_next_startstamp": "Next event start time",
-        "event_next_start-stop_date_format": "MM/DD/YY",
-        "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Next event stop date",
         "event_next_stopstamp": "Next event stop time",
         "event_next_duration": "Next event duration",
@@ -40,7 +48,6 @@
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",
-        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
         "events_today-tomorrow_startstamp_fullday": "full day",
         "events_today-tomorrow_start-stop_stamps_pre": "to",
         "events_today_count": "Todays events (count)",

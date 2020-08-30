@@ -125,15 +125,15 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startdate') {
-            token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+            token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
+                    token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue("00:00");
+                    token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`);
                 }
             }
             else {
@@ -141,15 +141,15 @@ const updateFlowTokens = (app) => {
             }
         }
         else if (token.id === 'event_next_stopdate') {
-            token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+            token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
+                    token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue("00:00");
+                    token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`);
                 }
             }
             else {
@@ -172,14 +172,14 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
-            let value = getEventsForToken(eventsToday) || '';
+            let value = getEventsForToken(app, eventsToday) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
             token.setValue(eventsToday.length);
         }
         else if (token.id === 'events_tomorrow_title_stamps') {
-            let value = getEventsForToken(eventsTomorrow) || '';
+            let value = getEventsForToken(app, eventsTomorrow) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_tomorrow_count') {
@@ -197,12 +197,12 @@ const updateFlowTokens = (app) => {
         if (calendarType === 'today') {
             let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
-            value = getEventsForToken(todaysEventsCalendar) || '';
+            value = getEventsForToken(app, todaysEventsCalendar) || '';
         }
         else if (calendarType === 'tomorrow') {
             let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
-            value = getEventsForToken(tomorrowsEventsCalendar) || '';
+            value = getEventsForToken(app, tomorrowsEventsCalendar) || '';
         }
         token.setValue(value);
     });

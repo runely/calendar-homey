@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 
+const getDateTimeFormat = require('./lib/get-datetime-format');
 const getContent = require('./lib/get-ical-content');
 const getActiveEvents = require('./lib/get-active-events');
 const sortCalendarsEvents = require('./lib/sort-calendars');
@@ -28,6 +29,9 @@ class IcalCalendar extends Homey.App {
 		// register variableMgmt to this app class
 		this.variableMgmt = variableMgmt;
 
+		// get date and time format as an object
+		variableMgmt.dateTimeFormat = getDateTimeFormat(this);
+
 		// instantiate triggers
 		this.Triggers = triggersHandler(this);
 		
@@ -43,7 +47,12 @@ class IcalCalendar extends Homey.App {
 		// register callback when a settings has been set
 		Homey.ManagerSettings.on('set', args => {
 			if (args && args === variableMgmt.setting.icalUris) {
+				// sync calendars when calendars have been changed
 				this.getEvents(true);
+			}
+			else if (args && (args === variableMgmt.setting.dateFormat || args === variableMgmt.setting.timeFormat)) {
+				// get new date/time format
+				variableMgmt.dateTimeFormat = getDateTimeFormat(this);
 			}
 		});
 
