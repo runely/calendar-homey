@@ -585,7 +585,7 @@
           "en": "Specific event !{{starts|doesn't start}} within...",
           "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
           "nl": "Specifiek event !{{start|start niet}} over...",
-          "de": "Spezifisches ereignis !{{beginnt|beginnt nicht}} innerhalb..."
+          "de": "Spezifisches Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
         },
         "args": [
           {
@@ -660,7 +660,7 @@
           "en": "Specific event !{{is|isn't}} ongoing",
           "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
           "nl": "Specifiek event !{{is|is niet}} bezig",
-          "de": "Spezifisches ereignis !{{ist|ist nicht}} laufend"
+          "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend"
         },
         "args": [
           {
@@ -681,7 +681,7 @@
           "en": "Specific event !{{stops|doesn't stop}} within...",
           "no": "Spesifikk avtale !{{stopper|stopper ikke}} innen...",
           "nl": "Specifiek event !{{stopt|stopt niet}} over...",
-          "de": "Spezifisches ereignis !{{endet|endet nicht}} innerhalb..."
+          "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
         },
         "args": [
           {
