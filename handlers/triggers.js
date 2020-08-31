@@ -239,11 +239,20 @@ module.exports = async (app) => {
                     return Promise.reject(false);
                 }
                 else {
-                    return Promise.resolve(
-                        app.variableMgmt.calendars.map(calendar => {
-                            return { "id": calendar.name, "name": calendar.name };
-                        })
-                    );
+                    if (query && query !== "") {
+                        return Promise.resolve(
+                            app.variableMgmt.calendars.filter(calendar => (calendar.name.toLowerCase().indexOf(query.toLowerCase()) > -1)).map(calendar => {
+                                return { "id": calendar.name, "name": calendar.name };
+                            })
+                        );
+                    }
+                    else {
+                        return Promise.resolve(
+                            app.variableMgmt.calendars.map(calendar => {
+                                return { "id": calendar.name, "name": calendar.name };
+                            })
+                        );
+                    }
                 }
             });
     }
