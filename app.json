@@ -181,10 +181,10 @@
             "type": "autocomplete",
             "name": "calendar",
             "placeholder": {
-              "en": "Choose calendar",
-              "no": "Velg kalender",
-              "nl": "Selecteer kalender",
-              "de": "Kalender auswählen"
+              "en": "Choose calendar...",
+              "no": "Velg kalender...",
+              "nl": "Selecteer kalender...",
+              "de": "Kalender auswählen..."
             }
           }
         ],
