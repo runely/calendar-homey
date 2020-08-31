@@ -171,10 +171,10 @@
       {
         "id": "event_starts_calendar",
         "title": {
-          "en": "Event start from calendar",
+          "en": "Event starts from calendar",
           "no": "En avtale starter fra kalender",
-          "nl": "NL",
-          "de": "DE"
+          "nl": "Evenement begint vanaf de kalender",
+          "de": "Die Veranstaltung beginnt mit dem Kalender"
         },
         "args": [
           {
