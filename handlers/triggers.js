@@ -105,7 +105,6 @@ const startTrigger = (calendarName, event, app, state) => {
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
-        //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, state);
     }
 }
