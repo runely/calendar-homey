@@ -12,7 +12,7 @@
         "datetime": {
             "legend": "Datum/Zeit",
             "date": {
-                "description": "<b>Gewünschtes Datumsformat</b><br>DD = Tag, MM = Monat, YY oder YYYY = jahr<br>Getrennt durch /, - oder .",
+                "description": "<b>Gewünschtes Datumsformat</b><br>DD = Tag, MM = Monat, YY oder YYYY = Jahr<br>Getrennt durch /, - oder .",
                 "name": "Datumsformat",
                 "default": "DD-MM-YY"
             },
