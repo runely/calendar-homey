@@ -169,6 +169,125 @@
         ]
       },
       {
+        "id": "event_starts_calendar",
+        "title": {
+          "en": "Event start from calendar",
+          "no": "En avtale starter fra kalender",
+          "nl": "NL",
+          "de": "DE"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "calendar",
+            "placeholder": {
+              "en": "Choose calendar",
+              "no": "Velg kalender",
+              "nl": "Selecteer kalender",
+              "de": "Kalender auswählen"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "event_name",
+            "type": "string",
+            "title": {
+              "en": "Title",
+              "no": "Tittel",
+              "nl": "Titel",
+              "de": "Titel"
+            },
+            "example": {
+              "en": "Pick up in kindergarden",
+              "no": "Hente i barnehagen",
+              "nl": "Kinderen ophalen",
+              "de": "Im Kindergarten abholen"
+            }
+          },
+          {
+            "name": "event_description",
+            "type": "string",
+            "title": {
+              "en": "Description",
+              "no": "Beskrivelse",
+              "nl": "Omschrijving",
+              "de": "Beschreibung"
+            },
+            "example": {
+              "en": "Pick up kids in kindergarden",
+              "no": "Hente barna fra barnehagen",
+              "nl": "Haal de kinderen van school op",
+              "de": "Kinder im Kindergarten abholen"
+            }
+          },
+          {
+            "name": "event_location",
+            "type": "string",
+            "title": {
+              "en": "Location",
+              "no": "Sted",
+              "nl": "Lokatie",
+              "de": "Ort"
+            },
+            "example": {
+              "en": "Kindergarden street, 30",
+              "no": "Barnehagegata, 30",
+              "nl": "Schoolstraat 30",
+              "de": "Kindergartenstraße 30"
+            }
+          },
+          {
+            "name": "event_duration_readable",
+            "type": "string",
+            "title": {
+              "en": "Duration",
+              "no": "Varighet",
+              "nl": "Looptijd",
+              "de": "Dauer"
+            },
+            "example": {
+              "en": "1.5 hour",
+              "no": "1.5 time",
+              "nl": "1.5 uur",
+              "de": "1.5 Stunden"
+            }
+          },
+          {
+            "name": "event_duration",
+            "type": "number",
+            "title": {
+              "en": "Duration in minutes",
+              "no": "Varighet i minutter",
+              "nl": "Looptijd in minuten",
+              "de": "Dauer in Minuten"
+            },
+            "example": {
+              "en": "90",
+              "no": "90",
+              "nl": "90",
+              "de": "90"
+            }
+          },
+          {
+            "name": "event_calendar_name",
+            "type": "string",
+            "title": {
+              "en": "Calendar name",
+              "no": "Kalendernavn",
+              "nl": "Kalender naam",
+              "de": "Kalenderbezeichnung"
+            },
+            "example": {
+              "en": "Gmail",
+              "no": "Gmail",
+              "nl": "Gmail",
+              "de": "Gmail"
+            }
+          }
+        ]
+      },
+      {
         "id": "event_starts_in",
         "title": {
           "en": "Event starts in",

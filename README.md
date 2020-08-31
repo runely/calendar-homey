@@ -100,6 +100,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.2.5
     - Date and Time format used in the app can now be changed in the settings. If not changed, default is used.
+    - Added trigger 'Event starts from calendar'
     - [@dirkg173](https://github.com/dirkg173): Fixed German translation
 - 0.2.4
     - Specific event conditions made more readable

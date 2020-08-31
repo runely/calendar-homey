@@ -32,6 +32,7 @@ const triggerAllEvents = (calendars, app) => {
 
             if (resultStart) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_calendar' }, app, { calendarName: calendar.name })
             }
             if (resultStop) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops' }, app);
@@ -39,7 +40,7 @@ const triggerAllEvents = (calendars, app) => {
             if (resultStartInCheck) {
                 let startsIn = Math.round(event.start.diff(now, 'minutes', true));
 
-                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, startsIn);
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, { when: startsIn });
             }
         });
     });
@@ -105,7 +106,7 @@ const startTrigger = (calendarName, event, app, state) => {
     }
     else {
         //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
-        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
+        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, state);
     }
 }
 
@@ -219,10 +220,32 @@ module.exports = async (app) => {
             .registerRunListener((args, state) => {
                 let minutes = convertToMinutes(args.when, args.type);
                 let result = (minutes == state.when);
-                if (result) app.log(`Triggered 'event_starts_in' with state: ${state.when}`);
+                if (result) app.log("Triggered 'event_starts_in' with state:", state);
                 return Promise.resolve(result);
             })
             .register();
+            
+        new Homey.FlowCardTrigger('event_starts_calendar')
+            .register()
+            .registerRunListener((args, state) => {
+                let result = (args.calendar.name === state.calendarName);
+                if (result) app.log("Triggered 'event_starts_calendar' with state:", state);
+                return Promise.resolve(result);
+            })
+            .getArgument('calendar')
+            .registerAutocompleteListener((query, args) => {
+                if (!app.variableMgmt.calendars) {
+                    app.log("event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...");
+                    return Promise.reject(false);
+                }
+                else {
+                    return Promise.resolve(
+                        app.variableMgmt.calendars.map(calendar => {
+                            return { "id": calendar.name, "name": calendar.name };
+                        })
+                    );
+                }
+            });
     }
 
     // register flow tokens
