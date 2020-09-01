@@ -2,7 +2,9 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 Setup
 
-- Open settings (configure app) and paste in the ical link
+- Open settings (configure app)
+    - Paste in the ical link
+    - Change the date/time format or use the default (your choice)
 
 Find Exchange Online ical link
 
@@ -39,6 +41,7 @@ Sync
 Triggers
 - Event starts
 - Event starts in
+- Event starts from calendar
 - Event stops
 
 Conditions

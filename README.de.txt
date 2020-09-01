@@ -2,7 +2,9 @@ Der IcalCalender erweitert Homey um Flow-Karten, um Kalenderereignisse als Trigg
 
 Setup
 
-- Einstellungen öffnen (App konfigurieren) und den ical-Link einfügen
+- Einstellungen öffnen (App konfigurieren)
+    - Den ical-Link einfügen
+    - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
 
 Den Exchange Online ical-Link finden
 
@@ -39,6 +41,7 @@ Sync
 Trigger
 - Ereignis beginnt
 - Ereignis beginnt in
+- Ereignis startet aus dem Kalender
 - Ereignis endet
 
 Bedingungen

@@ -2,7 +2,9 @@ De IcalCalendar geeft Homey flow kaarten een trigger op kalender events
 
 Instellingen
 
-- Open settings (app configuratie) en plak de ical link
+- Open settings (app configuratie)
+    - En plak de ical link
+    - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
 
 Exchange Online ical link
 
@@ -39,6 +41,7 @@ Sync
 Triggers
 - Event start
 - Event start over
+- Event begint vanaf de kalender
 - Event stopt
 
 Condities
