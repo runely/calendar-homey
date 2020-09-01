@@ -1,11 +1,23 @@
 {
-  "id": "event_starts_in",
+  "id": "event_starts_calendar",
   "title": {
-    "en": "Event starts in",
-    "no": "En avtale starter om",
-    "nl": "Event start over",
-    "de": "Ereignis startet in"
+    "en": "Event starts from calendar",
+    "no": "En avtale starter fra kalender",
+    "nl": "Event begint vanaf de kalender",
+    "de": "Ereignis startet aus dem Kalender"
   },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen..."
+      }
+    }
+  ],
   "tokens": [
     {
       "name": "event_name",
@@ -102,62 +114,6 @@
         "nl": "Gmail",
         "de": "Gmail"
       }
-    }
-  ],
-  "args": [
-    {
-      "name": "when",
-      "type": "number",
-      "min": 1,
-      "step": 1,
-      "placeholder": {
-        "en": "Amount",
-        "no": "Antall",
-        "nl": "Aantal",
-        "de": "Menge"
-      }
-    },
-    {
-      "name": "type",
-      "type": "dropdown",
-      "values": [
-        {
-          "id": "1",
-          "label": {
-            "en": "Minute(s)",
-            "no": "Minutt(er)",
-            "nl": "Minuten",
-            "de": "Minuten"
-          }
-        },
-        {
-          "id": "2",
-          "label": {
-            "en": "Hour(s)",
-            "no": "Time(r)",
-            "nl": "Uur",
-            "de": "Stunden"
-          }
-        },
-        {
-          "id": "3",
-          "label": {
-            "en": "Day(s)",
-            "no": "Dag(er)",
-            "nl": "Dagen",
-            "de": "Tage"
-          }
-        },
-        {
-          "id": "4",
-          "label": {
-            "en": "Week(s)",
-            "no": "Uke(r)",
-            "nl": "Weken",
-            "de": "Wochen"
-          }
-        }
-      ]
     }
   ]
 }

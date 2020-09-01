@@ -32,6 +32,7 @@ const triggerAllEvents = (calendars, app) => {
 
             if (resultStart) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_calendar' }, app, { calendarName: calendar.name })
             }
             if (resultStop) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops' }, app);
@@ -39,7 +40,7 @@ const triggerAllEvents = (calendars, app) => {
             if (resultStartInCheck) {
                 let startsIn = Math.round(event.start.diff(now, 'minutes', true));
 
-                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, startsIn);
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, { when: startsIn });
             }
         });
     });
@@ -66,13 +67,13 @@ const getTriggerTokenDuration = (event) => {
     let hours = diff/60;
     let output = "";
     if (hours >= 1 && hours < 2) {
-        output = getNumber(hours) + " " + Homey.__('token_duration_hour');
+        output = getNumber(hours) + " " + Homey.__('tokens.duration_hour');
     }
     else if (hours >= 2) {
-        output = getNumber(hours) + " " + Homey.__('token_duration_hours');
+        output = getNumber(hours) + " " + Homey.__('tokens.duration_hours');
     }
     else if (hours < 1) {
-        output = diff + " " + Homey.__('token_duration_minutes');
+        output = diff + " " + Homey.__('tokens.duration_minutes');
     }
     else {
         output = ''
@@ -104,8 +105,7 @@ const startTrigger = (calendarName, event, app, state) => {
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
-        //app.log(`startTrigger: Found event for trigger '${event.TRIGGER_ID}' with state: '${state}'`);
-        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, { when: state });
+        Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens, state);
     }
 }
 
@@ -125,15 +125,15 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startdate') {
-            token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+            token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.start.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
+                    token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue("00:00");
+                    token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`);
                 }
             }
             else {
@@ -141,15 +141,15 @@ const updateFlowTokens = (app) => {
             }
         }
         else if (token.id === 'event_next_stopdate') {
-            token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_date_format')));
+            token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
                 if (nextEvent.event.datetype === 'date-time') {
-                    token.setValue(nextEvent.event.end.format(Homey.__('flowTokens.event_next_start-stop_time_format')));
+                    token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time));
                 }
                 else if (nextEvent.event.datetype === 'date') {
-                    token.setValue("00:00");
+                    token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`);
                 }
             }
             else {
@@ -172,14 +172,14 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.calendarName : '');
         }
         else if (token.id === 'events_today_title_stamps') {
-            let value = getEventsForToken(eventsToday) || '';
+            let value = getEventsForToken(app, eventsToday) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_today_count') {
             token.setValue(eventsToday.length);
         }
         else if (token.id === 'events_tomorrow_title_stamps') {
-            let value = getEventsForToken(eventsTomorrow) || '';
+            let value = getEventsForToken(app, eventsTomorrow) || '';
             token.setValue(value);
         }
         else if (token.id === 'events_tomorrow_count') {
@@ -197,12 +197,12 @@ const updateFlowTokens = (app) => {
         if (calendarType === 'today') {
             let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
-            value = getEventsForToken(todaysEventsCalendar) || '';
+            value = getEventsForToken(app, todaysEventsCalendar) || '';
         }
         else if (calendarType === 'tomorrow') {
             let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
-            value = getEventsForToken(tomorrowsEventsCalendar) || '';
+            value = getEventsForToken(app, tomorrowsEventsCalendar) || '';
         }
         token.setValue(value);
     });
@@ -219,10 +219,41 @@ module.exports = async (app) => {
             .registerRunListener((args, state) => {
                 let minutes = convertToMinutes(args.when, args.type);
                 let result = (minutes == state.when);
-                if (result) app.log(`Triggered 'event_starts_in' with state: ${state.when}`);
+                if (result) app.log("Triggered 'event_starts_in' with state:", state);
                 return Promise.resolve(result);
             })
             .register();
+            
+        new Homey.FlowCardTrigger('event_starts_calendar')
+            .register()
+            .registerRunListener((args, state) => {
+                let result = (args.calendar.name === state.calendarName);
+                if (result) app.log("Triggered 'event_starts_calendar' with state:", state);
+                return Promise.resolve(result);
+            })
+            .getArgument('calendar')
+            .registerAutocompleteListener((query, args) => {
+                if (!app.variableMgmt.calendars) {
+                    app.log("event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...");
+                    return Promise.reject(false);
+                }
+                else {
+                    if (query && query !== "") {
+                        return Promise.resolve(
+                            app.variableMgmt.calendars.filter(calendar => (calendar.name.toLowerCase().indexOf(query.toLowerCase()) > -1)).map(calendar => {
+                                return { "id": calendar.name, "name": calendar.name };
+                            })
+                        );
+                    }
+                    else {
+                        return Promise.resolve(
+                            app.variableMgmt.calendars.map(calendar => {
+                                return { "id": calendar.name, "name": calendar.name };
+                            })
+                        );
+                    }
+                }
+            });
     }
 
     // register flow tokens

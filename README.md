@@ -4,7 +4,9 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
 ## Setup
 
-- Open settings (configure app) and paste in the ical link
+- Open settings (configure app)
+    - Paste in the ical link
+    - Change the date/time format or use the default (your choice)
 
 ### Find Exchange Online ical link
 
@@ -43,6 +45,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
+- **Event starts from calendar** - *will trigger when any event in specified calender starts*
 - **Event stops** - *will trigger when any event stops*
 
 ### Conditions
@@ -98,6 +101,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.2.5
+    - Date and Time format used in the app can now be changed in the settings. If not changed, default is used.
+    - Added trigger 'Event starts from calendar'
+    - [@dirkg173](https://github.com/dirkg173): Fixed German translation
 - 0.2.4
     - Specific event conditions made more readable
     - Bugfix: Tokens for todays and tomorrows events pr calendar were flushed completely every time calendars were synced

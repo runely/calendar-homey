@@ -2,7 +2,9 @@ IcalCalendar gir Homey flytkort som kan utløses på kalenderavtalene dine
 
 Oppsett
 
-- Åpne innstillinger (konfigurer app) og lim inn ical-lenken
+- Åpne innstillinger (konfigurer app)
+    - Lim inn ical-lenken
+    - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
 
 Hvordan finne Exchange Online ical-lenken
 
@@ -39,6 +41,7 @@ Sync
 Triggers
 - En avtale starter
 - En avtale starter om
+- En avtale starter fra kalender
 - En avtale ender
 
 Conditions

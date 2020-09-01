@@ -1,26 +1,38 @@
 {
     "settings": {
         "title": "Innstillinger",
-        "legend": "Link til .ics-filen",
-        "calendar_name": "Kalendernavn",
-        "calendar_uri": "URI",
-        "new_item_button": "Ny kalender",
-        "save_button": "Lagre",
-        "remove_button": "Fjern",
         "saved_alert": "Innstillinger lagret",
         "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
-        "icons_info": "Ikoner av"
+        "icons_info": "Ikoner av",
+        "calendars": {
+            "legend": "Link til .ics-filen",
+            "name": "Kalendernavn",
+            "uri": "URI"
+        },
+        "datetime": {
+            "legend": "Dato/Tid",
+            "date": {
+                "description": "<b>Ønsket datoformat</b><br>DD = dag, MM = måned, YY eller YYYY = år<br>Skilles med /, - eller .",
+                "name": "Datoformat",
+                "default": "DD.MM.YY"
+            },
+            "time": {
+                "description": "<b>Ønsket tidsformat</b><br>HH eller hh = time, mm = minutt<br>Skilles med : eller .",
+                "name": "Tidsformat",
+                "default": "HH:mm"
+            }
+        },
+        "buttons": {
+            "new_item": "Ny kalender",
+            "save": "Lagre",
+            "remove": "Fjern"
+        }
     },
-    "conditions_event_name_start_date_time_format": "DD.MM HH:mm",
-    "conditions_event_name_start_date_year_time_format": "DD.MM.YY HH:mm",
-    "conditions_event_name_stop_time_format": "HH:mm",
-    "conditions_event_name_stop_date_time_format": "DD.MM HH:mm",
-    "conditions_event_name_stop_date_year_time_format": "DD.MM.YY HH:mm",
-    "conditions_event_name_start_stop_date_format": "DD.MM",
-    "conditions_event_name_start_stop_date_year_format": "DD.MM.YY",
-    "token_duration_minutes": "minutter",
-    "token_duration_hour": "time",
-    "token_duration_hours": "timer",
+    "tokens": {
+        "duration_minutes": "minutter",
+        "duration_hour": "time",
+        "duration_hours": "timer"
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
         "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
@@ -29,8 +41,6 @@
         "event_next_title": "Tittel neste avtale",
         "event_next_startdate": "Startdato neste avtale",
         "event_next_startstamp": "Starttidspunkt neste avtale",
-        "event_next_start-stop_date_format": "DD.MM.YY",
-        "event_next_start-stop_time_format": "HH:mm",
         "event_next_stopdate": "Stoppdato neste avtale",
         "event_next_stopstamp": "Stopptidspunkt neste avtale",
         "event_next_duration": "Varighet neste avtale",
@@ -40,10 +50,9 @@
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
         "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
-        "events_today-tomorrow_start-stop_stamp_time_format": "HH:mm",
-        "events_today-tomorrow_startstamp_fullday": "hele dagen",
-        "events_today-tomorrow_start-stop_stamps_pre": "til",
         "events_today_count": "Dagens avtaler (antall)",
-        "events_tomorrow_count": "Morgendagens avtaler (antall)"
+        "events_tomorrow_count": "Morgendagens avtaler (antall)",
+        "events_today-tomorrow_startstamp_fullday": "hele dagen",
+        "events_today-tomorrow_start-stop_stamps_pre": "til"
     }
 }
