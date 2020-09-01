@@ -46,5 +46,8 @@
   },
   "0.2.4": {
     "en": "Conditions made more readable. Bugfix: Per calendar tokens were flushed at every calendar sync. Tokens made more TTS friendly. Fixed dutch translation"
+  },
+  "0.2.5": {
+    "en": "Date/Time format can be changed in Settings page. New trigger 'Event starts from calendar'"
   }
 }
