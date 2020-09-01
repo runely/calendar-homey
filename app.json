@@ -108,7 +108,7 @@
             "title": {
               "en": "Location",
               "no": "Sted",
-              "nl": "Lokatie",
+              "nl": "Locatie",
               "de": "Ort"
             },
             "example": {
@@ -227,7 +227,7 @@
             "title": {
               "en": "Location",
               "no": "Sted",
-              "nl": "Lokatie",
+              "nl": "Locatie",
               "de": "Ort"
             },
             "example": {
@@ -334,7 +334,7 @@
             "title": {
               "en": "Location",
               "no": "Sted",
-              "nl": "Lokatie",
+              "nl": "Locatie",
               "de": "Ort"
             },
             "example": {
@@ -402,7 +402,7 @@
             "placeholder": {
               "en": "Amount",
               "no": "Antall",
-              "nl": "Bedrag",
+              "nl": "Aantal",
               "de": "Menge"
             }
           },
@@ -497,7 +497,7 @@
             "title": {
               "en": "Location",
               "no": "Sted",
-              "nl": "Lokatie",
+              "nl": "Locatie",
               "de": "Ort"
             },
             "example": {
