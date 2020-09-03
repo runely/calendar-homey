@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "homey": "2.6.1"
+    "homey": "2.7.0"
   },
   "dependencies": {
     "moment": "^2.26.0",
