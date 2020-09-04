@@ -43,6 +43,13 @@
       }
     ]
   },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "runely"
+      }
+    }
+  },
   "tags": {
     "en": [
       "calendar",
