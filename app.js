@@ -15,15 +15,15 @@ const actionsHandler = require('./handlers/actions');
 class IcalCalendar extends Homey.App {
 	
 	onInit() {
-		this.log(Homey.manifest.name.en + " v" + Homey.manifest.version + " is running...");
+		this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running...`);
 
 		// move uri value to uris (support version <= v0.0.4)
 		let legacyCalendar = Homey.ManagerSettings.get(variableMgmt.setting.icalUri);
 		if (legacyCalendar) {
-			this.log("onInit: Moving legacy calendar to new calendar!");
+			this.log('onInit: Moving legacy calendar to new calendar!');
 			Homey.ManagerSettings.set(variableMgmt.setting.icalUris, [{ name: 'Default', uri: legacyCalendar }]);
 			Homey.ManagerSettings.unset(variableMgmt.setting.icalUri);
-			this.log("onInit: Legacy calendar moved");
+			this.log('onInit: Legacy calendar moved');
 		}
 
 		// register variableMgmt to this app class
@@ -57,9 +57,7 @@ class IcalCalendar extends Homey.App {
 		});
 
 		// remove cron tasks on unload
-		Homey.on('unload', () => {
-			this.unregisterCronTasks()
-		});
+		Homey.on('unload', () => this.unregisterCronTasks());
 
 		// register cron tasks for updateCalendar and triggerEvents
 		this.registerCronTasks();
@@ -67,15 +65,15 @@ class IcalCalendar extends Homey.App {
 
 	async getEvents(reregisterCalendarTokens = false) {
 		// get URI from settings
-		var calendars = Homey.ManagerSettings.get(variableMgmt.setting.icalUris);
-		var calendarsEvents = [];
+		let calendars = Homey.ManagerSettings.get(variableMgmt.setting.icalUris);
+		let calendarsEvents = [];
 
 		// get ical events
 		if (calendars) {
-			this.log("getEvents: Getting calendars:", calendars.length);
+			this.log('getEvents: Getting calendars:', calendars.length);
 
 			for (var i = 0; i < calendars.length; i++) {
-				var { name, uri } = calendars[i];
+				let { name, uri } = calendars[i];
 				if (uri === '') {
 					this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`);
 					continue;
@@ -108,7 +106,7 @@ class IcalCalendar extends Homey.App {
 			}
 		}
 		else {
-			this.log("getEvents: Calendars has not been set in Settings yet");
+			this.log('getEvents: Calendars has not been set in Settings yet');
 		}
 
 		variableMgmt.calendars = calendarsEvents;
@@ -117,11 +115,9 @@ class IcalCalendar extends Homey.App {
 		if (reregisterCalendarTokens) {
 			// unregister calendar tokens
 			if (variableMgmt.calendarTokens.length > 0) {
-				await Promise.all(variableMgmt.calendarTokens.map(async (token) => {
-					await token.unregister();
-				}));
+				await Promise.all(variableMgmt.calendarTokens.map(async (token) => await token.unregister()));
 				variableMgmt.calendarTokens = [];
-				this.log("getEvents: Calendar tokens flushed");
+				this.log('getEvents: Calendar tokens flushed');
 			}
 
 			// register calendar tokens
@@ -149,10 +145,10 @@ class IcalCalendar extends Homey.App {
 		if (variableMgmt.calendars) {
 			// first, update flow tokens, then trigger events
 			triggersHandler.updateTokens(this)
-				.catch(error => this.log("triggerEvents: Failed in updateTokens Promise:", error));
+				.catch(error => this.log('triggerEvents: Failed in updateTokens Promise:', error));
 
 			triggersHandler.triggerEvents(this)
-				.catch(error => this.log("triggerEvents: Failed in triggerEvents Promise:", error));
+				.catch(error => this.log('triggerEvents: Failed in triggerEvents Promise:', error));
 		}
 	}
 
@@ -161,14 +157,12 @@ class IcalCalendar extends Homey.App {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.updateCalendar);
 		}
 		catch (err) {
-			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.updateCalendar + "':", err);
 		}
 
 		try {
 			await Homey.ManagerCron.unregisterTask(variableMgmt.crontask.id.triggerEvents);
 		}
 		catch (err) {
-			//this.log("unregisterCronTask: Error unregistering task '" + variableMgmt.crontask.id.triggerEvents + "':", err);
 		}
 	}
 	
@@ -178,19 +172,17 @@ class IcalCalendar extends Homey.App {
 		try {
 			const cronTaskUpdateCalendar = await Homey.ManagerCron.registerTask(variableMgmt.crontask.id.updateCalendar, variableMgmt.crontask.schedule.updateCalendar);
 			cronTaskUpdateCalendar.on('run', () => this.getEvents());
-			this.log("registerCronTask: Registered task '" + variableMgmt.crontask.id.updateCalendar + "' with cron format '" + variableMgmt.crontask.schedule.updateCalendar + "'");
+			//this.log(`registerCronTask: Registered task '${variableMgmt.crontask.id.updateCalendar}' with cron format '${variableMgmt.crontask.schedule.updateCalendar}'`);
 		}
 		catch (err) {
-			this.log("registerCronTask: Error registering task '" + variableMgmt.crontask.id.updateCalendar + "' with cron format '" + variableMgmt.crontask.schedule.updateCalendar + "':", err);
 		}
 
 		try {
 			const cronTaskTriggerEvents = await Homey.ManagerCron.registerTask(variableMgmt.crontask.id.triggerEvents, variableMgmt.crontask.schedule.triggerEvents);
 			cronTaskTriggerEvents.on('run', () => this.triggerEvents());
-			this.log("registerCronTask: Registered task '" + variableMgmt.crontask.id.triggerEvents + "' with cron format '" + variableMgmt.crontask.schedule.triggerEvents + "'");
+			//this.log(`registerCronTask: Registered task '${variableMgmt.crontask.id.triggerEvents}' with cron format '${variableMgmt.crontask.schedule.triggerEvents}'`);
 		}
 		catch (err) {
-			this.log("registerCronTask: Error registering task '" + variableMgmt.crontask.id.triggerEvents + "' with cron format '" + variableMgmt.crontask.schedule.triggerEvents + "':", err);
 		}
 	}
 }

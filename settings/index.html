@@ -70,11 +70,11 @@
                 // Tell Homey we're ready to be displayed
                 Homey.ready();
 
-                var settingsUris = 'uris';
-                var settingsDateFormat = 'dateFormat';
-                var settingsTimeFormat = 'timeFormat';
-                var newItemElement = document.getElementById('newItem');
-                var saveElement = document.getElementById('save');
+                let settingsUris = 'uris';
+                let settingsDateFormat = 'dateFormat';
+                let settingsTimeFormat = 'timeFormat';
+                let newItemElement = document.getElementById('newItem');
+                let saveElement = document.getElementById('save');
 
                 // get uri from settings
                 Homey.get(settingsUris, (err, uris) => {
@@ -146,13 +146,13 @@
                 newElement.children[8].id = `uri-uri${newElementIndex}`;
 
                 // create remove button
-                let removeButton = document.createElement("button");
+                let removeButton = document.createElement('button');
                 removeButton.onclick = function () {
                     document.getElementById('calendars').removeChild(this.parentNode);
                 }
                 removeButton.textContent = Homey.__('settings.buttons.remove');
-                newElement.appendChild(document.createElement("br"));
-                newElement.appendChild(document.createElement("br"));
+                newElement.appendChild(document.createElement('br'));
+                newElement.appendChild(document.createElement('br'));
                 newElement.appendChild(removeButton);
 
                 // set values
@@ -183,14 +183,15 @@
             }
 
             function saveCalendarItems() {
-                let calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
+                let calendars = unfuckHtmlFuck(document.getElementById('calendars').children);
                 
-                return calendars.filter(calendar => calendar.localName === "fieldset").map(calendar => {
+                return calendars.filter(calendar => calendar.localName === 'fieldset').map(calendar => {
                     let name = calendar.children[3].value;
                     let uri = calendar.children[8].value;
 
                     // Replace webcal:// urls (from iCloud) with https://
-                    uri = uri.replace("webcal://", "https://");
+                    // WARNING: Apple iCal URL's are case sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
+                    uri = uri.replace('webcal://', 'https://');
 
                     return {
                         name: name,
@@ -226,21 +227,21 @@
                         return Homey.alert(err);
                     }
 
-                    var text = "";
+                    let text = '';
                     if (uris != undefined) {
                         uris.forEach(item => {
                             if (item.failed) {
-                                if (text === "") {
-                                    text = item.name + " : " + item.failed;
+                                if (text === '') {
+                                    text = `${item.name} : ${item.failed}`;
                                 }
                                 else {
-                                    text += "<br>" + item.name + " : " + item.failed;
+                                    text += `<br>${item.name} : ${item.failed}`;
                                 }
                             }
                         });
                     }
 
-                    if (text !== "") {
+                    if (text !== '') {
                         showError(text);
                     }
                     else {
@@ -250,7 +251,7 @@
             }
             
             function hideError() {
-                var errorElement = document.getElementById('uri_error');
+                let errorElement = document.getElementById('uri_error');
 
                 errorElement.classList = 'uri-error-hidden';
             }
@@ -258,12 +259,12 @@
             function showError(text) {
                 let errorElement = document.getElementById('uri_error');
 
-                errorElement.innerHTML = Homey.__('settings.uri_load_failure') + "<br>" + text;
+                errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`;
                 errorElement.classList = 'uri-error-show';
             }
 
             function unfuckHtmlFuck(fucker) {
-                var fucky = [];
+                let fucky = [];
 
                 for (const fuck in fucker) {
                     fucky.push(fucker[fuck]);
