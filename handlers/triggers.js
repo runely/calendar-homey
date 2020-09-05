@@ -346,10 +346,7 @@ module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
         app.log('updateTokens: Updating flow tokens');
 
-        let flowTokensStart = moment().format('x');
         updateFlowTokens(app);
-        let flowTokensStop = moment().format('x');
-        app.log(`updateTokens: Update took '${(flowTokensStop - flowTokensStart) / 1000}' seconds`);
         
         resolve(true);
     });
