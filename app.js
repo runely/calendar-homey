@@ -123,16 +123,50 @@ class IcalCalendar extends Homey.App {
 			// register calendar tokens
 			if (variableMgmt.calendars.length > 0) {
 				await Promise.all(variableMgmt.calendars.map(async (calendar) => {
+					// todays events pr calendar
 					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostTodayId}`, { type: 'string', title: `${Homey.__('calendarTokens.events_today_calendar_title_stamps')} ${calendar.name}`}).register()
 						.then(token => {
 							variableMgmt.calendarTokens.push(token);
 							this.log(`getEvents: Registered calendarToken '${token.id}'`);
 					});
+					// tomorrows events pr calendar
 					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostTomorrowId}`, { type: 'string', title: `${Homey.__('calendarTokens.events_tomorrow_calendar_title_stamps')} ${calendar.name}`}).register()
 						.then(token => {
 							variableMgmt.calendarTokens.push(token);
 							this.log(`getEvents: Registered calendarToken '${token.id}'`);
 					});
+
+					// next event title pr calendar
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostNextTitleId}`, { type: 'string', title: `${Homey.__('calendarTokens.event_next_title_calendar')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+					// next event start date pr calendar
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostNextStartDateId}`, { type: 'string', title: `${Homey.__('calendarTokens.event_next_startdate_calendar')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+					// next event start time pr calendar
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostNextStartTimeId}`, { type: 'string', title: `${Homey.__('calendarTokens.event_next_startstamp_calendar')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+					// next event end date pr calendar
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostNextEndDateId}`, { type: 'string', title: `${Homey.__('calendarTokens.event_next_enddate_calendar')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+					// next event end time pr calendar
+					new Homey.FlowToken(`${variableMgmt.calendarTokensPreId}${calendar.name}${variableMgmt.calendarTokensPostNextEndTimeId}`, { type: 'string', title: `${Homey.__('calendarTokens.event_next_endstamp_calendar')} ${calendar.name}`}).register()
+						.then(token => {
+							variableMgmt.calendarTokens.push(token);
+							this.log(`getEvents: Registered calendarToken '${token.id}'`);
+					});
+
 				}));
 			}
 		}

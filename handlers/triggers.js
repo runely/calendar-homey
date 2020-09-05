@@ -108,6 +108,25 @@ const startTrigger = (calendarName, event, app, state) => {
     }
 }
 
+const getNextEventCalendar = (app, calendarName, nextEvent) => {
+    if (!nextEvent) {
+        app.log(`getNextEventCalendar: nextEvent not set. Getting next event for calendar '${calendarName}'`);
+        return { calendarName, event: getNextEvent(app.variableMgmt.calendars, calendarName) };
+    }
+    else if (nextEvent && nextEvent.calendarName !== calendarName) {
+        app.log(`getNextEventCalendar: nextEvent already set but for calendar '${nextEvent.calendarName}'. Getting next event for calendar '${calendarName}'`);
+        return { calendarName, event: getNextEvent(app.variableMgmt.calendars, calendarName) };
+    }
+    else if (nextEvent && nextEvent.calendarName === calendarName) {
+        app.log(`getNextEventCalendar: nextEvent already set for calendar '${nextEvent.calendarName}' (${calendarName}). Using this one`);
+        return nextEvent;
+    }
+    else {
+        app.log('getNextEventCalendar: What what what????')
+        return null;
+    }
+}
+
 const updateFlowTokens = (app) => {
     let nextEvent = getNextEvent(app.variableMgmt.calendars);
     let eventsToday = getTodaysEvents(app.variableMgmt.calendars);
@@ -187,10 +206,12 @@ const updateFlowTokens = (app) => {
     });
 
     // loop through calendar tokens
+    let calendarNextEvent;
     app.variableMgmt.calendarTokens.map(token => {
         let calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '');
-        let calendarName = calendarId.replace(app.variableMgmt.calendarTokensPostTodayId, '').replace(app.variableMgmt.calendarTokensPostTomorrowId, '');
+        let calendarName = calendarId.replace(app.variableMgmt.calendarTokensPostTodayId, '').replace(app.variableMgmt.calendarTokensPostTomorrowId, '').replace(app.variableMgmt.calendarTokensPostNextTitleId, '').replace(app.variableMgmt.calendarTokensPostNextStartDateId, '').replace(app.variableMgmt.calendarTokensPostNextStartTimeId, '').replace(app.variableMgmt.calendarTokensPostNextEndDateId, '').replace(app.variableMgmt.calendarTokensPostNextEndTimeId, '');
         let calendarType = calendarId.replace(`${calendarName}_`, '');
+        app.log(`updateFlowTokens\\calendarTokens: Setting tokens for calendar '${calendarName}'`);
         let value = '';
 
         if (calendarType === 'today') {
@@ -202,6 +223,57 @@ const updateFlowTokens = (app) => {
             let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
             //app.log(`updateFlowTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
             value = getEventsForToken(app, tomorrowsEventsCalendar) || '';
+        }
+        else if (calendarType === 'next_title') {
+            /*if (!calendarNextEvent) {
+                app.log(`updateFlowTokens: calendarNextEvent not set. Getting next event for calendar '${calendarName}'`);
+                calendarNextEvent = { calendarName, event: getNextEvent(app.variableMgmt.calendars, calendarName) };
+            }
+            else if (calendarNextEvent && calendarNextEvent.calendarName !== calendarName) {
+                app.log(`updateFlowTokens: calendarNextEvent already set but for calendar '${calendarNextEvent.calendarName}'. Getting next event for calendar '${calendarName}'`);
+                calendarNextEvent = { calendarName, event: getNextEvent(app.variableMgmt.calendars, calendarName) };
+            }
+            else if (calendarNextEvent && calendarNextEvent.calendarName === calendarName) {
+                app.log(`updateFlowTokens: calendarNextEvent already set for calendar '${calendarNextEvent.calendarName}' (${calendarName}). Using this one`);
+            }*/
+            calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
+            value = calendarNextEvent.event ? calendarNextEvent.event.summary : '';
+        }
+        else if (calendarType === 'next_startdate') {
+            calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
+            value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+        }
+        else if (calendarType === 'next_starttime') {
+            calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
+            if (calendarNextEvent.event) {
+                if (calendarNextEvent.event.datetype === 'date-time') {
+                    value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time);
+                }
+                else if (calendarNextEvent.event.datetype === 'date') {
+                    value = `00${app.variableMgmt.dateTimeFormat.time.splitter}00`;
+                }
+            }
+            else {
+                value = '';
+            }
+        }
+        else if (calendarType === 'next_enddate') {
+            calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
+            value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+        }
+        else if (calendarType === 'next_endtime') {
+            calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
+            if (calendarNextEvent.event) {
+                if (calendarNextEvent.event.datetype === 'date-time') {
+                    value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time);
+                }
+                else if (calendarNextEvent.event.datetype === 'date') {
+                    value = `00${app.variableMgmt.dateTimeFormat.time.splitter}00`;
+                }
+            }
+            else {
+                value = '';
+            }
         }
         token.setValue(value);
     });
@@ -285,7 +357,10 @@ module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
         app.log('updateTokens: Updating flow tokens');
 
+        let flowTokensStart = moment().format('x');
         updateFlowTokens(app);
+        let flowTokensStop = moment().format('x');
+        app.log(`updateTokens: Update took '${(scriptEnd - scriptStart) / 1000}' seconds`);
         
         resolve(true);
     });
