@@ -178,11 +178,11 @@ class IcalCalendar extends Homey.App {
 		// update flow tokens and trigger events IF events exists
 		if (variableMgmt.calendars) {
 			// first, update flow tokens, then trigger events
-			triggersHandler.updateTokens(this)
-				.catch(error => this.log('triggerEvents: Failed in updateTokens Promise:', error));
+			await triggersHandler.updateTokens(this)
+				.catch(error => this.log('app.triggerEvents: Failed in updateTokens Promise:', error));
 
-			triggersHandler.triggerEvents(this)
-				.catch(error => this.log('triggerEvents: Failed in triggerEvents Promise:', error));
+			await triggersHandler.triggerEvents(this)
+				.catch(error => this.log('app.triggerEvents: Failed in triggerEvents Promise:', error));
 		}
 	}
 
