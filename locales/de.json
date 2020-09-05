@@ -35,7 +35,12 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Heutige Ereignisse in",
-        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in"
+        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",
+        "event_next_title_calendar": "Nächster Ereignistitel in",
+        "event_next_startdate_calendar": "Startdatum der nächsten Ereignisses in",
+        "event_next_startstamp_calendar": "Beginn des nächsten Ereignisses in",
+        "event_next_enddate_calendar": "Enddatum der nächsten Ereignisses in",
+        "event_next_endstamp_calendar": "Ende des nächsten Ereignisses in"
     },
     "flowTokens": {
         "event_next_title": "Nächster Ereignistitel",
