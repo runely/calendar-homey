@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Diverse innstillinger",
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
+        },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",
@@ -35,7 +39,12 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
-        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
+        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
+        "event_next_title_calendar": "Tittel neste avtale i",
+        "event_next_startdate_calendar": "Startdato neste avtale i",
+        "event_next_startstamp_calendar": "Starttidspunkt neste avtale i",
+        "event_next_enddate_calendar": "Stoppdato neste avtale i",
+        "event_next_endstamp_calendar": "Stopptidspunkt neste avtale i"
     },
     "flowTokens": {
         "event_next_title": "Tittel neste avtale",

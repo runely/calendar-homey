@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Diverse instellingen",
+            "nextEventTokensPerCalendar": "Volgende evenementtags per kalender"
+        },
         "buttons": {
             "new_item": "Nieuwe kalender",
             "save": "Opslaan",
@@ -35,7 +39,12 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
-        "events_tomorrow_calendar_title_stamps": "Events morgen over"
+        "events_tomorrow_calendar_title_stamps": "Events morgen over",
+        "event_next_title_calendar": "Volgende event title over",
+        "event_next_startdate_calendar": "Volgende event startdatum over",
+        "event_next_startstamp_calendar": "Volgende event start tijd over",
+        "event_next_enddate_calendar": "Volgende event stopdatum over",
+        "event_next_endstamp_calendar": "Volgende event stop tijd over"
     },
     "flowTokens": {
         "event_next_title": "Volgende event title",

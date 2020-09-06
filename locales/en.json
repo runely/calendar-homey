@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Misc settings",
+            "nextEventTokensPerCalendar": "Next event tags per calendar"
+        },
         "buttons": {
             "new_item": "New calendar",
             "save": "Save",
@@ -35,7 +39,12 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Todays events in",
-        "events_tomorrow_calendar_title_stamps": "Tomorrows events in"
+        "events_tomorrow_calendar_title_stamps": "Tomorrows events in",
+        "event_next_title_calendar": "Next event title in",
+        "event_next_startdate_calendar": "Next event start date in",
+        "event_next_startstamp_calendar": "Next event start time in",
+        "event_next_enddate_calendar": "Next event stop date in",
+        "event_next_endstamp_calendar": "Next event stop time in"
     },
     "flowTokens": {
         "event_next_title": "Next event title",
