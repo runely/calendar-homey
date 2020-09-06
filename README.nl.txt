@@ -5,6 +5,7 @@ Instellingen
 - Open settings (app configuratie)
     - En plak de ical link
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
+    - Kies of u de volgende evenemententags per kalender wilt hebben. Standaard is uitgeschakeld
 
 Exchange Online ical link
 
@@ -55,7 +56,7 @@ Condities
 Acties
 - Sync kalenders
 
-Algemene flow tokens (kunenn worden gebruikt in elke app en service)
+Algemene flow tags (kunenn worden gebruikt in elke app en service)
 - Volgende event naam
 - Volgende event startdatum
 - Volgende event start tijd

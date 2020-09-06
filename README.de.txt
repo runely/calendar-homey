@@ -5,6 +5,7 @@ Setup
 - Einstellungen öffnen (App konfigurieren)
     - Den ical-Link einfügen
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
+    - Wählen Sie aus, ob Sie die nächsten Ereignistags pro Kalender möchten oder nicht. Standard ist aus
 
 Den Exchange Online ical-Link finden
 
@@ -55,7 +56,7 @@ Bedingungen
 Aktionen
 - Kalender synchronisieren
 
-Globale Flow-Token (können in jeder Anwendung und jedem Dienst verwendet werden)
+Globale Flow-Tags (können in jeder Anwendung und jedem Dienst verwendet werden)
 - Nächster Ereignistitel
 - Startdatum der nächsten Ereignisse
 - Beginn des nächsten Ereignisses

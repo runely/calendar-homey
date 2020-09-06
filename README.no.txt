@@ -5,6 +5,7 @@ Oppsett
 - Åpne innstillinger (konfigurer app)
     - Lim inn ical-lenken
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
+    - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
 
 Hvordan finne Exchange Online ical-lenken
 
@@ -55,7 +56,7 @@ Conditions
 Actions
 - Synkroniser kalenderene
 
-Globale flyt tokens (kan bli brukt i alle apper og servicer)
+Globale flyt tagger (kan bli brukt i alle apper og servicer)
 - Tittel neste avtale
 - Startdato neste avtale
 - Starttidspunkt neste avtale
