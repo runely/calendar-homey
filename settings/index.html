@@ -57,6 +57,15 @@
             </fieldset>
         </div>
 
+        <div class="misc">
+            <fieldset>
+                <legend data-i18n="settings.misc.legend"></legend>
+
+                <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br>
+                <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
+            </fieldset>
+        </div>
+
         <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
         <button id="save" class="right" data-i18n="settings.buttons.save"></button>
 
@@ -73,6 +82,7 @@
                 let settingsUris = 'uris';
                 let settingsDateFormat = 'dateFormat';
                 let settingsTimeFormat = 'timeFormat';
+                let settingsMiscNextEventTokensPerCalendar = "nextEventTokensPerCalendar";
                 let newItemElement = document.getElementById('newItem');
                 let saveElement = document.getElementById('save');
 
@@ -92,6 +102,12 @@
                 Homey.get(settingsTimeFormat, (err, time) => {
                     if (err) return Homey.alert(err);
                     getDateTimeFormat('time', time);
+                });
+
+                // get nextEventTokensPerCalendar from settings
+                Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
+                    if (err) return Homey.alert(err);
+                    getMiscSetting(settingsMiscNextEventTokensPerCalendar, state);
                 });
 
                 // save uri to settings
@@ -119,6 +135,10 @@
                     else {
                         return;
                     }
+
+                    Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function(err) {
+                        if (err) return Homey.alert(err);
+                    });
 
                     hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
@@ -182,6 +202,18 @@
                 document.getElementById(`datetime-${type}`).value = format;
             }
 
+            function getMiscSetting(setting, state) {
+                if (state) {
+                    let element = document.getElementById(`misc-${setting}`);
+                    if (typeof state === 'boolean') {
+                        element.checked = state;
+                    }
+                    else if (typeof state === 'string') {
+                        element.value = state;
+                    }
+                }
+            }
+
             function saveCalendarItems() {
                 let calendars = unfuckHtmlFuck(document.getElementById('calendars').children);
                 
@@ -198,6 +230,16 @@
                         uri: uri
                     };
                 });
+            }
+
+            function saveMiscSetting(setting) {
+                let element = document.getElementById(`misc-${setting}`);
+                if (element.type === 'checkbox') {
+                    return element.checked;
+                }
+                else if (element.type === 'text') {
+                    return element.value;
+                }
             }
 
             function saveDateTimeFormat(type) {

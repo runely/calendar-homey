@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Verschiedene Einstellungen",
+            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
+        },
         "buttons": {
             "new_item": "Neuer Kalender",
             "save": "Speichern",

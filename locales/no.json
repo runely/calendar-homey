@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Diverse innstillinger",
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
+        },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",

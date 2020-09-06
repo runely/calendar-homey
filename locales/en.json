@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Misc settings",
+            "nextEventTokensPerCalendar": "Next event tags per calendar"
+        },
         "buttons": {
             "new_item": "New calendar",
             "save": "Save",

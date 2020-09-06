@@ -22,6 +22,10 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Diverse instellingen",
+            "nextEventTokensPerCalendar": "Volgende evenementtags per kalender"
+        },
         "buttons": {
             "new_item": "Nieuwe kalender",
             "save": "Opslaan",
