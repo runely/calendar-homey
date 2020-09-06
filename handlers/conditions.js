@@ -42,7 +42,7 @@ module.exports = async (app) => {
     };
 
     const onEventAutocomplete = async (query, args) => {
-        if (!app.variableMgmt.calendars) {
+        if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
             app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...');
             return Promise.reject(false);
         }
@@ -146,10 +146,10 @@ module.exports = async (app) => {
     const checkEvent = async (args, state, type) => {
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
-			filteredEvents = filterByUID(app.variableMgmt.calendars, args.event.id);
+			filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
-			filteredEvents = app.variableMgmt.calendars;
+			filteredEvents = app.variableMgmt.calendars | [];
 		}
 		if (!filteredEvents || !filteredEvents.length) {
 			app.log('checkEvent: filteredEvents empty... Resolving with false');
