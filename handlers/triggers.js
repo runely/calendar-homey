@@ -57,12 +57,10 @@ const getTriggerTokenValue = (key) => {
 }
 
 const getTriggerTokenDuration = (event) => {
-    let eventDuration = {};
-
     // get duration
     let diff = event.end.diff(event.start, 'minutes');
 
-    // add duration
+    // calculate readable duration
     let hours = diff/60;
     let output = '';
     if (hours >= 1 && hours < 2) {
@@ -78,13 +76,11 @@ const getTriggerTokenDuration = (event) => {
         output = '';
     }
 
-    // must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
-    eventDuration.duration = output.replace('.', ',');
-
-    // add durationMinutes
-    eventDuration.durationMinutes = diff;
-
-    return eventDuration;
+    return {
+        // must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
+        duration: output.replace('.', ','),
+        durationMinutes: diff
+    };
 }
 
 const startTrigger = (calendarName, event, app, state) => {
