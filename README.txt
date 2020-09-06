@@ -73,3 +73,10 @@ Global flow tags (can be used in any app and service)
 - Tomorrows events (count)
 - Todays events per calendar
 - Tomorrows events per calendar
+
+Next event tags per calendar (can be turned on in the settings)
+- Next event title in %calendarname%
+- Next event start date in %calendarname%
+- Next event start time in %calendarname%
+- Next event stop date in %calendarname%
+- Next event stop time in %calendarname%

@@ -73,3 +73,10 @@ Algemene flow tags (kunenn worden gebruikt in elke app en service)
 - Events morgen (aantal)
 - Events vandaag per kalender
 - Events morgen per kalender
+
+Volgende event-tags per kalender (kan worden ingeschakeld in de instellingen)
+- Volgende event titel over %calendarname%
+- Volgende event startdatum over %calendarname%
+- Volgende event starttijd over %calendarname%
+- Volgende event stopdatum over %calendarname%
+- Volgende event stoptijd over %calendarname%

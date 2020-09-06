@@ -73,3 +73,10 @@ Globale Flow-Tags (können in jeder Anwendung und jedem Dienst verwendet werden)
 - Morgige Ereignisse (Anzahl)
 - Heutige Ereignisse pro Kalender
 - Morgige Ereignisse pro Kalender
+
+Die nächsten Ereignistags pro Kalender (kann in den Einstellungen aktiviert werden)
+- Nächster Ereignistitel in %calendarname%
+- Startdatum der nächsten Ereignisses in %calendarname%
+- Beginn des nächsten Ereignisses in %calendarname%
+- Enddatum der nächsten Ereignisses in %calendarname%
+- Ende des nächsten Ereignisses in %calendarname%

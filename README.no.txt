@@ -73,3 +73,10 @@ Globale flyt tagger (kan bli brukt i alle apper og servicer)
 - Morgendagens avtaler (antall)
 - Dagens avtaler pr kalender
 - Morgendagens avtaler pr kalender
+
+Neste avtaletagger per kalender (kan aktiveres i innstillinger)
+- Tittel neste avtale i %calendarname%
+- Startdato neste avtale i %calendarname%
+- Starttidspunkt neste avtale i %calendarname%
+- Stoppdato neste avtale i %calendarname%
+- Stopptidspunkt neste avtale i %calendarname%

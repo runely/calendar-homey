@@ -86,6 +86,13 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Todays events (per calendar)
 - Tomorrows events (per calendar)
 
+### Next event tags per calendar (can be turned on in the settings)
+- Next event title in %calendarname%
+- Next event start date in %calendarname%
+- Next event start time in %calendarname%
+- Next event stop date in %calendarname%
+- Next event stop time in %calendarname%
+
 
 ## Recurring events
 
