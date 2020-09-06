@@ -5,7 +5,7 @@ Instellingen
 - Open settings (app configuratie)
     - En plak de ical link
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
-    - Kies of u de volgende evenemententags per kalender wilt hebben. Standaard is uitgeschakeld
+    - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
 
 Exchange Online ical link
 
