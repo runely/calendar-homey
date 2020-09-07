@@ -59,11 +59,11 @@ Acties
 Algemene flow tags (kunenn worden gebruikt in elke app en service)
 - Volgende event naam
 - Volgende event startdatum
-- Volgende event start tijd
+- Volgende event starttijd
 - Volgende event stopdatum
-- Volgende event stop tijd
-- Volgende event looptijd
-- Volgende event looptijd (minuten)
+- Volgende event stoptijd
+- Volgende event tijdsduur
+- Volgende event tijdsduur (minuten)
 - Volgende event start over (minuten)
 - Volgende event stopt in (minuten)
 - Kalender naan van het volgende event
