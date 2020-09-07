@@ -6,6 +6,7 @@
     "homey": "2.7.0"
   },
   "dependencies": {
+    "humanize-duration": "3.23.1",
     "moment": "^2.26.0",
     "node-ical": "^0.11.3"
   }

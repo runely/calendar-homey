@@ -116,6 +116,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
         - Next event start time in %calendarname%
         - Next event stop date in %calendarname%
         - Next event stop time in %calendarname%
+    - Humanized next event duration -> [Issue #137](https://github.com/runely/calendar-homey/issues/137)
+    - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.5
     - Date and Time format used in the app can now be changed in the settings. If not changed, default is used.
     - Added trigger 'Event starts from calendar'

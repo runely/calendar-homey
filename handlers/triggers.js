@@ -2,6 +2,7 @@
 
 const Homey = require('homey');
 const moment = require('moment');
+const humanize = require('humanize-duration');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
 const getTomorrowsEvents = require('../lib/get-tomorrows-events');
@@ -57,29 +58,11 @@ const getTriggerTokenValue = (key) => {
 }
 
 const getTriggerTokenDuration = (event) => {
-    // get duration
-    let diff = event.end.diff(event.start, 'minutes');
-
-    // calculate readable duration
-    let hours = diff/60;
-    let output = '';
-    if (hours >= 1 && hours < 2) {
-        output = `${getNumber(hours)} ${Homey.__('tokens.duration_hour')}`;
-    }
-    else if (hours >= 2) {
-        output = `${getNumber(hours)} ${Homey.__('tokens.duration_hours')}`;
-    }
-    else if (hours < 1) {
-        output = `${diff} ${Homey.__('tokens.duration_minutes')}`;
-    }
-    else {
-        output = '';
-    }
+    let durationMS = event.end.diff(event.start, 'milliseconds');
 
     return {
-        // must replace '.' with ',' to get correct output on Google Home (amongst other things i guess)
-        duration: output.replace('.', ','),
-        durationMinutes: diff
+        duration: humanize(durationMS, { language: Homey.__('locale'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
+        durationMinutes: event.end.diff(event.start, 'minutes')
     };
 }
 

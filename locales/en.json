@@ -1,4 +1,5 @@
 {
+    "locale": "en",
     "settings": {
         "title": "Settings",
         "saved_alert": "Settings saved",
