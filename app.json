@@ -131,7 +131,7 @@
             "title": {
               "en": "Duration",
               "no": "Varighet",
-              "nl": "Looptijd",
+              "nl": "Tijdsduur",
               "de": "Dauer"
             },
             "example": {
@@ -147,7 +147,7 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter",
-              "nl": "Looptijd in minuten",
+              "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten"
             },
             "example": {
@@ -250,7 +250,7 @@
             "title": {
               "en": "Duration",
               "no": "Varighet",
-              "nl": "Looptijd",
+              "nl": "Tijdsduur",
               "de": "Dauer"
             },
             "example": {
@@ -266,7 +266,7 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter",
-              "nl": "Looptijd in minuten",
+              "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten"
             },
             "example": {
@@ -357,7 +357,7 @@
             "title": {
               "en": "Duration",
               "no": "Varighet",
-              "nl": "Looptijd",
+              "nl": "Tijdsduur",
               "de": "Dauer"
             },
             "example": {
@@ -373,7 +373,7 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter",
-              "nl": "Looptijd in minuten",
+              "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten"
             },
             "example": {
@@ -520,7 +520,7 @@
             "title": {
               "en": "Duration",
               "no": "Varighet",
-              "nl": "Looptijd",
+              "nl": "Tijdsduur",
               "de": "Dauer"
             },
             "example": {
@@ -536,7 +536,7 @@
             "title": {
               "en": "Duration in minutes",
               "no": "Varighet i minutter",
-              "nl": "Looptijd in minuten",
+              "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten"
             },
             "example": {
