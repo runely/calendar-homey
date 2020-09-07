@@ -5,7 +5,7 @@ Setup
 - Einstellungen öffnen (App konfigurieren)
     - Den ical-Link einfügen
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
-    - Wählen Sie aus, ob Sie die nächsten Ereignistags pro Kalender möchten oder nicht. Standard ist aus
+    - Wählen Sie aus, ob Sie die nächsten Ereignistags pro Kalender möchten oder nicht. Standardeinstellung ist aus
 
 Den Exchange Online ical-Link finden
 
