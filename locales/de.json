@@ -33,11 +33,6 @@
             "remove": "Löschen"
         }
     },
-    "tokens": {
-        "duration_minutes": "Minuten",
-        "duration_hour": "Stunde",
-        "duration_hours": "Stunden"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Heutige Ereignisse in",
         "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",

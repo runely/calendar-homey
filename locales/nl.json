@@ -33,11 +33,6 @@
             "remove": "Verwijderen"
         }
     },
-    "tokens": {
-        "duration_minutes": "minuten",
-        "duration_hour": "uur",
-        "duration_hours": "uren"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
         "events_tomorrow_calendar_title_stamps": "Events morgen over",

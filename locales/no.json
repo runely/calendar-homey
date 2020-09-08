@@ -33,11 +33,6 @@
             "remove": "Fjern"
         }
     },
-    "tokens": {
-        "duration_minutes": "minutter",
-        "duration_hour": "time",
-        "duration_hours": "timer"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
         "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
