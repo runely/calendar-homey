@@ -460,8 +460,8 @@
       {
         "id": "event_stops",
         "title": {
-          "en": "Event stops",
-          "no": "En avtale ender",
+          "en": "Event ends",
+          "no": "En avtale slutter",
           "nl": "Event stopt",
           "de": "Ereignis endet"
         },
@@ -643,8 +643,8 @@
       {
         "id": "any_event_stops_in",
         "title": {
-          "en": "Any event !{{stops|doesn't stop}} within...",
-          "no": "En avtale !{{stopper|stopper ikke}} innen...",
+          "en": "Any event !{{ends|doesn't end}} within...",
+          "no": "En avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Een event !{{stopt|stopt niet}} over...",
           "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb..."
         },
@@ -804,8 +804,8 @@
       {
         "id": "event_stops_in",
         "title": {
-          "en": "Specific event !{{stops|doesn't stop}} within...",
-          "no": "Spesifikk avtale !{{stopper|stopper ikke}} innen...",
+          "en": "Specific event !{{ends|doesn't end}} within...",
+          "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Specifiek event !{{stopt|stopt niet}} over...",
           "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
         },
