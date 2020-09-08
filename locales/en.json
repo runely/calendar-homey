@@ -1,4 +1,5 @@
 {
+    "locale": "en",
     "settings": {
         "title": "Settings",
         "saved_alert": "Settings saved",
@@ -22,31 +23,35 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Misc settings",
+            "nextEventTokensPerCalendar": "Next event tags per calendar"
+        },
         "buttons": {
             "new_item": "New calendar",
             "save": "Save",
             "remove": "Remove"
         }
     },
-    "tokens": {
-        "duration_minutes": "minutes",
-        "duration_hour": "hour",
-        "duration_hours": "hours"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Todays events in",
-        "events_tomorrow_calendar_title_stamps": "Tomorrows events in"
+        "events_tomorrow_calendar_title_stamps": "Tomorrows events in",
+        "event_next_title_calendar": "Next event title in",
+        "event_next_startdate_calendar": "Next event start date in",
+        "event_next_startstamp_calendar": "Next event start time in",
+        "event_next_enddate_calendar": "Next event end date in",
+        "event_next_endstamp_calendar": "Next event end time in"
     },
     "flowTokens": {
         "event_next_title": "Next event title",
         "event_next_startdate": "Next event start date",
         "event_next_startstamp": "Next event start time",
-        "event_next_stopdate": "Next event stop date",
-        "event_next_stopstamp": "Next event stop time",
+        "event_next_stopdate": "Next event end date",
+        "event_next_stopstamp": "Next event end time",
         "event_next_duration": "Next event duration",
         "event_next_duration_minutes": "Next event duration (minutes)",
         "event_next_starts_in_minutes": "Next event starts in (minutes)",
-        "event_next_stops_in_minutes": "Next event stops in (minutes)",
+        "event_next_stops_in_minutes": "Next event ends in (minutes)",
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",

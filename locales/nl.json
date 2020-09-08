@@ -1,4 +1,5 @@
 {
+    "locale": "nl",
     "settings": {
         "title": "Instellingen",
         "saved_alert": "Instellingen opgeslagen",
@@ -22,29 +23,33 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Overige instellingen",
+            "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
+        },
         "buttons": {
             "new_item": "Nieuwe kalender",
             "save": "Opslaan",
             "remove": "Verwijderen"
         }
     },
-    "tokens": {
-        "duration_minutes": "minuten",
-        "duration_hour": "uur",
-        "duration_hours": "uren"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
-        "events_tomorrow_calendar_title_stamps": "Events morgen over"
+        "events_tomorrow_calendar_title_stamps": "Events morgen over",
+        "event_next_title_calendar": "Volgende event titel over",
+        "event_next_startdate_calendar": "Volgende event startdatum over",
+        "event_next_startstamp_calendar": "Volgende event starttijd over",
+        "event_next_enddate_calendar": "Volgende event stopdatum over",
+        "event_next_endstamp_calendar": "Volgende event stoptijd over"
     },
     "flowTokens": {
         "event_next_title": "Volgende event title",
         "event_next_startdate": "Volgende event startdatum",
-        "event_next_startstamp": "Volgende event start tijd",
+        "event_next_startstamp": "Volgende event starttijd",
         "event_next_stopdate": "Volgende event stopdatum",
-        "event_next_stopstamp": "Volgende event stop tijd",
-        "event_next_duration": "Looptijd volgende event",
-        "event_next_duration_minutes": "Looptijd volgende event (minuten)",
+        "event_next_stopstamp": "Volgende event stoptijd",
+        "event_next_duration": "Tijdsduur volgende event",
+        "event_next_duration_minutes": "Tijdsduur volgende event (minuten)",
         "event_next_starts_in_minutes": "Volgende event start over (minuten)",
         "event_next_stops_in_minutes": "Volgende event stopt over (minuten)",
         "event_next_calendar_name": "Kalender naam van het volgende event",

@@ -57,6 +57,15 @@
             </fieldset>
         </div>
 
+        <div class="misc">
+            <fieldset>
+                <legend data-i18n="settings.misc.legend"></legend>
+
+                <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br>
+                <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
+            </fieldset>
+        </div>
+
         <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
         <button id="save" class="right" data-i18n="settings.buttons.save"></button>
 
@@ -70,11 +79,12 @@
                 // Tell Homey we're ready to be displayed
                 Homey.ready();
 
-                var settingsUris = 'uris';
-                var settingsDateFormat = 'dateFormat';
-                var settingsTimeFormat = 'timeFormat';
-                var newItemElement = document.getElementById('newItem');
-                var saveElement = document.getElementById('save');
+                let settingsUris = 'uris';
+                let settingsDateFormat = 'dateFormat';
+                let settingsTimeFormat = 'timeFormat';
+                let settingsMiscNextEventTokensPerCalendar = "nextEventTokensPerCalendar";
+                let newItemElement = document.getElementById('newItem');
+                let saveElement = document.getElementById('save');
 
                 // get uri from settings
                 Homey.get(settingsUris, (err, uris) => {
@@ -92,6 +102,12 @@
                 Homey.get(settingsTimeFormat, (err, time) => {
                     if (err) return Homey.alert(err);
                     getDateTimeFormat('time', time);
+                });
+
+                // get nextEventTokensPerCalendar from settings
+                Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
+                    if (err) return Homey.alert(err);
+                    getMiscSetting(settingsMiscNextEventTokensPerCalendar, state);
                 });
 
                 // save uri to settings
@@ -120,6 +136,10 @@
                         return;
                     }
 
+                    Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function(err) {
+                        if (err) return Homey.alert(err);
+                    });
+
                     hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
                 });
@@ -146,13 +166,13 @@
                 newElement.children[8].id = `uri-uri${newElementIndex}`;
 
                 // create remove button
-                let removeButton = document.createElement("button");
+                let removeButton = document.createElement('button');
                 removeButton.onclick = function () {
                     document.getElementById('calendars').removeChild(this.parentNode);
                 }
                 removeButton.textContent = Homey.__('settings.buttons.remove');
-                newElement.appendChild(document.createElement("br"));
-                newElement.appendChild(document.createElement("br"));
+                newElement.appendChild(document.createElement('br'));
+                newElement.appendChild(document.createElement('br'));
                 newElement.appendChild(removeButton);
 
                 // set values
@@ -182,21 +202,44 @@
                 document.getElementById(`datetime-${type}`).value = format;
             }
 
+            function getMiscSetting(setting, state) {
+                if (state) {
+                    let element = document.getElementById(`misc-${setting}`);
+                    if (typeof state === 'boolean') {
+                        element.checked = state;
+                    }
+                    else if (typeof state === 'string') {
+                        element.value = state;
+                    }
+                }
+            }
+
             function saveCalendarItems() {
-                let calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
+                let calendars = unfuckHtmlFuck(document.getElementById('calendars').children);
                 
-                return calendars.filter(calendar => calendar.localName === "fieldset").map(calendar => {
+                return calendars.filter(calendar => calendar.localName === 'fieldset').map(calendar => {
                     let name = calendar.children[3].value;
                     let uri = calendar.children[8].value;
 
                     // Replace webcal:// urls (from iCloud) with https://
-                    uri = uri.replace("webcal://", "https://");
+                    // WARNING: Apple iCal URL's are case sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
+                    uri = uri.replace('webcal://', 'https://');
 
                     return {
                         name: name,
                         uri: uri
                     };
                 });
+            }
+
+            function saveMiscSetting(setting) {
+                let element = document.getElementById(`misc-${setting}`);
+                if (element.type === 'checkbox') {
+                    return element.checked;
+                }
+                else if (element.type === 'text') {
+                    return element.value;
+                }
             }
 
             function saveDateTimeFormat(type) {
@@ -226,21 +269,21 @@
                         return Homey.alert(err);
                     }
 
-                    var text = "";
+                    let text = '';
                     if (uris != undefined) {
                         uris.forEach(item => {
                             if (item.failed) {
-                                if (text === "") {
-                                    text = item.name + " : " + item.failed;
+                                if (text === '') {
+                                    text = `${item.name} : ${item.failed}`;
                                 }
                                 else {
-                                    text += "<br>" + item.name + " : " + item.failed;
+                                    text += `<br>${item.name} : ${item.failed}`;
                                 }
                             }
                         });
                     }
 
-                    if (text !== "") {
+                    if (text !== '') {
                         showError(text);
                     }
                     else {
@@ -250,7 +293,7 @@
             }
             
             function hideError() {
-                var errorElement = document.getElementById('uri_error');
+                let errorElement = document.getElementById('uri_error');
 
                 errorElement.classList = 'uri-error-hidden';
             }
@@ -258,12 +301,12 @@
             function showError(text) {
                 let errorElement = document.getElementById('uri_error');
 
-                errorElement.innerHTML = Homey.__('settings.uri_load_failure') + "<br>" + text;
+                errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`;
                 errorElement.classList = 'uri-error-show';
             }
 
             function unfuckHtmlFuck(fucker) {
-                var fucky = [];
+                let fucky = [];
 
                 for (const fuck in fucker) {
                     fucky.push(fucker[fuck]);

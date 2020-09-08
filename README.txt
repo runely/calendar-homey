@@ -5,6 +5,7 @@ Setup
 - Open settings (configure app)
     - Paste in the ical link
     - Change the date/time format or use the default (your choice)
+    - Choose whether or not you want next event tags per calendar. Default is off
 
 Find Exchange Online ical link
 
@@ -55,7 +56,7 @@ Conditions
 Actions
 - Sync calendars
 
-Global flow tokens (can be used in any app and service)
+Global flow tags (can be used in any app and service)
 - Next event title
 - Next event start date
 - Next event start time
@@ -72,3 +73,10 @@ Global flow tokens (can be used in any app and service)
 - Tomorrows events (count)
 - Todays events per calendar
 - Tomorrows events per calendar
+
+Next event tags per calendar (can be turned on in the settings)
+- Next event title in %calendarname%
+- Next event start date in %calendarname%
+- Next event start time in %calendarname%
+- Next event stop date in %calendarname%
+- Next event stop time in %calendarname%

@@ -24,7 +24,7 @@ module.exports = async (app) => {
 
         new Homey.FlowCardCondition('any_event_ongoing')
             .register()
-            .registerRunListener((args, state) => checkEvent(args, state, 'any_ongoing'))
+            .registerRunListener((args, state) => checkEvent(args, state, 'any_ongoing'));
 
         new Homey.FlowCardCondition('any_event_in')
             .register()
@@ -42,13 +42,13 @@ module.exports = async (app) => {
     };
 
     const onEventAutocomplete = async (query, args) => {
-        if (!app.variableMgmt.calendars) {
-            app.log("onEventAutocomplete: Calendars not set yet. Nothing to show...");
+        if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
+            app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...');
             return Promise.reject(false);
         }
         else {
-            if (query && query !== "") {
-                var filtered = filterBySummary(app.variableMgmt.calendars, query)
+            if (query && query !== '') {
+                let filtered = filterBySummary(app.variableMgmt.calendars, query);
                 return Promise.resolve(getEventList(filtered));
             }
             else {
@@ -61,7 +61,7 @@ module.exports = async (app) => {
 		let eventList = [];
 
 		if (calendars.length === 0) {
-			app.log("getEventList: No calendars. Returning empty array");
+			app.log('getEventList: No calendars. Returning empty array');
 			return eventList;
 		}
 
@@ -69,10 +69,10 @@ module.exports = async (app) => {
 
 		calendars.forEach(calendar => {
 			calendar.events.forEach(event => {
-				let startStamp = "";
-				let stopStamp = "";
+				let startStamp = '';
+				let endStamp = '';
 				let startMoment = event.start;
-				let stopMoment = event.end;
+				let endMoment = event.end;
 
 				try {
 					if (event.datetype === 'date-time') {
@@ -83,21 +83,21 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 
-						if (stopMoment.isSame(startMoment, 'year')) {
-							if (stopMoment.isSame(startMoment, 'date')) {
-								stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.time.time);
+						if (endMoment.isSame(startMoment, 'year')) {
+							if (endMoment.isSame(startMoment, 'date')) {
+								endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.time.time);
 
 								startStamp = startStamp.replace(' ', ' - ');
 							}
 							else {
-								stopStamp = stopMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
+								endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
 							}
 						}
 						else {
-							stopStamp = stopMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
+							endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 					}
-					else if (event.datetype === "date") {
+					else if (event.datetype === 'date') {
 						if (startMoment.isSame(now, 'year')) {
 							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 						}
@@ -105,36 +105,36 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 
-						if (stopMoment.isSame(now, 'year')) {
-							if (stopMoment.isSame(startMoment, 'date')) {
-								stopStamp = "";
+						if (endMoment.isSame(now, 'year')) {
+							if (endMoment.isSame(startMoment, 'date')) {
+								endStamp = '';
 							}
 							else {
-								stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.date.short);
+								endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 							}
 						}
 						else {
-							stopStamp = stopMoment.format(app.variableMgmt.dateTimeFormat.date.long);
+							endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 					}
 				}
 				catch (err) {
-					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${stopMoment}):`, err);
-					startStamp = "";
-					stopStamp = "";
+					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err);
+					startStamp = '';
+					endStamp = '';
 				}
 
 				let name = event.summary;
 				let description = calendar.name;
 
-				if (startStamp !== '' && stopStamp !== '') {
-					description += ` -- (${startStamp} -> ${stopStamp})`;
+				if (startStamp !== '' && endStamp !== '') {
+					description += ` -- (${startStamp} -> ${endStamp})`;
 				}
-				else if (stopStamp === '') {
+				else if (endStamp === '') {
 					description += ` -- (${startStamp})`;
 				}
 
-				eventList.push({ "id": event.uid, name, description, start: event.start });
+				eventList.push({ 'id': event.uid, name, description, start: event.start });
 			});
 		});
 
@@ -146,13 +146,13 @@ module.exports = async (app) => {
     const checkEvent = async (args, state, type) => {
 		let filteredEvents;
 		if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
-			filteredEvents = filterByUID(app.variableMgmt.calendars, args.event.id);
+			filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
-			filteredEvents = app.variableMgmt.calendars;
+			filteredEvents = app.variableMgmt.calendars | [];
 		}
 		if (!filteredEvents || !filteredEvents.length) {
-			app.log("checkEvent: filteredEvents empty... Resolving with false");
+			app.log('checkEvent: filteredEvents empty... Resolving with false');
 			return Promise.resolve(false);
 		}
 
@@ -165,31 +165,31 @@ module.exports = async (app) => {
 			let eventCondition = false;
 
 			if (type === 'ongoing') {
-				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = isEventOngoing(calendar.events);
-				//app.log("checkEvent: Ongoing? " + eventCondition);
+				//app.log(`checkEvent: Ongoing? ${eventCondition}`);
 			}
 			else if (type === 'in') {
-				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log("checkEvent: Starting within " + args.when + " minutes or less? " + eventCondition);
+				//app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
 			}
 			else if (type === 'stops_in') {
-				//app.log("checkEvent: I got an event with UID '" + args.event.id + "' and SUMMARY '" + args.event.name + "'");
+				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log("checkEvent: Stopping within less than " + args.when + " minutes? " + eventCondition);
+				//app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
 			}
 			else if (type === 'any_ongoing') {
 				eventCondition = isEventOngoing(calendar.events);
-				//app.log("checkEvent: Is any of the " + calendar.events.length + " events ongoing? " + eventCondition);
+				//app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
 			}
 			else if (type === 'any_in') {
 				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log("checkEvent: Is any of the " + calendar.events.length + " events starting within " + args.when + " minutes or less? " + eventCondition);
+				//app.log(`checkEvent: Is any of the ${calendar.events.length} events starting within ${args.when} minutes or less? ${eventCondition}`);
 			}
 			else if (type === 'any_stops_in') {
 				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log("checkEvent: Is any of the " + calendar.events.length + " events stopping within " + args.when + " minutes or less? " + eventCondition);
+				//app.log(`checkEvent: Is any of the ${calendar.events.length} events ending within ${args.when} minutes or less? ${eventCondition}`);
 			}
 
 			return eventCondition;
@@ -200,9 +200,9 @@ module.exports = async (app) => {
 		return events.some(event => {
 			let now = moment();
 			let startDiff = now.diff(event.start, 'seconds');
-			let stopDiff = now.diff(event.end, 'seconds');
-			let result = (startDiff >= 0 && stopDiff <= 0);
-			//app.log(`isEventOngoing: '${event.SUMMARY}' (${event.UID}) -- ${startDiff} seconds since start -- ${stopDiff} seconds since stop -- Ongoing: ${result}`);
+			let endDiff = now.diff(event.end, 'seconds');
+			let result = (startDiff >= 0 && endDiff <= 0);
+			//app.log(`isEventOngoing: '${event.SUMMARY}' (${event.UID}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
 			return result;
 		});
 	}
@@ -211,8 +211,8 @@ module.exports = async (app) => {
 		return events.some(event => {
 			let now = moment();
 			let startDiff = event.start.diff(now, 'minutes', true);
-			let result = (startDiff <= when && startDiff >= 0)
-			//app.log("isEventIn: " + startDiff + " mintes until start -- Expecting " + when + " minutes or less -- In: " + result);
+			let result = (startDiff <= when && startDiff >= 0);
+			//app.log(`isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
 			return result;
 		});
 	}
@@ -220,9 +220,9 @@ module.exports = async (app) => {
 	const willEventNotIn = (events, when) => {
 		return events.some(event => {
 			let now = moment();
-			let stopDiff = event.end.diff(now, 'minutes', true);
-			let result = (stopDiff < when && stopDiff >= 0);
-			//app.log("willEventNotIn: " + stopDiff + " mintes until stop -- Expecting " + when + " minutes or less -- In: " + result);
+			let endDiff = event.end.diff(now, 'minutes', true);
+			let result = (endDiff < when && endDiff >= 0);
+			//app.log(`willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);
 			return result;
 		});
 	}

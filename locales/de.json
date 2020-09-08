@@ -1,4 +1,5 @@
 {
+    "locale": "de",
     "settings": {
         "title": "Einstellungen",
         "saved_alert": "Einstellungen gespeichert",
@@ -22,20 +23,24 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Sonstige Einstellungen",
+            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
+        },
         "buttons": {
             "new_item": "Neuer Kalender",
             "save": "Speichern",
             "remove": "Löschen"
         }
     },
-    "tokens": {
-        "duration_minutes": "Minuten",
-        "duration_hour": "Stunde",
-        "duration_hours": "Stunden"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Heutige Ereignisse in",
-        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in"
+        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",
+        "event_next_title_calendar": "Nächster Ereignistitel in",
+        "event_next_startdate_calendar": "Startdatum des nächsten Ereignisses in",
+        "event_next_startstamp_calendar": "Beginn des nächsten Ereignisses in",
+        "event_next_enddate_calendar": "Enddatum des nächsten Ereignisses in",
+        "event_next_endstamp_calendar": "Ende des nächsten Ereignisses in"
     },
     "flowTokens": {
         "event_next_title": "Nächster Ereignistitel",

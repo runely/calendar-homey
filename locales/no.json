@@ -1,4 +1,5 @@
 {
+    "locale": "no",
     "settings": {
         "title": "Innstillinger",
         "saved_alert": "Innstillinger lagret",
@@ -22,31 +23,35 @@
                 "default": "HH:mm"
             }
         },
+        "misc": {
+            "legend": "Diverse innstillinger",
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
+        },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",
             "remove": "Fjern"
         }
     },
-    "tokens": {
-        "duration_minutes": "minutter",
-        "duration_hour": "time",
-        "duration_hours": "timer"
-    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
-        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i"
+        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
+        "event_next_title_calendar": "Tittel neste avtale i",
+        "event_next_startdate_calendar": "Startdato neste avtale i",
+        "event_next_startstamp_calendar": "Starttidspunkt neste avtale i",
+        "event_next_enddate_calendar": "Sluttdato neste avtale i",
+        "event_next_endstamp_calendar": "Sluttidspunkt neste avtale i"
     },
     "flowTokens": {
         "event_next_title": "Tittel neste avtale",
         "event_next_startdate": "Startdato neste avtale",
         "event_next_startstamp": "Starttidspunkt neste avtale",
-        "event_next_stopdate": "Stoppdato neste avtale",
-        "event_next_stopstamp": "Stopptidspunkt neste avtale",
+        "event_next_stopdate": "Sluttdato neste avtale",
+        "event_next_stopstamp": "Sluttidspunkt neste avtale",
         "event_next_duration": "Varighet neste avtale",
         "event_next_duration_minutes": "Varighet neste avtale (minutter)",
         "event_next_starts_in_minutes": "Neste avtale starter om (minutter)",
-        "event_next_stops_in_minutes": "Neste avtale stopper om (minutter)",
+        "event_next_stops_in_minutes": "Neste avtale slutter om (minutter)",
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
         "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
