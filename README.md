@@ -109,7 +109,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 0.2.6
+- 0.3.0
     - Next event tags per calendar can be toggled on/off in settings (default is off). Will add the following tags per calendar:
         - Next event title in %calendarname%
         - Next event start date in %calendarname%
