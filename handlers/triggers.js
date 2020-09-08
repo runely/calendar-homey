@@ -13,7 +13,7 @@ const triggerAllEvents = (calendars, app) => {
     let now = moment();
 
     calendars.map(calendar => {
-        app.log(`triggerAllEvents: Triggering events from calendar '${calendar.name}'`);
+        app.log(`triggerAllEvents: Checking calendar '${calendar.name}' for events to trigger`);
         calendar.events.map(event => {
             let startDiff = now.diff(event.start, 'seconds');
             let endDiff = now.diff(event.end, 'seconds');
