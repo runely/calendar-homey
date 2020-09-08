@@ -43,15 +43,15 @@ Triggers
 - Event starts
 - Event starts in
 - Event starts from calendar
-- Event stops
+- Event ends
 
 Conditions
 - Specific event is ongoing
 - Specific event starts within
-- Specific event stops within
+- Specific event ends within
 - Any event is ongoing
 - Any event starts within
-- Any event stops within
+- Any event ends within
 
 Actions
 - Sync calendars
@@ -60,12 +60,12 @@ Global flow tags (can be used in any app and service)
 - Next event title
 - Next event start date
 - Next event start time
-- Next event stop date
-- Next event stop time
+- Next event end date
+- Next event end time
 - Next event duration
 - Next event duration (minutes)
 - Next event starts in (minutes)
-- Next event stops in (minutes)
+- Next event ends in (minutes)
 - Calendar name of next event
 - Todays events, title and time
 - Todays events (count)
@@ -78,5 +78,5 @@ Next event tags per calendar (can be turned on in the settings)
 - Next event title in %calendarname%
 - Next event start date in %calendarname%
 - Next event start time in %calendarname%
-- Next event stop date in %calendarname%
-- Next event stop time in %calendarname%
+- Next event end date in %calendarname%
+- Next event end time in %calendarname%
