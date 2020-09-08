@@ -9,15 +9,6 @@ const getTomorrowsEvents = require('../lib/get-tomorrows-events');
 const convertToMinutes = require('../lib/convert-to-minutes');
 const getEventsForToken = require('../lib/get-events-for-token');
 
-const getNumber = num => {
-    if (Number.isInteger(num)) {
-        return num;
-    }
-    else {
-        return num.toFixed(2);
-    }
-}
-
 const triggerAllEvents = (calendars, app) => {
     let now = moment();
 
