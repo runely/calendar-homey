@@ -1,8 +1,8 @@
 {
     "id": "event_stops_in",
     "title": {
-      "en": "Specific event !{{stops|doesn't stop}} within...",
-      "no": "Spesifikk avtale !{{stopper|stopper ikke}} innen...",
+      "en": "Specific event !{{ends|doesn't end}} within...",
+      "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
       "nl": "Specifiek event !{{stopt|stopt niet}} over...",
       "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
     },
