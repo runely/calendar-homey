@@ -49,5 +49,8 @@
   },
   "0.2.5": {
     "en": "Date/Time format can be changed in Settings page. New trigger 'Event starts from calendar'"
+  },
+  "0.3.0": {
+    "en": "Next event tags per calendar which can be turned on in settings. Humanized next event duration"
   }
 }
