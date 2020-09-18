@@ -1,5 +1,8 @@
 {
-    "locale": "no",
+    "locale": {
+        "humanize": "no",
+        "moment": "nb"
+    },
     "settings": {
         "title": "Innstillinger",
         "saved_alert": "Innstillinger lagret",
@@ -13,7 +16,7 @@
         "datetime": {
             "legend": "Dato/Tid",
             "date": {
-                "description": "<b>Ønsket datoformat</b><br>DD = dag, MM = måned, YY eller YYYY = år<br>Skilles med /, - eller .",
+                "description": "<b>Ønsket datoformat</b><br>ddd eller dddd = ukedag<br>DD = dag, MM = måned, YY eller YYYY = år<br>Skilles med /, - eller .",
                 "name": "Datoformat",
                 "default": "DD.MM.YY"
             },

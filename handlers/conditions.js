@@ -80,7 +80,7 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 						else {
-							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
+							startStamp = startMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 
 						if (endMoment.isSame(startMoment, 'year')) {
@@ -94,7 +94,7 @@ module.exports = async (app) => {
 							}
 						}
 						else {
-							endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
+							endStamp = endMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 					}
 					else if (event.datetype === 'date') {
@@ -102,7 +102,7 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 						}
 						else {
-							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long);
+							startStamp = startMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 
 						if (endMoment.isSame(now, 'year')) {
@@ -114,7 +114,7 @@ module.exports = async (app) => {
 							}
 						}
 						else {
-							endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.long);
+							endStamp = endMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 					}
 				}

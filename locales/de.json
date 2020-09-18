@@ -1,5 +1,8 @@
 {
-    "locale": "de",
+    "locale": {
+        "humanize": "de",
+        "moment": "de"
+    },
     "settings": {
         "title": "Einstellungen",
         "saved_alert": "Einstellungen gespeichert",
@@ -13,7 +16,7 @@
         "datetime": {
             "legend": "Datum/Zeit",
             "date": {
-                "description": "<b>Gewünschtes Datumsformat</b><br>DD = Tag, MM = Monat, YY oder YYYY = Jahr<br>Getrennt durch /, - oder .",
+                "description": "<b>Gewünschtes Datumsformat</b><br>ddd oder dddd = Wochentag<br>DD = Tag, MM = Monat, YY oder YYYY = Jahr<br>Getrennt durch /, - oder .",
                 "name": "Datumsformat",
                 "default": "DD-MM-YY"
             },

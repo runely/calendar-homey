@@ -52,7 +52,7 @@ const getTriggerTokenDuration = (event) => {
     let durationMS = event.end.diff(event.start, 'milliseconds');
 
     return {
-        duration: humanize(durationMS, { language: Homey.__('locale'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
+        duration: humanize(durationMS, { language: Homey.__('locale.humanize'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
         durationMinutes: event.end.diff(event.start, 'minutes')
     };
 }
@@ -113,7 +113,7 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startdate') {
-            token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
@@ -129,7 +129,7 @@ const updateFlowTokens = (app) => {
             }
         }
         else if (token.id === 'event_next_stopdate') {
-            token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
@@ -200,7 +200,7 @@ const updateFlowTokens = (app) => {
         }
         else if (calendarType === 'next_startdate') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
-            value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+            value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '';
         }
         else if (calendarType === 'next_starttime') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
@@ -218,7 +218,7 @@ const updateFlowTokens = (app) => {
         }
         else if (calendarType === 'next_enddate') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
-            value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+            value = calendarNextEvent.event ? calendarNextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '';
         }
         else if (calendarType === 'next_endtime') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);

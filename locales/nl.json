@@ -1,5 +1,8 @@
 {
-    "locale": "nl",
+    "locale": {
+        "humanize": "nl",
+        "moment": "nl"
+    },
     "settings": {
         "title": "Instellingen",
         "saved_alert": "Instellingen opgeslagen",
@@ -13,7 +16,7 @@
         "datetime": {
             "legend": "Datum/Tijd",
             "date": {
-                "description": "<b>Gewenste datumnotatie</b><br>DD = dag, MM = maand, YY of YYYY = jaar<br>Gescheiden door /, - of .",
+                "description": "<b>Gewenste datumnotatie</b><br>ddd of dddd = weekdag<br>DD = dag, MM = maand, YY of YYYY = jaar<br>Gescheiden door /, - of .",
                 "name": "Datumnotatie",
                 "default": "DD-MM-YY"
             },
