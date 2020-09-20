@@ -44,6 +44,7 @@ Triggers
 - Event start over
 - Event begint vanaf de kalender
 - Event stopt
+- Event stopt over
 
 Condities
 - Specifiek event is bezig

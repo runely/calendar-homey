@@ -44,6 +44,7 @@ Trigger
 - Ereignis beginnt in
 - Ereignis startet aus dem Kalender
 - Ereignis endet
+- Ereignis endet in
 
 Bedingungen
 - Spezifisches Ereignis ist laufend

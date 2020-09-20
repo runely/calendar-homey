@@ -21,6 +21,7 @@ const triggerAllEvents = (calendars, app) => {
             let resultStart = (startDiff >= 0 && startDiff <= 55 && endDiff <= 0);
             let resultEnd = (endDiff >= 0 && endDiff <= 55);
             let resultStartInCheck = (!resultStart && !resultEnd && startDiff < 0);
+            let resultStopInCheck = (!resultStart && !resultEnd && endDiff < 0);
 
             if (resultStart) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
@@ -32,6 +33,10 @@ const triggerAllEvents = (calendars, app) => {
             if (resultStartInCheck) {
                 let startsIn = Math.round(event.start.diff(now, 'minutes', true));
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, { when: startsIn });
+            }
+            if (resultStopInCheck) {
+                let stopsIn = Math.round(event.end.diff(now, 'minutes', true));
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops_in' }, app, { when: stopsIn });
             }
         });
     });
@@ -250,6 +255,15 @@ module.exports = async (app) => {
                 let minutes = convertToMinutes(args.when, args.type);
                 let result = (minutes == state.when);
                 if (result) app.log("Triggered 'event_starts_in' with state:", state);
+                return Promise.resolve(result);
+            })
+            .register();
+        
+        new Homey.FlowCardTrigger('event_stops_in')
+            .registerRunListener((args, state) => {
+                let minutes = convertToMinutes(args.when, args.type);
+                let result = (minutes == state.when);
+                if (result) app.log("Triggered 'event_stops_in' with state:", state);
                 return Promise.resolve(result);
             })
             .register();

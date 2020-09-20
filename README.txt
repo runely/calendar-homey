@@ -44,6 +44,7 @@ Triggers
 - Event starts in
 - Event starts from calendar
 - Event ends
+- Event ends in
 
 Conditions
 - Specific event is ongoing

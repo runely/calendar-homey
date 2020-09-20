@@ -111,6 +111,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.3.1
     - Added support for adding weekday in dateformat in settings
+    - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
 - 0.3.0
     - Next event tags per calendar can be toggled on/off in settings (default is off). Will add the following tags per calendar:
         - Next event title in %calendarname%

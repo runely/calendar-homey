@@ -44,6 +44,7 @@ Triggers
 - En avtale starter om
 - En avtale starter fra kalender
 - En avtale slutter
+- En avtale slutter om
 
 Conditions
 - Spesifikk avtale pågår
