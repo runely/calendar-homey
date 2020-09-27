@@ -53,6 +53,7 @@ Condities
 - Een event is bezig
 - Een event start over
 - Een event stop over
+- Een event bezig vanaf de kalender
 
 Acties
 - Sync kalenders

@@ -57,6 +57,7 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - **Any event is ongoing** - *will check if any event is|isn't ongoing*
 - **Any event starts within** - *will check if any event starts|doesn't start within when specified*
 - **Any event ends within** - *will check if any event ends|doesn't ends within when specified*
+- **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
 
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
@@ -114,6 +115,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added support for adding weekday in dateformat in settings
     - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
     - Bugfix: Ongoing non recurring events were included, but ongoing recurring events were not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
+    - Added condition 'Any event ongoing in calendar' -> [Issue #151](https://github.com/runely/calendar-homey/issues/151)
 - 0.3.0
     - Next event tags per calendar can be toggled on/off in settings (default is off). Will add the following tags per calendar:
         - Next event title in %calendarname%

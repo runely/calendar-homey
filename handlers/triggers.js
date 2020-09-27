@@ -3,6 +3,7 @@
 const Homey = require('homey');
 const moment = require('moment');
 const humanize = require('humanize-duration');
+const filterByCalendar = require('../lib/filter-by-calendar');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
 const getTomorrowsEvents = require('../lib/get-tomorrows-events');
@@ -281,21 +282,21 @@ module.exports = async (app) => {
                     app.log('event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...');
                     return Promise.reject(false);
                 }
+                    
+                if (query && query !== '') {
+                    let filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || [];
+                    return Promise.resolve(
+                        filteredCalendar.map(calendar => {
+                            return { 'id': calendar.name, 'name': calendar.name };
+                        })
+                    );
+                }
                 else {
-                    if (query && query !== '') {
-                        return Promise.resolve(
-                            app.variableMgmt.calendars.filter(calendar => (calendar.name.toLowerCase().indexOf(query.toLowerCase()) > -1)).map(calendar => {
-                                return { 'id': calendar.name, 'name': calendar.name };
-                            })
-                        );
-                    }
-                    else {
-                        return Promise.resolve(
-                            app.variableMgmt.calendars.map(calendar => {
-                                return { 'id': calendar.name, 'name': calendar.name };
-                            })
-                        );
-                    }
+                    return Promise.resolve(
+                        app.variableMgmt.calendars.map(calendar => {
+                            return { 'id': calendar.name, 'name': calendar.name };
+                        })
+                    );
                 }
             });
     }

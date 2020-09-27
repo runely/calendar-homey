@@ -1,0 +1,21 @@
+{
+  "id": "any_event_ongoing_calendar",
+  "title": {
+    "en": "Any event ongoing in calendar",
+    "no": "En avtale pågår fra kalender",
+    "nl": "Een event bezig vanaf de kalender",
+    "de": "Irgendein Ereignis laufend aus dem kalender"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen..."
+      }
+    }
+  ]
+}

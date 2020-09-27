@@ -53,6 +53,7 @@ Bedingungen
 - Irgendein Ereignis ist laufend
 - Irgendein Ereignis beginnt innerhalb
 - Irgendein Ereignis endet innerhalb
+- Irgendein Ereignis laufend aus dem kalender
 
 Aktionen
 - Kalender synchronisieren

@@ -53,6 +53,7 @@ Conditions
 - En avtale pågår
 - En avtale starter innen
 - En avtale slutter innen
+- En avtale pågår fra kalender
 
 Actions
 - Synkroniser kalenderene

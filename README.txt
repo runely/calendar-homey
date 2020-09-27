@@ -53,6 +53,7 @@ Conditions
 - Any event is ongoing
 - Any event starts within
 - Any event ends within
+- Any event ongoing in calendar
 
 Actions
 - Sync calendars
