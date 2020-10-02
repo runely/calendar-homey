@@ -116,6 +116,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
     - Bugfix: Ongoing non recurring events were included, but ongoing recurring events were not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
     - Added condition 'Any event ongoing in calendar' -> [Issue #151](https://github.com/runely/calendar-homey/issues/151)
+    - Bugfix: Events over multiple days now also includes short date in tags
 - 0.3.0
     - Next event tags per calendar can be toggled on/off in settings (default is off). Will add the following tags per calendar:
         - Next event title in %calendarname%
