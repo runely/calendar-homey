@@ -44,6 +44,7 @@ Triggers
 - Event start over
 - Event begint vanaf de kalender
 - Event stopt
+- Event stopt over
 
 Condities
 - Specifiek event is bezig
@@ -52,6 +53,7 @@ Condities
 - Een event is bezig
 - Een event start over
 - Een event stop over
+- Een event bezig vanaf de kalender
 
 Acties
 - Sync kalenders

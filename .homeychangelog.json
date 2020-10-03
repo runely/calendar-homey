@@ -52,5 +52,8 @@
   },
   "0.3.0": {
     "en": "Next event tags per calendar which can be turned on in settings. Humanized next event duration"
+  },
+  "0.4.0": {
+    "en": "Support for adding weekdays in date format. Added trigger 'Event end in'. Added condition 'Any event ongoing in calendar'. Updated Ical engine. Bugfixes"
   }
 }

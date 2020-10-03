@@ -1,5 +1,8 @@
 {
-    "locale": "en",
+    "locale": {
+        "humanize": "en",
+        "moment": "en"
+    },
     "settings": {
         "title": "Settings",
         "saved_alert": "Settings saved",
@@ -13,7 +16,7 @@
         "datetime": {
             "legend": "Date/Time",
             "date": {
-                "description": "<b>Wanted date format</b><br>MM = month, DD = day, YY or YYYY = year<br>Separated by /, - or .",
+                "description": "<b>Wanted date format</b><br>ddd or dddd = weekday<br>MM = month, DD = day, YY or YYYY = year<br>Separated by /, - or .",
                 "name": "Date format",
                 "default": "MM/DD/YY"
             },

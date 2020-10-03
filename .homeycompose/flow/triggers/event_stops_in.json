@@ -1,0 +1,163 @@
+{
+  "id": "event_stops_in",
+  "title": {
+    "en": "Event ends in",
+    "no": "En avtale slutter om",
+    "nl": "Event stopt over",
+    "de": "Ereignis endet in"
+  },
+  "tokens": [
+    {
+      "name": "event_name",
+      "type": "string",
+      "title": {
+        "en": "Title",
+        "no": "Tittel",
+        "nl": "Titel",
+        "de": "Titel"
+      },
+      "example": {
+        "en": "Pick up in kindergarden",
+        "no": "Hente i barnehagen",
+        "nl": "Kinderen ophalen",
+        "de": "Im Kindergarten abholen"
+      }
+    },
+    {
+      "name": "event_description",
+      "type": "string",
+      "title": {
+        "en": "Description",
+        "no": "Beskrivelse",
+        "nl": "Omschrijving",
+        "de": "Beschreibung"
+      },
+      "example": {
+        "en": "Pick up kids in kindergarden",
+        "no": "Hente barna fra barnehagen",
+        "nl": "Haal de kinderen van school op",
+        "de": "Kinder im Kindergarten abholen"
+      }
+    },
+    {
+      "name": "event_location",
+      "type": "string",
+      "title": {
+        "en": "Location",
+        "no": "Sted",
+        "nl": "Locatie",
+        "de": "Ort"
+      },
+      "example": {
+        "en": "Kindergarden street, 30",
+        "no": "Barnehagegata, 30",
+        "nl": "Schoolstraat 30",
+        "de": "Kindergartenstraße 30"
+      }
+    },
+    {
+      "name": "event_duration_readable",
+      "type": "string",
+      "title": {
+        "en": "Duration",
+        "no": "Varighet",
+        "nl": "Tijdsduur",
+        "de": "Dauer"
+      },
+      "example": {
+        "en": "1.5 hour",
+        "no": "1.5 time",
+        "nl": "1.5 uur",
+        "de": "1.5 Stunden"
+      }
+    },
+    {
+      "name": "event_duration",
+      "type": "number",
+      "title": {
+        "en": "Duration in minutes",
+        "no": "Varighet i minutter",
+        "nl": "Tijdsduur in minuten",
+        "de": "Dauer in Minuten"
+      },
+      "example": {
+        "en": "90",
+        "no": "90",
+        "nl": "90",
+        "de": "90"
+      }
+    },
+    {
+      "name": "event_calendar_name",
+      "type": "string",
+      "title": {
+        "en": "Calendar name",
+        "no": "Kalendernavn",
+        "nl": "Kalender naam",
+        "de": "Kalenderbezeichnung"
+      },
+      "example": {
+        "en": "Gmail",
+        "no": "Gmail",
+        "nl": "Gmail",
+        "de": "Gmail"
+      }
+    }
+  ],
+  "args": [
+    {
+      "name": "when",
+      "type": "number",
+      "min": 1,
+      "step": 1,
+      "placeholder": {
+        "en": "Amount",
+        "no": "Antall",
+        "nl": "Aantal",
+        "de": "Menge"
+      }
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "1",
+          "label": {
+            "en": "Minute(s)",
+            "no": "Minutt(er)",
+            "nl": "Minuten",
+            "de": "Minuten"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "Hour(s)",
+            "no": "Time(r)",
+            "nl": "Uur",
+            "de": "Stunden"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Day(s)",
+            "no": "Dag(er)",
+            "nl": "Dagen",
+            "de": "Tage"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Week(s)",
+            "no": "Uke(r)",
+            "nl": "Weken",
+            "de": "Wochen"
+          }
+        }
+      ]
+    }
+  ]
+}

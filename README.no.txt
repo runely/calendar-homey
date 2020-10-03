@@ -43,15 +43,17 @@ Triggers
 - En avtale starter
 - En avtale starter om
 - En avtale starter fra kalender
-- En avtale ender
+- En avtale slutter
+- En avtale slutter om
 
 Conditions
 - Spesifikk avtale pågår
 - Spesifikk avtale starter innen
-- Spesifikk avtale stopper innen
+- Spesifikk avtale slutter innen
 - En avtale pågår
 - En avtale starter innen
-- En avtale stopper innen
+- En avtale slutter innen
+- En avtale pågår fra kalender
 
 Actions
 - Synkroniser kalenderene
@@ -60,12 +62,12 @@ Globale flyt tagger (kan bli brukt i alle apper og servicer)
 - Tittel neste avtale
 - Startdato neste avtale
 - Starttidspunkt neste avtale
-- Stoppdato neste avtale
-- Stopptidspunkt neste avtale
+- Sluttdato neste avtale
+- Sluttidspunkt neste avtale
 - Varighet neste avtale
 - Varighet neste avtale (minutter)
 - Neste avtale starter om (minutter)
-- Neste avtale stopper om (minutter)
+- Neste avtale slutter om (minutter)
 - Kalendernavn for neste avtale
 - Dagens avtaler, tittel og tidspunkt
 - Dagens avtaler (antall)
@@ -78,5 +80,5 @@ Neste avtaletagger per kalender (kan aktiveres i innstillinger)
 - Tittel neste avtale i %calendarname%
 - Startdato neste avtale i %calendarname%
 - Starttidspunkt neste avtale i %calendarname%
-- Stoppdato neste avtale i %calendarname%
-- Stopptidspunkt neste avtale i %calendarname%
+- Sluttdato neste avtale i %calendarname%
+- Sluttidspunkt neste avtale i %calendarname%

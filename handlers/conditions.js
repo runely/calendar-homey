@@ -4,6 +4,7 @@ const Homey = require('homey');
 const moment = require('moment');
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
+const filterByCalendar = require('../lib/filter-by-calendar');
 const sortEvent = require('../lib/sort-event');
 const convertToMinutes = require('../lib/convert-to-minutes');
 
@@ -14,17 +15,23 @@ module.exports = async (app) => {
             .register()
             .registerRunListener((args, state) => checkEvent(args, state, 'ongoing'))
             .getArgument('event')
-            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args));
+            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args, 'event'));
 
         new Homey.FlowCardCondition('event_in')
             .register()
             .registerRunListener((args, state) => checkEvent(args, state, 'in'))
             .getArgument('event')
-            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args));
+            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args, 'event'));
 
         new Homey.FlowCardCondition('any_event_ongoing')
             .register()
-            .registerRunListener((args, state) => checkEvent(args, state, 'any_ongoing'));
+			.registerRunListener((args, state) => checkEvent(args, state, 'any_ongoing'));
+			
+		new Homey.FlowCardCondition('any_event_ongoing_calendar')
+            .register()
+			.registerRunListener((args, state) => checkEvent(args, state, 'any_ongoing_calendar'))
+			.getArgument('calendar')
+			.registerAutocompleteListener((query, args) => onEventAutocomplete(query, args, 'calendar'))
 
         new Homey.FlowCardCondition('any_event_in')
             .register()
@@ -34,27 +41,45 @@ module.exports = async (app) => {
             .register()
             .registerRunListener((args, state) => checkEvent(args, state, 'stops_in'))
             .getArgument('event')
-            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args));
+            .registerAutocompleteListener((query, args) => onEventAutocomplete(query, args, 'event'));
         
         new Homey.FlowCardCondition('any_event_stops_in')
             .register()
             .registerRunListener((args, state) => checkEvent(args, state, 'any_stops_in'));
     };
 
-    const onEventAutocomplete = async (query, args) => {
-        if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
-            app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...');
-            return Promise.reject(false);
-        }
-        else {
-            if (query && query !== '') {
-                let filtered = filterBySummary(app.variableMgmt.calendars, query);
-                return Promise.resolve(getEventList(filtered));
-            }
-            else {
-                return Promise.resolve(getEventList(app.variableMgmt.calendars));
-            }
-        }
+    const onEventAutocomplete = async (query, args, type) => {
+		if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
+			app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...');
+			return Promise.reject(false);
+		}
+
+		if (type === 'event') {
+			if (query && query !== '') {
+				let filtered = filterBySummary(app.variableMgmt.calendars, query);
+				return Promise.resolve(getEventList(filtered));
+			}
+			else {
+				return Promise.resolve(getEventList(app.variableMgmt.calendars));
+			}
+		}
+		else if (type === 'calendar') {
+			if (query && query !== '') {
+				let filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || [];
+				return Promise.resolve(
+					filteredCalendar.map(calendar => {
+						return { 'id': calendar.name, 'name': calendar.name };
+					})
+				);
+			}
+			else {
+				return Promise.resolve(
+					app.variableMgmt.calendars.map(calendar => {
+						return { 'id': calendar.name, 'name': calendar.name };
+					})
+				);
+			}
+		}
     }
 
     const getEventList = (calendars) => {
@@ -80,7 +105,7 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 						else {
-							startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
+							startStamp = startMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 
 						if (endMoment.isSame(startMoment, 'year')) {
@@ -94,7 +119,7 @@ module.exports = async (app) => {
 							}
 						}
 						else {
-							endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
+							endStamp = endMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`);
 						}
 					}
 					else if (event.datetype === 'date') {
@@ -102,7 +127,7 @@ module.exports = async (app) => {
 							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.short);
 						}
 						else {
-							startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long);
+							startStamp = startMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 
 						if (endMoment.isSame(now, 'year')) {
@@ -114,7 +139,7 @@ module.exports = async (app) => {
 							}
 						}
 						else {
-							endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.long);
+							endStamp = endMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long);
 						}
 					}
 				}
@@ -149,8 +174,12 @@ module.exports = async (app) => {
 			filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id);
 		}
 		else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
-			filteredEvents = app.variableMgmt.calendars | [];
+			filteredEvents = app.variableMgmt.calendars || [];
 		}
+		else if (type === 'any_ongoing_calendar') {
+			filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || [];
+		}
+
 		if (!filteredEvents || !filteredEvents.length) {
 			app.log('checkEvent: filteredEvents empty... Resolving with false');
 			return Promise.resolve(false);
@@ -179,7 +208,7 @@ module.exports = async (app) => {
 				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
 				//app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
 			}
-			else if (type === 'any_ongoing') {
+			else if (type === 'any_ongoing' || type === 'any_ongoing_calendar') {
 				eventCondition = isEventOngoing(calendar.events);
 				//app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
 			}
@@ -197,19 +226,19 @@ module.exports = async (app) => {
     }
 
     const isEventOngoing = (events) => {
+		let now = moment();
 		return events.some(event => {
-			let now = moment();
 			let startDiff = now.diff(event.start, 'seconds');
 			let endDiff = now.diff(event.end, 'seconds');
 			let result = (startDiff >= 0 && endDiff <= 0);
-			//app.log(`isEventOngoing: '${event.SUMMARY}' (${event.UID}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
+			//app.log(`isEventOngoing: '${event.summary}' (${event.uid}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
 			return result;
 		});
 	}
 
 	const isEventIn = (events, when) => {
+		let now = moment();
 		return events.some(event => {
-			let now = moment();
 			let startDiff = event.start.diff(now, 'minutes', true);
 			let result = (startDiff <= when && startDiff >= 0);
 			//app.log(`isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
@@ -218,8 +247,8 @@ module.exports = async (app) => {
 	}
 
 	const willEventNotIn = (events, when) => {
+		let now = moment();
 		return events.some(event => {
-			let now = moment();
 			let endDiff = event.end.diff(now, 'minutes', true);
 			let result = (endDiff < when && endDiff >= 0);
 			//app.log(`willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);

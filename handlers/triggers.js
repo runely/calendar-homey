@@ -3,6 +3,7 @@
 const Homey = require('homey');
 const moment = require('moment');
 const humanize = require('humanize-duration');
+const filterByCalendar = require('../lib/filter-by-calendar');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
 const getTomorrowsEvents = require('../lib/get-tomorrows-events');
@@ -21,6 +22,7 @@ const triggerAllEvents = (calendars, app) => {
             let resultStart = (startDiff >= 0 && startDiff <= 55 && endDiff <= 0);
             let resultEnd = (endDiff >= 0 && endDiff <= 55);
             let resultStartInCheck = (!resultStart && !resultEnd && startDiff < 0);
+            let resultStopInCheck = (!resultStart && !resultEnd && endDiff < 0);
 
             if (resultStart) {
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app);
@@ -32,6 +34,10 @@ const triggerAllEvents = (calendars, app) => {
             if (resultStartInCheck) {
                 let startsIn = Math.round(event.start.diff(now, 'minutes', true));
                 startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, { when: startsIn });
+            }
+            if (resultStopInCheck) {
+                let stopsIn = Math.round(event.end.diff(now, 'minutes', true));
+                startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops_in' }, app, { when: stopsIn });
             }
         });
     });
@@ -52,7 +58,7 @@ const getTriggerTokenDuration = (event) => {
     let durationMS = event.end.diff(event.start, 'milliseconds');
 
     return {
-        duration: humanize(durationMS, { language: Homey.__('locale'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
+        duration: humanize(durationMS, { language: Homey.__('locale.humanize'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
         durationMinutes: event.end.diff(event.start, 'minutes')
     };
 }
@@ -113,7 +119,7 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startdate') {
-            token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
@@ -129,7 +135,7 @@ const updateFlowTokens = (app) => {
             }
         }
         else if (token.id === 'event_next_stopdate') {
-            token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
         }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
@@ -200,7 +206,7 @@ const updateFlowTokens = (app) => {
         }
         else if (calendarType === 'next_startdate') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
-            value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+            value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '';
         }
         else if (calendarType === 'next_starttime') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
@@ -218,7 +224,7 @@ const updateFlowTokens = (app) => {
         }
         else if (calendarType === 'next_enddate') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
-            value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long) : '';
+            value = calendarNextEvent.event ? calendarNextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '';
         }
         else if (calendarType === 'next_endtime') {
             calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent);
@@ -253,6 +259,15 @@ module.exports = async (app) => {
                 return Promise.resolve(result);
             })
             .register();
+        
+        new Homey.FlowCardTrigger('event_stops_in')
+            .registerRunListener((args, state) => {
+                let minutes = convertToMinutes(args.when, args.type);
+                let result = (minutes == state.when);
+                if (result) app.log("Triggered 'event_stops_in' with state:", state);
+                return Promise.resolve(result);
+            })
+            .register();
             
         new Homey.FlowCardTrigger('event_starts_calendar')
             .register()
@@ -267,21 +282,21 @@ module.exports = async (app) => {
                     app.log('event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...');
                     return Promise.reject(false);
                 }
+                    
+                if (query && query !== '') {
+                    let filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || [];
+                    return Promise.resolve(
+                        filteredCalendar.map(calendar => {
+                            return { 'id': calendar.name, 'name': calendar.name };
+                        })
+                    );
+                }
                 else {
-                    if (query && query !== '') {
-                        return Promise.resolve(
-                            app.variableMgmt.calendars.filter(calendar => (calendar.name.toLowerCase().indexOf(query.toLowerCase()) > -1)).map(calendar => {
-                                return { 'id': calendar.name, 'name': calendar.name };
-                            })
-                        );
-                    }
-                    else {
-                        return Promise.resolve(
-                            app.variableMgmt.calendars.map(calendar => {
-                                return { 'id': calendar.name, 'name': calendar.name };
-                            })
-                        );
-                    }
+                    return Promise.resolve(
+                        app.variableMgmt.calendars.map(calendar => {
+                            return { 'id': calendar.name, 'name': calendar.name };
+                        })
+                    );
                 }
             });
     }

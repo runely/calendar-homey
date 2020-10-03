@@ -47,15 +47,17 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
 - **Event starts from calendar** - *will trigger when any event in specified calender starts*
-- **Event stops** - *will trigger when any event stops*
+- **Event ends** - *will trigger when any event ends*
+- **Event ends in** - *will trigger when any event ends in when specified*
 
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
 - **Specific event starts within** - *will check if specified event starts|doesn't start within when specified*
-- **Specific event stops within** - *will check if specified event stops|doesn't stop within when specified*
+- **Specific event ends within** - *will check if specified event ends|doesn't end within when specified*
 - **Any event is ongoing** - *will check if any event is|isn't ongoing*
 - **Any event starts within** - *will check if any event starts|doesn't start within when specified*
-- **Any event stops within** - *will check if any event stops|doesn't stop within when specified*
+- **Any event ends within** - *will check if any event ends|doesn't ends within when specified*
+- **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
 
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
@@ -72,12 +74,12 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Next event title
 - Next event start date
 - Next event start time
-- Next event stop date
-- Next event stop time
+- Next event end date
+- Next event end time
 - Next event duration
 - Next event duration (minutes)
 - Next event starts in (minutes)
-- Next event stops in (minutes)
+- Next event ends in (minutes)
 - Calendar name of next event
 - Todays events, title and time
 - Todays events (count)
@@ -90,8 +92,8 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Next event title in %calendarname%
 - Next event start date in %calendarname%
 - Next event start time in %calendarname%
-- Next event stop date in %calendarname%
-- Next event stop time in %calendarname%
+- Next event end date in %calendarname%
+- Next event end time in %calendarname%
 
 
 ## Recurring events
@@ -109,13 +111,21 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.0
+    - Added support for adding weekday in dateformat in settings
+    - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
+    - Bugfix: Ongoing non recurring events were included, but ongoing recurring events were not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
+    - Added condition 'Any event ongoing in calendar' -> [Issue #151](https://github.com/runely/calendar-homey/issues/151)
+    - Bugfix: Events over multiple days now also includes short date in tags
+    - Bugfix: Full day events were not included in tomorrows events tag
+    - Ical engine (node-ical) updated (minor)
 - 0.3.0
     - Next event tags per calendar can be toggled on/off in settings (default is off). Will add the following tags per calendar:
         - Next event title in %calendarname%
         - Next event start date in %calendarname%
         - Next event start time in %calendarname%
-        - Next event stop date in %calendarname%
-        - Next event stop time in %calendarname%
+        - Next event end date in %calendarname%
+        - Next event end time in %calendarname%
     - Humanized next event duration -> [Issue #137](https://github.com/runely/calendar-homey/issues/137)
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.5
@@ -140,12 +150,12 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: Hopefully fixed an app crash "Cannot read property 'uris' of undefined"
     - Flow card 'Event starts in' changed to enter minutes in free text (number)
     - Flow card 'Any event starts within' changed to enter minutes in free text (number)
-    - Flow card 'Any event stops within' changed to enter minutes in free text (number)
+    - Flow card 'Any event ends within' changed to enter minutes in free text (number)
     - Flow card 'Event starts within' changed to enter minutes in free text (number)
-    - Flow card 'Event stops within' changed to enter minutes in free text (number)
+    - Flow card 'Event ends within' changed to enter minutes in free text (number)
     - Global tag 'Next event start time' split up to 'Next event start date' and 'Next event start time'
-    - Global tag 'Next event stop time' split up to 'Next event stop date' and 'Next event stop time'
-    - 'Next event start date' and 'Next event stop date' made more TTS friendly
+    - Global tag 'Next event end time' split up to 'Next event end date' and 'Next event end time'
+    - 'Next event start date' and 'Next event end date' made more TTS friendly
 - 0.1.4
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
@@ -170,7 +180,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.1.0
     - Added support for Mailfence (DTSTART;VALUE=DATE-TIME / DTEND;VALUE=DATE-TIME)
     - Added support for recurring events :D
-    - Bugfix: Todays events did not show events with stop date greater than start date
+    - Bugfix: Todays events did not show events with end date greater than start date
     - Bugfix: Global tags were not proparly set as empty before calendars were set
     - Bugfix: Flow tags/triggers were evaluated even before any events existed
     - Condition event chooser rewritten
@@ -178,14 +188,14 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - New icon
 - 0.0.6
     - Added global flow tags for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
-    - Added tag 'Calendar name' to 'Event starts' and 'Event stops' triggers
+    - Added tag 'Calendar name' to 'Event starts' and 'Event ends' triggers
     - Added trigger 'Event starts in' -> [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5
     - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
     - Added duration tags to trigger 'Event starts' -> [Issue #16](https://github.com/runely/calendar-homey/issues/16)
-    - Added trigger 'Event stops' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
-    - Added conditions 'Any event stops in...' and 'Event stops in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
+    - Added trigger 'Event ends' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
+    - Added conditions 'Any event ends in...' and 'Event ends in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
     - Added support for multiple calendars -> [Issue #17](https://github.com/runely/calendar-homey/issues/17)
     - Bugfix: "When Homey looses internet and tries to sync calendars, app crashes..." -> [Issue #20](https://github.com/runely/calendar-homey/issues/20)
 - 0.0.4
@@ -200,7 +210,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: "triggerEvents" failed when events were not imported yet
     - Bugfix: Tags are validated before set (replacing '\n' or '\r' or null with '')
     - Added trigger for any events started
-    - Bugfix: "Event is ongoing" validated to true when a started event was missing a stop time
+    - Bugfix: "Event is ongoing" validated to true when a started event was missing a end time
     - Updated README.txt with info from README.md (and make it look good)
     - Updated app.json/Description with a really well said sentence of what this app can do
     - Changed brandColor
