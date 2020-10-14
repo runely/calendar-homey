@@ -8,6 +8,6 @@
   "dependencies": {
     "humanize-duration": "3.24.0",
     "moment": "2.29.1",
-    "node-ical": "0.12.1"
+    "node-ical": "0.12.2"
   }
 }
