@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.1
+    - Ical engine (node-ical) updated (minor)
 - 0.4.0
     - Added support for adding weekday in dateformat in settings
     - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
