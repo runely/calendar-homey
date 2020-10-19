@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "homey": "2.8.0"
+    "homey": "2.9.0"
   },
   "dependencies": {
     "humanize-duration": "3.24.0",
