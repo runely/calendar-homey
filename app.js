@@ -19,15 +19,6 @@ class IcalCalendar extends Homey.App {
 		// register variableMgmt to this app class
 		this.variableMgmt = require('./lib/variableMgmt');
 
-		// move uri value to uris (support version <= v0.0.4)
-		let legacyCalendar = Homey.ManagerSettings.get(this.variableMgmt.setting.icalUri);
-		if (legacyCalendar) {
-			this.log('onInit: Moving legacy calendar to new calendar!');
-			Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, [{ name: 'Default', uri: legacyCalendar }]);
-			Homey.ManagerSettings.unset(this.variableMgmt.setting.icalUri);
-			this.log('onInit: Legacy calendar moved');
-		}
-
 		// get date and time format as an object
 		this.variableMgmt.dateTimeFormat = getDateTimeFormat(this);
 
