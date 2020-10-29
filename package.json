@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "homey": "2.8.0"
+    "homey": "2.9.0"
   },
   "dependencies": {
     "humanize-duration": "3.24.0",
-    "moment": "2.29.0",
-    "node-ical": "0.12.1"
+    "moment": "2.29.1",
+    "node-ical": "0.12.3"
   }
 }
