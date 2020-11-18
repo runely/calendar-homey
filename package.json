@@ -9,5 +9,8 @@
     "humanize-duration": "3.24.0",
     "moment": "2.29.1",
     "node-ical": "0.12.3"
+  },
+  "scripts": {
+    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i"
   }
 }
