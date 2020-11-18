@@ -38,6 +38,9 @@ Sync
 
 - Alleen events die nog niet zijn gestart of events die zijn gestart maar niet zijn voltooid, worden opgehaald
 - Terugkerende events waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald
+Swap the two above with these two (translated):
+- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
+- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
 Triggers
 - Event start

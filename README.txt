@@ -36,8 +36,8 @@ Sync
 - Events are fetched automatically every 15 minutes
 - The "Sync calendars" action flow card can also be used to trigger a sync
 
-- Only events not started yet or events started but not finished will be fetched
-- Recurring events where start date is within 2 months or less will be fetched
+- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
+- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
 Triggers
 - Event starts

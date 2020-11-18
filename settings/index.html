@@ -57,6 +57,20 @@
             </fieldset>
         </div>
 
+        <div class="eventlimit">
+            <fieldset>
+                <legend data-i18n="settings.eventlimit.legend"></legend>
+
+                <p data-i18n="settings.eventlimit.description"></p>
+
+                <strong data-i18n="settings.eventlimit.value"></strong>
+                <input id="eventlimit-value" type="number" value="" min="1" /><br><br>
+
+                <strong data-i18n="settings.eventlimit.type"></strong>
+                <select id="eventlimit-type"></select>
+            </fieldset>
+        </div>
+
         <div class="misc">
             <fieldset>
                 <legend data-i18n="settings.misc.legend"></legend>
@@ -82,9 +96,17 @@
                 let settingsUris = 'uris';
                 let settingsDateFormat = 'dateFormat';
                 let settingsTimeFormat = 'timeFormat';
+                let settingsEventLimit = 'eventLimit';
                 let settingsMiscNextEventTokensPerCalendar = "nextEventTokensPerCalendar";
                 let newItemElement = document.getElementById('newItem');
                 let saveElement = document.getElementById('save');
+
+                // default event limit settings
+                const eventLimitTypes = [ "days", "weeks", "months", "years" ];
+                const eventLimitDefault = {
+                    value: "2",
+                    type: "months"
+                };
 
                 // get uri from settings
                 Homey.get(settingsUris, (err, uris) => {
@@ -104,24 +126,40 @@
                     getDateTimeFormat('time', time);
                 });
 
+                // get event limit from settings
+                Homey.get(settingsEventLimit, (err, limit) => {
+                    if (err) return Homey.alert(err);
+                    if (!limit) {
+                        Homey.set(settingsEventLimit, eventLimitDefault, function(err) {
+                            if (err) return Homey.alert(err);
+                        });
+                        limit = eventLimitDefault;
+                    }
+
+                    getEventLimit(limit, eventLimitTypes);
+                });
+
                 // get nextEventTokensPerCalendar from settings
                 Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
                     if (err) return Homey.alert(err);
                     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state);
                 });
 
-                // save uri to settings
+                // save settings
                 saveElement.addEventListener('click', function(e) {
+                    // save uri to settings
                     Homey.set(settingsUris, saveCalendarItems(), function(err) {
                         if(err) return Homey.alert(err);
                     });
 
+                    // save date to settings
                     let savedDateFormat = saveDateTimeFormat('date');
                     if (savedDateFormat) {
                         Homey.set(settingsDateFormat, savedDateFormat, function(err) {
                             if (err) return Homey.alert(err);
                         });
 
+                        // save time to settings
                         let savedTimeFormat = saveDateTimeFormat('time');
                         if (savedTimeFormat) {
                             Homey.set(settingsTimeFormat, savedTimeFormat, function(err) {
@@ -136,6 +174,12 @@
                         return;
                     }
 
+                    // save limit to settings
+                    Homey.set(settingsEventLimit, saveEventLimit(), function(err) {
+                        if (err) return Homey.alert(err);
+                    });
+
+                    // save tokensPerCalendar to settings
                     Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function(err) {
                         if (err) return Homey.alert(err);
                     });
@@ -202,6 +246,21 @@
                 document.getElementById(`datetime-${type}`).value = format;
             }
 
+            function getEventLimit(limit, limitTypes) {
+                // add event limit value
+                document.getElementById('eventlimit-value').value = limit.value;
+
+                // add event limit types
+                let element = document.getElementById('eventlimit-type');
+                limitTypes.map(limitType => {
+                    let option = document.createElement("option");
+                    option.setAttribute('value', limitType);
+                    if (limit.type === limitType) option.setAttribute('selected', true);
+                    option.appendChild(document.createTextNode(limitType));
+                    element.appendChild(option);
+                });
+            }
+
             function getMiscSetting(setting, state) {
                 if (state) {
                     let element = document.getElementById(`misc-${setting}`);
@@ -230,6 +289,13 @@
                         uri: uri
                     };
                 });
+            }
+
+            function saveEventLimit() {
+                return {
+                    value: document.getElementById('eventlimit-value').value,
+                    type: document.getElementById('eventlimit-type').value
+                };
             }
 
             function saveMiscSetting(setting) {

@@ -40,8 +40,8 @@ The IcalCalendar gives Homey flow cards to trigger on your calendar events
 - Events are fetched automatically every 15 minutes
 - The **Sync calendars** action flow card can also be used to trigger a sync
 
-- Only events not started yet or events started but not finished will be fetched
-- Recurring events where start date is within 2 months or less will be fetched
+- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
+- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
@@ -113,6 +113,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.4.2
     - Bugfix: All regular events are imported -> [Issue #170](https://github.com/runely/calendar-homey/issues/170)
+    - New setting to specify time frame for events to be fetched (2 months ahead is the default)
 - 0.4.1
     - Ical engine (node-ical) updated (minor)
     - Legacy calendar support (version < 0.0.5) removed

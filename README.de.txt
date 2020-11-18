@@ -38,6 +38,9 @@ Sync
 
 - Nur noch nicht begonnene Ereignisse oder Ereignisse, die begonnen, aber noch nicht beendet wurden, werden abgerufen
 - Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen
+Swap the two above with these two (translated):
+- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
+- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
 Trigger
 - Ereignis beginnt

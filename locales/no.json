@@ -26,6 +26,12 @@
                 "default": "HH:mm"
             }
         },
+        "eventlimit": {
+            "legend": "Tidsrom for avtaler",
+            "description": "Avtaler med starttidspunkt innenfor angitt tidsrom blir hentet inn",
+            "value": "Antall",
+            "type": "Type"
+        },
         "misc": {
             "legend": "Diverse innstillinger",
             "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"

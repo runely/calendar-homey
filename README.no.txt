@@ -36,8 +36,8 @@ Sync
 - Avtaler hentes automatisk hvert 15. minutt
 - Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering
 
-- Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, vil bli hentet
-- Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet
+- Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, og som har startdato innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
+- Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 
 Triggers
 - En avtale starter

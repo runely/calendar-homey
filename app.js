@@ -34,9 +34,9 @@ class IcalCalendar extends Homey.App {
 		// get ical events
 		this.getEvents(true);
 
-		// register callback when a settings has been set
+		// register callback when settings has been set
 		Homey.ManagerSettings.on('set', args => {
-			if (args && (args === this.variableMgmt.setting.icalUris || args === this.variableMgmt.setting.nextEventTokensPerCalendar)) {
+			if (args && (args === this.variableMgmt.setting.icalUris || args === this.variableMgmt.setting.eventLimit || args === this.variableMgmt.setting.nextEventTokensPerCalendar)) {
 				// sync calendars when calendar specific settings have been changed
 				this.getEvents(true);
 			}
@@ -56,6 +56,8 @@ class IcalCalendar extends Homey.App {
 	async getEvents(reregisterCalendarTokens = false) {
 		// get URI from settings
 		let calendars = Homey.ManagerSettings.get(this.variableMgmt.setting.icalUris);
+		// get event limit from settings or use the default
+		let eventLimit = Homey.ManagerSettings.get(this.variableMgmt.setting.eventLimit) || this.variableMgmt.setting.eventLimitDefault;
 		let calendarsEvents = [];
 
 		// get ical events
@@ -69,7 +71,7 @@ class IcalCalendar extends Homey.App {
 					continue;
 				}
 				else {
-					this.log(`getEvents: Getting events for calendar '${name}'`);
+					this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar '${name}'`);
 				}
 
 				await getContent(uri)
@@ -81,7 +83,7 @@ class IcalCalendar extends Homey.App {
 						this.log(`getEvents: 'failed' setting value removed from calendar '${name}'`);
 					}
 
-					let activeEvents = getActiveEvents(data);
+					let activeEvents = getActiveEvents(data, eventLimit);
 					this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`);
 					calendarsEvents.push({ name, events: activeEvents });
 				})

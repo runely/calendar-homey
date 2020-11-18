@@ -26,6 +26,12 @@
                 "default": "HH:mm"
             }
         },
+        "eventlimit": {
+            "legend": "Event time frame",
+            "description": "Events with start date inside given time frame will be synced in",
+            "value": "Amount",
+            "type": "Type"
+        },
         "misc": {
             "legend": "Sonstige Einstellungen",
             "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
