@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.2
+    - Bugfix: All regular events are imported -> [Issue #170](https://github.com/runely/calendar-homey/issues/170)
 - 0.4.1
     - Ical engine (node-ical) updated (minor)
     - Legacy calendar support (version < 0.0.5) removed
