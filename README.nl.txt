@@ -35,6 +35,7 @@ Apple iCloud url
 Sync
 - Events worden elke 15 minuten automatisch opgehaald
 - De actie flow-kaart "Sync kalenders" kan ook worden gebruikt om een synchronisatie te activeren
+
 - Alleen events die nog niet zijn gestart of events die zijn gestart maar niet zijn voltooid en hebben een start datum binnen 2 maanden of korter worden opgehaald. (Dit kan worden aangepast in de settings)
 - Terugkerende events waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald. (Dit kan worden aangepast in de settings)
 
