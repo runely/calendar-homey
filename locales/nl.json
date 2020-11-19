@@ -27,9 +27,9 @@
             }
         },
         "eventlimit": {
-            "legend": "Event time frame",
-            "description": "Events with start date inside given time frame will be synced in",
-            "value": "Amount",
+            "legend": "Event tijdsframe",
+            "description": "Events met een startdatum binnen de gestelde tijdsframe worden gesynchroniseerd.",
+            "value": "Aantal",
             "type": "Type"
         },
         "misc": {
