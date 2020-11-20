@@ -36,11 +36,8 @@ Sync
 - Ereignisse werden alle 15 Minuten automatisch abgerufen
 - Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen
 
-- Nur noch nicht begonnene Ereignisse oder Ereignisse, die begonnen, aber noch nicht beendet wurden, werden abgerufen
-- Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen
-Swap the two above with these two (translated):
-- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
-- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
+- Es werden nur Ereignisse abgerufen, die noch nicht gestartet oder die gestartet, aber nicht beendet wurden und deren Startdatum innerhalb von 2 Monaten oder weniger liegt (dies kann in den Einstellungen geändert werden)
+- Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen (dies kann in den Einstellungen geändert werden)
 
 Trigger
 - Ereignis beginnt
