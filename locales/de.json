@@ -27,10 +27,10 @@
             }
         },
         "eventlimit": {
-            "legend": "Event time frame",
-            "description": "Events with start date inside given time frame will be synced in",
-            "value": "Amount",
-            "type": "Type"
+            "legend": "Zeitrahmen des Ereignisses",
+            "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
+            "value": "Anzahl",
+            "type": "Typ"
         },
         "misc": {
             "legend": "Sonstige Einstellungen",
