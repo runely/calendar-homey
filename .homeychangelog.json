@@ -58,5 +58,8 @@
   },
   "0.4.1": {
     "en": "Bugfix: Some events had wrong time after DST"
+  },
+  "0.4.2": {
+    "en": "Bugfix: All regular events are imported. New setting to specify time frame for events to be fetched (2 months ahead is the default)"
   }
 }
