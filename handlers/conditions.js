@@ -147,6 +147,9 @@ module.exports = async (app) => {
 					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err);
 					startStamp = '';
 					endStamp = '';
+
+					// send exception to sentry
+					app.sentry.captureException(err);
 				}
 
 				let name = event.summary;

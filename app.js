@@ -1,5 +1,7 @@
 'use strict';
 
+const { sentry, init, startTransaction } = require('./lib/sentry-io');
+
 const Homey = require('homey');
 
 const getDateTimeFormat = require('./lib/get-datetime-format');
@@ -15,6 +17,10 @@ class IcalCalendar extends Homey.App {
 	
 	onInit() {
 		this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running...`);
+
+		// initialize sentry.io
+		init();
+		this.sentry = sentry;
 
 		// register variableMgmt to this app class
 		this.variableMgmt = require('./lib/variableMgmt');
@@ -89,6 +95,9 @@ class IcalCalendar extends Homey.App {
 				})
 				.catch(err => {
 					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}':`, err.toString());
+
+					// send exception to sentry
+					sentry.captureException(err);
 
 					// set a failed setting value to show a error message on settings page
 					calendars[i] = { name, uri, failed: err.toString() };
@@ -175,10 +184,20 @@ class IcalCalendar extends Homey.App {
 		if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
 			// first, update flow tokens, then trigger events
 			await triggersHandler.updateTokens(this)
-				.catch(error => this.log('app.triggerEvents: Failed in updateTokens Promise:', error));
+				.catch(error => {
+					this.log('app.triggerEvents: Failed in updateTokens Promise:', error)
+
+					// send exception to sentry
+					sentry.captureException(error);
+				});
 
 			await triggersHandler.triggerEvents(this)
-				.catch(error => this.log('app.triggerEvents: Failed in triggerEvents Promise:', error));
+				.catch(error => {
+					this.log('app.triggerEvents: Failed in triggerEvents Promise:', error)
+
+					// send exception to sentry
+					sentry.captureException(error);
+				});
 		}
 	}
 

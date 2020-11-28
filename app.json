@@ -66,6 +66,11 @@
     "url": "https://github.com/runely/calendar-homey/issues"
   },
   "source": "https://github.com/runely/calendar-homey",
+  "sentry": {
+    "dsn": "https://0528a76a98df468e89bb4f2db7bee3ce@o483714.ingest.sentry.io/5535960",
+    "traceSampleRate": 0,
+    "environment": "production"
+  },
   "flow": {
     "triggers": [
       {
