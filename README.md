@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.3
+    - Added sentry
 - 0.4.2
     - Bugfix: All regular events are imported -> [Issue #170](https://github.com/runely/calendar-homey/issues/170)
     - New setting to specify time frame for events to be fetched (2 months ahead is the default)
