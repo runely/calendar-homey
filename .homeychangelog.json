@@ -67,5 +67,8 @@
   },
   "0.4.4": {
     "en": "Bugfix: Used values not yet defined"
+  },
+  "0.4.5": {
+    "en": "Bugfix"
   }
 }
