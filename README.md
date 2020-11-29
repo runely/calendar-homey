@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.5
+    - Bugfix: Cannot read property 'start' of undefined (#179)
 - 0.4.4
     - Bugfix: Used values not yet defined (#178)
 - 0.4.3

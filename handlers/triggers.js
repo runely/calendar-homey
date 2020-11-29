@@ -119,7 +119,7 @@ const updateFlowTokens = (app) => {
             token.setValue(nextEvent.event ? nextEvent.event.summary : '');
         }
         else if (token.id === 'event_next_startdate') {
-            token.setValue(nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event ? nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '');
         }
         else if (token.id === 'event_next_startstamp') {
             if (nextEvent.event) {
@@ -135,7 +135,7 @@ const updateFlowTokens = (app) => {
             }
         }
         else if (token.id === 'event_next_stopdate') {
-            token.setValue(nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long));
+            token.setValue(nextEvent.event ? nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '');
         }
         else if (token.id === 'event_next_stopstamp') {
             if (nextEvent.event) {
