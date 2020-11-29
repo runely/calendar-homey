@@ -64,5 +64,8 @@
   },
   "0.4.3": {
     "en": "Added Sentry"
+  },
+  "0.4.4": {
+    "en": "Bugfix: Used values not yet defined"
   }
 }
