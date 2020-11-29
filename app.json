@@ -1,6 +1,6 @@
 {
   "id": "no.runely.calendar",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "compatibility": ">=2.0.0",
   "sdk": 2,
   "brandColor": "#05A22C",

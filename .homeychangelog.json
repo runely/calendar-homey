@@ -61,5 +61,8 @@
   },
   "0.4.2": {
     "en": "Bugfix: All regular events are imported. New setting to specify time frame for events to be fetched (2 months ahead is the default)"
+  },
+  "0.4.3": {
+    "en": "Added Sentry"
   }
 }
