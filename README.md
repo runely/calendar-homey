@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.4
+    - Bugfix: Used values not yet defined (#178)
 - 0.4.3
     - Added sentry
 - 0.4.2
