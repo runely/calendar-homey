@@ -19,7 +19,7 @@ class IcalCalendar extends Homey.App {
 		this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running...`);
 
 		// initialize sentry.io
-		init();
+		init(Homey);
 		this.sentry = sentry;
 
 		// register variableMgmt to this app class
