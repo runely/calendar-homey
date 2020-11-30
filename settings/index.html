@@ -298,9 +298,17 @@
             }
 
             function saveEventLimit() {
+                const limitValue = parseInt(document.getElementById('eventlimit-value').value);
+                const limitType = document.getElementById('eventlimit-type').value;
+
+                if (Number.isNaN(limitValue)) {
+                    Homey.alert(`Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`);
+                    throw `Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`;
+                }
+
                 return {
-                    value: document.getElementById('eventlimit-value').value,
-                    type: document.getElementById('eventlimit-type').value
+                    value: limitValue,
+                    type: limitType
                 };
             }
 
