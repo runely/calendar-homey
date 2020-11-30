@@ -117,6 +117,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Enhancement: Url's with webcal://... is replaced with https://... (#180)
     - Enhancement: Url's in settings are now validated (#180)
     - Bugfix: Amount value in 'Time frame' shoud be numbers only (#182)
+    - Bugfix: Amount value in 'Time frame' now expects a number higher than 0 (#182)
 - 0.4.5
     - Bugfix: Cannot read property 'start' of undefined (#179)
 - 0.4.4
