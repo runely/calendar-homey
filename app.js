@@ -94,13 +94,15 @@ class IcalCalendar extends Homey.App {
 					calendarsEvents.push({ name, events: activeEvents });
 				})
 				.catch(err => {
-					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}':`, err.toString());
+					const errorStr = typeof err === 'object' ? err.message : err;
 
-					// send exception to sentry
-					sentry.captureException(err);
+					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}':`, errorStr);
+
+					// send exception to sentry (don't think this actually is useful)
+					//sentry.captureException(err);
 
 					// set a failed setting value to show a error message on settings page
-					calendars[i] = { name, uri, failed: err.toString() };
+					calendars[i] = { name, uri, failed: errorStr };
 					Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, calendars);
 					this.log(`getEvents: 'failed' setting value added to calendar '${name}'`);
 				});

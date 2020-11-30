@@ -113,6 +113,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.4.6
     - Bugfix: event.summary can be object (#183)
+    - Bugfix: Non-Error exception captured with keys: $__type, data (#181)
 - 0.4.5
     - Bugfix: Cannot read property 'start' of undefined (#179)
 - 0.4.4
