@@ -76,6 +76,10 @@ class IcalCalendar extends Homey.App {
 					this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`);
 					continue;
 				}
+				else if (uri.indexOf('://') < 0) {
+					this.log(`Uri for calendar '${name}' is invalid. Skipping...`);
+					continue;
+				}
 				
 				if (uri.indexOf('webcal://') === 0) {
 					uri = uri.replace('webcal://', 'https://');
