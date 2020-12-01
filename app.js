@@ -18,6 +18,9 @@ class IcalCalendar extends Homey.App {
 	onInit() {
 		this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running...`);
 
+		// set a variable to control if getEvents is already running
+		this.isGettingEvents = false;
+
 		// initialize sentry.io
 		init(Homey);
 		this.sentry = sentry;
@@ -44,7 +47,9 @@ class IcalCalendar extends Homey.App {
 		Homey.ManagerSettings.on('set', args => {
 			if (args && (args === this.variableMgmt.setting.icalUris || args === this.variableMgmt.setting.eventLimit || args === this.variableMgmt.setting.nextEventTokensPerCalendar)) {
 				// sync calendars when calendar specific settings have been changed
-				this.getEvents(true);
+				if (!this.isGettingEvents) {
+					this.getEvents(true);
+				}
 			}
 			else if (args && (args === this.variableMgmt.setting.dateFormat || args === this.variableMgmt.setting.timeFormat)) {
 				// get new date/time format
@@ -60,6 +65,8 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async getEvents(reregisterCalendarTokens = false) {
+		this.isGettingEvents = true;
+
 		// get URI from settings
 		let calendars = Homey.ManagerSettings.get(this.variableMgmt.setting.icalUris);
 		// get event limit from settings or use the default
@@ -186,6 +193,8 @@ class IcalCalendar extends Homey.App {
 			}
 		}
 
+		this.isGettingEvents = false;
+
 		return true;
 	}
 
@@ -230,7 +239,11 @@ class IcalCalendar extends Homey.App {
 
 		try {
 			const cronTaskUpdateCalendar = await Homey.ManagerCron.registerTask(this.variableMgmt.crontask.id.updateCalendar, this.variableMgmt.crontask.schedule.updateCalendar);
-			cronTaskUpdateCalendar.on('run', () => this.getEvents());
+			cronTaskUpdateCalendar.on('run', () => {
+				if (!this.isGettingEvents) {
+					this.getEvents();
+				}
+			});
 			//this.log(`registerCronTask: Registered task '${this.variableMgmt.crontask.id.updateCalendar}' with cron format '${this.variableMgmt.crontask.schedule.updateCalendar}'`);
 		}
 		catch (err) {
