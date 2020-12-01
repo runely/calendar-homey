@@ -114,6 +114,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.4.7
     - Enhancement: Sentry property update
     - Bugfix: flowtoken_already_exists (#185)
+    - Bugfix: Uri's without a protocol are allowed (#186)
 - 0.4.6
     - Bugfix: event.summary can be object (#183)
     - Bugfix: Non-Error exception captured with keys: $__type, data (#181)

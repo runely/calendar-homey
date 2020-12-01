@@ -284,8 +284,8 @@
                     // WARNING: Apple iCal URL's are case sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
                     uri = uri.replace('webcal://', 'https://');
 
-                    // control that uri at least has '://'
-                    if (uri.indexOf('://') < 0) {
+                    // control that uri starts with 'http://' || 'https://'
+                    if (uri.indexOf('http://') === -1 && uri.indexOf('https://') === -1) {
                         Homey.alert(`Uri for calendar '${name}' is invalid`);
                         throw `Uri for calendar '${name}' is invalid`;
                     }
