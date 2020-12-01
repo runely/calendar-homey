@@ -83,8 +83,11 @@ class IcalCalendar extends Homey.App {
 					this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`);
 					continue;
 				}
-				else if (uri.indexOf('://') < 0) {
-					this.log(`Uri for calendar '${name}' is invalid. Skipping...`);
+				else if (uri.indexOf('http://') === -1 && uri.indexOf('https://') === -1 && uri.indexOf('webcal://') === -1) {
+					this.log(`getEvents: Uri for calendar '${name}' is invalid. Skipping...`);
+					calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid` };
+					Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, calendars);
+					this.log(`getEvents: 'failed' setting value added to calendar '${name}'`);
 					continue;
 				}
 				
