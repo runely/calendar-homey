@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.7
+    - Enhancement: Sentry property update
 - 0.4.6
     - Bugfix: event.summary can be object (#183)
     - Bugfix: Non-Error exception captured with keys: $__type, data (#181)
