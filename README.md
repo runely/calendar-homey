@@ -111,6 +111,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.8
+    - Sentry update
+    - German translation typo
 - 0.4.7
     - Enhancement: Sentry property update
     - Bugfix: flowtoken_already_exists (#185)
