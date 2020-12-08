@@ -231,10 +231,10 @@
                 if (calendars && calendars.length > 0) {
                     document.getElementById('uri-name').value = calendars[0].name;
                     document.getElementById('uri-uri').value = calendars[0].uri;
-                }
-
-                for (var i = 1; i < calendars.length; i++) {
-                    newCalendarItem(calendars[i].name, calendars[i].uri);
+                    
+                    for (var i = 1; i < calendars.length; i++) {
+                        newCalendarItem(calendars[i].name, calendars[i].uri);
+                    }
                 }
             }
 
