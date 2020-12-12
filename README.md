@@ -111,6 +111,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.4.9
+    - Bugfix: Homey.ManagerSettings will return null when app is initially installed
 - 0.4.8
     - Sentry update
     - German translation typo
