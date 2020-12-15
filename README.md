@@ -113,6 +113,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.4.9
     - Bugfix: Homey.ManagerSettings will return null when app is initially installed
+    - Bugfix: Custom date format yield invalid date format string (#195)
 - 0.4.8
     - Sentry update
     - German translation typo
