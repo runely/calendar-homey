@@ -6,8 +6,8 @@
     "homey": "2.9.2"
   },
   "dependencies": {
-    "@sentry/node": "5.29.0",
-    "@sentry/tracing": "5.29.0",
+    "@sentry/node": "5.29.2",
+    "@sentry/tracing": "5.29.2",
     "humanize-duration": "3.25.0",
     "moment": "2.29.1",
     "node-ical": "0.12.3"
