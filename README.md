@@ -111,13 +111,11 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 0.4.9
+- 0.4.8
+    - German translation typo
     - Bugfix: Homey.ManagerSettings will return null when app is initially installed
     - Bugfix: Custom date format yield invalid date format string (#195)
     - Dependency update: Homey and sentry
-- 0.4.8
-    - Sentry update
-    - German translation typo
 - 0.4.7
     - Enhancement: Sentry property update
     - Bugfix: flowtoken_already_exists (#185)
