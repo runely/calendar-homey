@@ -13,6 +13,7 @@
     "node-ical": "0.12.3"
   },
   "scripts": {
-    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i"
+    "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
+    "publish": "homey app build && homey app publish"
   }
 }
