@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "homey": "2.9.2"
+    "homey": "2.9.3"
   },
   "dependencies": {
     "@sentry/node": "5.29.0",
