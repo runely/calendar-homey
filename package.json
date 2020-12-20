@@ -14,6 +14,6 @@
   },
   "scripts": {
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
-    "publish": "homey app build && homey app publish"
+    "publish": "git checkout master && git merge dev && git push && homey app build && homey app publish && git checkout dev && git merge master && git push && git checkout master"
   }
 }
