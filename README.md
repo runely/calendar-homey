@@ -2,6 +2,10 @@
 
 The IcalCalendar gives Homey flow cards to trigger on your calendar events
 
+## Test tool
+
+A separate [test tool is created](https://github.com/runely/calendar-homey-test) for you to test IcalCalendar behavior
+
 ## Setup
 
 - Open settings (configure app)
