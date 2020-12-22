@@ -111,6 +111,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.5.0
+    - Updated node-ical which should fix the bug '[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/14)'
+    - A separate [test tool is created](https://github.com/runely/calendar-homey-test) to test IcalCalendar behavior
+    - Exception handling for node-ical
 - 0.4.8
     - German translation typo
     - Bugfix: Homey.ManagerSettings will return null when app is initially installed
