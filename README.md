@@ -115,6 +115,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.5.1
+    - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0
     - Updated node-ical which should fix the bug '[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/14)'
     - A separate [test tool is created](https://github.com/runely/calendar-homey-test) to test IcalCalendar behavior
