@@ -2,6 +2,8 @@
 
 const Homey = require('homey');
 
+const logger = require('../lib/logger');
+
 module.exports = async (app) => {
     // register action flow cards
     const registerActionFlowCards = async () => {

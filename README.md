@@ -115,6 +115,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.5.2
+    - Improved logging by default logging to file and console
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0

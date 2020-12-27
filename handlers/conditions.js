@@ -2,6 +2,8 @@
 
 const Homey = require('homey');
 const moment = require('moment');
+const logger = require('../lib/logger');
+
 const filterBySummary = require('../lib/filter-by-summary');
 const filterByUID = require('../lib/filter-by-uid');
 const filterByCalendar = require('../lib/filter-by-calendar');
@@ -50,7 +52,7 @@ module.exports = async (app) => {
 
     const onEventAutocomplete = async (query, args, type) => {
 		if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
-			app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...');
+			logger.info(app, 'onEventAutocomplete: Calendars not set yet. Nothing to show...');
 			return Promise.reject(false);
 		}
 
@@ -86,7 +88,7 @@ module.exports = async (app) => {
 		let eventList = [];
 
 		if (calendars.length === 0) {
-			app.log('getEventList: No calendars. Returning empty array');
+			logger.info(app, 'getEventList: No calendars. Returning empty array');
 			return eventList;
 		}
 
@@ -144,7 +146,7 @@ module.exports = async (app) => {
 					}
 				}
 				catch (err) {
-					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err);
+					logger.error(app, `getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err, event);
 					startStamp = '';
 					endStamp = '';
 
@@ -184,7 +186,7 @@ module.exports = async (app) => {
 		}
 
 		if (!filteredEvents || !filteredEvents.length) {
-			app.log('checkEvent: filteredEvents empty... Resolving with false');
+			logger.info(app, 'checkEvent: filteredEvents empty... Resolving with false');
 			return Promise.resolve(false);
 		}
 
@@ -193,35 +195,35 @@ module.exports = async (app) => {
 				return false;
 			}
 
-			app.log(`checkEvent: Checking ${calendar.events.length} events from '${calendar.name}'`);
+			logger.info(app, `checkEvent: Checking ${calendar.events.length} events from '${calendar.name}'`);
 			let eventCondition = false;
 
 			if (type === 'ongoing') {
-				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
+				//logger.info(app, `checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = isEventOngoing(calendar.events);
-				//app.log(`checkEvent: Ongoing? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Ongoing? ${eventCondition}`);
 			}
 			else if (type === 'in') {
-				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
+				//logger.info(app, `checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
 			}
 			else if (type === 'stops_in') {
-				//app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
+				//logger.info(app, `checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
 				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
 			}
 			else if (type === 'any_ongoing' || type === 'any_ongoing_calendar') {
 				eventCondition = isEventOngoing(calendar.events);
-				//app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
 			}
 			else if (type === 'any_in') {
 				eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log(`checkEvent: Is any of the ${calendar.events.length} events starting within ${args.when} minutes or less? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Is any of the ${calendar.events.length} events starting within ${args.when} minutes or less? ${eventCondition}`);
 			}
 			else if (type === 'any_stops_in') {
 				eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type));
-				//app.log(`checkEvent: Is any of the ${calendar.events.length} events ending within ${args.when} minutes or less? ${eventCondition}`);
+				//logger.info(app, `checkEvent: Is any of the ${calendar.events.length} events ending within ${args.when} minutes or less? ${eventCondition}`);
 			}
 
 			return eventCondition;
@@ -234,7 +236,7 @@ module.exports = async (app) => {
 			let startDiff = now.diff(event.start, 'seconds');
 			let endDiff = now.diff(event.end, 'seconds');
 			let result = (startDiff >= 0 && endDiff <= 0);
-			//app.log(`isEventOngoing: '${event.summary}' (${event.uid}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
+			//logger.info(app, `isEventOngoing: '${event.summary}' (${event.uid}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
 			return result;
 		});
 	}
@@ -244,7 +246,7 @@ module.exports = async (app) => {
 		return events.some(event => {
 			let startDiff = event.start.diff(now, 'minutes', true);
 			let result = (startDiff <= when && startDiff >= 0);
-			//app.log(`isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
+			//logger.info(app, `isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
 			return result;
 		});
 	}
@@ -254,7 +256,7 @@ module.exports = async (app) => {
 		return events.some(event => {
 			let endDiff = event.end.diff(now, 'minutes', true);
 			let result = (endDiff < when && endDiff >= 0);
-			//app.log(`willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);
+			//logger.info(app, `willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);
 			return result;
 		});
 	}

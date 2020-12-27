@@ -3,6 +3,8 @@
 const Homey = require('homey');
 const moment = require('moment');
 const humanize = require('humanize-duration');
+
+const logger = require('../lib/logger');
 const filterByCalendar = require('../lib/filter-by-calendar');
 const getNextEvent = require('../lib/get-next-event');
 const getTodaysEvents = require('../lib/get-todays-events');
@@ -14,7 +16,7 @@ const triggerAllEvents = (calendars, app) => {
     let now = moment();
 
     calendars.map(calendar => {
-        app.log(`triggerAllEvents: Checking calendar '${calendar.name}' for events to trigger`);
+        logger.info(app, `triggerAllEvents: Checking calendar '${calendar.name}' for events to trigger`);
         calendar.events.map(event => {
             let startDiff = now.diff(event.start, 'seconds');
             let endDiff = now.diff(event.end, 'seconds');
@@ -76,7 +78,7 @@ const startTrigger = (calendarName, event, app, state) => {
     };
 
     if (state === undefined) {
-        app.log(`Triggered '${event.TRIGGER_ID}'`);
+        logger.info(app, `Triggered '${event.TRIGGER_ID}'`);
         Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens);
     }
     else {
@@ -86,19 +88,19 @@ const startTrigger = (calendarName, event, app, state) => {
 
 const getNextEventCalendar = (app, calendarName, nextEvent) => {
     if (!nextEvent) {
-        //app.log(`getNextEventCalendar: nextEvent not set. Getting next event for calendar '${calendarName}'`);
+        //logger.info(app, `getNextEventCalendar: nextEvent not set. Getting next event for calendar '${calendarName}'`);
         return getNextEvent(app.variableMgmt.calendars, calendarName);
     }
     else if (nextEvent && nextEvent.calendarName !== calendarName) {
-        //app.log(`getNextEventCalendar: nextEvent already set but for calendar '${nextEvent.calendarName}'. Getting next event for calendar '${calendarName}'`);
+        //logger.info(app, `getNextEventCalendar: nextEvent already set but for calendar '${nextEvent.calendarName}'. Getting next event for calendar '${calendarName}'`);
         return getNextEvent(app.variableMgmt.calendars, calendarName);
     }
     else if (nextEvent && nextEvent.calendarName === calendarName) {
-        //app.log(`getNextEventCalendar: nextEvent already set for calendar '${nextEvent.calendarName}' (${calendarName}). Using this one`);
+        //logger.info(app, `getNextEventCalendar: nextEvent already set for calendar '${nextEvent.calendarName}' (${calendarName}). Using this one`);
         return nextEvent;
     }
     else {
-        app.log('getNextEventCalendar: What what what????')
+        logger.error(app, 'getNextEventCalendar: What what what????')
         return null;
     }
 }
@@ -187,17 +189,17 @@ const updateFlowTokens = (app) => {
         let calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '');
         let calendarName = calendarId.replace(app.variableMgmt.calendarTokensPostTodayId, '').replace(app.variableMgmt.calendarTokensPostTomorrowId, '').replace(app.variableMgmt.calendarTokensPostNextTitleId, '').replace(app.variableMgmt.calendarTokensPostNextStartDateId, '').replace(app.variableMgmt.calendarTokensPostNextStartTimeId, '').replace(app.variableMgmt.calendarTokensPostNextEndDateId, '').replace(app.variableMgmt.calendarTokensPostNextEndTimeId, '');
         let calendarType = calendarId.replace(`${calendarName}_`, '');
-        //app.log(`calendarTokens: Setting token '${calendarType}' for calendar '${calendarName}'`);
+        //logger.info(app, `calendarTokens: Setting token '${calendarType}' for calendar '${calendarName}'`);
         let value = '';
 
         if (calendarType === 'today') {
             let todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName);
-            //app.log(`updateFlowTokens: Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
+            //logger.info(app, `updateFlowTokens: Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
             value = getEventsForToken(app, todaysEventsCalendar) || '';
         }
         else if (calendarType === 'tomorrow') {
             let tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName);
-            //app.log(`updateFlowTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
+            //logger.info(app, `updateFlowTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
             value = getEventsForToken(app, tomorrowsEventsCalendar) || '';
         }
         else if (calendarType === 'next_title') {
@@ -255,7 +257,7 @@ module.exports = async (app) => {
             .registerRunListener((args, state) => {
                 let minutes = convertToMinutes(args.when, args.type);
                 let result = (minutes == state.when);
-                if (result) app.log("Triggered 'event_starts_in' with state:", state);
+                if (result) logger.info(app, "Triggered 'event_starts_in' with state:", state);
                 return Promise.resolve(result);
             })
             .register();
@@ -264,7 +266,7 @@ module.exports = async (app) => {
             .registerRunListener((args, state) => {
                 let minutes = convertToMinutes(args.when, args.type);
                 let result = (minutes == state.when);
-                if (result) app.log("Triggered 'event_stops_in' with state:", state);
+                if (result) logger.info(app, "Triggered 'event_stops_in' with state:", state);
                 return Promise.resolve(result);
             })
             .register();
@@ -273,13 +275,13 @@ module.exports = async (app) => {
             .register()
             .registerRunListener((args, state) => {
                 let result = (args.calendar.name === state.calendarName);
-                if (result) app.log("Triggered 'event_starts_calendar' with state:", state);
+                if (result) logger.info(app, "Triggered 'event_starts_calendar' with state:", state);
                 return Promise.resolve(result);
             })
             .getArgument('calendar')
             .registerAutocompleteListener((query, args) => {
                 if (!app.variableMgmt.calendars) {
-                    app.log('event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...');
+                    logger.info(app, 'event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...');
                     return Promise.reject(false);
                 }
                     
@@ -320,7 +322,7 @@ module.exports.triggerEvents = async (app) => {
             triggerAllEvents(app.variableMgmt.calendars, app);
         }
         else {
-            app.log('triggerEvents: Calendars has not been set in Settings yet');
+            logger.info(app, 'triggerEvents: Calendars has not been set in Settings yet');
         }
 
         resolve(true);
@@ -329,7 +331,7 @@ module.exports.triggerEvents = async (app) => {
 
 module.exports.updateTokens = async (app) => {
     return new Promise((resolve, reject) => {
-        app.log('updateTokens: Updating flow tokens');
+        logger.info(app, 'updateTokens: Updating flow tokens');
 
         updateFlowTokens(app);
         
