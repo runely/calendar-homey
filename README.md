@@ -109,6 +109,31 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
+## Logging
+
+By default, IcalCalendar will log info, warning and error messages to file.
+
+### View/download/remove log
+
+1. Go to [Homey developer](https://developer.athom.com/tools/app-settings)
+1. Click on IcalCalendar
+1. Scroll to the bottom
+1. Click 'Load log'
+1. To download log:
+    1. Click 'Mark log'
+    1. Copy the highlighted text
+    1. Paste it in a text editor
+1. To remove all IcalCalendar logs from system (**can't be undone**)
+    1. Click 'Remove log!!'
+
+### Deactivate/Activate logging
+
+1. Go to [Homey developer](https://developer.athom.com/tools/app-settings)
+1. Click on IcalCalendar
+1. Scroll to the bottom
+1. Remove the checkmark from 'Logging' checkbox
+1. Click 'Save'
+
 ## Tutorial
 
 Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calendar-events/34017) created by [@RobHomey](https://github.com/RobHomey) for a good summary of the apps possibilities!
@@ -117,6 +142,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.5.2
     - Improved logging by default logging to file and console
+    - Possibility to view/download log from [Homey developer](https://developer.athom.com/tools/app-settings) in IcalCalendar settings
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0

@@ -36,10 +36,19 @@
             "legend": "Diverse innstillinger",
             "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
         },
+        "logging": {
+            "legend": "Logging",
+            "description": "Logg kan ikke hentes innenfra i appen<br>Gå til Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Velg IcalCalendar<br>Klikk 'Last logg'<br>Klikk 'Merk logg'<br>Copy/paste loggen en eller annen plass ;)",
+            "active": "Logging"
+        },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",
-            "remove": "Fjern"
+            "remove": "Fjern",
+            "clear_log": "Tøm loggvindu",
+            "mark_log": "Merk logg",
+            "load_log": "Last logg",
+            "remove_log": "Fjern logg!!"
         }
     },
     "calendarTokens": {

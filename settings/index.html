@@ -16,6 +16,24 @@
                 color: red;
                 font-weight: bold;
             }
+
+            .loggingdescription {
+                font-size: small;
+            }
+
+            .loggingoutputview {
+                margin: 0px;
+                margin-top: 10px;
+                height: 150px;
+                width: 250px;
+                font-family: monospace;
+                font-size: xx-small;
+            }
+
+            .button-danger {
+                color: red !important;
+                text-transform: uppercase;
+            }
         </style>
 
         <!-- Homey settings -->
@@ -76,7 +94,26 @@
                 <legend data-i18n="settings.misc.legend"></legend>
 
                 <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br>
-                <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
+                <input id="misc-nextEventTokensPerCalendar" type="checkbox" /><br>
+                <strong data-i18n="settings.logging.active"></strong><br>
+                <input id="logging-active" type="checkbox" />
+            </fieldset>
+        </div>
+
+        <div class="logging">
+            <fieldset>
+                <legend data-i18n="settings.logging.legend"></legend>
+
+                <p class="loggingdescription" data-i18n="settings.logging.description"></p>
+                <textarea id="logging-output" class="loggingoutputview" readonly></textarea><br>
+                <div>
+                    <button id="clearLog" class="right" data-i18n="settings.buttons.clear_log"></button>
+                    <button id="markLog" class="right" data-i18n="settings.buttons.mark_log"></button>
+                    <button id="loadLog" class="right" data-i18n="settings.buttons.load_log"></button>
+                </div>
+                <div>
+                    <button id="removeLog" class="right" class="button-danger" data-i18n="settings.buttons.remove_log"></button>
+                </div>
             </fieldset>
         </div>
 
@@ -93,20 +130,30 @@
                 // Tell Homey we're ready to be displayed
                 Homey.ready();
 
+                // setting ids
                 let settingsUris = 'uris';
                 let settingsDateFormat = 'dateFormat';
                 let settingsTimeFormat = 'timeFormat';
                 let settingsEventLimit = 'eventLimit';
                 let settingsMiscNextEventTokensPerCalendar = "nextEventTokensPerCalendar";
+                let settingsLoggerLogId = 'log';
+                let settingsLoggerLogActive = 'logActive';
+
+                // buttons
                 let newItemElement = document.getElementById('newItem');
                 let saveElement = document.getElementById('save');
+                let loadLogElement = document.getElementById('loadLog');
+                let clearLogElement = document.getElementById('clearLog');
+                let removeLogElement = document.getElementById('removeLog');
+                let markLogElement = document.getElementById('markLog');
 
-                // default event limit settings
+                // default settings
                 const eventLimitTypes = [ "days", "weeks", "months", "years" ];
                 const eventLimitDefault = {
                     value: "2",
                     type: "months"
                 };
+                const loggingActiveDefault = true;
 
                 // get uri from settings
                 Homey.get(settingsUris, (err, uris) => {
@@ -143,6 +190,13 @@
                 Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
                     if (err) return Homey.alert(err);
                     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state);
+                });
+
+                // get logging active
+                Homey.get(settingsLoggerLogActive, (err, active) => {
+                    if (err) return Homey.alert(err);
+
+                    getLoggingActive(active || loggingActiveDefault);
                 });
 
                 // save settings
@@ -184,6 +238,11 @@
                         if (err) return Homey.alert(err);
                     });
 
+                    // save logging active
+                    Homey.set(settingsLoggerLogActive, saveLoggingActive(), function(err) {
+                        if (err) return Homey.alert(err);
+                    });
+
                     hideError();
                     Homey.alert(Homey.__('settings.saved_alert'), 'info');
                 });
@@ -191,6 +250,35 @@
                 // add new calendar item
                 newItemElement.addEventListener('click', function (e) {
                     newCalendarItem();
+                });
+
+                // load log into output view
+                loadLogElement.addEventListener('click', function(e) {
+                    Homey.get(settingsLoggerLogId, (err, log) => {
+                        if (err) return Homey.alert(err);
+                        
+                        loadLogView(log);
+                    });
+                });
+
+                // mark all text for copy
+                markLogElement.addEventListener('click', function(e) {
+                    document.getElementById('logging-output').focus();
+                    document.getElementById('logging-output').select();
+                });
+
+                // clear log from view
+                clearLogElement.addEventListener('click', function(e) {
+                    clearLogView();
+                });
+                
+                // remove log from system
+                removeLogElement.addEventListener('click', function(e) {
+                    Homey.set(settingsLoggerLogId, null, function(err) {
+                        if (err) return Homey.alert(err);
+
+                        clearLogView();
+                    });
                 });
 
                 // if uri_failed exists as a setting, show error div
@@ -273,6 +361,27 @@
                 }
             }
 
+            function getLoggingActive(active) {
+                document.getElementById('logging-active').checked = active;
+            }
+
+            function loadLogView(log) {
+                clearLogView();
+                let outputView = document.getElementById('logging-output');
+                outputView.textContent += `${log.length} log items\nInformations: ${log.filter(logItem => logItem.type === 'info').length}\nWarnings: ${log.filter(logItem => logItem.type === 'warn').length}\nErrors: ${log.filter(logItem => logItem.type === 'error').length}\n\n`;
+                log.forEach(logItem => {
+                    const d = new Date(logItem.date);
+                    let newLine = `${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} [${logItem.type}] ${logItem.message}`;
+                    if (logItem.additional && logItem.additional.length > 0) {
+                        let additionalLine = '';
+                        logItem.additional.forEach(additional => additionalLine += `[${additional}] `);
+                        newLine += ` ${additionalLine}`
+                    }
+
+                    outputView.textContent += `${newLine}\n`;
+                });
+            }
+
             function saveCalendarItems() {
                 let calendars = unfuckHtmlFuck(document.getElementById('calendars').children);
                 
@@ -348,6 +457,15 @@
                 else {
                     return null;
                 }
+            }
+
+            function saveLoggingActive() {
+                return document.getElementById('logging-active').checked;
+            }
+            
+            function clearLogView() {
+                // remove log from output view
+                document.getElementById('logging-output').textContent = '';
             }
 
             function getUriFailedSetting(setting) {

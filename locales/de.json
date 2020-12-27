@@ -36,10 +36,19 @@
             "legend": "Sonstige Einstellungen",
             "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
         },
+        "logging": {
+            "legend": "Logging",
+            "description": "Log can't be downloaded within the app<br>Go to Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Choose IcalCalendar<br>Click 'Load log'<br>Click 'Mark log'<br>Copy/paste the log somewhere ;)",
+            "active": "Logging"
+        },
         "buttons": {
             "new_item": "Neuer Kalender",
             "save": "Speichern",
-            "remove": "Löschen"
+            "remove": "Löschen",
+            "clear_log": "Clear log view",
+            "mark_log": "Mark log",
+            "load_log": "Load log",
+            "remove_log": "Remove log!!"
         }
     },
     "calendarTokens": {
