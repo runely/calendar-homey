@@ -10,7 +10,7 @@
     "@sentry/tracing": "5.29.2",
     "humanize-duration": "3.25.0",
     "moment": "2.29.1",
-    "node-ical": "0.12.4"
+    "node-ical": "0.12.5"
   },
   "scripts": {
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
