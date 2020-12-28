@@ -167,6 +167,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.5.2
     - Improved logging by default logging to file and console
     - Possibility to view/download log from [Homey developer](https://developer.athom.com/tools/app-settings) in IcalCalendar settings
+    - Updated node-ical which should fix the bug '[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/67)' (more aggresive fix)
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0
