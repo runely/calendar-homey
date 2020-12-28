@@ -38,17 +38,17 @@
         },
         "logging": {
             "legend": "Logging",
-            "description": "Log can't be downloaded within the app<br>Go to Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Choose IcalCalendar<br>Click 'Load log'<br>Click 'Mark log'<br>Copy/paste the log somewhere ;)",
-            "active": "Logging"
+            "active": "Logging",
+            "description": "Log can't be downloaded within the app<br>Go to Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Choose IcalCalendar<br>Click 'Load'<br>Click 'Select'<br>Copy/paste the log somewhere ;)",
+            "remove_log_confirm": "This will remove all IcalCalendar log items from system. Continue?"
         },
         "buttons": {
             "new_item": "Nieuwe kalender",
             "save": "Opslaan",
             "remove": "Verwijderen",
-            "clear_log": "Clear log view",
-            "mark_log": "Mark log",
-            "load_log": "Load log",
-            "remove_log": "Remove log!!"
+            "mark_log": "Select",
+            "load_log": "Load",
+            "remove_log": "Delete!!"
         }
     },
     "calendarTokens": {

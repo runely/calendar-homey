@@ -38,17 +38,17 @@
         },
         "logging": {
             "legend": "Logging",
-            "description": "Logg kan ikke hentes innenfra i appen<br>Gå til Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Velg IcalCalendar<br>Klikk 'Last logg'<br>Klikk 'Merk logg'<br>Copy/paste loggen en eller annen plass ;)",
-            "active": "Logging"
+            "active": "Logging",
+            "description": "Logg kan ikke hentes innenfra i appen<br>Gå til Homey developer:<br><i>https://developer.athom.com/tools/app-settings</i><br>Velg IcalCalendar<br>Klikk 'Last'<br>Klikk 'Merk'<br>Copy/paste loggen en eller annen plass ;)",
+            "remove_log_confirm": "Dette vil fjerne alle IcalCalendar loggoppføringer fra systemet. Fortsett?"
         },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",
             "remove": "Fjern",
-            "clear_log": "Tøm loggvindu",
-            "mark_log": "Merk logg",
-            "load_log": "Last logg",
-            "remove_log": "Fjern logg!!"
+            "mark_log": "Merk",
+            "load_log": "Last",
+            "remove_log": "Slett!!"
         }
     },
     "calendarTokens": {
