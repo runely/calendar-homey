@@ -32,7 +32,6 @@
 
             .button-danger {
                 color: red !important;
-                text-transform: uppercase;
             }
         </style>
 
@@ -106,19 +105,14 @@
 
                 <p class="loggingdescription" data-i18n="settings.logging.description"></p>
                 <textarea id="logging-output" class="loggingoutputview" readonly></textarea><br>
-                <div>
-                    <button id="clearLog" class="right" data-i18n="settings.buttons.clear_log"></button>
-                    <button id="markLog" class="right" data-i18n="settings.buttons.mark_log"></button>
-                    <button id="loadLog" class="right" data-i18n="settings.buttons.load_log"></button>
-                </div>
-                <div>
-                    <button id="removeLog" class="right" class="button-danger" data-i18n="settings.buttons.remove_log"></button>
-                </div>
+                <button id="removeLog" class="right button-danger" data-i18n="settings.buttons.remove_log"></button>
+                <button id="markLog" class="right" data-i18n="settings.buttons.mark_log"></button>
+                <button id="loadLog" class="right" data-i18n="settings.buttons.load_log"></button>
             </fieldset>
         </div>
 
         <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
-        <button id="save" class="right" data-i18n="settings.buttons.save"></button>
+        <button id="save" class="right" data-i18n="settings.buttons.save"></button><br>
 
         <div id="uri_error" class="uri-error-hidden"></div>
 
@@ -143,7 +137,6 @@
                 let newItemElement = document.getElementById('newItem');
                 let saveElement = document.getElementById('save');
                 let loadLogElement = document.getElementById('loadLog');
-                let clearLogElement = document.getElementById('clearLog');
                 let removeLogElement = document.getElementById('removeLog');
                 let markLogElement = document.getElementById('markLog');
 
@@ -196,7 +189,12 @@
                 Homey.get(settingsLoggerLogActive, (err, active) => {
                     if (err) return Homey.alert(err);
 
-                    getLoggingActive(active || loggingActiveDefault);
+                    if (active !== null) {
+                        getLoggingActive(active);
+                    }
+                    else {
+                        getLoggingActive(loggingActiveDefault);
+                    }
                 });
 
                 // save settings
@@ -254,6 +252,7 @@
 
                 // load log into output view
                 loadLogElement.addEventListener('click', function(e) {
+                    document.getElementById('logging-output').textContent = "Fetching log items...";
                     Homey.get(settingsLoggerLogId, (err, log) => {
                         if (err) return Homey.alert(err);
                         
@@ -261,23 +260,25 @@
                     });
                 });
 
-                // mark all text for copy
+                // select all text for copy
                 markLogElement.addEventListener('click', function(e) {
                     document.getElementById('logging-output').focus();
                     document.getElementById('logging-output').select();
                 });
-
-                // clear log from view
-                clearLogElement.addEventListener('click', function(e) {
-                    clearLogView();
-                });
                 
-                // remove log from system
+                // delete log from system
                 removeLogElement.addEventListener('click', function(e) {
-                    Homey.set(settingsLoggerLogId, null, function(err) {
+                    Homey.confirm(Homey.__('settings.logging.remove_log_confirm'), 'warning', (err, result) => {
                         if (err) return Homey.alert(err);
 
-                        clearLogView();
+                        // result will be true if 'OK' is selected, otherwise it will be false
+                        if (result === true) {
+                            Homey.set(settingsLoggerLogId, null, function(err) {
+                                if (err) return Homey.alert(err);
+
+                                clearLogView();
+                            });
+                        }
                     });
                 });
 
@@ -366,20 +367,22 @@
             }
 
             function loadLogView(log) {
-                clearLogView();
                 let outputView = document.getElementById('logging-output');
-                outputView.textContent += `${log.length} log items\nInformations: ${log.filter(logItem => logItem.type === 'info').length}\nWarnings: ${log.filter(logItem => logItem.type === 'warn').length}\nErrors: ${log.filter(logItem => logItem.type === 'error').length}\n\n`;
+                let output = '';
                 log.forEach(logItem => {
                     const d = new Date(logItem.date);
-                    let newLine = `${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} [${logItem.type}] ${logItem.message}`;
+                    let newLine = `${d.getFullYear()}-${zeroPadding((d.getMonth() + 1))}-${zeroPadding(d.getDate())} ${zeroPadding(d.getHours())}:${zeroPadding(d.getMinutes())}:${zeroPadding(d.getSeconds())} [${logItem.type}] ${logItem.message}`;
                     if (logItem.additional && logItem.additional.length > 0) {
                         let additionalLine = '';
                         logItem.additional.forEach(additional => additionalLine += `[${additional}] `);
                         newLine += ` ${additionalLine}`
                     }
 
-                    outputView.textContent += `${newLine}\n`;
+                    output += `${newLine}\n`;
                 });
+
+                clearLogView();
+                outputView.textContent = `${log.length} log items\nInformations: ${log.filter(logItem => logItem.type === 'info').length}\nWarnings: ${log.filter(logItem => logItem.type === 'warn').length}\nErrors: ${log.filter(logItem => logItem.type === 'error').length}\n\n${output}`;
             }
 
             function saveCalendarItems() {
@@ -519,6 +522,15 @@
                 }
 
                 return fucky;
+            }
+
+            function zeroPadding(num) {
+                if (num < 10) {
+                    num = num.toString();
+                    num = `0${num}`;
+                }
+
+                return num;
             }
         </script>
 
