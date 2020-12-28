@@ -31,7 +31,13 @@ class IcalCalendar extends Homey.App {
 		this.variableMgmt.dateTimeFormat = getDateTimeFormat(this);
 
 		// should we log to file as well?
-		this.logToFile = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logToFile.active) || this.variableMgmt.setting.logging.logToFile.default;
+		const loggingActive = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logToFile.active);
+		if (loggingActive !== null) {
+			this.logToFile = loggingActive;
+		}
+		else {
+			this.logToFile = this.variableMgmt.setting.logging.logToFile.default;
+		}
 
 		logger.info(this, `${Homey.manifest.name.en} v${Homey.manifest.version} is running...`);
 
@@ -58,6 +64,10 @@ class IcalCalendar extends Homey.App {
 			else if (args && (args === this.variableMgmt.setting.dateFormat || args === this.variableMgmt.setting.timeFormat)) {
 				// get new date/time format
 				this.variableMgmt.dateTimeFormat = getDateTimeFormat(this);
+			}
+			else if (args && args === this.variableMgmt.setting.logging.logToFile.active) {
+				// get whether logging is active or not
+				this.logToFile = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logToFile.active);
 			}
 		});
 
