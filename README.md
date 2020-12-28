@@ -109,7 +109,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
-### Homey reads settings before app is ready
+#### Homey reads settings before app is ready
 
 [Issue at Homeys GitHub](https://github.com/athombv/homey-apps-sdk-issues/issues/155)
 
