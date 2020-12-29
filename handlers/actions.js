@@ -10,7 +10,13 @@ module.exports = async (app) => {
         new Homey.FlowCardAction('sync-calendar')
             .register()
             .registerRunListener(async (args, state) => {
-                let getEventsFinished = await app.getEvents();
+                logger.info(app, 'sync-calendar: Action card triggered');
+                let getEventsFinished;
+                if (!app.isGettingEvents) {
+					getEventsFinished = await app.getEvents();
+                }
+                else getEventsFinished = false;
+                
                 return Promise.resolve(getEventsFinished);
             });
     }
