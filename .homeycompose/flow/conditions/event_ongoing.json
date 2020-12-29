@@ -6,6 +6,12 @@
       "nl": "Specifiek event !{{is|is niet}} bezig",
       "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend"
     },
+    "titleFormatted": {
+      "en": "[[event]] !{{is|isn't}} ongoing",
+      "no": "[[event]] !{{pågår|pågår ikke}}",
+      "nl": "[[event]] !{{is|is niet}} bezig",
+      "de": "[[event]] !{{ist|ist nicht}} laufend"
+    },
     "args": [
         {
           "name": "event",

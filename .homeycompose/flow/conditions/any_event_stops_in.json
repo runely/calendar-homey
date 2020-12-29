@@ -6,6 +6,12 @@
       "nl": "Een event !{{stopt|stopt niet}} over...",
       "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb..."
     },
+    "titleFormatted": {
+      "en": "Any event !{{ends|doesn't end}} within [[when]] [[type]]",
+      "no": "En avtale !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+      "nl": "Een event !{{stopt|stopt niet}} over [[when]] [[type]]",
+      "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb [[when]] [[type]]"
+    },
     "args": [
       {
         "name": "when",

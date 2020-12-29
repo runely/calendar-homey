@@ -742,6 +742,12 @@
           "nl": "Een event !{{start|start niet}} over...",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
         },
+        "titleFormatted": {
+          "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]]",
+          "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]]",
+          "nl": "Een event !{{start|start niet}} over [[when]] [[type]]",
+          "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]]"
+        },
         "args": [
           {
             "name": "when",
@@ -816,6 +822,12 @@
           "nl": "Een event !{{is|is niet}} bezig vanaf de kalender",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem Kalender"
         },
+        "titleFormatted": {
+          "en": "Any event !{{is|isn't}} ongoing in [[calendar]]",
+          "no": "En avtale !{{pågår|pågår ikke}} fra [[calendar]]",
+          "nl": "Een event !{{is|is niet}} bezig vanaf de [[calendar]]",
+          "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem [[calendar]]"
+        },
         "args": [
           {
             "type": "autocomplete",
@@ -836,6 +848,12 @@
           "no": "En avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Een event !{{stopt|stopt niet}} over...",
           "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb..."
+        },
+        "titleFormatted": {
+          "en": "Any event !{{ends|doesn't end}} within [[when]] [[type]]",
+          "no": "En avtale !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+          "nl": "Een event !{{stopt|stopt niet}} over [[when]] [[type]]",
+          "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb [[when]] [[type]]"
         },
         "args": [
           {
@@ -901,6 +919,12 @@
           "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
           "nl": "Specifiek event !{{start|start niet}} over...",
           "de": "Spezifisches Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
+        },
+        "titleFormatted": {
+          "en": "[[event]] !{{starts|doesn't start}} within [[when]] [[type]]",
+          "no": "[[event]] !{{starter|starter ikke}} innen [[when]] [[type]]",
+          "nl": "[[event]] !{{start|start niet}} over [[when]] [[type]]",
+          "de": "[[event]] !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]]"
         },
         "args": [
           {
@@ -977,6 +1001,12 @@
           "nl": "Specifiek event !{{is|is niet}} bezig",
           "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend"
         },
+        "titleFormatted": {
+          "en": "[[event]] !{{is|isn't}} ongoing",
+          "no": "[[event]] !{{pågår|pågår ikke}}",
+          "nl": "[[event]] !{{is|is niet}} bezig",
+          "de": "[[event]] !{{ist|ist nicht}} laufend"
+        },
         "args": [
           {
             "name": "event",
@@ -997,6 +1027,12 @@
           "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Specifiek event !{{stopt|stopt niet}} over...",
           "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
+        },
+        "titleFormatted": {
+          "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
+          "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+          "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
+          "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]"
         },
         "args": [
           {
