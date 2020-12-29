@@ -3,6 +3,7 @@
 const { sentry, init, startTransaction } = require('./lib/sentry-io');
 
 const Homey = require('homey');
+const moment = require('moment');
 
 const logger = require('./lib/logger');
 const getDateTimeFormat = require('./lib/get-datetime-format');
@@ -218,7 +219,6 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async triggerEvents() {
-		
 		// update flow tokens and trigger events IF events exists 
 		if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
 			// first, update flow tokens, then trigger events
@@ -240,6 +240,21 @@ class IcalCalendar extends Homey.App {
 		}
 	}
 
+	async pruneLogItems() {
+		// remove old entries
+		logger.info(this, 'Start pruning log items')
+		const log = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logId);
+		const oneWeekAgo = moment().subtract(1, 'week').toDate();
+		if (log && log.length > 0 && new Date(log[(log.length - 1)].date) <= oneWeekAgo) {
+			// prune items older than one week ago
+			const newLog = log.filter(logItem => new Date(logItem.date) > oneWeekAgo);
+			logger.info(this, `Pruned ${log.length - newLog.length} log items`);
+
+			// save new log items
+			Homey.ManagerSettings.set(this.variableMgmt.setting.logging.logId, newLog);
+		}
+	}
+
 	async unregisterCronTasks() {
 		try {
 			await Homey.ManagerCron.unregisterTask(this.variableMgmt.crontask.id.updateCalendar);
@@ -249,6 +264,12 @@ class IcalCalendar extends Homey.App {
 
 		try {
 			await Homey.ManagerCron.unregisterTask(this.variableMgmt.crontask.id.triggerEvents);
+		}
+		catch (err) {
+		}
+
+		try {
+			await Homey.ManagerCron.unregisterTask(this.variableMgmt.crontask.id.pruneLogItems);
 		}
 		catch (err) {
 		}
@@ -270,10 +291,16 @@ class IcalCalendar extends Homey.App {
 		}
 
 		try {
-			//const cronTaskTriggerEvents = await Homey.ManagerCron.registerTask(variableMgmt.crontask.id.triggerEvents, variableMgmt.crontask.schedule.triggerEvents);
 			const cronTaskTriggerEvents = await Homey.ManagerCron.registerTask(this.variableMgmt.crontask.id.triggerEvents, this.variableMgmt.crontask.schedule.triggerEvents);
 			cronTaskTriggerEvents.on('run', () => this.triggerEvents());
 			//logger.info(this, `registerCronTask: Registered task '${this.variableMgmt.crontask.id.triggerEvents}' with cron format '${this.variableMgmt.crontask.schedule.triggerEvents}'`);
+		}
+		catch (err) {
+		}
+
+		try {
+			const cronTaskPruneLogItems = await Homey.ManagerCron.registerTask(this.variableMgmt.crontask.id.pruneLogItems, this.variableMgmt.crontask.schedule.pruneLogItems);
+			cronTaskPruneLogItems.on('run', () => this.pruneLogItems());
 		}
 		catch (err) {
 		}

@@ -167,6 +167,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.6.0
     - Improved logging by default logging to file and console
     - Possibility to view/download log from [Homey developer](https://developer.athom.com/tools/app-settings) in IcalCalendar settings
+    - Log items older than one week will be pruned each night
     - Updated node-ical which should fix the bug "[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/67)" (more aggresive fix)
     - Bugfix: flowtoken_already_exists can be thrown when action card `Sync calendars` is triggered (#201)
     - Added `titleFormatted` to conditions for better readability
