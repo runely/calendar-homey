@@ -170,6 +170,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Updated node-ical which should fix the bug "[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/67)" (more aggresive fix)
     - Bugfix: flowtoken_already_exists can be thrown when action card `Sync calendars` is triggered (#201)
     - Added `titleFormatted` to conditions for better readability
+    - Added `titleFormatted` to triggers for better readability
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0
