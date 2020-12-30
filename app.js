@@ -245,7 +245,7 @@ class IcalCalendar extends Homey.App {
 		logger.info(this, 'Start pruning log items')
 		const log = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logId);
 		const oneWeekAgo = moment().subtract(1, 'week').toDate();
-		if (log && log.length > 0 && new Date(log[(log.length - 1)].date) <= oneWeekAgo) {
+		if (log && log.length > 0 && new Date(log[0].date) <= oneWeekAgo) {
 			// prune items older than one week ago
 			const newLog = log.filter(logItem => new Date(logItem.date) > oneWeekAgo);
 			logger.info(this, `Pruned ${log.length - newLog.length} log items`);
