@@ -241,6 +241,8 @@ class IcalCalendar extends Homey.App {
 	}
 
 	async pruneLogItems() {
+		if (!this.logToFile) return;
+		
 		// remove old entries
 		logger.info(this, 'Start pruning log items')
 		const log = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logId);
