@@ -242,7 +242,7 @@ class IcalCalendar extends Homey.App {
 
 	async pruneLogItems() {
 		if (!this.logToFile) return;
-		
+
 		// remove old entries
 		logger.info(this, 'Start pruning log items')
 		const log = Homey.ManagerSettings.get(this.variableMgmt.setting.logging.logId);
@@ -250,10 +250,11 @@ class IcalCalendar extends Homey.App {
 		if (log && log.length > 0 && new Date(log[0].date) <= oneWeekAgo) {
 			// prune items older than one week ago
 			const newLog = log.filter(logItem => new Date(logItem.date) > oneWeekAgo);
-			logger.info(this, `Pruned ${log.length - newLog.length} log items`);
 
 			// save new log items
 			Homey.ManagerSettings.set(this.variableMgmt.setting.logging.logId, newLog);
+
+			logger.info(this, `Pruned ${log.length - newLog.length} log items`);
 		}
 	}
 
