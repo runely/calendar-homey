@@ -135,7 +135,7 @@ function onHomeyReady(Homey) {
         Homey.get(settingsLoggerLogId, (err, log) => {
             if (err) return Homey.alert(err);
             
-            loadLogView(log);
+            loadLogView(log || []);
         });
     });
 
