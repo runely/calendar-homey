@@ -139,23 +139,24 @@ By default, IcalCalendar will log info, warning and error messages to file.
 
 ### View/download/remove log
 
-1. Go to [Homey developer](https://developer.athom.com/tools/app-settings)
-1. Click on IcalCalendar
-1. Scroll to the bottom
-1. Click 'Load log'
+1. To view log:
+    1. Go to [Homey developer](https://developer.athom.com/tools/app-settings)
+    1. Click on IcalCalendar
+    1. Scroll to the bottom
+    1. Click 'Load'
 1. To download log:
-    1. Click 'Mark log'
+    1. Click 'Select'
     1. Copy the highlighted text
     1. Paste it in a text editor
 1. To remove all IcalCalendar logs from system (**can't be undone**)
-    1. Click 'Remove log!!'
+    1. Click 'Delete!!'
 
 ### Deactivate/Activate logging
 
 1. Go to [Homey developer](https://developer.athom.com/tools/app-settings)
 1. Click on IcalCalendar
 1. Scroll to the bottom
-1. Remove the checkmark from 'Logging' checkbox
+1. Remove/Set the checkmark from 'Logging' checkbox to deactive/active
 1. Click 'Save'
 
 ## Tutorial
