@@ -261,7 +261,17 @@ function loadLogView(log) {
     });
 
     clearLogView();
-    outputView.textContent = `${log.length} log items\nInformations: ${log.filter(logItem => logItem.type === 'info').length}\nWarnings: ${log.filter(logItem => logItem.type === 'warn').length}\nErrors: ${log.filter(logItem => logItem.type === 'error').length}\n\n${output}`;
+    const infoItems = log.filter(logItem => logItem.type === 'info').length;
+    let warnItems, errItems;
+    if (infoItems === log.length) {
+        warnItems = 0;
+        errItems = 0;
+    }
+    else {
+        warnItems = log.filter(logItem => logItem.type === 'warn').length;
+        errItems = log.filter(logItem => logItem.type === 'error').length;
+    }
+    outputView.textContent = `${log.length} log items\nInformations: ${infoItems}\nWarnings: ${warnItems}\nErrors: ${errItems}\n\n${output}`;
 }
 
 function saveCalendarItems() {
