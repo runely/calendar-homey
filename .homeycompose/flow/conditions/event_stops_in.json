@@ -6,6 +6,12 @@
       "nl": "Specifiek event !{{stopt|stopt niet}} over...",
       "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
     },
+    "titleFormatted": {
+      "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
+      "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+      "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
+      "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]"
+    },
     "args": [
       {
         "name": "event",

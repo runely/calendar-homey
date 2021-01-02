@@ -6,6 +6,12 @@
       "nl": "Een event !{{start|start niet}} over...",
       "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb..."
     },
+    "titleFormatted": {
+      "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]]",
+      "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]]",
+      "nl": "Een event !{{start|start niet}} over [[when]] [[type]]",
+      "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]]"
+    },
     "args": [
       {
         "name": "when",
