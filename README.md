@@ -109,6 +109,32 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 
 - Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
 
+#### Homey reads settings before app is ready
+
+[Issue at Homeys GitHub](https://github.com/athombv/homey-apps-sdk-issues/issues/155)
+
+`The setting page is requesting settings while the app is not yet ready and this is causing the app to crash.`
+
+This bug is fixed in `Homey firmware 5.0`, unfortunately Athom cannot backport this fix to older Homey versions :(
+
+**When this happens, Homey will throw this in the console:**
+```javascript
+/opt/homey-client/system/manager/ManagerApps/bootstrap/sdk/v2/manager/settings.js:1
+"use strict";const fs=require("fs"),path=require("path"),Homey=require("homey");class ManagerSettings extends Homey.Manager{__onInit(){this._updateSettingsTimeout=void 0,this._writing=!1,this.__client.emitSystem("getSettings").then(t=>{this._settings=t,this.__ready()}).catch(t=>{this.error(t),this._settings={},this._updateSettings(),this.__ready()}),this.__client.on("settings.get",this._onSettingsGet.bind(this)),this.__client.on("settings.set",this._onSettingsSet.bind(this)),this.__client.on("settings.unset",this._onSettingsUnset.bind(this))}_onSettingsGet(t,e){return!1===t.name?e(null,this._settings):e(null,this.get(t.name))}_onSettingsSet(t,e){try{return this.set(t.name,t.value),e(null,this.get(t.name))}catch(t){return e(t)}}_onSettingsUnset(t,e){try{return this.unset(t.name,t.value),e(null)}catch(t){return e(t)}}getKeys(){return Object.keys(this._settings)}get(t){if("string"!=typeof t)throw new Error("Cannot get setting, 
+
+TypeError: Cannot read property 'uris' of undefined
+    at ManagerSettings.get (/opt/homey-client/system/manager/ManagerApps/bootstrap/sdk/v2/manager/settings.js:1:998)
+    at ManagerSettings._onSettingsGet (/opt/homey-client/system/manager/ManagerApps/bootstrap/sdk/v2/manager/settings.js:1:622)
+    at /opt/homey-client/system/manager/ManagerApps/bootstrap/sdk/v2/lib/HomeyClient.js:1:1284
+    at Array.forEach (<anonymous>)
+    at HomeyClient._onMessage (/opt/homey-client/system/manager/ManagerApps/bootstrap/sdk/v2/lib/HomeyClient.js:1:1261)
+    at process.emit (events.js:311:20)
+    at emit (internal/child_process.js:876:12)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+
+--- INFO: no.runely.calendar has been killed ---
+```
+
 ## Tutorial
 
 Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calendar-events/34017) created by [@RobHomey](https://github.com/RobHomey) for a good summary of the apps possibilities!
