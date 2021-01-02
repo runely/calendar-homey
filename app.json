@@ -188,6 +188,12 @@
           "nl": "Event begint vanaf de kalender",
           "de": "Ereignis startet aus dem Kalender"
         },
+        "titleFormatted": {
+          "en": "Event starts from [[calendar]]",
+          "no": "En avtale starter fra [[calendar]]",
+          "nl": "Event begint vanaf de [[calendar]]",
+          "de": "Ereignis startet aus dem [[calendar]]"
+        },
         "args": [
           {
             "type": "autocomplete",
@@ -306,6 +312,12 @@
           "no": "En avtale starter om",
           "nl": "Event start over",
           "de": "Ereignis startet in"
+        },
+        "titleFormatted": {
+          "en": "Event starts in [[when]] [[type]]",
+          "no": "En avtale starter om [[when]] [[type]]",
+          "nl": "Event start over [[when]] [[type]]",
+          "de": "Ereignis startet in [[when]] [[type]]"
         },
         "tokens": [
           {
@@ -576,6 +588,12 @@
           "no": "En avtale slutter om",
           "nl": "Event stopt over",
           "de": "Ereignis endet in"
+        },
+        "titleFormatted": {
+          "en": "Event ends in [[when]] [[type]]",
+          "no": "En avtale slutter om [[when]] [[type]]",
+          "nl": "Event stopt over [[when]] [[type]]",
+          "de": "Ereignis endet in [[when]] [[type]]"
         },
         "tokens": [
           {

@@ -6,6 +6,12 @@
     "nl": "Event stopt over",
     "de": "Ereignis endet in"
   },
+  "titleFormatted": {
+    "en": "Event ends in [[when]] [[type]]",
+    "no": "En avtale slutter om [[when]] [[type]]",
+    "nl": "Event stopt over [[when]] [[type]]",
+    "de": "Ereignis endet in [[when]] [[type]]"
+  },
   "tokens": [
     {
       "name": "event_name",

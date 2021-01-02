@@ -6,6 +6,12 @@
     "nl": "Event start over",
     "de": "Ereignis startet in"
   },
+  "titleFormatted": {
+    "en": "Event starts in [[when]] [[type]]",
+    "no": "En avtale starter om [[when]] [[type]]",
+    "nl": "Event start over [[when]] [[type]]",
+    "de": "Ereignis startet in [[when]] [[type]]"
+  },
   "tokens": [
     {
       "name": "event_name",
