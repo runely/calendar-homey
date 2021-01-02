@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "app.js",
   "devDependencies": {
-    "homey": "2.9.3"
+    "homey": "2.9.3",
+    "xo": "0.37.1"
   },
   "dependencies": {
     "@sentry/node": "5.29.2",
@@ -24,5 +25,26 @@
     "update-master": "git checkout master && git pull",
     "even-up-dev": "git checkout dev && git merge master && git push && git checkout master",
     "even-up-master": "git checkout master && git merge dev && git push && git checkout dev"
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": true,
+    "ignores": [
+      "settings/icalcalendar.js"
+    ],
+    "rules": {
+      "no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ],
+      "object-curly-spacing": "off",
+      "eol-last": "off",
+      "capitalized-comments": "off",
+      "no-negated-condition": "off",
+      "radix": "warn"
+    }
   }
 }
