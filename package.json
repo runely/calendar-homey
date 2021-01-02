@@ -28,6 +28,9 @@
   "xo": {
     "space": 2,
     "semicolon": true,
+    "ignores": [
+      "settings/icalcalendar.js"
+    ],
     "rules": {
       "no-unused-vars": [
         "warn",
