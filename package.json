@@ -4,7 +4,7 @@
   "main": "app.js",
   "devDependencies": {
     "homey": "2.9.3",
-    "xo": "0.36.1"
+    "xo": "0.37.1"
   },
   "dependencies": {
     "@sentry/node": "5.29.2",
