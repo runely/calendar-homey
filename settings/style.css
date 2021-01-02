@@ -1,0 +1,14 @@
+﻿.icons-info {
+    color: grey;
+    font-size: smaller;
+}
+
+.uri-error-hidden {
+    display: none;
+}
+
+.uri-error-show {
+    display: block;
+    color: red;
+    font-weight: bold;
+}
