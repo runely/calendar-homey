@@ -8,7 +8,8 @@ module.exports = async (app) => {
         new Homey.FlowCardAction('sync-calendar')
             .register()
             .registerRunListener(async (args, state) => {
-                let getEventsFinished = await app.getEvents();
+                app.log('sync-calendar: Action card triggered');
+                const getEventsFinished = app.isGettingEvents ? false : await app.getEvents();
                 return Promise.resolve(getEventsFinished);
             });
     }
