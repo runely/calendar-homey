@@ -144,7 +144,7 @@ module.exports = async (app) => {
 					}
 				}
 				catch (err) {
-					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err);
+					app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, err, event);
 					startStamp = '';
 					endStamp = '';
 

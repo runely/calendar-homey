@@ -96,7 +96,7 @@ class IcalCalendar extends Homey.App {
 					this.log(`getEvents: Calendar '${name}': webcal found and replaced with https://`);
 				}
 				
-				this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar '${name}'`);
+				this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri);
 
 				await getContent(uri)
 				.then(data => {
@@ -114,7 +114,7 @@ class IcalCalendar extends Homey.App {
 				.catch(err => {
 					const errorStr = typeof err === 'object' ? err.message : err;
 
-					this.log(`getEvents: Failed to get events for calendar '${name}', using url '${uri}':`, errorStr);
+					this.log('getEvents: Failed to get events for calendar', name, uri, errorStr);
 
 					// send exception to sentry (don't think this actually is useful)
 					//sentry.captureException(err);
