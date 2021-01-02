@@ -13,8 +13,13 @@
     "node-ical": "0.12.7"
   },
   "scripts": {
+    "test": "xo",
+    "fix": "xo --fix",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
-    "publish": "homey app build && homey app publish && npm run even-up-dev",
+    "homey-build": "homey app build",
+    "homey-run": "npm run fix && homey app run",
+    "homey-install": "npm run fix && homey app install",
+    "homey-publish": "npm run fix && homey app build && homey app publish && npm run even-up-dev",
     "update-dev": "git checkout dev && git pull",
     "update-master": "git checkout master && git pull",
     "even-up-dev": "git checkout dev && git merge master && git push && git checkout master",
