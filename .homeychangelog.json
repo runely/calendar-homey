@@ -85,5 +85,8 @@
   },
   "0.5.1": {
     "en": "Bugfix: Ongoing regular events were not synced in"
+  },
+  "0.6.0": {
+    "en": "Bugfixes. Better readability in condition/trigger cards."
   }
 }
