@@ -238,7 +238,6 @@ module.exports = async app => {
     new Homey.FlowCardTrigger('event_starts_in')
       .registerRunListener((args, state) => {
         const minutes = convertToMinutes(args.when, args.type);
-        console.log(`event_starts_in: (${minutes} == ${state.when}) (${minutes == state.when}) :: (${minutes} === ${state.when}) (${minutes === state.when})`);
         const result = (minutes === state.when);
         if (result) {
           app.log('Triggered \'event_starts_in\' with state:', state);
@@ -251,7 +250,6 @@ module.exports = async app => {
     new Homey.FlowCardTrigger('event_stops_in')
       .registerRunListener((args, state) => {
         const minutes = convertToMinutes(args.when, args.type);
-        console.log(`event_stops_in: (${minutes} == ${state.when}) (${minutes == state.when}) :: (${minutes} === ${state.when}) (${minutes === state.when})`);
         const result = (minutes === state.when);
         if (result) {
           app.log('Triggered \'event_stops_in\' with state:', state);
