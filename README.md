@@ -147,6 +147,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Updated node-ical to fix the bug `Unknown RRULE property 'RRULE'`
     - Added formatted titles to conditions for better readability
     - Added formatted titles to triggers for better readability
+    - Moved `New calendar` button in settings page to calendar section
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0

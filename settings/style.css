@@ -1,4 +1,9 @@
-﻿.icons-info {
+﻿.full-width {
+    width: 100%;
+    height: 35px;
+}
+
+.icons-info {
     color: grey;
     font-size: smaller;
 }
