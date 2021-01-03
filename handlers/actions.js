@@ -8,7 +8,7 @@ module.exports = async app => {
     new Homey.FlowCardAction('sync-calendar')
       .register()
       .registerRunListener(async (args, state) => {
-        app.log('sync-calendar: Action card triggered');
+        app.log(`sync-calendar: Action card triggered. ${app.isGettingEvents ? 'getEvents already running' : 'Triggering getEvents without reregistering of tokens'}`);
         const getEventsFinished = app.isGettingEvents ? false : await app.getEvents();
         return Promise.resolve(getEventsFinished);
       });
