@@ -4,11 +4,11 @@ function onHomeyReady(Homey) {
     Homey.ready();
 
     // setting ids
-    let settingsUris = 'uris';
-    let settingsDateFormat = 'dateFormat';
-    let settingsTimeFormat = 'timeFormat';
-    let settingsEventLimit = 'eventLimit';
-    let settingsMiscNextEventTokensPerCalendar = "nextEventTokensPerCalendar";
+    const settingsUris = variableMgmt.setting.icalUris;
+    const settingsDateFormat = variableMgmt.setting.dateFormat;
+    const settingsTimeFormat = variableMgmt.setting.timeFormat;
+    const settingsEventLimit = variableMgmt.setting.eventLimit;
+    const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar;
 
     // buttons
     let newItemElement = document.getElementById('newItem');
@@ -16,10 +16,7 @@ function onHomeyReady(Homey) {
 
     // default settings
     const eventLimitTypes = [ "days", "weeks", "months", "years" ];
-    const eventLimitDefault = {
-        value: "2",
-        type: "months"
-    };
+    const eventLimitDefault = variableMgmt.setting.eventLimitDefault;
 
     // get uri from settings
     Homey.get(settingsUris, (err, uris) => {
