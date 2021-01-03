@@ -30,7 +30,8 @@
     "space": 2,
     "semicolon": true,
     "ignores": [
-      "settings/icalcalendar.js"
+      "settings/icalcalendar.js",
+      "settings/variable-management.js"
     ],
     "rules": {
       "no-unused-vars": [
