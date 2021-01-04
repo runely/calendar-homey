@@ -144,6 +144,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.6.1
+    - Bugfix for Homey versions prior to 4.2.0: `Empty catch block`
 - 0.6.0
     - Bugfix: flowtoken_already_exists can be thrown when action card `Sync calendars` is triggered (#201)
     - Updated node-ical to fix the bug `Unknown RRULE property 'RRULE'`
