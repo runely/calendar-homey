@@ -88,5 +88,8 @@
   },
   "0.6.0": {
     "en": "Bugfixes. Better readability in condition/trigger cards."
+  },
+  "0.6.1": {
+    "en": "Bugfix for Homey versions prior to 4.2.0"
   }
 }
