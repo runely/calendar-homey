@@ -9,7 +9,7 @@
   "dependencies": {
     "@sentry/node": "5.29.2",
     "@sentry/tracing": "5.29.2",
-    "humanize-duration": "3.25.0",
+    "humanize-duration": "3.25.1",
     "moment": "2.29.1",
     "node-ical": "0.12.7"
   },
