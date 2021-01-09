@@ -146,6 +146,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.6.2
     - Dependency updates
+    - App store readme cleanup
 - 0.6.1
     - Bugfix for Homey versions prior to 4.2.0: `Empty catch block`
 - 0.6.0
