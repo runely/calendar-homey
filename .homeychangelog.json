@@ -91,5 +91,8 @@
   },
   "0.6.1": {
     "en": "Bugfix for Homey versions prior to 4.2.0"
+  },
+  "0.6.2": {
+    "en": "Bugfix"
   }
 }
