@@ -39,4 +39,4 @@ Sync
 - Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, og som har startdato innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 - Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 
-Mer info og changelog finnes på GitHub: https://github.com/runely/calendar-homey
+Mer info og changelog finnes på GitHub

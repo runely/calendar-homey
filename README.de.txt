@@ -39,4 +39,4 @@ Sync
 - Es werden nur Ereignisse abgerufen, die noch nicht gestartet oder die gestartet, aber nicht beendet wurden und deren Startdatum innerhalb von 2 Monaten oder weniger liegt (dies kann in den Einstellungen geändert werden)
 - Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen (dies kann in den Einstellungen geändert werden)
 
-Weitere Informationen und ein Änderungsprotokoll finden Sie auf GitHub: https://github.com/runely/calendar-homey
+Weitere Informationen und ein Änderungsprotokoll finden Sie auf GitHub

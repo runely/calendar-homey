@@ -39,4 +39,4 @@ Sync
 - Alleen events die nog niet zijn gestart of events die zijn gestart maar niet zijn voltooid en hebben een start datum binnen 2 maanden of korter worden opgehaald. (Dit kan worden aangepast in de settings)
 - Terugkerende events waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald. (Dit kan worden aangepast in de settings)
 
-Meer info en changelog zijn te vinden op GitHub: https://github.com/runely/calendar-homey
+Meer info en changelog zijn te vinden op GitHub

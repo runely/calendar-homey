@@ -39,4 +39,4 @@ Sync
 - Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
 - Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
-More info and changelog can be found on GitHub: https://github.com/runely/calendar-homey
+More info and changelog can be found on GitHub
