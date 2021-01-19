@@ -11,7 +11,7 @@
     "@sentry/tracing": "5.30.0",
     "humanize-duration": "3.25.1",
     "moment": "2.29.1",
-    "node-ical": "0.12.7"
+    "node-ical": "0.12.8"
   },
   "scripts": {
     "test": "xo",
