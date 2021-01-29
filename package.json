@@ -7,8 +7,8 @@
     "xo": "0.37.1"
   },
   "dependencies": {
-    "@sentry/node": "5.30.0",
-    "@sentry/tracing": "5.30.0",
+    "@sentry/node": "6.0.3",
+    "@sentry/tracing": "6.0.3",
     "humanize-duration": "3.25.1",
     "moment": "2.29.1",
     "node-ical": "0.12.8"
