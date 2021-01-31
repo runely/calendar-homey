@@ -4,7 +4,7 @@
   "main": "app.js",
   "devDependencies": {
     "homey": "2.9.7",
-    "xo": "0.37.1"
+    "standard": "16.0.3"
   },
   "dependencies": {
     "@sentry/node": "6.0.3",
@@ -13,8 +13,8 @@
     "node-ical": "0.12.8"
   },
   "scripts": {
-    "test": "xo",
-    "fix": "xo --fix",
+    "test": "standard",
+    "fix": "standard --fix",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "homey-build": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js && homey app build",
     "homey-run": "npm run homey-build && homey app run",
@@ -25,26 +25,9 @@
     "even-up-dev": "git checkout dev && git merge master && git push && git checkout master",
     "even-up-master": "git checkout master && git merge dev && git push && git checkout dev"
   },
-  "xo": {
-    "space": 2,
-    "semicolon": true,
-    "ignores": [
-      "settings/icalcalendar.js",
-      "settings/variable-management.js"
-    ],
-    "rules": {
-      "no-unused-vars": [
-        "warn",
-        {
-          "vars": "all",
-          "args": "after-used"
-        }
-      ],
-      "object-curly-spacing": "off",
-      "eol-last": "off",
-      "capitalized-comments": "off",
-      "no-negated-condition": "off",
-      "radix": "warn"
-    }
+  "standard": {
+    "ignore": [
+      "settings/*.js"
+    ]
   }
 }
