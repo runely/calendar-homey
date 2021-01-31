@@ -89,7 +89,7 @@ module.exports = {
   calendarTokensPostNextEndTimeId: '_next_endtime',
   calendarTokens: [],
   flowTokens: []
-};
+}
 
 },{}]},{},[1])(1)
 });
