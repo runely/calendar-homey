@@ -147,6 +147,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.6.3
     - More App store readme cleanup
     - Code cleanup
+    - Bugfix: Flow tokens could cause a crash if calendar names aren't unique
 - 0.6.2
     - Dependency updates
     - App store readme cleanup

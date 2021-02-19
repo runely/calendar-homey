@@ -182,7 +182,9 @@ function getMiscSetting (setting, state) {
 
 function saveCalendarItems () {
   const calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
+  const calendarNames = []
 
+  let calendarIndex = 1
   return calendars.filter(calendar => calendar.localName === 'fieldset').map(calendar => {
     const name = calendar.children[3].value
     let uri = calendar.children[8].value
@@ -195,6 +197,15 @@ function saveCalendarItems () {
     if (uri.indexOf('http://') === -1 && uri.indexOf('https://') === -1) {
       Homey.alert(`Uri for calendar '${name}' is invalid`)
       throw `Uri for calendar '${name}' is invalid`
+    }
+
+    // calendar name must be unique to no mess up flow tokens
+    if (calendarNames.includes(name)) {
+      Homey.alert(`Calendar entry ${calendarIndex} (${name}) is invalid. Unique names are required!`)
+      throw `Calendar entry ${calendarIndex} (${name}) is invalid. Unique names are required!`
+    } else {
+      calendarNames.push(name)
+      calendarIndex++
     }
 
     return {
