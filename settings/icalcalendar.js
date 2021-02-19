@@ -18,7 +18,7 @@ function onHomeyReady (Homey) {
   const eventLimitTypes = ['days', 'weeks', 'months', 'years']
   const eventLimitDefault = variableMgmt.setting.eventLimitDefault
 
-  // get uri from settings
+  // get uris from settings
   Homey.get(settingsUris, (err, uris) => {
     if (err) return Homey.alert(err)
     getCalendarItems(uris)
