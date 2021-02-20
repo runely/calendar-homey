@@ -3,6 +3,9 @@
         "humanize": "en",
         "moment": "en"
     },
+    "humanize": {
+        "conjunction": " and "
+    },
     "settings": {
         "title": "Settings",
         "saved_alert": "Settings saved",

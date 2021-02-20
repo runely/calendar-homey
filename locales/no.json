@@ -3,6 +3,9 @@
         "humanize": "no",
         "moment": "nb"
     },
+    "humanize": {
+        "conjunction": " og "
+    },
     "settings": {
         "title": "Innstillinger",
         "saved_alert": "Innstillinger lagret",

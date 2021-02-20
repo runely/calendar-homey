@@ -62,7 +62,14 @@ const getTriggerTokenDuration = event => {
   const durationMS = event.end.diff(event.start, 'milliseconds')
 
   return {
-    duration: humanize(durationMS, { language: Homey.__('locale.humanize'), largest: 2, units: ['y', 'mo', 'w', 'd', 'h', 'm'], round: true }),
+    duration: humanize(durationMS, {
+      language: Homey.__('locale.humanize'),
+      largest: 3,
+      units: ['y', 'mo', 'w', 'd', 'h', 'm'],
+      round: true,
+      conjunction: Homey.__('humanize.conjunction'),
+      serialComma: false
+    }),
     durationMinutes: event.end.diff(event.start, 'minutes')
   }
 }

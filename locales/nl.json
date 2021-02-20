@@ -3,6 +3,9 @@
         "humanize": "nl",
         "moment": "nl"
     },
+    "humanize": {
+        "conjunction": " en "
+    },
     "settings": {
         "title": "Instellingen",
         "saved_alert": "Instellingen opgeslagen",

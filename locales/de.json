@@ -3,6 +3,9 @@
         "humanize": "de",
         "moment": "de"
     },
+    "humanize": {
+        "conjunction": " und "
+    },
     "settings": {
         "title": "Einstellungen",
         "saved_alert": "Einstellungen gespeichert",
