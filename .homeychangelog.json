@@ -94,5 +94,8 @@
   },
   "0.6.2": {
     "en": "Bugfix"
+  },
+  "0.6.3": {
+    "en": "- Bugfix: Flow tokens could cause a crash if calendar names aren't unique. - More readable duration token"
   }
 }
