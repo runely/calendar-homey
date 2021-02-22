@@ -97,5 +97,8 @@
   },
   "0.6.3": {
     "en": "- Bugfix: Flow tokens could cause a crash if calendar names aren't unique. - More readable duration token"
+  },
+  "0.6.4": {
+    "en": "Bugfix: Non-existing app settings on Homey v5.0.0 are returned differently than on previous Homey versions"
   }
 }
