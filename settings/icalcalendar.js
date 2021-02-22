@@ -271,7 +271,7 @@ function getUriFailedSetting (setting) {
     }
 
     let text = ''
-    if (uris !== undefined) {
+    if (uris !== null && uris !== undefined && Array.isArray(uris)) {
       uris.forEach(item => {
         if (item.failed) {
           if (text === '') {

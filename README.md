@@ -144,6 +144,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.6.4
+    - Bugfix: Homey v5.0.0 returns non-existing app settings differently than Homey v4.x.x
 - 0.6.3
     - More App store readme cleanup
     - Code cleanup
