@@ -21,8 +21,8 @@ const triggerAllEvents = (calendars, app) => {
 
       const resultStart = (startDiff >= 0 && startDiff <= 55 && endDiff <= 0)
       const resultEnd = (endDiff >= 0 && endDiff <= 55)
-      const resultStartInCheck = (!resultStart && !resultEnd && startDiff < 0)
-      const resultStopInCheck = (!resultStart && !resultEnd && endDiff < 0)
+      const resultStartInCheck = (!resultStart && startDiff < 0)
+      const resultStopInCheck = (!resultEnd && endDiff < 0)
 
       if (resultStart) {
         startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app)
