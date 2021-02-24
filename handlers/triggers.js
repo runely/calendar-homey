@@ -22,7 +22,7 @@ const triggerAllEvents = (calendars, app) => {
       const resultStart = (startDiff >= 0 && startDiff <= 55 && endDiff <= 0)
       const resultEnd = (endDiff >= 0 && endDiff <= 55)
       const resultStartInCheck = (!resultStart && startDiff < 0)
-      const resultStopInCheck = (!resultEnd && endDiff < 0)
+      const resultEndInCheck = (!resultEnd && endDiff < 0)
 
       if (resultStart) {
         startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts' }, app)
@@ -38,9 +38,9 @@ const triggerAllEvents = (calendars, app) => {
         startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_starts_in' }, app, { when: startsIn })
       }
 
-      if (resultStopInCheck) {
-        const stopsIn = Math.round(event.end.diff(now, 'minutes', true))
-        startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops_in' }, app, { when: stopsIn })
+      if (resultEndInCheck) {
+        const endsIn = Math.round(event.end.diff(now, 'minutes', true))
+        startTrigger(calendar.name, { ...event, TRIGGER_ID: 'event_stops_in' }, app, { when: endsIn })
       }
     })
   })
