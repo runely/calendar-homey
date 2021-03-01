@@ -7,7 +7,7 @@
     "standard": "16.0.3"
   },
   "dependencies": {
-    "@sentry/node": "6.2.0",
+    "@sentry/node": "6.2.1",
     "humanize-duration": "3.25.1",
     "moment": "2.29.1",
     "node-ical": "0.12.8"
