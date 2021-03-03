@@ -148,6 +148,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: Trigger card 'Event ends in' would not trigger if end time was equal to start time
     - Events over multiple days, where today is not start day or end day, will be set as "whole day" in flowtokens
     - Dependency updates
+    - Bugfix: Recurring events crossing over to next day isn't imported -> [Issue #218](https://github.com/runely/calendar-homey/issues/218)
 - 0.6.4
     - Bugfix: Homey v5.0.0 returns non-existing app settings differently than Homey v4.x.x
 - 0.6.3
