@@ -100,5 +100,8 @@
   },
   "0.6.4": {
     "en": "Bugfix: Non-existing app settings on Homey v5.0.0 are returned differently than on previous Homey versions"
+  },
+  "0.6.5": {
+    "en": "Bugfixes. Events over multiple days, where today is not start day or end day, will be set as \"whole day\" in flowtokens"
   }
 }
