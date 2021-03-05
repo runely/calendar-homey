@@ -144,6 +144,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.6.6
+    - Bugfix: Events missing end date (ongoing indefinitely) would set end date as now and could make Homey trigger 'Event ends' on those events -> [Issue #212](https://github.com/runely/calendar-homey/issues/212)
 - 0.6.5
     - Bugfix: Trigger card 'Event ends in' would not trigger if end time was equal to start time
     - Events over multiple days, where today is not start day or end day, will be set as "whole day" in flowtokens
