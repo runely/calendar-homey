@@ -103,5 +103,8 @@
   },
   "0.6.5": {
     "en": "Bugfixes. Events over multiple days, where today is not start day or end day, will be set as \"whole day\" in flowtokens"
+  },
+  "0.6.6": {
+    "en": "Bugfix for events missing end property. Dependency updates"
   }
 }
