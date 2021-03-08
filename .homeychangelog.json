@@ -106,5 +106,8 @@
   },
   "0.6.6": {
     "en": "Bugfix for events missing end property. Dependency updates"
+  },
+  "0.7.0": {
+    "en": "Bugfix for events missing end property"
   }
 }
