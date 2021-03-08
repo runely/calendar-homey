@@ -144,6 +144,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.7.0
+    - Bugfix: Events missing end date is approximately 1 day long or as long as duration (if present) ([RFC5545 3.6.1](https://tools.ietf.org/html/rfc5545#section-3.6.1))
+        - [Issue #212](https://github.com/runely/calendar-homey/issues/212)
+        - [Issue #221](https://github.com/runely/calendar-homey/issues/221)
 - 0.6.6
     - Bugfix: Events missing end date (ongoing indefinitely) would set end date as now and could make Homey trigger 'Event ends' on those events -> [Issue #212](https://github.com/runely/calendar-homey/issues/212)
     - `node-ical` updated to 0.12.9
