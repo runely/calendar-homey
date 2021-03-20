@@ -144,6 +144,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.7.1
+    - Bugfix: Only `DATE` events missing `DTEND` and `DURATION` property is supposed to have a duration for 1 day. `DATETIME` events missing `DTEND` property is supposed to end on the same day and time as `DTSTART` property
 - 0.7.0
     - Bugfix: Events missing end date is approximately 1 day long or as long as duration (if present) ([RFC5545 3.6.1](https://tools.ietf.org/html/rfc5545#section-3.6.1))
         - [Issue #212](https://github.com/runely/calendar-homey/issues/212)
