@@ -109,5 +109,8 @@
   },
   "0.7.0": {
     "en": "Bugfix for events missing end property"
+  },
+  "0.7.1": {
+    "en": "Bugfix: Only `DATE` events missing `DTEND` and `DURATION` property is supposed to have a duration for 1 day. `DATETIME` events missing `DTEND` property is supposed to end on the same day and time as `DTSTART` property"
   }
 }
