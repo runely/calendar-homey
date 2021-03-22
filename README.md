@@ -108,10 +108,6 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 ### Be aware of *multiple/duplicate* "recurring" events:
 - On a recurring event, where one or more participants have declined, that specific event is detached from the recurring event and created as a separate non-recurring event. This can result in two similar events, both have the same name and date.
 
-## Known bugs
-
-- Searching events in condition card, returns no events when search query has a space followed with a character (Example: 'Test f')
-
 #### Homey reads settings before app is ready
 
 [Issue at Homeys GitHub](https://github.com/athombv/homey-apps-sdk-issues/issues/155)
