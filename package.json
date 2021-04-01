@@ -10,7 +10,7 @@
     "@sentry/node": "6.2.3",
     "humanize-duration": "3.25.1",
     "moment": "2.29.1",
-    "node-ical": "0.12.9"
+    "node-ical": "0.13.0"
   },
   "scripts": {
     "test": "standard",
