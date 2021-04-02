@@ -143,6 +143,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.7.2
     - Dependency updates
     - `node-ical` updated to 0.13.0
+        - This also fixes ([Issue #184](https://github.com/runely/calendar-homey/issues/184))
 - 0.7.1
     - Bugfix: Only `DATE` events missing `DTEND` and `DURATION` property is supposed to have a duration for 1 day. `DATETIME` events missing `DTEND` property is supposed to end on the same day and time as `DTSTART` property
 - 0.7.0
