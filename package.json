@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@sentry/node": "6.2.5",
-    "humanize-duration": "3.25.1",
+    "humanize-duration": "3.25.2",
     "moment": "2.29.1",
     "node-ical": "0.13.0"
   },
