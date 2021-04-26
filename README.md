@@ -140,7 +140,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 0.7.2
+- 0.8.0
     - Dependency updates
     - `node-ical` updated to 0.13.0
         - This also fixes ([Issue #184](https://github.com/runely/calendar-homey/issues/184))
