@@ -140,6 +140,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.8.1
+    - Dependency updates
 - 0.8.0
     - Dependency updates
     - `node-ical` updated to 0.13.0
