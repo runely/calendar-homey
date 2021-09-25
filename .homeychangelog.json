@@ -115,5 +115,8 @@
   },
   "0.8.0": {
     "en": "Ical engine (node-ical) updated"
+  },
+  "0.8.1": {
+    "en": "Dependency updates"
   }
 }
