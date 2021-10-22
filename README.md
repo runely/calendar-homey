@@ -142,6 +142,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.8.3
     - Shrunk footprint of events
+    - Security dependency update
+    - Dependency updates
 - 0.8.2
     - Security dependency updates
 - 0.8.1
