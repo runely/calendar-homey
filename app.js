@@ -97,32 +97,31 @@ class IcalCalendar extends Homey.App {
 
         this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri)
 
-        await getContent(uri)
-          .then(data => {
-            // remove failed setting if it exists for calendar
-            if (calendars[i].failed) {
-              calendars[i] = { name, uri }
-              Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, calendars)
-              this.log(`getEvents: 'failed' setting value removed from calendar '${name}'`)
-            }
-
-            const activeEvents = getActiveEvents(data, eventLimit)
-            this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
-            calendarsEvents.push({ name, events: activeEvents })
-          })
-          .catch(error => {
-            const errorString = typeof error === 'object' ? error.message : error
-
-            this.log('getEvents: Failed to get events for calendar', name, uri, errorString)
-
-            // send exception to sentry (don't think this actually is useful)
-            // sentry.captureException(err);
-
-            // set a failed setting value to show a error message on settings page
-            calendars[i] = { name, uri, failed: errorString }
+        try {
+          const data = await getContent(uri)
+          // remove failed setting if it exists for calendar
+          if (calendars[i].failed) {
+            calendars[i] = { name, uri }
             Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, calendars)
-            this.log(`getEvents: 'failed' setting value added to calendar '${name}'`)
-          })
+            this.log(`getEvents: 'failed' setting value removed from calendar '${name}'`)
+          }
+
+          const activeEvents = getActiveEvents(data, eventLimit)
+          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
+          calendarsEvents.push({ name, events: activeEvents })
+        } catch (error) {
+          const errorString = typeof error === 'object' ? error.message : error
+
+          this.log('getEvents: Failed to get events for calendar', name, uri, errorString)
+
+          // send exception to sentry (don't think this actually is useful)
+          // sentry.captureException(err);
+
+          // set a failed setting value to show a error message on settings page
+          calendars[i] = { name, uri, failed: errorString }
+          Homey.ManagerSettings.set(this.variableMgmt.setting.icalUris, calendars)
+          this.log(`getEvents: 'failed' setting value added to calendar '${name}'`)
+        }
       }
     } else {
       this.log('getEvents: Calendars has not been set in Settings yet')
