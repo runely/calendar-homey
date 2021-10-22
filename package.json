@@ -2,6 +2,10 @@
   "name": "no.runely.calendar",
   "version": "0.0.1",
   "main": "app.js",
+  "repository": {
+    "url": "https://github.com/runely/calendar-homey"
+  },
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "homey": "2.23.3",
     "standard": "16.0.4"
