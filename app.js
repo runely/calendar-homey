@@ -7,6 +7,7 @@ const Homey = require('homey')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const getContent = require('./lib/get-ical-content')
 const getActiveEvents = require('./lib/get-active-events')
+const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 
 const triggersHandler = require('./handlers/triggers')
@@ -127,6 +128,14 @@ class IcalCalendar extends Homey.App {
       this.log('getEvents: Calendars has not been set in Settings yet')
     }
 
+    if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
+      const updatedCalendars = filterUpdatedCalendars(this.variableMgmt.calendars, calendarsEvents)
+      triggersHandler.triggerChangedCalendars(this, updatedCalendars)
+        .catch(error => {
+          this.log('getEvents: Failed to trigger changed calendar events', error)
+          sentry.captureException(error)
+        })
+    }
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
 

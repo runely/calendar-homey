@@ -236,6 +236,8 @@ module.exports = async app => {
 
     new Homey.FlowCardTrigger('event_stops').register()
 
+    new Homey.FlowCardTrigger('event_changed').register()
+
     new Homey.FlowCardTrigger('event_starts_in')
       .registerRunListener((args, state) => {
         const minutes = convertToMinutes(args.when, args.type)
@@ -324,6 +326,26 @@ module.exports.updateTokens = async app => {
     app.log('updateTokens: Updating flow tokens')
 
     updateFlowTokens(app)
+
+    resolve(true)
+  })
+}
+
+module.exports.triggerChangedCalendars = (app, calendars) => {
+  return new Promise(resolve => {
+    calendars.forEach(calendar => {
+      calendar.events.forEach(event => {
+        const tokens = {
+          event_name: getTriggerTokenValue(event.summary),
+          event_calendar_name: calendar.name,
+          event_type: event.changed[0].type,
+          event_prev_value: getTriggerTokenValue(event.changed[0].previousValue),
+          event_new_value: getTriggerTokenValue(event.changed[0].newValue)
+        }
+        app.log('Triggered event_changed')
+        Homey.ManagerFlow.getCard('trigger', 'event_changed').trigger(tokens)
+      })
+    })
 
     resolve(true)
   })

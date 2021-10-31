@@ -1,0 +1,79 @@
+{
+  "id": "event_changed",
+  "title": {
+    "en": "Event changed",
+    "no": "En avtale ble endret",
+    "nl": "Een overeenkomst is gewijzigd",
+    "de": "Eine Vereinbarung wurde geändert"
+  },
+  "tokens": [
+    {
+      "name": "event_name",
+      "type": "string",
+      "title": {
+        "en": "Title",
+        "no": "Tittel",
+        "nl": "Titel",
+        "de": "Titel"
+      },
+      "example": {
+        "en": "Pick up in kindergarden",
+        "no": "Hente i barnehagen",
+        "nl": "Kinderen ophalen",
+        "de": "Im Kindergarten abholen"
+      }
+    },
+    {
+      "name": "event_calendar_name",
+      "type": "string",
+      "title": {
+        "en": "Calendar name",
+        "no": "Kalendernavn",
+        "nl": "Kalender naam",
+        "de": "Kalenderbezeichnung"
+      },
+      "example": {
+        "en": "Gmail",
+        "no": "Gmail",
+        "nl": "Gmail",
+        "de": "Gmail"
+      }
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "title": {
+        "en": "Type",
+        "no": "Type",
+        "nl": "Type",
+        "de": "Typ"
+      },
+      "example": {
+        "en": "Location",
+        "no": "Plassering",
+        "nl": "Locatie",
+        "de": "Ort"
+      }
+    },
+    {
+      "name": "event_prev_value",
+      "type": "string",
+      "title": {
+        "en": "Previous value",
+        "no": "Tidligere verdi",
+        "nl": "Vorige waarde",
+        "de": "Vorheriger Wert"
+      }
+    },
+    {
+      "name": "event_new_value",
+      "type": "string",
+      "title": {
+        "en": "New value",
+        "no": "Ny verdi",
+        "nl": "Nieuwe waarde",
+        "de": "Neuer Wert"
+      }
+    }
+  ]
+}
