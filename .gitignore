@@ -2,3 +2,6 @@ env.json
 node_modules/
 .backlog.md
 **/.DS_Store
+
+# ignore build dir homey auto generates when building...
+build/
