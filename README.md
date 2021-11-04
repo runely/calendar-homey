@@ -56,7 +56,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Event starts from calendar** - *will trigger when any event in specified calender starts*
 - **Event ends** - *will trigger when any event ends*
 - **Event ends in** - *will trigger when any event ends in when specified*
-- **Event changed** - *will trigger when any event has been changed (after sync)*
+- **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
 
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.9.1
+    - Added hint to trigger `Event changed`
 - 0.9.0
     - Shrunk footprint of events
     - Security dependency update
