@@ -71,5 +71,14 @@
         "events_tomorrow_count": "Tomorrows events (count)",
         "events_today-tomorrow_startstamp_fullday": "full day",
         "events_today-tomorrow_start-stop_stamps_pre": "to"
+    },
+    "triggers": {
+        "event_changed": {
+            "start": "Start",
+            "end": "End",
+            "description": "Description",
+            "location": "Location",
+            "summary": "Summary"
+        }
     }
 }

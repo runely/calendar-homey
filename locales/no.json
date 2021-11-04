@@ -71,5 +71,14 @@
         "events_tomorrow_count": "Morgendagens avtaler (antall)",
         "events_today-tomorrow_startstamp_fullday": "hele dagen",
         "events_today-tomorrow_start-stop_stamps_pre": "til"
+    },
+    "triggers": {
+        "event_changed": {
+            "start": "Start",
+            "end": "Slutt",
+            "description": "Beskrivelse",
+            "location": "Sted",
+            "summary": "Tittel"
+        }
     }
 }

@@ -71,5 +71,14 @@
         "events_tomorrow_count": "Morgige Ereignisse (Anzahl)",
         "events_today-tomorrow_startstamp_fullday": "ganztägig",
         "events_today-tomorrow_start-stop_stamps_pre": "bis"
+    },
+    "triggers": {
+        "event_changed": {
+            "start": "Anfang",
+            "end": "Ende",
+            "description": "Beschreibung",
+            "location": "Ort",
+            "summary": "Titel"
+        }
     }
 }

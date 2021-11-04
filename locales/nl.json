@@ -71,5 +71,14 @@
         "events_tomorrow_count": "Events morgen (aantal)",
         "events_today-tomorrow_startstamp_fullday": "Hele dag",
         "events_today-tomorrow_start-stop_stamps_pre": "tot"
+    },
+    "triggers": {
+        "event_changed": {
+            "start": "Begin",
+            "end": "Einde",
+            "description": "Omschrijving",
+            "location": "Locatie",
+            "summary": "Titel"
+        }
     }
 }
