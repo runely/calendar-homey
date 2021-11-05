@@ -10,7 +10,7 @@
     "en": "Triggers when an already synchronized event is changed",
     "no": "Utløses når en allerede synkronisert avtale blir endret",
     "nl": "Geactiveerd wanneer een reeds gesynchroniseerde overeenkomst wordt gewijzigd",
-    "de": "Wird ausgelöst, wenn ein bereit synchronisiertes Ereignis geändert wird"
+    "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird"
   },
   "tokens": [
     {
