@@ -7,7 +7,7 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "homey": "2.23.3",
+    "homey": "2.23.4",
     "jest": "27.3.1",
     "standard": "16.0.4"
   },
