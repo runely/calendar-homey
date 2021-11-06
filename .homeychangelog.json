@@ -124,5 +124,8 @@
   },
   "0.9.0": {
     "en": "Added 'Event changed' trigger. Shrunk events footprint. Dependency updates"
+  },
+  "0.9.1": {
+    "en": "Added trigger for event changed. Dependency updates"
   }
 }
