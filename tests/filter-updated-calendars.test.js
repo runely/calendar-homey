@@ -1,7 +1,7 @@
 const filterUpdatedCalendars = require('../lib/filter-updated-calendars')
 const { triggers: { event_changed: { start, end, description, location, summary } } } = require('../locales/en.json')
 
-jest.mock('Homey', () => {
+jest.mock('homey', () => {
   return {
     __: prop => {
       const { triggers: { event_changed: { start, end, description, location, summary } } } = require('../locales/en.json')
