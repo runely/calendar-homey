@@ -4,13 +4,13 @@
     "en": "Event changed",
     "no": "En avtale ble endret",
     "nl": "Een overeenkomst is gewijzigd",
-    "de": "Eine Vereinbarung wurde geändert"
+    "de": "Ein Ereignis wurde geändert"
   },
   "hint": {
     "en": "Triggers when an already synchronized event is changed",
     "no": "Utløses når en allerede synkronisert avtale blir endret",
     "nl": "Geactiveerd wanneer een reeds gesynchroniseerde overeenkomst wordt gewijzigd",
-    "de": "Wird ausgelöst, wenn eine bereits synchronisierte Vereinbarung geändert wird"
+    "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird"
   },
   "tokens": [
     {
