@@ -39,6 +39,9 @@
     ]
   },
   "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build/"
+    ],
     "testMatch": [
       "**/tests/**/*test.[jt]s?(x)",
       "**/?(*.)+.(spec|test).[jt]s?(x)"
