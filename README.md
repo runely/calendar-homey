@@ -143,6 +143,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.9.1
     - Added hint to trigger `Event changed`
+    - Bugfix: Events where a property changed to empty string would not trigger `Event changed`
 - 0.9.0
     - Shrunk footprint of events
     - Security dependency update
