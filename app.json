@@ -80,7 +80,7 @@
           "en": "Event changed",
           "no": "En avtale ble endret",
           "nl": "Een event is gewijzigd",
-          "de": "Ein Ereignis wurde geändert"
+          "de": "Ereignis wurde geändert"
         },
         "hint": {
           "en": "Triggers when an already synchronized event is changed",
