@@ -107,7 +107,7 @@ class IcalCalendar extends Homey.App {
             this.log(`getEvents: 'failed' setting value removed from calendar '${name}'`)
           }
 
-          const activeEvents = getActiveEvents(data, eventLimit)
+          const activeEvents = getActiveEvents(data, eventLimit, this)
           this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
           calendarsEvents.push({ name, events: activeEvents })
         } catch (error) {
