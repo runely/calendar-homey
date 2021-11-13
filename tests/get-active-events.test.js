@@ -81,7 +81,7 @@ describe('Events has correct time', () => {
   test('\'OnceAWeek\' is 16:30:00 in UTC', () => {
     const event = onceAWeekEvents[0]
     const time = event.start.toISOString().split('T')[1].split('.')[0].split(':')
-    expect(time[0]).toBe('16')
+    expect(time[0] === '16' || time[0] === '17').toBeTruthy()
     expect(time[1]).toBe('30')
     expect(time[2]).toBe('00')
   })
@@ -89,7 +89,7 @@ describe('Events has correct time', () => {
   test('\'AlwaysOngoing\' is 02:00:00 in UTC', () => {
     const event = alwaysOngoingEvents[0]
     const time = event.start.toISOString().split('T')[1].split('.')[0].split(':')
-    expect(time[0]).toBe('02')
+    expect(time[0] === '02' || time[0] === '03').toBeTruthy()
     expect(time[1]).toBe('00')
     expect(time[2]).toBe('00')
   })
