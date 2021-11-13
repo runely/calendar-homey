@@ -77,18 +77,20 @@ describe('getActiveEvents returns an array', () => {
   })
 })
 
-describe('Events has correct time regardless of DST', () => {
-  test('\'OnceAWeek\' is 17:30:00', () => {
+describe('Events has correct time', () => {
+  test('\'OnceAWeek\' is 16:30:00 in UTC', () => {
     const event = onceAWeekEvents[0]
-    expect(event.start.get('hours')).toBe(17)
-    expect(event.start.get('minutes')).toBe(30)
-    expect(event.start.get('seconds')).toBe(0)
+    const time = event.start.toISOString().split('T')[1].split('.')[0].split(':')
+    expect(time[0]).toBe('16')
+    expect(time[1]).toBe('30')
+    expect(time[2]).toBe('00')
   })
 
-  test('\'AlwaysOngoing\' is 03:00:00', () => {
+  test('\'AlwaysOngoing\' is 02:00:00 in UTC', () => {
     const event = alwaysOngoingEvents[0]
-    expect(event.start.get('hours')).toBe(3)
-    expect(event.start.get('minutes')).toBe(0)
-    expect(event.start.get('seconds')).toBe(0)
+    const time = event.start.toISOString().split('T')[1].split('.')[0].split(':')
+    expect(time[0]).toBe('02')
+    expect(time[1]).toBe('00')
+    expect(time[2]).toBe('00')
   })
 })
