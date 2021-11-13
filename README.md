@@ -145,6 +145,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - [@dirkg173](https://github.com/dirkg173): Fixed German translation
     - Bugfix: Excluded whole day events could mistakenly be included anyway
     - Added more tests to prevent mistakes
+    - Dependency updates
 - 0.9.1
     - Added hint to trigger `Event changed`
     - Bugfix: Events where a property changed to empty string would not trigger `Event changed`
