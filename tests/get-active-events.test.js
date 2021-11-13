@@ -64,8 +64,8 @@ describe('getActiveEvents returns an array', () => {
     expect(onceAWeekEvents.length === 2 || onceAWeekEvents.length === 3).toBeTruthy()
   })
 
-  test('With 4 \'AlwaysOngoing\' events', () => {
-    expect(alwaysOngoingEvents.length).toBe(4)
+  test('With 3 or 4 \'AlwaysOngoing\' events', () => {
+    expect(alwaysOngoingEvents.length === 3 || alwaysOngoingEvents.length === 4).toBeTruthy()
   })
 
   test('Where all \'OnceAWeek\' events has a unique uid', () => {
