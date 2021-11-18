@@ -127,5 +127,8 @@
   },
   "0.9.1": {
     "en": "Added trigger for event changed. Dependency updates"
+  },
+  "0.9.2": {
+    "en": "Bugfix. node-ical engine updated. Localized time frame types"
   }
 }
