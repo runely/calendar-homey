@@ -33,7 +33,13 @@
             "legend": "Tidsrom for avtaler",
             "description": "Avtaler med starttidspunkt innenfor angitt tidsrom blir hentet inn",
             "value": "Antall",
-            "type": "Type"
+            "type": "Type",
+            "types": {
+                "days": "Dager",
+                "weeks": "Uker",
+                "months": "Måneder",
+                "years": "År"
+            }
         },
         "misc": {
             "legend": "Diverse innstillinger",

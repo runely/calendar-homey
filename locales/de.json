@@ -33,7 +33,13 @@
             "legend": "Zeitrahmen des Ereignisses",
             "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
             "value": "Anzahl",
-            "type": "Typ"
+            "type": "Typ",
+            "types": {
+                "days": "Tage",
+                "weeks": "Wochen",
+                "months": "Monate",
+                "years": "Jahre"
+            }
         },
         "misc": {
             "legend": "Sonstige Einstellungen",

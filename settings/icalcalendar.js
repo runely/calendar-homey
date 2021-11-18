@@ -15,7 +15,24 @@ function onHomeyReady (Homey) {
   const saveElement = document.getElementById('save')
 
   // default settings
-  const eventLimitTypes = ['days', 'weeks', 'months', 'years']
+  const eventLimitTypes = [
+    {
+      value: 'days',
+      text: Homey.__('settings.eventlimit.types.days')
+    },
+    {
+      value: 'weeks',
+      text: Homey.__('settings.eventlimit.types.weeks')
+    },
+    {
+      value: 'months',
+      text: Homey.__('settings.eventlimit.types.months')
+    },
+    {
+      value: 'years',
+      text: Homey.__('settings.eventlimit.types.years')
+    }
+  ]
   const eventLimitDefault = variableMgmt.setting.eventLimitDefault
 
   // get uris from settings
@@ -160,11 +177,11 @@ function getEventLimit (limit, limitTypes) {
 
   // add event limit types
   const element = document.getElementById('eventlimit-type')
-  limitTypes.forEach(limitType => {
+  limitTypes.forEach(({ value, text }) => {
     const option = document.createElement('option')
-    option.setAttribute('value', limitType)
-    if (limit.type === limitType) option.setAttribute('selected', true)
-    option.appendChild(document.createTextNode(limitType))
+    option.setAttribute('value', value)
+    if (limit.type === value) option.setAttribute('selected', true)
+    option.appendChild(document.createTextNode(text))
     element.appendChild(option)
   })
 }

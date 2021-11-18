@@ -147,6 +147,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added more tests to prevent mistakes
     - Dependency updates
     - Updated node-ical
+    - Localized time frame types -> [Issue 252?](https://github.com/runely/calendar-homey/issues/252?)
     - Excluded `tests` folder and `renovate.json` from build
 - 0.9.1
     - Added hint to trigger `Event changed`

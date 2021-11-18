@@ -33,7 +33,13 @@
             "legend": "Event tijdsframe",
             "description": "Events met een startdatum binnen de gestelde tijdsframe worden gesynchroniseerd.",
             "value": "Aantal",
-            "type": "Type"
+            "type": "Type",
+            "types": {
+                "days": "Dagen",
+                "weeks": "Weken",
+                "months": "Maanden",
+                "years": "Jaar"
+            }
         },
         "misc": {
             "legend": "Overige instellingen",
