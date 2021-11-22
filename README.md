@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.9.3
+    - Dependency updates
 - 0.9.2
     - [@dirkg173](https://github.com/dirkg173): Fixed German translation
     - Bugfix: Excluded whole day events could mistakenly be included anyway
