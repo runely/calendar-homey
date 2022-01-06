@@ -1,0 +1,90 @@
+{
+    "locale": {
+        "humanize": "sv",
+        "moment": "sv"
+    },
+    "humanize": {
+        "conjunction": " och "
+    },
+    "settings": {
+        "title": "Inställningar",
+        "saved_alert": "Inställningar sparat",
+        "uri_load_failure": "Misslyckad inläsning av .ics-fil(er):",
+        "icons_info": "Ikoner av",
+        "calendars": {
+            "legend": "Sökväg till .ics-fil",
+            "name": "Kalendernamn",
+            "uri": "Sökväg"
+        },
+        "datetime": {
+            "legend": "Datum/Tid",
+            "date": {
+                "description": "<b>Önskad datumformat</b><br>ddd eller dddd = veckodag<br>MM = månad, DD = dag, YY or YYYY = år<br>Separera med /, - eller .",
+                "name": "Datumformat",
+                "default": "MM/DD/YY"
+            },
+            "time": {
+                "description": "<b>Önskad tidsformat</b><br>HH eller hh = timma, mm = minut<br>Separera med : eller .",
+                "name": "Tidsformat",
+                "default": "HH:mm"
+            }
+        },
+        "eventlimit": {
+            "legend": "Händelsens tidsram",
+            "description": "Händelser med startdatum inom angiven tidsram synkroniseras om",
+            "value": "Antal",
+            "type": "Typ",
+            "types": {
+                "days": "Dagar",
+                "weeks": "Veckor",
+                "months": "Månader",
+                "years": "År"
+            }
+        },
+        "misc": {
+            "legend": "Andra inställningar",
+            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender"
+        },
+        "buttons": {
+            "new_item": "Ny kalendar",
+            "save": "Spara",
+            "remove": "Radera"
+        }
+    },
+    "calendarTokens": {
+        "events_today_calendar_title_stamps": "Dagens händelser om",
+        "events_tomorrow_calendar_title_stamps": "Morgondagens händeler om",
+        "event_next_title_calendar": "Nästa händelsetitel om",
+        "event_next_startdate_calendar": "Nästa händelse startdatum om",
+        "event_next_startstamp_calendar": "Nästa händelse startar om",
+        "event_next_enddate_calendar": "Nästa händelses slutdatum om",
+        "event_next_endstamp_calendar": "Nästa händeles sluttid om"
+    },
+    "flowTokens": {
+        "event_next_title": "Nästa händeles titel",
+        "event_next_startdate": "Nästa händeles startdatum",
+        "event_next_startstamp": "Nästa händelses starttid",
+        "event_next_stopdate": "Nästa händelse slutdatum",
+        "event_next_stopstamp": "Nästa händelse sluttid",
+        "event_next_duration": "Nästa händelses varaktighet",
+        "event_next_duration_minutes": "Nästa händelses varaktighet (minuter)",
+        "event_next_starts_in_minutes": "Nästa ändelse startar inom (minuter)",
+        "event_next_stops_in_minutes": "Nästa händelse slutar inom (minuter)",
+        "event_next_calendar_name": "Kalendernamn på nästa händelse",
+        "events_today_title_stamps": "Dagens händelser, titel och tid",
+        "events_tomorrow_title_stamps": "Morgondagens händelser, titel och tid",
+        "events_today_count": "Dagens händelser (antal)",
+        "events_tomorrow_count": "Morgondagens händelser (antal)",
+        "events_today-tomorrow_startstamp_fullday": "heldag",
+        "events_today-tomorrow_start-stop_stamps_pre": "till"
+    },
+    "triggers": {
+        "event_changed": {
+            "start": "Start",
+            "end": "Slut",
+            "description": "Beskrivning",
+            "location": "Plats",
+            "summary": "Summering"
+        }
+    }
+}
