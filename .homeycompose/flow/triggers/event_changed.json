@@ -4,13 +4,15 @@
     "en": "Event changed",
     "no": "En avtale ble endret",
     "nl": "Een event is gewijzigd",
-    "de": "Ereignis wurde geändert"
+    "de": "Ereignis wurde geändert",
+    "sv": "En händelse har ändrats"
   },
   "hint": {
     "en": "Triggers when an already synchronized event is changed",
     "no": "Utløses når en allerede synkronisert avtale blir endret",
     "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
-    "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird"
+    "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
+    "sv": "Utlöses när en redan synkroniserad händelse har ändras"
   },
   "tokens": [
     {
@@ -20,13 +22,15 @@
         "en": "Title",
         "no": "Tittel",
         "nl": "Titel",
-        "de": "Titel"
+        "de": "Titel",
+        "sv": "Titel"
       },
       "example": {
         "en": "Pick up in kindergarden",
         "no": "Hente i barnehagen",
         "nl": "Kinderen ophalen",
-        "de": "Im Kindergarten abholen"
+        "de": "Im Kindergarten abholen",
+        "sv": "Hämta på förskola"
       }
     },
     {
@@ -36,13 +40,15 @@
         "en": "Calendar name",
         "no": "Kalendernavn",
         "nl": "Kalender naam",
-        "de": "Kalenderbezeichnung"
+        "de": "Kalenderbezeichnung",
+        "sv": "Kalendernamn"
       },
       "example": {
         "en": "Gmail",
         "no": "Gmail",
         "nl": "Gmail",
-        "de": "Gmail"
+        "de": "Gmail",
+        "sv": "Gmail"
       }
     },
     {
@@ -52,13 +58,15 @@
         "en": "Type",
         "no": "Type",
         "nl": "Type",
-        "de": "Typ"
+        "de": "Typ",
+        "sv": "Typ"
       },
       "example": {
         "en": "Location",
         "no": "Plassering",
         "nl": "Locatie",
-        "de": "Ort"
+        "de": "Ort",
+        "sv": "Plats"
       }
     },
     {
@@ -68,7 +76,8 @@
         "en": "Previous value",
         "no": "Tidligere verdi",
         "nl": "Vorige waarde",
-        "de": "Vorheriger Wert"
+        "de": "Vorheriger Wert",
+        "sv": "Tidigare värde"
       }
     },
     {
@@ -78,7 +87,8 @@
         "en": "New value",
         "no": "Ny verdi",
         "nl": "Nieuwe waarde",
-        "de": "Neuer Wert"
+        "de": "Neuer Wert",
+        "sv": "Nytt värde"
       }
     }
   ]

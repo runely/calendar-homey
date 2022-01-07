@@ -4,13 +4,15 @@
       "en": "Specific event !{{ends|doesn't end}} within...",
       "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
       "nl": "Specifiek event !{{stopt|stopt niet}} over...",
-      "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb..."
+      "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb...",
+      "sv": "En specifik händelse !{{slutar|slutar inte}} innan..."
     },
     "titleFormatted": {
       "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
       "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
       "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
-      "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]"
+      "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]",
+      "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]"
     },
     "args": [
       {
@@ -20,7 +22,8 @@
           "en": "Select event...",
           "no": "Velg avtale...",
           "nl": "Selecteer event",
-          "de": "Ereignis auswählen..."
+          "de": "Ereignis auswählen...",
+          "sv": "Välj händelse..."
         }
       },
       {
@@ -32,7 +35,8 @@
           "en": "Amount",
           "no": "Antall",
           "nl": "Aantal",
-          "de": "Anzahl"
+          "de": "Anzahl",
+          "sv": "Antal"
         }
       },
       {
@@ -45,7 +49,8 @@
               "en": "Minute(s)",
               "no": "Minutt(er)",
               "nl": "Minu(u)t(en)",
-              "de": "Minuten"
+              "de": "Minuten",
+              "sv": "Minut(er)"
             }
           },
           {
@@ -54,7 +59,8 @@
               "en": "Hour(s)",
               "no": "Time(r)",
               "nl": "U(u)r(en)",
-              "de": "Stunden"
+              "de": "Stunden",
+              "sv": "Timma(r)"
             }
           },
           {
@@ -63,7 +69,8 @@
               "en": "Day(s)",
               "no": "Dag(er)",
               "nl": "Dag(en)",
-              "de": "Tage"
+              "de": "Tage",
+              "sv": "Dag(ar)"
             }
           },
           {
@@ -72,7 +79,8 @@
               "en": "Week(s)",
               "no": "Uke(r)",
               "nl": "We(e)k(en)",
-              "de": "Wochen"
+              "de": "Wochen",
+              "sv": "Vecka/veckor"
             }
           }
         ]
