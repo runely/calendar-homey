@@ -1,6 +1,6 @@
 {
   "id": "no.runely.calendar",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "compatibility": ">=2.0.0",
   "sdk": 2,
   "brandColor": "#05A22C",
@@ -66,7 +66,11 @@
       "ics",
       "ical"
     ],
-    "sv": ["kalender", "ics", "ical"]
+    "sv": [
+      "kalender",
+      "ics",
+      "ical"
+    ]
   },
   "bugs": {
     "url": "https://github.com/runely/calendar-homey/issues"

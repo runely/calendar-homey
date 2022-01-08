@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "no.runely.calendar",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "compatibility": ">=2.0.0",
   "sdk": 2,
   "brandColor": "#05A22C",

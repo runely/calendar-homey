@@ -130,5 +130,8 @@
   },
   "0.9.2": {
     "en": "Bugfix. node-ical engine updated. Localized time frame types"
+  },
+  "0.10.0": {
+    "en": "Added Swedish translation"
   }
 }
