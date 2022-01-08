@@ -8,7 +8,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "browserify": "17.0.0",
-    "homey": "2.23.6",
+    "homey": "2.23.7",
     "jest": "27.4.5",
     "standard": "16.0.4"
   },
