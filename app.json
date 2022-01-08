@@ -19,7 +19,9 @@
     "de": "Behalten Sie mit Homey den Überblick über Ihre Planungen",
     "sv": "Ha full kontroll på planeringen med Homey"
   },
-  "category": ["tools"],
+  "category": [
+    "tools"
+  ],
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
@@ -43,7 +45,7 @@
         "name": "Dirk Göbel"
       },
       {
-        "name": "🇸🇪 Magnus Claesson"
+        "name": "Magnus Claesson"
       }
     ]
   },
@@ -55,9 +57,21 @@
     }
   },
   "tags": {
-    "en": ["calendar", "ics", "ical"],
-    "no": ["calendar", "ics", "ical"],
-    "sv": ["kalender", "ics", "ical"]
+    "en": [
+      "calendar",
+      "ics",
+      "ical"
+    ],
+    "no": [
+      "calendar",
+      "ics",
+      "ical"
+    ],
+    "sv": [
+      "kalender",
+      "ics",
+      "ical"
+    ]
   },
   "bugs": {
     "url": "https://github.com/runely/calendar-homey/issues"
@@ -576,7 +590,7 @@
                   "no": "Minutt(er)",
                   "nl": "Minuten",
                   "de": "Minuten",
-                  "sv": "Minuter"
+                  "sv": "Minut(er)"
                 }
               },
               {
@@ -1008,7 +1022,7 @@
           "no": "En avtale !{{pågår|pågår ikke}}",
           "nl": "Een event !{{is|is niet}} bezig",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend",
-          "sv": "En händelse !{{pågår|pågår inte}}"
+          "sv": "En specifik händelse !{{pågår|pågår inte}}"
         }
       },
       {

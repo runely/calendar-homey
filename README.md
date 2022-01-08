@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.10.0
+    - Swedish translation. Thanks to [@Lavve](https://github.com/lavve) -> [PR #270](https://github.com/runely/calendar-homey/pull/270)
 - 0.9.3
     - Dependency updates
 - 0.9.2
@@ -350,6 +352,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - Translators
     - [@RobHomey](https://github.com/RobHomey) : Dutch
     - [@dirkg173](https://github.com/dirkg173) : German
+    - [@Lavve](https://github.com/lavve) : Swedish
 
 ---
 If you like the app, buy me a cup of :coffee:
