@@ -5,7 +5,7 @@
       "no": "En avtale !{{starter|starter ikke}} innen...",
       "nl": "Een event !{{start|start niet}} over...",
       "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb...",
-      "sv": "En händelse !{{snartar|startar inte}} inom..."
+      "sv": "En händelse !{{startar|startar inte}} inom..."
     },
     "titleFormatted": {
       "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]]",

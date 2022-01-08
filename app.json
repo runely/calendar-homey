@@ -57,7 +57,6 @@
   "tags": {
     "en": ["calendar", "ics", "ical"],
     "no": ["calendar", "ics", "ical"],
-    "no": ["kalender", "ics", "ical"],
     "sv": ["kalender", "ics", "ical"]
   },
   "bugs": {
@@ -931,7 +930,7 @@
           "no": "En avtale !{{starter|starter ikke}} innen...",
           "nl": "Een event !{{start|start niet}} over...",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb...",
-          "sv": "En händelse !{{snartar|startar inte}} inom..."
+          "sv": "En händelse !{{startar|startar inte}} inom..."
         },
         "titleFormatted": {
           "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]]",
@@ -1009,7 +1008,7 @@
           "no": "En avtale !{{pågår|pågår ikke}}",
           "nl": "Een event !{{is|is niet}} bezig",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend",
-          "sv": "Hen händelse !{{pågår|pågår inte}}"
+          "sv": "En händelse !{{pågår|pågår inte}}"
         }
       },
       {
