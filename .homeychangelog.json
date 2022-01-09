@@ -133,5 +133,8 @@
   },
   "0.10.0": {
     "en": "Added Swedish translation"
+  },
+  "0.10.1": {
+    "en": "Bugfix"
   }
 }
