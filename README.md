@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.10.1
+    - Bugfix: `Event time frame` would not be applied when saved along with a calendar change
 - 0.10.0
     - Swedish translation. Thanks to [@Lavve](https://github.com/lavve) -> [PR #270](https://github.com/runely/calendar-homey/pull/270)
     - Dependency updates

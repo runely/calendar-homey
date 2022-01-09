@@ -46,13 +46,18 @@ class IcalCalendar extends Homey.App {
 
     // register callback when settings has been set
     Homey.ManagerSettings.on('set', args => {
-      if (args && (args === this.variableMgmt.setting.icalUris || args === this.variableMgmt.setting.eventLimit || args === this.variableMgmt.setting.nextEventTokensPerCalendar)) {
+      if (!args) return
+
+      const { icalUris, eventLimit, nextEventTokensPerCalendar, dateFormat, timeFormat } = this.variableMgmt.setting
+      if ([icalUris, eventLimit, nextEventTokensPerCalendar].includes(args)) {
         // sync calendars when calendar specific settings have been changed
-        if (!this.isGettingEvents) {
-          this.log(`onInit/${args}: Triggering getEvents with reregistering of tokens`)
-          this.getEvents(true)
-        }
-      } else if (args && (args === this.variableMgmt.setting.dateFormat || args === this.variableMgmt.setting.timeFormat)) {
+        setTimeout(() => {
+          if (!this.isGettingEvents) {
+            this.log(`onInit/${args}: Triggering getEvents with reregistering of tokens`)
+            this.getEvents(true)
+          }
+        }, 500)
+      } else if ([dateFormat, timeFormat].includes(args)) {
         // get new date/time format
         this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
       }
