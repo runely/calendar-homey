@@ -3,5 +3,5 @@ node_modules/
 .backlog.md
 **/.DS_Store
 
-# ignore build dir homey auto generates when building...
-build/
+# Added by Homey CLI
+/.homeybuild/
