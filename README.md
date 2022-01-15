@@ -144,6 +144,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.11.0
     - Dependency updates
     - `start`, `end` and `summary` properties of a calendar is now required. **If an event in a calendar is missing one of these, no events will be imported from this calendar, and an error will be printed in the settings page!**
+    - Bugfix: Token update *can* happen in the same second when tokens are beeing flushed because calendars are beeing updated. This is handled now.
 - 0.10.1
     - Bugfix: `Event time frame` would not be applied when saved along with a calendar change
 - 0.10.0

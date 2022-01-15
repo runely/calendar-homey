@@ -10,6 +10,14 @@ const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const convertToMinutes = require('../lib/convert-to-minutes')
 const getEventsForToken = require('../lib/get-events-for-token')
 
+const updateFlowToken = (token, value, id, app) => {
+  try {
+    token.setValue(value)
+  } catch (error) {
+    app.log(`updateFlowToken: Failed to update token '${id}': ${error.message || error}`)
+  }
+}
+
 const triggerAllEvents = (calendars, app) => {
   const now = moment()
 
@@ -127,51 +135,51 @@ const updateFlowTokens = app => {
   // loop through flow tokens
   app.variableMgmt.flowTokens.forEach(token => {
     if (token.id === 'event_next_title') {
-      token.setValue(nextEvent.event ? nextEvent.event.summary : '')
+      updateFlowToken(token, nextEvent.event ? nextEvent.event.summary : '', token.id, app)
     } else if (token.id === 'event_next_startdate') {
-      token.setValue(nextEvent.event ? nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '')
+      updateFlowToken(token, nextEvent.event ? nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
     } else if (token.id === 'event_next_startstamp') {
       if (nextEvent.event) {
         if (nextEvent.event.datetype === 'date-time') {
-          token.setValue(nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time))
+          updateFlowToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
         } else if (nextEvent.event.datetype === 'date') {
-          token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`)
+          updateFlowToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
         }
       } else {
-        token.setValue('')
+        updateFlowToken(token, '', token.id, app)
       }
     } else if (token.id === 'event_next_stopdate') {
-      token.setValue(nextEvent.event ? nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '')
+      updateFlowToken(token, nextEvent.event ? nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
     } else if (token.id === 'event_next_stopstamp') {
       if (nextEvent.event) {
         if (nextEvent.event.datetype === 'date-time') {
-          token.setValue(nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time))
+          updateFlowToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
         } else if (nextEvent.event.datetype === 'date') {
-          token.setValue(`00${app.variableMgmt.dateTimeFormat.time.splitter}00`)
+          updateFlowToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
         }
       } else {
-        token.setValue('')
+        updateFlowToken(token, '', token.id, app)
       }
     } else if (token.id === 'event_next_duration') {
-      token.setValue(nextEvent.event ? eventDuration.duration : '')
+      updateFlowToken(token, nextEvent.event ? eventDuration.duration : '', token.id, app)
     } else if (token.id === 'event_next_duration_minutes') {
-      token.setValue(nextEvent.event ? eventDuration.durationMinutes : -1)
+      updateFlowToken(token, nextEvent.event ? eventDuration.durationMinutes : -1, token.id, app)
     } else if (token.id === 'event_next_starts_in_minutes') {
-      token.setValue(nextEvent.event ? nextEvent.startsIn : -1)
+      updateFlowToken(token, nextEvent.event ? nextEvent.startsIn : -1, token.id, app)
     } else if (token.id === 'event_next_stops_in_minutes') {
-      token.setValue(nextEvent.event ? nextEvent.endsIn : -1)
+      updateFlowToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
     } else if (token.id === 'event_next_calendar_name') {
-      token.setValue(nextEvent.event ? nextEvent.calendarName : '')
+      updateFlowToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
     } else if (token.id === 'events_today_title_stamps') {
       const value = getEventsForToken(app, eventsToday) || ''
-      token.setValue(value)
+      updateFlowToken(token, value, token.id, app)
     } else if (token.id === 'events_today_count') {
-      token.setValue(eventsToday.length)
+      updateFlowToken(token, eventsToday.length, token.id, app)
     } else if (token.id === 'events_tomorrow_title_stamps') {
       const value = getEventsForToken(app, eventsTomorrow) || ''
-      token.setValue(value)
+      updateFlowToken(token, value, token.id, app)
     } else if (token.id === 'events_tomorrow_count') {
-      token.setValue(eventsTomorrow.length)
+      updateFlowToken(token, eventsTomorrow.length, token.id, app)
     }
   })
 
@@ -225,7 +233,7 @@ const updateFlowTokens = app => {
       }
     }
 
-    token.setValue(value)
+    updateFlowToken(token, value, token.id, app)
   })
 }
 
