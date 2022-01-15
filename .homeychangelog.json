@@ -136,5 +136,8 @@
   },
   "0.10.1": {
     "en": "Bugfix"
+  },
+  "0.11.0": {
+    "en": "'start', 'end' and 'summary' properties of a calendar is now required!! Bugfixes"
   }
 }
