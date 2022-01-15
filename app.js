@@ -253,7 +253,6 @@ class IcalCalendar extends Homey.App {
           this.getEvents()
         }
       })
-      // this.log(`registerCronTask: Registered task '${this.variableMgmt.crontask.id.updateCalendar}' with cron format '${this.variableMgmt.crontask.schedule.updateCalendar}'`);
     } catch (error) {
       this.log(`registerCronTasks: Failed to register task '${this.variableMgmt.crontask.id.updateCalendar}'`, error)
 
@@ -261,10 +260,8 @@ class IcalCalendar extends Homey.App {
     }
 
     try {
-      // const cronTaskTriggerEvents = await Homey.ManagerCron.registerTask(variableMgmt.crontask.id.triggerEvents, variableMgmt.crontask.schedule.triggerEvents);
       const cronTaskTriggerEvents = await Homey.ManagerCron.registerTask(this.variableMgmt.crontask.id.triggerEvents, this.variableMgmt.crontask.schedule.triggerEvents)
       cronTaskTriggerEvents.on('run', () => this.triggerEvents())
-      // this.log(`registerCronTask: Registered task '${this.variableMgmt.crontask.id.triggerEvents}' with cron format '${this.variableMgmt.crontask.schedule.triggerEvents}'`);
     } catch (error) {
       this.log(`registerCronTasks: Failed to register task '${this.variableMgmt.crontask.id.triggerEvents}'`, error)
 

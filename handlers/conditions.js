@@ -173,15 +173,12 @@ module.exports = async app => {
       let eventCondition = false
 
       if (type === 'ongoing') {
-        // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
         eventCondition = isEventOngoing(calendar.events)
         // app.log(`checkEvent: Ongoing? ${eventCondition}`);
       } else if (type === 'in') {
-        // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
         eventCondition = isEventIn(calendar.events, convertToMinutes(args.when, args.type))
         // app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
       } else if (type === 'stops_in') {
-        // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
         eventCondition = willEventNotIn(calendar.events, convertToMinutes(args.when, args.type))
         // app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
       } else if (type === 'any_ongoing' || type === 'any_ongoing_calendar') {
