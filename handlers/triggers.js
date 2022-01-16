@@ -180,6 +180,8 @@ const updateFlowTokens = app => {
       updateFlowToken(token, value, token.id, app)
     } else if (token.id === 'events_tomorrow_count') {
       updateFlowToken(token, eventsTomorrow.length, token.id, app)
+    } else if (token.id === 'icalcalendar_week_number') {
+      updateFlowToken(token, moment().week(), token.id, app)
     }
   })
 

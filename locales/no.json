@@ -76,7 +76,8 @@
         "events_today_count": "Dagens avtaler (antall)",
         "events_tomorrow_count": "Morgendagens avtaler (antall)",
         "events_today-tomorrow_startstamp_fullday": "hele dagen",
-        "events_today-tomorrow_start-stop_stamps_pre": "til"
+        "events_today-tomorrow_start-stop_stamps_pre": "til",
+        "icalcalendar_week_number": "Ukenummer"
     },
     "triggers": {
         "event_changed": {

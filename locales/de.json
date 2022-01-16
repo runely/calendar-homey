@@ -76,7 +76,8 @@
         "events_today_count": "Heutige Ereignisse (Anzahl)",
         "events_tomorrow_count": "Morgige Ereignisse (Anzahl)",
         "events_today-tomorrow_startstamp_fullday": "ganztägig",
-        "events_today-tomorrow_start-stop_stamps_pre": "bis"
+        "events_today-tomorrow_start-stop_stamps_pre": "bis",
+        "icalcalendar_week_number": "Wochennummer"
     },
     "triggers": {
         "event_changed": {

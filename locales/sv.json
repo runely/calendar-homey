@@ -76,7 +76,8 @@
         "events_today_count": "Dagens händelser (antal)",
         "events_tomorrow_count": "Morgondagens händelser (antal)",
         "events_today-tomorrow_startstamp_fullday": "heldag",
-        "events_today-tomorrow_start-stop_stamps_pre": "till"
+        "events_today-tomorrow_start-stop_stamps_pre": "till",
+        "icalcalendar_week_number": "Veckonummer"
     },
     "triggers": {
         "event_changed": {

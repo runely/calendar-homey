@@ -76,7 +76,8 @@
         "events_today_count": "Events vandaag (aantal)",
         "events_tomorrow_count": "Events morgen (aantal)",
         "events_today-tomorrow_startstamp_fullday": "Hele dag",
-        "events_today-tomorrow_start-stop_stamps_pre": "tot"
+        "events_today-tomorrow_start-stop_stamps_pre": "tot",
+        "icalcalendar_week_number": "Weeknummer"
     },
     "triggers": {
         "event_changed": {
