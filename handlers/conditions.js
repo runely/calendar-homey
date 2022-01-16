@@ -131,7 +131,7 @@ module.exports = async app => {
           app.sentry.captureException(error)
         }
 
-        const name = event.summary
+        const name = event.summary || ''
         let description = calendar.name
 
         if (startStamp !== '' && endStamp !== '') {

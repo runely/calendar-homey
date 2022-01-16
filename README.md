@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.11.1
+    - `summary` property of a calendar isn't required
 - 0.11.0
     - Dependency updates
     - `start`, `end` and `summary` properties of a calendar is now required. **If an event in a calendar is missing one of these, no events will be imported from this calendar, and an error will be printed in the settings page!**

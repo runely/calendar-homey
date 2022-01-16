@@ -135,7 +135,7 @@ const updateFlowTokens = app => {
   // loop through flow tokens
   app.variableMgmt.flowTokens.forEach(token => {
     if (token.id === 'event_next_title') {
-      updateFlowToken(token, nextEvent.event ? nextEvent.event.summary : '', token.id, app)
+      updateFlowToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
     } else if (token.id === 'event_next_startdate') {
       updateFlowToken(token, nextEvent.event ? nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
     } else if (token.id === 'event_next_startstamp') {
@@ -202,7 +202,7 @@ const updateFlowTokens = app => {
       value = getEventsForToken(app, tomorrowsEventsCalendar) || ''
     } else if (calendarType === 'next_title') {
       calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent)
-      value = calendarNextEvent.event ? calendarNextEvent.event.summary : ''
+      value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
     } else if (calendarType === 'next_startdate') {
       calendarNextEvent = getNextEventCalendar(app, calendarName, calendarNextEvent)
       value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
