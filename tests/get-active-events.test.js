@@ -68,3 +68,26 @@ describe('getActiveEvents returns an array', () => {
     expect(alwaysOngoingEvents.filter(event => event.uid === `hidden2_${event.start.toDate().toISOString().slice(0, 10)}`).length).toBe(alwaysOngoingEvents.length)
   })
 })
+
+describe('getActiveEvents throws an error', () => {
+  test('When "DTSTART" is missing', () => {
+    const dataNoStart = nodeIcal.sync.parseFile('./tests/data/calendar-missing-start.ics')
+    expect(() => getActiveEvents(dataNoStart, eventLimit, app)).toThrow()
+  })
+})
+
+describe('When "DTEND" is missing', () => {
+  test('"DTEND" is set to "DTSTART"', () => {
+    const dataNoEnd = nodeIcal.sync.parseFile('./tests/data/calendar-missing-end.ics')
+    expect(dataNoEnd['noEnd'].start.toISOString()).toBe(dataNoEnd['noEnd'].end.toISOString())
+  })
+})
+
+describe('When "SUMMARY" is missing', () => {
+  test('"SUMMARY" is undefined', () => {
+    const dataNoSummary = nodeIcal.sync.parseFile('./tests/data/calendar-missing-summary.ics')
+    const summary = dataNoSummary['noSummary'].summary
+    console.log(dataNoSummary['noSummary'])
+    expect(summary).toBe(undefined)
+  })
+})
