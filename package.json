@@ -24,11 +24,7 @@
     "homey-build": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js && homey app build",
     "homey-run": "npm run homey-build && homey app run",
     "homey-install": "npm run test && npm run homey-build && homey app install",
-    "homey-publish": "npm run test && npm run homey-build && npm run fix && homey app publish",
-    "update-dev": "git checkout dev && git pull",
-    "update-master": "git checkout master && git pull",
-    "even-up-dev": "git checkout dev && git merge master && git push && git checkout master",
-    "even-up-master": "git checkout master && git merge dev && git push && git checkout dev"
+    "homey-publish": "npm run test && npm run homey-build && npm run fix && homey app publish"
   },
   "standard": {
     "ignore": [
