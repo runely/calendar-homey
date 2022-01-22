@@ -4,10 +4,12 @@ const { sentry, init } = require('./lib/sentry-io') // { sentry, init, startTran
 
 const Homey = require('homey')
 
+const hasData = require('./lib/has-data')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const getContent = require('./lib/get-ical-content')
 const getActiveEvents = require('./lib/get-active-events')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
+const getEventUids = require('./lib/get-event-uids')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 
 const triggersHandler = require('./handlers/triggers')
@@ -77,6 +79,9 @@ class IcalCalendar extends Homey.App {
     const calendars = Homey.ManagerSettings.get(this.variableMgmt.setting.icalUris)
     // get event limit from settings or use the default
     const eventLimit = Homey.ManagerSettings.get(this.variableMgmt.setting.eventLimit) || this.variableMgmt.setting.eventLimitDefault
+    const oldCalendarsUidsStorage = Homey.ManagerSettings.get(this.variableMgmt.storage.eventUids)
+    const oldCalendarsUids = hasData(oldCalendarsUidsStorage) ? JSON.parse(oldCalendarsUidsStorage) : []
+    this.log('getEvents: oldCalendarsUids --', oldCalendarsUids.length)
     const calendarsEvents = []
 
     // get ical events
@@ -141,6 +146,35 @@ class IcalCalendar extends Homey.App {
           sentry.captureException(error)
         })
     }
+
+    // TODO: Created must be included in all events and Created must be checked if it's inside the last 24 hours
+    const newCalendarsUids = getEventUids(calendarsEvents)
+    this.log('getEvents: newCalendarsUids --', newCalendarsUids.length)
+    if (oldCalendarsUids.length !== 0) {
+      const newlyAddedEvents = newCalendarsUids.filter(newEvent => !oldCalendarsUids.find(oldEvent => newEvent.uid === oldEvent.uid))
+      if (newlyAddedEvents.length !== 0) {
+        newlyAddedEvents.forEach(newEvent => {
+          const calendar = calendarsEvents.find(calendar => calendar.name === newEvent.calendar)
+          if (!calendar) {
+            this.log('getEvents: Calendar', newEvent.calendar, 'not found 😬')
+            return
+          }
+          const event = calendar.events.find(event => event.uid === newEvent.uid)
+          if (!event) {
+            this.log('getEvents: Event', newEvent.uid, 'in calendar', newEvent.calendar, 'not found 😬')
+            return
+          }
+          this.log('getEvents: Will trigger new event for event with uid', event.uid, 'from', calendar.name, 'with name', event.summary)
+          triggersHandler.triggerAddedEvent(this, event, calendar.name)
+            .catch(error => {
+              this.log('getEvents: Failed to trigger event added', error)
+              sentry.captureException(error)
+            })
+        })
+      }
+    }
+    Homey.ManagerSettings.set(this.variableMgmt.storage.eventUids, JSON.stringify(newCalendarsUids))
+
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
 
