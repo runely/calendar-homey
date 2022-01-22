@@ -246,6 +246,8 @@ module.exports = async app => {
 
     new Homey.FlowCardTrigger('event_stops').register()
 
+    new Homey.FlowCardTrigger('event_added').register()
+    
     new Homey.FlowCardTrigger('event_changed').register()
 
     new Homey.FlowCardTrigger('event_starts_in')
@@ -356,6 +358,14 @@ module.exports.triggerChangedCalendars = (app, calendars) => {
         Homey.ManagerFlow.getCard('trigger', 'event_changed').trigger(tokens)
       })
     })
+
+    resolve(true)
+  })
+}
+
+module.exports.triggerAddedEvent = (app, event, calendarName) => {
+  return new Promise(resolve => {
+    startTrigger(calendarName, { ...event, TRIGGER_ID: 'event_added' }, app)
 
     resolve(true)
   })

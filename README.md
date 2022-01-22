@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.13.0
+    - Added trigger 'Event added' -> [Issue #273](https://github.com/runely/calendar-homey/issues/273)
 - 0.12.0
     - Bugfix: `summary` property of a calendar isn't required
     - Added `week number` added as a global token
