@@ -57,6 +57,10 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Event ends** - *will trigger when any event ends*
 - **Event ends in** - *will trigger when any event ends in when specified*
 - **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
+- **Event added** - *will trigger when a new event is created in one of your synced calendars*
+    - **Will trigger when these requirements are met:**
+        - The created events start time is inside the current datetime frame beeing synced in
+        - The created event is created within the last 24 hours
 
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
@@ -75,8 +79,12 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Event description
 - Event location
 - Event duration
-- Event duration (mintes)
+- Event duration *(minutes)*
 - Calendar name
+- Start date *(only `Event added`)*
+- Start time *(only `Event added`)*
+- End date *(only `Event added`)*
+- End time *(only `Event added`)*
 
 ### Global flow tags (can be used in any app and service)
 - Next event title
@@ -85,16 +93,16 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Next event end date
 - Next event end time
 - Next event duration
-- Next event duration (minutes)
-- Next event starts in (minutes)
-- Next event ends in (minutes)
+- Next event duration *(minutes)*
+- Next event starts in *(minutes)*
+- Next event ends in *(minutes)*
 - Calendar name of next event
 - Todays events, title and time
-- Todays events (count)
+- Todays events *(count)*
 - Tomorrows events, title and time
-- Tomorrows events (count)
-- Todays events (per calendar)
-- Tomorrows events (per calendar)
+- Tomorrows events *(count)*
+- Todays events *(per calendar)*
+- Tomorrows events *(per calendar)*
 
 ### Next event tags per calendar (can be turned on in the settings)
 - Next event title in %calendarname%
@@ -141,6 +149,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.13.0
+    - Added trigger 'Event added' -> [Issue #273](https://github.com/runely/calendar-homey/issues/273)
 - 0.12.0
     - Bugfix: `summary` property of a calendar isn't required
     - Added `week number` added as a global token

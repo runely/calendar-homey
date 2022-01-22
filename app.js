@@ -4,10 +4,13 @@ const { sentry, init } = require('./lib/sentry-io') // { sentry, init, startTran
 
 const Homey = require('homey')
 
+const hasData = require('./lib/has-data')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const getContent = require('./lib/get-ical-content')
 const getActiveEvents = require('./lib/get-active-events')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
+const getEventUids = require('./lib/get-event-uids')
+const getNewEvents = require('./lib/get-new-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 
 const triggersHandler = require('./handlers/triggers')
@@ -77,6 +80,9 @@ class IcalCalendar extends Homey.App {
     const calendars = Homey.ManagerSettings.get(this.variableMgmt.setting.icalUris)
     // get event limit from settings or use the default
     const eventLimit = Homey.ManagerSettings.get(this.variableMgmt.setting.eventLimit) || this.variableMgmt.setting.eventLimitDefault
+    const oldCalendarsUidsStorage = Homey.ManagerSettings.get(this.variableMgmt.storage.eventUids)
+    const oldCalendarsUids = hasData(oldCalendarsUidsStorage) ? JSON.parse(oldCalendarsUidsStorage) : []
+    this.log('getEvents: oldCalendarsUids --', oldCalendarsUids.length)
     const calendarsEvents = []
 
     // get ical events
@@ -141,6 +147,20 @@ class IcalCalendar extends Homey.App {
           sentry.captureException(error)
         })
     }
+
+    const newCalendarsUids = getEventUids(calendarsEvents)
+    this.log('getEvents: newCalendarsUids --', newCalendarsUids.length)
+    const newlyAddedEvents = getNewEvents(oldCalendarsUids, newCalendarsUids, calendarsEvents, this)
+    this.log('getEvents: newlyAddedEvents --', newlyAddedEvents.length)
+    newlyAddedEvents.forEach(event => {
+      triggersHandler.triggerAddedEvent(this, event, event.calendarName)
+        .catch(error => {
+          this.log('getEvents: Failed to trigger event added', error)
+          sentry.captureException(error)
+        })
+    })
+    Homey.ManagerSettings.set(this.variableMgmt.storage.eventUids, JSON.stringify(newCalendarsUids))
+
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
 

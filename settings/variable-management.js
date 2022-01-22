@@ -92,7 +92,10 @@ module.exports = {
   calendarTokensPostNextEndDateId: '_next_enddate',
   calendarTokensPostNextEndTimeId: '_next_endtime',
   calendarTokens: [],
-  flowTokens: []
+  flowTokens: [],
+  storage: {
+    eventUids: 'eventUids'
+  }
 }
 
 },{}]},{},[1])(1)
