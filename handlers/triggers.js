@@ -247,7 +247,7 @@ module.exports = async app => {
     new Homey.FlowCardTrigger('event_stops').register()
 
     new Homey.FlowCardTrigger('event_added').register()
-    
+
     new Homey.FlowCardTrigger('event_changed').register()
 
     new Homey.FlowCardTrigger('event_starts_in')
