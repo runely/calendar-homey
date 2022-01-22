@@ -57,6 +57,10 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Event ends** - *will trigger when any event ends*
 - **Event ends in** - *will trigger when any event ends in when specified*
 - **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
+- **Event added** - *will trigger when a new event is created in one of your synced calendars*
+    - **Will trigger when these requirements are met:**
+        - The created events start time is inside the current datetime frame beeing synced in
+        - The created event is created within the last 24 hours
 
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
@@ -77,6 +81,10 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Event duration
 - Event duration *(minutes)*
 - Calendar name
+- Start date *(only `Event added`)*
+- Start time *(only `Event added`)*
+- End date *(only `Event added`)*
+- End time *(only `Event added`)*
 
 ### Global flow tags (can be used in any app and service)
 - Next event title
