@@ -94,6 +94,13 @@ const startTrigger = (calendarName, event, app, state) => {
     event_calendar_name: calendarName
   }
 
+  if (event.TRIGGER_ID === 'event_added') {
+    tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
+    tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
+    tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.date.long)
+    tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)
+  }
+
   if (state === undefined) {
     app.log(`Triggered '${event.TRIGGER_ID}'`)
     Homey.ManagerFlow.getCard('trigger', event.TRIGGER_ID).trigger(tokens)
