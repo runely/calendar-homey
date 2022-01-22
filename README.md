@@ -75,7 +75,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Event description
 - Event location
 - Event duration
-- Event duration (mintes)
+- Event duration *(minutes)*
 - Calendar name
 
 ### Global flow tags (can be used in any app and service)
@@ -85,16 +85,16 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Next event end date
 - Next event end time
 - Next event duration
-- Next event duration (minutes)
-- Next event starts in (minutes)
-- Next event ends in (minutes)
+- Next event duration *(minutes)*
+- Next event starts in *(minutes)*
+- Next event ends in *(minutes)*
 - Calendar name of next event
 - Todays events, title and time
-- Todays events (count)
+- Todays events *(count)*
 - Tomorrows events, title and time
-- Tomorrows events (count)
-- Todays events (per calendar)
-- Tomorrows events (per calendar)
+- Tomorrows events *(count)*
+- Todays events *(per calendar)*
+- Tomorrows events *(per calendar)*
 
 ### Next event tags per calendar (can be turned on in the settings)
 - Next event title in %calendarname%
