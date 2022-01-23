@@ -145,5 +145,8 @@
   },
   "0.13.0": {
     "en": "New trigger 'Event added'"
+  },
+  "0.13.1": {
+    "en": "Translation fix"
   }
 }
