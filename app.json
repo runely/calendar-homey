@@ -90,7 +90,7 @@
           "en": "Event added",
           "no": "Ny avtale opprettet",
           "nl": "Evenement toegevoegd",
-          "de": "Veranstaltung hinzugefügt",
+          "de": "Ereignis hinzugefügt",
           "sv": "Händelse tillagd"
         },
         "hint": {
@@ -224,7 +224,7 @@
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "01/22/22"
+              "sv": "22-01-22"
             }
           },
           {
@@ -260,7 +260,7 @@
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "01/22/22"
+              "sv": "22-01-22"
             }
           },
           {

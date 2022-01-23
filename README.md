@@ -149,6 +149,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.13.1
+    - German and Swedish translation fix
 - 0.13.0
     - Added trigger 'Event added' -> [Issue #273](https://github.com/runely/calendar-homey/issues/273)
     - Dependency updates
