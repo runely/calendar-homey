@@ -21,7 +21,7 @@
             "date": {
                 "description": "<b>Önskad datumformat</b><br>ddd eller dddd = veckodag<br>MM = månad, DD = dag, YY or YYYY = år<br>Separera med /, - eller .",
                 "name": "Datumformat",
-                "default": "MM/DD/YY"
+                "default": "YY-MM-DD"
             },
             "time": {
                 "description": "<b>Önskad tidsformat</b><br>HH eller hh = timma, mm = minut<br>Separera med : eller .",
