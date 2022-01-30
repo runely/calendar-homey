@@ -3,6 +3,8 @@
 const Homey = require('homey')
 const moment = require('moment')
 const humanize = require('humanize-duration')
+const capitalize = require('../lib/capitalize')
+const deepClone = require('lodash.clonedeep')
 const filterByCalendar = require('../lib/filter-by-calendar')
 const getNextEvent = require('../lib/get-next-event')
 const getTodaysEvents = require('../lib/get-todays-events')
@@ -95,10 +97,17 @@ const startTrigger = (calendarName, event, app, state) => {
   }
 
   if (event.TRIGGER_ID === 'event_added') {
+    const newEvent = deepClone(event) // make a new copy of event to prevent that event.start also has its locale changed
+    const { start } = newEvent
+    start.locale(Homey.__('locale.moment'))
+
     tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
     tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
     tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.date.long)
-    tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)
+    tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)    
+    tokens.event_weekday_readable = capitalize(start.format('dddd'))
+    tokens.event_month_readable = capitalize(start.format('MMMM'))
+    tokens.event_date_of_month = start.get('date')
   }
 
   if (state === undefined) {

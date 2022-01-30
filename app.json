@@ -280,6 +280,60 @@
               "de": "11:30",
               "sv": "11:30"
             }
+          },
+          {
+            "name": "event_weekday_readable",
+            "type": "string",
+            "title": {
+              "en": "Week day",
+              "no": "Ukedag",
+              "nl": "Weekdag",
+              "de": "Vochentag",
+              "sv": "Veckodag"
+            },
+            "example": {
+              "en": "Monday",
+              "no": "Mandag",
+              "nl": "Maandag",
+              "de": "Montag",
+              "sv": "Måndag"
+            }
+          },
+          {
+            "name": "event_month_readable",
+            "type": "string",
+            "title": {
+              "en": "Month",
+              "no": "Måned",
+              "nl": "Maand",
+              "de": "Monat",
+              "sv": "Månad"
+            },
+            "example": {
+              "en": "January",
+              "no": "Januar",
+              "nl": "Januari",
+              "de": "Januar",
+              "sv": "Januari"
+            }
+          },
+          {
+            "name": "event_date_of_month",
+            "type": "number",
+            "title": {
+              "en": "Date",
+              "no": "Dagsnummer",
+              "nl": "Dag nummer",
+              "de": "Tagesnummer",
+              "sv": "Dagnummer"
+            },
+            "example": {
+              "en": "30",
+              "no": "30",
+              "nl": "30",
+              "de": "30",
+              "sv": "30"
+            }
           }
         ]
       },
