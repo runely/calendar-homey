@@ -59,6 +59,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
 - **Event added** - *will trigger when a new event is created in one of your synced calendars*
     - **Will trigger when these requirements are met:**
+        - The event has the `CREATED` property
         - The created events start time is inside the current datetime frame beeing synced in
         - The created event is created within the last 24 hours
 
@@ -149,6 +150,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 0.14.0
+    - Bugfix: Exchange calendars (might be others aswell) do not use the `CREATED` property. Instead they use `DTSTAMP` and `METHOD`, but these are treated both as *created* and as *modified* timestamp. So from now on only the `CREATED` property is taken into account.
 - 0.13.1
     - German and Swedish translation fix
 - 0.13.0
