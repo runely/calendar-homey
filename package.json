@@ -38,7 +38,8 @@
   },
   "jest": {
     "modulePathIgnorePatterns": [
-      "<rootDir>/build/"
+      "<rootDir>/build/",
+      "<rootDir>/.homeybuild/"
     ],
     "testMatch": [
       "**/tests/**/*test.[jt]s?(x)",
