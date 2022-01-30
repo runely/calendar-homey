@@ -104,7 +104,7 @@ const startTrigger = (calendarName, event, app, state) => {
     tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
     tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
     tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.date.long)
-    tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)    
+    tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)
     tokens.event_weekday_readable = capitalize(start.format('dddd'))
     tokens.event_month_readable = capitalize(start.format('MMMM'))
     tokens.event_date_of_month = start.get('date')
