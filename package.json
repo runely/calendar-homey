@@ -9,7 +9,7 @@
   "devDependencies": {
     "browserify": "17.0.0",
     "homey": "2.25.1",
-    "jest": "27.4.7",
+    "jest": "27.5.1",
     "standard": "16.0.4"
   },
   "dependencies": {
