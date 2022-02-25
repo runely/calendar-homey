@@ -152,6 +152,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.14.1
     - `Summary` of an updated calendar event is now evaluated first.
+    - Include recurrence date even when utc date is previous date
 - 0.14.0
     - Bugfix: Exchange calendars (might be others aswell) do not use the `CREATED` property. Instead they use `DTSTAMP` and `METHOD`, but these are treated both as *created* and as *modified* timestamp. So from now on only the `CREATED` property is taken into account.
     - Added tokens `Week day`, `Month` and `Date` to trigger **Event added**
