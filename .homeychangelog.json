@@ -151,5 +151,8 @@
   },
   "0.14.0": {
     "en": "'Event added' trigger requires 'CREATED' property on event to trigger. Added extra tokens to 'Event added'"
+  },
+  "0.14.1": {
+    "en": "Include all recurrence dates"
   }
 }
