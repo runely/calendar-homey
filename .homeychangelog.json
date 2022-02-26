@@ -154,5 +154,8 @@
   },
   "0.14.1": {
     "en": "Include all recurrence dates"
+  },
+  "0.14.2": {
+    "en": "Bugfixes: Recurring events starting at 00:00 was misread"
   }
 }
