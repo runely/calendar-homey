@@ -152,6 +152,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 0.14.3
     - Dependency updates
+    - Bugfix: If a recurrence were found, `newEvent` was overwritten with the recurrence event
 - 0.14.2
     - Bugfix: Fix misread start when a recurring event had start time set to 00:00 (hopefully this doesn't mess things up...)
     - Bugfix: Make sure recurrence override is same day
