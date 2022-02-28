@@ -157,5 +157,8 @@
   },
   "0.14.2": {
     "en": "Bugfixes: Recurring events starting at 00:00 was misread"
+  },
+  "0.14.3": {
+    "en": "Bugfix for recurrence overrided events"
   }
 }
