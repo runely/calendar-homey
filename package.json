@@ -17,7 +17,7 @@
     "humanize-duration": "3.27.1",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.5.34",
-    "node-ical": "0.14.1"
+    "node-ical": "0.15.1"
   },
   "scripts": {
     "test": "standard && jest",
