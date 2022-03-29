@@ -140,7 +140,7 @@ class IcalCalendar extends Homey.App {
     }
 
     if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
-      const updatedCalendars = filterUpdatedCalendars(this.variableMgmt.calendars, calendarsEvents)
+      const updatedCalendars = filterUpdatedCalendars(this, this.variableMgmt.calendars, calendarsEvents)
       triggersHandler.triggerChangedCalendars(this, updatedCalendars)
         .catch(error => {
           this.log('getEvents: Failed to trigger changed calendar events', error)

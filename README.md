@@ -153,6 +153,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.15.0
     - Dependency updates
     - Updated node-ical
+    - Localized **datetime** `start` and `end` format in `Event changed`
 - 0.14.3
     - Dependency updates
     - Bugfix: If a recurrence were found, `newEvent` was overwritten with the recurrence event

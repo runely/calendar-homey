@@ -1,5 +1,6 @@
+const moment = require('moment')
 const filterUpdatedCalendars = require('../lib/filter-updated-calendars')
-const { triggers: { event_changed: { start, end, description, location, summary } } } = require('../locales/en.json')
+const { triggers: { event_changed: { start, end, description, location, summary } }, settings: { datetime: { date: { default: long }, time: { default: time } } } } = require('../locales/en.json')
 
 jest.mock('homey', () => {
   return {
@@ -15,15 +16,28 @@ jest.mock('homey', () => {
   }
 })
 
+const app = {
+  variableMgmt: {
+    dateTimeFormat: {
+      date: {
+        long
+      },
+      time: {
+        time
+      }
+    }
+  }
+}
+
 const oldCalendars = {
   nothingChanged: [
     {
       name: 'nothingChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
           description: 'Desc',
           location: '',
@@ -37,9 +51,9 @@ const oldCalendars = {
       name: 'startChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8842',
           description: 'Desc',
           location: '',
@@ -53,9 +67,9 @@ const oldCalendars = {
       name: 'endChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8843',
           description: 'Desc',
           location: '',
@@ -69,9 +83,9 @@ const oldCalendars = {
       name: 'descriptionChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8844',
           description: 'Desc',
           location: '',
@@ -85,9 +99,9 @@ const oldCalendars = {
       name: 'locationChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
           description: 'Desc',
           location: '',
@@ -101,9 +115,9 @@ const oldCalendars = {
       name: 'summaryChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8846',
           description: 'Desc',
           location: '',
@@ -120,9 +134,9 @@ const newCalendars = {
       name: 'nothingChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
           description: 'Desc',
           location: '',
@@ -136,9 +150,9 @@ const newCalendars = {
       name: 'startChanged',
       events: [
         {
-          start: '2021-11-05T19:00:00.000Z',
+          start: moment('2021-11-05T19:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8842',
           description: 'Desc',
           location: '',
@@ -152,9 +166,9 @@ const newCalendars = {
       name: 'endChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T22:00:00.000Z',
+          end: moment('2021-11-05T22:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8843',
           description: 'Desc',
           location: '',
@@ -168,9 +182,9 @@ const newCalendars = {
       name: 'descriptionChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8844',
           description: '',
           location: '',
@@ -184,9 +198,9 @@ const newCalendars = {
       name: 'locationChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
           description: 'Desc',
           location: 'Loc, 9867 Station',
@@ -200,9 +214,9 @@ const newCalendars = {
       name: 'summaryChanged',
       events: [
         {
-          start: '2021-11-05T20:00:00.000Z',
+          start: moment('2021-11-05T20:00:00.000Z'),
           datetype: 'date-time',
-          end: '2021-11-05T21:00:00.000Z',
+          end: moment('2021-11-05T21:00:00.000Z'),
           uid: 'F7177A32-DBD4-46A9-85C7-669749EA8846',
           description: 'Desc',
           location: '',
@@ -215,17 +229,17 @@ const newCalendars = {
 
 describe('Expect \'filterUpdatedCalendars\' to return', () => {
   test('An array', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.nothingChanged, newCalendars.nothingChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.nothingChanged, newCalendars.nothingChanged)
     expect(Array.isArray(eventsChanged)).toBe(true)
   })
 
   test('Empty array when nothing\'s changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.nothingChanged, newCalendars.nothingChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.nothingChanged, newCalendars.nothingChanged)
     expect(eventsChanged.length).toBe(0)
   })
 
   test('\'Start\' when start has changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.startChanged, newCalendars.startChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.startChanged, newCalendars.startChanged)
     expect(eventsChanged.length).toBe(1)
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
@@ -233,7 +247,7 @@ describe('Expect \'filterUpdatedCalendars\' to return', () => {
   })
 
   test('\'End\' when end has changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.endChanged, newCalendars.endChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.endChanged, newCalendars.endChanged)
     expect(eventsChanged.length).toBe(1)
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
@@ -241,7 +255,7 @@ describe('Expect \'filterUpdatedCalendars\' to return', () => {
   })
 
   test('\'Description\' when description has changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.descriptionChanged, newCalendars.descriptionChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.descriptionChanged, newCalendars.descriptionChanged)
     expect(eventsChanged.length).toBe(1)
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
@@ -249,7 +263,7 @@ describe('Expect \'filterUpdatedCalendars\' to return', () => {
   })
 
   test('\'Location\' when location has changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.locationChanged, newCalendars.locationChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.locationChanged, newCalendars.locationChanged)
     expect(eventsChanged.length).toBe(1)
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
@@ -257,7 +271,7 @@ describe('Expect \'filterUpdatedCalendars\' to return', () => {
   })
 
   test('\'Summary\' when summary has changed', () => {
-    const eventsChanged = filterUpdatedCalendars(oldCalendars.summaryChanged, newCalendars.summaryChanged)
+    const eventsChanged = filterUpdatedCalendars(app, oldCalendars.summaryChanged, newCalendars.summaryChanged)
     expect(eventsChanged.length).toBe(1)
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
