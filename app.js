@@ -56,7 +56,7 @@ class IcalCalendar extends Homey.App {
     setupConditions({ timezone: this.getTimezone(), app: this })
 
     // setup actions
-    setupActions()
+    setupActions(this)
 
     // get ical events
     this.log('onInit: Triggering getEvents and reregistering tokens')
