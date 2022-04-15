@@ -160,5 +160,8 @@
   },
   "0.14.3": {
     "en": "Bugfix for recurrence overrided events"
+  },
+  "0.15.0": {
+    "en": "Localized \"start\" and \"end\" datetime in trigger \"Event changed\". Dependency updates"
   }
 }
