@@ -1,7 +1,6 @@
 'use strict'
 
 const deepClone = require('lodash.clonedeep')
-const Homey = require('homey')
 
 const getEventsToTrigger = require('../lib/get-events-to-trigger')
 const getTokenDuration = require('../lib/get-token-duration')
@@ -26,7 +25,7 @@ module.exports = async options => {
     const { calendarName, event, triggerId, state } = eventTrigger
     try {
       // add tokens for event
-      const eventDuration = getTokenDuration(event)
+      const eventDuration = getTokenDuration(app, event)
       const tokens = {
         event_name: getTokenValue(event.summary),
         event_description: getTokenValue(event.description),
@@ -39,7 +38,7 @@ module.exports = async options => {
       if (triggerId === 'event_added') {
         const newEvent = deepClone(event) // make a new copy of event to prevent that event.start also has its locale changed (deepClone needed since theres functions here)
         const { start } = newEvent
-        start.locale(Homey.__('locale.moment')) // TODO: Check out if homey.clock.getTimezone() can be used here instead
+        start.locale(app.homey.__('locale.moment')) // TODO: Check out if homey.clock.getTimezone() can be used here instead
 
         tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
         tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)

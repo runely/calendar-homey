@@ -1,6 +1,5 @@
 'use strict'
 
-const Homey = require('homey')
 const getNextEvent = require('../lib/get-next-event')
 const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
@@ -62,7 +61,7 @@ module.exports = options => {
   let eventDuration
 
   if (nextEvent.event) {
-    eventDuration = getTokenDuration(nextEvent.event)
+    eventDuration = getTokenDuration(app, nextEvent.event)
   }
 
   // loop through flow tokens
@@ -71,7 +70,7 @@ module.exports = options => {
       if (token.id === 'event_next_title') {
         updateToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
       } else if (token.id === 'event_next_startdate') {
-        updateToken(token, nextEvent.event ? nextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        updateToken(token, nextEvent.event ? nextEvent.event.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
       } else if (token.id === 'event_next_startstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
@@ -83,7 +82,7 @@ module.exports = options => {
           updateToken(token, '', token.id, app)
         }
       } else if (token.id === 'event_next_stopdate') {
-        updateToken(token, nextEvent.event ? nextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        updateToken(token, nextEvent.event ? nextEvent.event.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
       } else if (token.id === 'event_next_stopstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
@@ -154,7 +153,7 @@ module.exports = options => {
         value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
       } else if (calendarType === 'next_startdate') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
-        value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
+        value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
       } else if (calendarType === 'next_starttime') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
         if (calendarNextEvent.event) {
@@ -168,7 +167,7 @@ module.exports = options => {
         }
       } else if (calendarType === 'next_enddate') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
-        value = calendarNextEvent.event ? calendarNextEvent.event.end.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
+        value = calendarNextEvent.event ? calendarNextEvent.event.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
       } else if (calendarType === 'next_endtime') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
         if (calendarNextEvent.event) {

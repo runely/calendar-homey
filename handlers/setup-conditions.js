@@ -1,6 +1,5 @@
 'use strict'
 
-const Homey = require('homey')
 const moment = require('../lib/moment-datetime')
 const { filterByCalendar, filterBySummary, filterByUID } = require('../lib/filter-by')
 const sortEvent = require('../lib/sort-event')
@@ -115,7 +114,7 @@ const getEventList = (timezone, app, calendars) => {
 
       try {
         if (event.datetype === 'date-time') {
-          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`) : startMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`) : startMoment.locale(app.homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
 
           if (endMoment.isSame(startMoment, 'year')) {
             if (endMoment.isSame(startMoment, 'date')) {
@@ -126,15 +125,15 @@ const getEventList = (timezone, app, calendars) => {
               endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`)
             }
           } else {
-            endStamp = endMoment.locale(Homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+            endStamp = endMoment.locale(app.homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
           }
         } else if (event.datetype === 'date') {
-          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(app.variableMgmt.dateTimeFormat.date.short) : startMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
+          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(app.variableMgmt.dateTimeFormat.date.short) : startMoment.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
 
           if (endMoment.isSame(now, 'year')) {
             endStamp = endMoment.isSame(startMoment, 'date') ? '' : endMoment.format(app.variableMgmt.dateTimeFormat.date.short)
           } else {
-            endStamp = endMoment.locale(Homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
+            endStamp = endMoment.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
           }
         }
       } catch (error) {
