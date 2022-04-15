@@ -2,12 +2,20 @@
   "name": "no.runely.calendar",
   "version": "0.0.1",
   "main": "app.js",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "repository": {
     "url": "https://github.com/runely/calendar-homey"
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@tsconfig/node12": "1.0.9",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.1",
+    "@types/node": "17.0.24",
     "browserify": "17.0.0",
+    "eslint": "8.13.0",
+    "eslint-config-athom": "3.0.1",
     "homey": "2.28.1",
     "jest": "27.5.1",
     "standard": "16.0.4"
@@ -17,11 +25,13 @@
     "humanize-duration": "3.27.1",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.5.34",
+    "node-cron": "3.0.0",
     "node-ical": "0.15.1"
   },
   "scripts": {
     "test": "standard && jest",
     "fix": "standard --fix",
+    "ts:lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "homey-build": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js && homey app build",
     "homey-run": "npm run homey-build && homey app run",

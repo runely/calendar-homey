@@ -1,0 +1,15 @@
+{
+  "extends": "athom",
+  "rules": {
+    "comma-dangle": "off",
+    "max-len": "off",
+    "no-console": "off",
+    "object-curly-newline": "off",
+    "padded-blocks": "off",
+    "semi": "off",
+    "space-before-function-paren": "off"
+  },
+  "ignorePatterns": [
+    "**/settings/*.js"
+  ]
+}

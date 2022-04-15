@@ -150,6 +150,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.0.0
+    - Updated to SDK3
 - 0.15.0
     - Dependency updates
     - Updated node-ical
