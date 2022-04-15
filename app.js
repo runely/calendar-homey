@@ -136,7 +136,7 @@ class IcalCalendar extends Homey.App {
       this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri)
 
       try {
-        const data = await getContent(uri) // TODO: Must be fairly tested since get-ical-content is rewritten to use async/await
+        const data = await getContent(uri)
         // remove failed setting if it exists for calendar
         if (calendars[i].failed) {
           calendars[i] = { name, uri }
