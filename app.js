@@ -60,7 +60,7 @@ class IcalCalendar extends Homey.App {
 
     // get ical events
     this.log('onInit: Triggering getEvents and reregistering tokens')
-    this.getEvents(true)
+    await this.getEvents(true)
 
     // register callback when settings has been set
     this.homey.settings.on('set', args => {
