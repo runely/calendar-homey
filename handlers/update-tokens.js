@@ -15,15 +15,15 @@ const updateToken = async (token, value, id, app) => {
   }
 }
 
-const getNextEventByCalendar = (app, calendarName, nextEvent) => {
+const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
   if (!nextEvent) {
     // app.log(`getNextEventByCalendar: nextEvent not set. Getting next event for calendar '${calendarName}'`);
-    return getNextEvent(app.variableMgmt.calendars, calendarName)
+    return getNextEvent({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
   }
 
   if (nextEvent && nextEvent.calendarName !== calendarName) {
     // app.log(`getNextEventByCalendar: nextEvent already set but for calendar '${nextEvent.calendarName}'. Getting next event for calendar '${calendarName}'`);
-    return getNextEvent(app.variableMgmt.calendars, calendarName)
+    return getNextEvent({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
   }
 
   if (nextEvent && nextEvent.calendarName === calendarName) {
@@ -149,13 +149,13 @@ module.exports = async options => {
         // app.log(`updateTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
         value = getTokenEvents({ ...tokenEventsOptions, events: tomorrowsEventsCalendar }) || ''
       } else if (calendarType === 'next_title') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
+        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
       } else if (calendarType === 'next_startdate') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
+        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         value = calendarNextEvent.event ? calendarNextEvent.event.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
       } else if (calendarType === 'next_starttime') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
+        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         if (calendarNextEvent.event) {
           if (calendarNextEvent.event.datetype === 'date-time') {
             value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time)
@@ -166,10 +166,10 @@ module.exports = async options => {
           value = ''
         }
       } else if (calendarType === 'next_enddate') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
+        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         value = calendarNextEvent.event ? calendarNextEvent.event.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : ''
       } else if (calendarType === 'next_endtime') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent)
+        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         if (calendarNextEvent.event) {
           if (calendarNextEvent.event.datetype === 'date-time') {
             value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time)
