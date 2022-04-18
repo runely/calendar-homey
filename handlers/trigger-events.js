@@ -38,7 +38,7 @@ module.exports = async options => {
       if (triggerId === 'event_added') {
         const newEvent = deepClone(event) // make a new copy of event to prevent that event.start also has its locale changed (deepClone needed since theres functions here)
         const { start } = newEvent
-        start.locale(app.homey.__('locale.moment')) // TODO: Check out if homey.clock.getTimezone() can be used here instead
+        start.locale(app.homey.__('locale.moment'))
 
         tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
         tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
