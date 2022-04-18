@@ -204,7 +204,7 @@ class IcalCalendar extends Homey.App {
           if (nextEventTokensPerCalendar) {
             generatePerCalendarTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
               this.variableMgmt.calendarTokens.push(await this.homey.flow.createToken(id, { type, title }))
-              this.log(`getEvents: Created calendar token '${id}'`)
+              this.log(`getEvents: Created per calendar token '${id}'`)
             })
           }
         }))
