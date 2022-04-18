@@ -170,7 +170,7 @@ const onEventAutocomplete = async (timezone, app, query, args, type) => {
   }
 
   if (type === 'event') {
-    if (query) { // TODO: Changed from query && query !== ''
+    if (query) {
       const filtered = filterBySummary(app.variableMgmt.calendars, query)
       return Promise.resolve(getEventList(timezone, app, filtered))
     }
@@ -179,7 +179,7 @@ const onEventAutocomplete = async (timezone, app, query, args, type) => {
   }
 
   if (type === 'calendar') {
-    if (query) { // TODO: Changed from query && query !== ''
+    if (query) {
       const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
       return Promise.resolve(
         filteredCalendar.map(calendar => {
