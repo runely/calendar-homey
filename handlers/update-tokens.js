@@ -114,7 +114,7 @@ module.exports = options => {
       } else if (token.id === 'events_tomorrow_count') {
         updateToken(token, eventsTomorrow.length, token.id, app)
       } else if (token.id === 'icalcalendar_week_number') {
-        updateToken(token, moment(timezone).week(), token.id, app)
+        updateToken(token, moment({ timezone }).week(), token.id, app)
       }
     } catch (error) {
       app.log('updateTokens: Failed to update flow token', token.id, ':', error)

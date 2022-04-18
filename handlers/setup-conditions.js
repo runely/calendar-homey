@@ -65,7 +65,7 @@ const cards = [
 ]
 
 const isEventOngoing = (timezone, events) => {
-  const now = moment(timezone)
+  const now = moment({ timezone })
   return events.some(event => {
     const startDiff = now.diff(event.start, 'seconds')
     const endDiff = now.diff(event.end, 'seconds')
@@ -76,7 +76,7 @@ const isEventOngoing = (timezone, events) => {
 }
 
 const isEventIn = (timezone, events, when) => {
-  const now = moment(timezone)
+  const now = moment({ timezone })
   return events.some(event => {
     const startDiff = event.start.diff(now, 'minutes', true)
     const result = (startDiff <= when && startDiff >= 0)
@@ -86,7 +86,7 @@ const isEventIn = (timezone, events, when) => {
 }
 
 const willEventNotIn = (timezone, events, when) => {
-  const now = moment(timezone)
+  const now = moment({ timezone })
   return events.some(event => {
     const endDiff = event.end.diff(now, 'minutes', true)
     const result = (endDiff < when && endDiff >= 0)
@@ -103,7 +103,7 @@ const getEventList = (timezone, app, calendars) => {
     return eventList
   }
 
-  const now = moment(timezone)
+  const now = moment({ timezone })
 
   calendars.forEach(calendar => {
     calendar.events.forEach(event => {
