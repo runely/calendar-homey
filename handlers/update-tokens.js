@@ -7,9 +7,9 @@ const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
 const moment = require('../lib/moment-datetime')
 
-const updateToken = (token, value, id, app) => {
+const updateToken = async (token, value, id, app) => {
   try {
-    token.setValue(value)
+    await token.setValue(value)
   } catch (error) {
     app.log(`updateToken: Failed to update token '${id}': ${error.message || error}`)
   }
@@ -44,7 +44,7 @@ const getNextEventByCalendar = (app, calendarName, nextEvent) => {
 /**
  * @param {UpdateTokensOptions} options
  */
-module.exports = options => {
+module.exports = async options => {
   const { timezone, app } = options
   const eventOptions = {
     timezone,
@@ -65,67 +65,67 @@ module.exports = options => {
   }
 
   // loop through flow tokens
-  app.variableMgmt.flowTokens.forEach(token => {
+  for await (const token of app.variableMgmt.flowTokens) {
     try {
       if (token.id === 'event_next_title') {
-        updateToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
+        await updateToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
       } else if (token.id === 'event_next_startdate') {
-        updateToken(token, nextEvent.event ? nextEvent.event.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.event.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
       } else if (token.id === 'event_next_startstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            updateToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            await updateToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
           } else if (nextEvent.event.datetype === 'date') {
-            updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
+            await updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
           }
         } else {
-          updateToken(token, '', token.id, app)
+          await updateToken(token, '', token.id, app)
         }
       } else if (token.id === 'event_next_stopdate') {
-        updateToken(token, nextEvent.event ? nextEvent.event.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.event.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
       } else if (token.id === 'event_next_stopstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            updateToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            await updateToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
           } else if (nextEvent.event.datetype === 'date') {
-            updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
+            await updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
           }
         } else {
-          updateToken(token, '', token.id, app)
+          await updateToken(token, '', token.id, app)
         }
       } else if (token.id === 'event_next_duration') {
-        updateToken(token, nextEvent.event ? eventDuration.duration : '', token.id, app)
+        await updateToken(token, nextEvent.event ? eventDuration.duration : '', token.id, app)
       } else if (token.id === 'event_next_duration_minutes') {
-        updateToken(token, nextEvent.event ? eventDuration.durationMinutes : -1, token.id, app)
+        await updateToken(token, nextEvent.event ? eventDuration.durationMinutes : -1, token.id, app)
       } else if (token.id === 'event_next_starts_in_minutes') {
-        updateToken(token, nextEvent.event ? nextEvent.startsIn : -1, token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.startsIn : -1, token.id, app)
       } else if (token.id === 'event_next_stops_in_minutes') {
-        updateToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
       } else if (token.id === 'event_next_calendar_name') {
-        updateToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
       } else if (token.id === 'events_today_title_stamps') {
         const value = getTokenEvents({ ...tokenEventsOptions, events: eventsToday }) || ''
-        updateToken(token, value, token.id, app)
+        await updateToken(token, value, token.id, app)
       } else if (token.id === 'events_today_count') {
-        updateToken(token, eventsToday.length, token.id, app)
+        await updateToken(token, eventsToday.length, token.id, app)
       } else if (token.id === 'events_tomorrow_title_stamps') {
         const value = getTokenEvents({ ...tokenEventsOptions, events: eventsTomorrow }) || ''
-        updateToken(token, value, token.id, app)
+        await updateToken(token, value, token.id, app)
       } else if (token.id === 'events_tomorrow_count') {
-        updateToken(token, eventsTomorrow.length, token.id, app)
+        await updateToken(token, eventsTomorrow.length, token.id, app)
       } else if (token.id === 'icalcalendar_week_number') {
-        updateToken(token, moment({ timezone }).week(), token.id, app)
+        await updateToken(token, moment({ timezone }).week(), token.id, app)
       }
     } catch (error) {
       app.log('updateTokens: Failed to update flow token', token.id, ':', error)
 
       app.sentry.captureException(error)
     }
-  })
+  }
 
   // loop through calendar tokens
   let calendarNextEvent
-  app.variableMgmt.calendarTokens.forEach(token => {
+  for await (const token of app.variableMgmt.calendarTokens) {
     try {
       const calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '')
       const calendarName = calendarId
@@ -181,11 +181,11 @@ module.exports = options => {
         }
       }
 
-      updateToken(token, value, token.id, app)
+      await updateToken(token, value, token.id, app)
     } catch (error) {
       app.log('updateTokens: Failed to update calendar token', token.id, ':', error)
 
       app.sentry.captureException(error)
     }
-  })
+  }
 }
