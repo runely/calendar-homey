@@ -225,7 +225,6 @@ class IcalCalendar extends Homey.App {
       }),
       // trigger events every 1th minute
       trigger: addSchedule('*/1 * * * *', () => {
-        // this.log('Now:', moment(), '<--> Timezoned:', moment(this.homey.clock.getTimezone()))
         if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
           this.log('startSchedules/trigger: Triggering events and updating tokens')
           triggerEvents({ timezone: this.getTimezone(), app: this })
