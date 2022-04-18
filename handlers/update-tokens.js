@@ -56,7 +56,7 @@ module.exports = async options => {
   }
   const nextEvent = getNextEvent(eventOptions)
   const eventsToday = getTodaysEvents(eventOptions)
-  const eventsTomorrow = getTomorrowsEvents(app.variableMgmt.calendars)
+  const eventsTomorrow = getTomorrowsEvents(eventOptions)
 
   let eventDuration
 
@@ -141,11 +141,11 @@ module.exports = async options => {
       let value = ''
 
       if (calendarType === 'today') {
-        const todaysEventsCalendar = getTodaysEvents(app.variableMgmt.calendars, calendarName)
+        const todaysEventsCalendar = getTodaysEvents({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
         // app.log(`updateTokens: Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
         value = getTokenEvents({ ...tokenEventsOptions, events: todaysEventsCalendar }) || ''
       } else if (calendarType === 'tomorrow') {
-        const tomorrowsEventsCalendar = getTomorrowsEvents(app.variableMgmt.calendars, calendarName)
+        const tomorrowsEventsCalendar = getTomorrowsEvents({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
         // app.log(`updateTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
         value = getTokenEvents({ ...tokenEventsOptions, events: tomorrowsEventsCalendar }) || ''
       } else if (calendarType === 'next_title') {
