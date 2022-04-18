@@ -5,11 +5,6 @@ const { filterByCalendar } = require('../lib/filter-by')
 
 module.exports = app => {
   // add trigger listeners
-
-  // TODO: Don't think these should be here anymore. SDK3 register all cards internally
-  /* new Homey.FlowCardTrigger('event_starts').register()
-  new Homey.FlowCardTrigger('event_stops').register() */
-
   app.homey.flow.getTriggerCard('event_starts_in').registerRunListener((args, state) => {
     const minutes = convertToMinutes(args.when, args.type)
     const result = minutes === state.when
@@ -46,7 +41,7 @@ module.exports = app => {
       return Promise.resolve(false)
     }
 
-    if (query) { // TODO: Changed from : query && query !== ''
+    if (query) {
       const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
       return Promise.resolve(
         filteredCalendar.map(calendar => {
