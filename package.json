@@ -29,7 +29,7 @@
     "node-ical": "0.15.1"
   },
   "scripts": {
-    "test": "standard && jest",
+    "test": "standard && env TZ=UTC jest",
     "fix": "standard --fix",
     "ts:lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
