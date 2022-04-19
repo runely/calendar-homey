@@ -11,5 +11,8 @@
   },
   "ignorePatterns": [
     "**/settings/*.js"
-  ]
+  ],
+  "env": {
+    "jest/globals": true
+  }  
 }
