@@ -1,4 +1,6 @@
-const moment = require('moment')
+'use strict'
+
+const moment = require('moment-timezone')
 const getNextEvent = require('../lib/get-next-event')
 
 const addHours = hour => moment().add(hour, 'hours').toISOString()
@@ -57,7 +59,7 @@ const calendars = [
 
 describe('Next event has', () => {
   test('expectedStart and expectedEnd when \'specificCalendarName\' is NOT given', () => {
-    const nextEvent = getNextEvent(calendars)
+    const nextEvent = getNextEvent({ calendars })
     expect(typeof nextEvent).toBe('object')
     expect(typeof nextEvent.event).toBe('object')
     expect(nextEvent.event.start instanceof moment).toBe(true)
@@ -69,7 +71,7 @@ describe('Next event has', () => {
   })
 
   test('start and end in year 2041 when \'specificCalendarName\' IS given', () => {
-    const nextEvent = getNextEvent(calendars, 'events')
+    const nextEvent = getNextEvent({ calendars, specificCalendarName: 'events' })
     expect(typeof nextEvent).toBe('object')
     expect(typeof nextEvent.event).toBe('object')
     expect(nextEvent.event.start instanceof moment).toBe(true)

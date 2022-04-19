@@ -1,5 +1,7 @@
+'use strict'
+
 const nodeIcal = require('node-ical')
-const moment = require('moment')
+const moment = require('moment-timezone')
 const getActiveEvents = require('../lib/get-active-events')
 
 const data = nodeIcal.sync.parseFile('./tests/data/calendar.ics')
@@ -13,12 +15,12 @@ const app = {
   log: console.log
 }
 
-const activeEvents = getActiveEvents(data, eventLimit, app)
+const activeEvents = getActiveEvents({ data, eventLimit, app })
 const onceAWeekEvents = activeEvents.filter(event => event.summary === 'OnceAWeek')
 const alwaysOngoingEvents = activeEvents.filter(event => event.summary === 'AlwaysOngoing')
 
 describe('getActiveEvents returns', () => {
-  test('An array', () => {
+  test('an array', () => {
     expect(Array.isArray(activeEvents)).toBe(true)
   })
 
@@ -72,7 +74,7 @@ describe('getActiveEvents returns an array', () => {
 describe('getActiveEvents throws an error', () => {
   test('When "DTSTART" is missing', () => {
     const dataNoStart = nodeIcal.sync.parseFile('./tests/data/calendar-missing-start.ics')
-    expect(() => getActiveEvents(dataNoStart, eventLimit, app)).toThrow()
+    expect(() => getActiveEvents({ data: dataNoStart, eventLimit, app })).toThrow()
   })
 })
 

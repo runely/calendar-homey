@@ -1,20 +1,23 @@
-const getDateTimeFormat = require('../lib/get-datetime-format')
+'use strict'
 
-jest.mock('homey', () => {
-  return {
+const getDateTimeFormat = require('../lib/get-datetime-format')
+const { settings: { datetime: { date, time } } } = require('../locales/en.json')
+
+const app = {
+  homey: {
     __: prop => {
-      const { settings: { datetime: { date, time } } } = require('../locales/en.json')
       if (prop.includes('.date.')) return date.default
       if (prop.includes('.time.')) return time.default
       return ''
     },
-    ManagerSettings: {
+    settings: {
       get: prop => prop || null
     }
   }
-})
+}
 
-const formatUndefined = {
+const appFormatUndefined = {
+  ...app,
   variableMgmt: {
     setting: {
       dateFormat: null,
@@ -23,7 +26,8 @@ const formatUndefined = {
   }
 }
 
-const dateTimeFormat = {
+const appDateTimeFormat = {
+  ...app,
   variableMgmt: {
     setting: {
       dateFormat: 'DD.MM.YYYY',
@@ -34,7 +38,7 @@ const dateTimeFormat = {
 
 describe('Date format is correct when', () => {
   test('Default format is used', () => {
-    const format = getDateTimeFormat(formatUndefined)
+    const format = getDateTimeFormat(appFormatUndefined)
     expect(typeof format).toBe('object')
     expect(typeof format.date).toBe('object')
     expect(typeof format.date.short).toBe('string')
@@ -46,7 +50,7 @@ describe('Date format is correct when', () => {
   })
 
   test('Format from settings is used', () => {
-    const format = getDateTimeFormat(dateTimeFormat)
+    const format = getDateTimeFormat(appDateTimeFormat)
     expect(typeof format).toBe('object')
     expect(typeof format.date).toBe('object')
     expect(typeof format.date.short).toBe('string')
@@ -60,7 +64,7 @@ describe('Date format is correct when', () => {
 
 describe('Time format is correct when', () => {
   test('Default format is used', () => {
-    const format = getDateTimeFormat(formatUndefined)
+    const format = getDateTimeFormat(appFormatUndefined)
     expect(typeof format).toBe('object')
     expect(typeof format.time).toBe('object')
     expect(typeof format.time.time).toBe('string')
@@ -70,7 +74,7 @@ describe('Time format is correct when', () => {
   })
 
   test('Format from settings is used', () => {
-    const format = getDateTimeFormat(dateTimeFormat)
+    const format = getDateTimeFormat(appDateTimeFormat)
     expect(typeof format).toBe('object')
     expect(typeof format.time).toBe('object')
     expect(typeof format.time.time).toBe('string')

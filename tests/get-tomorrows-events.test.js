@@ -1,4 +1,6 @@
-const moment = require('moment')
+'use strict'
+
+const moment = require('moment-timezone')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 
 const expectedStart = moment().add(1, 'day').set('hours', 23).set('minutes', 58).set('seconds', 59).toISOString()
@@ -73,7 +75,7 @@ const calendars = [
 
 describe('Tomorrows event count is', () => {
   test('2 when \'specificCalendarName\' is NOT given', () => {
-    const tomorrowsEvents = getTomorrowsEvents(calendars)
+    const tomorrowsEvents = getTomorrowsEvents({ calendars })
     expect(Array.isArray(tomorrowsEvents)).toBe(true)
     expect(tomorrowsEvents.length).toBe(2)
     expect(typeof tomorrowsEvents[0]).toBe('object')
@@ -97,7 +99,7 @@ describe('Tomorrows event count is', () => {
   })
 
   test('1 when \'specificCalendarName\' IS given', () => {
-    const tomorrowsEvents = getTomorrowsEvents(calendars, 'events2')
+    const tomorrowsEvents = getTomorrowsEvents({ calendars, specificCalendarName: 'events2' })
     expect(Array.isArray(tomorrowsEvents)).toBe(true)
     expect(tomorrowsEvents.length).toBe(1)
     expect(typeof tomorrowsEvents[0]).toBe('object')

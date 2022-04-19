@@ -1,3 +1,5 @@
+'use strict'
+
 const convertToMinutes = require('../lib/convert-to-minutes')
 
 const types = {
