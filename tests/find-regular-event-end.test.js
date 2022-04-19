@@ -66,9 +66,7 @@ test('Event without end and duration will return start IF dateype is date-time',
 test('Event without end and duration will return (start + 1 day) IF dateype is date', () => {
   const event = events.find(e => e.summary === 'Event without end and duration will return (start + 1 day) IF dateype is date')
   const end = findEnd({ event })
-  let tomorrow = moment(event.start)
-  console.log(tomorrow, tomorrow.utcOffset())
-  tomorrow = tomorrow.add(1, 'day').toISOString()
+  const tomorrow = moment(event.start).add(1, 'day').toISOString()
   expect(end instanceof moment).toBe(true)
   expect(end.toISOString()).toBe(tomorrow)
 })
