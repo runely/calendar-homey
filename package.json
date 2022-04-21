@@ -16,10 +16,9 @@
     "browserify": "17.0.0",
     "eslint": "8.13.0",
     "eslint-config-athom": "3.0.1",
-    "eslint-plugin-import": "^2.26.0",
     "homey": "2.28.1",
     "jest": "27.5.1",
-    "standard": "16.0.4"
+    "standard": "^17.0.0"
   },
   "dependencies": {
     "@sentry/node": "6.19.6",
