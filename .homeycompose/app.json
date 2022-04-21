@@ -1,8 +1,11 @@
 {
   "id": "no.runely.calendar",
   "version": "0.15.0",
-  "compatibility": ">=2.0.0",
-  "sdk": 2,
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
   "brandColor": "#05A22C",
   "name": {
     "en": "IcalCalendar",
@@ -21,6 +24,7 @@
   "category": [
     "tools"
   ],
+  "permissions": [],
   "images": {
     "large": "/assets/images/large.png",
     "small": "/assets/images/small.png"
@@ -76,11 +80,6 @@
     "url": "https://github.com/runely/calendar-homey/issues"
   },
   "source": "https://github.com/runely/calendar-homey",
-  "sentry": {
-    "dsn": "https://0528a76a98df468e89bb4f2db7bee3ce@o483714.ingest.sentry.io/5535960",
-    "traceSampleRate": 0,
-    "environment": "production"
-  },
   "flow": {
     "triggers": [
       {
