@@ -163,5 +163,8 @@
   },
   "0.15.0": {
     "en": "Localized \"start\" and \"end\" datetime in trigger \"Event changed\". Dependency updates"
+  },
+  "1.0.0": {
+    "en": "Updated to SDK3!!"
   }
 }
