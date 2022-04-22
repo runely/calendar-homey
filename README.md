@@ -150,6 +150,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.0.1
+    - Initalize `sentry` correctly
 - 1.0.0
     - Updated to SDK3
     - Rewritten a bunch for better maintenance
