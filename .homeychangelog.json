@@ -166,5 +166,8 @@
   },
   "1.0.0": {
     "en": "Updated to SDK3!!"
+  },
+  "1.0.1": {
+    "en": "Initialize sentry correctly"
   }
 }
