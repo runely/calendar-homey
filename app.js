@@ -37,7 +37,7 @@ class IcalCalendar extends Homey.App {
     this.getTimezone = () => this.homey.clock.getTimezone()
 
     // initialize sentry.io
-    sentryInit(this.homey)
+    await sentryInit(this.homey, Homey.env)
     this.sentry = sentry
 
     // register variableMgmt to this app class
