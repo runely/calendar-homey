@@ -150,6 +150,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.0.2
+    - `exdate` is an invalid array. And since **deepClone** only clones valid values, `exdate` becomes an empty array. To make up for this we have to add the original `exdate` property to the cloned event object
 - 1.0.1
     - Initalize `sentry` correctly
 - 1.0.0
