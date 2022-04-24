@@ -169,5 +169,8 @@
   },
   "1.0.1": {
     "en": "Initialize sentry correctly"
+  },
+  "1.0.2": {
+    "en": "Updated to SDK3! Exdates is handled correctly"
   }
 }
