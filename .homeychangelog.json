@@ -172,5 +172,8 @@
   },
   "1.0.2": {
     "en": "Updated to SDK3! Exdates is handled correctly"
+  },
+  "1.0.3": {
+    "en": "Bugfix: 'location', 'description' and 'uid' could also be objects"
   }
 }
