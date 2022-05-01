@@ -28,13 +28,13 @@ class IcalCalendar extends Homey.App {
    * onInit is called when the app is initialized.
    */
   async onInit () {
-    this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on ${this.homey.version}`)
+    // convenience function for getting current timezone
+    this.getTimezone = () => this.homey.clock.getTimezone()
+
+    this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
     // set a variable to control if getEvents is already running
     this.isGettingEvents = false
-
-    // convenience function for getting current timezone
-    this.getTimezone = () => this.homey.clock.getTimezone()
 
     // initialize sentry.io
     await sentryInit(this.homey, Homey.env)
@@ -111,7 +111,7 @@ class IcalCalendar extends Homey.App {
     }
 
     // get ical events
-    this.log('getEvents: Getting calendars:', calendars.length)
+    this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
     for (let i = 0; i < calendars.length; i++) {
       const { name } = calendars[i]
       let { uri } = calendars[i]
