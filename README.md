@@ -152,6 +152,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.0.5
     - Error handling when events are parsed
+    - Make sure recurrence dates outside the limit will not be included
 - 1.0.4
     - Log which `Timezone` your Homey is using. Since SDK3 is always running in UTC, we have to rely on `Timezone` set in your Homey to get the correct datetime on your events.
     - Log out whole day events (debug purposes)
