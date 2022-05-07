@@ -178,5 +178,8 @@
   },
   "1.0.4": {
     "en": "Log which `Timezone` your Homey is using"
+  },
+  "1.0.5": {
+    "en": "Error handling when events are parsed. Don't include recurrence dates starting after limit. Full day events should now be correct"
   }
 }
