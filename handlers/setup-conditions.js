@@ -257,12 +257,14 @@ const checkEvent = async (timezone, app, args, state, type) => {
 /**
  * @param {SetupConditionsOptions} options
  */
-module.exports = options => { // registerAutocompleteListener is async in the docs...
+module.exports = options => {
   // register condition flow cards
   const { timezone, app } = options
   cards.forEach(({ id, runListenerId, autocompleteListener }) => {
     const conditionCard = app.homey.flow.getConditionCard(id)
     conditionCard.registerRunListener((args, state) => checkEvent(timezone, app, args, state, runListenerId))
-    if (autocompleteListener.argumentId && autocompleteListener.id) conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, args, autocompleteListener.id)) // registerAutocompleteListener is async in the docs...
+    if (autocompleteListener.argumentId && autocompleteListener.id) {
+      conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, args, autocompleteListener.id))
+    }
   })
 }
