@@ -1,6 +1,6 @@
 'use strict'
 
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const filterUpdatedCalendars = require('../lib/filter-updated-calendars')
 const { triggers: { event_changed: { start, end, description, location, summary } }, settings: { datetime: { date: { default: long }, time: { default: time } } } } = require('../locales/en.json')
 

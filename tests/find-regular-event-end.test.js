@@ -1,7 +1,7 @@
 'use strict'
 
 const momentInstance = require('moment-timezone')
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const findEnd = require('../lib/find-regular-event-end')
 
 const events = [

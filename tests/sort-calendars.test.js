@@ -1,7 +1,7 @@
 'use strict'
 
 const sortCalendars = require('../lib/sort-calendars')
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 
 const calendars = [
   {

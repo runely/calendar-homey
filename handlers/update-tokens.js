@@ -5,7 +5,7 @@ const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 
 const updateToken = async (token, value, id, app) => {
   try {

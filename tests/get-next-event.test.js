@@ -1,7 +1,7 @@
 'use strict'
 
 const momentInstance = require('moment-timezone')
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const getNextEvent = require('../lib/get-next-event')
 
 const addHours = hour => moment().add(hour, 'hours').toISOString()

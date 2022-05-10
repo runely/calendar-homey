@@ -1,6 +1,6 @@
 'use strict'
 
-const moment = require('../lib/moment-datetime')
+const { moment, momentNow } = require('../lib/moment-datetime')
 
 const hasOffset = num => num > 0 || num < 0
 
@@ -45,5 +45,16 @@ describe('Offset set', () => {
   test('When timezone, an epoch and a format is present', () => {
     const result = moment({ timezone: 'Europe/Oslo', date: new Date().getTime(), format: 'x' })
     expect(hasOffset(result.utcOffset())).toBeTruthy()
+  })
+})
+
+describe('momentNow', () => {
+  test('Returns a Object with two moment instances', () => {
+    const result = momentNow('Europe/Oslo')
+    const keys = Object.keys(result)
+    expect(typeof result).toBe('object')
+    expect(keys.length).toBe(2)
+    expect(keys[0]).toBe('momentNowRegular')
+    expect(keys[1]).toBe('momentNowWholeDay')
   })
 })

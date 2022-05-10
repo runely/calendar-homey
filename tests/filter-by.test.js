@@ -1,6 +1,6 @@
 'use strict'
 
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const { filterByCalendar, filterBySummary, filterByUID } = require('../lib/filter-by')
 
 const calendars = [

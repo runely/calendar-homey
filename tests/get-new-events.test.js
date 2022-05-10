@@ -1,6 +1,6 @@
 'use strict'
 
-const moment = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const getNewEvents = require('../lib/get-new-events')
 
 const app = {

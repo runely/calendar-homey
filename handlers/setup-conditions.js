@@ -1,6 +1,6 @@
 'use strict'
 
-const moment = require('../lib/moment-datetime')
+const { momentNow } = require('../lib/moment-datetime')
 const { filterByCalendar, filterBySummary, filterByUID } = require('../lib/filter-by')
 const sortEvent = require('../lib/sort-event')
 const convertToMinutes = require('../lib/convert-to-minutes')
@@ -65,8 +65,9 @@ const cards = [
 ]
 
 const isEventOngoing = (timezone, events) => {
-  const now = moment({ timezone })
+  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
   return events.some(event => {
+    const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
     const startDiff = now.diff(event.start, 'seconds')
     const endDiff = now.diff(event.end, 'seconds')
     const result = (startDiff >= 0 && endDiff <= 0)
@@ -76,8 +77,9 @@ const isEventOngoing = (timezone, events) => {
 }
 
 const isEventIn = (timezone, events, when) => {
-  const now = moment({ timezone })
+  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
   return events.some(event => {
+    const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
     const startDiff = event.start.diff(now, 'minutes', true)
     const result = (startDiff <= when && startDiff >= 0)
     // app.log(`isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
@@ -86,8 +88,9 @@ const isEventIn = (timezone, events, when) => {
 }
 
 const willEventNotIn = (timezone, events, when) => {
-  const now = moment({ timezone })
+  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
   return events.some(event => {
+    const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
     const endDiff = event.end.diff(now, 'minutes', true)
     const result = (endDiff < when && endDiff >= 0)
     // app.log(`willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);
@@ -103,10 +106,11 @@ const getEventList = (timezone, app, calendars) => {
     return eventList
   }
 
-  const now = moment({ timezone })
+  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
 
   calendars.forEach(calendar => {
     calendar.events.forEach(event => {
+      const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
       let startStamp = ''
       let endStamp = ''
       const startMoment = event.start
