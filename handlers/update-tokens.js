@@ -114,7 +114,7 @@ module.exports = async options => {
       } else if (token.id === 'events_tomorrow_count') {
         await updateToken(token, eventsTomorrow.length, token.id, app)
       } else if (token.id === 'icalcalendar_week_number') {
-        await updateToken(token, moment({ timezone }).week(), token.id, app)
+        await updateToken(token, moment({ timezone }).isoWeek(), token.id, app)
       }
     } catch (error) {
       app.log('updateTokens: Failed to update flow token', token.id, ':', error)
