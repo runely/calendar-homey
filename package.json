@@ -18,7 +18,7 @@
     "eslint": "8.15.0",
     "eslint-config-athom": "3.0.1",
     "homey": "2.28.2",
-    "jest": "^28.1.0",
+    "jest": "28.1.0",
     "standard": "17.0.0"
   },
   "dependencies": {
