@@ -150,6 +150,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.0.7
+    - Handle `Customized Time Zone` from Exchange / Live accounts
 - 1.0.6
     - Full day events need to have the offset removed (fixed throughout)
 - 1.0.5

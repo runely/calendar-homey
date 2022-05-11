@@ -5,10 +5,16 @@ const moment = require('moment-timezone')
 const getActiveEvents = require('../lib/get-active-events')
 
 const data = nodeIcal.sync.parseFile('./tests/data/calendar.ics')
+const invalidTimezone = nodeIcal.sync.parseFile('./tests/data/calendar-ivalid-timezone.ics')
 
 const eventLimit = {
   value: '3',
   type: 'weeks'
+}
+
+const eventLimitInvalidTimezone = {
+  value: '10',
+  type: 'years'
 }
 
 const app = {
@@ -18,6 +24,7 @@ const app = {
 const activeEvents = getActiveEvents({ data, eventLimit, app })
 const onceAWeekEvents = activeEvents.filter(event => event.summary === 'OnceAWeek')
 const alwaysOngoingEvents = activeEvents.filter(event => event.summary === 'AlwaysOngoing')
+const invalidTimezoneData = getActiveEvents({ data: invalidTimezone, eventLimit: eventLimitInvalidTimezone, app })
 
 describe('getActiveEvents returns', () => {
   test('an array', () => {
@@ -59,6 +66,10 @@ describe('getActiveEvents returns', () => {
   test('an array where each object has a summary property of type \'string\'', () => {
     expect(typeof activeEvents[0].summary).toBe('string')
   })
+
+  test('an array where each object should NOT have property skipTZ when all timezones are valid', () => {
+    expect(activeEvents[0].skipTZ).toBeFalsy()
+  })
 })
 
 describe('getActiveEvents returns an array', () => {
@@ -91,5 +102,13 @@ describe('When "SUMMARY" is missing', () => {
     const dataNoSummary = nodeIcal.sync.parseFile('./tests/data/calendar-missing-summary.ics')
     const { summary } = dataNoSummary.noSummary
     expect(summary).toBe(undefined)
+  })
+})
+
+describe('Invalid timezone', () => {
+  invalidTimezoneData.forEach(event => {
+    test(`"${event.summary}" should have property "skipTZ" set to "true"`, () => {
+      expect(event.skipTZ).toBe(true)
+    })
   })
 })
