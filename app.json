@@ -1186,6 +1186,89 @@
             ]
           }
         ]
+      },
+      {
+        "id": "synchronization_error",
+        "title": {
+          "en": "Synchronization error occurred",
+          "no": "Synkroniseringsfeil oppstått",
+          "nl": "Synchronisatiefout opgetreden",
+          "de": "Synchronisationsfehler aufgetreten",
+          "sv": "Synkroniseringsfel uppstod"
+        },
+        "hint": {
+          "en": "Triggers when a synchronization error occurs with one of your calendars",
+          "no": "Utløses når det oppstår en synkroniseringsfeil med en av dine kalendere",
+          "nl": "Geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
+          "de": "Wird ausgelöst, wenn bei einem Ihrer Kalender ein Synchronisierungsfehler auftritt",
+          "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar"
+        },
+        "tokens": [
+          {
+            "type": "string",
+            "name": "calendar_name",
+            "title": {
+              "en": "Calendar name",
+              "no": "Kalendernavn",
+              "nl": "Kalender naam",
+              "de": "Kalenderbezeichnung",
+              "sv": "Kalendernamn"
+            },
+            "example": {
+              "en": "Gmail",
+              "no": "Gmail",
+              "nl": "Gmail",
+              "de": "Gmail",
+              "sv": "Gmail"
+            }
+          },
+          {
+            "type": "string",
+            "name": "calendar_error",
+            "title": {
+              "en": "Error message",
+              "no": "Feilmelding",
+              "nl": "Foutmelding",
+              "de": "Fehlermeldung",
+              "sv": "Felmeddelande"
+            },
+            "example": {
+              "en": "Invalid time value",
+              "no": "Invalid time value",
+              "nl": "Invalid time value",
+              "de": "Invalid time value",
+              "sv": "Invalid time value"
+            }
+          },
+          {
+            "name": "event_name",
+            "type": "string",
+            "title": {
+              "en": "Title",
+              "no": "Tittel",
+              "nl": "Titel",
+              "de": "Titel",
+              "sv": "Titel"
+            },
+            "example": {
+              "en": "Pick up in kindergarden",
+              "no": "Hente i barnehagen",
+              "nl": "Kinderen ophalen",
+              "de": "Im Kindergarten abholen",
+              "sv": "Hämta på förskolan"
+            }
+          },
+          {
+            "name": "event_uid",
+            "type": "string",
+            "title": {
+              "en": "UID"
+            },
+            "example": {
+              "en": "323DF3EE-2079-4F34-98BF-F6134F0EB36E"
+            }
+          }
+        ]
       }
     ],
     "conditions": [

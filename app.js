@@ -9,7 +9,7 @@ const hasData = require('./lib/has-data')
 const getContent = require('./lib/get-ical-content')
 const getActiveEvents = require('./lib/get-active-events')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
-const triggerChangedCalendars = require('./handlers/trigger-changed-calendars')
+const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const getEventUids = require('./lib/get-event-uids')
 const getNewEvents = require('./lib/get-new-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
@@ -19,7 +19,6 @@ const setupTriggers = require('./handlers/setup-triggers')
 const setupFlowTokens = require('./handlers/setup-flow-tokens')
 const setupConditions = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
-const triggerEvents = require('./handlers/trigger-events')
 const updateTokens = require('./handlers/update-tokens')
 const { addSchedule } = require('./handlers/cron')
 
@@ -123,6 +122,7 @@ class IcalCalendar extends Homey.App {
         calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` }
         this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
         this.log(`getEvents: Added 'error' setting value to calendar '${name}'`)
+        await triggerSynchronizationError({ app: this, calendar: name, error: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` })
         continue
       }
 
@@ -151,6 +151,7 @@ class IcalCalendar extends Homey.App {
         const errorString = typeof error === 'object' ? error.message : error
 
         this.log('getEvents: Failed to get events for calendar', name, uri, errorString)
+        await triggerSynchronizationError({ app: this, calendar: name, error })
 
         // set a failed setting value to show a error message on settings page
         calendars[i] = { name, uri, failed: errorString }

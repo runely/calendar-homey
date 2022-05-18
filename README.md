@@ -62,6 +62,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
         - The event has the `CREATED` property
         - The created events start time is inside the current datetime frame beeing synced in
         - The created event is created within the last 24 hours
+- **Synchronization error occurred** - *will trigger when a synchronization error occurs with one of your calendars*
 
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
@@ -86,6 +87,8 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Start time *(only `Event added`)*
 - End date *(only `Event added`)*
 - End time *(only `Event added`)*
+- Calendar error *(only `Synchronization error occurred`)*
+- UID *(only `Synchronization error occurred`)*
 
 ### Global flow tags (can be used in any app and service)
 - Next event title
@@ -150,6 +153,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.1.0
+    - Added trigger 'Synchronization error occurred' -> [Issue #316](https://github.com/runely/calendar-homey/issues/316)
 - 1.0.7
     - **Week number** event tag were 1 week of since `Moment#week` were used instead of `Moment#isoWeek`
 - 1.0.6

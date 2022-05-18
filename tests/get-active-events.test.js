@@ -18,7 +18,19 @@ const eventLimitInvalidTimezone = {
 }
 
 const app = {
-  log: console.log
+  log: console.log,
+  sentry: {
+    captureException: err => console.log('app.sentry.captureException called with', err)
+  },
+  homey: {
+    flow: {
+      getTriggerCard: id => {
+        return {
+          trigger: tokens => console.log('triggerCard', id, 'called with tokens:', tokens)
+        }
+      }
+    }
+  }
 }
 
 const activeEvents = getActiveEvents({ data, eventLimit, app })
