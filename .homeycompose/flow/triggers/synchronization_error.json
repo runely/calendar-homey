@@ -10,7 +10,7 @@
   "hint": {
     "en": "Triggers when a synchronization error occurs with one of your calendars",
     "no": "Utløses når det oppstår en synkroniseringsfeil med en av dine kalendere",
-    "nl": "Geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
+    "nl": "Wordt geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
     "de": "Wird ausgelöst, wenn bei einem Ihrer Kalender ein Synchronisierungsfehler auftritt",
     "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar"
   },
