@@ -43,7 +43,18 @@
         },
         "misc": {
             "legend": "Overige instellingen",
-            "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
+            "nextEventTokensPerCalendar": "Volgende event-tags per kalender",
+            "nextEventTokensWithText": {
+                "title": "Volgende event-tags met...",
+                "description": "Maak tags voor de volgende afspraak die de opgegeven zoekwaarde bevatten in het hieronder geselecteerde type en kalender",
+                "type": {
+                    "summary": "Titel",
+                    "location": "Locatie",
+                    "description": "Omschrijving"
+                },
+                "chooseCalendar": "Selecteer kalender",
+                "text": "Zoekwaarde"
+            }
         },
         "buttons": {
             "new_item": "Nieuwe kalender",
@@ -78,6 +89,13 @@
         "events_today-tomorrow_startstamp_fullday": "Hele dag",
         "events_today-tomorrow_start-stop_stamps_pre": "tot",
         "icalcalendar_week_number": "Weeknummer"
+    },
+    "nextEventWithToken": {
+        "event_next_title": "Titel (met)",
+        "event_next_startdate": "Startdatum (met)",
+        "event_next_startstamp": "Starttijd (met)",
+        "event_next_stopdate": "Stopdatum (met)",
+        "event_next_stopstamp": "Stoptijd (met)"
     },
     "triggers": {
         "event_changed": {

@@ -43,7 +43,18 @@
         },
         "misc": {
             "legend": "Misc settings",
-            "nextEventTokensPerCalendar": "Next event tags per calendar"
+            "nextEventTokensPerCalendar": "Next event tags per calendar",
+            "nextEventTokensWithText": {
+                "title": "Next event tags containing...",
+                "description": "Create tags for the next event that contains the given search value for the type and calendar selected below",
+                "type": {
+                    "summary": "Title",
+                    "location": "Location",
+                    "description": "Description"
+                },
+                "chooseCalendar": "Select calendar",
+                "text": "Search value"
+            }
         },
         "buttons": {
             "new_item": "New calendar",
@@ -78,6 +89,13 @@
         "events_today-tomorrow_startstamp_fullday": "full day",
         "events_today-tomorrow_start-stop_stamps_pre": "to",
         "icalcalendar_week_number": "Week number"
+    },
+    "nextEventWithToken": {
+        "event_next_title": "Title (contains)",
+        "event_next_startdate": "Start date (contains)",
+        "event_next_startstamp": "Start time (contains)",
+        "event_next_stopdate": "End date (contains)",
+        "event_next_stopstamp": "End time (contains)"
     },
     "triggers": {
         "event_changed": {

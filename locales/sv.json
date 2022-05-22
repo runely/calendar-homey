@@ -43,7 +43,18 @@
         },
         "misc": {
             "legend": "Andra inställningar",
-            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender"
+            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender",
+            "nextEventTokensWithText": {
+                "title": "Nästa eventtaggar som innehåller...",
+                "description": "Skapa taggar för nästa event som innehåller det givna sökvärdet i den typ och kalender som väljs nedan",
+                "type": {
+                    "summary": "Titel",
+                    "location": "Plats",
+                    "description": "Beskrivning"
+                },
+                "chooseCalendar": "Välj kalender",
+                "text": "Sökvärde"
+            }
         },
         "buttons": {
             "new_item": "Ny kalendar",
@@ -78,6 +89,13 @@
         "events_today-tomorrow_startstamp_fullday": "heldag",
         "events_today-tomorrow_start-stop_stamps_pre": "till",
         "icalcalendar_week_number": "Veckonummer"
+    },
+    "nextEventWithToken": {
+        "event_next_title": "Titel (innehåller)",
+        "event_next_startdate": "Startdatum (innehåller)",
+        "event_next_startstamp": "Starttid (innehåller)",
+        "event_next_stopdate": "Slutdatum (innehåller)",
+        "event_next_stopstamp": "Sluttid (innehåller)"
     },
     "triggers": {
         "event_changed": {

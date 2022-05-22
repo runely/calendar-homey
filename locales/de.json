@@ -43,7 +43,18 @@
         },
         "misc": {
             "legend": "Sonstige Einstellungen",
-            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
+            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender",
+            "nextEventTokensWithText": {
+                "title": "Nächste Ereignis-Tags mit...",
+                "description": "Erstellen Sie Tags für den nächsten Termin, der den angegebenen Suchwert in dem unten ausgewählten Typ und Kalender enthält",
+                "type": {
+                    "summary": "Titel",
+                    "location": "Ort",
+                    "description": "Beschreibung"
+                },
+                "chooseCalendar": "Kalender auswählen",
+                "text": "Suchwert"
+            }
         },
         "buttons": {
             "new_item": "Neuer Kalender",
@@ -78,6 +89,13 @@
         "events_today-tomorrow_startstamp_fullday": "ganztägig",
         "events_today-tomorrow_start-stop_stamps_pre": "bis",
         "icalcalendar_week_number": "Wochennummer"
+    },
+    "nextEventWithToken": {
+        "event_next_title": "Titel (mit)",
+        "event_next_startdate": "Startdatum (mit)",
+        "event_next_startstamp": "Beginn (mit)",
+        "event_next_stopdate": "Enddatum (mit)",
+        "event_next_stopstamp": "Ende (mit)"
     },
     "triggers": {
         "event_changed": {

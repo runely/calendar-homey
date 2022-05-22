@@ -5,6 +5,7 @@ const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
+const getNextEventValue = require('../lib/get-next-event-value')
 const { moment } = require('../lib/moment-datetime')
 
 const updateToken = async (token, value, id, app) => {
@@ -186,6 +187,47 @@ module.exports = async options => {
       app.log('updateTokens: Failed to update calendar token', token.id, ':', error)
 
       app.sentry.captureException(error)
+    }
+  }
+
+  // update test token
+  const nextEventWithTokenSettings = app.variableMgmt.nextEventWithTokens
+  if (Object.keys(nextEventWithTokenSettings).length > 0) {
+    const { calendarName, type, value, tokens } = nextEventWithTokenSettings
+    try {
+      const nextEventValue = getNextEventValue({
+        timezone,
+        calendars: app.variableMgmt.calendars,
+        specificCalendarName: calendarName,
+        type,
+        value
+      })
+      if (Object.keys(nextEventValue).length === 0) app.log(`updateTokens: No event found with '${value}' by '${type}' in '${calendarName}'`)
+      else app.log(`updateTokens: Using event: '${nextEventValue.summary}' - '${nextEventValue.start}' found by ${type} with '${value}' in '${calendarName}'`)
+
+      for await (const token of tokens) {
+        try {
+          if (Object.keys(nextEventValue).length === 0) {
+            await updateToken(token, '', token.id, app)
+          } else {
+            if (token.id.endsWith('_title')) {
+              await updateToken(token, nextEventValue.summary || '', token.id, app)
+            } else if (token.id.endsWith('_startdate')) {
+              await updateToken(token, nextEventValue.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+            } else if (token.id.endsWith('_starttime')) {
+              await updateToken(token, nextEventValue.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            } else if (token.id.endsWith('_enddate')) {
+              await updateToken(token, nextEventValue.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+            } else if (token.id.endsWith('_endtime')) {
+              await updateToken(token, nextEventValue.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            }
+          }
+        } catch (error) {
+          app.log('updateTokens: Failed to update next event with token', token.id, ':', error)
+        }
+      }
+    } catch (error) {
+      app.log('updateTokens: Failed to update next event with tokens:', error)
     }
   }
 }

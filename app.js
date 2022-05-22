@@ -13,7 +13,7 @@ const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = 
 const getEventUids = require('./lib/get-event-uids')
 const getNewEvents = require('./lib/get-new-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
-const { generateTokens, generatePerCalendarTokens } = require('./lib/generate-token-configuration')
+const { generateTokens, generatePerCalendarTokens, generateNextEventTokens } = require('./lib/generate-token-configuration')
 
 const setupTriggers = require('./handlers/setup-triggers')
 const setupFlowTokens = require('./handlers/setup-flow-tokens')
@@ -63,7 +63,7 @@ class IcalCalendar extends Homey.App {
 
     // register callback when settings has been set
     this.homey.settings.on('set', args => {
-      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
+      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar, this.variableMgmt.setting.nextEventTokensWithText].includes(args)) {
         // sync calendars when calendar specific settings have been changed
         if (!this.isGettingEvents) {
           this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
@@ -189,8 +189,20 @@ class IcalCalendar extends Homey.App {
         this.log('getEvents: Calendar tokens flushed')
       }
 
-      // get setting for adding nextEventTokensPerCalendar
+      // unregister next event with tokens
+      if (Array.isArray(this.variableMgmt.nextEventWithTokens.tokens) && this.variableMgmt.nextEventWithTokens.tokens.length > 0) {
+        this.log('getEvents: Next event with tokens starting to flush')
+        await Promise.all(this.variableMgmt.nextEventWithTokens.tokens.map(async token => {
+          this.log(`getEvents: Next event with token '${token.id}' starting to flush`)
+          return token.unregister()
+        }))
+        this.variableMgmt.nextEventWithTokens = {}
+        this.log('getEvents: Next event with tokens flushed')
+      }
+
+      // get settings for adding extra tokens
       const nextEventTokensPerCalendar = this.homey.settings.get(this.variableMgmt.setting.nextEventTokensPerCalendar)
+      const nextEventTokensWithText = this.homey.settings.get(this.variableMgmt.setting.nextEventTokensWithText)
 
       // register calendar tokens
       if (this.variableMgmt.calendars.length > 0) {
@@ -209,6 +221,18 @@ class IcalCalendar extends Homey.App {
             })
           }
         }))
+
+        // register next event with text for correct calendar
+        if (nextEventTokensWithText && nextEventTokensWithText.enabled) {
+          const nextEventTokens = []
+          for await (const { id, type, title } of generateNextEventTokens({ app: this, variableMgmt: this.variableMgmt })) {
+            nextEventTokens.push(await this.homey.flow.createToken(id, { type, title }))
+            this.log(`getEvents: Created next event with token '${id}'`)
+          }
+          if (nextEventTokens.length > 0) {
+            this.variableMgmt.nextEventWithTokens = { ...nextEventTokensWithText, tokens: nextEventTokens }
+          }
+        }
       }
     }
 

@@ -6,6 +6,7 @@ Uppsättning
     - Klistra in ical-länken
     - Ändra datum/tidsformat eller använd standardvärdena (ditt val)
     - Välj om du vill ha nästa avtalstagg per kalender eller inte. Standard är av
+    - Välj om du vill ha nästa avtaletaggar som innehåller. Standard är av
 
 Hur man hittar ical-länken i Exchange Online
 

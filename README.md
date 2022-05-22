@@ -14,7 +14,8 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Open settings (configure app)
     - Paste in the ical link
     - Change the date/time format or use the default (your choice)
-    - Choose whether or not you want next event tags per calendar. Default is off
+    - Choose whether or not you want **next event tags** per calendar. Default is off
+    - Choose whether or not you want **next event tags containing**. Default is off
 
 ### Find Exchange Online ical link
 
@@ -115,6 +116,12 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Next event end date in %calendarname%
 - Next event end time in %calendarname%
 
+### Next event tags containing (can be turned on in the settings)
+- Title (contains)
+- Start date (contains)
+- Start time (contains)
+- End date (contains)
+- End time (contains)
 
 ## Recurring events
 
@@ -156,6 +163,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.1.0
     - Added trigger 'Synchronization error occurred' -> [Issue #316](https://github.com/runely/calendar-homey/issues/316)
     - Translation fix
+    - **Next event tags containing** added. Possibility to have a global tag with the next event matching the given search value
 - 1.0.7
     - **Week number** event tag were 1 week of since `Moment#week` were used instead of `Moment#isoWeek`
 - 1.0.6

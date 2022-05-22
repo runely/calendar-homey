@@ -43,7 +43,18 @@
         },
         "misc": {
             "legend": "Diverse innstillinger",
-            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender",
+            "nextEventTokensWithText": {
+                "title": "Neste avtale-tagger som inneholder...",
+                "description": "Opprett tagger for neste avtale som inneholder gitt søkeverdi i typen og kalenderen valgt nedenfor",
+                "type": {
+                    "summary": "Tittel",
+                    "location": "Sted",
+                    "description": "Beskrivelse"
+                },
+                "chooseCalendar": "Velg kalender",
+                "text": "Søkeverdi"
+            }
         },
         "buttons": {
             "new_item": "Ny kalender",
@@ -78,6 +89,13 @@
         "events_today-tomorrow_startstamp_fullday": "hele dagen",
         "events_today-tomorrow_start-stop_stamps_pre": "til",
         "icalcalendar_week_number": "Ukenummer"
+    },
+    "nextEventWithToken": {
+        "event_next_title": "Tittel (inneholder)",
+        "event_next_startdate": "Startdato (inneholder)",
+        "event_next_startstamp": "Starttidspunkt (inneholder)",
+        "event_next_stopdate": "Sluttdato (inneholder)",
+        "event_next_stopstamp": "Sluttidspunkt (inneholder)"
     },
     "triggers": {
         "event_changed": {

@@ -6,6 +6,7 @@ Instellingen
     - En plak de ical link
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
+    - Kies of u de volgende event-tags al dan niet wilt bevatten. Standaard is uit
 
 Exchange Online ical link
 

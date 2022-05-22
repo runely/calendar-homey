@@ -11,7 +11,8 @@ module.exports = {
       value: '2',
       type: 'months'
     },
-    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar'
+    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar',
+    nextEventTokensWithText: 'nextEventTokensWithText'
   },
   tokens: [
     {
@@ -83,8 +84,14 @@ module.exports = {
   calendarTokensPostNextStartTimeId: '_next_starttime',
   calendarTokensPostNextEndDateId: '_next_enddate',
   calendarTokensPostNextEndTimeId: '_next_endtime',
+  nextTokenPostTitleId: '_title',
+  nextTokenPostStartDateId: '_startdate',
+  nextTokenPostStartTimeId: '_starttime',
+  nextTokenPostEndDateId: '_enddate',
+  nextTokenPostEndTimeId: '_endtime',
   calendarTokens: [],
   flowTokens: [],
+  nextEventWithTokens: {},
   storage: {
     eventUids: 'eventUids'
   }
