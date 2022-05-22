@@ -155,6 +155,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.1.0
     - Added trigger 'Synchronization error occurred' -> [Issue #316](https://github.com/runely/calendar-homey/issues/316)
+    - Translation fix
 - 1.0.7
     - **Week number** event tag were 1 week of since `Moment#week` were used instead of `Moment#isoWeek`
 - 1.0.6
