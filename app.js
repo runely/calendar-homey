@@ -63,7 +63,7 @@ class IcalCalendar extends Homey.App {
 
     // register callback when settings has been set
     this.homey.settings.on('set', args => {
-      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar, this.variableMgmt.setting.nextEventTokensWithText].includes(args)) {
+      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
         // sync calendars when calendar specific settings have been changed
         if (!this.isGettingEvents) {
           this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
@@ -190,19 +190,18 @@ class IcalCalendar extends Homey.App {
       }
 
       // unregister next event with tokens
-      if (Array.isArray(this.variableMgmt.nextEventWithTokens.tokens) && this.variableMgmt.nextEventWithTokens.tokens.length > 0) {
+      if (Array.isArray(this.variableMgmt.nextEventWithTokens) && this.variableMgmt.nextEventWithTokens.length > 0) {
         this.log('getEvents: Next event with tokens starting to flush')
-        await Promise.all(this.variableMgmt.nextEventWithTokens.tokens.map(async token => {
+        await Promise.all(this.variableMgmt.nextEventWithTokens.map(async token => {
           this.log(`getEvents: Next event with token '${token.id}' starting to flush`)
           return token.unregister()
         }))
-        this.variableMgmt.nextEventWithTokens = {}
+        this.variableMgmt.nextEventWithTokens = []
         this.log('getEvents: Next event with tokens flushed')
       }
 
       // get settings for adding extra tokens
       const nextEventTokensPerCalendar = this.homey.settings.get(this.variableMgmt.setting.nextEventTokensPerCalendar)
-      const nextEventTokensWithText = this.homey.settings.get(this.variableMgmt.setting.nextEventTokensWithText)
 
       // register calendar tokens
       if (this.variableMgmt.calendars.length > 0) {
@@ -222,16 +221,11 @@ class IcalCalendar extends Homey.App {
           }
         }))
 
-        // register next event with text for correct calendar
-        if (nextEventTokensWithText && nextEventTokensWithText.enabled) {
-          const nextEventTokens = []
-          for await (const { id, type, title } of generateNextEventTokens({ app: this, variableMgmt: this.variableMgmt })) {
-            nextEventTokens.push(await this.homey.flow.createToken(id, { type, title }))
-            this.log(`getEvents: Created next event with token '${id}'`)
-          }
-          if (nextEventTokens.length > 0) {
-            this.variableMgmt.nextEventWithTokens = { ...nextEventTokensWithText, tokens: nextEventTokens }
-          }
+        // register next event with text tokens
+        this.variableMgmt.nextEventWithTokens = []
+        for await (const { id, type, title } of generateNextEventTokens({ app: this, variableMgmt: this.variableMgmt })) {
+          this.variableMgmt.nextEventWithTokens.push(await this.homey.flow.createToken(id, { type, title }))
+          this.log(`getEvents: Created next event with token '${id}'`)
         }
       }
     }

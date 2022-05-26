@@ -160,6 +160,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.1.2
+    - **Next event tags containing** as a condition card only
 - 1.1.1
     - **Next event tags containing** added as a condition card. Settings implementation is disabled and will be removed
 - 1.1.0

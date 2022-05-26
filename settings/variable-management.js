@@ -11,8 +11,7 @@ module.exports = {
       value: '2',
       type: 'months'
     },
-    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar',
-    nextEventTokensWithText: 'nextEventTokensWithText'
+    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar'
   },
   tokens: [
     {
@@ -91,7 +90,7 @@ module.exports = {
   nextTokenPostEndTimeId: '_endtime',
   calendarTokens: [],
   flowTokens: [],
-  nextEventWithTokens: {},
+  nextEventWithTokens: [],
   storage: {
     eventUids: 'eventUids'
   }

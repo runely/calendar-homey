@@ -43,18 +43,7 @@
         },
         "misc": {
             "legend": "Misc settings",
-            "nextEventTokensPerCalendar": "Next event tags per calendar",
-            "nextEventTokensWithText": {
-                "title": "Next event tags containing...",
-                "description": "Create tags for the next event that contains the given search value for the type and calendar selected below",
-                "type": {
-                    "summary": "Title",
-                    "location": "Location",
-                    "description": "Description"
-                },
-                "chooseCalendar": "Select calendar",
-                "text": "Search value"
-            }
+            "nextEventTokensPerCalendar": "Next event tags per calendar"
         },
         "buttons": {
             "new_item": "New calendar",

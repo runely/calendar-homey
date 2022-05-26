@@ -43,18 +43,7 @@
         },
         "misc": {
             "legend": "Sonstige Einstellungen",
-            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender",
-            "nextEventTokensWithText": {
-                "title": "Nächste Ereignis-Tags mit...",
-                "description": "Erstellen Sie Tags für den nächsten Termin, der den angegebenen Suchwert in dem unten ausgewählten Typ und Kalender enthält",
-                "type": {
-                    "summary": "Titel",
-                    "location": "Ort",
-                    "description": "Beschreibung"
-                },
-                "chooseCalendar": "Kalender auswählen",
-                "text": "Suchwert"
-            }
+            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
         },
         "buttons": {
             "new_item": "Neuer Kalender",

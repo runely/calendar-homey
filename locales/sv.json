@@ -43,18 +43,7 @@
         },
         "misc": {
             "legend": "Andra inställningar",
-            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender",
-            "nextEventTokensWithText": {
-                "title": "Nästa eventtaggar som innehåller...",
-                "description": "Skapa taggar för nästa event som innehåller det givna sökvärdet i den typ och kalender som väljs nedan",
-                "type": {
-                    "summary": "Titel",
-                    "location": "Plats",
-                    "description": "Beskrivning"
-                },
-                "chooseCalendar": "Välj kalender",
-                "text": "Sökvärde"
-            }
+            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender"
         },
         "buttons": {
             "new_item": "Ny kalendar",

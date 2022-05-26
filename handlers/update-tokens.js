@@ -194,57 +194,41 @@ const updateTokens = async options => {
       app.sentry.captureException(error)
     }
   }
-
-  // TODO: Remove before release
-  // update next event with tokens
-  // await updateNextEventWithTokens(options)
 }
 
 /**
  * @param {UpdateTokensOptions} options
- * @param {Object} [event] Update tokens from this event. If not passed, the next event will be found automatically
+ * @param {Object} event Update tokens from this event
  */
-const updateNextEventWithTokens = async (options, event = null) => {
-  // TODO: Remove type before release
+const updateNextEventWithTokens = async (options, event) => {
   const { timezone, app } = options
-  const nextEventWithTokenSettings = app.variableMgmt.nextEventWithTokens
-  if (Object.keys(nextEventWithTokenSettings).length > 0) {
-    const { calendarName, type, value, tokens } = nextEventWithTokenSettings
-    try {
-      const nextEventValue = event || getNextEventValue({
-        timezone,
-        calendars: app.variableMgmt.calendars,
-        specificCalendarName: calendarName,
-        type,
-        value
-      })
-      if (Object.keys(nextEventValue).length === 0) app.log(`updateTokens: No event found with '${value}' by '${type}' in '${calendarName}'`)
-      else app.log(`updateTokens: Using event: '${nextEventValue.summary}' - '${nextEventValue.start}' ${event ? `in '${event.calendarName}'` : `found by ${type} with '${value}' in '${calendarName}'`}`)
+  const { summary, start, end, calendarName } = event
+  try {
+    app.log(`updateNextEventWithTokens: Using event: '${summary}' - '${start}' in '${calendarName}'`)
 
-      for await (const token of tokens) {
-        try {
-          if (Object.keys(nextEventValue).length === 0) {
-            await updateToken(token, '', token.id, app)
-          } else {
-            if (token.id.endsWith('_title')) {
-              await updateToken(token, nextEventValue.summary || '', token.id, app)
-            } else if (token.id.endsWith('_startdate')) {
+    for await (const token of app.variableMgmt.nextEventWithTokens) {
+      try {
+        if (token.id.endsWith('_title')) {
+          await updateToken(token, summary || '', token.id, app)
+        } else if (token.id.endsWith('_startdate')) {
           await updateToken(token, getDateFormat(timezone, event, start, app), token.id, app)
-            } else if (token.id.endsWith('_starttime')) {
-              await updateToken(token, nextEventValue.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
-            } else if (token.id.endsWith('_enddate')) {
+        } else if (token.id.endsWith('_starttime')) {
+          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+        } else if (token.id.endsWith('_enddate')) {
           await updateToken(token, getDateFormat(timezone, event, end, app), token.id, app)
-            } else if (token.id.endsWith('_endtime')) {
-              await updateToken(token, nextEventValue.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
-            }
-          }
-        } catch (error) {
-          app.log('updateTokens: Failed to update next event with token', token.id, ':', error)
+        } else if (token.id.endsWith('_endtime')) {
+          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
         }
+      } catch (error) {
+        app.log('updateNextEventWithTokens: Failed to update next event with token', token.id, ':', error)
+
+        app.sentry.captureException(error)
       }
-    } catch (error) {
-      app.log('updateTokens: Failed to update next event with tokens:', error)
     }
+  } catch (error) {
+    app.log('updateNextEventWithTokens: Failed to update next event with tokens:', error)
+
+    app.sentry.captureException(error)
   }
 }
 

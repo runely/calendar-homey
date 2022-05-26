@@ -1,6 +1,3 @@
-// calendarNames (must be global - used in getMiscSetting)
-let calendarNames = []
-
 // a method named 'onHomeyReady' must be present in your code
 function onHomeyReady (Homey) {
   // Tell Homey we're ready to be displayed
@@ -12,7 +9,6 @@ function onHomeyReady (Homey) {
   const settingsTimeFormat = variableMgmt.setting.timeFormat
   const settingsEventLimit = variableMgmt.setting.eventLimit
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
-  const settingsMiscNextEventTokensWithText = variableMgmt.setting.nextEventTokensWithText
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -38,15 +34,10 @@ function onHomeyReady (Homey) {
     }
   ]
   const eventLimitDefault = variableMgmt.setting.eventLimitDefault
-  const nextEventTokensWithTextDefault = { enabled: false, type: '', value: '', calendarName: '' }
 
   // get uris from settings
   Homey.get(settingsUris, (err, uris) => {
     if (err) return Homey.alert(err)
-    if (uris && uris.length > 0) {
-      uris.forEach(uri => calendarNames.push(uri.name))
-    }
-
     getCalendarItems(uris)
   })
 
@@ -79,19 +70,6 @@ function onHomeyReady (Homey) {
   Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
     if (err) return Homey.alert(err)
     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state)
-  })
-
-  // get nextEventTokensWithText from settings
-  Homey.get(settingsMiscNextEventTokensWithText, (err, nextEventToken) => {
-    if (err) return Homey.alert(err)
-    if (!nextEventToken) {
-      Homey.set(settingsMiscNextEventTokensWithText, nextEventTokensWithTextDefault, function (err) {
-        if (err) return Homey.alert(err)
-      })
-      nextEventToken = nextEventTokensWithTextDefault
-    }
-
-    getMiscSetting(settingsMiscNextEventTokensWithText, nextEventToken, 'nextEventTokensWithText')
   })
 
   // save settings
@@ -128,11 +106,6 @@ function onHomeyReady (Homey) {
 
     // save tokensPerCalendar to settings
     Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function (err) {
-      if (err) return Homey.alert(err)
-    })
-
-    // save tokensPerCalendar to settings
-    Homey.set(settingsMiscNextEventTokensWithText, saveMiscSetting(settingsMiscNextEventTokensWithText, 'nextEventTokensWithText'), function (err) {
       if (err) return Homey.alert(err)
     })
 
@@ -213,29 +186,7 @@ function getEventLimit (limit, limitTypes) {
   })
 }
 
-function getMiscSetting (setting, state, miscType) {
-  if (miscType === 'nextEventTokensWithText') {
-    const type = state.type
-    const value = state.value
-    const calendarName = state.calendarName
-    state = state.enabled
-
-    if (type) {
-      document.getElementById(`misc-nextEventTokensWithText-type-${type}`).checked = true
-    }
-    document.getElementById('misc-nextEventTokensWithText-text').value = value
-
-    // add calendar to select and set if it is selected
-    const nextEventCalendarSelect = document.getElementById('misc-nextEventTokensWithText-calendar')
-    calendarNames.forEach(calendar => {
-      const calendarOption = document.createElement('option')
-      calendarOption.value = calendar
-      calendarOption.text = calendar
-      calendarOption.selected = calendar === calendarName
-      nextEventCalendarSelect.appendChild(calendarOption)
-    })
-  }
-
+function getMiscSetting (setting, state) {
   if (state) {
     const element = document.getElementById(`misc-${setting}`)
     if (typeof state === 'boolean') {
@@ -299,48 +250,12 @@ function saveEventLimit () {
   }
 }
 
-function saveMiscSetting (setting, miscType) {
-  if (miscType === 'nextEventTokensWithText') {
-    let enabled = document.getElementById('misc-nextEventTokensWithText').checked
-    let type = ''
-    let value = document.getElementById('misc-nextEventTokensWithText-text').value
-    let calendarName = ''
-    
-    for (const ty of document.getElementsByName('nextEventTokensWithText-type')) {
-      if (ty.checked) {
-        type = ty.id.substring(ty.id.lastIndexOf('-') + 1)
-      }
-    }
-    for (const calendar of document.getElementById('misc-nextEventTokensWithText-calendar').selectedOptions) {
-      if (calendar.value !== 'no_icalcalendar_chosen') {
-        calendarName = calendar.text
-      }
-    }
-
-    if (enabled && !type) {
-      const msg = `Missing type for '${Homey.__('settings.misc.nextEventTokensWithText.title')}'`
-      Homey.alert(msg)
-      throw msg
-    }
-    if (enabled && !calendarName) {
-      const msg = `Missing calendar for '${Homey.__('settings.misc.nextEventTokensWithText.title')}'`
-      Homey.alert(msg)
-      throw msg
-    }
-    if (enabled && !value) {
-      const msg = `Missing value for '${Homey.__('settings.misc.nextEventTokensWithText.title')}'`
-      Homey.alert(msg)
-      throw msg
-    }
-
-    return { enabled, type, value, calendarName }
-  } else {
-    const element = document.getElementById(`misc-${setting}`)
-    if (element.type === 'checkbox') {
-      return element.checked
-    } else if (element.type === 'text') {
-      return element.value
-    }
+function saveMiscSetting (setting) {
+  const element = document.getElementById(`misc-${setting}`)
+  if (element.type === 'checkbox') {
+    return element.checked
+  } else if (element.type === 'text') {
+    return element.value
   }
 }
 

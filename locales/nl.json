@@ -43,18 +43,7 @@
         },
         "misc": {
             "legend": "Overige instellingen",
-            "nextEventTokensPerCalendar": "Volgende event-tags per kalender",
-            "nextEventTokensWithText": {
-                "title": "Volgende event-tags met...",
-                "description": "Maak tags voor de volgende afspraak die de opgegeven zoekwaarde bevatten in het hieronder geselecteerde type en kalender",
-                "type": {
-                    "summary": "Titel",
-                    "location": "Locatie",
-                    "description": "Omschrijving"
-                },
-                "chooseCalendar": "Selecteer kalender",
-                "text": "Zoekwaarde"
-            }
+            "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
         },
         "buttons": {
             "new_item": "Nieuwe kalender",

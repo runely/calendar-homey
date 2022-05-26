@@ -43,18 +43,7 @@
         },
         "misc": {
             "legend": "Diverse innstillinger",
-            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender",
-            "nextEventTokensWithText": {
-                "title": "Neste avtale-tagger som inneholder...",
-                "description": "Opprett tagger for neste avtale som inneholder gitt søkeverdi i typen og kalenderen valgt nedenfor",
-                "type": {
-                    "summary": "Tittel",
-                    "location": "Sted",
-                    "description": "Beskrivelse"
-                },
-                "chooseCalendar": "Velg kalender",
-                "text": "Søkeverdi"
-            }
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
         },
         "buttons": {
             "new_item": "Ny kalender",
