@@ -5,8 +5,13 @@ const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
-const getNextEventValue = require('../lib/get-next-event-value')
-const { moment } = require('../lib/moment-datetime')
+const { moment, momentNow } = require('../lib/moment-datetime')
+
+const getDateFormat = (timezone, event, date, app) => {
+  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
+  const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
+  return now.isSame(date, 'year') ? date.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.short) : date.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
+}
 
 const updateToken = async (token, value, id, app) => {
   try {
@@ -224,11 +229,11 @@ const updateNextEventWithTokens = async (options, event = null) => {
             if (token.id.endsWith('_title')) {
               await updateToken(token, nextEventValue.summary || '', token.id, app)
             } else if (token.id.endsWith('_startdate')) {
-              await updateToken(token, nextEventValue.start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+          await updateToken(token, getDateFormat(timezone, event, start, app), token.id, app)
             } else if (token.id.endsWith('_starttime')) {
               await updateToken(token, nextEventValue.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
             } else if (token.id.endsWith('_enddate')) {
-              await updateToken(token, nextEventValue.end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+          await updateToken(token, getDateFormat(timezone, event, end, app), token.id, app)
             } else if (token.id.endsWith('_endtime')) {
               await updateToken(token, nextEventValue.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
             }
