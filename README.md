@@ -15,7 +15,6 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
     - Paste in the ical link
     - Change the date/time format or use the default (your choice)
     - Choose whether or not you want **next event tags** per calendar. Default is off
-    - Choose whether or not you want **next event tags containing**. Default is off
 
 ### Find Exchange Online ical link
 
@@ -116,7 +115,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Next event end date in %calendarname%
 - Next event end time in %calendarname%
 
-### Next event tags containing (can be turned on in the settings)
+### Next event tags containing
 - Title (contains)
 - Start date (contains)
 - Start time (contains)

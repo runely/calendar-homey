@@ -6,7 +6,6 @@ Oppsett
     - Lim inn ical-lenken
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
     - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
-    - Velg om du vil ha neste avtaletagger som inneholder. Standard er av
 
 Hvordan finne Exchange Online ical-lenken
 

@@ -6,7 +6,6 @@ Setup
     - Paste in the ical link
     - Change the date/time format or use the default (your choice)
     - Choose whether or not you want next event tags per calendar. Default is off
-    - Choose whether or not you want next event tags containing. Default is off
 
 Find Exchange Online ical link
 
