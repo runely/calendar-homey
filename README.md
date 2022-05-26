@@ -72,7 +72,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Any event starts within** - *will check if any event starts|doesn't start within when specified*
 - **Any event ends within** - *will check if any event ends|doesn't ends within when specified*
 - **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
-- **Event containing ... in calendar ... starts within** - *Event containing search value in chosen calendar starts within selected time range*
+- **Event containing ... in calendar ... starts within** - *Event containing search value in chosen calendar starts within selected time range (will fill up global tags (containing))*
 - **Any event starts within from calendar** - *will check if any event starts|doesn't start within when specified from specified calendar*
 
 ### Actions
