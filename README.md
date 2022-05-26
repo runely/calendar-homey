@@ -164,6 +164,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added trigger 'Synchronization error occurred' -> [Issue #316](https://github.com/runely/calendar-homey/issues/316)
     - Translation fix
     - **Next event tags containing** added. Possibility to have a global tag with the next event matching the given search value
+    - **Next event tags containing** added as a condition card. Settings implementation is disabled
 - 1.0.7
     - **Week number** event tag were 1 week of since `Moment#week` were used instead of `Moment#isoWeek`
 - 1.0.6

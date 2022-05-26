@@ -45,7 +45,7 @@ const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
 /**
  * @param {UpdateTokensOptions} options
  */
-module.exports = async options => {
+const updateTokens = async options => {
   const { timezone, app } = options
   const eventOptions = {
     timezone,
@@ -190,12 +190,23 @@ module.exports = async options => {
     }
   }
 
-  // update test token
+  // TODO: Remove before release
+  // update next event with tokens
+  //await updateNextEventWithTokens(options)
+}
+
+/**
+ * @param {UpdateTokensOptions} options
+ * @param {Object} [event] Update tokens from this event. If not passed, the next event will be found automatically
+ */
+const updateNextEventWithTokens = async (options, event = null) => {
+  // TODO: Remove type before release
+  const { timezone, app } = options
   const nextEventWithTokenSettings = app.variableMgmt.nextEventWithTokens
   if (Object.keys(nextEventWithTokenSettings).length > 0) {
     const { calendarName, type, value, tokens } = nextEventWithTokenSettings
     try {
-      const nextEventValue = getNextEventValue({
+      const nextEventValue = event || getNextEventValue({
         timezone,
         calendars: app.variableMgmt.calendars,
         specificCalendarName: calendarName,
@@ -203,7 +214,7 @@ module.exports = async options => {
         value
       })
       if (Object.keys(nextEventValue).length === 0) app.log(`updateTokens: No event found with '${value}' by '${type}' in '${calendarName}'`)
-      else app.log(`updateTokens: Using event: '${nextEventValue.summary}' - '${nextEventValue.start}' found by ${type} with '${value}' in '${calendarName}'`)
+      else app.log(`updateTokens: Using event: '${nextEventValue.summary}' - '${nextEventValue.start}' ${event ? `in '${event.calendarName}'` : `found by ${type} with '${value}' in '${calendarName}'`}`)
 
       for await (const token of tokens) {
         try {
@@ -230,4 +241,9 @@ module.exports = async options => {
       app.log('updateTokens: Failed to update next event with tokens:', error)
     }
   }
+}
+
+module.exports = {
+  updateTokens,
+  updateNextEventWithTokens
 }

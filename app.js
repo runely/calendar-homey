@@ -19,7 +19,7 @@ const setupTriggers = require('./handlers/setup-triggers')
 const setupFlowTokens = require('./handlers/setup-flow-tokens')
 const setupConditions = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
-const updateTokens = require('./handlers/update-tokens')
+const { updateTokens } = require('./handlers/update-tokens')
 const { addSchedule } = require('./handlers/cron')
 
 class IcalCalendar extends Homey.App {

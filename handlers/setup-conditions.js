@@ -4,6 +4,8 @@ const { momentNow } = require('../lib/moment-datetime')
 const { filterByCalendar, filterBySummary, filterByUID } = require('../lib/filter-by')
 const sortEvent = require('../lib/sort-event')
 const convertToMinutes = require('../lib/convert-to-minutes')
+const getNextEventValue = require('../lib/get-next-event-value')
+const { updateNextEventWithTokens } = require('./update-tokens')
 
 const cards = [
   {
@@ -60,6 +62,14 @@ const cards = [
     autocompleteListener: {
       argumentId: '',
       id: ''
+    }
+  },
+  {
+    id: 'event_containing_in_calendar',
+    runListenerId: 'event_containing_calendar',
+    autocompleteListener: {
+      argumentId: 'calendar',
+      id: 'calendar'
     }
   }
 ]
@@ -208,12 +218,25 @@ const checkEvent = async (timezone, app, args, state, type) => {
     filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id)
   } else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
     filteredEvents = app.variableMgmt.calendars || []
-  } else if (type === 'any_ongoing_calendar') {
+  } else if (['any_ongoing_calendar', 'event_containing_calendar'].includes(type)) {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
   }
 
   if (!filteredEvents || filteredEvents.length === 0) {
     app.log('checkEvent: filteredEvents empty... Resolving with false')
+    return Promise.resolve(false)
+  }
+
+  if (type === 'event_containing_calendar') {
+    const inMinutes = convertToMinutes(args.when, args.type)
+    const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, timezone })
+    if (Object.keys(nextEvent).length > 0) {
+      const startsWithin = isEventIn(timezone, [nextEvent], inMinutes)
+      app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.start)}. Starts within ${inMinutes} minutes? ${startsWithin}`)
+      if (startsWithin) await updateNextEventWithTokens({ timezone , app }, nextEvent)
+      return Promise.resolve(startsWithin)
+    }
+
     return Promise.resolve(false)
   }
 

@@ -1,0 +1,107 @@
+{
+  "id": "event_containing_in_calendar",
+  "title": {
+    "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
+    "no": "Avtale som inneholder ... i kalender ... starter innen ...",
+    "nl": "Evenement met ... in kalender ... begint binnen ...",
+    "de": "Veranstaltung mit ... im Kalender ... beginnt in ...",
+    "sv": "Händelse som innehåller ... i kalendern ... börjar inom ..."
+  },
+  "titleFormatted": {
+    "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",
+    "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{starter|starter ikke}} innen [[when]] [[type]]",
+    "nl": "Evenement met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
+    "de": "Veranstaltung mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
+    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]"
+  },
+  "hint": {
+    "en": "Event containing search value in chosen calendar starts within selected time range",
+    "no": "Avtale som inneholder søkeverdi i valgt kalender starter innen valgt tidsrom",
+    "nl": "Evenement met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
+    "de": "Veranstaltung mit suchwert im ausgewählten Kalender beginnt in des ausgewählten Zeitraums",
+    "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "value",
+      "placeholder": {
+        "en": "Search value to find in event",
+        "no": "Søkeverdi for avtalen",
+        "nl": "Zoekwaarde te vinden in evenement",
+        "de": "Suchwert, der im Ereignis gefunden werden soll",
+        "sv": "Sökvärde att hitta i händelse"
+      }
+    },
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen...",
+        "sv": "Välj kalender..."
+      }
+    },
+    {
+      "name": "when",
+      "type": "number",
+      "min": 1,
+      "step": 1,
+      "placeholder": {
+        "en": "Amount",
+        "no": "Antall",
+        "nl": "Aantal",
+        "de": "Anzahl",
+        "sv": "Antal"
+      }
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "1",
+          "label": {
+            "en": "Minute(s)",
+            "no": "Minutt(er)",
+            "nl": "Minu(u)t(en)",
+            "de": "Minuten",
+            "sv": "Minut(er)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "Hour(s)",
+            "no": "Time(r)",
+            "nl": "U(u)r(en)",
+            "de": "Stunden",
+            "sv": "Timma(r)"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Day(s)",
+            "no": "Dag(er)",
+            "nl": "Dag(en)",
+            "de": "Tage",
+            "sv": "Dag(ar)"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Week(s)",
+            "no": "Uke(r)",
+            "nl": "We(e)k(en)",
+            "de": "Wochen",
+            "sv": "Vecka/veckor"
+          }
+        }
+      ]
+    }
+  ]
+}
