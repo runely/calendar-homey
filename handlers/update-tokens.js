@@ -192,7 +192,7 @@ const updateTokens = async options => {
 
   // TODO: Remove before release
   // update next event with tokens
-  //await updateNextEventWithTokens(options)
+  // await updateNextEventWithTokens(options)
 }
 
 /**

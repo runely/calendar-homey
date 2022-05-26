@@ -233,7 +233,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     if (Object.keys(nextEvent).length > 0) {
       const startsWithin = isEventIn(timezone, [nextEvent], inMinutes)
       app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.start)}. Starts within ${inMinutes} minutes? ${startsWithin}`)
-      if (startsWithin) await updateNextEventWithTokens({ timezone , app }, nextEvent)
+      if (startsWithin) await updateNextEventWithTokens({ timezone, app }, nextEvent)
       return Promise.resolve(startsWithin)
     }
 
