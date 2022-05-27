@@ -190,5 +190,8 @@
   },
   "1.1.1": {
     "en": "Added trigger 'Synchronization error occurred'. Next event tags containing added as a condition card"
+  },
+  "1.1.2": {
+    "en": "Added trigger 'Synchronization error occurred'. Added condition 'Event containing ... in calendar ... starts within' with corresponding global tags (Next event tags containing). Added condition 'Any event starts within ... from calendar'"
   }
 }
