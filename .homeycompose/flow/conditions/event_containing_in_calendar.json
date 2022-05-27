@@ -4,21 +4,21 @@
     "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
     "no": "Avtale som inneholder ... i kalender ... starter innen ...",
     "nl": "Evenement met ... in kalender ... begint binnen ...",
-    "de": "Veranstaltung mit ... im Kalender ... beginnt in ...",
+    "de": "Ereignis mit ... im Kalender ... beginnt in ...",
     "sv": "Händelse som innehåller ... i kalendern ... börjar inom ..."
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{starter|starter ikke}} innen [[when]] [[type]]",
     "nl": "Evenement met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
-    "de": "Veranstaltung mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
+    "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
     "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar starts within selected time range",
     "no": "Avtale som inneholder søkeverdi i valgt kalender starter innen valgt tidsrom",
     "nl": "Evenement met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
-    "de": "Veranstaltung mit suchwert im ausgewählten Kalender beginnt in des ausgewählten Zeitraums",
+    "de": "Ereignis mit Suchwert im ausgewählten Kalender beginnt innerhalb des ausgewählten Zeitraums",
     "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall"
   },
   "args": [
@@ -67,7 +67,7 @@
             "en": "Minute(s)",
             "no": "Minutt(er)",
             "nl": "Minu(u)t(en)",
-            "de": "Minuten",
+            "de": "Minute(n)",
             "sv": "Minut(er)"
           }
         },
@@ -77,7 +77,7 @@
             "en": "Hour(s)",
             "no": "Time(r)",
             "nl": "U(u)r(en)",
-            "de": "Stunden",
+            "de": "Stunde(n)",
             "sv": "Timma(r)"
           }
         },
@@ -87,7 +87,7 @@
             "en": "Day(s)",
             "no": "Dag(er)",
             "nl": "Dag(en)",
-            "de": "Tage",
+            "de": "Tag(e)",
             "sv": "Dag(ar)"
           }
         },
@@ -97,7 +97,7 @@
             "en": "Week(s)",
             "no": "Uke(r)",
             "nl": "We(e)k(en)",
-            "de": "Wochen",
+            "de": "Woche(n)",
             "sv": "Vecka/veckor"
           }
         }
