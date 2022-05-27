@@ -49,7 +49,7 @@
               "en": "Minute(s)",
               "no": "Minutt(er)",
               "nl": "Minu(u)t(en)",
-              "de": "Minuten",
+              "de": "Minute(n)",
               "sv": "Minut(er)"
             }
           },
@@ -59,7 +59,7 @@
               "en": "Hour(s)",
               "no": "Time(r)",
               "nl": "U(u)r(en)",
-              "de": "Stunden",
+              "de": "Stunde(n)",
               "sv": "Timma(r)"
             }
           },
@@ -69,7 +69,7 @@
               "en": "Day(s)",
               "no": "Dag(er)",
               "nl": "Dag(en)",
-              "de": "Tage",
+              "de": "Tag(e)",
               "sv": "Dag(ar)"
             }
           },
@@ -79,7 +79,7 @@
               "en": "Week(s)",
               "no": "Uke(r)",
               "nl": "We(e)k(en)",
-              "de": "Wochen",
+              "de": "Woche(n)",
               "sv": "Vecka/veckor"
             }
           }
