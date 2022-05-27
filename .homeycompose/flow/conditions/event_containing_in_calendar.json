@@ -3,21 +3,21 @@
   "title": {
     "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
     "no": "Avtale som inneholder ... i kalender ... starter innen ...",
-    "nl": "Evenement met ... in kalender ... begint binnen ...",
+    "nl": "Event met ... in kalender ... begint binnen ...",
     "de": "Ereignis mit ... im Kalender ... beginnt in ...",
     "sv": "Händelse som innehåller ... i kalendern ... börjar inom ..."
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{starter|starter ikke}} innen [[when]] [[type]]",
-    "nl": "Evenement met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
+    "nl": "Event met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
     "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
     "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar starts within selected time range",
     "no": "Avtale som inneholder søkeverdi i valgt kalender starter innen valgt tidsrom",
-    "nl": "Evenement met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
+    "nl": "Event met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
     "de": "Ereignis mit Suchwert im ausgewählten Kalender beginnt innerhalb des ausgewählten Zeitraums",
     "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall"
   },
@@ -28,7 +28,7 @@
       "placeholder": {
         "en": "Search value to find in event",
         "no": "Søkeverdi for avtalen",
-        "nl": "Zoekwaarde te vinden in evenement",
+        "nl": "Zoekwaarde te vinden in event",
         "de": "Suchwert, der im Ereignis gefunden werden soll",
         "sv": "Sökvärde att hitta i händelse"
       }
