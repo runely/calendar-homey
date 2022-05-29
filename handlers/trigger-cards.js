@@ -46,6 +46,8 @@ module.exports.triggerSynchronizationError = async options => {
     const tokens = {
       calendar_name: calendar,
       calendar_error: message,
+      on_calendar_load: event === undefined || event === null,
+      on_event_load: event !== undefined && event !== null && typeof event === 'object' && Object.keys(event).length > 0,
       event_name: event ? event.summary || '' : '',
       event_uid: event ? event.uid || '' : ''
     }

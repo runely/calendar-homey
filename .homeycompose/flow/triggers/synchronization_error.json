@@ -52,6 +52,20 @@
       }
     },
     {
+      "name": "on_calendar_load",
+      "type": "boolean",
+      "title": {
+        "en": "onCalendarLoad"
+      }
+    },
+    {
+      "name": "on_event_load",
+      "type": "boolean",
+      "title": {
+        "en": "onEventLoad"
+      }
+    },
+    {
       "name": "event_name",
       "type": "string",
       "title": {
