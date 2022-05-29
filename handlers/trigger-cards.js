@@ -10,6 +10,18 @@ const capitalize = require('../lib/capitalize')
 const getErrorMessage = (app, error) => {
   if (error instanceof Error) return { message: error.message, stack: error.stack }
   if (typeof error === 'string') return { message: error }
+  if (error.data && typeof error.data === 'string') {
+    if (error.stack) return { message: error.data, stack: error.stack }
+    return { message: error.data }
+  }
+  if (error.data && error.data.message && typeof error.data.message === 'string') {
+    if (error.data.stack) return { message: error.data.message, stack: error.data.stack }
+    return { message: error.data.message }
+  }
+  if (error.message && typeof error.message === 'string') {
+    if (error.stack) return { message: error.message, stack: error.stack }
+    return { message: error.message }
+  }
 
   app.log('getErrorMessage: Error is of type', typeof error)
   return { message: error }

@@ -138,6 +138,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.1.3
+    - Improved error handling for trigger `Synchronization error occurred`
 - 1.1.0 (1.1.2)
     - **Next event tags containing** as a condition card only
     - Added condition `Any event starts within ... from calendar` -> [Issue #323](https://github.com/runely/calendar-homey/issues/323)
