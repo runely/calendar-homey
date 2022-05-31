@@ -196,5 +196,8 @@
   },
   "1.1.3": {
     "en": "Bugfix and improved error handling for 'Synchronization error occured' trigger"
+  },
+  "1.1.4": {
+    "en": "TTS friendly tags"
   }
 }
