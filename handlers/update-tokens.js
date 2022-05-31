@@ -5,7 +5,7 @@ const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
-const { moment, momentNow } = require('../lib/moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 
 const updateToken = async (token, value, id, app) => {
   try {
@@ -191,11 +191,10 @@ const updateTokens = async options => {
 }
 
 /**
- * @param {UpdateTokensOptions} options
+ * @prop {Homey.App} app App class inited by Homey
  * @param {Object} event Update tokens from this event
  */
-const updateNextEventWithTokens = async (options, event) => {
-  const { timezone, app } = options
+const updateNextEventWithTokens = async (app, event) => {
   const { summary, start, end, calendarName } = event
   try {
     app.log(`updateNextEventWithTokens: Using event: '${summary}' - '${start}' in '${calendarName}'`)
