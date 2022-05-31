@@ -7,12 +7,6 @@ const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
 const { moment, momentNow } = require('../lib/moment-datetime')
 
-const getDateFormat = (timezone, event, date, app) => {
-  const { momentNowRegular, momentNowWholeDay } = momentNow(timezone)
-  const now = event.fullDayEvent ? momentNowWholeDay : momentNowRegular
-  return now.isSame(date, 'year') ? date.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.short) : date.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
-}
-
 const updateToken = async (token, value, id, app) => {
   try {
     await token.setValue(value)
@@ -211,11 +205,11 @@ const updateNextEventWithTokens = async (options, event) => {
         if (token.id.endsWith('_title')) {
           await updateToken(token, summary || '', token.id, app)
         } else if (token.id.endsWith('_startdate')) {
-          await updateToken(token, getDateFormat(timezone, event, start, app), token.id, app)
+          await updateToken(token, start.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
         } else if (token.id.endsWith('_starttime')) {
           await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
         } else if (token.id.endsWith('_enddate')) {
-          await updateToken(token, getDateFormat(timezone, event, end, app), token.id, app)
+          await updateToken(token, end.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
         } else if (token.id.endsWith('_endtime')) {
           await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
         }

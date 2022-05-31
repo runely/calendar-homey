@@ -138,6 +138,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.1.4
+    - Dates must have **year** as part of the date for TTS to work properly
 - 1.1.3
     - Improved error handling for trigger `Synchronization error occurred`
     - Bugfix: `calendar_name` is **undefined**
