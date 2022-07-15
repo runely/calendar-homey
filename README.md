@@ -138,6 +138,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.2.0
+    - No need to return value in `Promise.resolve`
 - 1.1.4
     - Dates must have **year** as part of the date for TTS to work properly
 - 1.1.3
