@@ -12,7 +12,7 @@ module.exports = app => {
       app.log('Triggered \'event_starts_in\' with state:', state)
     }
 
-    return Promise.resolve(result)
+    return result
   })
 
   app.homey.flow.getTriggerCard('event_stops_in').registerRunListener((args, state) => {
@@ -22,7 +22,7 @@ module.exports = app => {
       app.log('Triggered \'event_stops_in\' with state:', state)
     }
 
-    return Promise.resolve(result)
+    return result
   })
 
   const eventStartsCalendar = app.homey.flow.getTriggerCard('event_starts_calendar')
@@ -32,28 +32,24 @@ module.exports = app => {
       app.log('Triggered \'event_starts_calendar\' with state:', state)
     }
 
-    return Promise.resolve(result)
+    return result
   })
 
   eventStartsCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
     if (!app.variableMgmt.calendars) {
       app.log('event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...')
-      return Promise.resolve(false)
+      return false
     }
 
     if (query) {
       const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-      return Promise.resolve(
-        filteredCalendar.map(calendar => {
-          return { id: calendar.name, name: calendar.name }
-        })
-      )
-    }
-
-    return Promise.resolve(
-      app.variableMgmt.calendars.map(calendar => {
+      return filteredCalendar.map(calendar => {
         return { id: calendar.name, name: calendar.name }
       })
-    )
+    }
+
+    return app.variableMgmt.calendars.map(calendar => {
+      return { id: calendar.name, name: calendar.name }
+    })
   })
 }

@@ -188,36 +188,32 @@ const getEventList = (timezone, app, calendars) => {
 const onEventAutocomplete = async (timezone, app, query, args, type) => {
   if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
     app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...')
-    return Promise.resolve(false)
+    return false
   }
 
   if (type === 'event') {
     if (query) {
       const filtered = filterBySummary(app.variableMgmt.calendars, query)
-      return Promise.resolve(getEventList(timezone, app, filtered))
+      return getEventList(timezone, app, filtered)
     }
 
-    return Promise.resolve(getEventList(timezone, app, app.variableMgmt.calendars))
+    return getEventList(timezone, app, app.variableMgmt.calendars)
   }
 
   if (type === 'calendar') {
     if (query) {
       const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-      return Promise.resolve(
-        filteredCalendar.map(calendar => {
-          return { id: calendar.name, name: calendar.name }
-        })
-      )
-    }
-
-    return Promise.resolve(
-      app.variableMgmt.calendars.map(calendar => {
+      return filteredCalendar.map(calendar => {
         return { id: calendar.name, name: calendar.name }
       })
-    )
+    }
+
+    return app.variableMgmt.calendars.map(calendar => {
+      return { id: calendar.name, name: calendar.name }
+    })
   }
 
-  return Promise.resolve(false)
+  return false
 }
 
 const checkEvent = async (timezone, app, args, state, type) => {
@@ -232,7 +228,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
 
   if (!filteredEvents || filteredEvents.length === 0) {
     app.log('checkEvent: filteredEvents empty... Resolving with false')
-    return Promise.resolve(false)
+    return false
   }
 
   if (type === 'event_containing_calendar') {
@@ -242,13 +238,13 @@ const checkEvent = async (timezone, app, args, state, type) => {
       const startsWithin = isEventIn(timezone, [nextEvent], inMinutes)
       app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.start)}. Starts within ${inMinutes} minutes? ${startsWithin}`)
       if (startsWithin) await updateNextEventWithTokens(app, nextEvent)
-      return Promise.resolve(startsWithin)
+      return startsWithin
     }
 
-    return Promise.resolve(false)
+    return false
   }
 
-  return Promise.resolve(filteredEvents.some(calendar => {
+  return filteredEvents.some(calendar => {
     if (calendar.events.length <= 0) {
       return false
     }
@@ -280,7 +276,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     }
 
     return eventCondition
-  }))
+  })
 }
 
 /**
