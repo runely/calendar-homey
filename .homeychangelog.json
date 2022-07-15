@@ -199,5 +199,8 @@
   },
   "1.1.4": {
     "en": "TTS friendly tags"
+  },
+  "1.2.0": {
+    "en": "Support for Advanced Flow. Dependency updates"
   }
 }
