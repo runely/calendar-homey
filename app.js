@@ -93,6 +93,8 @@ class IcalCalendar extends Homey.App {
   async getEvents (reregisterCalendarTokens = false) {
     this.isGettingEvents = true
 
+    // errors to return
+    const errors = []
     // get URI from settings
     const calendars = this.homey.settings.get(this.variableMgmt.setting.icalUris)
     // get event limit from settings or use the default
@@ -120,9 +122,10 @@ class IcalCalendar extends Homey.App {
       } else if (!/(http|https|webcal):\/\/.+/gi.exec(uri)) {
         this.log(`getEvents: Uri for calendar '${name}' is invalid. Skipping...`)
         calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` }
+        errors.push(calendars[i].failed)
         this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
         this.log(`getEvents: Added 'error' setting value to calendar '${name}'`)
-        await triggerSynchronizationError({ app: this, calendar: name, error: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` })
+        await triggerSynchronizationError({ app: this, calendar: name, error: calendars[i].failed })
         continue
       }
 
@@ -151,6 +154,7 @@ class IcalCalendar extends Homey.App {
         const errorString = typeof error === 'object' ? error.message : error
 
         this.log('getEvents: Failed to get events for calendar', name, uri, errorString)
+        errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' : ${errorString}`)
         await triggerSynchronizationError({ app: this, calendar: name, error })
 
         // set a failed setting value to show a error message on settings page
@@ -231,6 +235,8 @@ class IcalCalendar extends Homey.App {
     }
 
     this.isGettingEvents = false
+
+    if (errors.length > 0) return errors
   }
 
   startSchedules () {

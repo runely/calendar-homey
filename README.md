@@ -140,6 +140,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.2.0
     - No need to return value in `Promise.resolve`
+    - `Sync calendars` action card will present synchronization errors in **Error** flow path in an `Advanced flow`, and through the error banner in a regular flow
 - 1.1.4
     - Dates must have **year** as part of the date for TTS to work properly
 - 1.1.3
