@@ -53,7 +53,9 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Heutige Ereignisse in",
+        "events_today_calendar_count": "Heutige Ereignisse (Anzahl) in",
         "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",
+        "events_tomorrow_calendar_count": "Morgige Ereignisse (Anzahl) in",
         "event_next_title_calendar": "Nächster Ereignistitel in",
         "event_next_startdate_calendar": "Startdatum des nächsten Ereignisses in",
         "event_next_startstamp_calendar": "Beginn des nächsten Ereignisses in",

@@ -53,7 +53,9 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens händelser om",
+        "events_today_calendar_count": "Dagens händelser (antal) om",
         "events_tomorrow_calendar_title_stamps": "Morgondagens händeler om",
+        "events_tomorrow_calendar_count": "Morgondagens händeler (antal) om",
         "event_next_title_calendar": "Nästa händelsetitel om",
         "event_next_startdate_calendar": "Nästa händelse startdatum om",
         "event_next_startstamp_calendar": "Nästa händelse startar om",

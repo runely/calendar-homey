@@ -129,7 +129,9 @@ const updateTokens = async options => {
     try {
       const calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '')
       const calendarName = calendarId
+        .replace(app.variableMgmt.calendarTokensPostTodayCountId, '') // this must be replaced before calendarTokensPostTodayId to preserve the whole tag name
         .replace(app.variableMgmt.calendarTokensPostTodayId, '')
+        .replace(app.variableMgmt.calendarTokensPostTomorrowCountId, '') // this must be replaced before calendarTokensPostTomorrowId to preserve the whole tag name
         .replace(app.variableMgmt.calendarTokensPostTomorrowId, '')
         .replace(app.variableMgmt.calendarTokensPostNextTitleId, '')
         .replace(app.variableMgmt.calendarTokensPostNextStartDateId, '')
@@ -140,14 +142,22 @@ const updateTokens = async options => {
       // app.log(`calendarTokens: Setting token '${calendarType}' for calendar '${calendarName}'`);
       let value = ''
 
-      if (calendarType === 'today') {
+      if (calendarType.includes('today')) {
         const todaysEventsCalendar = getTodaysEvents({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
         // app.log(`updateTokens: Found '${todaysEventsCalendar.length}' events for today from calendar '${calendarName}'`);
-        value = getTokenEvents({ ...tokenEventsOptions, events: todaysEventsCalendar }) || ''
-      } else if (calendarType === 'tomorrow') {
+        if (calendarType === 'today') {
+          value = getTokenEvents({ ...tokenEventsOptions, events: todaysEventsCalendar }) || ''
+        } else if (calendarType === 'today_count') {
+          value = todaysEventsCalendar.length
+        }
+      } else if (calendarType.includes('tomorrow')) {
         const tomorrowsEventsCalendar = getTomorrowsEvents({ timezone, calendars: app.variableMgmt.calendars, specificCalendarName: calendarName })
         // app.log(`updateTokens: Found '${tomorrowsEventsCalendar.length}' events for tomorrow from calendar '${calendarName}'`);
-        value = getTokenEvents({ ...tokenEventsOptions, events: tomorrowsEventsCalendar }) || ''
+        if (calendarType === 'tomorrow') {
+          value = getTokenEvents({ ...tokenEventsOptions, events: tomorrowsEventsCalendar }) || ''
+        } else if (calendarType === 'tomorrow_count') {
+          value = tomorrowsEventsCalendar.length
+        }
       } else if (calendarType === 'next_title') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''

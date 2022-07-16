@@ -53,7 +53,9 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
+        "events_today_calendar_count": "Dagens avtaler (antall) i",
         "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
+        "events_tomorrow_calendar_count": "Morgendagens avtaler (antall) i",
         "event_next_title_calendar": "Tittel neste avtale i",
         "event_next_startdate_calendar": "Startdato neste avtale i",
         "event_next_startstamp_calendar": "Starttidspunkt neste avtale i",

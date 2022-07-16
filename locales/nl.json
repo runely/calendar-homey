@@ -53,7 +53,9 @@
     },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
+        "events_today_calendar_count": "Events vandaag (aantal) over",
         "events_tomorrow_calendar_title_stamps": "Events morgen over",
+        "events_tomorrow_calendar_count": "Events morgen (aantal) over",
         "event_next_title_calendar": "Volgende event titel over",
         "event_next_startdate_calendar": "Volgende event startdatum over",
         "event_next_startstamp_calendar": "Volgende event starttijd over",

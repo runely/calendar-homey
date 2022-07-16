@@ -140,6 +140,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.3.0
     - Bugfix: Every 15th minute, events wouldn't be evaluated for triggering and tokens wouldn't be updated
+    - Added tokens `Todays events (count) in` and `Tomorrows events (count) in` for all calendars
 - 1.2.0
     - No need to return value in `Promise.resolve`
     - `Sync calendars` action card will present synchronization errors in **Error** flow path in an `Advanced flow`, and through the error banner in a regular flow
