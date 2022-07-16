@@ -202,5 +202,8 @@
   },
   "1.2.0": {
     "en": "Support for Advanced Flow. Dependency updates"
+  },
+  "1.3.0": {
+    "en": "Bugfixes. Added tokens for event count today and tomorrow for all calendars"
   }
 }
