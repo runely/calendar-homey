@@ -138,6 +138,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.3.1
+    - Bugfix: `Cannot read properties of undefined (reading 'forEach')`
 - 1.3.0
     - Bugfix: Every 15th minute, events wouldn't be evaluated for triggering and tokens wouldn't be updated
     - Added tokens `Todays events (count) in` and `Tomorrows events (count) in` for all calendars

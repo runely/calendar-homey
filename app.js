@@ -245,9 +245,12 @@ class IcalCalendar extends Homey.App {
       update: addSchedule('*/15 * * * *', () => {
         if (this.isGettingEvents) return
 
-        this.log('startSchedules/trigger: Triggering events and updating tokens')
-        triggerEvents({ timezone: this.getTimezone(), app: this })
-        updateTokens({ timezone: this.getTimezone(), app: this })
+        if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
+          this.log('startSchedules/trigger: Triggering events and updating tokens')
+          triggerEvents({ timezone: this.getTimezone(), app: this })
+          updateTokens({ timezone: this.getTimezone(), app: this })
+        }
+
         this.log('startSchedules/update: Updating calendars without reregistering tokens')
         this.getEvents()
       }),
