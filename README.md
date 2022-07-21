@@ -74,6 +74,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
 - **Event containing ... in calendar ... starts within** - *Event containing search value in chosen calendar starts within selected time range (will fill up global tags (containing))*
 - **Any event starts within from calendar** - *will check if any event starts|doesn't start within when specified from specified calendar*
+- **Event containing ... in calendar ... is ongoing** - *will check if an event containing **value** in **calendar** is|isn't ongoing*
 
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
@@ -138,6 +139,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.4.0
+    - Added condition `Event containing search value in chosen calendar is ongoing` -> [Issue #341](https://github.com/runely/calendar-homey/issues/341)
 - 1.3.1
     - Bugfix: `Cannot read properties of undefined (reading 'forEach')`
 - 1.3.0

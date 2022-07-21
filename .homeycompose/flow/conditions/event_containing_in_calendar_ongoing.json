@@ -1,0 +1,48 @@
+{
+  "id": "event_containing_in_calendar_ongoing",
+  "title": {
+    "en": "Event containing ... in calendar ... is ongoing",
+    "no": "Avtale som inneholder ... i kalender ... pågår",
+    "nl": "Event met ... in kalender ... is bezig",
+    "de": "Ereignis mit ... im Kalender ... ist laufend",
+    "sv": "Händelse som innehåller ... i kalendern ... pågår"
+  },
+  "titleFormatted": {
+    "en": "Event containing [[value]] in calendar [[calendar]] !{{is|isn't}} ongoing",
+    "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{pågår|pågår ikke}}",
+    "nl": "Event met [[value]] in kalender [[calendar]] !{{is|is niet}} bezig",
+    "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{ist|ist nicht}} laufend",
+    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}"
+  },
+  "hint": {
+    "en": "Event containing search value in chosen calendar is ongoing",
+    "no": "Avtale som inneholder søkeverdi i valgt kalender pågår",
+    "nl": "Event met zoekwaarde in gekozen kalender is bezig",
+    "de": "Ereignis mit Suchwert im ausgewählten Kalender ist laufend",
+    "sv": "Händelse som innehåller sökvärde i vald kalender pågår"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "value",
+      "placeholder": {
+        "en": "Search value to find in event",
+        "no": "Søkeverdi for avtalen",
+        "nl": "Zoekwaarde te vinden in event",
+        "de": "Suchwert, der im Ereignis gefunden werden soll",
+        "sv": "Sökvärde att hitta i händelse"
+      }
+    },
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen...",
+        "sv": "Välj kalender..."
+      }
+    }
+  ]
+}

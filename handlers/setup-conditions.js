@@ -73,6 +73,14 @@ const cards = [
     }
   },
   {
+    id: 'event_containing_in_calendar_ongoing',
+    runListenerId: 'event_containing_calendar_ongoing',
+    autocompleteListener: {
+      argumentId: 'calendar',
+      id: 'calendar'
+    }
+  },
+  {
     id: 'any_event_in_calendar',
     runListenerId: 'any_in_calendar',
     autocompleteListener: {
@@ -224,6 +232,9 @@ const checkEvent = async (timezone, app, args, state, type) => {
     filteredEvents = app.variableMgmt.calendars || []
   } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar'].includes(type)) {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
+  } else if (type === 'event_containing_calendar_ongoing') {
+    filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
+    filteredEvents = filterBySummary(filteredEvents, args.value) || []
   }
 
   if (!filteredEvents || filteredEvents.length === 0) {
@@ -264,7 +275,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
       eventCondition = willEventNotIn(timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
-    } else if (type === 'any_ongoing' || type === 'any_ongoing_calendar') {
+    } else if (['any_ongoing', 'any_ongoing_calendar', 'event_containing_calendar_ongoing'].includes(type)) {
       eventCondition = isEventOngoing(timezone, calendar.events)
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
     } else if (['any_in_calendar', 'any_in'].includes(type)) {
