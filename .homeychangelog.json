@@ -208,5 +208,8 @@
   },
   "1.3.1": {
     "en": "Bugfix: App could crash when no calendars were added yet"
+  },
+  "1.4.0": {
+    "en": "New condition: Event containing search value in chosen calendar is ongoing"
   }
 }
