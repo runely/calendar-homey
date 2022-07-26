@@ -30,7 +30,7 @@ class IcalCalendar extends Homey.App {
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
 
-    this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
+    this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
     // set a variable to control if getEvents is already running
     this.isGettingEvents = false
