@@ -143,6 +143,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: Trigger cards could be fired twice at every 15th minute (0, 15, 30, 45)
         - This happend because triggering cards was also added to the update schedule. And this was done because the schedule through `node-cron` was buggy.
         - `node-cron` has been replaced by `croner`
+    - Dependency updates
 - 1.4.0
     - Added condition `Event containing search value in chosen calendar is ongoing` -> [Issue #341](https://github.com/runely/calendar-homey/issues/341)
 - 1.3.1
