@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "@sentry/node": "7.7.0",
+    "croner": "4.3.15",
     "humanize-duration": "3.27.2",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.5.34",
-    "node-cron": "3.0.1",
     "node-ical": "0.15.1"
   },
   "scripts": {

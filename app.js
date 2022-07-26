@@ -20,7 +20,7 @@ const setupFlowTokens = require('./handlers/setup-flow-tokens')
 const setupConditions = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
 const { updateTokens } = require('./handlers/update-tokens')
-const { addSchedule } = require('./handlers/cron')
+const { addJob } = require('./handlers/cron')
 
 class IcalCalendar extends Homey.App {
   /**
@@ -76,18 +76,18 @@ class IcalCalendar extends Homey.App {
     })
 
     this.homey.on('unload', () => {
-      if (!this.schedules) return
+      if (!this.jobs) return
 
-      Object.getOwnPropertyNames(this.schedules).forEach(prop => {
-        if (typeof this.schedules[prop].stop === 'function') {
-          this.log('onInit/unload: Schedule', prop, 'will be stopped')
-          this.schedules[prop].stop()
+      Object.getOwnPropertyNames(this.jobs).forEach(prop => {
+        if (typeof this.jobs[prop].stop === 'function') {
+          this.log('onInit/unload: Job', prop, 'will be stopped')
+          this.jobs[prop].stop()
         }
       })
     })
 
-    // register cron tasks
-    this.startSchedules()
+    // register cron jobs
+    this.startJobs()
   }
 
   async getEvents (reregisterCalendarTokens = false) {
@@ -239,25 +239,19 @@ class IcalCalendar extends Homey.App {
     if (errors.length > 0) return errors
   }
 
-  startSchedules () {
-    this.schedules = {
+  startJobs () {
+    this.jobs = {
       // calendar update every 15th minute
-      update: addSchedule('*/15 * * * *', () => {
+      update: addJob('*/15 * * * *', () => {
         if (this.isGettingEvents) return
 
-        if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
-          this.log('startSchedules/trigger: Triggering events and updating tokens')
-          triggerEvents({ timezone: this.getTimezone(), app: this })
-          updateTokens({ timezone: this.getTimezone(), app: this })
-        }
-
-        this.log('startSchedules/update: Updating calendars without reregistering tokens')
+        this.log('startJobs/update: Updating calendars without reregistering tokens')
         this.getEvents()
       }),
       // trigger events every 1th minute
-      trigger: addSchedule('*/1 * * * *', () => {
+      trigger: addJob('*/1 * * * *', () => {
         if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
-          this.log('startSchedules/trigger: Triggering events and updating tokens')
+          this.log('startJobs/trigger: Triggering events and updating tokens')
           triggerEvents({ timezone: this.getTimezone(), app: this })
           updateTokens({ timezone: this.getTimezone(), app: this })
         }
