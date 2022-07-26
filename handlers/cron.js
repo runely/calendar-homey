@@ -18,7 +18,7 @@ const { Cron } = require('croner')
 
 /**
  * Find next runtime, based on supplied date. Strips milliseconds.
- * 
+ *
  * @typedef {function} next
  * @property {Date|string} [prev] - Date to start from
  * @returns {Date | null} - Next run time
@@ -26,7 +26,7 @@ const { Cron } = require('croner')
 
 /**
  * Find next n runs, based on supplied date. Strips milliseconds.
- * 
+ *
  * @typedef {function} enumerate
  * @property {number} n - Number of runs to enumerate
  * @property {Date|string} [previous] - Date to start from
