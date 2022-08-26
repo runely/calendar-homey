@@ -22,7 +22,7 @@
     "standard": "17.0.0"
   },
   "dependencies": {
-    "@sentry/node": "7.7.0",
+    "@sentry/node": "7.11.1",
     "croner": "4.3.15",
     "humanize-duration": "3.27.2",
     "lodash.clonedeep": "4.5.0",
