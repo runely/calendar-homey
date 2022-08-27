@@ -214,5 +214,8 @@
   },
   "1.4.1": {
     "en": "Bugfix: Trigger cards could be fired twice at every 15th minute. Dependency updates"
+  },
+  "1.5.0": {
+    "en": "Properly handle moved recurrence events. Removed sentry in favour for the synchronization error trigger card"
   }
 }
