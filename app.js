@@ -2,7 +2,6 @@
 
 const Homey = require('homey')
 
-const { sentry, sentryInit } = require('./lib/sentry-io') // { sentry, sentryInit, startTransaction }
 const varMgmt = require('./lib/variable-management')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const hasData = require('./lib/has-data')
@@ -34,10 +33,6 @@ class IcalCalendar extends Homey.App {
 
     // set a variable to control if getEvents is already running
     this.isGettingEvents = false
-
-    // initialize sentry.io
-    await sentryInit(this.homey, Homey.env)
-    this.sentry = sentry
 
     // register variableMgmt to this app class
     this.variableMgmt = varMgmt

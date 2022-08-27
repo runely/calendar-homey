@@ -57,9 +57,6 @@ module.exports.triggerSynchronizationError = async options => {
     app.log('triggerSynchronizationError: Triggered "synchronization_error"')
   } catch (err) {
     app.log('triggerSynchronizationError: Failed to trigger "synchronization_error" :', err)
-
-    // send exception to sentry
-    app.sentry.captureException(err)
   }
 }
 
@@ -90,16 +87,12 @@ module.exports.triggerChangedCalendars = async options => {
         } catch (error) {
           app.log(`triggerChangedCalendars: 'event_changed' failed to trigger on '${event.uid}' :`, error)
 
-          // send exception to sentry
-          app.sentry.captureException(error)
+          this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
         }
       }
     }
   } catch (err) {
     app.log('triggerChangedCalendars: Failed to trigger changed calendar events :', err)
-
-    // send exception to sentry
-    app.sentry.captureException(err)
   }
 }
 
@@ -153,8 +146,7 @@ module.exports.triggerEvents = async options => {
         } catch (error) {
           app.log(`triggerEvents: '${triggerId}' failed to trigger:`, error)
 
-          // send exception to sentry
-          app.sentry.captureException(error)
+          this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
       } else {
         try {
@@ -162,14 +154,11 @@ module.exports.triggerEvents = async options => {
         } catch (error) {
           app.log(`triggerEvents: '${triggerId}' failed to trigger, state:`, state, 'Error:', error)
 
-          // send exception to sentry
-          app.sentry.captureException(error)
+          this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
       }
     } catch (err) {
       app.log('triggerEvents: Failed to trigger event', event.uid, 'from', calendarName, ':', err)
-
-      app.sentry.captureException(err)
     }
   }
 }

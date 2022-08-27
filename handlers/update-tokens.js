@@ -6,6 +6,7 @@ const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
 const { moment } = require('../lib/moment-datetime')
+const { triggerSynchronizationError } = require('./trigger-cards')
 
 const updateToken = async (token, value, id, app) => {
   try {
@@ -119,7 +120,7 @@ const updateTokens = async options => {
     } catch (error) {
       app.log('updateTokens: Failed to update flow token', token.id, ':', error)
 
-      app.sentry.captureException(error)
+      triggerSynchronizationError({ app, calendar: '', error })
     }
   }
 
@@ -195,7 +196,7 @@ const updateTokens = async options => {
     } catch (error) {
       app.log('updateTokens: Failed to update calendar token', token.id, ':', error)
 
-      app.sentry.captureException(error)
+      triggerSynchronizationError({ app, calendar: '', error })
     }
   }
 }
@@ -225,13 +226,11 @@ const updateNextEventWithTokens = async (app, event) => {
       } catch (error) {
         app.log('updateNextEventWithTokens: Failed to update next event with token', token.id, ':', error)
 
-        app.sentry.captureException(error)
+        triggerSynchronizationError({ app, calendar: calendarName, error, event: { summary } })
       }
     }
   } catch (error) {
     app.log('updateNextEventWithTokens: Failed to update next event with tokens:', error)
-
-    app.sentry.captureException(error)
   }
 }
 

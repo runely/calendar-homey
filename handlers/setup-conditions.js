@@ -6,6 +6,7 @@ const sortEvent = require('../lib/sort-event')
 const convertToMinutes = require('../lib/convert-to-minutes')
 const getNextEventValue = require('../lib/get-next-event-value')
 const { updateNextEventWithTokens } = require('./update-tokens')
+const { triggerSynchronizationError } = require('./trigger-cards')
 
 const cards = [
   {
@@ -171,8 +172,7 @@ const getEventList = (timezone, app, calendars) => {
         startStamp = ''
         endStamp = ''
 
-        // send exception to sentry
-        app.sentry.captureException(error)
+        triggerSynchronizationError({ app, calendar: calendar.name, error, event })
       }
 
       const name = event.summary
