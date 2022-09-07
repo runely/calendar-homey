@@ -2,6 +2,7 @@
 
 const getDateTimeFormat = require('../lib/get-datetime-format')
 const { settings: { datetime: { date, time } } } = require('../locales/en.json')
+const { setting: { dateFormatPattern } } = require('../lib/variable-management')
 
 const app = {
   homey: {
@@ -13,7 +14,8 @@ const app = {
     settings: {
       get: prop => prop || null
     }
-  }
+  },
+  log: console.log
 }
 
 const appFormatUndefined = {
@@ -21,6 +23,7 @@ const appFormatUndefined = {
   variableMgmt: {
     setting: {
       dateFormat: null,
+      dateFormatPattern,
       timeFormat: null
     }
   }
@@ -31,6 +34,7 @@ const appDateTimeFormat = {
   variableMgmt: {
     setting: {
       dateFormat: 'DD.MM.YYYY',
+      dateFormatPattern,
       timeFormat: 'HH.mm'
     }
   }

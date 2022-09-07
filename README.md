@@ -139,6 +139,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.6.0
+    - Bugfix: Date format in settings view didn't allow the use of `ddd` or `dddd` because the string was forced as uppercase
+    - Bugfix: Date format showed wrong `short` date when `YY` or `YYYY` was used as the first date segment
 - 1.5.0
     - Properly handle moved recurrence events
     - Dependency updates

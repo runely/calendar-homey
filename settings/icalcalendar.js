@@ -10,6 +10,8 @@ function onHomeyReady (Homey) {
   const settingsEventLimit = variableMgmt.setting.eventLimit
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
 
+  const dateFormatPattern = variableMgmt.setting.dateFormatPattern
+
   // buttons
   const newItemElement = document.getElementById('newItem')
   const saveElement = document.getElementById('save')
@@ -44,7 +46,7 @@ function onHomeyReady (Homey) {
   // get date from settings
   Homey.get(settingsDateFormat, (err, date) => {
     if (err) return Homey.alert(err)
-    getDateTimeFormat('date', date)
+    getDateTimeFormat('date', date, dateFormatPattern)
   })
 
   // get time from settings
@@ -163,12 +165,17 @@ function getCalendarItems (calendars) {
   }
 }
 
-function getDateTimeFormat (type, format) {
+function getDateTimeFormat (type, format, pattern) {
   if (!format) {
     format = Homey.__(`settings.datetime.${type}.default`)
   }
 
-  document.getElementById(`datetime-${type}`).value = format
+  const dateTimeInput = document.getElementById(`datetime-${type}`)
+  dateTimeInput.value = format
+
+  if (pattern) {
+    dateTimeInput.pattern = pattern
+  }
 }
 
 function getEventLimit (limit, limitTypes) {
@@ -261,10 +268,6 @@ function saveMiscSetting (setting) {
 
 function saveDateTimeFormat (type) {
   const inputField = document.getElementById(`datetime-${type}`)
-
-  // workaround when using (style="text-transform:uppercase") on datetime-date text field. Value is in fact not uppercase!
-  if (type === 'date') inputField.value = inputField.value.toUpperCase()
-
   if (inputField.validity.patternMismatch) {
     Homey.alert(`${type} has invalid pattern`)
   } else if (inputField.validity.tooShort) {
