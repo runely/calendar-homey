@@ -1,7 +1,5 @@
 'use strict'
 
-const deepClone = require('lodash.clonedeep')
-
 const getEventsToTrigger = require('../lib/get-events-to-trigger')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenValue = require('../lib/get-token-value')
@@ -125,17 +123,13 @@ module.exports.triggerEvents = async options => {
       }
 
       if (triggerId === 'event_added') {
-        const newEvent = deepClone(event) // make a new copy of event to prevent that event.start also has its locale changed (deepClone needed since theres functions here)
-        const { start } = newEvent
-        start.locale(app.homey.__('locale.moment'))
-
         tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
         tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
         tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.date.long)
         tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)
-        tokens.event_weekday_readable = capitalize(start.format('dddd'))
-        tokens.event_month_readable = capitalize(start.format('MMMM'))
-        tokens.event_date_of_month = start.get('date')
+        tokens.event_weekday_readable = capitalize(event.start.format('dddd'))
+        tokens.event_month_readable = capitalize(event.start.format('MMMM'))
+        tokens.event_date_of_month = event.start.get('date')
       }
 
       // trigger flow card
