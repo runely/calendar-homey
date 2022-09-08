@@ -12,7 +12,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 ## Setup
 
 - Open settings (configure app)
-    - Paste in the ical link
+    - Paste in the ical link and give it a name
     - Change the date/time format or use the default (your choice)
     - Choose whether or not you want **next event tags** per calendar. Default is off
 
