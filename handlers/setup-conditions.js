@@ -145,26 +145,20 @@ const getEventList = (timezone, app, calendars) => {
 
       try {
         if (event.datetype === 'date-time') {
-          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`) : startMoment.locale(app.homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+          startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
 
-          if (endMoment.isSame(startMoment, 'year')) {
-            if (endMoment.isSame(startMoment, 'date')) {
-              endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.time.time)
-
-              startStamp = startStamp.replace(' ', ' - ')
-            } else {
-              endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.short} ${app.variableMgmt.dateTimeFormat.time.time}`)
-            }
+          if (endMoment.isSame(startMoment, 'date')) {
+            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.time.time)
           } else {
-            endStamp = endMoment.locale(app.homey.__('locale.moment')).format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+            endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
           }
         } else if (event.datetype === 'date') {
-          startStamp = startMoment.isSame(now, 'year') ? startMoment.format(app.variableMgmt.dateTimeFormat.date.short) : startMoment.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
+          startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long)
 
           if (endMoment.isSame(now, 'year')) {
-            endStamp = endMoment.isSame(startMoment, 'date') ? '' : endMoment.format(app.variableMgmt.dateTimeFormat.date.short)
+            endStamp = endMoment.isSame(startMoment, 'date') ? '' : endMoment.format(app.variableMgmt.dateTimeFormat.date.long)
           } else {
-            endStamp = endMoment.locale(app.homey.__('locale.moment')).format(app.variableMgmt.dateTimeFormat.date.long)
+            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.long)
           }
         }
       } catch (error) {
