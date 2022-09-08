@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Datum/Tid",
             "date": {
-                "description": "<b>Önskad datumformat</b><br>ddd eller dddd = veckodag<br>MM = månad, DD = dag, YY or YYYY = år<br>Separera med /, - eller .",
+                "description": "<b>Önskad datumformat</b><br><i>ddd</i> eller <i>dddd</i> = veckodag<br><i>MM</i> = månad, <i>DD</i> = dag, <i>YY</i> or <i>YYYY</i> = år<br>Separera med <b>/</b> <b>-</b> eller <b>.</b><br><br>Exempel: <i>dddd, DD.MM.YYYY</i>",
                 "name": "Datumformat",
                 "default": "YY-MM-DD"
             },
             "time": {
-                "description": "<b>Önskad tidsformat</b><br>HH eller hh = timma, mm = minut<br>Separera med : eller .",
+                "description": "<b>Önskad tidsformat</b><br><i>HH</i> eller <i>hh</i> = timma, <i>mm</i> = minut<br>Separera med <b>:</b> eller <b>.</b>",
                 "name": "Tidsformat",
                 "default": "HH:mm"
             }

@@ -3,8 +3,18 @@ IcalCalendar tillhandahåller Homey flow-kort som kan utlösas på dina kalender
 Uppsättning
 
 - Öppna inställningar (konfigurera app)
-    - Klistra in ical-länken
+    - Klistra in ical-länken och ge den ett namn
     - Ändra datum/tidsformat eller använd standardvärdena (ditt val)
+        - Giltiga datumformater (använd / . eller - som avgränsare)
+            - DD.MM.YY[YY]
+            - MM.DD.YY[YY]
+            - YY[YY].DD.MM
+            - YY[YY].MM.DD
+        - Giltiga datumformater inklusive veckodag i kort format (ddd) eller långt format (dddd) (använd / . , : - och/eller mellanslag som avgränsare mellan veckodags- och datumformat)
+            - ddd, DD.MM.YY[YY]
+            - dddd. MM.DD.YY[YY]
+            - ddd: YY[YY].DD.MM
+            - dddd - YY[YY].MM.DD
     - Välj om du vill ha nästa avtalstagg per kalender eller inte. Standard är av
 
 Hur man hittar ical-länken i Exchange Online

@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Dato/Tid",
             "date": {
-                "description": "<b>Ønsket datoformat</b><br>ddd eller dddd = ukedag<br>DD = dag, MM = måned, YY eller YYYY = år<br>Skilles med /, - eller .",
+                "description": "<b>Ønsket datoformat</b><br><i>ddd</i> eller <i>dddd</i> = ukedag<br><i>DD</i> = dag, <i>MM</i> = måned, <i>YY</i> eller <i>YYYY</i> = år<br>Skilles med <b>/</b> <b>-</b> eller <b>.</b><br><br>Eksempel: <i>dddd, DD.MM.YYYY</i>",
                 "name": "Datoformat",
                 "default": "DD.MM.YY"
             },
             "time": {
-                "description": "<b>Ønsket tidsformat</b><br>HH eller hh = time, mm = minutt<br>Skilles med : eller .",
+                "description": "<b>Ønsket tidsformat</b><br><i>HH</i> eller <i>hh</i> = time, <i>mm</i> = minutt<br>Skilles med <b>:</b> eller <b>.</b>",
                 "name": "Tidsformat",
                 "default": "HH:mm"
             }

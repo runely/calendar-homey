@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Date/Time",
             "date": {
-                "description": "<b>Wanted date format</b><br>ddd or dddd = weekday<br>MM = month, DD = day, YY or YYYY = year<br>Separated by /, - or .",
+                "description": "<b>Wanted date format</b><br><i>ddd</i> or <i>dddd</i> = weekday<br><i>MM</i> = month, <i>DD</i> = day, <i>YY</i> or <i>YYYY</i> = year<br>Separated by <b>/</b> <b>-</b> or <b>.</b><br><br>Example: <i>dddd, DD.MM.YYYY</i>",
                 "name": "Date format",
                 "default": "MM/DD/YY"
             },
             "time": {
-                "description": "<b>Wanted time format</b><br>HH or hh = hour, mm = minute<br>Separated by : or .",
+                "description": "<b>Wanted time format</b><br><i>HH</i> or <i>hh</i> = hour, <i>mm</i> = minute<br>Separated by <b>:</b> or <b>.</b>",
                 "name": "Time format",
                 "default": "HH:mm"
             }

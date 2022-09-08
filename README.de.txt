@@ -3,8 +3,18 @@ Der IcalCalender erweitert Homey um Flow-Karten, um Kalenderereignisse als Trigg
 Setup
 
 - Einstellungen öffnen (App konfigurieren)
-    - Den ical-Link einfügen
+    - Den ical-Link einfügen und gib ihm einen Namen
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
+        - Gültige Datumsformate (verwenden Sie / . oder - als Trennzeichen)
+            - DD.MM.YY[YY]
+            - MM.DD.YY[YY]
+            - YY[YY].DD.MM
+            - YY[YY].MM.DD
+        - Gültige Datumsformate einschließlich Wochentag im Kurzformat (ddd) oder Langformat (dddd) (verwenden Sie / . , : - und/oder Leerzeichen als Trennzeichen zwischen Wochentag und Datumsformat)
+            - ddd, DD.MM.YY[YY]
+            - dddd. MM.DD.YY[YY]
+            - ddd: YY[YY].DD.MM
+            - dddd - YY[YY].MM.DD
     - Wählen Sie aus, ob Sie die nächsten Ereignistags pro Kalender möchten oder nicht. Standardeinstellung ist aus
 
 Den Exchange Online ical-Link finden
