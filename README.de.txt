@@ -10,12 +10,12 @@ Setup
             - MM.DD.YY[YY]
             - YY[YY].DD.MM
             - YY[YY].MM.DD
-        - Gültige Datumsformate einschließlich Wochentag im Kurzformat (ddd) oder Langformat (dddd) (verwenden Sie / . , : - und/oder Leerzeichen als Trennzeichen zwischen Wochentag und Datumsformat)
+        - Gültige Datumsformate einschließlich Wochentag im Kurz- (ddd) oder Langformat (dddd) (verwenden Sie / . , : - und/oder Leerzeichen als Trennzeichen zwischen Wochentag und Datumsformat)
             - ddd, DD.MM.YY[YY]
             - dddd. MM.DD.YY[YY]
             - ddd: YY[YY].DD.MM
             - dddd - YY[YY].MM.DD
-    - Wählen Sie aus, ob Sie die nächsten Ereignistags pro Kalender möchten oder nicht. Standardeinstellung ist aus
+    - Wählen Sie, ob Sie „nächste Ereignis-Tags“ pro Kalender möchten. Standardeinstellung ist aus
 
 Den Exchange Online ical-Link finden
 
