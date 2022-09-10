@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Datum/Tijd",
             "date": {
-                "description": "<b>Gewenste datumnotatie</b><br><i>ddd</i> of <i>dddd</i> = weekdag<br><i>DD</i> = dag, <i>MM</i> = maand, <i>YY</i> of <i>YYYY</i> = jaar<br>Gescheiden door <b>/</b> <b>-</b> of <b>.</b><br><br>Voorbeeld: <i>dddd, DD.MM.YYYY</i>",
-                "name": "Datumnotatie",
-                "default": "DD-MM-YY"
+                "description": "<b>Gewenste datum-/tijdnotatie</b><br><br>Ondersteunt alle tokens in <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Voorbeeld: <i>dddd, DD.MM.YYYY</i>",
+                "long_name": "Lange datumnotatie",
+                "default": "DD-MM-YY",
+                "short_name": "Korte datumnotatie"
             },
             "time": {
-                "description": "<b>Gewenste tijdnotatie</b><br><i>HH</i> of <i>hh</i> = uur, <i>mm</i> = minuut<br>Gescheiden door <b>:</b> of <b>.</b>",
                 "name": "Tijd formaat",
                 "default": "HH:mm"
             }

@@ -123,10 +123,10 @@ module.exports.triggerEvents = async options => {
       }
 
       if (triggerId === 'event_added') {
-        tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.date.long)
-        tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time.time)
-        tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.date.long)
-        tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time.time)
+        tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.long)
+        tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time)
+        tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.long)
+        tokens.event_end_time = event.end.format(app.variableMgmt.dateTimeFormat.time)
         tokens.event_weekday_readable = capitalize(event.start.format('dddd'))
         tokens.event_month_readable = capitalize(event.start.format('MMMM'))
         tokens.event_date_of_month = event.start.get('date')

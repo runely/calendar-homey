@@ -5,16 +5,7 @@ Oppsett
 - Åpne innstillinger (konfigurer app)
     - Lim inn ical-lenken og gi den et navn
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
-        - Gyldige datoformater (skilles med / . eller - )
-            - DD.MM.YY[YY]
-            - MM.DD.YY[YY]
-            - YY[YY].DD.MM
-            - YY[YY].MM.DD
-        - Gyldige datoformater som inkluderer ukedag i kort format (ddd) eller langt format (dddd) (ukedag og datoformat skilles med / . , : - og/eller mellomrom)
-            - ddd, DD.MM.YY[YY]
-            - dddd. MM.DD.YY[YY]
-            - ddd: YY[YY].DD.MM
-            - dddd - YY[YY].MM.DD
+        - Alle tokens som er supportert i **moment.format()** supporteres her også: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
 
 Hvordan finne Exchange Online ical-lenken

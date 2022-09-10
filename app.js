@@ -64,7 +64,7 @@ class IcalCalendar extends Homey.App {
           this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
           this.getEvents(true)
         }
-      } else if (args && [this.variableMgmt.setting.dateFormat, this.variableMgmt.setting.timeFormat].includes(args)) {
+      } else if (args && [this.variableMgmt.setting.dateFormatLong, this.variableMgmt.setting.dateFormatShort, this.variableMgmt.setting.timeFormat].includes(args)) {
         // get new date/time format
         this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
       }

@@ -71,25 +71,25 @@ const updateTokens = async options => {
       if (token.id === 'event_next_title') {
         await updateToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
       } else if (token.id === 'event_next_startdate') {
-        await updateToken(token, nextEvent.event ? nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : '', token.id, app)
       } else if (token.id === 'event_next_startstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            await updateToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            await updateToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
           } else if (nextEvent.event.datetype === 'date') {
-            await updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
+            await updateToken(token, '00:00', token.id, app)
           }
         } else {
           await updateToken(token, '', token.id, app)
         }
       } else if (token.id === 'event_next_stopdate') {
-        await updateToken(token, nextEvent.event ? nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long) : '', token.id, app)
+        await updateToken(token, nextEvent.event ? nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : '', token.id, app)
       } else if (token.id === 'event_next_stopstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            await updateToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+            await updateToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
           } else if (nextEvent.event.datetype === 'date') {
-            await updateToken(token, `00${app.variableMgmt.dateTimeFormat.time.splitter}00`, token.id, app)
+            await updateToken(token, '00:00', token.id, app)
           }
         } else {
           await updateToken(token, '', token.id, app)
@@ -164,28 +164,28 @@ const updateTokens = async options => {
         value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
       } else if (calendarType === 'next_startdate') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.date.long) : ''
+        value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : ''
       } else if (calendarType === 'next_starttime') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         if (calendarNextEvent.event) {
           if (calendarNextEvent.event.datetype === 'date-time') {
-            value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time.time)
+            value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time)
           } else if (calendarNextEvent.event.datetype === 'date') {
-            value = `00${app.variableMgmt.dateTimeFormat.time.splitter}00`
+            value = '00:00'
           }
         } else {
           value = ''
         }
       } else if (calendarType === 'next_enddate') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.date.long) : ''
+        value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : ''
       } else if (calendarType === 'next_endtime') {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
         if (calendarNextEvent.event) {
           if (calendarNextEvent.event.datetype === 'date-time') {
-            value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time.time)
+            value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time)
           } else if (calendarNextEvent.event.datetype === 'date') {
-            value = `00${app.variableMgmt.dateTimeFormat.time.splitter}00`
+            value = '00:00'
           }
         } else {
           value = ''
@@ -215,13 +215,13 @@ const updateNextEventWithTokens = async (app, event) => {
         if (token.id.endsWith('_title')) {
           await updateToken(token, summary || '', token.id, app)
         } else if (token.id.endsWith('_startdate')) {
-          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.long), token.id, app)
         } else if (token.id.endsWith('_starttime')) {
-          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
         } else if (token.id.endsWith('_enddate')) {
-          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.date.long), token.id, app)
+          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.long), token.id, app)
         } else if (token.id.endsWith('_endtime')) {
-          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time.time), token.id, app)
+          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
         }
       } catch (error) {
         app.log('updateNextEventWithTokens: Failed to update next event with token', token.id, ':', error)

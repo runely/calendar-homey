@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Datum/Tid",
             "date": {
-                "description": "<b>Önskad datumformat</b><br><i>ddd</i> eller <i>dddd</i> = veckodag<br><i>MM</i> = månad, <i>DD</i> = dag, <i>YY</i> or <i>YYYY</i> = år<br>Separera med <b>/</b> <b>-</b> eller <b>.</b><br><br>Exempel: <i>dddd, DD.MM.YYYY</i>",
-                "name": "Datumformat",
-                "default": "YY-MM-DD"
+                "description": "<b>Önskad datum-/tidsformat</b><br><br>Stöder alla tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Exempel: <i>dddd, DD.MM.YYYY</i>",
+                "long_name": "Långt datumformat",
+                "default": "YY-MM-DD",
+                "short_name": "Kort datumformat"
             },
             "time": {
-                "description": "<b>Önskad tidsformat</b><br><i>HH</i> eller <i>hh</i> = timma, <i>mm</i> = minut<br>Separera med <b>:</b> eller <b>.</b>",
                 "name": "Tidsformat",
                 "default": "HH:mm"
             }

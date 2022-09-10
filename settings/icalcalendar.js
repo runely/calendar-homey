@@ -5,12 +5,11 @@ function onHomeyReady (Homey) {
 
   // setting ids
   const settingsUris = variableMgmt.setting.icalUris
-  const settingsDateFormat = variableMgmt.setting.dateFormat
+  const settingsDateFormatLong = variableMgmt.setting.dateFormatLong
+  const settingsDateFormatShort = variableMgmt.setting.dateFormatShort
   const settingsTimeFormat = variableMgmt.setting.timeFormat
   const settingsEventLimit = variableMgmt.setting.eventLimit
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
-
-  const dateFormatPattern = variableMgmt.setting.dateFormatPattern
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -43,10 +42,16 @@ function onHomeyReady (Homey) {
     getCalendarItems(uris)
   })
 
-  // get date from settings
-  Homey.get(settingsDateFormat, (err, date) => {
+  // get date long from settings
+  Homey.get(settingsDateFormatLong, (err, date) => {
     if (err) return Homey.alert(err)
-    getDateTimeFormat('date', date, dateFormatPattern)
+    getDateTimeFormat('date-long', date)
+  })
+
+  // get date short from settings
+  Homey.get(settingsDateFormatShort, (err, date) => {
+    if (err) return Homey.alert(err)
+    getDateTimeFormat('date-short', date)
   })
 
   // get time from settings
@@ -82,11 +87,20 @@ function onHomeyReady (Homey) {
     })
 
     // save date to settings
-    const savedDateFormat = saveDateTimeFormat('date')
-    if (savedDateFormat) {
-      Homey.set(settingsDateFormat, savedDateFormat, function (err) {
+    const savedDateFormatLong = saveDateTimeFormat('date-long')
+    if (savedDateFormatLong) {
+      Homey.set(settingsDateFormatLong, savedDateFormatLong, function (err) {
         if (err) return Homey.alert(err)
       })
+
+      const savedDateFormatShort = saveDateTimeFormat('date-short')
+      if (savedDateFormatShort) {
+        Homey.set(settingsDateFormatShort, savedDateFormatShort, function (err) {
+          if (err) return Homey.alert(err)
+        })
+      } else {
+        return
+      }
 
       // save time to settings
       const savedTimeFormat = saveDateTimeFormat('time')
@@ -165,17 +179,9 @@ function getCalendarItems (calendars) {
   }
 }
 
-function getDateTimeFormat (type, format, pattern) {
-  if (!format) {
-    format = Homey.__(`settings.datetime.${type}.default`)
-  }
-
+function getDateTimeFormat (type, format) {
   const dateTimeInput = document.getElementById(`datetime-${type}`)
   dateTimeInput.value = format
-
-  if (pattern) {
-    dateTimeInput.pattern = pattern
-  }
 }
 
 function getEventLimit (limit, limitTypes) {
@@ -268,19 +274,7 @@ function saveMiscSetting (setting) {
 
 function saveDateTimeFormat (type) {
   const inputField = document.getElementById(`datetime-${type}`)
-  if (inputField.validity.patternMismatch) {
-    Homey.alert(`${type} has invalid pattern`)
-  } else if (inputField.validity.tooShort) {
-    Homey.alert(`${type} is too short`)
-  } else if (inputField.validity.tooLong) {
-    Homey.alert(`${type} is too long`)
-  }
-
-  if (inputField.validity.valid) {
-    return inputField.value
-  } else {
-    return null
-  }
+  return inputField.value
 }
 
 function getUriFailedSetting (setting) {

@@ -145,20 +145,20 @@ const getEventList = (timezone, app, calendars) => {
 
       try {
         if (event.datetype === 'date-time') {
-          startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+          startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.long} ${app.variableMgmt.dateTimeFormat.time}`)
 
           if (endMoment.isSame(startMoment, 'date')) {
-            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.time.time)
+            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.time)
           } else {
-            endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.date.long} ${app.variableMgmt.dateTimeFormat.time.time}`)
+            endStamp = endMoment.format(`${app.variableMgmt.dateTimeFormat.long} ${app.variableMgmt.dateTimeFormat.time}`)
           }
         } else if (event.datetype === 'date') {
-          startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.date.long)
+          startStamp = startMoment.format(app.variableMgmt.dateTimeFormat.long)
 
           if (endMoment.isSame(now, 'year')) {
-            endStamp = endMoment.isSame(startMoment, 'date') ? '' : endMoment.format(app.variableMgmt.dateTimeFormat.date.long)
+            endStamp = endMoment.isSame(startMoment, 'date') ? '' : endMoment.format(app.variableMgmt.dateTimeFormat.long)
           } else {
-            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.date.long)
+            endStamp = endMoment.format(app.variableMgmt.dateTimeFormat.long)
           }
         }
       } catch (error) {

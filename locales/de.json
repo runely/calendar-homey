@@ -19,12 +19,12 @@
         "datetime": {
             "legend": "Datum/Zeit",
             "date": {
-                "description": "<b>Gewünschtes Datumsformat</b><br><i>ddd</i> oder <i>dddd</i> = Wochentag<br><i>DD</i> = Tag, <i>MM</i> = Monat, <i>YY</i> oder <i>YYYY</i> = Jahr<br>Getrennt durch <b>/</b> <b>-</b> oder <b>.</b><br><br>Beispiel: <i>dddd, DD.MM.YYYY</i>",
-                "name": "Datumsformat",
-                "default": "DD-MM-YY"
+                "description": "<b>Gewünschtes Datums-/zeitformat</b><br><br>Unterstützt alle Token im <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Beispiel: <i>dddd, DD.MM.YYYY</i>",
+                "long_name": "Langes Datumsformat",
+                "default": "DD-MM-YY",
+                "short_name": "Kurzes Datumsformat"
             },
             "time": {
-                "description": "<b>Gewünschtes Zeitformat</b><br><i>HH</i> oder <i>hh</i> = Stunde, <i>mm</i> = Minute<br>Getrennt durch <b>:</b> oder <b>.</b>",
                 "name": "Zeitformat",
                 "default": "HH:mm"
             }

@@ -5,16 +5,7 @@ Setup
 - Open settings (configure app)
     - Paste in the ical link and give it a name
     - Change the date/time format or use the default (your choice)
-        - Valid date formats (use / . or - as separator)
-            - DD.MM.YY[YY]
-            - MM.DD.YY[YY]
-            - YY[YY].DD.MM
-            - YY[YY].MM.DD
-        - Valid date formats including weekday in short format (ddd) or long format (dddd) (use / . , : - and/or space as separator between weekday and date format)
-            - ddd, DD.MM.YY[YY]
-            - dddd. MM.DD.YY[YY]
-            - ddd: YY[YY].DD.MM
-            - dddd - YY[YY].MM.DD
+        - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose whether or not you want next event tags per calendar. Default is off
 
 Find Exchange Online ical link

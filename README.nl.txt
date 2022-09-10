@@ -5,16 +5,7 @@ Instellingen
 - Open settings (app configuratie)
     - En plak de ical link en geef het een naam
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
-        - Geldige datumnotaties (gebruik / . of - als scheidingsteken)
-            - DD.MM.YY[YY]
-            - MM.DD.YY[YY]
-            - YY[YY].DD.MM
-            - YY[YY].MM.DD
-        - Geldige datumnotaties inclusief weekdag in kort formaat (ddd) of lang formaat (dddd) (gebruik / . , : - en/of spatie als scheidingsteken tussen weekdag- en datumformaat)
-            - ddd, DD.MM.YY[YY]
-            - dddd. MM.DD.YY[YY]
-            - ddd: YY[YY].DD.MM
-            - dddd - YY[YY].MM.DD
+        - Alle tokens die worden ondersteund in **moment.format()** worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
 
 Exchange Online ical link

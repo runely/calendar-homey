@@ -17,12 +17,8 @@ const app = {
   },
   variableMgmt: {
     dateTimeFormat: {
-      date: {
-        long
-      },
-      time: {
-        time
-      }
+      long,
+      time
     }
   }
 }
