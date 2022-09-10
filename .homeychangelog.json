@@ -220,5 +220,8 @@
   },
   "1.6.0": {
     "en": "Date format in settings view didn't allow the use of 'ddd' or 'dddd' because the string was forced as uppercase. Better documentation for 'Date format' section. Set correctly locale on all events at import. Dependency and DevDependency updates"
+  },
+  "1.7.0": {
+    "en": "Rewritten date/time format to support all tokens (in any layout) from moment.format()"
   }
 }
