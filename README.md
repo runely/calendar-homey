@@ -142,6 +142,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.7.1
     - Bugfix: Catch errors thrown from `node-ical`
+    - Dependency updates
 - 1.7.0
     - Rewritten date/time format to support all tokens (*in any layout*) from **moment.format()**
 - 1.6.0
