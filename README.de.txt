@@ -7,6 +7,7 @@ Setup
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
         - Alle in **moment.format()** unterstützten Token werden auch hier unterstützt: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Wählen Sie, ob Sie „nächste Ereignis-Tags“ pro Kalender möchten. Standardeinstellung ist aus
+- Um über Synchronisierungsfehler benachrichtigt zu werden, erstellen Sie einen Flow mit dem Trigger "Synchronisationsfehler aufgetreten"
 
 Den Exchange Online ical-Link finden
 

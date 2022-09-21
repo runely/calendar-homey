@@ -1,11 +1,11 @@
 'use strict'
 
 const Homey = require('homey')
+const ical = require('node-ical')
 
 const varMgmt = require('./lib/variable-management')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const hasData = require('./lib/has-data')
-const getContent = require('./lib/get-ical-content')
 const getActiveEvents = require('./lib/get-active-events')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
 const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
@@ -134,7 +134,7 @@ class IcalCalendar extends Homey.App {
       this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri)
 
       try {
-        const data = await getContent(uri)
+        const data = await ical.fromURL(uri)
         // remove failed setting if it exists for calendar
         if (calendars[i].failed) {
           calendars[i] = { name, uri }

@@ -7,6 +7,7 @@ Setup
     - Change the date/time format or use the default (your choice)
         - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose whether or not you want next event tags per calendar. Default is off
+- To be notified of any synchronization errors, create a flow using the trigger "Synchronization error occurred"
 
 Find Exchange Online ical link
 

@@ -7,6 +7,7 @@ Instellingen
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
         - Alle tokens die worden ondersteund in **moment.format()** worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
+- Als u op de hoogte wilt worden gehouden van eventuele synchronisatiefouten, maakt u een stroom met behulp van de trigger "Synchronisatiefout opgetreden"
 
 Exchange Online ical link
 

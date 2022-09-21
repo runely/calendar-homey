@@ -7,6 +7,7 @@ Uppsättning
     - Ändra datum/tidsformat eller använd standardvärdena (ditt val)
         - Alla tokens som stöds i **moment.format()** stöds också här: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Välj om du vill ha nästa avtalstagg per kalender eller inte. Standard är av
+- För att bli meddelad om eventuella synkroniseringsfel, skapa ett flow med triggern "Synkroniseringsfel uppstod"
 
 Hur man hittar ical-länken i Exchange Online
 
