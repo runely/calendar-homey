@@ -223,5 +223,8 @@
   },
   "1.7.0": {
     "en": "Rewritten date/time format to support all tokens (in any layout) from moment.format()"
+  },
+  "1.7.1": {
+    "en": "Bugfix. Dependency updates"
   }
 }
