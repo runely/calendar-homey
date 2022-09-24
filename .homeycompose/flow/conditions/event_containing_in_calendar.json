@@ -2,10 +2,10 @@
   "id": "event_containing_in_calendar",
   "title": {
     "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
-    "no": "Avtale som inneholder ... i kalender ... starter innen ...",
-    "nl": "Event met ... in kalender ... begint binnen ...",
-    "de": "Ereignis mit ... im Kalender ... beginnt in ...",
-    "sv": "Händelse som innehåller ... i kalendern ... börjar inom ..."
+    "no": "Avtale som inneholder ... i kalender ... !{{starter|starter ikke}} innen ...",
+    "nl": "Event met ... in kalender ... !{{begint|begint niet}} binnen ...",
+    "de": "Ereignis mit ... im Kalender ... !{{beginnt|beginnt nicht}} in ...",
+    "sv": "Händelse som innehåller ... i kalendern ... !{{börjar|börjar inte}} inom ..."
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",

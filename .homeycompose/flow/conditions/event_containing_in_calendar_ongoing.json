@@ -1,11 +1,11 @@
 {
   "id": "event_containing_in_calendar_ongoing",
   "title": {
-    "en": "Event containing ... in calendar ... is ongoing",
-    "no": "Avtale som inneholder ... i kalender ... pågår",
-    "nl": "Event met ... in kalender ... is bezig",
-    "de": "Ereignis mit ... im Kalender ... ist laufend",
-    "sv": "Händelse som innehåller ... i kalendern ... pågår"
+    "en": "Event containing ... in calendar ... !{{is|isn't}} ongoing",
+    "no": "Avtale som inneholder ... i kalender ... !{{pågår|pågår ikke}}",
+    "nl": "Event met ... in kalender ... !{{is|is niet}} bezig",
+    "de": "Ereignis mit ... im Kalender ... !{{ist|ist nicht}} laufend",
+    "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}"
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{is|isn't}} ongoing",
