@@ -226,5 +226,8 @@
   },
   "1.7.1": {
     "en": "Bugfix. Dependency updates"
+  },
+  "1.8.0": {
+    "en": "Added condition 'Event containing ... in calendar ... ends within'. Fixed inverted titles in condition cards"
   }
 }
