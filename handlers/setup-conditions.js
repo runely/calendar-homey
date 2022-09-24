@@ -74,6 +74,14 @@ const cards = [
     }
   },
   {
+    id: 'event_containing_in_calendar_stops_in',
+    runListenerId: 'event_containing_calendar_stops',
+    autocompleteListener: {
+      argumentId: 'calendar',
+      id: 'calendar'
+    }
+  },
+  {
     id: 'event_containing_in_calendar_ongoing',
     runListenerId: 'event_containing_calendar_ongoing',
     autocompleteListener: {
@@ -224,7 +232,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id)
   } else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
     filteredEvents = app.variableMgmt.calendars || []
-  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar'].includes(type)) {
+  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar', 'event_containing_calendar_stops'].includes(type)) {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
   } else if (type === 'event_containing_calendar_ongoing') {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
@@ -238,12 +246,23 @@ const checkEvent = async (timezone, app, args, state, type) => {
 
   if (type === 'event_containing_calendar') {
     const inMinutes = convertToMinutes(args.when, args.type)
-    const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, timezone })
+    const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, eventType: 'starts', timezone })
     if (Object.keys(nextEvent).length > 0) {
       const startsWithin = isEventIn(timezone, [nextEvent], inMinutes)
       app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.start)}. Starts within ${inMinutes} minutes? ${startsWithin}`)
       if (startsWithin) await updateNextEventWithTokens(app, nextEvent)
       return startsWithin
+    }
+
+    return false
+  } else if (type === 'event_containing_calendar_stops') {
+    const inMinutes = convertToMinutes(args.when, args.type)
+    const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, eventType: 'ends', timezone })
+    if (Object.keys(nextEvent).length > 0) {
+      const endsWithin = willEventNotIn(timezone, [nextEvent], inMinutes)
+      app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.end)}. Ends within ${inMinutes} minutes? ${endsWithin}`)
+      if (endsWithin) await updateNextEventWithTokens(app, nextEvent)
+      return endsWithin
     }
 
     return false

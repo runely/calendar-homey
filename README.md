@@ -74,6 +74,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - **Any event ends within** - *will check if any event ends|doesn't ends within when specified*
 - **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
 - **Event containing ... in calendar ... starts within** - *Event containing search value in chosen calendar starts within selected time range (will fill up global tags (containing))*
+- **Event containing ... in calendar ... ends within** - *Event containing search value in chosen calendar ends within selected time range (will fill up global tags (containing))*
 - **Any event starts within from calendar** - *will check if any event starts|doesn't start within when specified from specified calendar*
 - **Event containing ... in calendar ... is ongoing** - *will check if an event containing **value** in **calendar** is|isn't ongoing*
 
@@ -126,7 +127,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - End date (contains)
 - End time (contains)
 
-> These tags are used together with condition *Event containing ... in calendar ... starts within*.
+> These tags are used together with condition *Event containing ... in calendar ... starts within* `OR` *Event containing ... in calendar ... ends within*.
 > If the condition evaluates to **true**, these tags will be filled with the event found, and the tags can be used in any action card
 
 ## Recurring events
@@ -140,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.8.0
+    - Added condition `Event containing ... in calendar ... ends within` -> [Issue #359](https://github.com/runely/calendar-homey/issues/359)
 - 1.7.1
     - Bugfix: Catch errors thrown from `node-ical`
     - Dependency updates

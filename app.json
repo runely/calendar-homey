@@ -1727,6 +1727,113 @@
         ]
       },
       {
+        "id": "event_containing_in_calendar_stops_in",
+        "title": {
+          "en": "Event containing ... in calendar ... !{{ends|doesn't end}} within ...",
+          "no": "Avtale som inneholder ... i kalender ... !{{slutter|slutter ikke}} innen ...",
+          "nl": "Event met ... in kalender ... !{{stopt|stopt niet}} binnen ...",
+          "de": "Ereignis mit ... im Kalender ... !{{endet|endet nicht}} in ...",
+          "sv": "Händelse som innehåller ... i kalendern ... !{{slutar|slutar inte}} inom ..."
+        },
+        "titleFormatted": {
+          "en": "Event containing [[value]] in calendar [[calendar]] !{{ends|doesn't end}} within [[when]] [[type]]",
+          "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+          "nl": "Event met [[value]] in kalender [[calendar]] !{{stopt|stopt niet}} binnen [[when]] [[type]]",
+          "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{endet|endet nicht}} in [[when]] [[type]]",
+          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{slutar|slutar inte}} inom [[when]] [[type]]"
+        },
+        "hint": {
+          "en": "Event containing search value in chosen calendar ends within selected time range",
+          "no": "Avtale som inneholder søkeverdi i valgt kalender slutter innen valgt tidsrom",
+          "nl": "Event met zoekwaarde in gekozen kalender stopt binnen geselecteerde tijdsbestek",
+          "de": "Ereignis mit Suchwert im ausgewählten Kalender endet innerhalb des ausgewählten Zeitraums",
+          "sv": "Händelse som innehåller sökvärde i vald kalender slutar inom valt tidsintervall"
+        },
+        "args": [
+          {
+            "type": "text",
+            "name": "value",
+            "placeholder": {
+              "en": "Search value to find in event",
+              "no": "Søkeverdi for avtalen",
+              "nl": "Zoekwaarde te vinden in event",
+              "de": "Suchwert, der im Ereignis gefunden werden soll",
+              "sv": "Sökvärde att hitta i händelse"
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "calendar",
+            "placeholder": {
+              "en": "Choose calendar...",
+              "no": "Velg kalender...",
+              "nl": "Selecteer kalender...",
+              "de": "Kalender auswählen...",
+              "sv": "Välj kalender..."
+            }
+          },
+          {
+            "name": "when",
+            "type": "number",
+            "min": 1,
+            "step": 1,
+            "placeholder": {
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Aantal",
+              "de": "Anzahl",
+              "sv": "Antal"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minu(u)t(en)",
+                  "de": "Minute(n)",
+                  "sv": "Minut(er)"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "U(u)r(en)",
+                  "de": "Stunde(n)",
+                  "sv": "Timma(r)"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dag(en)",
+                  "de": "Tag(e)",
+                  "sv": "Dag(ar)"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "We(e)k(en)",
+                  "de": "Woche(n)",
+                  "sv": "Vecka/veckor"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "event_in",
         "title": {
           "en": "Specific event !{{starts|doesn't start}} within...",
