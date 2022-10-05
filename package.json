@@ -17,7 +17,7 @@
     "browserify": "17.0.0",
     "eslint": "8.24.0",
     "eslint-config-athom": "3.1.1",
-    "homey": "2.30.2",
+    "homey": "2.30.3",
     "jest": "29.0.3",
     "standard": "17.0.0"
   },
