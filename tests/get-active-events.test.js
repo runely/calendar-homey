@@ -13,11 +13,6 @@ const eventLimit = {
   type: 'weeks'
 }
 
-const eventLimitInvalidTimezone = {
-  value: '10',
-  type: 'years'
-}
-
 const app = {
   log: console.log,
   sentry: {
@@ -38,7 +33,6 @@ const app = {
 const activeEvents = getActiveEvents({ data, eventLimit, app })
 const onceAWeekEvents = activeEvents.filter(event => event.summary === 'OnceAWeek')
 const alwaysOngoingEvents = activeEvents.filter(event => event.summary === 'AlwaysOngoing')
-const invalidTimezoneData = getActiveEvents({ data: invalidTimezone, eventLimit: eventLimitInvalidTimezone, app })
 
 describe('getActiveEvents returns', () => {
   test('an array', () => {
@@ -119,10 +113,20 @@ describe('When "SUMMARY" is missing', () => {
   })
 })
 
-describe('Invalid timezone', () => {
-  invalidTimezoneData.forEach(event => {
-    test(`"${event.summary}" should have property "skipTZ" set to "true"`, () => {
-      expect(event.skipTZ).toBe(true)
+describe('Invalid timezone should have been replaced by "node-ical"', () => {
+  for (const event of Object.values(invalidTimezone)) {
+    if (event.type !== 'VEVENT') continue
+
+    test(`"${event.summary}" should have its start TZ replaced from "${event.summary}" to a valid timezone`, () => {
+      console.log(event.summary, event.start.tz)
+      expect(event.start.tz.includes('/')).toBeTruthy()
+      expect(event.start.tz === event.summary).toBeFalsy()
     })
-  })
+
+    test(`"${event.summary}" should have its end TZ replaced from "${event.summary}" to a valid timezone`, () => {
+      console.log(event.summary, event.end.tz)
+      expect(event.end.tz.includes('/')).toBeTruthy()
+      expect(event.end.tz === event.summary).toBeFalsy()
+    })
+  }
 })
