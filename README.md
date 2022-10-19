@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.8.1
+    - Dependency updates
 - 1.8.0
     - Added condition `Event containing ... in calendar ... ends within` -> [Issue #359](https://github.com/runely/calendar-homey/issues/359)
     - Fixed inverted titles in condition cards
