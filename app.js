@@ -54,7 +54,7 @@ class IcalCalendar extends Homey.App {
 
     // get ical events
     this.log('onInit: Triggering getEvents and reregistering tokens')
-    await this.getEvents(true)
+    this.getEvents(true)
 
     // register callback when settings has been set
     this.homey.settings.on('set', args => {
@@ -63,6 +63,8 @@ class IcalCalendar extends Homey.App {
         if (!this.isGettingEvents) {
           this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
           this.getEvents(true)
+        } else {
+          this.log(`onInit/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
         }
       } else if (args && [this.variableMgmt.setting.dateFormatLong, this.variableMgmt.setting.dateFormatShort, this.variableMgmt.setting.timeFormat].includes(args)) {
         // get new date/time format
@@ -159,9 +161,15 @@ class IcalCalendar extends Homey.App {
       }
     }
 
-    if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
-      const updatedCalendars = filterUpdatedCalendars({ app: this, oldCalendars: this.variableMgmt.calendars, newCalendars: calendarsEvents })
-      await triggerChangedCalendars({ app: this, calendars: updatedCalendars })
+    try {
+      if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
+        const updatedCalendars = filterUpdatedCalendars({ app: this, oldCalendars: this.variableMgmt.calendars, newCalendars: calendarsEvents })
+        await triggerChangedCalendars({ app: this, calendars: updatedCalendars })
+      }
+    } catch (error) {
+      const errorString = typeof error === 'object' ? error.message : error
+      this.log('getEvents: Failed to filter/trigger changed calendars', errorString)
+      await triggerSynchronizationError({ app: this, calendar: 'Changed calendars', error })
     }
 
     const newCalendarsUids = getEventUids(calendarsEvents)

@@ -65,6 +65,18 @@ describe('filterByCalendar', () => {
     expect(Array.isArray(result)).toBeTruthy()
     expect(result.length).toBe(0)
   })
+
+  test('Return 0 calendars - when calendars does not exist', () => {
+    const result = filterByCalendar(undefined, 'doesNotMatter')
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(result.length).toBe(0)
+  })
+
+  test('Return 0 calendars - when calendars does not exist and name is not provided', () => {
+    const result = filterByCalendar(undefined)
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(result.length).toBe(0)
+  })
 })
 
 describe('filterBySummary', () => {
@@ -87,6 +99,18 @@ describe('filterBySummary', () => {
     expect(result[1].name).toBe('CalendarTwo')
     expect(result[1].events.length).toBe(0)
   })
+
+  test('Return 0 calendars - when calendars does not exist', () => {
+    const result = filterBySummary(undefined, 'doesNotMatter')
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(result.length).toBe(0)
+  })
+
+  test('Return 0 calendars - when calendars does not exist and query is not provided', () => {
+    const result = filterBySummary(undefined)
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(result.length).toBe(0)
+  })
 })
 
 describe('filterByUID', () => {
@@ -108,5 +132,11 @@ describe('filterByUID', () => {
     expect(result[0].events.length).toBe(0)
     expect(result[1].name).toBe('CalendarTwo')
     expect(result[1].events.length).toBe(0)
+  })
+
+  test('Return 0 calendars - when calendars does not exist', () => {
+    const result = filterByUID(undefined)
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(result.length).toBe(0)
   })
 })
