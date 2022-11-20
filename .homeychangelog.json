@@ -232,5 +232,8 @@
   },
   "1.8.1": {
     "en": "Dependency updates"
+  },
+  "1.8.2": {
+    "en": "Some repeating ongoing events were not included. Dependency updates"
   }
 }
