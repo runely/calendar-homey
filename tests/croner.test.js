@@ -32,21 +32,21 @@ test('"next" Cron job is at the next 15th minute', () => {
   console.log('Next run:', nextRun)
   cron.stop()
 
+  // get the amount of mintes before the time is at the *th minute
   const now = new Date()
-  let almostThen
+  let minutes
   if (now.getMinutes() < 15) {
-    // add the amount of mintes before the time is at the 15th minute
-    almostThen = new Date(new Date().getTime() + (60 * 1000 * (15 - now.getMinutes())))
+    minutes = 15
   } else if (now.getMinutes() < 30) {
-    // add the amount of mintes before the time is at the 30th minute
-    almostThen = new Date(new Date().getTime() + (60 * 1000 * (30 - now.getMinutes())))
+    minutes = 30
   } else if (now.getMinutes() < 45) {
-    // add the amount of mintes before the time is at the 45th minute
-    almostThen = new Date(new Date().getTime() + (60 * 1000 * (45 - now.getMinutes())))
+    minutes = 45
   } else if (now.getMinutes() < 60) {
-    // add the amount of mintes before the time is at the 60th minute
-    almostThen = new Date(new Date().getTime() + (60 * 1000 * (60 - now.getMinutes())))
+    minutes = 60
   }
+  // add * minutes
+  const almostThen = new Date(new Date().getTime() + (60 * 1000 * (minutes - now.getMinutes())))
+
   // set seconds and milliseconds back to 0
   const then = new Date(almostThen.getFullYear(), almostThen.getMonth(), almostThen.getDate(), almostThen.getHours(), almostThen.getMinutes(), 0, 0)
   console.log('Expected next run:', then)
