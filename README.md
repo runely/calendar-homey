@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.8.3
+    - Dependency updates
 - 1.8.2
     - Some repeating ongoing events were not included -> [Issue #380](https://github.com/runely/calendar-homey/issues/380)
     - Dependency updates
