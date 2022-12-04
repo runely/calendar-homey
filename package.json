@@ -26,7 +26,7 @@
     "humanize-duration": "3.27.3",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.5.39",
-    "node-ical": "0.15.2"
+    "node-ical": "0.15.3"
   },
   "scripts": {
     "test": "standard && env TZ=UTC jest",
