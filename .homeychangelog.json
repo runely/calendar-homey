@@ -238,5 +238,8 @@
   },
   "1.8.3": {
     "en": "Dependeny updates"
+  },
+  "1.9.0": {
+    "en": "Added debug option to log all events to console for better diagnostic reporting"
   }
 }
