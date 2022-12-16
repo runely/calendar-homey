@@ -112,7 +112,7 @@ class IcalCalendar extends Homey.App {
 
     // get ical events
     this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
-    if (logAllEvents) this.log(`getEvents: Debug - logAllEvents active`)
+    if (logAllEvents) this.log('getEvents: Debug - logAllEvents active')
     for (let i = 0; i < calendars.length; i++) {
       const { name } = calendars[i]
       let { uri } = calendars[i]
