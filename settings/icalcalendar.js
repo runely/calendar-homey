@@ -10,6 +10,7 @@ function onHomeyReady (Homey) {
   const settingsTimeFormat = variableMgmt.setting.timeFormat
   const settingsEventLimit = variableMgmt.setting.eventLimit
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
+  const settingsDebugLogAllEvents = variableMgmt.setting.logAllEvents
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -79,6 +80,12 @@ function onHomeyReady (Homey) {
     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state)
   })
 
+  // get logAllEvents from settings
+  Homey.get(settingsDebugLogAllEvents, (err, state) => {
+    if (err) return Homey.alert(err)
+    getDebugSetting(settingsDebugLogAllEvents, state)
+  })
+
   // save settings
   saveElement.addEventListener('click', function (e) {
     // save uri to settings
@@ -122,6 +129,11 @@ function onHomeyReady (Homey) {
 
     // save tokensPerCalendar to settings
     Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function (err) {
+      if (err) return Homey.alert(err)
+    })
+
+    // save logAllEvents to settings
+    Homey.set(settingsDebugLogAllEvents, saveDebugSetting(settingsDebugLogAllEvents), function (err) {
       if (err) return Homey.alert(err)
     })
 
@@ -210,6 +222,17 @@ function getMiscSetting (setting, state) {
   }
 }
 
+function getDebugSetting (setting, state) {
+  if (state) {
+    const element = document.getElementById(`debug-${setting}`)
+    if (typeof state === 'boolean') {
+      element.checked = state
+    } else if (typeof state === 'string') {
+      element.value = state
+    }
+  }
+}
+
 function saveCalendarItems () {
   const calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
   const calendarNames = []
@@ -265,6 +288,15 @@ function saveEventLimit () {
 
 function saveMiscSetting (setting) {
   const element = document.getElementById(`misc-${setting}`)
+  if (element.type === 'checkbox') {
+    return element.checked
+  } else if (element.type === 'text') {
+    return element.value
+  }
+}
+
+function saveDebugSetting (setting) {
+  const element = document.getElementById(`debug-${setting}`)
   if (element.type === 'checkbox') {
     return element.checked
   } else if (element.type === 'text') {

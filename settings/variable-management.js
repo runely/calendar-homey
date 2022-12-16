@@ -13,7 +13,8 @@ module.exports = {
       value: '2',
       type: 'months'
     },
-    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar'
+    nextEventTokensPerCalendar: 'nextEventTokensPerCalendar',
+    logAllEvents: 'logAllEvents'
   },
   tokens: [
     {

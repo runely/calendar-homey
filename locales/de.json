@@ -45,6 +45,11 @@
             "legend": "Sonstige Einstellungen",
             "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
         },
+        "debug": {
+            "legend": "Fehlerbehebung",
+            "description": "Diverse Debugging-Optionen<br>Die Einstellungen sollten nicht länger als nötig aktiviert sein",
+            "log_all_events": "Protokollieren Sie alle Ereignisse"
+        },
         "buttons": {
             "new_item": "Neuer Kalender",
             "save": "Speichern",

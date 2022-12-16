@@ -45,6 +45,11 @@
             "legend": "Diverse innstillinger",
             "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
         },
+        "debug": {
+            "legend": "Feilsøking",
+            "description": "Diverse feilsøkingsalternativer<br>Innstillingene bør ikke være aktivert lenger enn nødvendig",
+            "log_all_events": "Logg alle avtaler"
+        },
         "buttons": {
             "new_item": "Ny kalender",
             "save": "Lagre",

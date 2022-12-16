@@ -94,6 +94,8 @@ class IcalCalendar extends Homey.App {
     const errors = []
     // get URI from settings
     const calendars = this.homey.settings.get(this.variableMgmt.setting.icalUris)
+    // is debug logAllEvents activated
+    const logAllEvents = this.homey.settings.get(this.variableMgmt.setting.logAllEvents) ?? false
     // get event limit from settings or use the default
     const eventLimit = this.homey.settings.get(this.variableMgmt.setting.eventLimit) || this.variableMgmt.setting.eventLimitDefault
     const oldCalendarsUidsStorage = this.homey.settings.get(this.variableMgmt.storage.eventUids)
@@ -110,6 +112,7 @@ class IcalCalendar extends Homey.App {
 
     // get ical events
     this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
+    if (logAllEvents) this.log(`getEvents: Debug - logAllEvents active`)
     for (let i = 0; i < calendars.length; i++) {
       const { name } = calendars[i]
       let { uri } = calendars[i]
@@ -144,7 +147,7 @@ class IcalCalendar extends Homey.App {
           this.log(`getEvents: Removed 'error' setting value from calendar '${name}'`)
         }
 
-        const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this })
+        const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
         this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
         calendarsEvents.push({ name, events: activeEvents })
       } catch (error) {

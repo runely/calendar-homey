@@ -45,6 +45,11 @@
             "legend": "Misc settings",
             "nextEventTokensPerCalendar": "Next event tags per calendar"
         },
+        "debug": {
+            "legend": "Debug",
+            "description": "Various debugging options<br>These settings should not be activated longer than necessary",
+            "log_all_events": "Log all events"
+        },
         "buttons": {
             "new_item": "New calendar",
             "save": "Save",

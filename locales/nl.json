@@ -45,6 +45,11 @@
             "legend": "Overige instellingen",
             "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
         },
+        "debug": {
+            "legend": "Probleemoplossen",
+            "description": "Verschillende foutopsporingsopties<br>De instellingen mogen niet langer dan nodig worden geactiveerd",
+            "log_all_events": "Log alle afspraken in"
+        },
         "buttons": {
             "new_item": "Nieuwe kalender",
             "save": "Opslaan",
