@@ -15,9 +15,6 @@ const eventLimit = {
 
 const app = {
   log: console.log,
-  sentry: {
-    captureException: err => console.log('app.sentry.captureException called with', err)
-  },
   homey: {
     __: () => locale.moment,
     flow: {
