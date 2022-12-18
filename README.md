@@ -141,6 +141,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.9.1
+    - Dependency updates
 - 1.9.0
     - Added debug option to log all events to console for better diagnostic reporting
 - 1.8.3
