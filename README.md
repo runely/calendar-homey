@@ -89,6 +89,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Event duration *(minutes)*
 - Calendar name
 - Status
+    - Read from **X-MICROSOFT-CDO-BUSYSTATUS** or **MICROSOFT-CDO-BUSYSTATUS**
 - Start date *(only `Event added`)*
 - Start time *(only `Event added`)*
 - End date *(only `Event added`)*
