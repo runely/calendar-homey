@@ -30,6 +30,7 @@ const app = {
 const activeEvents = getActiveEvents({ data, eventLimit, app })
 const onceAWeekEvents = activeEvents.filter(event => event.summary === 'OnceAWeek')
 const alwaysOngoingEvents = activeEvents.filter(event => event.summary === 'AlwaysOngoing')
+let dataNoTzid = []
 
 describe('getActiveEvents returns', () => {
   test('an array', () => {
@@ -107,6 +108,22 @@ describe('When "SUMMARY" is missing', () => {
     const dataNoSummary = nodeIcal.sync.parseFile('./tests/data/calendar-missing-summary.ics')
     const { summary } = dataNoSummary.noSummary
     expect(summary).toBe(undefined)
+  })
+})
+
+describe('When "TZID" is missing', () => {
+  beforeAll(() => {
+    dataNoTzid = getActiveEvents({ data: nodeIcal.sync.parseFile('./tests/data/calendar-missing-timezone.ics'), eventLimit, app })
+  })
+
+  test('on a recurring event, skipTZ should be true', () => {
+    const { skipTZ } = dataNoTzid.find(event => event.summary === 'RecurringNoTzid')
+    expect(skipTZ).toBeTruthy()
+  })
+
+  test('on a regular event, skipTZ should be true', () => {
+    const { skipTZ } = dataNoTzid.find(event => event.summary === 'RegularNoTzid')
+    expect(skipTZ).toBeTruthy()
   })
 })
 
