@@ -143,7 +143,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 1.9.1
+- 1.10.0
     - Dependency updates
     - Added `Status` tag to triggers. For now it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , **MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
 - 1.9.0
