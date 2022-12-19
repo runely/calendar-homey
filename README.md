@@ -88,6 +88,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 - Event duration
 - Event duration *(minutes)*
 - Calendar name
+- Status
 - Start date *(only `Event added`)*
 - Start time *(only `Event added`)*
 - End date *(only `Event added`)*
@@ -143,6 +144,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.9.1
     - Dependency updates
+    - Added `Status` tag to triggers. For now it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , **MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
 - 1.9.0
     - Added debug option to log all events to console for better diagnostic reporting
 - 1.8.3

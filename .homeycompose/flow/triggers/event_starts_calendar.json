@@ -135,6 +135,24 @@
         "de": "Gmail",
         "sv": "Gmail"
       }
+    },
+    {
+      "name": "event_status",
+      "type": "string",
+      "title": {
+        "en": "Status",
+        "no": "Status",
+        "nl": "Status",
+        "de": "Status",
+        "sv": "Status"
+      },
+      "example": {
+        "en": "Free",
+        "no": "Ledig",
+        "nl": "Vrij",
+        "de": "Frei",
+        "sv": "Ledig"
+      }
     }
   ]
 }

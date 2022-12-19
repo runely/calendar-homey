@@ -209,6 +209,24 @@
             }
           },
           {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
+            }
+          },
+          {
             "name": "event_start_date",
             "type": "string",
             "title": {
@@ -548,6 +566,24 @@
               "de": "Gmail",
               "sv": "Gmail"
             }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
+            }
           }
         ]
       },
@@ -688,6 +724,24 @@
               "de": "Gmail",
               "sv": "Gmail"
             }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
+            }
           }
         ]
       },
@@ -814,6 +868,24 @@
               "nl": "Gmail",
               "de": "Gmail",
               "sv": "Gmail"
+            }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
             }
           }
         ],
@@ -996,6 +1068,24 @@
               "de": "Gmail",
               "sv": "Gmail"
             }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
+            }
           }
         ]
       },
@@ -1122,6 +1212,24 @@
               "nl": "Gmail",
               "de": "Gmail",
               "sv": "Gmail"
+            }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
             }
           }
         ],

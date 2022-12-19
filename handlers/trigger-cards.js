@@ -119,7 +119,8 @@ module.exports.triggerEvents = async options => {
         event_location: getTokenValue(event.location),
         event_duration_readable: eventDuration.duration,
         event_duration: eventDuration.durationMinutes,
-        event_calendar_name: calendarName
+        event_calendar_name: calendarName,
+        event_status: event.freebusy
       }
 
       if (triggerId === 'event_added') {

@@ -186,6 +186,10 @@ const getEventList = (timezone, app, calendars) => {
         description += ` -- (${startStamp})`
       }
 
+      if (event.freebusy) {
+        description += ` -- ${event.freebusy}`
+      }
+
       eventList.push({ id: event.uid, name, description, start: event.start })
     })
   })
