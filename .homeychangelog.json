@@ -241,5 +241,8 @@
   },
   "1.9.0": {
     "en": "Added debug option to log all events to console for better diagnostic reporting"
+  },
+  "1.10.0": {
+    "en": "Dependency updates. Added 'Status' tag to triggers. If event hasn't registered a timezone, don't use the local timezone from Homey either. Show timezone in logged events"
   }
 }
