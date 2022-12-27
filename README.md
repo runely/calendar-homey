@@ -153,6 +153,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.11.0
     - If event hasn't registered a timezone, don't use the local timezone from Homey either, all the way through
+    - Dependency updates
 - 1.10.0
     - Dependency updates
     - Added `Status` tag to triggers. For now it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , **MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
