@@ -34,6 +34,11 @@ Hur man hittar ical-länken i Apple iCloud
 5. Klistra in länken i inställningarna i Homey-appen
     a. Det måste vara den ursprungliga länken (Apple Calendar är skiftlägeskänsligt i länken)
 
+Tidszon i din kalender (*.ics)
+
+Biblioteket som används i den här appen för att analysera kalendrarna, node-ical, använder INTE egenskapen X-WR-TIMEZONE för att analysera tidszoner. Istället använder den BEGIN:VTIMEZONE-sektionerna för att analysera tidszoner!
+Detta innebär att om din kalenderleverantör bara använder egenskapen X-WR-TIMEZONE, kommer denna app att anta att dina händelser alltid är i UTC!
+
 Synkronisera
 - Händelser hämtas automatiskt var 15:e minut
 - Flow-kortet "Synkronisera kalendrar" kan också användas för att utlösa en synkronisering

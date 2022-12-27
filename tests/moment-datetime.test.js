@@ -49,12 +49,13 @@ describe('Offset set', () => {
 })
 
 describe('momentNow', () => {
-  test('Returns a Object with two moment instances', () => {
+  test('Returns a Object with three moment instances', () => {
     const result = momentNow('Europe/Oslo')
     const keys = Object.keys(result)
     expect(typeof result).toBe('object')
-    expect(keys.length).toBe(2)
+    expect(keys.length).toBe(3)
     expect(keys[0]).toBe('momentNowRegular')
     expect(keys[1]).toBe('momentNowWholeDay')
+    expect(keys[2]).toBe('momentNowUTC')
   })
 })

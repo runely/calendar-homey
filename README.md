@@ -42,6 +42,14 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 1. Paste the calendar link in the Homey app settings
     - **It must be the original link (*Apple Calendar has case sensitive urls*)**
 
+### Timezone in your calendar (*.ics)
+
+:exclamation:
+The library used in this app to parse the calendars, **[node-ical](https://github.com/jens-maus/node-ical)**, does `NOT` use the `X-WR-TIMEZONE` property to parse timezones. Instead it uses the `BEGIN:VTIMEZONE` sections to parse timezones!
+
+:exclamation:
+This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
+
 ## Usage
 
 ### Sync
@@ -143,6 +151,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.11.0
+    - If event hasn't registered a timezone, don't use the local timezone from Homey either, all the way through
 - 1.10.0
     - Dependency updates
     - Added `Status` tag to triggers. For now it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , **MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)

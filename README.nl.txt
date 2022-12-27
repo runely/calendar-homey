@@ -34,6 +34,11 @@ Apple iCloud url
 5. Plake de link van de agenda in de Homey IcalCalender app
    Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
+Tijdzone in je agenda (*.ics)
+
+De bibliotheek die in deze app wordt gebruikt om de agenda's te ontleden, node-ical, gebruikt NIET de eigenschap X-WR-TIMEZONE om tijdzones te ontleden. In plaats daarvan gebruikt het de BEGIN:VTIMEZONE-secties om tijdzones te ontleden!
+Dit betekent dat als uw agendaprovider alleen de eigenschap X-WR-TIMEZONE gebruikt, deze app ervan uitgaat dat uw afspraken altijd in UTC zijn!
+
 Sync
 - Events worden elke 15 minuten automatisch opgehaald
 - De actie flow-kaart "Sync kalenders" kan ook worden gebruikt om een synchronisatie te activeren

@@ -34,6 +34,11 @@ Die Apple iCloud URL finden
 5. Fügen Sie den Kalenderlink in die Einstellungen der Homey-App ein
     a. Es muss der Originallink sein (Apple Kalender hat Case Sensitive URLs)
 
+Zeitzone in Ihrem Kalender (*.ics)
+
+Die in dieser App zum Analysieren der Kalender verwendete Bibliothek node-ical verwendet NICHT die X-WR-TIMEZONE-Eigenschaft zum Analysieren von Zeitzonen. Stattdessen werden die Abschnitte BEGIN:VTIMEZONE verwendet, um Zeitzonen zu analysieren!
+Das bedeutet, wenn Ihr Kalenderanbieter nur die X-WR-TIMEZONE-Eigenschaft verwendet, geht diese App davon aus, dass Ihre Ereignisse immer in UTC sind!
+
 Sync
 - Ereignisse werden alle 15 Minuten automatisch abgerufen
 - Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen

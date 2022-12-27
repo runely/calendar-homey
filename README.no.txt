@@ -34,6 +34,11 @@ Hvordan finne Apple iCloud-lenken
 5. Lim inn lenken i innstillingene i Homey-appen
     a. Det må være den orginale lenken (Apple Kalender skiller på store og små bokstaver i lenkene)
 
+Tidssone for din kalender (*.ics)
+
+Biblioteket som er brukt i denne appen for å parse dine kalendere, node-ical, bruker ikke attributten X-WR-TIMEZONE for å parse tidssoner. Istedenfor så brukes BEGIN:VTIMEZONE seksjonene for å parse tidssoner.
+Dette betyr at dersom leverandøren av din kalender bare bruker attributten X-WR-TIMEZONE, vil denne appen alltid gå utifra at dine kalenderoppføringer er i UTC!
+
 Sync
 - Avtaler hentes automatisk hvert 15. minutt
 - Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering

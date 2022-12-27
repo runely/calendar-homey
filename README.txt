@@ -34,6 +34,11 @@ Find Apple iCloud url
 5. Paste the calendar link in the Homey app settings
     a. It must be the original link (Apple Calendar has case sensitive urls)
 
+Timezone in your calendar (*.ics)
+
+The library used in this app to parse the calendars, node-ical, does NOT use the X-WR-TIMEZONE property to parse timezones. Instead it uses the BEGIN:VTIMEZONE sections to parse timezones!
+This means that if your calendar provider only uses the X-WR-TIMEZONE property, this app will assume your events is always in UTC!
+
 Sync
 - Events are fetched automatically every 15 minutes
 - The "Sync calendars" action flow card can also be used to trigger a sync
