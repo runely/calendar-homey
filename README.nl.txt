@@ -36,7 +36,7 @@ Apple iCloud url
 
 Tijdzone in je agenda (*.ics)
 
-De bibliotheek die in deze app wordt gebruikt om de agenda's te analyseren. Node-ical gebruikt NIET de X-WR-TIMEZONE eigenschap om tijdzones te indentificeren. In plaats daarvan, voor de tijdzondes, gebruikt het de BEGIN:VTIMEZONE-secties!
+De bibliotheek die in deze app wordt gebruikt om de agenda's te analyseren, node-ical, gebruikt NIET de X-WR-TIMEZONE eigenschap om tijdzones te indentificeren. In plaats daarvan, voor de tijdzondes, gebruikt het de BEGIN:VTIMEZONE-secties!
 Dit betekent dat als uw agendaprovider alleen de eigenschap X-WR-TIMEZONE gebruikt, deze app ervan uitgaat dat uw afspraken altijd in UTC zijn!
 
 Sync
