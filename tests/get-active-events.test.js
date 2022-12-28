@@ -6,7 +6,7 @@ const getActiveEvents = require('../lib/get-active-events')
 const { locale } = require('../locales/en.json')
 
 const data = nodeIcal.sync.parseFile('./tests/data/calendar.ics')
-const invalidTimezone = nodeIcal.sync.parseFile('./tests/data/calendar-ivalid-timezone.ics')
+const invalidTimezone = nodeIcal.sync.parseFile('./tests/data/calendar-invalid-timezone.ics')
 
 const eventLimit = {
   value: '3',
