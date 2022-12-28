@@ -36,7 +36,7 @@ Die Apple iCloud URL finden
 
 Zeitzone in Ihrem Kalender (*.ics)
 
-Die in dieser App zum Analysieren der Kalender verwendete Bibliothek node-ical verwendet NICHT die X-WR-TIMEZONE-Eigenschaft zum Analysieren von Zeitzonen. Stattdessen werden die Abschnitte BEGIN:VTIMEZONE verwendet, um Zeitzonen zu analysieren!
+Die in dieser App verwendete Bibliothek node-ical verwendet NICHT die X-WR-TIMEZONE-Eigenschaft zum Analysieren von Zeitzonen. Stattdessen werden die Abschnitte BEGIN:VTIMEZONE verwendet, um Zeitzonen zu analysieren!
 Das bedeutet, wenn Ihr Kalenderanbieter nur die X-WR-TIMEZONE-Eigenschaft verwendet, geht diese App davon aus, dass Ihre Ereignisse immer in UTC sind!
 
 Sync
