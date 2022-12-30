@@ -247,5 +247,8 @@
   },
   "1.11.0": {
     "en": "If event hasn't registered a timezone, don't use the local timezone from Homey either. Dependency updates"
+  },
+  "1.11.1": {
+    "en": "Use correct date lookup key to find excluded dates"
   }
 }
