@@ -250,5 +250,8 @@
   },
   "1.11.1": {
     "en": "Use correct date lookup key to find excluded dates"
+  },
+  "1.11.2": {
+    "en": "Added UID to log all events output"
   }
 }
