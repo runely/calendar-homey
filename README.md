@@ -59,6 +59,16 @@ This means that if your calendar provider only uses the `X-WR-TIMEZONE` property
 - Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
 - Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
+### See events synced in
+
+To see a list of synced in events, you can use the condition card `Specific event is ongoing` in a flow like this:
+
+1. Create a new flow, *or use an existing one (your choice)*
+1. Choose the `Flow` -> `This flow has started` as the trigger in the `WHEN` section
+1. In the `AND` section, add the `Specific event is ongoing` card from **IcalCalendar**
+    1. Click `Select event...` in the condition card
+    1. This will present you with a list of all the events synced in
+
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
