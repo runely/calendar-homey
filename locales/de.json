@@ -46,8 +46,8 @@
             "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
         },
         "debug": {
-            "legend": "Fehlerbehebung",
-            "description": "Diverse Debugging-Optionen<br>Die Einstellungen sollten nicht länger als nötig aktiviert sein",
+            "legend": "Diverse Debugging-Optionen",
+            "description": "Die Einstellungen sollten nur auf Wunsch des Entwicklers und nicht länger als nötig aktiviert werden",
             "log_all_events": "Protokollieren Sie alle Ereignisse"
         },
         "buttons": {

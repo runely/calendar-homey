@@ -46,8 +46,8 @@
             "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
         },
         "debug": {
-            "legend": "Probleemoplossen",
-            "description": "Verschillende foutopsporingsopties<br>De instellingen mogen niet langer dan nodig worden geactiveerd",
+            "legend": "Verschillende probleemoplossen",
+            "description": "De instellingen mogen alleen worden geactiveerd op verzoek van de ontwikkelaar en niet langer dan nodig",
             "log_all_events": "Log alle afspraken in"
         },
         "buttons": {

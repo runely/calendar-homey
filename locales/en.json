@@ -46,8 +46,8 @@
             "nextEventTokensPerCalendar": "Next event tags per calendar"
         },
         "debug": {
-            "legend": "Debug",
-            "description": "Various debugging options<br>These settings should not be activated longer than necessary",
+            "legend": "Various debugging options",
+            "description": "These settings should only be activated at the request of the developer and not be activated longer than necessary",
             "log_all_events": "Log all events"
         },
         "buttons": {

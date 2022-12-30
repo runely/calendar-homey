@@ -46,8 +46,8 @@
             "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender"
         },
         "debug": {
-            "legend": "Felsökning",
-            "description": "Olika felsökningsalternativ<br>Inställningarna bör inte aktiveras längre än nödvändigt",
+            "legend": "Olika felsökning",
+            "description": "Inställningarna ska endast aktiveras på begäran av utvecklaren och inte aktiveras längre än nödvändigt",
             "log_all_events": "Logga alle händelser"
         },
         "buttons": {

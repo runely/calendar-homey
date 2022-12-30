@@ -46,8 +46,8 @@
             "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
         },
         "debug": {
-            "legend": "Feilsøking",
-            "description": "Diverse feilsøkingsalternativer<br>Innstillingene bør ikke være aktivert lenger enn nødvendig",
+            "legend": "Diverse feilsøking",
+            "description": "Innstillingene bør bare aktiveres på forespørsel fra utvikler og ikke være aktivert lenger enn nødvendig",
             "log_all_events": "Logg alle avtaler"
         },
         "buttons": {
