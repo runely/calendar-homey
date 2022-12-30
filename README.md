@@ -151,6 +151,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.11.1
+    - Use correct date lookup key to find excluded dates
 - 1.11.0
     - If event hasn't registered a timezone, don't use the local timezone from Homey either, all the way through
     - Dependency updates
