@@ -99,36 +99,45 @@ const cards = [
   }
 ]
 
-const isEventOngoing = (timezone, events) => {
-  const { momentNowRegular, momentNowWholeDay, momentNowUTC } = momentNow(timezone)
+const isEventOngoing = (app, timezone, events) => {
+  const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some(event => {
-    const now = event.fullDayEvent ? momentNowWholeDay : event.skipTZ ? momentNowUTC : momentNowRegular
+    const useOffset = event.fullDayEvent || event.skipTZ
+    const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const startDiff = now.diff(event.start, 'seconds')
     const endDiff = now.diff(event.end, 'seconds')
     const result = (startDiff >= 0 && endDiff <= 0)
-    // app.log(`isEventOngoing: '${event.summary}' (${event.uid}) -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result}`);
+    if (result) {
+      app.log(`isEventOngoing: '${event.uid}' -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result} -- Now:`, now, `-- Offset used: ${useOffset}`)
+    }
     return result
   })
 }
 
-const isEventIn = (timezone, events, when) => {
-  const { momentNowRegular, momentNowWholeDay, momentNowUTC } = momentNow(timezone)
+const isEventIn = (app, timezone, events, when) => {
+  const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some(event => {
-    const now = event.fullDayEvent ? momentNowWholeDay : event.skipTZ ? momentNowUTC : momentNowRegular
+    const useOffset = event.fullDayEvent || event.skipTZ
+    const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const startDiff = event.start.diff(now, 'minutes', true)
     const result = (startDiff <= when && startDiff >= 0)
-    // app.log(`isEventIn: ${startDiff} mintes until start -- Expecting ${when} minutes or less -- In: ${result}`);
+    if (result) {
+      app.log(`isEventIn: '${event.uid}' -- ${startDiff} minutes until start -- Expecting ${when} minutes or less -- In: ${result} -- Now:`, now, `-- Offset used: ${useOffset}`)
+    }
     return result
   })
 }
 
-const willEventNotIn = (timezone, events, when) => {
-  const { momentNowRegular, momentNowWholeDay, momentNowUTC } = momentNow(timezone)
+const willEventNotIn = (app, timezone, events, when) => {
+  const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some(event => {
-    const now = event.fullDayEvent ? momentNowWholeDay : event.skipTZ ? momentNowUTC : momentNowRegular
+    const useOffset = event.fullDayEvent || event.skipTZ
+    const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const endDiff = event.end.diff(now, 'minutes', true)
     const result = (endDiff < when && endDiff >= 0)
-    // app.log(`willEventNotIn: ${endDiff} mintes until end -- Expecting ${when} minutes or less -- In: ${result}`);
+    if (result) {
+      app.log(`willEventNotIn: '${event.uid}' -- ${endDiff} minutes until end -- Expecting ${when} minutes or less -- In: ${result} -- Now:`, now, `-- Offset used: ${useOffset}`)
+    }
     return result
   })
 }
@@ -141,11 +150,11 @@ const getEventList = (timezone, app, calendars) => {
     return eventList
   }
 
-  const { momentNowRegular, momentNowWholeDay, momentNowUTC } = momentNow(timezone)
+  const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
 
   calendars.forEach(calendar => {
     calendar.events.forEach(event => {
-      const now = event.fullDayEvent ? momentNowWholeDay : event.skipTZ ? momentNowUTC : momentNowRegular
+      const now = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular
       let startStamp = ''
       let endStamp = ''
       const startMoment = event.start
@@ -252,7 +261,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     const inMinutes = convertToMinutes(args.when, args.type)
     const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, eventType: 'starts', timezone })
     if (Object.keys(nextEvent).length > 0) {
-      const startsWithin = isEventIn(timezone, [nextEvent], inMinutes)
+      const startsWithin = isEventIn(app, timezone, [nextEvent], inMinutes)
       app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.start)}. Starts within ${inMinutes} minutes? ${startsWithin}`)
       if (startsWithin) await updateNextEventWithTokens(app, nextEvent)
       return startsWithin
@@ -263,7 +272,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     const inMinutes = convertToMinutes(args.when, args.type)
     const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, eventType: 'ends', timezone })
     if (Object.keys(nextEvent).length > 0) {
-      const endsWithin = willEventNotIn(timezone, [nextEvent], inMinutes)
+      const endsWithin = willEventNotIn(app, timezone, [nextEvent], inMinutes)
       app.log(`checkEvent: Next event containing found: '${nextEvent.summary}' ${(nextEvent.end)}. Ends within ${inMinutes} minutes? ${endsWithin}`)
       if (endsWithin) await updateNextEventWithTokens(app, nextEvent)
       return endsWithin
@@ -282,24 +291,24 @@ const checkEvent = async (timezone, app, args, state, type) => {
 
     if (type === 'ongoing') {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = isEventOngoing(timezone, calendar.events)
+      eventCondition = isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Ongoing? ${eventCondition}`);
     } else if (type === 'in') {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = isEventIn(timezone, calendar.events, convertToMinutes(args.when, args.type))
+      eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
     } else if (type === 'stops_in') {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = willEventNotIn(timezone, calendar.events, convertToMinutes(args.when, args.type))
+      eventCondition = willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
     } else if (['any_ongoing', 'any_ongoing_calendar', 'event_containing_calendar_ongoing'].includes(type)) {
-      eventCondition = isEventOngoing(timezone, calendar.events)
+      eventCondition = isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
     } else if (['any_in_calendar', 'any_in'].includes(type)) {
-      eventCondition = isEventIn(timezone, calendar.events, convertToMinutes(args.when, args.type))
+      eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events starting within ${args.when} minutes or less? ${eventCondition}`);
     } else if (type === 'any_stops_in') {
-      eventCondition = willEventNotIn(timezone, calendar.events, convertToMinutes(args.when, args.type))
+      eventCondition = willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events ending within ${args.when} minutes or less? ${eventCondition}`);
     }
 

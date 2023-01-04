@@ -163,6 +163,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.11.3
     - Logfix
+    - If event hasn't registered a timezone, don't use the local timezone from Homey either, for conditions and triggers...
 - 1.11.2
     - Added `uid` to debug output
 - 1.11.1
