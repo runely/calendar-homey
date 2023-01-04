@@ -137,9 +137,9 @@ module.exports.triggerEvents = async options => {
       if (state === undefined) {
         try {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens)
-          app.log(`triggerEvents: Triggered '${triggerId}'`)
+          app.log(`triggerEvents: Triggered '${triggerId}' without state for '${event.uid}'`)
         } catch (error) {
-          app.log(`triggerEvents: '${triggerId}' failed to trigger:`, error)
+          app.log(`triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error)
 
           this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
@@ -147,7 +147,7 @@ module.exports.triggerEvents = async options => {
         try {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens, state)
         } catch (error) {
-          app.log(`triggerEvents: '${triggerId}' failed to trigger, state:`, state, 'Error:', error)
+          app.log(`triggerEvents: '${triggerId}' with state '${state}' failed to trigger:`, error)
 
           this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
