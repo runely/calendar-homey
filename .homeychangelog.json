@@ -253,5 +253,8 @@
   },
   "1.11.2": {
     "en": "Added UID to log all events output"
+  },
+  "1.11.3": {
+    "en": "Dependency updates. If event hasn't registered a timezone, don't use the local timezone from Homey either."
   }
 }
