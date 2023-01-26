@@ -90,6 +90,28 @@
         "de": "Neuer Wert",
         "sv": "Nytt värde"
       }
+    },
+    {
+      "name": "event_was_ongoing",
+      "type": "boolean",
+      "title": {
+        "en": "Was ongoing",
+        "no": "Pågikk",
+        "nl": "Was aan de gang",
+        "de": "War im Gange",
+        "sv": "Pågick"
+      }
+    },
+    {
+      "name": "event_ongoing",
+      "type": "boolean",
+      "title": {
+        "en": "Is ongoing",
+        "no": "Pågår",
+        "nl": "Is bezig",
+        "de": "Ist laufend",
+        "sv": "Pågår"
+      }
     }
   ]
 }

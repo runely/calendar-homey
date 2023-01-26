@@ -99,7 +99,13 @@ const cards = [
   }
 ]
 
-const isEventOngoing = (app, timezone, events) => {
+/**
+ * @param {Homey.App} app App class inited by Homey
+ * @param {String} timezone The timezone to use on events (IANA)
+ * @param {Array} events Array of event objects
+ * @param {String} caller Name of the function calling. Defaults to 'condition'
+ */
+const isEventOngoing = (app, timezone, events, caller = 'condition') => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some(event => {
     const useOffset = event.fullDayEvent || event.skipTZ
@@ -108,7 +114,7 @@ const isEventOngoing = (app, timezone, events) => {
     const endDiff = now.diff(event.end, 'seconds')
     const result = (startDiff >= 0 && endDiff <= 0)
     if (result) {
-      app.log(`isEventOngoing: '${event.uid}' -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result} -- Now:`, now, `-- Offset used: ${useOffset}`)
+      app.log(`isEventOngoing-${caller}: '${event.uid}' -- ${startDiff} seconds since start -- ${endDiff} seconds since end -- Ongoing: ${result} -- Now:`, now, `-- Offset used: ${useOffset}`)
     }
     return result
   })
@@ -325,7 +331,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
 /**
  * @param {SetupConditionsOptions} options
  */
-module.exports = options => {
+const setupConditions = options => {
   // register condition flow cards
   const { timezone, app } = options
   cards.forEach(({ id, runListenerId, autocompleteListener }) => {
@@ -335,4 +341,9 @@ module.exports = options => {
       conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, args, autocompleteListener.id))
     }
   })
+}
+
+module.exports = {
+  isEventOngoing,
+  setupConditions
 }

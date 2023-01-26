@@ -161,6 +161,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.12.0
+    - Added `Was ongoing` and  `Ongoing` tags to trigger `Event changed`.
 - 1.11.4
     - Dependency updates
 - 1.11.3

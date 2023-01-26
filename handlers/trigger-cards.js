@@ -4,6 +4,7 @@ const getEventsToTrigger = require('../lib/get-events-to-trigger')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenValue = require('../lib/get-token-value')
 const capitalize = require('../lib/capitalize')
+const { isEventOngoing } = require('../handlers/setup-conditions')
 
 const getErrorMessage = (app, error) => {
   if (error instanceof Error) return { message: error.message, stack: error.stack }
@@ -77,7 +78,9 @@ module.exports.triggerChangedCalendars = async options => {
           event_calendar_name: calendar.name,
           event_type: event.changed[0].type,
           event_prev_value: getTokenValue(event.changed[0].previousValue),
-          event_new_value: getTokenValue(event.changed[0].newValue)
+          event_new_value: getTokenValue(event.changed[0].newValue),
+          event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
+          event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent')
         }
         try {
           await app.homey.flow.getTriggerCard('event_changed').trigger(tokens)

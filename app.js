@@ -16,7 +16,7 @@ const { generateTokens, generatePerCalendarTokens, generateNextEventTokens } = r
 
 const setupTriggers = require('./handlers/setup-triggers')
 const setupFlowTokens = require('./handlers/setup-flow-tokens')
-const setupConditions = require('./handlers/setup-conditions')
+const { setupConditions } = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
 const { updateTokens } = require('./handlers/update-tokens')
 const { addJob } = require('./handlers/cron')
