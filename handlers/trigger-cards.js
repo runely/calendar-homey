@@ -123,7 +123,8 @@ module.exports.triggerEvents = async options => {
         event_duration_readable: eventDuration.duration,
         event_duration: eventDuration.durationMinutes,
         event_calendar_name: calendarName,
-        event_status: event.freebusy
+        event_status: event.freebusy,
+        event_meeting_url: event.meetingUrl
       }
 
       if (triggerId === 'event_added') {

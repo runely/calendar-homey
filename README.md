@@ -161,6 +161,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.13.0
+    - Added `Meeting URL` tag to triggers. For now it reads meeting urls for **Microsoft Teams**, **Apple FaceTime** and **Google Meet** from the *description* field -> [Issue #420](https://github.com/runely/calendar-homey/issues/420)
 - 1.12.0
     - Added `Was ongoing` and  `Ongoing` tags to trigger `Event changed`
     - Dependency updates

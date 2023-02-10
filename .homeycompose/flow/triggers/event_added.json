@@ -142,6 +142,20 @@
       }
     },
     {
+      "name": "event_meeting_url",
+      "type": "string",
+      "title": {
+        "en": "Meeting URL",
+        "no": "Møte-URL",
+        "nl": "Vergadering URL",
+        "de": "Besprechungs-URL",
+        "sv": "Mötes-URL"
+      },
+      "example": {
+        "en": "https://meeting.url"
+      }
+    },
+    {
       "name": "event_start_date",
       "type": "string",
       "title": {
