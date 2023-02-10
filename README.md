@@ -108,6 +108,8 @@ To see a list of synced in events, you can use the condition card `Specific even
 - Calendar name
 - Status
     - Read from **X-MICROSOFT-CDO-BUSYSTATUS** or **MICROSOFT-CDO-BUSYSTATUS**
+- Meeting URL
+    - Read from **description** for `Microsoft Teams`, `Apple FaceTime` and `Google Meet`
 - Start date *(only `Event added`)*
 - Start time *(only `Event added`)*
 - End date *(only `Event added`)*
