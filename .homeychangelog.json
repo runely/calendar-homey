@@ -262,5 +262,8 @@
   },
   "1.12.0": {
     "en": "Added 'Was ongoing' and 'Ongoing' tags to trigger 'Event changed'. Dependency updates"
+  },
+  "1.13.0": {
+    "en": "Added 'Meeting URL' tag to triggers. For now it extracts meeting urls for Microsoft Teams, Apple FaceTime and Google Meet from the description field. Dependency updates"
   }
 }
