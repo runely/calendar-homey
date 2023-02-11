@@ -109,7 +109,7 @@ To see a list of synced in events, you can use the condition card `Specific even
 - Status
     - Read from **X-MICROSOFT-CDO-BUSYSTATUS** or **MICROSOFT-CDO-BUSYSTATUS**
 - Meeting URL
-    - Read from **description** for `Microsoft Teams`, `Apple FaceTime` and `Google Meet`
+    - Read from **description** for `Microsoft Teams`, `Apple FaceTime`, `Google Meet` and the generic meeting url pattern (----( Video )----\nhttp://meet.url/123-4567-890\n---===---)
 - Start date *(only `Event added`)*
 - Start time *(only `Event added`)*
 - End date *(only `Event added`)*
@@ -163,6 +163,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.13.1
+    - Find meeting url's by a generic pattern (----( Videogesprek )----\nhttp://meet.url/123-4567-890\n---===---)
 - 1.13.0
     - Added `Meeting URL` tag to triggers. For now it reads meeting urls for **Microsoft Teams**, **Apple FaceTime** and **Google Meet** from the *description* field -> [Issue #420](https://github.com/runely/calendar-homey/issues/420)
     - Added tests for `extract-meeting-url`
