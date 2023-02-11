@@ -265,5 +265,8 @@
   },
   "1.13.0": {
     "en": "Added 'Meeting URL' tag to triggers. For now it extracts meeting urls for Microsoft Teams, Apple FaceTime and Google Meet from the description field. Dependency updates"
+  },
+  "1.13.1": {
+    "en": "Added 'Meeting URL' tag to triggers. It extracts meeting urls for Microsoft Teams, Apple FaceTime, Google Meet and a generic meeting url pattern from the description field. Dependency updates"
   }
 }
