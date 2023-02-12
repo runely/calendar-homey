@@ -163,6 +163,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.13.2
+    - Bugfix: Find meeting url's by a generic pattern now actually works...
 - 1.13.1
     - Find meeting url's by a generic pattern (----( Videogesprek )----\nhttp://meet.url/123-4567-890\n---===---)
 - 1.13.0
