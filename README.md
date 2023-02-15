@@ -163,6 +163,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.14.0
+    - Fixed support for Homey Pro 2023
+        - Fixed a cirular dependency "issue"
 - 1.13.2
     - Bugfix: Find meeting url's by a generic pattern now actually works...
 - 1.13.1

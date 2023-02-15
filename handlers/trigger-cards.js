@@ -4,7 +4,7 @@ const getEventsToTrigger = require('../lib/get-events-to-trigger')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenValue = require('../lib/get-token-value')
 const capitalize = require('../lib/capitalize')
-const { isEventOngoing } = require('../handlers/setup-conditions')
+const { isEventOngoing } = require('./conditions')
 
 const getErrorMessage = (app, error) => {
   if (error instanceof Error) return { message: error.message, stack: error.stack }
