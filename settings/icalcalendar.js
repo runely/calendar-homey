@@ -88,11 +88,6 @@ function onHomeyReady (Homey) {
 
   // save settings
   saveElement.addEventListener('click', function (e) {
-    // save uri to settings
-    Homey.set(settingsUris, saveCalendarItems(), function (err) {
-      if (err) return Homey.alert(err)
-    })
-
     // save date to settings
     const savedDateFormatLong = saveDateTimeFormat('date-long')
     if (savedDateFormatLong) {
@@ -134,6 +129,11 @@ function onHomeyReady (Homey) {
 
     // save logAllEvents to settings
     Homey.set(settingsDebugLogAllEvents, saveDebugSetting(settingsDebugLogAllEvents), function (err) {
+      if (err) return Homey.alert(err)
+    })
+
+    // save uri to settings (THIS SHOULD BE THE LAST THING BEING SAVED to prevent fetching calendars if there's other settings to be saved first)
+    Homey.set(settingsUris, saveCalendarItems(), function (err) {
       if (err) return Homey.alert(err)
     })
 

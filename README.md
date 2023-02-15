@@ -166,6 +166,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.14.0
     - Fixed support for Homey Pro 2023
         - Fixed a cirular dependency "issue"
+    - settings: Save uri's to settings last to prevent fetching calendars if there's other settings to be saved first
 - 1.13.2
     - Bugfix: Find meeting url's by a generic pattern now actually works...
 - 1.13.1
