@@ -7,6 +7,7 @@ const varMgmt = require('./lib/variable-management')
 const getDateTimeFormat = require('./lib/get-datetime-format')
 const hasData = require('./lib/has-data')
 const getActiveEvents = require('./lib/get-active-events')
+const getFallbackUri = require('./lib/get-fallback-uri')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
 const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const getEventUids = require('./lib/get-event-uids')
@@ -149,8 +150,31 @@ class IcalCalendar extends Homey.App {
 
       this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri)
 
+      let data
       try {
-        const data = await ical.fromURL(uri)
+        data = await ical.fromURL(uri)
+      } catch (error) {
+        const { fallbackUri } = getFallbackUri(uri)
+        const errorString = typeof error === 'object' ? error.message : error
+        this.error(`getEvents: Failed to get events for calendar '${name}' with uri '${uri}' :`, error)
+        try {
+          this.warn(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, 'with fallback uri', fallbackUri)
+          data = await ical.fromURL(uri)
+        } catch (innerError) {
+          const fallbackErrorString = typeof innerError === 'object' ? innerError.message : innerError
+          this.error(`getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' :`, innerError)
+
+          errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' (${errorString}) and '${fallbackUri}' (${fallbackErrorString})`)
+          await triggerSynchronizationError({ app: this, calendar: name, error: innerError })
+
+          // set a failed setting value to show a error message on settings page
+          calendars[i] = { name, uri, failed: fallbackErrorString }
+          this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
+          this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
+        }
+      }
+
+      if (typeof data === 'object') {
         // remove failed setting if it exists for calendar
         if (calendars[i].failed) {
           calendars[i] = { name, uri }
@@ -158,20 +182,23 @@ class IcalCalendar extends Homey.App {
           this.log(`getEvents: Removed 'error' setting value from calendar '${name}'`)
         }
 
-        const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
-        this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
-        calendarsEvents.push({ name, events: activeEvents })
-      } catch (error) {
-        const errorString = typeof error === 'object' ? error.message : error
+        try {
+          const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
+          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
+          calendarsEvents.push({ name, events: activeEvents })
+        } catch (error) {
+          const errorString = typeof error === 'object' ? error.message : error
+          this.error(`getEvents: Failed to get active events for calendar '${name}' :`, error)
+          errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`)
+          await triggerSynchronizationError({ app: this, calendar: name, error })
 
-        this.log('getEvents: Failed to get events for calendar', name, uri, errorString)
-        errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' : ${errorString}`)
-        await triggerSynchronizationError({ app: this, calendar: name, error })
-
-        // set a failed setting value to show a error message on settings page
-        calendars[i] = { name, uri, failed: errorString }
-        this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
-        this.log(`getEvents: Added 'error' setting value calendar '${name}'`)
+          // set a failed setting value to show a error message on settings page
+          calendars[i] = { name, uri, failed: errorString }
+          this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
+          this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
+        }
+      } else {
+        this.warn(`getEvents: Calendar '${name}' not reachable! Giving up...`)
       }
     }
 
@@ -279,7 +306,7 @@ class IcalCalendar extends Homey.App {
   /**
    * onUninit method is called when your app is destroyed
    */
-  async onUninit() {
+  async onUninit () {
     if (typeof this._unload === 'function') {
       this.log('onUninit -- calling this._unload')
       this._unload()
