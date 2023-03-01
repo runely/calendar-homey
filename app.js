@@ -29,6 +29,9 @@ class IcalCalendar extends Homey.App {
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
 
+    // convenience function for logging warnings
+    this.warn = (...args) => this.log('[WARN]', ...args)
+
     this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
     // set a variable to control if getEvents is already running
@@ -72,15 +75,23 @@ class IcalCalendar extends Homey.App {
       }
     })
 
-    this.homey.on('unload', () => {
+    this._unload = () => {
       if (!this.jobs) return
 
+      // unload cron jobs
       Object.getOwnPropertyNames(this.jobs).forEach(prop => {
         if (typeof this.jobs[prop].stop === 'function') {
-          this.log('onInit/unload: Job', prop, 'will be stopped')
+          this.log('onInit/_unload: Job', prop, 'will be stopped')
           this.jobs[prop].stop()
         }
       })
+    }
+
+    this.homey.on('unload', () => {
+      if (typeof this._unload === 'function') {
+        this.log('unload -- calling this._unload')
+        this._unload()
+      } else this.warn('unload -- this._unload is not a function')
     })
 
     // register cron jobs
@@ -263,6 +274,16 @@ class IcalCalendar extends Homey.App {
         }
       })
     }
+  }
+
+  /**
+   * onUninit method is called when your app is destroyed
+   */
+  async onUninit() {
+    if (typeof this._unload === 'function') {
+      this.log('onUninit -- calling this._unload')
+      this._unload()
+    } else this.warn('onUninit -- this._unload is not a function')
   }
 }
 
