@@ -6,14 +6,14 @@ test('"addJob" returns a new Cron', () => {
   cron.stop()
 
   expect(cron instanceof Cron).toBeTruthy()
-  expect(typeof cron.enumerate).toBe('function')
-  expect(typeof cron.next).toBe('function')
+  expect(typeof cron.nextRun).toBe('function')
+  expect(typeof cron.nextRuns).toBe('function')
   expect(typeof cron.stop).toBe('function')
 })
 
 test('"next" Cron job is at the next 1th minute', () => {
   const cron = addJob('*/1 * * * *', () => null)
-  const nextRun = cron.next()
+  const nextRun = cron.nextRun()
   console.log('Next run:', nextRun)
   cron.stop()
 
@@ -28,7 +28,7 @@ test('"next" Cron job is at the next 1th minute', () => {
 
 test('"next" Cron job is at the next 15th minute', () => {
   const cron = addJob('*/15 * * * *', () => null)
-  const nextRun = cron.next()
+  const nextRun = cron.nextRun()
   console.log('Next run:', nextRun)
   cron.stop()
 
