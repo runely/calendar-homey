@@ -33,10 +33,11 @@
     "fix": "standard --fix",
     "ts:lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
-    "homey-build": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js && homey app build",
+    "browserify": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
+    "homey-build": "npm run browserify && npm run test && homey app build",
     "homey-run": "npm run homey-build && homey app run",
-    "homey-install": "npm run test && npm run homey-build && homey app install",
-    "homey-publish": "npm run test && npm run homey-build && npm run fix && homey app publish"
+    "homey-install": "npm run homey-build && homey app install",
+    "homey-publish": "npm run homey-build && npm run fix && homey app publish"
   },
   "standard": {
     "ignore": [
