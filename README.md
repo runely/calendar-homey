@@ -163,6 +163,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.14.1
+    - Minimized footprint
+    - Dependency updates
 - 1.14.0
     - Fixed support for Homey Pro 2023
         - Fixed a cirular dependency "issue"
