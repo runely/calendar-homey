@@ -274,5 +274,8 @@
   },
   "1.14.0": {
     "en": "Minor fixes for Homey Pro 2023"
+  },
+  "1.14.1": {
+    "en": "Minimized footprint slightly"
   }
 }
