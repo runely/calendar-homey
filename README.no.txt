@@ -39,6 +39,8 @@ Tidssone for din kalender (*.ics)
 Biblioteket som er brukt i denne appen for å parse dine kalendere, node-ical, bruker ikke attributten X-WR-TIMEZONE for å parse tidssoner. Istedenfor så brukes BEGIN:VTIMEZONE seksjonene for å parse tidssoner.
 Dette betyr at dersom leverandøren av din kalender bare bruker attributten X-WR-TIMEZONE, vil denne appen alltid gå utifra at dine kalenderoppføringer er i UTC!
 
+Hvis hendelsene dine er opprettet med tidssonen "Customized Time Zone" (du vil se dette når du åpner .ics-filen), er hendelsene mest sannsynlig opprettet med riktig dato og klokkeslett og bør ikke ha en tidssone lagt til. Den lokale tidssonen vil derfor IKKE bli brukt på disse hendelsene!
+
 Sync
 - Avtaler hentes automatisk hvert 15. minutt
 - Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering

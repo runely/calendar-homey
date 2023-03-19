@@ -39,6 +39,8 @@ Zeitzone in Ihrem Kalender (*.ics)
 Die in dieser App verwendete Bibliothek node-ical verwendet NICHT die X-WR-TIMEZONE-Eigenschaft zum Analysieren von Zeitzonen. Stattdessen werden die Abschnitte BEGIN:VTIMEZONE verwendet, um Zeitzonen zu analysieren!
 Das bedeutet, wenn Ihr Kalenderanbieter nur die X-WR-TIMEZONE-Eigenschaft verwendet, geht diese App davon aus, dass Ihre Ereignisse immer in UTC sind!
 
+Wenn Ihre Ereignisse mit der Zeitzone "Benutzerdefinierte Zeitzone" erstellt werden (Sie sehen dies beim Öffnen der .ics-Datei), werden die Ereignisse höchstwahrscheinlich mit dem richtigen Datum und Uhrzeit erstellt und es sollte keine Zeitzone angewendet werden. Die lokale Zeitzone wird daher bei diesen Veranstaltungen NICHT angewendet!
+
 Sync
 - Ereignisse werden alle 15 Minuten automatisch abgerufen
 - Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen

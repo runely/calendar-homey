@@ -39,6 +39,8 @@ Tidszon i din kalender (*.ics)
 Biblioteket som används i den här appen för att analysera kalendrarna, node-ical, använder INTE egenskapen X-WR-TIMEZONE för att analysera tidszoner. Istället använder den BEGIN:VTIMEZONE-sektionerna för att analysera tidszoner!
 Detta innebär att om din kalenderleverantör bara använder egenskapen X-WR-TIMEZONE, kommer denna app att anta att dina händelser alltid är i UTC!
 
+Om dina händelser skapas med tidszonen "Anpassad tidszon" (du kommer att se detta när du öppnar .ics-filen), skapas händelserna med största sannolikhet med rätt datum och tid och bör inte ha någon tidszon tillämpad. Den lokala tidszonen kommer därför INTE att tillämpas på dessa evenemang!
+
 Synkronisera
 - Händelser hämtas automatiskt var 15:e minut
 - Flow-kortet "Synkronisera kalendrar" kan också användas för att utlösa en synkronisering

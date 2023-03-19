@@ -50,6 +50,9 @@ The library used in this app to parse the calendars, **[node-ical](https://githu
 :exclamation:
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
 
+:exclamation:
+If your events are created with the timezone `Customized Time Zone` (you will see this when opening the .ics file), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will Therefore `NOT` be applied to these events!
+
 ## Usage
 
 ### Sync
@@ -163,6 +166,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.15.0
+    - Do not apply local timezone for events created with MS Outlook Custom timezone `Customized Time Zone`. This means that the raw start time set in the calendar file is what will be used
 - 1.14.1
     - Minimized footprint
     - Dependency updates

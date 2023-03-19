@@ -39,6 +39,8 @@ Timezone in your calendar (*.ics)
 The library used in this app to parse the calendars, node-ical, does NOT use the X-WR-TIMEZONE property to parse timezones. Instead it uses the BEGIN:VTIMEZONE sections to parse timezones!
 This means that if your calendar provider only uses the X-WR-TIMEZONE property, this app will assume your events is always in UTC!
 
+If your events are created with the timezone 'Customized Time Zone' (you will see this when opening the .ics file), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will therefore NOT be applied to these events!
+
 Sync
 - Events are fetched automatically every 15 minutes
 - The "Sync calendars" action flow card can also be used to trigger a sync
