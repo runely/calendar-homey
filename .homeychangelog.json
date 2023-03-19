@@ -277,5 +277,8 @@
   },
   "1.14.1": {
     "en": "Minimized footprint slightly"
+  },
+  "1.15.0": {
+    "en": "Local Homey timezone is no longer applied for events created with timezone 'Customized Time Zone' from MS Outlook"
   }
 }
