@@ -12,6 +12,7 @@ const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
 const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const getEventUids = require('./lib/get-event-uids')
 const getNewEvents = require('./lib/get-new-events')
+const { getLocalActiveEvents, saveLocalEvents } = require('./lib/local-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 const { generateTokens, generatePerCalendarTokens, generateNextEventTokens } = require('./lib/generate-token-configuration')
 
@@ -221,6 +222,22 @@ class IcalCalendar extends Homey.App {
       await triggerEvents({ timezone: this.getTimezone(), app: this, event: { calendarName: event.calendarName, event, triggerId: 'event_added' } })
     }
     this.homey.settings.set(this.variableMgmt.storage.eventUids, JSON.stringify(newCalendarsUids))
+
+    // get local events (only the ones that are not started yet or ongoing)
+    const localEventsJSON = this.homey.settings.get(this.variableMgmt.storage.localEvents)
+    const localEvents = localEventsJSON ? JSON.parse(localEventsJSON) : []
+    this.variableMgmt.localEvents = getLocalActiveEvents({ app: this, eventLimit, events: localEvents, timezone: this.getTimezone(), logAllEvents })
+
+    // save local events returned
+    saveLocalEvents(this, this.variableMgmt.localEvents)
+
+    // add local events to the correct calendar
+    this.variableMgmt.localEvents.forEach(event => {
+      const calendar = calendarsEvents.find(c => c.name === event.calendar)
+      if (calendar) {
+        calendar.events.push(event)
+      }
+    })
 
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)

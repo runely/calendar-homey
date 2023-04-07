@@ -8,6 +8,7 @@ const getNextEventValue = require('../lib/get-next-event-value')
 const { updateNextEventWithTokens } = require('./update-tokens')
 const { triggerSynchronizationError } = require('./trigger-cards')
 const { isEventOngoing, isEventIn, willEventNotIn } = require('./conditions')
+const { calendarAutocomplete } = require('../lib//autocomplete')
 
 const cards = [
   {
@@ -166,7 +167,7 @@ const getEventList = (timezone, app, calendars) => {
   return eventList
 }
 
-const onEventAutocomplete = async (timezone, app, query, args, type) => {
+const onEventAutocomplete = async (timezone, app, query, type) => {
   if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
     app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...')
     return false
@@ -179,19 +180,6 @@ const onEventAutocomplete = async (timezone, app, query, args, type) => {
     }
 
     return getEventList(timezone, app, app.variableMgmt.calendars)
-  }
-
-  if (type === 'calendar') {
-    if (query) {
-      const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-      return filteredCalendar.map(calendar => {
-        return { id: calendar.name, name: calendar.name }
-      })
-    }
-
-    return app.variableMgmt.calendars.map(calendar => {
-      return { id: calendar.name, name: calendar.name }
-    })
   }
 
   return false
@@ -290,7 +278,11 @@ const setupConditions = options => {
     const conditionCard = app.homey.flow.getConditionCard(id)
     conditionCard.registerRunListener((args, state) => checkEvent(timezone, app, args, state, runListenerId))
     if (autocompleteListener.argumentId && autocompleteListener.id) {
-      conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, args, autocompleteListener.id))
+      if (autocompleteListener.id === 'calendar') {
+        conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => calendarAutocomplete(app, query))
+      } else {
+        conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, autocompleteListener.id))
+      }
     }
   })
 }

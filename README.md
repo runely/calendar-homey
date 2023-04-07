@@ -101,6 +101,8 @@ To see a list of synced in events, you can use the condition card `Specific even
 
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
+- **Create local event** - *will allow you to create a local event that behaves just as a normal event, but only lives on your Homey* (`event is automatically deleted when it's finished`)
+- **Delete a local event by title** - *will remove any local events with this title* (`if several local events with this title is found, all of them will be removed!`)
 
 ### Flow tags on triggers
 - Event title
@@ -166,6 +168,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.16.0
+    - Added possibility for local events -> [Issue #442](https://github.com/runely/calendar-homey/issues/442)
 - 1.15.0
     - Do not apply local timezone for events created with MS Outlook Custom timezone `Customized Time Zone`. This means that the raw start time set in the calendar file is what will be used
 - 1.14.1
