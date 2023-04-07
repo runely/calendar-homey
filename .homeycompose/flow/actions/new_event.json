@@ -8,11 +8,11 @@
     "sv": "Skapa lokal händelse"
   },
   "titleFormatted": {
-    "en": "Create local event [[event_name]], starting [[event_start]], ending [[event_end]], timezone: [[apply_timezone]], in calendar [[calendar]]",
-    "no": "Opprett lokal avtale [[event_name]], starter [[event_start]], slutter [[event_end]], tidssone: [[apply_timezone]], i kalender [[calendar]]",
-    "nl": "Maak lokale gebeurtenis [[event_name]] aan, begint [[event_start]], eindigt [[event_end]], tijdzone: [[apply_timezone]], in kalender [[calendar]]",
-    "de": "Lokale Veranstaltung [[event_name]] erstellen, beginnend am [[event_start]], endend am [[event_end]], Zeitzone: [[apply_timezone]], im Kalender [[calendar]]",
-    "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]]"
+    "en": "Create local event [[event_name]], starting [[event_start]], ending [[event_end]], timezone: [[apply_timezone]], in calendar [[calendar]] - [[event_description]]",
+    "no": "Opprett lokal avtale [[event_name]], starter [[event_start]], slutter [[event_end]], tidssone: [[apply_timezone]], i kalender [[calendar]] - [[event_description]]",
+    "nl": "Maak lokale gebeurtenis [[event_name]] aan, begint [[event_start]], eindigt [[event_end]], tijdzone: [[apply_timezone]], in kalender [[calendar]] - [[event_description]]",
+    "de": "Lokale Veranstaltung [[event_name]] erstellen, beginnend am [[event_start]], endend am [[event_end]], Zeitzone: [[apply_timezone]], im Kalender [[calendar]] - [[event_description]]",
+    "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]"
   },
   "hint": {
     "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, datetimes will have your timezone applied",
@@ -38,6 +38,24 @@
         "nl": "Titel",
         "de": "Titel",
         "sv": "Titel"
+      }
+    },
+    {
+      "type": "text",
+      "name": "event_description",
+      "title": {
+        "en": "Description",
+        "no": "Beskrivelse",
+        "nl": "Omschrijving",
+        "de": "Beschreibung",
+        "sv": "Beskrivning"
+      },
+      "placeholder": {
+        "en": "Description",
+        "no": "Beskrivelse",
+        "nl": "Omschrijving",
+        "de": "Beschreibung",
+        "sv": "Beskrivning"
       }
     },
     {

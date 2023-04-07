@@ -10,7 +10,7 @@ const utcEvent = {
   datetype: 'date-time',
   end: moment({ date: '2021-11-05T21:00:00.000Z' }),
   uid: 'cal_one_One',
-  description: 'One',
+  description: 'OneDesc',
   location: '',
   summary: 'One',
   created: new Date('2021-11-05T18:00:00.000Z'),
@@ -23,7 +23,7 @@ const tzEvent = {
   datetype: 'date-time',
   end: moment({ timezone, date: '2021-11-05T21:00:00.000Z' }),
   uid: 'cal_one_One',
-  description: 'One',
+  description: 'OneDesc',
   location: '',
   summary: 'One',
   created: new Date('2021-11-05T18:00:00.000Z'),
@@ -79,18 +79,26 @@ describe('fromEvent', () => {
 describe('newEvent', () => {
   test("Returns correct object when 'applyTimezone' is false", () => {
     const title = 'Test1'
+    const description = 'TestDesc'
     const start = '2023-04-06T12:00:00Z'
     const end = '2023-04-06T14:00:00Z'
     const applyTimezone = false
-    const calendarName = 'TestCal'
-    const result = newEvent(app, timezone, title, start, end, applyTimezone, calendarName)
+    const calendarName = { id: 'TestCal', name: 'TestCal' }
+    const result = newEvent(app, timezone, {
+      event_name: title,
+      event_description: description,
+      event_start: start,
+      event_end: end,
+      apply_timezone: applyTimezone,
+      calendar: calendarName
+    })
     expect(Object.keys(result).length).toBe(14)
     expect(result.start).toBeTruthy()
     expect(result.start.get('hours')).toBe(12)
     expect(result.datetype).toBeTruthy()
     expect(result.end.get('hours')).toBe(14)
     expect(result.uid).toBe(`local_${start}`)
-    expect(result.description).toBe(title)
+    expect(result.description).toBe(description)
     expect(result.location).toBe('')
     expect(result.summary).toBe(title)
     expect(result.created).toBeTruthy()
@@ -99,23 +107,31 @@ describe('newEvent', () => {
     expect(result.freebusy).toBe('')
     expect(result.meetingUrl).toBe('')
     expect(result.local).toBeTruthy()
-    expect(result.calendar).toBe(calendarName)
+    expect(result.calendar).toBe(calendarName.name)
   })
 
   test("Returns correct object when 'applyTimezone' is true", () => {
     const title = 'Test2'
+    const description = 'Test2Desc'
     const start = '2023-04-06T12:00:00'
     const end = '2023-04-06T14:00:00'
     const applyTimezone = true
-    const calendarName = 'TestCal'
-    const result = newEvent(app, timezone, title, start, end, applyTimezone, calendarName)
+    const calendarName = { id: 'TestCal', name: 'TestCal' }
+    const result = newEvent(app, timezone, {
+      event_name: title,
+      event_description: description,
+      event_start: start,
+      event_end: end,
+      apply_timezone: applyTimezone,
+      calendar: calendarName
+    })
     expect(Object.keys(result).length).toBe(14)
     expect(result.start).toBeTruthy()
     expect(result.start.get('hours')).toBe(14)
     expect(result.datetype).toBeTruthy()
     expect(result.end.get('hours')).toBe(16)
     expect(result.uid).toBe(`local_${start}`)
-    expect(result.description).toBe(title)
+    expect(result.description).toBe(description)
     expect(result.location).toBe('')
     expect(result.summary).toBe(title)
     expect(result.created).toBeTruthy()
@@ -124,6 +140,39 @@ describe('newEvent', () => {
     expect(result.freebusy).toBe('')
     expect(result.meetingUrl).toBe('')
     expect(result.local).toBeTruthy()
-    expect(result.calendar).toBe(calendarName)
+    expect(result.calendar).toBe(calendarName.name)
+  })
+
+  test("Returns correct object when 'description' is null", () => {
+    const title = 'Test2'
+    const description = null
+    const start = '2023-04-06T12:00:00'
+    const end = '2023-04-06T14:00:00'
+    const applyTimezone = true
+    const calendarName = { id: 'TestCal', name: 'TestCal' }
+    const result = newEvent(app, timezone, {
+      event_name: title,
+      event_description: description,
+      event_start: start,
+      event_end: end,
+      apply_timezone: applyTimezone,
+      calendar: calendarName
+    })
+    expect(Object.keys(result).length).toBe(14)
+    expect(result.start).toBeTruthy()
+    expect(result.start.get('hours')).toBe(14)
+    expect(result.datetype).toBeTruthy()
+    expect(result.end.get('hours')).toBe(16)
+    expect(result.uid).toBe(`local_${start}`)
+    expect(result.description).toBe('')
+    expect(result.location).toBe('')
+    expect(result.summary).toBe(title)
+    expect(result.created).toBeTruthy()
+    expect(result.fullDayEvent).toBeFalsy()
+    expect(result.skipTZ).toBeFalsy()
+    expect(result.freebusy).toBe('')
+    expect(result.meetingUrl).toBe('')
+    expect(result.local).toBeTruthy()
+    expect(result.calendar).toBe(calendarName.name)
   })
 })

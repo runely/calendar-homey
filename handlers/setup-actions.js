@@ -35,7 +35,7 @@ module.exports = app => {
       return false
     }
 
-    const event = newEvent(app, app.getTimezone(), args.event_name, args.event_start, args.event_end, args.apply_timezone, args.calendar.name)
+    const event = newEvent(app, app.getTimezone(), args)
     app.log('new_event: Adding event', event)
     const calendar = app.variableMgmt.calendars.find(c => c.name === event.calendar)
     if (!calendar) {

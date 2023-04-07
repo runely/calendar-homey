@@ -168,6 +168,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.16.1
+    - Added `description` to a local event
 - 1.16.0
     - Added possibility for local events -> [Issue #442](https://github.com/runely/calendar-homey/issues/442)
     - Dependency updates
