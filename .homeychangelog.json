@@ -280,5 +280,8 @@
   },
   "1.15.0": {
     "en": "Local Homey timezone is no longer applied for events created with timezone 'Customized Time Zone' from MS Outlook"
+  },
+  "1.16.0": {
+    "en": "Added possibility for local events. Dependency updates"
   }
 }
