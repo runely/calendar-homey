@@ -2,6 +2,10 @@
 
 const getFallbackUri = require('../lib/get-fallback-uri')
 
+const app = {
+  log: console.log
+}
+
 const succeedTests = [
   {
     name: 'https',
@@ -50,7 +54,7 @@ describe('fallback uri found for protocol', () => {
   succeedTests.forEach(({ name, protocol, expectedFallbackProtocol }) => {
     test(name, () => {
       const uri = `${protocol}test.com`
-      const fallback = getFallbackUri(uri)
+      const fallback = getFallbackUri(app, uri)
 
       expect(typeof fallback).toBe('object')
       expect(fallback.fallbackProtocol).toBe(expectedFallbackProtocol)
@@ -64,7 +68,7 @@ describe('fallback uri should be equal to uri, fallbackProtocol and protocol sho
   failTests.forEach(({ name, protocol }) => {
     test(name, () => {
       const uri = `${protocol}test.com`
-      const fallback = getFallbackUri(uri)
+      const fallback = getFallbackUri(app, uri)
 
       expect(typeof fallback).toBe('object')
       expect(fallback.fallbackProtocol).toBe('')

@@ -155,7 +155,7 @@ class IcalCalendar extends Homey.App {
       try {
         data = await ical.fromURL(uri)
       } catch (error) {
-        const { fallbackUri } = getFallbackUri(uri)
+        const { fallbackUri } = getFallbackUri(this, uri)
         const errorString = typeof error === 'object' ? error.message : error
         this.error(`getEvents: Failed to get events for calendar '${name}' with uri '${uri}' :`, error)
         try {
