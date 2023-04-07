@@ -170,6 +170,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.16.0
     - Added possibility for local events -> [Issue #442](https://github.com/runely/calendar-homey/issues/442)
+    - Dependency updates
 - 1.15.0
     - Do not apply local timezone for events created with MS Outlook Custom timezone `Customized Time Zone`. This means that the raw start time set in the calendar file is what will be used
 - 1.14.1
