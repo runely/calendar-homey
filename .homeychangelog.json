@@ -283,5 +283,8 @@
   },
   "1.16.0": {
     "en": "Added possibility for local events. Dependency updates"
+  },
+  "1.16.1": {
+    "en": "Added possibility for local events. Dependency updates"
   }
 }
