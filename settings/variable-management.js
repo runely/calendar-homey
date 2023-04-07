@@ -96,8 +96,10 @@ module.exports = {
   calendarTokens: [],
   flowTokens: [],
   nextEventWithTokens: [],
+  localEvents: [],
   storage: {
-    eventUids: 'eventUids'
+    eventUids: 'eventUids',
+    localEvents: 'localEvents'
   }
 }
 
