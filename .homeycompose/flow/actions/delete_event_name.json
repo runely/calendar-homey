@@ -1,11 +1,11 @@
 {
   "id": "delete_event_name",
   "title": {
-    "en": "Delete a local event by title",
-    "no": "Slett en lokal avtale etter tittel",
-    "nl": "Verwijder een lokale gebeurtenis op titel",
-    "de": "Lösche eine lokale Veranstaltung nach Titel",
-    "sv": "Radera en lokal händelse efter titel"
+    "en": "Delete local event by title",
+    "no": "Slett lokal avtale etter tittel",
+    "nl": "Verwijder lokale gebeurtenis op titel",
+    "de": "Lösche lokale Veranstaltung nach Titel",
+    "sv": "Radera lokal händelse efter titel"
   },
   "titleFormatted": {
     "en": "Delete local event by title [[event_name]]",
@@ -15,11 +15,11 @@
     "sv": "Radera lokal händelse efter titel [[event_name]]"
   },
   "hint": {
-    "en": "Delete a local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
-    "no": "Slett en lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
-    "nl": "Verwijder een lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
-    "de": "Löschen Sie eine lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
-    "sv": "Radera en lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel"
+    "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
+    "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
+    "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
+    "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
+    "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel"
   },
   "args": [
     {

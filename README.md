@@ -72,6 +72,22 @@ To see a list of synced in events, you can use the condition card `Specific even
     1. Click `Select event...` in the condition card
     1. This will present you with a list of all the events synced in
 
+### Local events
+
+> A local event is **just** local. They will never interact with your calendar externally!
+
+#### Create local event
+
+You can use the action card `Create local event` to add a local event to one of your calendars in Homey. This local event will live and behave just as a normal event would.<br />
+When the event is finished, it will automatically be removed, just as any other event.
+
+:exclamation:
+If you set `Apply your timezone` to **True**, this will treat the datetimes given as UTC and your timezone difference will be added!
+
+#### Delete local event by title
+
+You can use the action card `Delete local event by title` to remove any local events containing the **title** given.
+
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
@@ -102,7 +118,7 @@ To see a list of synced in events, you can use the condition card `Specific even
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
 - **Create local event** - *will allow you to create a local event that behaves just as a normal event, but only lives on your Homey* (`event is automatically deleted when it's finished`)
-- **Delete a local event by title** - *will remove any local events with this title* (`if several local events with this title is found, all of them will be removed!`)
+- **Delete local event by title** - *will remove any local events with this title* (`if several local events with this title is found, all of them will be removed!`)
 
 ### Flow tags on triggers
 - Event title
@@ -168,6 +184,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.16.2
+    - Added a little more descriptions for `Local events`
 - 1.16.1
     - Added `description` to a local event
 - 1.16.0

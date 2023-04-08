@@ -223,7 +223,7 @@ class IcalCalendar extends Homey.App {
     }
     this.homey.settings.set(this.variableMgmt.storage.eventUids, JSON.stringify(newCalendarsUids))
 
-    // get local events (only the ones that are not started yet or ongoing)
+    // get local events (only the ones that are not started yet or is ongoing)
     const localEventsJSON = this.homey.settings.get(this.variableMgmt.storage.localEvents)
     const localEvents = localEventsJSON ? JSON.parse(localEventsJSON) : []
     this.variableMgmt.localEvents = getLocalActiveEvents({ app: this, eventLimit, events: localEvents, timezone: this.getTimezone(), logAllEvents })

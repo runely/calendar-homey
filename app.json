@@ -2260,11 +2260,11 @@
       {
         "id": "delete_event_name",
         "title": {
-          "en": "Delete a local event by title",
-          "no": "Slett en lokal avtale etter tittel",
-          "nl": "Verwijder een lokale gebeurtenis op titel",
-          "de": "Lösche eine lokale Veranstaltung nach Titel",
-          "sv": "Radera en lokal händelse efter titel"
+          "en": "Delete local event by title",
+          "no": "Slett lokal avtale etter tittel",
+          "nl": "Verwijder lokale gebeurtenis op titel",
+          "de": "Lösche lokale Veranstaltung nach Titel",
+          "sv": "Radera lokal händelse efter titel"
         },
         "titleFormatted": {
           "en": "Delete local event by title [[event_name]]",
@@ -2274,11 +2274,11 @@
           "sv": "Radera lokal händelse efter titel [[event_name]]"
         },
         "hint": {
-          "en": "Delete a local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
-          "no": "Slett en lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
-          "nl": "Verwijder een lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
-          "de": "Löschen Sie eine lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
-          "sv": "Radera en lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel"
+          "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
+          "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
+          "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
+          "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
+          "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel"
         },
         "args": [
           {
@@ -2318,11 +2318,11 @@
           "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]"
         },
         "hint": {
-          "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, datetimes will have your timezone applied",
-          "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, vil tidspunktene få din tidssone lagt til",
-          "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, zullen datums en tijden worden weergegeven met toepassing van jouw tijdzone.",
-          "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, werden Datums- und Uhrzeitangaben mit deiner Zeitzone angewendet",
-          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, kommer datum och tid att ha din tidszon applicerad"
+          "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, datetimes will assumed to be in UTC and have your timezone difference added",
+          "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, antas dato og klokkeslett å være i UTC og har tidssoneforskjellen din lagt til",
+          "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, wordt aangenomen dat datum en tijd in UTC zijn en wordt uw tijdzoneverschil toegevoegd",
+          "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, wird davon ausgegangen, dass die Datums- und Uhrzeitangaben in UTC angegeben sind, und Ihre Zeitzonendifferenz wird hinzugefügt",
+          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, antas datumtider vara i UTC och har din tidszonsskillnad lagt till"
         },
         "args": [
           {
