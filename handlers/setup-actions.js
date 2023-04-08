@@ -4,6 +4,7 @@ const { calendarAutocomplete } = require('../lib/autocomplete')
 const sortCalendarsEvents = require('../lib/sort-calendars')
 const { newEvent } = require('../lib/generate-event-object')
 const { saveLocalEvents } = require('../lib/local-events')
+const { triggerEvents } = require('./trigger-cards')
 
 const getDateTime = value => {
   const match = /[1-2][0-9][0-9][0-9]-(([0][1-9])||([1][0-2]))-(([0][1-9])||([1][0-9])||([2][0-9])||([3][0-1]))T([0-1][0-9]||[2][0-3]):[0-5][0-9]:[0-5][0-9]Z?/g.exec(value)
@@ -48,6 +49,7 @@ module.exports = app => {
     sortCalendarsEvents(app.variableMgmt.calendars)
     app.variableMgmt.localEvents.push(event)
     saveLocalEvents(app, app.variableMgmt.localEvents)
+    await triggerEvents({ timezone: app.getTimezone(), app, event: { calendarName: event.calendar, event, triggerId: 'event_added' } })
   })
   newEventAction.registerArgumentAutocompleteListener('calendar', (query, args) => calendarAutocomplete(app, query))
 

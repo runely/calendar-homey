@@ -186,6 +186,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.16.2
     - Added a little more descriptions for `Local events`
+    - Trigger `Event added` when a new local event is added
 - 1.16.1
     - Added `description` to a local event
 - 1.16.0
