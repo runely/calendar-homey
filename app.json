@@ -2318,11 +2318,11 @@
           "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]"
         },
         "hint": {
-          "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, datetimes will assumed to be in UTC and have your timezone difference added",
-          "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, antas dato og klokkeslett å være i UTC og har tidssoneforskjellen din lagt til",
-          "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, wordt aangenomen dat datum en tijd in UTC zijn en wordt uw tijdzoneverschil toegevoegd",
-          "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, wird davon ausgegangen, dass die Datums- und Uhrzeitangaben in UTC angegeben sind, und Ihre Zeitzonendifferenz wird hinzugefügt",
-          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, antas datumtider vara i UTC och har din tidszonsskillnad lagt till"
+          "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, date and time are assumed to be in UTC and will have your time zone difference added",
+          "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, antas dato og klokkeslett å være i UTC og vil få din tidssoneforskjell lagt til",
+          "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, datum en tijd worden verondersteld in UTC te zijn en uw tijdzoneverschil wordt toegevoegd",
+          "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, Datum und Uhrzeit werden in UTC angenommen und Ihre Zeitzonendifferenz wird hinzugefügt",
+          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, datum och tid antas vara i UTC och kommer att lägga till din tidszonsskillnad"
         },
         "args": [
           {
