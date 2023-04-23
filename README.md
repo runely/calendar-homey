@@ -187,6 +187,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.17.0
     - Added trigger `Event ends from calendar` -> [Issue #444](https://github.com/runely/calendar-homey/issues/444)
+    - Dependency updates
 - 1.16.2
     - Added a little more descriptions for `Local events`
     - Trigger `Event added` when a new local event is added
