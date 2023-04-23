@@ -289,5 +289,8 @@
   },
   "1.16.2": {
     "en": "Added possibility for local events. Dependency updates"
+  },
+  "1.17.0": {
+    "en": "Added trigger 'Event ends from calendar'. Dependency updates"
   }
 }
