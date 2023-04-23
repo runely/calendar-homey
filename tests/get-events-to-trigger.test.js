@@ -74,11 +74,13 @@ test('When start is now - Will return 3 events', () => {
   expect(result[2].state.when).toBe(60)
 })
 
-test('When end is now - Will return 1 event', () => {
+test('When end is now - Will return 2 events', () => {
   const result = calendarResult.filter(res => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8842')
-  expect(result.length).toBe(1)
+  expect(result.length).toBe(2)
   expect(result[0].triggerId).toBe('event_stops')
   expect(result[0].state).toBeFalsy()
+  expect(result[1].triggerId).toBe('event_stops_calendar')
+  expect(result[1].state.calendarName).toBe('events')
 })
 
 test('When start is in 2 hours - Will return 2 events', () => {

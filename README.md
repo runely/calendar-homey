@@ -94,6 +94,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - **Event starts from calendar** - *will trigger when any event in specified calender starts*
 - **Event ends** - *will trigger when any event ends*
 - **Event ends in** - *will trigger when any event ends in when specified*
+- **Event ends from calendar** - *will trigger when any event in specified calender ends*
 - **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
 - **Event added** - *will trigger when a new event is created in one of your synced calendars*
     - **Will trigger when these requirements are met:**
@@ -184,6 +185,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.17.0
+    - Added trigger `Event ends from calendar` -> [Issue #444](https://github.com/runely/calendar-homey/issues/444)
 - 1.16.2
     - Added a little more descriptions for `Local events`
     - Trigger `Event added` when a new local event is added

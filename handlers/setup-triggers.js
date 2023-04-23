@@ -3,6 +3,24 @@
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
 
+const autocompleteCalendarListener = (app, query, args, triggerId) => {
+  if (!app.variableMgmt.calendars) {
+    app.log(`${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`)
+    return false
+  }
+
+  if (query) {
+    const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
+    return filteredCalendar.map(calendar => {
+      return { id: calendar.name, name: calendar.name }
+    })
+  }
+
+  return app.variableMgmt.calendars.map(calendar => {
+    return { id: calendar.name, name: calendar.name }
+  })
+}
+
 module.exports = app => {
   // add trigger listeners
   app.homey.flow.getTriggerCard('event_starts_in').registerRunListener((args, state) => {
@@ -36,20 +54,20 @@ module.exports = app => {
   })
 
   eventStartsCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
-    if (!app.variableMgmt.calendars) {
-      app.log('event_starts_calendar.onAutocompleteListener: Calendars not set yet. Nothing to show...')
-      return false
+    return autocompleteCalendarListener(app, query, args, 'event_starts_calendar')
+  })
+
+  const eventStopsCalendar = app.homey.flow.getTriggerCard('event_stops_calendar')
+  eventStopsCalendar.registerRunListener((args, state) => {
+    const result = args.calendar.name === state.calendarName
+    if (result) {
+      app.log('Triggered \'event_stops_calendar\' with state:', state)
     }
 
-    if (query) {
-      const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-      return filteredCalendar.map(calendar => {
-        return { id: calendar.name, name: calendar.name }
-      })
-    }
+    return result
+  })
 
-    return app.variableMgmt.calendars.map(calendar => {
-      return { id: calendar.name, name: calendar.name }
-    })
+  eventStopsCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
+    return autocompleteCalendarListener(app, query, args, 'event_stops_calendar')
   })
 }
