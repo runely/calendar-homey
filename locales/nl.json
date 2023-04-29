@@ -65,7 +65,8 @@
         "event_next_startdate_calendar": "Volgende event startdatum over",
         "event_next_startstamp_calendar": "Volgende event starttijd over",
         "event_next_enddate_calendar": "Volgende event stopdatum over",
-        "event_next_endstamp_calendar": "Volgende event stoptijd over"
+        "event_next_endstamp_calendar": "Volgende event stoptijd over",
+        "event_next_description_calendar": "Volgende event omschrijving over"
     },
     "flowTokens": {
         "event_next_title": "Volgende event title",
@@ -77,6 +78,7 @@
         "event_next_duration_minutes": "Tijdsduur volgende event (minuten)",
         "event_next_starts_in_minutes": "Volgende event start over (minuten)",
         "event_next_stops_in_minutes": "Volgende event stopt over (minuten)",
+        "event_next_description": "Volgende event omschrijving",
         "event_next_calendar_name": "Kalender naam van het volgende event",
         "events_today_title_stamps": "Events vandaag, titel en tijd",
         "events_tomorrow_title_stamps": "Event morgen, titel en tijd",
@@ -91,7 +93,8 @@
         "event_next_startdate": "Startdatum (met)",
         "event_next_startstamp": "Starttijd (met)",
         "event_next_stopdate": "Stopdatum (met)",
-        "event_next_stopstamp": "Stoptijd (met)"
+        "event_next_stopstamp": "Stoptijd (met)",
+        "event_next_description": "Omschrijving (met)"
     },
     "triggers": {
         "event_changed": {

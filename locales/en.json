@@ -65,7 +65,8 @@
         "event_next_startdate_calendar": "Next event start date in",
         "event_next_startstamp_calendar": "Next event start time in",
         "event_next_enddate_calendar": "Next event end date in",
-        "event_next_endstamp_calendar": "Next event end time in"
+        "event_next_endstamp_calendar": "Next event end time in",
+        "event_next_description_calendar": "Next event description in"
     },
     "flowTokens": {
         "event_next_title": "Next event title",
@@ -77,6 +78,7 @@
         "event_next_duration_minutes": "Next event duration (minutes)",
         "event_next_starts_in_minutes": "Next event starts in (minutes)",
         "event_next_stops_in_minutes": "Next event ends in (minutes)",
+        "event_next_description": "Next event description",
         "event_next_calendar_name": "Calendar name of next event",
         "events_today_title_stamps": "Todays events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",
@@ -91,7 +93,8 @@
         "event_next_startdate": "Start date (contains)",
         "event_next_startstamp": "Start time (contains)",
         "event_next_stopdate": "End date (contains)",
-        "event_next_stopstamp": "End time (contains)"
+        "event_next_stopstamp": "End time (contains)",
+        "event_next_description": "Description (contains)"
     },
     "triggers": {
         "event_changed": {

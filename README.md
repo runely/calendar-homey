@@ -149,6 +149,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - Next event duration *(minutes)*
 - Next event starts in *(minutes)*
 - Next event ends in *(minutes)*
+- Next event description
 - Calendar name of next event
 - Todays events, title and time
 - Todays events *(count)*
@@ -163,6 +164,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - Next event start time in %calendarname%
 - Next event end date in %calendarname%
 - Next event end time in %calendarname%
+- Next event description in %calendarname%
 
 ### Next event tags containing
 - Title (contains)
@@ -170,6 +172,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - Start time (contains)
 - End date (contains)
 - End time (contains)
+- Description (contains)
 
 > These tags are used together with condition *Event containing ... in calendar ... starts within* `OR` *Event containing ... in calendar ... ends within*.
 > If the condition evaluates to **true**, these tags will be filled with the event found, and the tags can be used in any action card
@@ -185,6 +188,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.18.0
+    - Added `Next event description`, `Next event description in %calendarname%` and `Description (contains)` as global tokens -> [Issue #447](https://github.com/runely/calendar-homey/issues/447)
 - 1.17.0
     - Added trigger `Event ends from calendar` -> [Issue #444](https://github.com/runely/calendar-homey/issues/444)
     - Dependency updates

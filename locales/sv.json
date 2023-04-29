@@ -65,7 +65,8 @@
         "event_next_startdate_calendar": "Nästa händelse startdatum om",
         "event_next_startstamp_calendar": "Nästa händelse startar om",
         "event_next_enddate_calendar": "Nästa händelses slutdatum om",
-        "event_next_endstamp_calendar": "Nästa händeles sluttid om"
+        "event_next_endstamp_calendar": "Nästa händeles sluttid om",
+        "event_next_description_calendar": "Nästa händeles beskrivning om"
     },
     "flowTokens": {
         "event_next_title": "Nästa händeles titel",
@@ -77,6 +78,7 @@
         "event_next_duration_minutes": "Nästa händelses varaktighet (minuter)",
         "event_next_starts_in_minutes": "Nästa ändelse startar inom (minuter)",
         "event_next_stops_in_minutes": "Nästa händelse slutar inom (minuter)",
+        "event_next_description": "Nästa händeles beskrivning",
         "event_next_calendar_name": "Kalendernamn på nästa händelse",
         "events_today_title_stamps": "Dagens händelser, titel och tid",
         "events_tomorrow_title_stamps": "Morgondagens händelser, titel och tid",
@@ -91,7 +93,8 @@
         "event_next_startdate": "Startdatum (innehåller)",
         "event_next_startstamp": "Starttid (innehåller)",
         "event_next_stopdate": "Slutdatum (innehåller)",
-        "event_next_stopstamp": "Sluttid (innehåller)"
+        "event_next_stopstamp": "Sluttid (innehåller)",
+        "event_next_description": "Beskrivning (innehåller)"
     },
     "triggers": {
         "event_changed": {

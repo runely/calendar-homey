@@ -102,6 +102,8 @@ const updateTokens = async options => {
         await updateToken(token, nextEvent.event ? nextEvent.startsIn : -1, token.id, app)
       } else if (token.id === 'event_next_stops_in_minutes') {
         await updateToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
+      } else if (token.id === 'event_next_description') {
+        await updateToken(token, nextEvent.event ? nextEvent.event.description : '', token.id, app)
       } else if (token.id === 'event_next_calendar_name') {
         await updateToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
       } else if (token.id === 'events_today_title_stamps') {
@@ -139,6 +141,7 @@ const updateTokens = async options => {
         .replace(app.variableMgmt.calendarTokensPostNextStartTimeId, '')
         .replace(app.variableMgmt.calendarTokensPostNextEndDateId, '')
         .replace(app.variableMgmt.calendarTokensPostNextEndTimeId, '')
+        .replace(app.variableMgmt.calendarTokensPostNextDescriptionId, '')
       const calendarType = calendarId.replace(`${calendarName}_`, '')
       // app.log(`calendarTokens: Setting token '${calendarType}' for calendar '${calendarName}'`);
       let value = ''
@@ -159,36 +162,39 @@ const updateTokens = async options => {
         } else if (calendarType === 'tomorrow_count') {
           value = tomorrowsEventsCalendar.length
         }
-      } else if (calendarType === 'next_title') {
+      }
+
+      if (['next_title', 'next_startdate', 'next_starttime', 'next_enddate', 'next_endtime', 'next_description'].includes(calendarType)) {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
-      } else if (calendarType === 'next_startdate') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : ''
-      } else if (calendarType === 'next_starttime') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        if (calendarNextEvent.event) {
-          if (calendarNextEvent.event.datetype === 'date-time') {
-            value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time)
-          } else if (calendarNextEvent.event.datetype === 'date') {
-            value = '00:00'
+
+        if (calendarType === 'next_title') {
+          value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
+        } else if (calendarType === 'next_startdate') {
+          value = calendarNextEvent.event ? calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : ''
+        } else if (calendarType === 'next_starttime') {
+          if (calendarNextEvent.event) {
+            if (calendarNextEvent.event.datetype === 'date-time') {
+              value = calendarNextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time)
+            } else if (calendarNextEvent.event.datetype === 'date') {
+              value = '00:00'
+            }
+          } else {
+            value = ''
           }
-        } else {
-          value = ''
-        }
-      } else if (calendarType === 'next_enddate') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : ''
-      } else if (calendarType === 'next_endtime') {
-        calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
-        if (calendarNextEvent.event) {
-          if (calendarNextEvent.event.datetype === 'date-time') {
-            value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time)
-          } else if (calendarNextEvent.event.datetype === 'date') {
-            value = '00:00'
+        } else if (calendarType === 'next_enddate') {
+          value = calendarNextEvent.event ? calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : ''
+        } else if (calendarType === 'next_endtime') {
+          if (calendarNextEvent.event) {
+            if (calendarNextEvent.event.datetype === 'date-time') {
+              value = calendarNextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time)
+            } else if (calendarNextEvent.event.datetype === 'date') {
+              value = '00:00'
+            }
+          } else {
+            value = ''
           }
-        } else {
-          value = ''
+        } else if (calendarType === 'next_description') {
+          value = calendarNextEvent.event ? (calendarNextEvent.event.description || '') : ''
         }
       }
 
@@ -206,7 +212,7 @@ const updateTokens = async options => {
  * @param {Object} event Update tokens from this event
  */
 const updateNextEventWithTokens = async (app, event) => {
-  const { summary, start, end, calendarName } = event
+  const { summary, start, end, description, calendarName } = event
   try {
     app.log(`updateNextEventWithTokens: Using event: '${summary}' - '${start}' in '${calendarName}'`)
 
@@ -222,6 +228,8 @@ const updateNextEventWithTokens = async (app, event) => {
           await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.long), token.id, app)
         } else if (token.id.endsWith('_endtime')) {
           await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
+        } else if (token.id.endsWith('_description')) {
+          await updateToken(token, description || '', token.id, app)
         }
       } catch (error) {
         app.log('updateNextEventWithTokens: Failed to update next event with token', token.id, ':', error)
