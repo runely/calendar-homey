@@ -82,13 +82,35 @@ module.exports.triggerChangedCalendars = async options => {
           event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
           event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent')
         }
-        try {
-          await app.homey.flow.getTriggerCard('event_changed').trigger(tokens)
-          app.log(`Triggered event_changed on '${event.uid}'`)
-        } catch (error) {
-          app.log(`triggerChangedCalendars: 'event_changed' failed to trigger on '${event.uid}' :`, error)
 
-          this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
+        const changedCalendarTriggerCards = [
+          {
+            id: 'event_changed',
+            useState: false
+          },
+          {
+            id: 'event_changed_calendar',
+            useState: true
+          }
+        ]
+        for await (const changedCalendarTriggerCard of changedCalendarTriggerCards) {
+          const state = { calendarName: calendar.name }
+          try {
+            if (!changedCalendarTriggerCard.useState) {
+              await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens)
+              app.log(`Triggered ${changedCalendarTriggerCard.id} on '${event.uid}'`)
+            } else {
+              await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens, state)
+            }
+          } catch (error) {
+            if (changedCalendarTriggerCard.useState) {
+              app.log(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' with state`, state, ':', error)
+            } else {
+              app.log(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' :`, error)
+            }
+
+            this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
+          }
         }
       }
     }
@@ -127,7 +149,7 @@ module.exports.triggerEvents = async options => {
         event_meeting_url: event.meetingUrl
       }
 
-      if (triggerId === 'event_added') {
+      if (['event_added', 'event_added_calendar'].includes(triggerId)) {
         tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.long)
         tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time)
         tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.long)
@@ -151,7 +173,7 @@ module.exports.triggerEvents = async options => {
         try {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens, state)
         } catch (error) {
-          app.log(`triggerEvents: '${triggerId}' with state '${state}' failed to trigger:`, error)
+          app.log(`triggerEvents: '${triggerId}' with state`, state, 'failed to trigger:', error)
 
           this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }

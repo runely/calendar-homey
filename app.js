@@ -220,6 +220,7 @@ class IcalCalendar extends Homey.App {
     this.log('getEvents: newlyAddedEvents --', newlyAddedEvents.length)
     for await (const event of newlyAddedEvents) {
       await triggerEvents({ timezone: this.getTimezone(), app: this, event: { calendarName: event.calendarName, event, triggerId: 'event_added' } })
+      await triggerEvents({ timezone: this.getTimezone(), app: this, event: { calendarName: event.calendarName, event, triggerId: 'event_added_calendar', state: { calendarName: event.calendarName } } })
     }
     this.homey.settings.set(this.variableMgmt.storage.eventUids, JSON.stringify(newCalendarsUids))
 

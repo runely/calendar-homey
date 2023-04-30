@@ -103,6 +103,12 @@ You can use the action card `Delete local event by title` to remove any local ev
         - The created event is created within the last 24 hours
 - **Synchronization error occurred** - *will trigger when a synchronization error occurs with one of your calendars*
 
+#### Calendar providers not using the `CREATED` property
+
+These calendar providers do not use (or at least not for all events) the `CREATED` property, and so the `Event added` trigger will not work for these calendar providers
+
+- **Office 365**
+
 ### Conditions
 - **Specific event is ongoing** - *will check if specified event is|isn't ongoing*
 - **Specific event starts within** - *will check if specified event starts|doesn't start within when specified*
@@ -190,6 +196,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 1.18.0
     - Added `Next event description`, `Next event description in %calendarname%` and `Description (contains)` as global tokens -> [Issue #447](https://github.com/runely/calendar-homey/issues/447)
+    - Added `Event added in calendar` and `Event changed in calendar` triggers -> [Issue #447](https://github.com/runely/calendar-homey/issues/447)
 - 1.17.0
     - Added trigger `Event ends from calendar` -> [Issue #444](https://github.com/runely/calendar-homey/issues/444)
     - Dependency updates

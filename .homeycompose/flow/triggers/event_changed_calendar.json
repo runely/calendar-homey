@@ -1,0 +1,137 @@
+{
+  "id": "event_changed_calendar",
+  "title": {
+    "en": "Event changed in calendar",
+    "no": "En avtale ble endret i kalender",
+    "nl": "Een event is gewijzigd in kalender",
+    "de": "Ereignis wurde geändert im Kalender",
+    "sv": "En händelse har ändrats i kalender"
+  },
+  "hint": {
+    "en": "Triggers when an already synchronized event is changed",
+    "no": "Utløses når en allerede synkronisert avtale blir endret",
+    "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
+    "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
+    "sv": "Utlöses när en redan synkroniserad händelse har ändras"
+  },
+  "titleFormatted": {
+    "en": "Event is changed in [[calendar]]",
+    "no": "En avtale ble endret i [[calendar]]",
+    "nl": "Een event is gewijzigd in [[calendar]]",
+    "de": "Ereignis wurde geändert im [[calendar]]",
+    "sv": "En händelse har ändrats i [[calendar]]"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen...",
+        "sv": "Välj kalender..."
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "event_name",
+      "type": "string",
+      "title": {
+        "en": "Title",
+        "no": "Tittel",
+        "nl": "Titel",
+        "de": "Titel",
+        "sv": "Titel"
+      },
+      "example": {
+        "en": "Pick up in kindergarden",
+        "no": "Hente i barnehagen",
+        "nl": "Kinderen ophalen",
+        "de": "Im Kindergarten abholen",
+        "sv": "Hämta på förskola"
+      }
+    },
+    {
+      "name": "event_calendar_name",
+      "type": "string",
+      "title": {
+        "en": "Calendar name",
+        "no": "Kalendernavn",
+        "nl": "Kalender naam",
+        "de": "Kalenderbezeichnung",
+        "sv": "Kalendernamn"
+      },
+      "example": {
+        "en": "Gmail",
+        "no": "Gmail",
+        "nl": "Gmail",
+        "de": "Gmail",
+        "sv": "Gmail"
+      }
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "title": {
+        "en": "Type",
+        "no": "Type",
+        "nl": "Type",
+        "de": "Typ",
+        "sv": "Typ"
+      },
+      "example": {
+        "en": "Location",
+        "no": "Plassering",
+        "nl": "Locatie",
+        "de": "Ort",
+        "sv": "Plats"
+      }
+    },
+    {
+      "name": "event_prev_value",
+      "type": "string",
+      "title": {
+        "en": "Previous value",
+        "no": "Tidligere verdi",
+        "nl": "Vorige waarde",
+        "de": "Vorheriger Wert",
+        "sv": "Tidigare värde"
+      }
+    },
+    {
+      "name": "event_new_value",
+      "type": "string",
+      "title": {
+        "en": "New value",
+        "no": "Ny verdi",
+        "nl": "Nieuwe waarde",
+        "de": "Neuer Wert",
+        "sv": "Nytt värde"
+      }
+    },
+    {
+      "name": "event_was_ongoing",
+      "type": "boolean",
+      "title": {
+        "en": "Was ongoing",
+        "no": "Pågikk",
+        "nl": "Was aan de gang",
+        "de": "War im Gange",
+        "sv": "Pågick"
+      }
+    },
+    {
+      "name": "event_ongoing",
+      "type": "boolean",
+      "title": {
+        "en": "Is ongoing",
+        "no": "Pågår",
+        "nl": "Is bezig",
+        "de": "Ist laufend",
+        "sv": "Pågår"
+      }
+    }
+  ]
+}

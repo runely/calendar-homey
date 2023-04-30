@@ -3,71 +3,48 @@
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
 
-const autocompleteCalendarListener = (app, query, args, triggerId) => {
-  if (!app.variableMgmt.calendars) {
-    app.log(`${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`)
-    return false
-  }
+module.exports = app => {
+  // add minutes in trigger listeners
+  for (const triggerId of ['event_starts_in', 'event_stops_in']) {
+    app.homey.flow.getTriggerCard(triggerId).registerRunListener((args, state) => {
+      const minutes = convertToMinutes(args.when, args.type)
+      const result = minutes === state.when
+      if (result) {
+        app.log(`Triggered '${triggerId}' with state:`, state)
+      }
 
-  if (query) {
-    const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-    return filteredCalendar.map(calendar => {
-      return { id: calendar.name, name: calendar.name }
+      return result
     })
   }
 
-  return app.variableMgmt.calendars.map(calendar => {
-    return { id: calendar.name, name: calendar.name }
-  })
-}
+  // add calendar trigger listeners
+  for (const triggerId of ['event_starts_calendar', 'event_stops_calendar', 'event_added_calendar', 'event_changed_calendar']) {
+    const eventCalendar = app.homey.flow.getTriggerCard(triggerId)
+    eventCalendar.registerRunListener((args, state) => {
+      const result = args.calendar.name === state.calendarName
+      if (result) {
+        app.log(`Triggered '${triggerId}' with state:`, state)
+      }
 
-module.exports = app => {
-  // add trigger listeners
-  app.homey.flow.getTriggerCard('event_starts_in').registerRunListener((args, state) => {
-    const minutes = convertToMinutes(args.when, args.type)
-    const result = minutes === state.when
-    if (result) {
-      app.log('Triggered \'event_starts_in\' with state:', state)
-    }
+      return result
+    })
 
-    return result
-  })
+    eventCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
+      if (!app.variableMgmt.calendars) {
+        app.log(`${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`)
+        return false
+      }
 
-  app.homey.flow.getTriggerCard('event_stops_in').registerRunListener((args, state) => {
-    const minutes = convertToMinutes(args.when, args.type)
-    const result = minutes === state.when
-    if (result) {
-      app.log('Triggered \'event_stops_in\' with state:', state)
-    }
+      if (query) {
+        const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
+        return filteredCalendar.map(calendar => {
+          return { id: calendar.name, name: calendar.name }
+        })
+      }
 
-    return result
-  })
-
-  const eventStartsCalendar = app.homey.flow.getTriggerCard('event_starts_calendar')
-  eventStartsCalendar.registerRunListener((args, state) => {
-    const result = args.calendar.name === state.calendarName
-    if (result) {
-      app.log('Triggered \'event_starts_calendar\' with state:', state)
-    }
-
-    return result
-  })
-
-  eventStartsCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
-    return autocompleteCalendarListener(app, query, args, 'event_starts_calendar')
-  })
-
-  const eventStopsCalendar = app.homey.flow.getTriggerCard('event_stops_calendar')
-  eventStopsCalendar.registerRunListener((args, state) => {
-    const result = args.calendar.name === state.calendarName
-    if (result) {
-      app.log('Triggered \'event_stops_calendar\' with state:', state)
-    }
-
-    return result
-  })
-
-  eventStopsCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
-    return autocompleteCalendarListener(app, query, args, 'event_stops_calendar')
-  })
+      return app.variableMgmt.calendars.map(calendar => {
+        return { id: calendar.name, name: calendar.name }
+      })
+    })
+  }
 }

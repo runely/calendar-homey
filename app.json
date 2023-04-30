@@ -369,6 +369,311 @@
         ]
       },
       {
+        "id": "event_added_calendar",
+        "title": {
+          "en": "Event added in calendar",
+          "no": "Ny avtale opprettet i kalender",
+          "nl": "Evenement toegevoegd aan kalender",
+          "de": "Ereignis zum Kalender hinzugefügt",
+          "sv": "Händelse tillagd i kalender"
+        },
+        "hint": {
+          "en": "Triggers when a new event is created",
+          "no": "Utløses når en ny avtale opprettes",
+          "nl": "Wordt geactiveerd wanneer een nieuwe gebeurtenis wordt gemaakt",
+          "de": "Wird ausgelöst, wenn ein neues Ereignis erstellt wird",
+          "sv": "Utlöses när en ny händelse skapas"
+        },
+        "titleFormatted": {
+          "en": "Event added in [[calendar]]",
+          "no": "Ny avtale opprettet i [[calendar]]",
+          "nl": "Evenement toegevoegd aan [[calendar]]",
+          "de": "Ereignis zum [[calendar]] hinzugefügt",
+          "sv": "Händelse tillagd i [[calendar]]"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "calendar",
+            "placeholder": {
+              "en": "Choose calendar...",
+              "no": "Velg kalender...",
+              "nl": "Selecteer kalender...",
+              "de": "Kalender auswählen...",
+              "sv": "Välj kalender..."
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "event_name",
+            "type": "string",
+            "title": {
+              "en": "Title",
+              "no": "Tittel",
+              "nl": "Titel",
+              "de": "Titel",
+              "sv": "Titel"
+            },
+            "example": {
+              "en": "Pick up in kindergarden",
+              "no": "Hente i barnehagen",
+              "nl": "Kinderen ophalen",
+              "de": "Im Kindergarten abholen",
+              "sv": "Hämta på förskola"
+            }
+          },
+          {
+            "name": "event_description",
+            "type": "string",
+            "title": {
+              "en": "Description",
+              "no": "Beskrivelse",
+              "nl": "Omschrijving",
+              "de": "Beschreibung",
+              "sv": "Beskrivning"
+            },
+            "example": {
+              "en": "Pick up kids in kindergarden",
+              "no": "Hente barna fra barnehagen",
+              "nl": "Haal de kinderen van school op",
+              "de": "Kinder im Kindergarten abholen",
+              "sv": "Hämta barnen på förskolan"
+            }
+          },
+          {
+            "name": "event_location",
+            "type": "string",
+            "title": {
+              "en": "Location",
+              "no": "Sted",
+              "nl": "Locatie",
+              "de": "Ort",
+              "sv": "Plats"
+            },
+            "example": {
+              "en": "Kindergarden street, 30",
+              "no": "Barnehagegata, 30",
+              "nl": "Schoolstraat 30",
+              "de": "Kindergartenstraße 30",
+              "sv": "Förskolegatan 30"
+            }
+          },
+          {
+            "name": "event_duration_readable",
+            "type": "string",
+            "title": {
+              "en": "Duration",
+              "no": "Varighet",
+              "nl": "Tijdsduur",
+              "de": "Dauer",
+              "sv": "Varaktighet"
+            },
+            "example": {
+              "en": "1.5 hour",
+              "no": "1.5 time",
+              "nl": "1.5 uur",
+              "de": "1.5 Stunden",
+              "sv": "1,5 timma"
+            }
+          },
+          {
+            "name": "event_duration",
+            "type": "number",
+            "title": {
+              "en": "Duration in minutes",
+              "no": "Varighet i minutter",
+              "nl": "Tijdsduur in minuten",
+              "de": "Dauer in Minuten",
+              "sv": "Varaktighet i minuter"
+            },
+            "example": {
+              "en": "90",
+              "no": "90",
+              "nl": "90",
+              "de": "90",
+              "sv": "90"
+            }
+          },
+          {
+            "name": "event_calendar_name",
+            "type": "string",
+            "title": {
+              "en": "Calendar name",
+              "no": "Kalendernavn",
+              "nl": "Kalender naam",
+              "de": "Kalenderbezeichnung",
+              "sv": "Kalendernamn"
+            },
+            "example": {
+              "en": "Gmail",
+              "no": "Gmail",
+              "nl": "Gmail",
+              "de": "Gmail",
+              "sv": "Gmail"
+            }
+          },
+          {
+            "name": "event_status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "no": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "sv": "Status"
+            },
+            "example": {
+              "en": "Free",
+              "no": "Ledig",
+              "nl": "Vrij",
+              "de": "Frei",
+              "sv": "Ledig"
+            }
+          },
+          {
+            "name": "event_meeting_url",
+            "type": "string",
+            "title": {
+              "en": "Meeting URL",
+              "no": "Møte-URL",
+              "nl": "Vergadering URL",
+              "de": "Besprechungs-URL",
+              "sv": "Mötes-URL"
+            },
+            "example": {
+              "en": "https://meeting.url"
+            }
+          },
+          {
+            "name": "event_start_date",
+            "type": "string",
+            "title": {
+              "en": "Start date",
+              "no": "Startdato",
+              "nl": "Startdatum",
+              "de": "Startdatum",
+              "sv": "Startdatum"
+            },
+            "example": {
+              "en": "01/22/22",
+              "no": "22.01.22",
+              "nl": "22-01-22",
+              "de": "22-01-22",
+              "sv": "22-01-22"
+            }
+          },
+          {
+            "name": "event_start_time",
+            "type": "string",
+            "title": {
+              "en": "Start time",
+              "no": "Starttidspunkt",
+              "nl": "Starttijd",
+              "de": "Beginn",
+              "sv": "Starttid"
+            },
+            "example": {
+              "en": "08:15",
+              "no": "08:15",
+              "nl": "08:15",
+              "de": "08:15",
+              "sv": "08:15"
+            }
+          },
+          {
+            "name": "event_end_date",
+            "type": "string",
+            "title": {
+              "en": "End date",
+              "no": "Sluttdato",
+              "nl": "Stopdatum",
+              "de": "Enddatum",
+              "sv": "Slutdatum"
+            },
+            "example": {
+              "en": "01/22/22",
+              "no": "22.01.22",
+              "nl": "22-01-22",
+              "de": "22-01-22",
+              "sv": "22-01-22"
+            }
+          },
+          {
+            "name": "event_end_time",
+            "type": "string",
+            "title": {
+              "en": "End time",
+              "no": "Sluttidspunkt",
+              "nl": "Stoptijd",
+              "de": "Ende",
+              "sv": "Sluttid"
+            },
+            "example": {
+              "en": "11:30",
+              "no": "11:30",
+              "nl": "11:30",
+              "de": "11:30",
+              "sv": "11:30"
+            }
+          },
+          {
+            "name": "event_weekday_readable",
+            "type": "string",
+            "title": {
+              "en": "Week day",
+              "no": "Ukedag",
+              "nl": "Weekdag",
+              "de": "Vochentag",
+              "sv": "Veckodag"
+            },
+            "example": {
+              "en": "Monday",
+              "no": "Mandag",
+              "nl": "Maandag",
+              "de": "Montag",
+              "sv": "Måndag"
+            }
+          },
+          {
+            "name": "event_month_readable",
+            "type": "string",
+            "title": {
+              "en": "Month",
+              "no": "Måned",
+              "nl": "Maand",
+              "de": "Monat",
+              "sv": "Månad"
+            },
+            "example": {
+              "en": "January",
+              "no": "Januar",
+              "nl": "Januari",
+              "de": "Januar",
+              "sv": "Januari"
+            }
+          },
+          {
+            "name": "event_date_of_month",
+            "type": "number",
+            "title": {
+              "en": "Date",
+              "no": "Dagsnummer",
+              "nl": "Dag nummer",
+              "de": "Tagesnummer",
+              "sv": "Dagnummer"
+            },
+            "example": {
+              "en": "30",
+              "no": "30",
+              "nl": "30",
+              "de": "30",
+              "sv": "30"
+            }
+          }
+        ]
+      },
+      {
         "id": "event_changed",
         "title": {
           "en": "Event changed",
@@ -384,6 +689,143 @@
           "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
           "sv": "Utlöses när en redan synkroniserad händelse har ändras"
         },
+        "tokens": [
+          {
+            "name": "event_name",
+            "type": "string",
+            "title": {
+              "en": "Title",
+              "no": "Tittel",
+              "nl": "Titel",
+              "de": "Titel",
+              "sv": "Titel"
+            },
+            "example": {
+              "en": "Pick up in kindergarden",
+              "no": "Hente i barnehagen",
+              "nl": "Kinderen ophalen",
+              "de": "Im Kindergarten abholen",
+              "sv": "Hämta på förskola"
+            }
+          },
+          {
+            "name": "event_calendar_name",
+            "type": "string",
+            "title": {
+              "en": "Calendar name",
+              "no": "Kalendernavn",
+              "nl": "Kalender naam",
+              "de": "Kalenderbezeichnung",
+              "sv": "Kalendernamn"
+            },
+            "example": {
+              "en": "Gmail",
+              "no": "Gmail",
+              "nl": "Gmail",
+              "de": "Gmail",
+              "sv": "Gmail"
+            }
+          },
+          {
+            "name": "event_type",
+            "type": "string",
+            "title": {
+              "en": "Type",
+              "no": "Type",
+              "nl": "Type",
+              "de": "Typ",
+              "sv": "Typ"
+            },
+            "example": {
+              "en": "Location",
+              "no": "Plassering",
+              "nl": "Locatie",
+              "de": "Ort",
+              "sv": "Plats"
+            }
+          },
+          {
+            "name": "event_prev_value",
+            "type": "string",
+            "title": {
+              "en": "Previous value",
+              "no": "Tidligere verdi",
+              "nl": "Vorige waarde",
+              "de": "Vorheriger Wert",
+              "sv": "Tidigare värde"
+            }
+          },
+          {
+            "name": "event_new_value",
+            "type": "string",
+            "title": {
+              "en": "New value",
+              "no": "Ny verdi",
+              "nl": "Nieuwe waarde",
+              "de": "Neuer Wert",
+              "sv": "Nytt värde"
+            }
+          },
+          {
+            "name": "event_was_ongoing",
+            "type": "boolean",
+            "title": {
+              "en": "Was ongoing",
+              "no": "Pågikk",
+              "nl": "Was aan de gang",
+              "de": "War im Gange",
+              "sv": "Pågick"
+            }
+          },
+          {
+            "name": "event_ongoing",
+            "type": "boolean",
+            "title": {
+              "en": "Is ongoing",
+              "no": "Pågår",
+              "nl": "Is bezig",
+              "de": "Ist laufend",
+              "sv": "Pågår"
+            }
+          }
+        ]
+      },
+      {
+        "id": "event_changed_calendar",
+        "title": {
+          "en": "Event changed in calendar",
+          "no": "En avtale ble endret i kalender",
+          "nl": "Een event is gewijzigd in kalender",
+          "de": "Ereignis wurde geändert im Kalender",
+          "sv": "En händelse har ändrats i kalender"
+        },
+        "hint": {
+          "en": "Triggers when an already synchronized event is changed",
+          "no": "Utløses når en allerede synkronisert avtale blir endret",
+          "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
+          "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
+          "sv": "Utlöses när en redan synkroniserad händelse har ändras"
+        },
+        "titleFormatted": {
+          "en": "Event is changed in [[calendar]]",
+          "no": "En avtale ble endret i [[calendar]]",
+          "nl": "Een event is gewijzigd in [[calendar]]",
+          "de": "Ereignis wurde geändert im [[calendar]]",
+          "sv": "En händelse har ändrats i [[calendar]]"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "calendar",
+            "placeholder": {
+              "en": "Choose calendar...",
+              "no": "Velg kalender...",
+              "nl": "Selecteer kalender...",
+              "de": "Kalender auswählen...",
+              "sv": "Välj kalender..."
+            }
+          }
+        ],
         "tokens": [
           {
             "name": "event_name",
