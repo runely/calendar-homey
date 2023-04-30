@@ -54,6 +54,10 @@ module.exports = {
       type: 'number'
     },
     {
+      id: 'event_next_description',
+      type: 'string'
+    },
+    {
       id: 'event_next_calendar_name',
       type: 'string'
     },
@@ -88,11 +92,13 @@ module.exports = {
   calendarTokensPostNextStartTimeId: '_next_starttime',
   calendarTokensPostNextEndDateId: '_next_enddate',
   calendarTokensPostNextEndTimeId: '_next_endtime',
+  calendarTokensPostNextDescriptionId: '_next_description',
   nextTokenPostTitleId: '_title',
   nextTokenPostStartDateId: '_startdate',
   nextTokenPostStartTimeId: '_starttime',
   nextTokenPostEndDateId: '_enddate',
   nextTokenPostEndTimeId: '_endtime',
+  nextTokenPostDescriptionId: '_description',
   calendarTokens: [],
   flowTokens: [],
   nextEventWithTokens: [],
