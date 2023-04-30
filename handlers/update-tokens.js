@@ -103,7 +103,7 @@ const updateTokens = async options => {
       } else if (token.id === 'event_next_stops_in_minutes') {
         await updateToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
       } else if (token.id === 'event_next_description') {
-        await updateToken(token, nextEvent.event ? nextEvent.event.description : '', token.id, app)
+        await updateToken(token, nextEvent.event ? (nextEvent.event.description || '') : '', token.id, app)
       } else if (token.id === 'event_next_calendar_name') {
         await updateToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
       } else if (token.id === 'events_today_title_stamps') {
