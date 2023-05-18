@@ -295,5 +295,8 @@
   },
   "1.18.0": {
     "en": "Added 'Next event description' , 'Next event description in %calendarname%' and 'Description (contains)' as global tokens. Added 'Event added in calendar' and Event changed in calendar' triggers"
+  },
+  "1.18.1": {
+    "en": "Added Homey Community Topic link"
   }
 }
