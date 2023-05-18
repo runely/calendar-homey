@@ -79,6 +79,7 @@
   "bugs": {
     "url": "https://github.com/runely/calendar-homey/issues"
   },
+  "homeyCommunityTopicId": 80708,
   "source": "https://github.com/runely/calendar-homey",
   "flow": {
     "triggers": [
