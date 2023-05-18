@@ -15,6 +15,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
     - Paste in the ical link and give it a name
     - Change the date/time format or use the default (your choice)
         - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+    - Choose the timeframe for how many events to sync in to the app
     - Choose whether or not you want **next event tags** per calendar. Default is off
 
 ### Find Exchange Online ical link
@@ -51,16 +52,16 @@ The library used in this app to parse the calendars, **[node-ical](https://githu
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
 
 :exclamation:
-If your events are created with the timezone `Customized Time Zone` (you will see this when opening the .ics file), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will Therefore `NOT` be applied to these events!
+If your events are created with the timezone `Customized Time Zone` (you will see this when opening the .ics file in a text editor), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will Therefore `NOT` be applied to these events!
 
 ## Usage
 
 ### Sync
-- Events are fetched automatically every 15 minutes
-- The **Sync calendars** action flow card can also be used to trigger a sync
-
-- Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
-- Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
+- Events are fetched **automatically every 15th minute** (xx:00, xx:15, xx:30, xx:45)
+- The following events will be fetched in to the app:
+    - Events not started yet where start date is within the timeframe given in the setup
+    - Recurring events where start date is within the timeframe given in the setup
+    - Events started but not finished
 
 ### See events synced in
 
