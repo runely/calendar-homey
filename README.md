@@ -195,6 +195,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.18.1
+    - Added Homey Community Topic link: https://community.homey.app/t/app-pro-icalcalendar/80708
 - 1.18.0
     - Added `Next event description`, `Next event description in %calendarname%` and `Description (contains)` as global tokens -> [Issue #447](https://github.com/runely/calendar-homey/issues/447)
     - Added `Event added in calendar` and `Event changed in calendar` triggers -> [Issue #447](https://github.com/runely/calendar-homey/issues/447)
