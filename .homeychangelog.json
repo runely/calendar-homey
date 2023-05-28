@@ -298,5 +298,8 @@
   },
   "1.18.1": {
     "en": "Added Homey Community Topic link"
+  },
+  "1.18.2": {
+    "en": "Dependency updates"
   }
 }
