@@ -195,6 +195,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.18.2
+    - Dependency updates
 - 1.18.1
     - Added Homey Community Topic link: https://community.homey.app/t/app-pro-icalcalendar/80708
 - 1.18.0
