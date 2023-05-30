@@ -21,7 +21,8 @@ const app = {
       long,
       time
     }
-  }
+  },
+  warn: console.log
 }
 
 const oldCalendars = {
@@ -117,6 +118,38 @@ const oldCalendars = {
           description: 'Desc',
           location: '',
           summary: 'Summary changed'
+        }
+      ]
+    }
+  ],
+  locationChangedToUndefined: [
+    {
+      name: 'locationChanged',
+      events: [
+        {
+          start: moment({ date: '2021-11-05T20:00:00.000Z' }),
+          datetype: 'date-time',
+          end: moment({ date: '2021-11-05T21:00:00.000Z' }),
+          uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
+          description: 'Desc',
+          location: '',
+          summary: 'Location changed'
+        }
+      ]
+    }
+  ],
+  locationChangedFromUndefined: [
+    {
+      name: 'locationChanged',
+      events: [
+        {
+          start: moment({ date: '2021-11-05T20:00:00.000Z' }),
+          datetype: 'date-time',
+          end: moment({ date: '2021-11-05T21:00:00.000Z' }),
+          uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
+          description: 'Desc',
+          location: undefined,
+          summary: 'Location changed'
         }
       ]
     }
@@ -219,6 +252,38 @@ const newCalendars = {
         }
       ]
     }
+  ],
+  locationChangedToUndefined: [
+    {
+      name: 'locationChanged',
+      events: [
+        {
+          start: moment({ date: '2021-11-05T20:00:00.000Z' }),
+          datetype: 'date-time',
+          end: moment({ date: '2021-11-05T21:00:00.000Z' }),
+          uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
+          description: 'Desc',
+          location: undefined,
+          summary: 'Location changed'
+        }
+      ]
+    }
+  ],
+  locationChangedFromUndefined: [
+    {
+      name: 'locationChanged',
+      events: [
+        {
+          start: moment({ date: '2021-11-05T20:00:00.000Z' }),
+          datetype: 'date-time',
+          end: moment({ date: '2021-11-05T21:00:00.000Z' }),
+          uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
+          description: 'Desc',
+          location: '',
+          summary: 'Location changed'
+        }
+      ]
+    }
   ]
 }
 
@@ -271,5 +336,15 @@ describe('Expect \'filterUpdatedCalendars\' to return', () => {
     expect(eventsChanged[0].events.length).toBe(1)
     expect(eventsChanged[0].events[0].changed.length).toBe(1)
     expect(eventsChanged[0].events[0].changed[0].type).toBe(summary)
+  })
+
+  test('Nothing when \'Location\' has changed from \'\' to undefined', () => {
+    const eventsChanged = filterUpdatedCalendars({ app, oldCalendars: oldCalendars.locationChangedToUndefined, newCalendars: newCalendars.locationChangedToUndefined })
+    expect(eventsChanged.length).toBe(0)
+  })
+
+  test('Nothing when \'Location\' has changed from undefined to \'\'', () => {
+    const eventsChanged = filterUpdatedCalendars({ app, oldCalendars: oldCalendars.locationChangedFromUndefined, newCalendars: newCalendars.locationChangedFromUndefined })
+    expect(eventsChanged.length).toBe(0)
   })
 })

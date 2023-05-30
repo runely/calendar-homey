@@ -195,6 +195,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.18.3
+    - Fixed a bug where `Event changed` would be triggered when old event property had data but new event property was undefined/null OR vica versa (***sync issue***)
 - 1.18.2
     - Dependency updates
 - 1.18.1
