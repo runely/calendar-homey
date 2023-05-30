@@ -301,5 +301,8 @@
   },
   "1.18.2": {
     "en": "Dependency updates"
+  },
+  "1.18.3": {
+    "en": "Fixed a bug where 'Event changed' would be falsely triggered"
   }
 }
