@@ -18,7 +18,7 @@
     "eslint": "8.41.0",
     "eslint-config-athom": "3.1.1",
     "jest": "29.5.0",
-    "standard": "17.0.0"
+    "standard": "17.1.0"
   },
   "dependencies": {
     "croner": "6.0.3",
