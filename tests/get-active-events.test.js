@@ -15,6 +15,7 @@ const eventLimit = {
 
 const app = {
   log: console.log,
+  warn: console.log,
   homey: {
     __: () => locale.moment,
     flow: {
