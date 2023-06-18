@@ -304,5 +304,8 @@
   },
   "1.18.3": {
     "en": "Fixed a bug where 'Event changed' would be falsely triggered"
+  },
+  "1.18.4": {
+    "en": "Additional logging for better diagnostics reports. Dependency updates"
   }
 }
