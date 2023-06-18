@@ -185,7 +185,7 @@ class IcalCalendar extends Homey.App {
 
         try {
           const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
-          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}`)
+          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Total event count for calendar: ${Object.keys(data).length}`)
           calendarsEvents.push({ name, events: activeEvents })
         } catch (error) {
           const errorString = typeof error === 'object' ? error.message : error
