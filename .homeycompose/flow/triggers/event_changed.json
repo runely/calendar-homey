@@ -5,14 +5,16 @@
     "no": "En avtale ble endret",
     "nl": "Een event is gewijzigd",
     "de": "Ereignis wurde geändert",
-    "sv": "En händelse har ändrats"
+    "sv": "En händelse har ändrats",
+    "fr": "Événement modifié"
   },
   "hint": {
     "en": "Triggers when an already synchronized event is changed",
     "no": "Utløses når en allerede synkronisert avtale blir endret",
     "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
     "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
-    "sv": "Utlöses när en redan synkroniserad händelse har ändras"
+    "sv": "Utlöses när en redan synkroniserad händelse har ändras",
+    "fr": "Se déclenche lorsqu'un événement déjà synchronisé est modifié"
   },
   "tokens": [
     {
@@ -23,14 +25,16 @@
         "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
-        "sv": "Titel"
+        "sv": "Titel",
+        "fr": "Titre"
       },
       "example": {
         "en": "Pick up in kindergarden",
         "no": "Hente i barnehagen",
         "nl": "Kinderen ophalen",
         "de": "Im Kindergarten abholen",
-        "sv": "Hämta på förskola"
+        "sv": "Hämta på förskola",
+        "fr": "Prise en charge à l'école maternelle"
       }
     },
     {
@@ -41,14 +45,16 @@
         "no": "Kalendernavn",
         "nl": "Kalender naam",
         "de": "Kalenderbezeichnung",
-        "sv": "Kalendernamn"
+        "sv": "Kalendernamn",
+        "fr": "Nom du calendrier"
       },
       "example": {
         "en": "Gmail",
         "no": "Gmail",
         "nl": "Gmail",
         "de": "Gmail",
-        "sv": "Gmail"
+        "sv": "Gmail",
+        "fr": "Gmail"
       }
     },
     {
@@ -59,14 +65,16 @@
         "no": "Type",
         "nl": "Type",
         "de": "Typ",
-        "sv": "Typ"
+        "sv": "Typ",
+        "fr": "Type"
       },
       "example": {
         "en": "Location",
         "no": "Plassering",
         "nl": "Locatie",
         "de": "Ort",
-        "sv": "Plats"
+        "sv": "Plats",
+        "fr": "Localisation"
       }
     },
     {
@@ -77,7 +85,8 @@
         "no": "Tidligere verdi",
         "nl": "Vorige waarde",
         "de": "Vorheriger Wert",
-        "sv": "Tidigare värde"
+        "sv": "Tidigare värde",
+        "fr": "Valeur précédente"
       }
     },
     {
@@ -88,7 +97,8 @@
         "no": "Ny verdi",
         "nl": "Nieuwe waarde",
         "de": "Neuer Wert",
-        "sv": "Nytt värde"
+        "sv": "Nytt värde",
+        "fr": "Nouvelle valeur"
       }
     },
     {
@@ -99,7 +109,8 @@
         "no": "Pågikk",
         "nl": "Was aan de gang",
         "de": "War im Gange",
-        "sv": "Pågick"
+        "sv": "Pågick",
+        "fr": "Était en cours"
       }
     },
     {
@@ -110,7 +121,8 @@
         "no": "Pågår",
         "nl": "Is bezig",
         "de": "Ist laufend",
-        "sv": "Pågår"
+        "sv": "Pågår",
+        "fr": "En cours"
       }
     }
   ]
