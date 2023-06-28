@@ -5,21 +5,24 @@
     "no": "Opprett lokal avtale",
     "nl": "Lokale gebeurtenis aanmaken",
     "de": "Lokale Veranstaltung erstellen",
-    "sv": "Skapa lokal händelse"
+    "sv": "Skapa lokal händelse",
+    "fr": "Créer un événement local"
   },
   "titleFormatted": {
     "en": "Create local event [[event_name]], starting [[event_start]], ending [[event_end]], timezone: [[apply_timezone]], in calendar [[calendar]] - [[event_description]]",
     "no": "Opprett lokal avtale [[event_name]], starter [[event_start]], slutter [[event_end]], tidssone: [[apply_timezone]], i kalender [[calendar]] - [[event_description]]",
     "nl": "Maak lokale gebeurtenis [[event_name]] aan, begint [[event_start]], eindigt [[event_end]], tijdzone: [[apply_timezone]], in kalender [[calendar]] - [[event_description]]",
     "de": "Lokale Veranstaltung [[event_name]] erstellen, beginnend am [[event_start]], endend am [[event_end]], Zeitzone: [[apply_timezone]], im Kalender [[calendar]] - [[event_description]]",
-    "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]"
+    "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]",
+    "fr": "Créer un événement local [[event_name]], débutant [[event_start]], finissant [[event_end]], fuseau horaire : [[apply_timezone]], dans le calendrier [[calendar]]. - [[event_description]]"
   },
   "hint": {
     "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, date and time are assumed to be in UTC and will have your time zone difference added",
     "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, antas dato og klokkeslett å være i UTC og vil få din tidssoneforskjell lagt til",
     "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, datum en tijd worden verondersteld in UTC te zijn en uw tijdzoneverschil wordt toegevoegd",
     "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, Datum und Uhrzeit werden in UTC angenommen und Ihre Zeitzonendifferenz wird hinzugefügt",
-    "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, datum och tid antas vara i UTC och kommer att lägga till din tidszonsskillnad"
+    "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, datum och tid antas vara i UTC och kommer att lägga till din tidszonsskillnad",
+    "fr": "Créez un nouvel événement local (qui ne sera pas ajouté à votre calendrier externe). Si l'option 'Appliquer votre fuseau horaire' est Vrai, la date et l'heure sont supposées être en UTC et le décalage horaire sera ajouté."
   },
   "args": [
     {
@@ -30,14 +33,16 @@
         "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
-        "sv": "Titel"
+        "sv": "Titel",
+        "fr": "Titre"
       },
       "placeholder": {
         "en": "Title",
         "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
-        "sv": "Titel"
+        "sv": "Titel",
+        "fr": "Titre"
       }
     },
     {
@@ -48,14 +53,16 @@
         "no": "Beskrivelse",
         "nl": "Omschrijving",
         "de": "Beschreibung",
-        "sv": "Beskrivning"
+        "sv": "Beskrivning",
+        "fr": "Description"
       },
       "placeholder": {
         "en": "Description",
         "no": "Beskrivelse",
         "nl": "Omschrijving",
         "de": "Beschreibung",
-        "sv": "Beskrivning"
+        "sv": "Beskrivning",
+        "fr": "Description"
       }
     },
     {
@@ -66,7 +73,8 @@
         "no": "Avtalestart",
         "nl": "Start evenement",
         "de": "Veranstaltungsbeginn",
-        "sv": "Händelsestart"
+        "sv": "Händelsestart",
+        "fr": "Début de l'événement"
       },
       "placeholder": {
         "en": "2023-04-01T09:38:36"
@@ -80,7 +88,8 @@
         "no": "Avtaleslutt",
         "nl": "Einde evenement",
         "de": "Veranstaltungsende",
-        "sv": "Händelseslut"
+        "sv": "Händelseslut",
+        "fr": "Fin de l'événement"
       },
       "placeholder": {
         "en": "2023-04-01T12:38:36"
@@ -95,7 +104,8 @@
         "no": "Bruk din tidssone",
         "nl": "Pas uw tijdzone toe",
         "de": "Ihre Zeitzone anwenden",
-        "sv": "Använd din tidszon"
+        "sv": "Använd din tidszon",
+        "fr": "Appliquer votre fuseau horaire"
       }
     },
     {
@@ -106,14 +116,16 @@
         "no": "Kalender",
         "nl": "Kalender...",
         "de": "Kalender",
-        "sv": "Kalender"
+        "sv": "Kalender",
+        "fr": "Calendrier"
       },
       "placeholder": {
         "en": "Choose calendar...",
         "no": "Velg kalender...",
         "nl": "Selecteer kalender...",
         "de": "Kalender auswählen...",
-        "sv": "Välj kalender..."
+        "sv": "Välj kalender...",
+        "fr": "Choisissez le calendrier..."
       }
     }
   ]
