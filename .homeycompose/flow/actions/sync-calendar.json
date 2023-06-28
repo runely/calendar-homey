@@ -5,13 +5,15 @@
     "no": "Synkroniser kalenderene",
     "nl": "Synchroniseer kalenders",
     "de": "Kalender synchronisieren",
-    "sv": "Synkronisar kalendrar"
+    "sv": "Synkronisar kalendrar",
+    "fr": "Synchroniser les calendriers"
   },
   "hint": {
     "en": "Will download new .ics files to update current events",
     "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
     "nl": "Nieuw .ics bestand wordt gedownload om de IcalCalendar app bij te werken",
     "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren",
-    "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella händelser"
+    "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella händelser",
+    "fr": "Téléchargement de nouveaux fichiers .ics pour mettre à jour les événements actuels"
   }
 }
