@@ -5,21 +5,24 @@
     "no": "Avtale som inneholder ... i kalender ... !{{slutter|slutter ikke}} innen ...",
     "nl": "Event met ... in kalender ... !{{stopt|stopt niet}} binnen ...",
     "de": "Ereignis mit ... im Kalender ... !{{endet|endet nicht}} in ...",
-    "sv": "Händelse som innehåller ... i kalendern ... !{{slutar|slutar inte}} inom ..."
+    "sv": "Händelse som innehåller ... i kalendern ... !{{slutar|slutar inte}} inom ...",
+    "fr": "Événement contenant ... dans le calendrier ... !{{se termine|ne se termine pas}} dans ..."
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{ends|doesn't end}} within [[when]] [[type]]",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
     "nl": "Event met [[value]] in kalender [[calendar]] !{{stopt|stopt niet}} binnen [[when]] [[type]]",
     "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{endet|endet nicht}} in [[when]] [[type]]",
-    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{slutar|slutar inte}} inom [[when]] [[type]]"
+    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{slutar|slutar inte}} inom [[when]] [[type]]",
+    "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{se termine|ne se termine pas}} dans un délai de [[when]]. [[type]]"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar ends within selected time range",
     "no": "Avtale som inneholder søkeverdi i valgt kalender slutter innen valgt tidsrom",
     "nl": "Event met zoekwaarde in gekozen kalender stopt binnen geselecteerde tijdsbestek",
     "de": "Ereignis mit Suchwert im ausgewählten Kalender endet innerhalb des ausgewählten Zeitraums",
-    "sv": "Händelse som innehåller sökvärde i vald kalender slutar inom valt tidsintervall"
+    "sv": "Händelse som innehåller sökvärde i vald kalender slutar inom valt tidsintervall",
+    "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi se termine dans l'intervalle de temps sélectionné"
   },
   "args": [
     {
@@ -30,7 +33,8 @@
         "no": "Søkeverdi for avtalen",
         "nl": "Zoekwaarde te vinden in event",
         "de": "Suchwert, der im Ereignis gefunden werden soll",
-        "sv": "Sökvärde att hitta i händelse"
+        "sv": "Sökvärde att hitta i händelse",
+        "fr": "Valeur à rechercher dans l'événement"
       }
     },
     {
@@ -41,7 +45,8 @@
         "no": "Velg kalender...",
         "nl": "Selecteer kalender...",
         "de": "Kalender auswählen...",
-        "sv": "Välj kalender..."
+        "sv": "Välj kalender...",
+        "fr" : "Choisissez le calendrier..."
       }
     },
     {
@@ -54,7 +59,8 @@
         "no": "Antall",
         "nl": "Aantal",
         "de": "Anzahl",
-        "sv": "Antal"
+        "sv": "Antal",
+        "fr": "Valeur"
       }
     },
     {
@@ -68,7 +74,8 @@
             "no": "Minutt(er)",
             "nl": "Minu(u)t(en)",
             "de": "Minute(n)",
-            "sv": "Minut(er)"
+            "sv": "Minut(er)",
+            "fr": "Minute(s)"
           }
         },
         {
@@ -78,7 +85,8 @@
             "no": "Time(r)",
             "nl": "U(u)r(en)",
             "de": "Stunde(n)",
-            "sv": "Timma(r)"
+            "sv": "Timma(r)",
+            "fr": "Heure(s)"
           }
         },
         {
@@ -88,7 +96,8 @@
             "no": "Dag(er)",
             "nl": "Dag(en)",
             "de": "Tag(e)",
-            "sv": "Dag(ar)"
+            "sv": "Dag(ar)",
+            "fr": "Jour(s)"
           }
         },
         {
@@ -98,7 +107,8 @@
             "no": "Uke(r)",
             "nl": "We(e)k(en)",
             "de": "Woche(n)",
-            "sv": "Vecka/veckor"
+            "sv": "Vecka/veckor",
+            "fr": "Semaine(s)"
           }
         }
       ]
