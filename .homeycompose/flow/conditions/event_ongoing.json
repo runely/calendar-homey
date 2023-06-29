@@ -1,30 +1,34 @@
 {
-    "id": "event_ongoing",
-    "title": {
-      "en": "Specific event !{{is|isn't}} ongoing",
-      "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
-      "nl": "Specifiek event !{{is|is niet}} bezig",
-      "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend",
-      "sv": "En specifik händelse !{{pågår|pågår inte}}"
-    },
-    "titleFormatted": {
-      "en": "[[event]] !{{is|isn't}} ongoing",
-      "no": "[[event]] !{{pågår|pågår ikke}}",
-      "nl": "[[event]] !{{is|is niet}} bezig",
-      "de": "[[event]] !{{ist|ist nicht}} laufend",
-      "sv": "[[event]] !{{pågår|pågår inte}}"
-    },
-    "args": [
-        {
-          "name": "event",
-          "type": "autocomplete",
-          "placeholder": {
-            "en": "Select event...",
-            "no": "Velg avtale...",
-            "nl": "Selecteer event...",
-            "de": "Ereignis auswählen...",
-            "sv": "Välj händelse..."
-          }
+  "id": "event_ongoing",
+  "title": {
+    "en": "Specific event !{{is|isn't}} ongoing",
+    "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
+    "nl": "Specifiek event !{{is|is niet}} bezig",
+    "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend",
+    "sv": "En specifik händelse !{{pågår|pågår inte}}",
+    "fr" : "Evénement spécifique !{{est|n'est pas}} en cours"
+      
+  },
+  "titleFormatted": {
+    "en": "[[event]] !{{is|isn't}} ongoing",
+    "no": "[[event]] !{{pågår|pågår ikke}}",
+    "nl": "[[event]] !{{is|is niet}} bezig",
+    "de": "[[event]] !{{ist|ist nicht}} laufend",
+    "sv": "[[event]] !{{pågår|pågår inte}}",
+    "fr": "[[event]] !{{est|n'est pas}} en cours"
+  },
+  "args": [
+      {
+        "name": "event",
+        "type": "autocomplete",
+        "placeholder": {
+          "en": "Select event...",
+          "no": "Velg avtale...",
+          "nl": "Selecteer event...",
+          "de": "Ereignis auswählen...",
+          "sv": "Välj händelse...",
+          "fr" : "Sélectionner un événement..."
         }
-    ]
+      }
+  ]
 }
