@@ -5,6 +5,7 @@
       "no": "En avtale !{{pågår|pågår ikke}}",
       "nl": "Een event !{{is|is niet}} bezig",
       "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend",
-      "sv": "En specifik händelse !{{pågår|pågår inte}}"
+      "sv": "En specifik händelse !{{pågår|pågår inte}}",
+      "fr": "Tout événement !{{est|n'est pas}} en cours"
     }
 }
