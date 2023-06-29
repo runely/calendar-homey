@@ -5,14 +5,16 @@
     "no": "En avtale !{{pågår|pågår ikke}} fra kalender",
     "nl": "Een event !{{is|is niet}} bezig vanaf de kalender",
     "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem Kalender",
-    "sv": "En händelse !{{pågår|pågår inte}} i kalender"
+    "sv": "En händelse !{{pågår|pågår inte}} i kalender",
+    "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier"
   },
   "titleFormatted": {
     "en": "Any event !{{is|isn't}} ongoing in [[calendar]]",
     "no": "En avtale !{{pågår|pågår ikke}} fra [[calendar]]",
     "nl": "Een event !{{is|is niet}} bezig vanaf de [[calendar]]",
     "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem [[calendar]]",
-    "sv": "En händelse !{{pågår|pågår inte}} i kalender [[calendar]]"
+    "sv": "En händelse !{{pågår|pågår inte}} i kalender [[calendar]]",
+    "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier [[calendar]]"
   },
   "args": [
     {
@@ -23,7 +25,8 @@
         "no": "Velg kalender...",
         "nl": "Selecteer kalender...",
         "de": "Kalender auswählen...",
-        "sv": "Välj kalender..."
+        "sv": "Välj kalender...",
+        "fr": "Choisissez le calendrier..."
       }
     }
   ]
