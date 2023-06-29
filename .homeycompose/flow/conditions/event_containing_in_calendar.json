@@ -14,7 +14,7 @@
     "nl": "Event met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
     "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
     "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]",
-    "fr": "Événement contenant une [[event]] dans le calendrier [[calendar]] !{{débute|ne démarre pas}} dans [[when]]. [[type]]"
+    "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{débute|ne démarre pas}} dans [[when]]. [[type]]"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar starts within selected time range",
