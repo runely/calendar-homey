@@ -1,89 +1,97 @@
 {
-    "id": "any_event_in_calendar",
-    "title": {
-      "en": "Any event !{{starts|doesn't start}} within ... from calendar",
-      "no": "En avtale !{{starter|starter ikke}} innen ... fra kalender",
-      "nl": "Een event !{{start|start niet}} over ... vanaf de kalender",
-      "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb ... aus dem Kalender",
-      "sv": "En händelse !{{startar|startar inte}} inom ... frän kalender"
-    },
-    "titleFormatted": {
-      "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]] from [[calendar]]",
-      "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]] fra [[calendar]]",
-      "nl": "Een event !{{start|start niet}} over [[when]] [[type]] vanaf de [[calendar]]",
-      "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]] aus dem [[calendar]]",
-      "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]] frän [[calendar]]"
-    },
-    "args": [
-      {
-        "name": "when",
-        "type": "number",
-        "min": 1,
-        "step": 1,
-        "placeholder": {
-          "en": "Amount",
-          "no": "Antall",
-          "nl": "Aantal",
-          "de": "Anzahl",
-          "sv": "Antal"
-        }
-      },
-      {
-        "name": "type",
-        "type": "dropdown",
-        "values": [
-          {
-            "id": "1",
-            "label": {
-              "en": "Minute(s)",
-              "no": "Minutt(er)",
-              "nl": "Minu(u)t(en)",
-              "de": "Minute(n)",
-              "sv": "Minut(er)"
-            }
-          },
-          {
-            "id": "2",
-            "label": {
-              "en": "Hour(s)",
-              "no": "Time(r)",
-              "nl": "U(u)r(en)",
-              "de": "Stunde(n)",
-              "sv": "Timma(r)"
-            }
-          },
-          {
-            "id": "3",
-            "label": {
-              "en": "Day(s)",
-              "no": "Dag(er)",
-              "nl": "Dag(en)",
-              "de": "Tag(e)",
-              "sv": "Dag(ar)"
-            }
-          },
-          {
-            "id": "4",
-            "label": {
-              "en": "Week(s)",
-              "no": "Uke(r)",
-              "nl": "We(e)k(en)",
-              "de": "Woche(n)",
-              "sv": "Vecka/veckor"
-            }
-          }
-        ]
-      },
-      {
-        "type": "autocomplete",
-        "name": "calendar",
-        "placeholder": {
-          "en": "Choose calendar...",
-          "no": "Velg kalender...",
-          "nl": "Selecteer kalender...",
-          "de": "Kalender auswählen...",
-          "sv": "Välj kalender..."
-        }
+  "id": "any_event_in_calendar",
+  "title": {
+    "en": "Any event !{{starts|doesn't start}} within ... from calendar",
+    "no": "En avtale !{{starter|starter ikke}} innen ... fra kalender",
+    "nl": "Een event !{{start|start niet}} over ... vanaf de kalender",
+    "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb ... aus dem Kalender",
+    "sv": "En händelse !{{startar|startar inte}} inom ... frän kalender",
+    "fr": "Tout événement !{{starts|doesn't start}} dans ... du calendrier"
+  },
+  "titleFormatted": {
+    "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]] from [[calendar]]",
+    "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]] fra [[calendar]]",
+    "nl": "Een event !{{start|start niet}} over [[when]] [[type]] vanaf de [[calendar]]",
+    "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]] aus dem [[calendar]]",
+    "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]] frän [[calendar]]",
+    "fr": "Tout événement !{{starts|doesn't start}} dans [[when]] [[type]] du calendrier [[calendar]]"
+  },
+  "args": [
+    {
+      "name": "when",
+      "type": "number",
+      "min": 1,
+      "step": 1,
+      "placeholder": {
+        "en": "Amount",
+        "no": "Antall",
+        "nl": "Aantal",
+        "de": "Anzahl",
+        "sv": "Antal",
+        "fr": "Valeur"
       }
-    ]
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "1",
+          "label": {
+            "en": "Minute(s)",
+            "no": "Minutt(er)",
+            "nl": "Minu(u)t(en)",
+            "de": "Minute(n)",
+            "sv": "Minut(er)",
+            "fr": "Minute(s)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "Hour(s)",
+            "no": "Time(r)",
+            "nl": "U(u)r(en)",
+            "de": "Stunde(n)",
+            "sv": "Timma(r)",
+            "fr": "Heure(s)"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Day(s)",
+            "no": "Dag(er)",
+            "nl": "Dag(en)",
+            "de": "Tag(e)",
+            "sv": "Dag(ar)",
+            "fr": "Jour(s)"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Week(s)",
+            "no": "Uke(r)",
+            "nl": "We(e)k(en)",
+            "de": "Woche(n)",
+            "sv": "Vecka/veckor",
+            "fr": "Semaine(s)"
+          }
+        }
+      ]
+    },
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen...",
+        "sv": "Välj kalender...",
+        "fr": "Choisissez le calendrier..."
+      }
+    }
+  ]
 }
