@@ -5,14 +5,16 @@
     "no": "En avtale starter om",
     "nl": "Event start over",
     "de": "Ereignis startet in",
-    "sv": "En händelse startar om"
+    "sv": "En händelse startar om",
+    "fr": "L'événement commence à"
   },
   "titleFormatted": {
     "en": "Event starts in [[when]] [[type]]",
     "no": "En avtale starter om [[when]] [[type]]",
     "nl": "Event start over [[when]] [[type]]",
     "de": "Ereignis startet in [[when]] [[type]]",
-    "sv": "En händelse startar om [[when]] [[type]]"
+    "sv": "En händelse startar om [[when]] [[type]]",
+    "fr": "L'événement commence à [[when]] [[type]]"
   },
   "tokens": [
     {
@@ -23,14 +25,16 @@
         "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
-        "sv": "Titel"
+        "sv": "Titel",
+        "fr": "Titre"
       },
       "example": {
         "en": "Pick up in kindergarden",
         "no": "Hente i barnehagen",
         "nl": "Kinderen ophalen",
         "de": "Im Kindergarten abholen",
-        "sv": "Hämta på förskolan"
+        "sv": "Hämta på förskolan",
+        "fr": "Prise en charge à l'école maternelle"
       }
     },
     {
@@ -41,14 +45,16 @@
         "no": "Beskrivelse",
         "nl": "Omschrijving",
         "de": "Beschreibung",
-        "sv": "Beskrivning"
+        "sv": "Beskrivning",
+        "fr": "Description"
       },
       "example": {
         "en": "Pick up kids in kindergarden",
         "no": "Hente barna fra barnehagen",
         "nl": "Haal de kinderen van school op",
         "de": "Kinder im Kindergarten abholen",
-        "sv": "Hämta barnen på förskolan"
+        "sv": "Hämta barnen på förskolan",
+        "fr": "Prise en charge à l'école maternelle"
       }
     },
     {
@@ -59,14 +65,16 @@
         "no": "Sted",
         "nl": "Locatie",
         "de": "Ort",
-        "sv": "Plats"
+        "sv": "Plats",
+        "fr": "Localisation"
       },
       "example": {
         "en": "Kindergarden street, 30",
         "no": "Barnehagegata, 30",
         "nl": "Schoolstraat 30",
         "de": "Kindergartenstraße 30",
-        "sv": "Förskolegatan 30"
+        "sv": "Förskolegatan 30",
+        "fr": "30 rue de l'école maternelle"
       }
     },
     {
@@ -77,14 +85,16 @@
         "no": "Varighet",
         "nl": "Tijdsduur",
         "de": "Dauer",
-        "sv": "Varaktighet"
+        "sv": "Varaktighet",
+        "fr": "Durée"
       },
       "example": {
         "en": "1.5 hour",
         "no": "1.5 time",
         "nl": "1.5 uur",
         "de": "1.5 Stunden",
-        "sv": "1,5 timma"
+        "sv": "1,5 timma",
+        "fr": "1.5 heure"
       }
     },
     {
@@ -95,14 +105,16 @@
         "no": "Varighet i minutter",
         "nl": "Tijdsduur in minuten",
         "de": "Dauer in Minuten",
-        "sv": "Varaktighet i minuter"
+        "sv": "Varaktighet i minuter",
+        "fr": "Durée en minutes"
       },
       "example": {
         "en": "90",
         "no": "90",
         "nl": "90",
         "de": "90",
-        "sv": "90"
+        "sv": "90",
+        "fr": "90"
       }
     },
     {
@@ -113,14 +125,16 @@
         "no": "Kalendernavn",
         "nl": "Kalender naam",
         "de": "Kalenderbezeichnung",
-        "sv": "Kalendernamn"
+        "sv": "Kalendernamn",
+        "fr": "Nom du calendrier"
       },
       "example": {
         "en": "Gmail",
         "no": "Gmail",
         "nl": "Gmail",
         "de": "Gmail",
-        "sv": "Gmail"
+        "sv": "Gmail",
+        "fr": "Gamil"
       }
     },
     {
@@ -131,14 +145,16 @@
         "no": "Status",
         "nl": "Status",
         "de": "Status",
-        "sv": "Status"
+        "sv": "Status",
+        "fr": "Statut"
       },
       "example": {
         "en": "Free",
         "no": "Ledig",
         "nl": "Vrij",
         "de": "Frei",
-        "sv": "Ledig"
+        "sv": "Ledig",
+        "fr": "Libre"
       }
     },
     {
@@ -149,7 +165,8 @@
         "no": "Møte-URL",
         "nl": "Vergadering URL",
         "de": "Besprechungs-URL",
-        "sv": "Mötes-URL"
+        "sv": "Mötes-URL",
+        "fr": "URL de la réunion"
       },
       "example": {
         "en": "https://meeting.url"
@@ -167,7 +184,8 @@
         "no": "Antall",
         "nl": "Aantal",
         "de": "Menge",
-        "sv": "Antal"
+        "sv": "Antal",
+        "fr": "Valeur"
       }
     },
     {
@@ -181,7 +199,8 @@
             "no": "Minutt(er)",
             "nl": "Minuten",
             "de": "Minute(n)",
-            "sv": "Minut(er)"
+            "sv": "Minut(er)",
+            "fr": "Minute(s)"
           }
         },
         {
@@ -191,7 +210,8 @@
             "no": "Time(r)",
             "nl": "Uur",
             "de": "Stunde(n)",
-            "sv": "Timma(r)"
+            "sv": "Timma(r)",
+            "fr": "Heure(s)"
           }
         },
         {
@@ -201,7 +221,8 @@
             "no": "Dag(er)",
             "nl": "Dagen",
             "de": "Tag(e)",
-            "sv": "Dag(ar)"
+            "sv": "Dag(ar)",
+            "fr": "Jour(s)"
           }
         },
         {
@@ -211,7 +232,8 @@
             "no": "Uke(r)",
             "nl": "Weken",
             "de": "Woche(n)",
-            "sv": "Vecka/Veckor"
+            "sv": "Vecka/Veckor",
+            "fr": "Semaine(s)"
           }
         }
       ]
