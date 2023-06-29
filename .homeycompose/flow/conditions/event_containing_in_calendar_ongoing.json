@@ -5,21 +5,24 @@
     "no": "Avtale som inneholder ... i kalender ... !{{pågår|pågår ikke}}",
     "nl": "Event met ... in kalender ... !{{is|is niet}} bezig",
     "de": "Ereignis mit ... im Kalender ... !{{ist|ist nicht}} laufend",
-    "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}"
+    "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}",
+    "fr": "Événement contenant ... dans le calendrier ... !{{est|n'est pas}} en cours"
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{is|isn't}} ongoing",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{pågår|pågår ikke}}",
     "nl": "Event met [[value]] in kalender [[calendar]] !{{is|is niet}} bezig",
     "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{ist|ist nicht}} laufend",
-    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}"
+    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}",
+    "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{est|n'est pas}} en cours"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar is ongoing",
     "no": "Avtale som inneholder søkeverdi i valgt kalender pågår",
     "nl": "Event met zoekwaarde in gekozen kalender is bezig",
     "de": "Ereignis mit Suchwert im ausgewählten Kalender ist laufend",
-    "sv": "Händelse som innehåller sökvärde i vald kalender pågår"
+    "sv": "Händelse som innehåller sökvärde i vald kalender pågår",
+    "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi est en cours"
   },
   "args": [
     {
@@ -30,7 +33,8 @@
         "no": "Søkeverdi for avtalen",
         "nl": "Zoekwaarde te vinden in event",
         "de": "Suchwert, der im Ereignis gefunden werden soll",
-        "sv": "Sökvärde att hitta i händelse"
+        "sv": "Sökvärde att hitta i händelse",
+        "fr": "Valeur à rechercher dans l'événement"
       }
     },
     {
@@ -41,7 +45,8 @@
         "no": "Velg kalender...",
         "nl": "Selecteer kalender...",
         "de": "Kalender auswählen...",
-        "sv": "Välj kalender..."
+        "sv": "Välj kalender...",
+        "fr": "Choisissez le calendrier..."
       }
     }
   ]
