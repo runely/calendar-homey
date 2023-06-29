@@ -1,89 +1,97 @@
 {
-    "id": "event_stops_in",
-    "title": {
-      "en": "Specific event !{{ends|doesn't end}} within...",
-      "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
-      "nl": "Specifiek event !{{stopt|stopt niet}} over...",
-      "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb...",
-      "sv": "En specifik händelse !{{slutar|slutar inte}} innan..."
-    },
-    "titleFormatted": {
-      "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
-      "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
-      "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
-      "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]",
-      "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]"
-    },
-    "args": [
-      {
-        "name": "event",
-        "type": "autocomplete",
-        "placeholder": {
-          "en": "Select event...",
-          "no": "Velg avtale...",
-          "nl": "Selecteer event",
-          "de": "Ereignis auswählen...",
-          "sv": "Välj händelse..."
-        }
-      },
-      {
-        "name": "when",
-        "type": "number",
-        "min": 1,
-        "step": 1,
-        "placeholder": {
-          "en": "Amount",
-          "no": "Antall",
-          "nl": "Aantal",
-          "de": "Anzahl",
-          "sv": "Antal"
-        }
-      },
-      {
-        "name": "type",
-        "type": "dropdown",
-        "values": [
-          {
-            "id": "1",
-            "label": {
-              "en": "Minute(s)",
-              "no": "Minutt(er)",
-              "nl": "Minu(u)t(en)",
-              "de": "Minute(n)",
-              "sv": "Minut(er)"
-            }
-          },
-          {
-            "id": "2",
-            "label": {
-              "en": "Hour(s)",
-              "no": "Time(r)",
-              "nl": "U(u)r(en)",
-              "de": "Stunde(n)",
-              "sv": "Timma(r)"
-            }
-          },
-          {
-            "id": "3",
-            "label": {
-              "en": "Day(s)",
-              "no": "Dag(er)",
-              "nl": "Dag(en)",
-              "de": "Tag(e)",
-              "sv": "Dag(ar)"
-            }
-          },
-          {
-            "id": "4",
-            "label": {
-              "en": "Week(s)",
-              "no": "Uke(r)",
-              "nl": "We(e)k(en)",
-              "de": "Woche(n)",
-              "sv": "Vecka/veckor"
-            }
-          }
-        ]
+  "id": "event_stops_in",
+  "title": {
+    "en": "Specific event !{{ends|doesn't end}} within...",
+    "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
+    "nl": "Specifiek event !{{stopt|stopt niet}} over...",
+    "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb...",
+    "sv": "En specifik händelse !{{slutar|slutar inte}} innan...",
+    "fr" : "Evénement spécifique !{{se termine|ne se termine pas}}} dans..."
+  },
+  "titleFormatted": {
+    "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
+    "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
+    "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
+    "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]",
+    "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]",
+    "fr" : "[[event]] !{{se termine|ne se termine pas}}} dans [[when]] [[type]]"
+  },
+  "args": [
+    {
+      "name": "event",
+      "type": "autocomplete",
+      "placeholder": {
+        "en": "Select event...",
+        "no": "Velg avtale...",
+        "nl": "Selecteer event",
+        "de": "Ereignis auswählen...",
+        "sv": "Välj händelse...",
+        "fr" : "Sélectionner un événement..."
       }
-    ]
+    },
+    {
+      "name": "when",
+      "type": "number",
+      "min": 1,
+      "step": 1,
+      "placeholder": {
+        "en": "Amount",
+        "no": "Antall",
+        "nl": "Aantal",
+        "de": "Anzahl",
+        "sv": "Antal",
+        "fr": "Valeur"
+      }
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "1",
+          "label": {
+            "en": "Minute(s)",
+            "no": "Minutt(er)",
+            "nl": "Minu(u)t(en)",
+            "de": "Minute(n)",
+            "sv": "Minut(er)",
+            "fr": "Minute(s)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "Hour(s)",
+            "no": "Time(r)",
+            "nl": "U(u)r(en)",
+            "de": "Stunde(n)",
+            "sv": "Timma(r)",
+            "fr": "Heure(s)"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Day(s)",
+            "no": "Dag(er)",
+            "nl": "Dag(en)",
+            "de": "Tag(e)",
+            "sv": "Dag(ar)",
+            "fr": "Jour(s)"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Week(s)",
+            "no": "Uke(r)",
+            "nl": "We(e)k(en)",
+            "de": "Woche(n)",
+            "sv": "Vecka/veckor",
+            "fr": "Semaine(s)"
+          }
+        }
+      ]
+    }
+  ]
 }
