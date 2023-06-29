@@ -1,19 +1,19 @@
 {
   "id": "event_stop_in",
   "title": {
-    "en": "Event starts in",
-    "no": "En avtale starter om",
-    "nl": "Event start over",
-    "de": "Ereignis startet in",
-    "sv": "En händelse startar om",
+    "en": "Event stop in",
+    "no": "En avtale stoper om",
+    "nl": "Event stop over",
+    "de": "Ereignis stoppen in",
+    "sv": "En händelse stopar om",
     "fr": "L'événement finit à"
   },
   "titleFormatted": {
-    "en": "Event starts in [[when]] [[type]]",
-    "no": "En avtale starter om [[when]] [[type]]",
-    "nl": "Event start over [[when]] [[type]]",
-    "de": "Ereignis startet in [[when]] [[type]]",
-    "sv": "En händelse startar om [[when]] [[type]]",
+    "en": "Event stop in [[when]] [[type]]",
+    "no": "En avtale stoper om [[when]] [[type]]",
+    "nl": "Event stop over [[when]] [[type]]",
+    "de": "Ereignis stopet in [[when]] [[type]]",
+    "sv": "En händelse stop om [[when]] [[type]]",
     "fr": "L'événement finit à [[when]] [[type]]"
   },
   "tokens": [
