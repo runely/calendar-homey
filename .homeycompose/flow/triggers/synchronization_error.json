@@ -5,14 +5,16 @@
     "no": "Synkroniseringsfeil oppstått",
     "nl": "Synchronisatiefout opgetreden",
     "de": "Synchronisationsfehler aufgetreten",
-    "sv": "Synkroniseringsfel uppstod"
+    "sv": "Synkroniseringsfel uppstod",
+    "fr": "Une erreur de synchronisation s'est produite"
   },
   "hint": {
     "en": "Triggers when a synchronization error occurs with one of your calendars",
     "no": "Utløses når det oppstår en synkroniseringsfeil med en av dine kalendere",
     "nl": "Wordt geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
     "de": "Wird ausgelöst, wenn bei einem Ihrer Kalender ein Synchronisierungsfehler auftritt",
-    "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar"
+    "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar",
+    "fr": "Se déclenche lorsqu'une erreur de synchronisation se produit avec l'un de vos calendriers."
   },
   "tokens": [
     {
@@ -23,14 +25,16 @@
         "no": "Kalendernavn",
         "nl": "Kalender naam",
         "de": "Kalenderbezeichnung",
-        "sv": "Kalendernamn"
+        "sv": "Kalendernamn",
+        "fr": "Nom du calendrier"
       },
       "example": {
         "en": "Gmail",
         "no": "Gmail",
         "nl": "Gmail",
         "de": "Gmail",
-        "sv": "Gmail"
+        "sv": "Gmail",
+        "fr": "Gmail"
       }
     },
     {
@@ -41,14 +45,16 @@
         "no": "Feilmelding",
         "nl": "Foutmelding",
         "de": "Fehlermeldung",
-        "sv": "Felmeddelande"
+        "sv": "Felmeddelande",
+        "fr": "Message d'erreur"
       },
       "example": {
         "en": "Invalid time value",
         "no": "Invalid time value",
         "nl": "Invalid time value",
         "de": "Invalid time value",
-        "sv": "Invalid time value"
+        "sv": "Invalid time value",
+        "fr": "Valeur de l'heure invalide"
       }
     },
     {
@@ -73,14 +79,16 @@
         "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
-        "sv": "Titel"
+        "sv": "Titel",
+        "fr": "Titre"
       },
       "example": {
         "en": "Pick up in kindergarden",
         "no": "Hente i barnehagen",
         "nl": "Kinderen ophalen",
         "de": "Im Kindergarten abholen",
-        "sv": "Hämta på förskolan"
+        "sv": "Hämta på förskolan",
+        "fr": "Prise en charge à l'école maternelle"
       }
     },
     {
