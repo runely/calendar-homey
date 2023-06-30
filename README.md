@@ -195,6 +195,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.19.0
+    - French translation. Thanks to [@Elmago27310](https://github.com/Elmago27310)
+    - Dependency updates
 - 1.18.4
     - Log out total event count aswell as imported event count for a calendar
     - Log out `uid` for an event when the property isn't string but object and `val` is used to get the string representation

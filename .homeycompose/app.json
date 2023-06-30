@@ -12,14 +12,16 @@
     "no": "IcalCalendar",
     "nl": "IcalCalender",
     "de": "IcalCalender",
-    "sv": "IcalCalender"
+    "sv": "IcalCalender",
+    "fr": "IcalCalender"
   },
   "description": {
     "en": "Stay on top of your planning with Homey",
     "no": "Ha full kontroll på planleggingen med Homey",
     "nl": "Blijf op de hoogte van je planning met Homey",
     "de": "Behalten Sie mit Homey den Überblick über Ihre Planungen",
-    "sv": "Ha full kontroll på planeringen med Homey"
+    "sv": "Ha full kontroll på planeringen med Homey",
+    "fr": "Restez maître de votre planning avec Homey"
   },
   "category": [
     "tools"
@@ -49,6 +51,9 @@
       },
       {
         "name": "Magnus Claesson"
+      },
+      {
+        "name": "Elmago27310"
       }
     ]
   },
@@ -66,12 +71,27 @@
       "ical"
     ],
     "no": [
-      "calendar",
+      "kalendar",
+      "ics",
+      "ical"
+    ],
+    "nl": [
+      "kalender",
+      "ics",
+      "ical"
+    ],
+    "de": [
+      "Kalender",
       "ics",
       "ical"
     ],
     "sv": [
       "kalender",
+      "ics",
+      "ical"
+    ],
+    "fr": [
+      "calendrier",
       "ics",
       "ical"
     ]

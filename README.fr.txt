@@ -3,10 +3,10 @@ Le IcalCalendar donne des cartes de flux Homey à déclencher suivant vos évén
 Installation
 
 - Ouvrir les paramètres (configurer l'application)
-- Collez le lien ical et donnez-lui un nom
-- Modifiez le format de date/heure ou utilisez la valeur par défaut (votre choix)
-- Tous les jetons pris en charge dans **moment.format()** sont également pris en charge ici: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
-- Choisissez si vous voulez ou non les prochains tags d'événement par calendrier. La valeur par défaut est désactivée
+    - Collez le lien ical et donnez-lui un nom
+    - Modifiez le format de date/heure ou utilisez la valeur par défaut (votre choix)
+        - Tous les jetons pris en charge dans **moment.format()** sont également pris en charge ici: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+    - Choisissez si vous voulez ou non les prochains tags d'événement par calendrier. La valeur par défaut est désactivée
 - Pour être averti d'éventuelles erreurs de synchronisation, créez un flux à l'aide du déclencheur "Une erreur de synchronisation s'est produite"
 
 Rechercher le lien ical Exchange Online

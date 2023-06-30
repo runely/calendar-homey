@@ -13,14 +13,16 @@
     "no": "IcalCalendar",
     "nl": "IcalCalender",
     "de": "IcalCalender",
-    "sv": "IcalCalender"
+    "sv": "IcalCalender",
+    "fr": "IcalCalender"
   },
   "description": {
     "en": "Stay on top of your planning with Homey",
     "no": "Ha full kontroll på planleggingen med Homey",
     "nl": "Blijf op de hoogte van je planning met Homey",
     "de": "Behalten Sie mit Homey den Überblick über Ihre Planungen",
-    "sv": "Ha full kontroll på planeringen med Homey"
+    "sv": "Ha full kontroll på planeringen med Homey",
+    "fr": "Restez maître de votre planning avec Homey"
   },
   "category": [
     "tools"
@@ -50,6 +52,9 @@
       },
       {
         "name": "Magnus Claesson"
+      },
+      {
+        "name": "Elmago27310"
       }
     ]
   },
@@ -67,12 +72,27 @@
       "ical"
     ],
     "no": [
-      "calendar",
+      "kalendar",
+      "ics",
+      "ical"
+    ],
+    "nl": [
+      "kalender",
+      "ics",
+      "ical"
+    ],
+    "de": [
+      "Kalender",
       "ics",
       "ical"
     ],
     "sv": [
       "kalender",
+      "ics",
+      "ical"
+    ],
+    "fr": [
+      "calendrier",
       "ics",
       "ical"
     ]
@@ -91,14 +111,16 @@
           "no": "Ny avtale opprettet",
           "nl": "Evenement toegevoegd",
           "de": "Ereignis hinzugefügt",
-          "sv": "Händelse tillagd"
+          "sv": "Händelse tillagd",
+          "fr": "Événement ajouté"
         },
         "hint": {
           "en": "Triggers when a new event is created",
           "no": "Utløses når en ny avtale opprettes",
           "nl": "Wordt geactiveerd wanneer een nieuwe gebeurtenis wordt gemaakt",
           "de": "Wird ausgelöst, wenn ein neues Ereignis erstellt wird",
-          "sv": "Utlöses när en ny händelse skapas"
+          "sv": "Utlöses när en ny händelse skapas",
+          "fr": "Se déclenche lorsqu'un nouvel événement est créé"
         },
         "tokens": [
           {
@@ -109,14 +131,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskola"
+              "sv": "Hämta på förskola",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -127,14 +151,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Aller chercher les enfants à l'école maternelle"
             }
           },
           {
@@ -145,14 +171,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localistaion"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 Rue du jardin d'enfants"
             }
           },
           {
@@ -163,14 +191,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -181,14 +211,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -199,14 +231,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -217,14 +251,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -235,7 +271,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -249,14 +286,16 @@
               "no": "Startdato",
               "nl": "Startdatum",
               "de": "Startdatum",
-              "sv": "Startdatum"
+              "sv": "Startdatum",
+              "fr": "Date de début"
             },
             "example": {
               "en": "01/22/22",
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "22-01-22"
+              "sv": "22-01-22",
+              "fr": "22/01/22"
             }
           },
           {
@@ -267,14 +306,16 @@
               "no": "Starttidspunkt",
               "nl": "Starttijd",
               "de": "Beginn",
-              "sv": "Starttid"
+              "sv": "Starttid",
+              "fr": "Heure de début"
             },
             "example": {
               "en": "08:15",
               "no": "08:15",
               "nl": "08:15",
               "de": "08:15",
-              "sv": "08:15"
+              "sv": "08:15",
+              "fr": "08h15"
             }
           },
           {
@@ -285,14 +326,16 @@
               "no": "Sluttdato",
               "nl": "Stopdatum",
               "de": "Enddatum",
-              "sv": "Slutdatum"
+              "sv": "Slutdatum",
+              "fr": "Date de fin"
             },
             "example": {
               "en": "01/22/22",
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "22-01-22"
+              "sv": "22-01-22",
+              "fr": "22/01/22"
             }
           },
           {
@@ -303,14 +346,16 @@
               "no": "Sluttidspunkt",
               "nl": "Stoptijd",
               "de": "Ende",
-              "sv": "Sluttid"
+              "sv": "Sluttid",
+              "fr": "Heure de fin"
             },
             "example": {
               "en": "11:30",
               "no": "11:30",
               "nl": "11:30",
               "de": "11:30",
-              "sv": "11:30"
+              "sv": "11:30",
+              "fr": "11h30"
             }
           },
           {
@@ -321,14 +366,16 @@
               "no": "Ukedag",
               "nl": "Weekdag",
               "de": "Vochentag",
-              "sv": "Veckodag"
+              "sv": "Veckodag",
+              "fr": "Jour de la semaine"
             },
             "example": {
               "en": "Monday",
               "no": "Mandag",
               "nl": "Maandag",
               "de": "Montag",
-              "sv": "Måndag"
+              "sv": "Måndag",
+              "fr": "Lundi"
             }
           },
           {
@@ -339,14 +386,16 @@
               "no": "Måned",
               "nl": "Maand",
               "de": "Monat",
-              "sv": "Månad"
+              "sv": "Månad",
+              "fr": "Mois"
             },
             "example": {
               "en": "January",
               "no": "Januar",
               "nl": "Januari",
               "de": "Januar",
-              "sv": "Januari"
+              "sv": "Januari",
+              "fr": "Janvier"
             }
           },
           {
@@ -357,14 +406,16 @@
               "no": "Dagsnummer",
               "nl": "Dag nummer",
               "de": "Tagesnummer",
-              "sv": "Dagnummer"
+              "sv": "Dagnummer",
+              "fr": "Date"
             },
             "example": {
               "en": "30",
               "no": "30",
               "nl": "30",
               "de": "30",
-              "sv": "30"
+              "sv": "30",
+              "fr": "30"
             }
           }
         ]
@@ -376,21 +427,24 @@
           "no": "Ny avtale opprettet i kalender",
           "nl": "Evenement toegevoegd aan kalender",
           "de": "Ereignis zum Kalender hinzugefügt",
-          "sv": "Händelse tillagd i kalender"
+          "sv": "Händelse tillagd i kalender",
+          "fr": "Ajout d'un événement dans le calendrier"
         },
         "hint": {
           "en": "Triggers when a new event is created",
           "no": "Utløses når en ny avtale opprettes",
           "nl": "Wordt geactiveerd wanneer een nieuwe gebeurtenis wordt gemaakt",
           "de": "Wird ausgelöst, wenn ein neues Ereignis erstellt wird",
-          "sv": "Utlöses när en ny händelse skapas"
+          "sv": "Utlöses när en ny händelse skapas",
+          "fr": "Se déclenche lorsqu'un nouvel événement est créé"
         },
         "titleFormatted": {
           "en": "Event added in [[calendar]]",
           "no": "Ny avtale opprettet i [[calendar]]",
           "nl": "Evenement toegevoegd aan [[calendar]]",
           "de": "Ereignis zum [[calendar]] hinzugefügt",
-          "sv": "Händelse tillagd i [[calendar]]"
+          "sv": "Händelse tillagd i [[calendar]]",
+          "fr": "Événement ajouté dans [[calendar]]"
         },
         "args": [
           {
@@ -401,7 +455,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ],
@@ -414,14 +469,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskola"
+              "sv": "Hämta på förskola",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -432,14 +489,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Aller chercher les enfants à l'école maternelle"
             }
           },
           {
@@ -450,14 +509,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -468,14 +529,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Description"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 Heure"
             }
           },
           {
@@ -486,14 +549,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -504,14 +569,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -522,14 +589,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -540,7 +609,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -554,14 +624,16 @@
               "no": "Startdato",
               "nl": "Startdatum",
               "de": "Startdatum",
-              "sv": "Startdatum"
+              "sv": "Startdatum",
+              "fr": "Date de début"
             },
             "example": {
               "en": "01/22/22",
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "22-01-22"
+              "sv": "22-01-22",
+              "fr": "22/01/22"
             }
           },
           {
@@ -572,14 +644,16 @@
               "no": "Starttidspunkt",
               "nl": "Starttijd",
               "de": "Beginn",
-              "sv": "Starttid"
+              "sv": "Starttid",
+              "fr": "Heure de début"
             },
             "example": {
               "en": "08:15",
               "no": "08:15",
               "nl": "08:15",
               "de": "08:15",
-              "sv": "08:15"
+              "sv": "08:15",
+              "fr": "08h15"
             }
           },
           {
@@ -590,14 +664,16 @@
               "no": "Sluttdato",
               "nl": "Stopdatum",
               "de": "Enddatum",
-              "sv": "Slutdatum"
+              "sv": "Slutdatum",
+              "fr": "Date de fin"
             },
             "example": {
               "en": "01/22/22",
               "no": "22.01.22",
               "nl": "22-01-22",
               "de": "22-01-22",
-              "sv": "22-01-22"
+              "sv": "22-01-22",
+              "fr": "22/01/22"
             }
           },
           {
@@ -608,14 +684,16 @@
               "no": "Sluttidspunkt",
               "nl": "Stoptijd",
               "de": "Ende",
-              "sv": "Sluttid"
+              "sv": "Sluttid",
+              "fr": "Heure de fin"
             },
             "example": {
               "en": "11:30",
               "no": "11:30",
               "nl": "11:30",
               "de": "11:30",
-              "sv": "11:30"
+              "sv": "11:30",
+              "fr": "08h15"
             }
           },
           {
@@ -626,14 +704,16 @@
               "no": "Ukedag",
               "nl": "Weekdag",
               "de": "Vochentag",
-              "sv": "Veckodag"
+              "sv": "Veckodag",
+              "fr": "Jour de la semaine"
             },
             "example": {
               "en": "Monday",
               "no": "Mandag",
               "nl": "Maandag",
               "de": "Montag",
-              "sv": "Måndag"
+              "sv": "Måndag",
+              "fr": "Lundi"
             }
           },
           {
@@ -644,14 +724,16 @@
               "no": "Måned",
               "nl": "Maand",
               "de": "Monat",
-              "sv": "Månad"
+              "sv": "Månad",
+              "fr": "Mois"
             },
             "example": {
               "en": "January",
               "no": "Januar",
               "nl": "Januari",
               "de": "Januar",
-              "sv": "Januari"
+              "sv": "Januari",
+              "fr": "Janvier"
             }
           },
           {
@@ -662,14 +744,16 @@
               "no": "Dagsnummer",
               "nl": "Dag nummer",
               "de": "Tagesnummer",
-              "sv": "Dagnummer"
+              "sv": "Dagnummer",
+              "fr": "Date"
             },
             "example": {
               "en": "30",
               "no": "30",
               "nl": "30",
               "de": "30",
-              "sv": "30"
+              "sv": "30",
+              "fr": "30"
             }
           }
         ]
@@ -681,14 +765,16 @@
           "no": "En avtale ble endret",
           "nl": "Een event is gewijzigd",
           "de": "Ereignis wurde geändert",
-          "sv": "En händelse har ändrats"
+          "sv": "En händelse har ändrats",
+          "fr": "Événement modifié"
         },
         "hint": {
           "en": "Triggers when an already synchronized event is changed",
           "no": "Utløses når en allerede synkronisert avtale blir endret",
           "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
           "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
-          "sv": "Utlöses när en redan synkroniserad händelse har ändras"
+          "sv": "Utlöses när en redan synkroniserad händelse har ändras",
+          "fr": "Se déclenche lorsqu'un événement déjà synchronisé est modifié"
         },
         "tokens": [
           {
@@ -699,14 +785,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskola"
+              "sv": "Hämta på förskola",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -717,14 +805,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -735,14 +825,16 @@
               "no": "Type",
               "nl": "Type",
               "de": "Typ",
-              "sv": "Typ"
+              "sv": "Typ",
+              "fr": "Type"
             },
             "example": {
               "en": "Location",
               "no": "Plassering",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             }
           },
           {
@@ -753,7 +845,8 @@
               "no": "Tidligere verdi",
               "nl": "Vorige waarde",
               "de": "Vorheriger Wert",
-              "sv": "Tidigare värde"
+              "sv": "Tidigare värde",
+              "fr": "Valeur précédente"
             }
           },
           {
@@ -764,7 +857,8 @@
               "no": "Ny verdi",
               "nl": "Nieuwe waarde",
               "de": "Neuer Wert",
-              "sv": "Nytt värde"
+              "sv": "Nytt värde",
+              "fr": "Nouvelle valeur"
             }
           },
           {
@@ -775,7 +869,8 @@
               "no": "Pågikk",
               "nl": "Was aan de gang",
               "de": "War im Gange",
-              "sv": "Pågick"
+              "sv": "Pågick",
+              "fr": "Était en cours"
             }
           },
           {
@@ -786,7 +881,8 @@
               "no": "Pågår",
               "nl": "Is bezig",
               "de": "Ist laufend",
-              "sv": "Pågår"
+              "sv": "Pågår",
+              "fr": "En cours"
             }
           }
         ]
@@ -798,21 +894,24 @@
           "no": "En avtale ble endret i kalender",
           "nl": "Een event is gewijzigd in kalender",
           "de": "Ereignis wurde geändert im Kalender",
-          "sv": "En händelse har ändrats i kalender"
+          "sv": "En händelse har ändrats i kalender",
+          "fr": "Événement modifié dans le calendrier"
         },
         "hint": {
           "en": "Triggers when an already synchronized event is changed",
           "no": "Utløses når en allerede synkronisert avtale blir endret",
           "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
           "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
-          "sv": "Utlöses när en redan synkroniserad händelse har ändras"
+          "sv": "Utlöses när en redan synkroniserad händelse har ändras",
+          "fr": "Se déclenche lorsqu'un événement déjà synchronisé est modifié"
         },
         "titleFormatted": {
           "en": "Event is changed in [[calendar]]",
           "no": "En avtale ble endret i [[calendar]]",
           "nl": "Een event is gewijzigd in [[calendar]]",
           "de": "Ereignis wurde geändert im [[calendar]]",
-          "sv": "En händelse har ändrats i [[calendar]]"
+          "sv": "En händelse har ändrats i [[calendar]]",
+          "fr": "Événement modifié dans le calendrier [[calendar]]"
         },
         "args": [
           {
@@ -823,7 +922,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ],
@@ -836,14 +936,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskola"
+              "sv": "Hämta på förskola",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -854,14 +956,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -872,14 +976,16 @@
               "no": "Type",
               "nl": "Type",
               "de": "Typ",
-              "sv": "Typ"
+              "sv": "Typ",
+              "fr": "Type"
             },
             "example": {
               "en": "Location",
               "no": "Plassering",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             }
           },
           {
@@ -890,7 +996,8 @@
               "no": "Tidligere verdi",
               "nl": "Vorige waarde",
               "de": "Vorheriger Wert",
-              "sv": "Tidigare värde"
+              "sv": "Tidigare värde",
+              "fr": "Valeur précédente"
             }
           },
           {
@@ -901,7 +1008,8 @@
               "no": "Ny verdi",
               "nl": "Nieuwe waarde",
               "de": "Neuer Wert",
-              "sv": "Nytt värde"
+              "sv": "Nytt värde",
+              "fr": "Nouvelle valeur"
             }
           },
           {
@@ -912,7 +1020,8 @@
               "no": "Pågikk",
               "nl": "Was aan de gang",
               "de": "War im Gange",
-              "sv": "Pågick"
+              "sv": "Pågick",
+              "fr": "Était en cours"
             }
           },
           {
@@ -923,7 +1032,8 @@
               "no": "Pågår",
               "nl": "Is bezig",
               "de": "Ist laufend",
-              "sv": "Pågår"
+              "sv": "Pågår",
+              "fr": "Est encours"
             }
           }
         ]
@@ -935,7 +1045,8 @@
           "no": "En avtale starter",
           "nl": "Event start",
           "de": "Ereignis beginnt",
-          "sv": "Händelse startar"
+          "sv": "Händelse startar",
+          "fr": "L'événement commence"
         },
         "tokens": [
           {
@@ -946,14 +1057,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskola"
+              "sv": "Hämta på förskola",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -964,14 +1077,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -982,14 +1097,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -1000,14 +1117,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1018,14 +1137,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1036,14 +1157,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -1054,14 +1177,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1072,7 +1197,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1087,14 +1213,16 @@
           "no": "En avtale starter fra kalender",
           "nl": "Event begint vanaf de kalender",
           "de": "Ereignis startet aus dem Kalender",
-          "sv": "En händelse startar i kalender"
+          "sv": "En händelse startar i kalender",
+          "fr": "L'événement démarre à partir du calendrier"
         },
         "titleFormatted": {
           "en": "Event starts from [[calendar]]",
           "no": "En avtale starter fra [[calendar]]",
           "nl": "Event begint vanaf de [[calendar]]",
           "de": "Ereignis startet aus dem [[calendar]]",
-          "sv": "En händelse startar i [[calendar]]"
+          "sv": "En händelse startar i [[calendar]]",
+          "fr": "L'événement démarre à partir du calendrier [[calendar]]"
         },
         "args": [
           {
@@ -1105,7 +1233,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ],
@@ -1118,14 +1247,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1136,14 +1267,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Aller chercher les enfants à l'école maternelle"
             }
           },
           {
@@ -1154,14 +1287,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -1172,14 +1307,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1190,14 +1327,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1208,14 +1347,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -1226,14 +1367,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1244,7 +1387,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1259,14 +1403,16 @@
           "no": "En avtale starter om",
           "nl": "Event start over",
           "de": "Ereignis startet in",
-          "sv": "En händelse startar om"
+          "sv": "En händelse startar om",
+          "fr": "L'événement commence à"
         },
         "titleFormatted": {
           "en": "Event starts in [[when]] [[type]]",
           "no": "En avtale starter om [[when]] [[type]]",
           "nl": "Event start over [[when]] [[type]]",
           "de": "Ereignis startet in [[when]] [[type]]",
-          "sv": "En händelse startar om [[when]] [[type]]"
+          "sv": "En händelse startar om [[when]] [[type]]",
+          "fr": "L'événement commence à [[when]] [[type]]"
         },
         "tokens": [
           {
@@ -1277,14 +1423,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1295,14 +1443,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1313,14 +1463,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -1331,14 +1483,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1349,14 +1503,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1367,14 +1523,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gamil"
             }
           },
           {
@@ -1385,14 +1543,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1403,7 +1563,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1421,7 +1582,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Menge",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -1435,7 +1597,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minuten",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -1445,7 +1608,8 @@
                   "no": "Time(r)",
                   "nl": "Uur",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -1455,7 +1619,8 @@
                   "no": "Dag(er)",
                   "nl": "Dagen",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -1465,7 +1630,8 @@
                   "no": "Uke(r)",
                   "nl": "Weken",
                   "de": "Woche(n)",
-                  "sv": "Vecka/Veckor"
+                  "sv": "Vecka/Veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -1479,7 +1645,8 @@
           "no": "En avtale slutter",
           "nl": "Event stopt",
           "de": "Ereignis endet",
-          "sv": "Händelse slutar"
+          "sv": "Händelse slutar",
+          "fr": "Fin de l'événement"
         },
         "tokens": [
           {
@@ -1490,14 +1657,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1508,14 +1677,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1526,14 +1697,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -1544,14 +1717,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1562,14 +1737,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1580,14 +1757,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -1598,14 +1777,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1616,7 +1797,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1631,14 +1813,16 @@
           "no": "En avtale slutter fra kalender",
           "nl": "Event stopt vanaf de kalender",
           "de": "Ereignis endet aus dem Kalender",
-          "sv": "En händelse slutar i kalender"
+          "sv": "En händelse slutar i kalender",
+          "fr": "Fin de l'événement dans le calendrier"
         },
         "titleFormatted": {
           "en": "Event ends from [[calendar]]",
           "no": "En avtale slutter fra [[calendar]]",
           "nl": "Event stopt vanaf de [[calendar]]",
           "de": "Ereignis endet aus dem [[calendar]]",
-          "sv": "En händelse slutar i [[calendar]]"
+          "sv": "En händelse slutar i [[calendar]]",
+          "fr": "Fin de l'événement dans le calendrier [[calendar]]"
         },
         "args": [
           {
@@ -1649,7 +1833,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ],
@@ -1662,14 +1847,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1680,14 +1867,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1698,9 +1887,11 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
+              "30": "30 rue de l'école maternelle",
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
@@ -1716,14 +1907,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1734,14 +1927,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1752,14 +1947,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -1770,14 +1967,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1788,7 +1987,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1803,14 +2003,16 @@
           "no": "En avtale slutter om",
           "nl": "Event stopt over",
           "de": "Ereignis endet in",
-          "sv": "En händelse slutar om"
+          "sv": "En händelse slutar om",
+          "fr": "L'événement finit à"
         },
         "titleFormatted": {
           "en": "Event ends in [[when]] [[type]]",
           "no": "En avtale slutter om [[when]] [[type]]",
           "nl": "Event stopt over [[when]] [[type]]",
           "de": "Ereignis endet in [[when]] [[type]]",
-          "sv": "En händelse slutar om [[when]] [[type]]"
+          "sv": "En händelse slutar om [[when]] [[type]]",
+          "fr": "L'événement finit à [[when]] [[type]]"
         },
         "tokens": [
           {
@@ -1821,14 +2023,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1839,14 +2043,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "example": {
               "en": "Pick up kids in kindergarden",
               "no": "Hente barna fra barnehagen",
               "nl": "Haal de kinderen van school op",
               "de": "Kinder im Kindergarten abholen",
-              "sv": "Hämta barnen på förskolan"
+              "sv": "Hämta barnen på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -1857,14 +2063,16 @@
               "no": "Sted",
               "nl": "Locatie",
               "de": "Ort",
-              "sv": "Plats"
+              "sv": "Plats",
+              "fr": "Localisation"
             },
             "example": {
               "en": "Kindergarden street, 30",
               "no": "Barnehagegata, 30",
               "nl": "Schoolstraat 30",
               "de": "Kindergartenstraße 30",
-              "sv": "Förskolegatan 30"
+              "sv": "Förskolegatan 30",
+              "fr": "30 rue de l'école maternelle"
             }
           },
           {
@@ -1875,14 +2083,16 @@
               "no": "Varighet",
               "nl": "Tijdsduur",
               "de": "Dauer",
-              "sv": "Varaktighet"
+              "sv": "Varaktighet",
+              "fr": "Durée"
             },
             "example": {
               "en": "1.5 hour",
               "no": "1.5 time",
               "nl": "1.5 uur",
               "de": "1.5 Stunden",
-              "sv": "1,5 timma"
+              "sv": "1,5 timma",
+              "fr": "1.5 heure"
             }
           },
           {
@@ -1893,14 +2103,16 @@
               "no": "Varighet i minutter",
               "nl": "Tijdsduur in minuten",
               "de": "Dauer in Minuten",
-              "sv": "Varaktighet i minuter"
+              "sv": "Varaktighet i minuter",
+              "fr": "Durée en minutes"
             },
             "example": {
               "en": "90",
               "no": "90",
               "nl": "90",
               "de": "90",
-              "sv": "90"
+              "sv": "90",
+              "fr": "90"
             }
           },
           {
@@ -1911,14 +2123,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gamil"
             }
           },
           {
@@ -1929,14 +2143,16 @@
               "no": "Status",
               "nl": "Status",
               "de": "Status",
-              "sv": "Status"
+              "sv": "Status",
+              "fr": "Statut"
             },
             "example": {
               "en": "Free",
               "no": "Ledig",
               "nl": "Vrij",
               "de": "Frei",
-              "sv": "Ledig"
+              "sv": "Ledig",
+              "fr": "Libre"
             }
           },
           {
@@ -1947,7 +2163,8 @@
               "no": "Møte-URL",
               "nl": "Vergadering URL",
               "de": "Besprechungs-URL",
-              "sv": "Mötes-URL"
+              "sv": "Mötes-URL",
+              "fr": "URL de la réunion"
             },
             "example": {
               "en": "https://meeting.url"
@@ -1965,7 +2182,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Menge",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -1979,7 +2197,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minuten",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -1989,7 +2208,8 @@
                   "no": "Time(r)",
                   "nl": "Uur",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -1999,7 +2219,8 @@
                   "no": "Dag(er)",
                   "nl": "Dagen",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2009,7 +2230,8 @@
                   "no": "Uke(r)",
                   "nl": "Weken",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -2023,14 +2245,16 @@
           "no": "Synkroniseringsfeil oppstått",
           "nl": "Synchronisatiefout opgetreden",
           "de": "Synchronisationsfehler aufgetreten",
-          "sv": "Synkroniseringsfel uppstod"
+          "sv": "Synkroniseringsfel uppstod",
+          "fr": "Une erreur de synchronisation s'est produite"
         },
         "hint": {
           "en": "Triggers when a synchronization error occurs with one of your calendars",
           "no": "Utløses når det oppstår en synkroniseringsfeil med en av dine kalendere",
           "nl": "Wordt geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
           "de": "Wird ausgelöst, wenn bei einem Ihrer Kalender ein Synchronisierungsfehler auftritt",
-          "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar"
+          "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar",
+          "fr": "Se déclenche lorsqu'une erreur de synchronisation se produit avec l'un de vos calendriers."
         },
         "tokens": [
           {
@@ -2041,14 +2265,16 @@
               "no": "Kalendernavn",
               "nl": "Kalender naam",
               "de": "Kalenderbezeichnung",
-              "sv": "Kalendernamn"
+              "sv": "Kalendernamn",
+              "fr": "Nom du calendrier"
             },
             "example": {
               "en": "Gmail",
               "no": "Gmail",
               "nl": "Gmail",
               "de": "Gmail",
-              "sv": "Gmail"
+              "sv": "Gmail",
+              "fr": "Gmail"
             }
           },
           {
@@ -2059,14 +2285,16 @@
               "no": "Feilmelding",
               "nl": "Foutmelding",
               "de": "Fehlermeldung",
-              "sv": "Felmeddelande"
+              "sv": "Felmeddelande",
+              "fr": "Message d'erreur"
             },
             "example": {
               "en": "Invalid time value",
               "no": "Invalid time value",
               "nl": "Invalid time value",
               "de": "Invalid time value",
-              "sv": "Invalid time value"
+              "sv": "Invalid time value",
+              "fr": "Valeur de l'heure invalide"
             }
           },
           {
@@ -2091,14 +2319,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "example": {
               "en": "Pick up in kindergarden",
               "no": "Hente i barnehagen",
               "nl": "Kinderen ophalen",
               "de": "Im Kindergarten abholen",
-              "sv": "Hämta på förskolan"
+              "sv": "Hämta på förskolan",
+              "fr": "Prise en charge à l'école maternelle"
             }
           },
           {
@@ -2122,14 +2352,16 @@
           "no": "En avtale !{{starter|starter ikke}} innen...",
           "nl": "Een event !{{start|start niet}} over...",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb...",
-          "sv": "En händelse !{{startar|startar inte}} inom..."
+          "sv": "En händelse !{{startar|startar inte}} inom...",
+          "fr": "Tout événement !{{starts|doesn't start}} avec..."
         },
         "titleFormatted": {
           "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]]",
           "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]]",
           "nl": "Een event !{{start|start niet}} over [[when]] [[type]]",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]]",
-          "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]]"
+          "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]]",
+          "fr": "Tout événement !{{starts|doesn't start}} avec [[when]] [[type]]"
         },
         "args": [
           {
@@ -2142,7 +2374,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2156,7 +2389,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2166,7 +2400,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2176,7 +2411,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2186,7 +2422,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Jour(s)"
                 }
               }
             ]
@@ -2200,14 +2437,16 @@
           "no": "En avtale !{{starter|starter ikke}} innen ... fra kalender",
           "nl": "Een event !{{start|start niet}} over ... vanaf de kalender",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb ... aus dem Kalender",
-          "sv": "En händelse !{{startar|startar inte}} inom ... frän kalender"
+          "sv": "En händelse !{{startar|startar inte}} inom ... frän kalender",
+          "fr": "Tout événement !{{starts|doesn't start}} dans ... du calendrier"
         },
         "titleFormatted": {
           "en": "Any event !{{starts|doesn't start}} within [[when]] [[type]] from [[calendar]]",
           "no": "En avtale !{{starter|starter ikke}} innen [[when]] [[type]] fra [[calendar]]",
           "nl": "Een event !{{start|start niet}} over [[when]] [[type]] vanaf de [[calendar]]",
           "de": "Irgendein Ereignis !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]] aus dem [[calendar]]",
-          "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]] frän [[calendar]]"
+          "sv": "En händelse !{{startar|startar inte}} inom [[when]] [[type]] frän [[calendar]]",
+          "fr": "Tout événement !{{starts|doesn't start}} dans [[when]] [[type]] du calendrier [[calendar]]"
         },
         "args": [
           {
@@ -2220,7 +2459,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2234,7 +2474,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2244,7 +2485,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2254,7 +2496,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2264,7 +2507,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -2277,7 +2521,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ]
@@ -2289,7 +2534,8 @@
           "no": "En avtale !{{pågår|pågår ikke}}",
           "nl": "Een event !{{is|is niet}} bezig",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend",
-          "sv": "En specifik händelse !{{pågår|pågår inte}}"
+          "sv": "En specifik händelse !{{pågår|pågår inte}}",
+          "fr": "Tout événement !{{est|n'est pas}} en cours"
         }
       },
       {
@@ -2299,14 +2545,16 @@
           "no": "En avtale !{{pågår|pågår ikke}} fra kalender",
           "nl": "Een event !{{is|is niet}} bezig vanaf de kalender",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem Kalender",
-          "sv": "En händelse !{{pågår|pågår inte}} i kalender"
+          "sv": "En händelse !{{pågår|pågår inte}} i kalender",
+          "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier"
         },
         "titleFormatted": {
           "en": "Any event !{{is|isn't}} ongoing in [[calendar]]",
           "no": "En avtale !{{pågår|pågår ikke}} fra [[calendar]]",
           "nl": "Een event !{{is|is niet}} bezig vanaf de [[calendar]]",
           "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem [[calendar]]",
-          "sv": "En händelse !{{pågår|pågår inte}} i kalender [[calendar]]"
+          "sv": "En händelse !{{pågår|pågår inte}} i kalender [[calendar]]",
+          "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier [[calendar]]"
         },
         "args": [
           {
@@ -2317,7 +2565,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ]
@@ -2329,14 +2578,16 @@
           "no": "En avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Een event !{{stopt|stopt niet}} over...",
           "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb...",
-          "sv": "En händelse !{{slutar|slutar inte}} innan..."
+          "sv": "En händelse !{{slutar|slutar inte}} innan...",
+          "fr": "Tout événement !{{se termine|ne se termine pas}} dans..."
         },
         "titleFormatted": {
           "en": "Any event !{{ends|doesn't end}} within [[when]] [[type]]",
           "no": "En avtale !{{slutter|slutter ikke}} innen [[when]] [[type]]",
           "nl": "Een event !{{stopt|stopt niet}} over [[when]] [[type]]",
           "de": "Irgendein Ereignis !{{wird beendet|wird nicht beendet}} innerhalb [[when]] [[type]]",
-          "sv": "En händelse !{{slutar|slutar inte}} innan [[when]] [[type]]"
+          "sv": "En händelse !{{slutar|slutar inte}} innan [[when]] [[type]]",
+          "fr": "Tout événement !{{se termine|ne se termine pas}} dans [[when]] [[type]]"
         },
         "args": [
           {
@@ -2349,7 +2600,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2363,7 +2615,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2373,7 +2626,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2383,7 +2637,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2393,7 +2648,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine"
                 }
               }
             ]
@@ -2407,21 +2663,24 @@
           "no": "Avtale som inneholder ... i kalender ... !{{starter|starter ikke}} innen ...",
           "nl": "Event met ... in kalender ... !{{begint|begint niet}} binnen ...",
           "de": "Ereignis mit ... im Kalender ... !{{beginnt|beginnt nicht}} in ...",
-          "sv": "Händelse som innehåller ... i kalendern ... !{{börjar|börjar inte}} inom ..."
+          "sv": "Händelse som innehåller ... i kalendern ... !{{börjar|börjar inte}} inom ...",
+          "fr": "Événement contenant ... dans le calendrier ... !{{démarre|ne démarre pas}} dans ..."
         },
         "titleFormatted": {
           "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",
           "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{starter|starter ikke}} innen [[when]] [[type]]",
           "nl": "Event met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
           "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
-          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]"
+          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]",
+          "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{débute|ne démarre pas}} dans [[when]]. [[type]]"
         },
         "hint": {
           "en": "Event containing search value in chosen calendar starts within selected time range",
           "no": "Avtale som inneholder søkeverdi i valgt kalender starter innen valgt tidsrom",
           "nl": "Event met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
           "de": "Ereignis mit Suchwert im ausgewählten Kalender beginnt innerhalb des ausgewählten Zeitraums",
-          "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall"
+          "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall",
+          "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi commence dans la plage de temps sélectionnée"
         },
         "args": [
           {
@@ -2432,7 +2691,8 @@
               "no": "Søkeverdi for avtalen",
               "nl": "Zoekwaarde te vinden in event",
               "de": "Suchwert, der im Ereignis gefunden werden soll",
-              "sv": "Sökvärde att hitta i händelse"
+              "sv": "Sökvärde att hitta i händelse",
+              "fr": "Valeur à rechercher dans l'événement"
             }
           },
           {
@@ -2443,7 +2703,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisir un calendrier..."
             }
           },
           {
@@ -2456,7 +2717,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2470,7 +2732,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2480,7 +2743,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2490,7 +2754,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2500,7 +2765,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine"
                 }
               }
             ]
@@ -2514,21 +2780,24 @@
           "no": "Avtale som inneholder ... i kalender ... !{{pågår|pågår ikke}}",
           "nl": "Event met ... in kalender ... !{{is|is niet}} bezig",
           "de": "Ereignis mit ... im Kalender ... !{{ist|ist nicht}} laufend",
-          "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}"
+          "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}",
+          "fr": "Événement contenant ... dans le calendrier ... !{{est|n'est pas}} en cours"
         },
         "titleFormatted": {
           "en": "Event containing [[value]] in calendar [[calendar]] !{{is|isn't}} ongoing",
           "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{pågår|pågår ikke}}",
           "nl": "Event met [[value]] in kalender [[calendar]] !{{is|is niet}} bezig",
           "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{ist|ist nicht}} laufend",
-          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}"
+          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}",
+          "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{est|n'est pas}} en cours"
         },
         "hint": {
           "en": "Event containing search value in chosen calendar is ongoing",
           "no": "Avtale som inneholder søkeverdi i valgt kalender pågår",
           "nl": "Event met zoekwaarde in gekozen kalender is bezig",
           "de": "Ereignis mit Suchwert im ausgewählten Kalender ist laufend",
-          "sv": "Händelse som innehåller sökvärde i vald kalender pågår"
+          "sv": "Händelse som innehåller sökvärde i vald kalender pågår",
+          "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi est en cours"
         },
         "args": [
           {
@@ -2539,7 +2808,8 @@
               "no": "Søkeverdi for avtalen",
               "nl": "Zoekwaarde te vinden in event",
               "de": "Suchwert, der im Ereignis gefunden werden soll",
-              "sv": "Sökvärde att hitta i händelse"
+              "sv": "Sökvärde att hitta i händelse",
+              "fr": "Valeur à rechercher dans l'événement"
             }
           },
           {
@@ -2550,7 +2820,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ]
@@ -2562,21 +2833,24 @@
           "no": "Avtale som inneholder ... i kalender ... !{{slutter|slutter ikke}} innen ...",
           "nl": "Event met ... in kalender ... !{{stopt|stopt niet}} binnen ...",
           "de": "Ereignis mit ... im Kalender ... !{{endet|endet nicht}} in ...",
-          "sv": "Händelse som innehåller ... i kalendern ... !{{slutar|slutar inte}} inom ..."
+          "sv": "Händelse som innehåller ... i kalendern ... !{{slutar|slutar inte}} inom ...",
+          "fr": "Événement contenant ... dans le calendrier ... !{{se termine|ne se termine pas}} dans ..."
         },
         "titleFormatted": {
           "en": "Event containing [[value]] in calendar [[calendar]] !{{ends|doesn't end}} within [[when]] [[type]]",
           "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
           "nl": "Event met [[value]] in kalender [[calendar]] !{{stopt|stopt niet}} binnen [[when]] [[type]]",
           "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{endet|endet nicht}} in [[when]] [[type]]",
-          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{slutar|slutar inte}} inom [[when]] [[type]]"
+          "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{slutar|slutar inte}} inom [[when]] [[type]]",
+          "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{se termine|ne se termine pas}} dans un délai de [[when]]. [[type]]"
         },
         "hint": {
           "en": "Event containing search value in chosen calendar ends within selected time range",
           "no": "Avtale som inneholder søkeverdi i valgt kalender slutter innen valgt tidsrom",
           "nl": "Event met zoekwaarde in gekozen kalender stopt binnen geselecteerde tijdsbestek",
           "de": "Ereignis mit Suchwert im ausgewählten Kalender endet innerhalb des ausgewählten Zeitraums",
-          "sv": "Händelse som innehåller sökvärde i vald kalender slutar inom valt tidsintervall"
+          "sv": "Händelse som innehåller sökvärde i vald kalender slutar inom valt tidsintervall",
+          "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi se termine dans l'intervalle de temps sélectionné"
         },
         "args": [
           {
@@ -2587,7 +2861,8 @@
               "no": "Søkeverdi for avtalen",
               "nl": "Zoekwaarde te vinden in event",
               "de": "Suchwert, der im Ereignis gefunden werden soll",
-              "sv": "Sökvärde att hitta i händelse"
+              "sv": "Sökvärde att hitta i händelse",
+              "fr": "Valeur à rechercher dans l'événement"
             }
           },
           {
@@ -2598,7 +2873,8 @@
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           },
           {
@@ -2611,7 +2887,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2625,7 +2902,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2635,7 +2913,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2645,7 +2924,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2655,7 +2935,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -2669,14 +2950,16 @@
           "no": "Spesifikk avtale !{{starter|starter ikke}} innen...",
           "nl": "Specifiek event !{{start|start niet}} over...",
           "de": "Spezifisches Ereignis !{{beginnt|beginnt nicht}} innerhalb...",
-          "sv": "En specifik händelse !{{startar|startar inte}} innan..."
+          "sv": "En specifik händelse !{{startar|startar inte}} innan...",
+          "fr": "Événement spécifique !{{démarre|ne démarre pas}} dans..."
         },
         "titleFormatted": {
           "en": "[[event]] !{{starts|doesn't start}} within [[when]] [[type]]",
           "no": "[[event]] !{{starter|starter ikke}} innen [[when]] [[type]]",
           "nl": "[[event]] !{{start|start niet}} over [[when]] [[type]]",
           "de": "[[event]] !{{beginnt|beginnt nicht}} innerhalb [[when]] [[type]]",
-          "sv": "[[event]] !{{startar|startar inte}} innan [[when]] [[type]]"
+          "sv": "[[event]] !{{startar|startar inte}} innan [[when]] [[type]]",
+          "fr": "[[event]] !{{démarre|ne démarre pas}} dans [[when]] [[type]]"
         },
         "args": [
           {
@@ -2687,7 +2970,8 @@
               "no": "Velg avtale...",
               "nl": "Selecteer event...",
               "de": "Ereignis auswählen...",
-              "sv": "Välj händelse..."
+              "sv": "Välj händelse...",
+              "fr": "Sélectionner un événement..."
             }
           },
           {
@@ -2700,7 +2984,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2714,7 +2999,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2724,7 +3010,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2734,7 +3021,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2744,7 +3032,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -2758,14 +3047,16 @@
           "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
           "nl": "Specifiek event !{{is|is niet}} bezig",
           "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend",
-          "sv": "En specifik händelse !{{pågår|pågår inte}}"
+          "sv": "En specifik händelse !{{pågår|pågår inte}}",
+          "fr": "Evénement spécifique !{{est|n'est pas}} en cours"
         },
         "titleFormatted": {
           "en": "[[event]] !{{is|isn't}} ongoing",
           "no": "[[event]] !{{pågår|pågår ikke}}",
           "nl": "[[event]] !{{is|is niet}} bezig",
           "de": "[[event]] !{{ist|ist nicht}} laufend",
-          "sv": "[[event]] !{{pågår|pågår inte}}"
+          "sv": "[[event]] !{{pågår|pågår inte}}",
+          "fr": "[[event]] !{{est|n'est pas}} en cours"
         },
         "args": [
           {
@@ -2776,7 +3067,8 @@
               "no": "Velg avtale...",
               "nl": "Selecteer event...",
               "de": "Ereignis auswählen...",
-              "sv": "Välj händelse..."
+              "sv": "Välj händelse...",
+              "fr": "Sélectionner un événement..."
             }
           }
         ]
@@ -2788,14 +3080,16 @@
           "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
           "nl": "Specifiek event !{{stopt|stopt niet}} over...",
           "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb...",
-          "sv": "En specifik händelse !{{slutar|slutar inte}} innan..."
+          "sv": "En specifik händelse !{{slutar|slutar inte}} innan...",
+          "fr": "Evénement spécifique !{{se termine|ne se termine pas}}} dans..."
         },
         "titleFormatted": {
           "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
           "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
           "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
           "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]",
-          "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]"
+          "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]",
+          "fr": "[[event]] !{{se termine|ne se termine pas}}} dans [[when]] [[type]]"
         },
         "args": [
           {
@@ -2806,7 +3100,8 @@
               "no": "Velg avtale...",
               "nl": "Selecteer event",
               "de": "Ereignis auswählen...",
-              "sv": "Välj händelse..."
+              "sv": "Välj händelse...",
+              "fr": "Sélectionner un événement..."
             }
           },
           {
@@ -2819,7 +3114,8 @@
               "no": "Antall",
               "nl": "Aantal",
               "de": "Anzahl",
-              "sv": "Antal"
+              "sv": "Antal",
+              "fr": "Valeur"
             }
           },
           {
@@ -2833,7 +3129,8 @@
                   "no": "Minutt(er)",
                   "nl": "Minu(u)t(en)",
                   "de": "Minute(n)",
-                  "sv": "Minut(er)"
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
                 }
               },
               {
@@ -2843,7 +3140,8 @@
                   "no": "Time(r)",
                   "nl": "U(u)r(en)",
                   "de": "Stunde(n)",
-                  "sv": "Timma(r)"
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
                 }
               },
               {
@@ -2853,7 +3151,8 @@
                   "no": "Dag(er)",
                   "nl": "Dag(en)",
                   "de": "Tag(e)",
-                  "sv": "Dag(ar)"
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
                 }
               },
               {
@@ -2863,7 +3162,8 @@
                   "no": "Uke(r)",
                   "nl": "We(e)k(en)",
                   "de": "Woche(n)",
-                  "sv": "Vecka/veckor"
+                  "sv": "Vecka/veckor",
+                  "fr": "Semaine(s)"
                 }
               }
             ]
@@ -2879,21 +3179,24 @@
           "no": "Slett lokal avtale etter tittel",
           "nl": "Verwijder lokale gebeurtenis op titel",
           "de": "Lösche lokale Veranstaltung nach Titel",
-          "sv": "Radera lokal händelse efter titel"
+          "sv": "Radera lokal händelse efter titel",
+          "fr": "Supprimer un événement local par titre"
         },
         "titleFormatted": {
           "en": "Delete local event by title [[event_name]]",
           "no": "Slett lokal avtale med tittel [[event_name]]",
           "nl": "Verwijder lokale gebeurtenis op titel [[event_name]]",
           "de": "Lokale Veranstaltung nach Titel [[event_name]] löschen",
-          "sv": "Radera lokal händelse efter titel [[event_name]]"
+          "sv": "Radera lokal händelse efter titel [[event_name]]",
+          "fr": "Supprimer un événement local par titre [[event_name]]"
         },
         "hint": {
           "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
           "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
           "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
           "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
-          "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel"
+          "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel",
+          "fr": "Supprimer l'événement local (ne sera pas supprimé de votre calendrier de manière externe)\nSupprimera tous les événements locaux portant ce titre."
         },
         "args": [
           {
@@ -2904,14 +3207,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "placeholder": {
               "en": "Title",
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             }
           }
         ]
@@ -2923,21 +3228,24 @@
           "no": "Opprett lokal avtale",
           "nl": "Lokale gebeurtenis aanmaken",
           "de": "Lokale Veranstaltung erstellen",
-          "sv": "Skapa lokal händelse"
+          "sv": "Skapa lokal händelse",
+          "fr": "Créer un événement local"
         },
         "titleFormatted": {
           "en": "Create local event [[event_name]], starting [[event_start]], ending [[event_end]], timezone: [[apply_timezone]], in calendar [[calendar]] - [[event_description]]",
           "no": "Opprett lokal avtale [[event_name]], starter [[event_start]], slutter [[event_end]], tidssone: [[apply_timezone]], i kalender [[calendar]] - [[event_description]]",
           "nl": "Maak lokale gebeurtenis [[event_name]] aan, begint [[event_start]], eindigt [[event_end]], tijdzone: [[apply_timezone]], in kalender [[calendar]] - [[event_description]]",
           "de": "Lokale Veranstaltung [[event_name]] erstellen, beginnend am [[event_start]], endend am [[event_end]], Zeitzone: [[apply_timezone]], im Kalender [[calendar]] - [[event_description]]",
-          "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]"
+          "sv": "Skapa lokal händelse [[event_name]], börjar [[event_start]], slutar [[event_end]], tidszon: [[apply_timezone]], i kalendern [[calendar]] - [[event_description]]",
+          "fr": "Créer un événement local [[event_name]], débutant [[event_start]], finissant [[event_end]], fuseau horaire : [[apply_timezone]], dans le calendrier [[calendar]]. - [[event_description]]"
         },
         "hint": {
           "en": "Create a new local event (will not be added to your calendar externally).\nIf 'Apply your timezone' is True, date and time are assumed to be in UTC and will have your time zone difference added",
           "no": "Opprett en ny lokal avtale (vil ikke bli lagt til i kalenderen din eksternt).\nHvis 'Bruk din tidssone' er satt til Ja, antas dato og klokkeslett å være i UTC og vil få din tidssoneforskjell lagt til",
           "nl": "Maak een nieuw lokaal evenement aan (wordt niet extern aan uw agenda toegevoegd).\nAls 'Pas uw tijdzone toe' waar is, datum en tijd worden verondersteld in UTC te zijn en uw tijdzoneverschil wordt toegevoegd",
           "de": "Erstellen Sie eine neue lokale Veranstaltung (wird nicht extern zu Ihrem Kalender hinzugefügt).\nWenn 'Ihre Zeitzone anwenden' wahr ist, Datum und Uhrzeit werden in UTC angenommen und Ihre Zeitzonendifferenz wird hinzugefügt",
-          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, datum och tid antas vara i UTC och kommer att lägga till din tidszonsskillnad"
+          "sv": "Skapa en ny lokal händelse (kommer inte att läggas till i din kalender externt).\nOm 'Använd din tidszon' är satt till Ja, datum och tid antas vara i UTC och kommer att lägga till din tidszonsskillnad",
+          "fr": "Créez un nouvel événement local (qui ne sera pas ajouté à votre calendrier externe). Si l'option 'Appliquer votre fuseau horaire' est Vrai, la date et l'heure sont supposées être en UTC et le décalage horaire sera ajouté."
         },
         "args": [
           {
@@ -2948,14 +3256,16 @@
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             },
             "placeholder": {
               "en": "Title",
               "no": "Tittel",
               "nl": "Titel",
               "de": "Titel",
-              "sv": "Titel"
+              "sv": "Titel",
+              "fr": "Titre"
             }
           },
           {
@@ -2966,14 +3276,16 @@
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             },
             "placeholder": {
               "en": "Description",
               "no": "Beskrivelse",
               "nl": "Omschrijving",
               "de": "Beschreibung",
-              "sv": "Beskrivning"
+              "sv": "Beskrivning",
+              "fr": "Description"
             }
           },
           {
@@ -2984,7 +3296,8 @@
               "no": "Avtalestart",
               "nl": "Start evenement",
               "de": "Veranstaltungsbeginn",
-              "sv": "Händelsestart"
+              "sv": "Händelsestart",
+              "fr": "Début de l'événement"
             },
             "placeholder": {
               "en": "2023-04-01T09:38:36"
@@ -2998,7 +3311,8 @@
               "no": "Avtaleslutt",
               "nl": "Einde evenement",
               "de": "Veranstaltungsende",
-              "sv": "Händelseslut"
+              "sv": "Händelseslut",
+              "fr": "Fin de l'événement"
             },
             "placeholder": {
               "en": "2023-04-01T12:38:36"
@@ -3013,7 +3327,8 @@
               "no": "Bruk din tidssone",
               "nl": "Pas uw tijdzone toe",
               "de": "Ihre Zeitzone anwenden",
-              "sv": "Använd din tidszon"
+              "sv": "Använd din tidszon",
+              "fr": "Appliquer votre fuseau horaire"
             }
           },
           {
@@ -3024,14 +3339,16 @@
               "no": "Kalender",
               "nl": "Kalender...",
               "de": "Kalender",
-              "sv": "Kalender"
+              "sv": "Kalender",
+              "fr": "Calendrier"
             },
             "placeholder": {
               "en": "Choose calendar...",
               "no": "Velg kalender...",
               "nl": "Selecteer kalender...",
               "de": "Kalender auswählen...",
-              "sv": "Välj kalender..."
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
             }
           }
         ]
@@ -3043,14 +3360,16 @@
           "no": "Synkroniser kalenderene",
           "nl": "Synchroniseer kalenders",
           "de": "Kalender synchronisieren",
-          "sv": "Synkronisar kalendrar"
+          "sv": "Synkronisar kalendrar",
+          "fr": "Synchroniser les calendriers"
         },
         "hint": {
           "en": "Will download new .ics files to update current events",
           "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
           "nl": "Nieuw .ics bestand wordt gedownload om de IcalCalendar app bij te werken",
           "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren",
-          "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella händelser"
+          "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella händelser",
+          "fr": "Téléchargement de nouveaux fichiers .ics pour mettre à jour les événements actuels"
         }
       }
     ]

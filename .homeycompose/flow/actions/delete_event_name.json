@@ -1,49 +1,49 @@
 {
-    "id": "delete_event_name",
-    "title": {
-      "en": "Delete local event by title",
-      "no": "Slett lokal avtale etter tittel",
-      "nl": "Verwijder lokale gebeurtenis op titel",
-      "de": "Lösche lokale Veranstaltung nach Titel",
-      "sv": "Radera lokal händelse efter titel",
-      "fr": "Supprimer un événement local par titre"
-    },
-    "titleFormatted": {
-      "en": "Delete local event by title [[event_name]]",
-      "no": "Slett lokal avtale med tittel [[event_name]]",
-      "nl": "Verwijder lokale gebeurtenis op titel [[event_name]]",
-      "de": "Lokale Veranstaltung nach Titel [[event_name]] löschen",
-      "sv": "Radera lokal händelse efter titel [[event_name]]",
-      "fr": "Supprimer un événement local par titre [[event_name]]"
-    },
-    "hint": {
-      "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
-      "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
-      "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
-      "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
-      "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel",
-      "fr": "Supprimer l'événement local (ne sera pas supprimé de votre calendrier de manière externe)\nSupprimera tous les événements locaux portant ce titre."
-    },
-    "args": [
-      {
-        "type": "text",
-        "name": "event_name",
-        "title": {
-          "en": "Title",
-          "no": "Tittel",
-          "nl": "Titel",
-          "de": "Titel",
-          "sv": "Titel",
-          "fr": "Titre"
-        },
-        "placeholder": {
-          "en": "Title",
-          "no": "Tittel",
-          "nl": "Titel",
-          "de": "Titel",
-          "sv": "Titel",
-          "fr": "Titre"
-        }
+  "id": "delete_event_name",
+  "title": {
+    "en": "Delete local event by title",
+    "no": "Slett lokal avtale etter tittel",
+    "nl": "Verwijder lokale gebeurtenis op titel",
+    "de": "Lösche lokale Veranstaltung nach Titel",
+    "sv": "Radera lokal händelse efter titel",
+    "fr": "Supprimer un événement local par titre"
+  },
+  "titleFormatted": {
+    "en": "Delete local event by title [[event_name]]",
+    "no": "Slett lokal avtale med tittel [[event_name]]",
+    "nl": "Verwijder lokale gebeurtenis op titel [[event_name]]",
+    "de": "Lokale Veranstaltung nach Titel [[event_name]] löschen",
+    "sv": "Radera lokal händelse efter titel [[event_name]]",
+    "fr": "Supprimer un événement local par titre [[event_name]]"
+  },
+  "hint": {
+    "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
+    "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
+    "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
+    "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
+    "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel",
+    "fr": "Supprimer l'événement local (ne sera pas supprimé de votre calendrier de manière externe)\nSupprimera tous les événements locaux portant ce titre."
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "event_name",
+      "title": {
+        "en": "Title",
+        "no": "Tittel",
+        "nl": "Titel",
+        "de": "Titel",
+        "sv": "Titel",
+        "fr": "Titre"
+      },
+      "placeholder": {
+        "en": "Title",
+        "no": "Tittel",
+        "nl": "Titel",
+        "de": "Titel",
+        "sv": "Titel",
+        "fr": "Titre"
       }
-    ]
-  }
+    }
+  ]
+}
