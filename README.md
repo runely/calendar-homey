@@ -195,6 +195,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 1.19.1
+    - French translation. Thanks to [@Elmago27310](https://github.com/Elmago27310)
+    - Dependency updates
 - 1.19.0
     - French translation. Thanks to [@Elmago27310](https://github.com/Elmago27310)
     - Dependency updates

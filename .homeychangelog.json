@@ -307,5 +307,8 @@
   },
   "1.18.4": {
     "en": "Additional logging for better diagnostics reports. Dependency updates"
+  },
+  "1.19.0": {
+    "en": "French translation. - 1.19.0"
   }
 }
