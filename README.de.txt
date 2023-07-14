@@ -34,6 +34,10 @@ Die Apple iCloud URL finden
 5. Fügen Sie den Kalenderlink in die Einstellungen der Homey-App ein
     a. Es muss der Originallink sein (Apple Kalender hat Case Sensitive URLs)
 
+Fügen Sie die IcalCalendar-Entität hinzu
+
+Fügen Sie die Entität „IcalCalendar“ hinzu, um zu verfolgen, wie viele Kalender Sie konfiguriert haben, die Gesamtzahl der Ereignisse für alle Ihre Kalender sowie den letzten Synchronisierungszeitpunkt und die Anzahl der Ereignisse pro konfiguriertem Kalender.
+
 Zeitzone in Ihrem Kalender (*.ics)
 
 Die in dieser App verwendete Bibliothek node-ical verwendet NICHT die X-WR-TIMEZONE-Eigenschaft zum Analysieren von Zeitzonen. Stattdessen werden die Abschnitte BEGIN:VTIMEZONE verwendet, um Zeitzonen zu analysieren!

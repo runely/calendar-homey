@@ -34,7 +34,11 @@ Trouver l'url Apple iCloud
 5. Collez le lien du calendrier dans les paramètres de l'application Homey
     a. Il doit s'agir du lien original (Apple Calendar a des urls sensibles à la casse).
 
-    Fuseau horaire dans votre calendrier (*.ics)
+Ajouter l'entité IcalCalendar
+
+Ajoutez l'entité "IcalCalendar" pour suivre le nombre de calendriers que vous avez configurés, le nombre total d'événements pour tous vos calendriers, ainsi que l'heure de la dernière synchronisation et le nombre d'événements par calendrier configuré.
+
+Fuseau horaire dans votre calendrier (*.ics)
 
     La bibliothèque utilisée dans cette application pour analyser les calendriers, node-ical, n'utilise PAS la propriété X-WR-TIMEZONE pour analyser les fuseaux horaires. Au lieu de cela, elle utilise les sections BEGIN:VTIMEZONE pour analyser les fuseaux horaires !
     Cela signifie que si votre fournisseur de calendrier n'utilise que la propriété X-WR-TIMEZONE, cette application supposera que vos événements sont toujours en UTC !

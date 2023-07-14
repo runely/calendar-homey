@@ -34,6 +34,10 @@ Hvordan finne Apple iCloud-lenken
 5. Lim inn lenken i innstillingene i Homey-appen
     a. Det må være den orginale lenken (Apple Kalender skiller på store og små bokstaver i lenkene)
 
+Legg til IcalCalendar-enhten
+
+Legg til "IcalCalendar"-enheten for å følge med på hvor mange kalendere du har konfigurert, totalt antall hendelser for alle kalenderne dine, og siste synkroniseringstidspunkt og antall hendelser per konfigurerte kalender.
+
 Tidssone for din kalender (*.ics)
 
 Biblioteket som er brukt i denne appen for å parse dine kalendere, node-ical, bruker ikke attributten X-WR-TIMEZONE for å parse tidssoner. Istedenfor så brukes BEGIN:VTIMEZONE seksjonene for å parse tidssoner.

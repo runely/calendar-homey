@@ -104,5 +104,9 @@
             "location": "Locatie",
             "summary": "Titel"
         }
+    },
+    "device": {
+        "eventCountCalendar": "Aantal evenementen -",
+        "lastSuccessfullSync": "Laatste succesvolle synchronisatie -"
     }
 }

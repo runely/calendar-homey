@@ -1,0 +1,14 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Last successfull synchronization",
+    "no": "Siste vellykkede synkronisering",
+    "nl": "Laatste succesvolle synchronisatie",
+    "de": "Letzte erfolgreiche Synchronisierung",
+    "sv": "Senaste framgångsrika synkroniseringen",
+    "fr": "Dernière synchronisation réussie"
+  },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": false
+}

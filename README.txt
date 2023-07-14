@@ -34,6 +34,10 @@ Find Apple iCloud url
 5. Paste the calendar link in the Homey app settings
     a. It must be the original link (Apple Calendar has case sensitive urls)
 
+Add device IcalCalendar
+
+Add the "IcalCalendar" device to follow along with how many calendars you have configured, total event count for all your calendars, and last synchronization timestamp and event count per calendar configured.
+
 Timezone in your calendar (*.ics)
 
 The library used in this app to parse the calendars, node-ical, does NOT use the X-WR-TIMEZONE property to parse timezones. Instead it uses the BEGIN:VTIMEZONE sections to parse timezones!

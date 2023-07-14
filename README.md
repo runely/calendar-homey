@@ -43,6 +43,10 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 1. Paste the calendar link in the Homey app settings
     - **It must be the original link (*Apple Calendar has case sensitive urls*)**
 
+### Add device `IcalCalendar`
+
+Add the `IcalCalendar` device to follow along with how many calendars you have configured, total event count for all your calendars, and last synchronization timestamp and event count per calendar configured.
+
 ### Timezone in your calendar (*.ics)
 
 :exclamation:
@@ -195,6 +199,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.0.0
+    - Added device `IcalCalendar` which shows calendar count, total event count, and last synchronization timestamp and event count per calendar
 - 1.19.1
     - French translation. Thanks to [@Elmago27310](https://github.com/Elmago27310)
     - Dependency updates

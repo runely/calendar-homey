@@ -34,6 +34,10 @@ Hur man hittar ical-länken i Apple iCloud
 5. Klistra in länken i inställningarna i Homey-appen
     a. Det måste vara den ursprungliga länken (Apple Calendar är skiftlägeskänsligt i länken)
 
+Lägg till entiteten IcalCalendar
+
+Lägg till entiteten "IcalCalendar" för att hålla reda på hur många kalendrar du har konfigurerat, det totala antalet händelser för alla dina kalendrar och den senaste synkroniseringstiden och antalet händelser per konfigurerad kalender.
+
 Tidszon i din kalender (*.ics)
 
 Biblioteket som används i den här appen för att analysera kalendrarna, node-ical, använder INTE egenskapen X-WR-TIMEZONE för att analysera tidszoner. Istället använder den BEGIN:VTIMEZONE-sektionerna för att analysera tidszoner!

@@ -104,5 +104,9 @@
             "location": "Plats",
             "summary": "Summering"
         }
+    },
+    "device": {
+        "eventCountCalendar": "Antal händelser -",
+        "lastSuccessfullSync": "Senaste framgångsrika synkroniseringen -"
     }
 }

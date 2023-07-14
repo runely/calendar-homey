@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Calendar count",
+    "no": "Antall kalendere",
+    "nl": "Aantal kalenders",
+    "de": "Anzahl der Kalender",
+    "sv": "Antal kalendrar",
+    "fr": "Nombre de calendriers"
+  },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": false
+}

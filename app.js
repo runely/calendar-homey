@@ -22,6 +22,7 @@ const { setupConditions } = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
 const { updateTokens } = require('./handlers/update-tokens')
 const { addJob } = require('./handlers/cron')
+const { moment } = require('./lib/moment-datetime')
 
 class IcalCalendar extends Homey.App {
   /**
@@ -115,6 +116,7 @@ class IcalCalendar extends Homey.App {
     const oldCalendarsUids = hasData(oldCalendarsUidsStorage) ? JSON.parse(oldCalendarsUidsStorage) : []
     this.log('getEvents: oldCalendarsUids --', oldCalendarsUids.length)
     const calendarsEvents = []
+    const calendarsMetadata = []
 
     // calendars not entered in settings page yet
     if (!calendars) {
@@ -167,6 +169,7 @@ class IcalCalendar extends Homey.App {
 
           errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' (${errorString}) and '${fallbackUri}' (${fallbackErrorString})`)
           await triggerSynchronizationError({ app: this, calendar: name, error: innerError })
+          calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
 
           // set a failed setting value to show a error message on settings page
           calendars[i] = { name, uri, failed: fallbackErrorString }
@@ -187,11 +190,13 @@ class IcalCalendar extends Homey.App {
           const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
           this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Total event count for calendar: ${Object.keys(data).length}`)
           calendarsEvents.push({ name, events: activeEvents })
+          calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
         } catch (error) {
           const errorString = typeof error === 'object' ? error.message : error
           this.error(`getEvents: Failed to get active events for calendar '${name}' :`, error)
           errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`)
           await triggerSynchronizationError({ app: this, calendar: name, error })
+          calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
 
           // set a failed setting value to show a error message on settings page
           calendars[i] = { name, uri, failed: errorString }
@@ -242,6 +247,7 @@ class IcalCalendar extends Homey.App {
 
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
+    this.homey.settings.set(this.variableMgmt.storage.calendarsMetadata, JSON.stringify(calendarsMetadata))
 
     if (reregisterCalendarTokens) {
       // unregister calendar tokens

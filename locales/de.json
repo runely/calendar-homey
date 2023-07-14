@@ -104,5 +104,9 @@
             "location": "Ort",
             "summary": "Zusammenfassung"
         }
+    },
+    "device": {
+        "eventCountCalendar": "Anzahl der Ereignisse -",
+        "lastSuccessfullSync": "Letzte erfolgreiche Synchronisierung -"
     }
 }

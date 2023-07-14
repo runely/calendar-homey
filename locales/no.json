@@ -104,5 +104,9 @@
             "location": "Sted",
             "summary": "Tittel"
         }
+    },
+    "device": {
+        "eventCountCalendar": "Antall avtaler -",
+        "lastSuccessfullSync": "Siste vellykkede synkronisering -"
     }
 }

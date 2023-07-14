@@ -3373,5 +3373,99 @@
         }
       }
     ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "IcalCalendar"
+      },
+      "class": "other",
+      "capabilities": [
+        "meter_calendars_count_ical",
+        "meter_total_event_count_ical"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [],
+      "icon": "/drivers/icalcalendar/assets/icon.svg",
+      "images": {
+        "small": "/drivers/icalcalendar/assets/images/small.png",
+        "large": "/drivers/icalcalendar/assets/images/large.png",
+        "xlarge": "/drivers/icalcalendar/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "icalcalendar"
+    }
+  ],
+  "capabilities": {
+    "last_successfull_sync_ical": {
+      "type": "string",
+      "title": {
+        "en": "Last successfull synchronization",
+        "no": "Siste vellykkede synkronisering",
+        "nl": "Laatste succesvolle synchronisatie",
+        "de": "Letzte erfolgreiche Synchronisierung",
+        "sv": "Senaste framgångsrika synkroniseringen",
+        "fr": "Dernière synchronisation réussie"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false
+    },
+    "meter_calendars_count_ical": {
+      "type": "number",
+      "title": {
+        "en": "Calendar count",
+        "no": "Antall kalendere",
+        "nl": "Aantal kalenders",
+        "de": "Anzahl der Kalender",
+        "sv": "Antal kalendrar",
+        "fr": "Nombre de calendriers"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false
+    },
+    "meter_event_count_calendar_ical": {
+      "type": "number",
+      "title": {
+        "en": "Event count",
+        "no": "Antall avtaler",
+        "nl": "Aantal evenementen",
+        "de": "Anzahl der Ereignisse",
+        "sv": "Antal händelser",
+        "fr": "Nombre d'événements"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false
+    },
+    "meter_total_event_count_ical": {
+      "type": "number",
+      "title": {
+        "en": "Total event count",
+        "no": "Totalt antall avtaler",
+        "nl": "Totaal aantal overeenkomsten",
+        "de": "Gesamtzahl der Vereinbarungen",
+        "sv": "Totalt antal avtal",
+        "fr": "Nombre total d'accords"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false
+    }
   }
 }

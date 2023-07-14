@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Event count",
+    "no": "Antall avtaler",
+    "nl": "Aantal evenementen",
+    "de": "Anzahl der Ereignisse",
+    "sv": "Antal händelser",
+    "fr": "Nombre d'événements"
+  },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": false
+}

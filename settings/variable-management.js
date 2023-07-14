@@ -105,7 +105,8 @@ module.exports = {
   localEvents: [],
   storage: {
     eventUids: 'eventUids',
-    localEvents: 'localEvents'
+    localEvents: 'localEvents',
+    calendarsMetadata: 'calendarsMetadata'
   }
 }
 

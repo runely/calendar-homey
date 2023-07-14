@@ -104,5 +104,9 @@
             "location": "Location",
             "summary": "Summary"
         }
+    },
+    "device": {
+        "eventCountCalendar": "Event count -",
+        "lastSuccessfullSync": "Last successfull synchronization -"
     }
 }

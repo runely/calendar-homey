@@ -34,6 +34,10 @@ Apple iCloud url
 5. Plake de link van de agenda in de Homey IcalCalender app
    Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
+Voeg de entiteit IcalCalendar toe
+
+Voeg de entiteit "IcalCalendar" toe om bij te houden hoeveel agenda's u heeft geconfigureerd, het totale aantal evenementen voor al uw agenda's en de laatste synchronisatietijd en het aantal evenementen per geconfigureerde agenda.
+
 Tijdzone in je agenda (*.ics)
 
 De bibliotheek die in deze app wordt gebruikt om de agenda's te analyseren, node-ical, gebruikt NIET de X-WR-TIMEZONE eigenschap om tijdzones te indentificeren. In plaats daarvan, voor de tijdzondes, gebruikt het de BEGIN:VTIMEZONE-secties!

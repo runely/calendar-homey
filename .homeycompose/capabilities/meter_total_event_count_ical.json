@@ -1,0 +1,14 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total event count",
+    "no": "Totalt antall avtaler",
+    "nl": "Totaal aantal overeenkomsten",
+    "de": "Gesamtzahl der Vereinbarungen",
+    "sv": "Totalt antal avtal",
+    "fr": "Nombre total d'accords"
+  },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": false
+}
