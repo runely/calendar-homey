@@ -5,7 +5,7 @@ Oppsett
 - Åpne innstillinger (konfigurer app)
     - Lim inn ical-lenken og gi den et navn
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
-        - Alle tokens som er supportert i **moment.format()** supporteres her også: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle tokens som er supportert i "moment.format()" supporteres her også: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
 - For å bli varslet om eventuelle synkroniseringsfeil, opprett en flyt med triggeren "Synkroniseringsfeil oppstått"
 

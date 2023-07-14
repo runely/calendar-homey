@@ -5,7 +5,7 @@ Setup
 - Open settings (configure app)
     - Paste in the ical link and give it a name
     - Change the date/time format or use the default (your choice)
-        - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - All tokens supported in "moment.format()" is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose whether or not you want next event tags per calendar. Default is off
 - To be notified of any synchronization errors, create a flow using the trigger "Synchronization error occurred"
 
@@ -29,7 +29,7 @@ Find Apple iCloud url
 
 1. Go to https://www.icloud.com/calendar/, or open the Calendar app on your iOS device
 2. Click on the icon next to the calendar name in the left pane
-3. Tick the checkbox for **Public calendar**
+3. Tick the checkbox for "Public calendar"
 4. Copy the link
 5. Paste the calendar link in the Homey app settings
     a. It must be the original link (Apple Calendar has case sensitive urls)

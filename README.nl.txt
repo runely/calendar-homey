@@ -5,7 +5,7 @@ Instellingen
 - Open settings (app configuratie)
     - En plak de ical link en geef het een naam
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
-        - Alle tokens die worden ondersteund in **moment.format()** worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle tokens die worden ondersteund in "moment.format()" worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
 - Als u op de hoogte wilt worden gehouden van eventuele synchronisatiefouten, maakt u een stroom met behulp van de trigger "Synchronisatiefout opgetreden"
 
@@ -29,7 +29,7 @@ Apple iCloud url
 
 1. Ga naar https://www.icloud.com/calendar/, of open de agenda app op een iOS of Mac
 2. Klik on het icoontje naast de agenda naam in het linker gedeelte van het scherm
-3. Vink de checkbox aan voor **Publieke Agenda**
+3. Vink de checkbox aan voor "Publieke Agenda"
 4. Kopieer de link
 5. Plake de link van de agenda in de Homey IcalCalender app
    Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
