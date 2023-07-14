@@ -34,6 +34,18 @@ class MyDevice extends Device {
       await this.updateCalendarsCount()
       await this.updateCalendarsMetadata()
     }, 300000)
+
+    this.homey.on('unload', () => {
+      this.log('MyDevice has been unloaded')
+
+      this.homey.clearInterval(this.intervalHandle)
+    })
+  }
+
+  async onUninit () {
+    this.log('MyDevice has been uninited')
+
+    this.homey.clearInterval(this.intervalHandle)
   }
 
   async updateCalendarsCount () {
