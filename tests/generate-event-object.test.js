@@ -1,6 +1,6 @@
 'use strict'
 
-const { moment } = require('../lib//moment-datetime')
+const { moment } = require('../lib/moment-datetime')
 const { fromEvent, newEvent } = require('../lib/generate-event-object')
 
 const timezone = 'Europe/Oslo'

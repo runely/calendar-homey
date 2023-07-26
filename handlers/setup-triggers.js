@@ -3,7 +3,7 @@
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
 
-module.exports = app => {
+module.exports = (app) => {
   // add minutes in trigger listeners
   for (const triggerId of ['event_starts_in', 'event_stops_in']) {
     app.homey.flow.getTriggerCard(triggerId).registerRunListener((args, state) => {
@@ -37,12 +37,12 @@ module.exports = app => {
 
       if (query) {
         const filteredCalendar = filterByCalendar(app.variableMgmt.calendars, query) || []
-        return filteredCalendar.map(calendar => {
+        return filteredCalendar.map((calendar) => {
           return { id: calendar.name, name: calendar.name }
         })
       }
 
-      return app.variableMgmt.calendars.map(calendar => {
+      return app.variableMgmt.calendars.map((calendar) => {
         return { id: calendar.name, name: calendar.name }
       })
     })

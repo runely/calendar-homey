@@ -20,7 +20,7 @@ class MyDevice extends Device {
     // convenience function for logging warnings
     this.warn = (...args) => this.log('[WARN]', ...args)
 
-    this.log(`${this.homey.manifest.name.en} v${this.homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
+    this.log(`Device v${this.homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
     // register variableMgmt to this app class
     this.variableMgmt = varMgmt
@@ -79,7 +79,7 @@ class MyDevice extends Device {
       return
     }
 
-    calendarsMetadata.forEach(async calendar => {
+    calendarsMetadata.forEach(async (calendar) => {
       const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
       const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
       if (this.hasCapability(eventCountPerCalendarLoop)) {

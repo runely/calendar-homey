@@ -6,7 +6,7 @@ const { triggers: { event_changed: { start, end, description, location, summary 
 
 const app = {
   homey: {
-    __: prop => {
+    __: (prop) => {
       if (prop.includes('start')) return start
       if (prop.includes('end')) return end
       if (prop.includes('description')) return description

@@ -45,7 +45,7 @@ const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
 /**
  * @param {UpdateTokensOptions} options
  */
-const updateTokens = async options => {
+const updateTokens = async (options) => {
   const { timezone, app } = options
   const eventOptions = {
     timezone,

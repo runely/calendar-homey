@@ -7,12 +7,17 @@
     "object-curly-newline": "off",
     "padded-blocks": "off",
     "semi": "off",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "consistent-return": "off",
+    "no-else-return": "off"
   },
   "ignorePatterns": [
     "**/settings/*.js"
   ],
   "env": {
     "jest/globals": true
-  }  
+  },
+  "plugins": [
+    "jest"
+  ]
 }

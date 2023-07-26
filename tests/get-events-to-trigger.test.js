@@ -64,7 +64,7 @@ test('No calendars will return an empty array', () => {
 })
 
 test('When start is now - Will return 3 events', () => {
-  const result = calendarResult.filter(res => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8841')
+  const result = calendarResult.filter((res) => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8841')
   expect(result.length).toBe(3)
   expect(result[0].triggerId).toBe('event_starts')
   expect(result[0].state).toBeFalsy()
@@ -75,7 +75,7 @@ test('When start is now - Will return 3 events', () => {
 })
 
 test('When end is now - Will return 2 events', () => {
-  const result = calendarResult.filter(res => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8842')
+  const result = calendarResult.filter((res) => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8842')
   expect(result.length).toBe(2)
   expect(result[0].triggerId).toBe('event_stops')
   expect(result[0].state).toBeFalsy()
@@ -84,7 +84,7 @@ test('When end is now - Will return 2 events', () => {
 })
 
 test('When start is in 2 hours - Will return 2 events', () => {
-  const result = calendarResult.filter(res => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8843')
+  const result = calendarResult.filter((res) => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8843')
   expect(result.length).toBe(2)
   expect(result[0].triggerId).toBe('event_starts_in')
   expect(result[0].state.when).toBe(120)
@@ -93,6 +93,6 @@ test('When start is in 2 hours - Will return 2 events', () => {
 })
 
 test('When start and end has past - Will return 0 events', () => {
-  const result = calendarResult.filter(res => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8844')
+  const result = calendarResult.filter((res) => res.event.uid === 'F7177A32-DBD4-46A9-85C7-669749EA8844')
   expect(result.length).toBe(0)
 })

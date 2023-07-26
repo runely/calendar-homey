@@ -6,7 +6,7 @@ const { locale: { humanize }, humanize: { conjunction } } = require('../locales/
 
 const app = {
   homey: {
-    __: prop => {
+    __: (prop) => {
       if (prop.includes('locale.humanize')) return humanize
       if (prop.includes('humanize.conjunction')) return conjunction
       return ''

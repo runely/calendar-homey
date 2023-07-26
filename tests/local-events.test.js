@@ -148,8 +148,8 @@ describe('saveLocalEvents', () => {
 describe('getLocalActiveEvents', () => {
   test('Returns 2 events', () => {
     const result = getLocalActiveEvents(options)
-    const three = result.find(r => r.summary === 'Three')
-    const four = result.find(r => r.summary === 'Four')
+    const three = result.find((r) => r.summary === 'Three')
+    const four = result.find((r) => r.summary === 'Four')
     expect(Array.isArray(result)).toBeTruthy()
     expect(result.length).toBe(2)
     expect(three).toBeTruthy()

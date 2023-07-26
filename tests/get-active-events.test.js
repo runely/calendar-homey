@@ -19,9 +19,9 @@ const app = {
   homey: {
     __: () => locale.moment,
     flow: {
-      getTriggerCard: id => {
+      getTriggerCard: (id) => {
         return {
-          trigger: tokens => console.log('triggerCard', id, 'called with tokens:', tokens)
+          trigger: (tokens) => console.log('triggerCard', id, 'called with tokens:', tokens)
         }
       }
     }
@@ -29,8 +29,8 @@ const app = {
 }
 
 const activeEvents = getActiveEvents({ data, eventLimit, app })
-const onceAWeekEvents = activeEvents.filter(event => event.summary === 'OnceAWeek')
-const alwaysOngoingEvents = activeEvents.filter(event => event.summary === 'AlwaysOngoing')
+const onceAWeekEvents = activeEvents.filter((event) => event.summary === 'OnceAWeek')
+const alwaysOngoingEvents = activeEvents.filter((event) => event.summary === 'AlwaysOngoing')
 let dataNoTzid = []
 
 describe('getActiveEvents returns', () => {
@@ -81,11 +81,11 @@ describe('getActiveEvents returns', () => {
 
 describe('getActiveEvents returns an array', () => {
   test('Where all \'OnceAWeek\' events has a unique uid', () => {
-    expect(onceAWeekEvents.filter(event => event.uid === `hidden_${event.start.toDate().toISOString().slice(0, 10)}`).length).toBe(onceAWeekEvents.length)
+    expect(onceAWeekEvents.filter((event) => event.uid === `hidden_${event.start.toDate().toISOString().slice(0, 10)}`).length).toBe(onceAWeekEvents.length)
   })
 
   test('Where all \'AlwaysOngoing\' events has a unique uid', () => {
-    expect(alwaysOngoingEvents.filter(event => event.uid === `hidden2_${event.start.toDate().toISOString().slice(0, 10)}`).length).toBe(alwaysOngoingEvents.length)
+    expect(alwaysOngoingEvents.filter((event) => event.uid === `hidden2_${event.start.toDate().toISOString().slice(0, 10)}`).length).toBe(alwaysOngoingEvents.length)
   })
 })
 
@@ -118,12 +118,12 @@ describe('When "TZID" is missing', () => {
   })
 
   test('on a recurring event, skipTZ should be true', () => {
-    const { skipTZ } = dataNoTzid.find(event => event.summary === 'RecurringNoTzid')
+    const { skipTZ } = dataNoTzid.find((event) => event.summary === 'RecurringNoTzid')
     expect(skipTZ).toBeTruthy()
   })
 
   test('on a regular event, skipTZ should be true', () => {
-    const { skipTZ } = dataNoTzid.find(event => event.summary === 'RegularNoTzid')
+    const { skipTZ } = dataNoTzid.find((event) => event.summary === 'RegularNoTzid')
     expect(skipTZ).toBeTruthy()
   })
 })

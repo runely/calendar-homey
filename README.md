@@ -199,6 +199,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.0.1
+    - eslint code cleanup
 - 2.0.0
     - Added device `IcalCalendar` which shows calendar count, total event count, and last synchronization timestamp and event count per calendar
     - Dependency updates

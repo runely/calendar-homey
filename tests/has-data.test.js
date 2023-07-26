@@ -19,7 +19,7 @@ const truthy = [
 ]
 
 describe('Return false', () => {
-  falsy.forEach(value => {
+  falsy.forEach((value) => {
     test(`When data is ${JSON.stringify(value)}`, () => {
       const result = hasData(value)
       expect(result).toBeFalsy()
@@ -28,7 +28,7 @@ describe('Return false', () => {
 })
 
 describe('Return true', () => {
-  truthy.forEach(value => {
+  truthy.forEach((value) => {
     test(`When data is ${JSON.stringify(value)}`, () => {
       const result = hasData(value)
       expect(result).toBeTruthy()

@@ -8,7 +8,7 @@ const getNextEventValue = require('../lib/get-next-event-value')
 const { updateNextEventWithTokens } = require('./update-tokens')
 const { triggerSynchronizationError } = require('./trigger-cards')
 const { isEventOngoing, isEventIn, willEventNotIn } = require('./conditions')
-const { calendarAutocomplete } = require('../lib//autocomplete')
+const { calendarAutocomplete } = require('../lib/autocomplete')
 
 const cards = [
   {
@@ -111,8 +111,8 @@ const getEventList = (timezone, app, calendars) => {
 
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
 
-  calendars.forEach(calendar => {
-    calendar.events.forEach(event => {
+  calendars.forEach((calendar) => {
+    calendar.events.forEach((event) => {
       const now = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular
       let startStamp = ''
       let endStamp = ''
@@ -227,7 +227,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     return false
   }
 
-  return filteredEvents.some(calendar => {
+  return filteredEvents.some((calendar) => {
     if (calendar.events.length <= 0) {
       return false
     }
@@ -271,7 +271,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
 /**
  * @param {SetupConditionsOptions} options
  */
-const setupConditions = options => {
+const setupConditions = (options) => {
   // register condition flow cards
   const { timezone, app } = options
   cards.forEach(({ id, runListenerId, autocompleteListener }) => {

@@ -2,7 +2,7 @@
 
 const { moment, momentNow } = require('../lib/moment-datetime')
 
-const hasOffset = num => num > 0 || num < 0
+const hasOffset = (num) => num > 0 || num < 0
 
 describe('Offset not set', () => {
   test('When nothing is present', () => {

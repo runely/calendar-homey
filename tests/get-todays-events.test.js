@@ -4,8 +4,16 @@ const momentInstance = require('moment-timezone')
 const { moment } = require('../lib/moment-datetime')
 const getTodaysEvents = require('../lib/get-todays-events')
 
-const expectedStart = moment().set('hours', 23).set('minutes', 58).set('seconds', 59).toISOString()
-const expectedEnd = moment().set('hours', 23).set('minutes', 59).set('seconds', 59).toISOString()
+const expectedStart = moment()
+  .set('hours', 23)
+  .set('minutes', 58)
+  .set('seconds', 59)
+  .toISOString()
+const expectedEnd = moment()
+  .set('hours', 23)
+  .set('minutes', 59)
+  .set('seconds', 59)
+  .toISOString()
 
 const calendars = [
   {

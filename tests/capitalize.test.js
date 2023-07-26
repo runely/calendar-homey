@@ -1,6 +1,7 @@
 'use strict'
 
 const capitalize = require('../lib/capitalize')
+
 const word = 'wOrD'
 
 test(`'${word}' will be capitalized to 'Word'`, () => {

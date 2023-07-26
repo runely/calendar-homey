@@ -63,7 +63,7 @@ class IcalCalendar extends Homey.App {
     this.getEvents(true)
 
     // register callback when settings has been set
-    this.homey.settings.on('set', args => {
+    this.homey.settings.on('set', (args) => {
       if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
         // sync calendars when calendar specific settings have been changed
         if (!this.isGettingEvents) {
@@ -82,7 +82,7 @@ class IcalCalendar extends Homey.App {
       if (!this.jobs) return
 
       // unload cron jobs
-      Object.getOwnPropertyNames(this.jobs).forEach(prop => {
+      Object.getOwnPropertyNames(this.jobs).forEach((prop) => {
         if (typeof this.jobs[prop].stop === 'function') {
           this.log('onInit/_unload: Job', prop, 'will be stopped')
           this.jobs[prop].stop()
@@ -238,8 +238,8 @@ class IcalCalendar extends Homey.App {
     saveLocalEvents(this, this.variableMgmt.localEvents)
 
     // add local events to the correct calendar
-    this.variableMgmt.localEvents.forEach(event => {
-      const calendar = calendarsEvents.find(c => c.name === event.calendar)
+    this.variableMgmt.localEvents.forEach((event) => {
+      const calendar = calendarsEvents.find((c) => c.name === event.calendar)
       if (calendar) {
         calendar.events.push(event)
       }
@@ -253,7 +253,7 @@ class IcalCalendar extends Homey.App {
       // unregister calendar tokens
       if (this.variableMgmt.calendarTokens.length > 0) {
         this.log('getEvents: Calendar tokens starting to flush')
-        await Promise.all(this.variableMgmt.calendarTokens.map(async token => {
+        await Promise.all(this.variableMgmt.calendarTokens.map(async (token) => {
           this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
           return token.unregister()
         }))
@@ -264,7 +264,7 @@ class IcalCalendar extends Homey.App {
       // unregister next event with tokens
       if (Array.isArray(this.variableMgmt.nextEventWithTokens) && this.variableMgmt.nextEventWithTokens.length > 0) {
         this.log('getEvents: Next event with tokens starting to flush')
-        await Promise.all(this.variableMgmt.nextEventWithTokens.map(async token => {
+        await Promise.all(this.variableMgmt.nextEventWithTokens.map(async (token) => {
           this.log(`getEvents: Next event with token '${token.id}' starting to flush`)
           return token.unregister()
         }))
@@ -277,7 +277,7 @@ class IcalCalendar extends Homey.App {
 
       // register calendar tokens
       if (this.variableMgmt.calendars.length > 0) {
-        await Promise.all(this.variableMgmt.calendars.map(async calendar => {
+        await Promise.all(this.variableMgmt.calendars.map(async (calendar) => {
           // register todays and tomorrows events pr calendar
           generateTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
             this.variableMgmt.calendarTokens.push(await this.homey.flow.createToken(id, { type, title }))

@@ -1,3 +1,5 @@
+'use strict'
+
 const { Cron } = require('croner')
 const { addJob } = require('../handlers/cron')
 

@@ -5,13 +5,13 @@ const { settings: { datetime: { date, time } } } = require('../locales/en.json')
 
 const app = {
   homey: {
-    __: prop => {
+    __: (prop) => {
       if (prop.includes('.date.')) return date.default
       if (prop.includes('.time.')) return time.default
       return ''
     },
     settings: {
-      get: prop => prop || null,
+      get: (prop) => prop || null,
       set: (prop, value) => console.log('Setting', prop, 'to', value)
     }
   },

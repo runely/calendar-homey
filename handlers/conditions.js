@@ -10,7 +10,7 @@ const { momentNow } = require('../lib/moment-datetime')
  */
 module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
-  return events.some(event => {
+  return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const startDiff = now.diff(event.start, 'seconds')
@@ -31,7 +31,7 @@ module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') =>
  */
 module.exports.isEventIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
-  return events.some(event => {
+  return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const startDiff = event.start.diff(now, 'minutes', true)
@@ -51,7 +51,7 @@ module.exports.isEventIn = (app, timezone, events, when) => {
  */
 module.exports.willEventNotIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
-  return events.some(event => {
+  return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
     const endDiff = event.end.diff(now, 'minutes', true)

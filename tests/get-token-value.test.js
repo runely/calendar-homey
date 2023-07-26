@@ -28,7 +28,7 @@ const emptyValues = [
 ]
 
 describe('Returns an empty string', () => {
-  emptyValues.forEach(value => {
+  emptyValues.forEach((value) => {
     test(`When input is ${JSON.stringify(value)}`, () => {
       const result = getTokenValue(value)
       expect(result).toBe('')

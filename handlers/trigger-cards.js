@@ -37,7 +37,7 @@ const getErrorMessage = (app, error) => {
 /**
  * @param {TriggerSynchroniztionErrorOptions} options
  */
-module.exports.triggerSynchronizationError = async options => {
+module.exports.triggerSynchronizationError = async (options) => {
   const { app, calendar, error, event } = options
   try {
     const { message, stack } = getErrorMessage(app, error)
@@ -68,7 +68,7 @@ module.exports.triggerSynchronizationError = async options => {
 /**
  * @param {TriggerChangedCalendarsOptions} options
  */
-module.exports.triggerChangedCalendars = async options => {
+module.exports.triggerChangedCalendars = async (options) => {
   const { app, calendars } = options
   try {
     for await (const calendar of calendars) {
@@ -129,7 +129,7 @@ module.exports.triggerChangedCalendars = async options => {
 /**
  * @param {TriggerEventsOptions} options
  */
-module.exports.triggerEvents = async options => {
+module.exports.triggerEvents = async (options) => {
   const { timezone, app, event } = options
   const events = event ? [event] : getEventsToTrigger({ timezone, app, calendars: app.variableMgmt.calendars })
 
