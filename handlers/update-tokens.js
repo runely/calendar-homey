@@ -8,11 +8,16 @@ const getTokenEvents = require('../lib/get-token-events')
 const { moment } = require('../lib/moment-datetime')
 const { triggerSynchronizationError } = require('./trigger-cards')
 
-const updateToken = async (token, value, id, app) => {
+const updateToken = async (tokenId, value, app) => {
   try {
-    await token.setValue(value)
+    const token = app.homey.flow.getToken(tokenId)
+    if (token) {
+      await token.setValue(value)
+    } else {
+      app.warn(`updateToken: Token with id '${tokenId}' not found`)
+    }
   } catch (error) {
-    app.log(`updateToken: Failed to update token '${id}': ${error.message || error}`)
+    app.log(`updateToken: Failed to update token '${tokenId}': ${error.message || error}`)
   }
 }
 
@@ -66,61 +71,61 @@ const updateTokens = async (options) => {
   }
 
   // loop through flow tokens
-  for await (const token of app.variableMgmt.flowTokens) {
+  for await (const tokenId of app.variableMgmt.flowTokens) {
     try {
-      if (token.id === 'event_next_title') {
-        await updateToken(token, nextEvent.event ? (nextEvent.event.summary || '') : '', token.id, app)
-      } else if (token.id === 'event_next_startdate') {
-        await updateToken(token, nextEvent.event ? nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : '', token.id, app)
-      } else if (token.id === 'event_next_startstamp') {
+      if (tokenId === 'event_next_title') {
+        await updateToken(tokenId, nextEvent.event ? (nextEvent.event.summary || '') : '', app)
+      } else if (tokenId === 'event_next_startdate') {
+        await updateToken(tokenId, nextEvent.event ? nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.long) : '', app)
+      } else if (tokenId === 'event_next_startstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            await updateToken(token, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
+            await updateToken(tokenId, nextEvent.event.start.format(app.variableMgmt.dateTimeFormat.time), app)
           } else if (nextEvent.event.datetype === 'date') {
-            await updateToken(token, '00:00', token.id, app)
+            await updateToken(tokenId, '00:00', app)
           }
         } else {
-          await updateToken(token, '', token.id, app)
+          await updateToken(tokenId, '', app)
         }
-      } else if (token.id === 'event_next_stopdate') {
-        await updateToken(token, nextEvent.event ? nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : '', token.id, app)
-      } else if (token.id === 'event_next_stopstamp') {
+      } else if (tokenId === 'event_next_stopdate') {
+        await updateToken(tokenId, nextEvent.event ? nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.long) : '', app)
+      } else if (tokenId === 'event_next_stopstamp') {
         if (nextEvent.event) {
           if (nextEvent.event.datetype === 'date-time') {
-            await updateToken(token, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
+            await updateToken(tokenId, nextEvent.event.end.format(app.variableMgmt.dateTimeFormat.time), app)
           } else if (nextEvent.event.datetype === 'date') {
-            await updateToken(token, '00:00', token.id, app)
+            await updateToken(tokenId, '00:00', app)
           }
         } else {
-          await updateToken(token, '', token.id, app)
+          await updateToken(tokenId, '', app)
         }
-      } else if (token.id === 'event_next_duration') {
-        await updateToken(token, nextEvent.event ? eventDuration.duration : '', token.id, app)
-      } else if (token.id === 'event_next_duration_minutes') {
-        await updateToken(token, nextEvent.event ? eventDuration.durationMinutes : -1, token.id, app)
-      } else if (token.id === 'event_next_starts_in_minutes') {
-        await updateToken(token, nextEvent.event ? nextEvent.startsIn : -1, token.id, app)
-      } else if (token.id === 'event_next_stops_in_minutes') {
-        await updateToken(token, nextEvent.event ? nextEvent.endsIn : -1, token.id, app)
-      } else if (token.id === 'event_next_description') {
-        await updateToken(token, nextEvent.event ? (nextEvent.event.description || '') : '', token.id, app)
-      } else if (token.id === 'event_next_calendar_name') {
-        await updateToken(token, nextEvent.event ? nextEvent.calendarName : '', token.id, app)
-      } else if (token.id === 'events_today_title_stamps') {
+      } else if (tokenId === 'event_next_duration') {
+        await updateToken(tokenId, nextEvent.event ? eventDuration.duration : '', app)
+      } else if (tokenId === 'event_next_duration_minutes') {
+        await updateToken(tokenId, nextEvent.event ? eventDuration.durationMinutes : -1, app)
+      } else if (tokenId === 'event_next_starts_in_minutes') {
+        await updateToken(tokenId, nextEvent.event ? nextEvent.startsIn : -1, app)
+      } else if (tokenId === 'event_next_stops_in_minutes') {
+        await updateToken(tokenId, nextEvent.event ? nextEvent.endsIn : -1, app)
+      } else if (tokenId === 'event_next_description') {
+        await updateToken(tokenId, nextEvent.event ? (nextEvent.event.description || '') : '', app)
+      } else if (tokenId === 'event_next_calendar_name') {
+        await updateToken(tokenId, nextEvent.event ? nextEvent.calendarName : '', app)
+      } else if (tokenId === 'events_today_title_stamps') {
         const value = getTokenEvents({ ...tokenEventsOptions, events: eventsToday }) || ''
-        await updateToken(token, value, token.id, app)
-      } else if (token.id === 'events_today_count') {
-        await updateToken(token, eventsToday.length, token.id, app)
-      } else if (token.id === 'events_tomorrow_title_stamps') {
+        await updateToken(tokenId, value, app)
+      } else if (tokenId === 'events_today_count') {
+        await updateToken(tokenId, eventsToday.length, app)
+      } else if (tokenId === 'events_tomorrow_title_stamps') {
         const value = getTokenEvents({ ...tokenEventsOptions, events: eventsTomorrow }) || ''
-        await updateToken(token, value, token.id, app)
-      } else if (token.id === 'events_tomorrow_count') {
-        await updateToken(token, eventsTomorrow.length, token.id, app)
-      } else if (token.id === 'icalcalendar_week_number') {
-        await updateToken(token, moment({ timezone }).isoWeek(), token.id, app)
+        await updateToken(tokenId, value, app)
+      } else if (tokenId === 'events_tomorrow_count') {
+        await updateToken(tokenId, eventsTomorrow.length, app)
+      } else if (tokenId === 'icalcalendar_week_number') {
+        await updateToken(tokenId, moment({ timezone }).isoWeek(), app)
       }
     } catch (error) {
-      app.log('updateTokens: Failed to update flow token', token.id, ':', error)
+      app.log('updateTokens: Failed to update flow token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
     }
@@ -128,9 +133,9 @@ const updateTokens = async (options) => {
 
   // loop through calendar tokens
   let calendarNextEvent
-  for await (const token of app.variableMgmt.calendarTokens) {
+  for await (const tokenId of app.variableMgmt.calendarTokens) {
     try {
-      const calendarId = token.id.replace(app.variableMgmt.calendarTokensPreId, '')
+      const calendarId = tokenId.replace(app.variableMgmt.calendarTokensPreId, '')
       const calendarName = calendarId
         .replace(app.variableMgmt.calendarTokensPostTodayCountId, '') // this must be replaced before calendarTokensPostTodayId to preserve the whole tag name
         .replace(app.variableMgmt.calendarTokensPostTodayId, '')
@@ -198,9 +203,9 @@ const updateTokens = async (options) => {
         }
       }
 
-      await updateToken(token, value, token.id, app)
+      await updateToken(tokenId, value, app)
     } catch (error) {
-      app.log('updateTokens: Failed to update calendar token', token.id, ':', error)
+      app.log('updateTokens: Failed to update calendar token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
     }
@@ -216,23 +221,23 @@ const updateNextEventWithTokens = async (app, event) => {
   try {
     app.log(`updateNextEventWithTokens: Using event: '${summary}' - '${start}' in '${calendarName}'`)
 
-    for await (const token of app.variableMgmt.nextEventWithTokens) {
+    for await (const tokenId of app.variableMgmt.nextEventWithTokens) {
       try {
-        if (token.id.endsWith('_title')) {
-          await updateToken(token, summary || '', token.id, app)
-        } else if (token.id.endsWith('_startdate')) {
-          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.long), token.id, app)
-        } else if (token.id.endsWith('_starttime')) {
-          await updateToken(token, start.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
-        } else if (token.id.endsWith('_enddate')) {
-          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.long), token.id, app)
-        } else if (token.id.endsWith('_endtime')) {
-          await updateToken(token, end.format(app.variableMgmt.dateTimeFormat.time), token.id, app)
-        } else if (token.id.endsWith('_description')) {
-          await updateToken(token, description || '', token.id, app)
+        if (tokenId.endsWith('_title')) {
+          await updateToken(tokenId, summary || '', app)
+        } else if (tokenId.endsWith('_startdate')) {
+          await updateToken(tokenId, start.format(app.variableMgmt.dateTimeFormat.long), app)
+        } else if (tokenId.endsWith('_starttime')) {
+          await updateToken(tokenId, start.format(app.variableMgmt.dateTimeFormat.time), app)
+        } else if (tokenId.endsWith('_enddate')) {
+          await updateToken(tokenId, end.format(app.variableMgmt.dateTimeFormat.long), app)
+        } else if (tokenId.endsWith('_endtime')) {
+          await updateToken(tokenId, end.format(app.variableMgmt.dateTimeFormat.time), app)
+        } else if (tokenId.endsWith('_description')) {
+          await updateToken(tokenId, description || '', app)
         }
       } catch (error) {
-        app.log('updateNextEventWithTokens: Failed to update next event with token', token.id, ':', error)
+        app.log('updateNextEventWithTokens: Failed to update next event with token', tokenId, ':', error)
 
         triggerSynchronizationError({ app, calendar: calendarName, error, event: { summary } })
       }

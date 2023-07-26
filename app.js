@@ -206,6 +206,8 @@ class IcalCalendar extends Homey.App {
       } else {
         this.warn(`getEvents: Calendar '${name}' not reachable! Giving up...`)
       }
+
+      data = null
     }
 
     try {
@@ -253,9 +255,15 @@ class IcalCalendar extends Homey.App {
       // unregister calendar tokens
       if (this.variableMgmt.calendarTokens.length > 0) {
         this.log('getEvents: Calendar tokens starting to flush')
-        await Promise.all(this.variableMgmt.calendarTokens.map(async (token) => {
-          this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
-          return token.unregister()
+        await Promise.all(this.variableMgmt.calendarTokens.map(async (tokenId) => {
+          const token = this.homey.flow.getToken(tokenId)
+          if (token) {
+            this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
+            return token.unregister()
+          } else {
+            this.warn(`getEvents: Calendar token '${tokenId}' not found`)
+            return Promise.resolve()
+          }
         }))
         this.variableMgmt.calendarTokens = []
         this.log('getEvents: Calendar tokens flushed')
@@ -264,9 +272,15 @@ class IcalCalendar extends Homey.App {
       // unregister next event with tokens
       if (Array.isArray(this.variableMgmt.nextEventWithTokens) && this.variableMgmt.nextEventWithTokens.length > 0) {
         this.log('getEvents: Next event with tokens starting to flush')
-        await Promise.all(this.variableMgmt.nextEventWithTokens.map(async (token) => {
-          this.log(`getEvents: Next event with token '${token.id}' starting to flush`)
-          return token.unregister()
+        await Promise.all(this.variableMgmt.nextEventWithTokens.map(async (tokenId) => {
+          const token = this.homey.flow.getToken(tokenId)
+          if (token) {
+            this.log(`getEvents: Next event with token '${tokenId}' starting to flush`)
+            return token.unregister()
+          } else {
+            this.warn(`getEvents: Next event with token '${tokenId}' not found`)
+            return Promise.resolve()
+          }
         }))
         this.variableMgmt.nextEventWithTokens = []
         this.log('getEvents: Next event with tokens flushed')
@@ -280,15 +294,35 @@ class IcalCalendar extends Homey.App {
         await Promise.all(this.variableMgmt.calendars.map(async (calendar) => {
           // register todays and tomorrows events pr calendar
           generateTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
-            this.variableMgmt.calendarTokens.push(await this.homey.flow.createToken(id, { type, title }))
-            this.log(`getEvents: Created calendar token '${id}'`)
+            try {
+              const token = await this.homey.flow.createToken(id, { type, title })
+              if (token) {
+                this.variableMgmt.calendarTokens.push(id)
+                this.log(`getEvents: Created calendar token '${id}'`)
+              } else {
+                this.warn(`getEvents: Calendar token '${id}' not created`)
+              }
+            } catch (ex) {
+              this.warn(`getEvents: Failed to create calendar token '${id}'`, ex)
+            }
+            return Promise.resolve()
           })
 
           // register next event title, next event start, next event start time, next event end date and next event end time pr calendar
           if (nextEventTokensPerCalendar) {
             generatePerCalendarTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
-              this.variableMgmt.calendarTokens.push(await this.homey.flow.createToken(id, { type, title }))
-              this.log(`getEvents: Created per calendar token '${id}'`)
+              try {
+                const token = await this.homey.flow.createToken(id, { type, title })
+                if (token) {
+                  this.variableMgmt.calendarTokens.push(id)
+                  this.log(`getEvents: Created per calendar token '${id}'`)
+                } else {
+                  this.warn(`getEvents: Per calendar token '${id}' not created`)
+                }
+              } catch (ex) {
+                this.warn(`getEvents: Failed to create per calendar token '${id}'`, ex)
+              }
+              return Promise.resolve()
             })
           }
         }))
@@ -296,8 +330,17 @@ class IcalCalendar extends Homey.App {
         // register next event with text tokens
         this.variableMgmt.nextEventWithTokens = []
         for await (const { id, type, title } of generateNextEventTokens({ app: this, variableMgmt: this.variableMgmt })) {
-          this.variableMgmt.nextEventWithTokens.push(await this.homey.flow.createToken(id, { type, title }))
-          this.log(`getEvents: Created next event with token '${id}'`)
+          try {
+            const token = await this.homey.flow.createToken(id, { type, title })
+            if (token) {
+              this.variableMgmt.nextEventWithTokens.push(id)
+              this.log(`getEvents: Created next event with token '${id}'`)
+            } else {
+              this.warn(`getEvents: Failed to create next event with token '${id}'`)
+            }
+          } catch (ex) {
+            this.warn(`getEvents: Failed to create next event with token '${id}'`, ex)
+          }
         }
       }
     }
