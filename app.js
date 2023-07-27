@@ -79,6 +79,8 @@ class IcalCalendar extends Homey.App {
     })
 
     this._unload = () => {
+      this.variableMgmt = null
+
       if (!this.jobs) return
 
       // unload cron jobs
@@ -187,10 +189,11 @@ class IcalCalendar extends Homey.App {
         }
 
         try {
-          const activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
+          let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
           this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Total event count for calendar: ${Object.keys(data).length}`)
           calendarsEvents.push({ name, events: activeEvents })
           calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
+          activeEvents = null
         } catch (error) {
           const errorString = typeof error === 'object' ? error.message : error
           this.error(`getEvents: Failed to get active events for calendar '${name}' :`, error)
