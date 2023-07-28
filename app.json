@@ -3391,8 +3391,7 @@
       "icon": "/drivers/icalcalendar/assets/icon.svg",
       "images": {
         "small": "/drivers/icalcalendar/assets/images/small.png",
-        "large": "/drivers/icalcalendar/assets/images/large.png",
-        "xlarge": "/drivers/icalcalendar/assets/images/xlarge.png"
+        "large": "/drivers/icalcalendar/assets/images/large.png"
       },
       "pair": [
         {
