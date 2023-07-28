@@ -105,7 +105,7 @@ const getEventList = (timezone, app, calendars) => {
   const eventList = []
 
   if (calendars.length === 0) {
-    app.log('getEventList: No calendars. Returning empty array')
+    app.warn('getEventList: No calendars. Returning empty array')
     return eventList
   }
 
@@ -138,7 +138,7 @@ const getEventList = (timezone, app, calendars) => {
           }
         }
       } catch (error) {
-        app.log(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, error, event)
+        app.error(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, error, event)
         startStamp = ''
         endStamp = ''
 
@@ -169,7 +169,7 @@ const getEventList = (timezone, app, calendars) => {
 
 const onEventAutocomplete = async (timezone, app, query, type) => {
   if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
-    app.log('onEventAutocomplete: Calendars not set yet. Nothing to show...')
+    app.warn('onEventAutocomplete: Calendars not set yet. Nothing to show...')
     return false
   }
 
@@ -199,7 +199,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
   }
 
   if (!filteredEvents || filteredEvents.length === 0) {
-    app.log('checkEvent: filteredEvents empty... Resolving with false')
+    app.warn('checkEvent: filteredEvents empty... Resolving with false')
     return false
   }
 

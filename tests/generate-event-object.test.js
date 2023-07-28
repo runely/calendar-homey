@@ -1,5 +1,6 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const { fromEvent, newEvent } = require('../lib/generate-event-object')
 
@@ -32,10 +33,10 @@ const tzEvent = {
 }
 
 const app = {
+  ...constructedApp,
   homey: {
     __: jest.fn()
-  },
-  log: console.log
+  }
 }
 
 describe('fromEvent', () => {

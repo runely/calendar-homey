@@ -1,10 +1,11 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const getEventsToTrigger = require('../lib/get-events-to-trigger')
 
 const app = {
-  log: (...args) => console.log(...args)
+  ...constructedApp
 }
 
 const calendars = [

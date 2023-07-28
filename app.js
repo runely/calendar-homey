@@ -122,7 +122,7 @@ class IcalCalendar extends Homey.App {
 
     // calendars not entered in settings page yet
     if (!calendars) {
-      this.log('getEvents: Calendars has not been set in Settings yet')
+      this.warn('getEvents: Calendars has not been set in Settings yet')
       this.isGettingEvents = false
       return
     }
@@ -134,14 +134,14 @@ class IcalCalendar extends Homey.App {
       const { name } = calendars[i]
       let { uri } = calendars[i]
       if (uri === '') {
-        this.log(`getEvents: Calendar '${name}' has empty uri. Skipping...`)
+        this.warn(`getEvents: Calendar '${name}' has empty uri. Skipping...`)
         continue
       } else if (!/(http|https|webcal):\/\/.+/gi.exec(uri)) {
-        this.log(`getEvents: Uri for calendar '${name}' is invalid. Skipping...`)
+        this.warn(`getEvents: Uri for calendar '${name}' is invalid. Skipping...`)
         calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` }
         errors.push(calendars[i].failed)
         this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
-        this.log(`getEvents: Added 'error' setting value to calendar '${name}'`)
+        this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
         await triggerSynchronizationError({ app: this, calendar: name, error: calendars[i].failed })
         continue
       }
@@ -220,7 +220,7 @@ class IcalCalendar extends Homey.App {
       }
     } catch (error) {
       const errorString = typeof error === 'object' ? error.message : error
-      this.log('getEvents: Failed to filter/trigger changed calendars', errorString)
+      this.error('getEvents: Failed to filter/trigger changed calendars', errorString)
       await triggerSynchronizationError({ app: this, calendar: 'Changed calendars', error })
     }
 
@@ -306,7 +306,7 @@ class IcalCalendar extends Homey.App {
                 this.warn(`getEvents: Calendar token '${id}' not created`)
               }
             } catch (ex) {
-              this.warn(`getEvents: Failed to create calendar token '${id}'`, ex)
+              this.error(`getEvents: Failed to create calendar token '${id}'`, ex)
             }
             return Promise.resolve()
           })
@@ -323,7 +323,7 @@ class IcalCalendar extends Homey.App {
                   this.warn(`getEvents: Per calendar token '${id}' not created`)
                 }
               } catch (ex) {
-                this.warn(`getEvents: Failed to create per calendar token '${id}'`, ex)
+                this.error(`getEvents: Failed to create per calendar token '${id}'`, ex)
               }
               return Promise.resolve()
             })
@@ -342,7 +342,7 @@ class IcalCalendar extends Homey.App {
               this.warn(`getEvents: Failed to create next event with token '${id}'`)
             }
           } catch (ex) {
-            this.warn(`getEvents: Failed to create next event with token '${id}'`, ex)
+            this.error(`getEvents: Failed to create next event with token '${id}'`, ex)
           }
         }
       }
@@ -357,7 +357,10 @@ class IcalCalendar extends Homey.App {
     this.jobs = {
       // calendar update every 15th minute
       update: addJob('*/15 * * * *', () => {
-        if (this.isGettingEvents) return
+        if (this.isGettingEvents) {
+          this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
+          return
+        }
 
         this.log('startJobs/update: Updating calendars without reregistering tokens')
         this.getEvents()
@@ -368,7 +371,7 @@ class IcalCalendar extends Homey.App {
           this.log('startJobs/trigger: Triggering events and updating tokens')
           triggerEvents({ timezone: this.getTimezone(), app: this })
           updateTokens({ timezone: this.getTimezone(), app: this })
-        }
+        } else this.warn('startJobs/trigger: Wont trigger events and update tokens since theres no calendars. Calendars:', this.variableMgmt.calendars)
       })
     }
   }

@@ -1,9 +1,10 @@
 'use strict'
 
 const { calendarAutocomplete } = require('../lib/autocomplete')
+const constructedApp = require('./lib/construct-app')
 
 const app = {
-  log: console.log,
+  ...constructedApp,
   variableMgmt: {
     calendars: [
       {
@@ -18,12 +19,12 @@ const app = {
 
 describe('calendarAutocomplete', () => {
   test("Returns false when 'app.variableMgmt.calendars' doesn't exist", () => {
-    const result = calendarAutocomplete({ log: console.log, variableMgmt: { tokens: [] } })
+    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { tokens: [] } })
     expect(result).toBeFalsy()
   })
 
   test("Returns false when 'app.variableMgmt.calendars' is empty", () => {
-    const result = calendarAutocomplete({ log: console.log, variableMgmt: { calendars: [] } })
+    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { calendars: [] } })
     expect(result).toBeFalsy()
   })
 

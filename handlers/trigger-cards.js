@@ -55,7 +55,7 @@ module.exports.triggerSynchronizationError = async (options) => {
     await triggerCard.trigger(tokens)
     app.log('triggerSynchronizationError: Triggered "synchronization_error"')
   } catch (err) {
-    app.log('triggerSynchronizationError: Failed to trigger "synchronization_error" :', err)
+    app.error('triggerSynchronizationError: Failed to trigger "synchronization_error" :', err)
   }
 }
 
@@ -104,9 +104,9 @@ module.exports.triggerChangedCalendars = async (options) => {
             }
           } catch (error) {
             if (changedCalendarTriggerCard.useState) {
-              app.log(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' with state`, state, ':', error)
+              app.error(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' with state`, state, ':', error)
             } else {
-              app.log(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' :`, error)
+              app.error(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' :`, error)
             }
 
             this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
@@ -115,7 +115,7 @@ module.exports.triggerChangedCalendars = async (options) => {
       }
     }
   } catch (err) {
-    app.log('triggerChangedCalendars: Failed to trigger changed calendar events :', err)
+    app.error('triggerChangedCalendars: Failed to trigger changed calendar events :', err)
   }
 }
 
@@ -165,7 +165,7 @@ module.exports.triggerEvents = async (options) => {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens)
           app.log(`triggerEvents: Triggered '${triggerId}' without state for '${event.uid}'`)
         } catch (error) {
-          app.log(`triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error)
+          app.error(`triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error)
 
           this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
@@ -173,13 +173,13 @@ module.exports.triggerEvents = async (options) => {
         try {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens, state)
         } catch (error) {
-          app.log(`triggerEvents: '${triggerId}' with state`, state, 'failed to trigger:', error)
+          app.error(`triggerEvents: '${triggerId}' with state`, state, 'failed to trigger:', error)
 
           this.triggerSynchronizationError({ app, calendar: calendarName, error, event })
         }
       }
     } catch (err) {
-      app.log('triggerEvents: Failed to trigger event', event.uid, 'from', calendarName, ':', err)
+      app.error('triggerEvents: Failed to trigger event', event.uid, 'from', calendarName, ':', err)
     }
   }
 }

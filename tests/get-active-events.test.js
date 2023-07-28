@@ -2,6 +2,7 @@
 
 const nodeIcal = require('node-ical')
 const moment = require('moment-timezone')
+const constructedApp = require('./lib/construct-app')
 const getActiveEvents = require('../lib/get-active-events')
 const { locale } = require('../locales/en.json')
 
@@ -14,8 +15,7 @@ const eventLimit = {
 }
 
 const app = {
-  log: console.log,
-  warn: console.log,
+  ...constructedApp,
   homey: {
     __: () => locale.moment,
     flow: {

@@ -1,10 +1,12 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const filterUpdatedCalendars = require('../lib/filter-updated-calendars')
 const { triggers: { event_changed: { start, end, description, location, summary } }, settings: { datetime: { date: { default: long }, time: { default: time } } } } = require('../locales/en.json')
 
 const app = {
+  ...constructedApp,
   homey: {
     __: (prop) => {
       if (prop.includes('start')) return start
@@ -15,14 +17,12 @@ const app = {
       return ''
     }
   },
-  log: console.log,
   variableMgmt: {
     dateTimeFormat: {
       long,
       time
     }
-  },
-  warn: console.log
+  }
 }
 
 const oldCalendars = {

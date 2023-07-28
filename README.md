@@ -202,6 +202,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 2.0.1
     - code cleanup
     - Nullify global variables when not needed anymore
+    - Correctly log warn/error when somethings wrong
 - 2.0.0
     - Added device `IcalCalendar` which shows calendar count, total event count, and last synchronization timestamp and event count per calendar
     - Dependency updates

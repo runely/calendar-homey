@@ -104,7 +104,7 @@ class MyDevice extends Device {
     try {
       await this.setCapabilityValue(id, value)
     } catch {
-      this.warn('setCapabilityValue - Failed to set', id, 'to', value)
+      this.error('setCapabilityValue - Failed to set', id, 'to', value)
     }
   }
 
@@ -114,7 +114,7 @@ class MyDevice extends Device {
       await this.setCapabilityOptions(id, { title })
       this.log('newCapability -', id, 'has been added')
     } catch {
-      this.warn('newCapability - Failed to add', id, 'and/or set title to', title)
+      this.error('newCapability - Failed to add', id, 'and/or set title to', title)
     }
   }
 

@@ -1,9 +1,10 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const getFallbackUri = require('../lib/get-fallback-uri')
 
 const app = {
-  log: console.log
+  ...constructedApp
 }
 
 const succeedTests = [

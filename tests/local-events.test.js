@@ -1,10 +1,11 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const { getLocalActiveEvents, saveLocalEvents } = require('../lib/local-events')
 
 const app = {
-  log: console.log,
+  ...constructedApp,
   homey: {
     __: jest.fn(),
     settings: {

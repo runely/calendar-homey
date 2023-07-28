@@ -1,10 +1,12 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const getTokenDuration = require('../lib/get-token-duration')
 const { locale: { humanize }, humanize: { conjunction } } = require('../locales/en.json')
 
 const app = {
+  ...constructedApp,
   homey: {
     __: (prop) => {
       if (prop.includes('locale.humanize')) return humanize

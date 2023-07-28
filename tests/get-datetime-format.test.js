@@ -1,9 +1,11 @@
 'use strict'
 
+const constructedApp = require('./lib/construct-app')
 const getDateTimeFormat = require('../lib/get-datetime-format')
 const { settings: { datetime: { date, time } } } = require('../locales/en.json')
 
 const app = {
+  ...constructedApp,
   homey: {
     __: (prop) => {
       if (prop.includes('.date.')) return date.default
@@ -14,8 +16,7 @@ const app = {
       get: (prop) => prop || null,
       set: (prop, value) => console.log('Setting', prop, 'to', value)
     }
-  },
-  log: console.log
+  }
 }
 
 const appFormatUndefined = {

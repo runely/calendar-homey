@@ -31,7 +31,7 @@ module.exports = (app) => {
 
     eventCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
       if (!app.variableMgmt.calendars) {
-        app.log(`${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`)
+        app.warn(`${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`)
         return false
       }
 
