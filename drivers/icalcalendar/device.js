@@ -65,6 +65,22 @@ class MyDevice extends Device {
           await this.newCapability(eventCountPerCalendarLoop, `${this.homey.__('device.eventCountCalendar')} ${calendar.name}`)
         }
       }
+
+      const currentCalendarCapabilities = this.getCapabilities().filter((capability) => capability.includes(lastSuccessfullSync) || capability.includes(eventCountPerCalendar)).map((capability) => capability.replace(`${lastSuccessfullSync}.`, '').replace(`${eventCountPerCalendar}.`, ''))
+      const currentCalendarNames = [...new Set(currentCalendarCapabilities)]
+      if (currentCalendarNames.length > 0) {
+        for await (const calendarName of currentCalendarNames) {
+          if (!calendarsConfigured.find((calendar) => calendar.name === calendarName)) {
+            this.warn('updateCalendarsCount -', calendarName, 'is no longer a configured calendar but has still registered capabilities. Removing capabilities for this calendar')
+            try {
+              await this.removeCapability(`${lastSuccessfullSync}.${calendarName}`)
+              await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`)
+            } catch (ex) {
+              this.error('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
+            }
+          }
+        }
+      } else this.warn('updateCalendarsCount - No calendar capabilities found', this.getCapabilities())
     } else {
       this.warn('updateCalendarsCount - No calendars configured yet')
     }

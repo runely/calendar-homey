@@ -204,6 +204,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Nullify global variables when not needed anymore
     - Correctly log warn/error when somethings wrong
     - Dependency updates
+    - Fixed a bug where a removed calendar wouldn't remove capabilities for this calendar -> [Issue #503](https://github.com/runely/calendar-homey/issues/503)
 - 2.0.0
     - Added device `IcalCalendar` which shows calendar count, total event count, and last synchronization timestamp and event count per calendar
     - Dependency updates
