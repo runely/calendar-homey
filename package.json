@@ -15,7 +15,7 @@
     "@types/jest": "29.5.3",
     "@types/node": "18.17.1",
     "browserify": "17.0.0",
-    "eslint": "8.44.0",
+    "eslint": "8.45.0",
     "eslint-config-athom": "3.1.1",
     "eslint-plugin-jest": "27.2.3",
     "jest": "29.6.2",
