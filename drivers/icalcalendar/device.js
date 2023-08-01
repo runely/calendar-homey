@@ -5,9 +5,9 @@ const { moment } = require('../../lib/moment-datetime')
 const varMgmt = require('../../lib/variable-management')
 
 const calendarsCount = 'meter_calendars_count_ical'
+const totalEventCount = 'meter_total_event_count_ical'
 const eventCountPerCalendar = 'meter_event_count_calendar_ical'
 const lastSuccessfullSync = 'last_successfull_sync_ical'
-const totalEventCount = 'meter_total_event_count_ical'
 
 class MyDevice extends Device {
   /**
@@ -119,6 +119,7 @@ class MyDevice extends Device {
   async updateCapabilityValue (id, value) {
     try {
       await this.setCapabilityValue(id, value)
+      this.log('updateCapabilityValue: - Capability', id, 'updated to', value)
     } catch {
       this.error('setCapabilityValue - Failed to set', id, 'to', value)
     }
@@ -127,8 +128,9 @@ class MyDevice extends Device {
   async newCapability (id, title) {
     try {
       await this.addCapability(id)
+      this.log('newCapability: - Capability', id, 'created')
       await this.setCapabilityOptions(id, { title })
-      this.log('newCapability -', id, 'has been added')
+      this.log('newCapability: - Capability', id, 'title changed to', title)
     } catch {
       this.error('newCapability - Failed to add', id, 'and/or set title to', title)
     }
