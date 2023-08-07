@@ -238,7 +238,7 @@ function saveCalendarItems () {
   const calendarNames = []
 
   let calendarIndex = 1
-  return calendars.filter(calendar => calendar.localName === 'fieldset').map(calendar => {
+  return calendars.filter(calendar => calendar.localName === 'fieldset' && (calendar.children[3].value !== '' || calendar.children[8].value !== '')).map(calendar => {
     const name = calendar.children[3].value
     let uri = calendar.children[8].value
 

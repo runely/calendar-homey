@@ -201,6 +201,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 2.0.2
     - IcalCalendar device: Also log out when a capability value is updated and when a new capability is registered
+    - Allow to remove the last calendar from app settings
 - 2.0.1
     - code cleanup
     - Nullify global variables when not needed anymore
