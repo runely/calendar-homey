@@ -2,6 +2,7 @@
 
 const Homey = require('homey')
 const ical = require('node-ical')
+const { Blob } = require('node:buffer')
 
 const varMgmt = require('./lib/variable-management')
 const getDateTimeFormat = require('./lib/get-datetime-format')
@@ -9,13 +10,13 @@ const hasData = require('./lib/has-data')
 const getActiveEvents = require('./lib/get-active-events')
 const getFallbackUri = require('./lib/get-fallback-uri')
 const filterUpdatedCalendars = require('./lib/filter-updated-calendars')
-const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const getEventUids = require('./lib/get-event-uids')
 const getNewEvents = require('./lib/get-new-events')
 const { getLocalActiveEvents, saveLocalEvents } = require('./lib/local-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 const { generateTokens, generatePerCalendarTokens, generateNextEventTokens } = require('./lib/generate-token-configuration')
 
+const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const setupTriggers = require('./handlers/setup-triggers')
 const setupFlowTokens = require('./handlers/setup-flow-tokens')
 const { setupConditions } = require('./handlers/setup-conditions')
@@ -189,8 +190,10 @@ class IcalCalendar extends Homey.App {
         }
 
         try {
+          const totalEventsSize = new Blob([JSON.stringify(data)]).size / 1000
           let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
-          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Total event count for calendar: ${Object.keys(data).length}`)
+          const activeEventsSize = new Blob([JSON.stringify(activeEvents)]).size / 1000
+          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Event size: ${activeEventsSize}KB. Total event count for calendar: ${Object.keys(data).length}. Total event size for calendar: ${totalEventsSize}KB`)
           calendarsEvents.push({ name, events: activeEvents })
           calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
           activeEvents = null
@@ -252,6 +255,12 @@ class IcalCalendar extends Homey.App {
 
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
+    const allEventSize = new Blob([JSON.stringify(this.variableMgmt.calendars)]).size / 1000
+    const allEventCount = this.variableMgmt.calendars.reduce((curr, acu) => {
+      curr += acu.events.length
+      return curr
+    }, 0)
+    this.log(`getEvents: All events count: ${allEventCount}. All event size: ${allEventSize}KB`)
     this.homey.settings.set(this.variableMgmt.storage.calendarsMetadata, JSON.stringify(calendarsMetadata))
 
     if (reregisterCalendarTokens) {
