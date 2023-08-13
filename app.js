@@ -268,13 +268,17 @@ class IcalCalendar extends Homey.App {
       if (this.variableMgmt.calendarTokens.length > 0) {
         this.log('getEvents: Calendar tokens starting to flush')
         await Promise.all(this.variableMgmt.calendarTokens.map(async (tokenId) => {
-          const token = this.homey.flow.getToken(tokenId)
-          if (token) {
-            this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
-            return token.unregister()
-          } else {
-            this.warn(`getEvents: Calendar token '${tokenId}' not found`)
-            return Promise.resolve()
+          try {
+            const token = this.homey.flow.getToken(tokenId)
+            if (token) {
+              this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
+              return token.unregister()
+            } else {
+              this.warn(`getEvents: Calendar token '${tokenId}' not found`)
+              return Promise.resolve()
+            }
+          } catch (ex) {
+            this.error(`getEvents: Failed to get calendar token '${tokenId}'`, ex)
           }
         }))
         this.variableMgmt.calendarTokens = []
@@ -285,13 +289,17 @@ class IcalCalendar extends Homey.App {
       if (Array.isArray(this.variableMgmt.nextEventWithTokens) && this.variableMgmt.nextEventWithTokens.length > 0) {
         this.log('getEvents: Next event with tokens starting to flush')
         await Promise.all(this.variableMgmt.nextEventWithTokens.map(async (tokenId) => {
-          const token = this.homey.flow.getToken(tokenId)
-          if (token) {
-            this.log(`getEvents: Next event with token '${tokenId}' starting to flush`)
-            return token.unregister()
-          } else {
-            this.warn(`getEvents: Next event with token '${tokenId}' not found`)
-            return Promise.resolve()
+          try {
+            const token = this.homey.flow.getToken(tokenId)
+            if (token) {
+              this.log(`getEvents: Next event with token '${tokenId}' starting to flush`)
+              return token.unregister()
+            } else {
+              this.warn(`getEvents: Next event with token '${tokenId}' not found`)
+              return Promise.resolve()
+            }
+          } catch (ex) {
+            this.error(`getEvents: Failed to get next event with token '${tokenId}'`, ex)
           }
         }))
         this.variableMgmt.nextEventWithTokens = []

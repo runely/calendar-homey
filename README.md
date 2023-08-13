@@ -204,6 +204,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Allow to remove the last calendar from app settings
     - Show total event size and active event size (in KB) for a calendar.
     - Dependency updates
+    - Fixed a bug where an error would be thrown when the app is shutting down and the app at the same time reaches the point where it tries to use an SDK function -> [Issue #509](https://github.com/runely/calendar-homey/issues/509)
 - 2.0.1
     - code cleanup
     - Nullify global variables when not needed anymore
