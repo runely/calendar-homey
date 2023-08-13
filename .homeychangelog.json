@@ -319,5 +319,8 @@
   },
   "2.0.1": {
     "en": "Fixed a bug where a removed calendar wouldn't remove capabilities for this calendar. Code cleanup. Log warn/error where applicable. Dependency updates."
+  },
+  "2.0.2": {
+    "en": "More logging. Dependency updates. Bugfix"
   }
 }
