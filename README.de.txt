@@ -27,8 +27,10 @@ Die Gmail ical URL finden
 
 Die Apple iCloud URL finden
 
+Die ersten beiden Standardkalender von Apple iCloud ("Zuhause" und "Arbeit") können nicht über einen öffentlichen Link, sondern nur per persönlicher Einladung (per E-Mail) geteilt werden. Über den öffentlichen Link funktionieren nur "neue" und "nicht standardmäßige" Kalender von Apple iCloud.
+
 1. Öffnen Sie https://www.icloud.com/calendar/, oder öffnen Sie die Kalender App auf Ihrem iOS Gerät
-2. Klicken Sie rechts neben dem Kalendername auf das Symbol
+2. Klicken Sie rechts neben dem Kalendername auf das Symbol (nicht "Zuhause" oder "Arbeit")
 3. Kreuzen Sie das Kontrollkästchen an bzw. aktivieren Sie den Schieber für "Öffentlicher Kalender"
 4. Kopieren Sie den Link
 5. Fügen Sie den Kalenderlink in die Einstellungen der Homey-App ein

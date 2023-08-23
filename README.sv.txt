@@ -27,8 +27,10 @@ Hur man hittar ical-länken i Gmail
 
 Hur man hittar ical-länken i Apple iCloud
 
+De första 2 vanliga Apple iCloud-kalendrarna ("Hem" och "Arbete") är inte tillgängliga för att delas via en offentlig länk utan endast genom personlig inbjudan (via e-post). Endast "nya" och "icke-standard" kalendrar från Apple iCloud fungerar via den offentliga länken.
+
 1. Gå till https://www.icloud.com/calendar/ eller öppna kalendern på din iOS-enhet
-2. Klicka på ikonen till höger om namnet på den kalender du vill använda
+2. Klicka på ikonen till höger om namnet på den kalender du vill använda (inte "Hem" eller "Arbete")
 3. Markera "Extern kalender"
 4. Kopiera länken
 5. Klistra in länken i inställningarna i Homey-appen

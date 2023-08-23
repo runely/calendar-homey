@@ -27,8 +27,10 @@ Find Gmail ical url
 
 Find Apple iCloud url
 
+The first 2 standard Apple iCloud calendars ("Home" and "Work") are not available to be shared by a public link but only by personal invite (via email). Only "new" and "non-default" calendars from Apple iCloud are working through the public link.
+
 1. Go to https://www.icloud.com/calendar/, or open the Calendar app on your iOS device
-2. Click on the icon next to the calendar name in the left pane
+2. Click on the icon next to the calendar name in the left pane (not "Home" or "Work")
 3. Tick the checkbox for "Public calendar"
 4. Copy the link
 5. Paste the calendar link in the Homey app settings

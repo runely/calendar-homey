@@ -36,8 +36,10 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 
 ### Find Apple iCloud url
 
+> The first 2 standard Apple iCloud calendars (**Home** and **Work**) are not available to be shared by a public link but only by personal invite (via email). Only **new** and **non-default** calendars from Apple iCloud are working through the public link.
+
 1. Go to https://www.icloud.com/calendar/, or open the Calendar app on your iOS device
-1. Click on the icon next to the calendar name in the left pane
+1. Click on the icon next to the calendar name in the left pane (not **Home** or **Work**)
 1. Tick the checkbox for **Public calendar**
 1. Copy the link
 1. Paste the calendar link in the Homey app settings
@@ -199,6 +201,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.0.3
+    - Added information about `Home` and `Work` Apple iCloud calendars which doesn't support to be publicly available. [Thanks to @DoctorBazinga for finding this out](https://community.homey.app/t/app-pro-icalcalendar/80708/16)
 - 2.0.2
     - IcalCalendar device: Also log out when a capability value is updated and when a new capability is registered
     - Allow to remove the last calendar from app settings

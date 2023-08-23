@@ -27,8 +27,10 @@ Hvordan finne Gmail ical-lenken
 
 Hvordan finne Apple iCloud-lenken
 
+De to første standard Apple iCloud-kalenderene ("Hjem" og "Arbeid") er ikke tilgjengelige for deling via en offentlig lenke, men kun ved personlig invitasjon (via e-post). Bare "nye" og "ikke-standard"-kalendere fra Apple iCloud fungerer gjennom den offentlige lenken.
+
 1. Gå til https://www.icloud.com/calendar/, eller åpne Kalenderen på din iOS-enhet
-2. Klikk på ikonet til høyre for navnet på kalenderen du vil legge inn
+2. Klikk på ikonet til høyre for navnet på kalenderen du vil legge inn (ikke "Hjem" eller "Arbeid")
 3. Huk av "Ekstern kalender"
 4. Kopier koblingen
 5. Lim inn lenken i innstillingene i Homey-appen

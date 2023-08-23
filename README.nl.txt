@@ -27,8 +27,10 @@ Gmail ical url
 
 Apple iCloud url
 
+De eerste twee standaard Apple iCloud-agenda's ("Thuis" en "Werk") kunnen niet worden gedeeld via een openbare link, maar alleen via een persoonlijke uitnodiging (via e-mail). Alleen "nieuwe" en "niet-standaard" agenda's van Apple iCloud werken via de openbare link.
+
 1. Ga naar https://www.icloud.com/calendar/, of open de agenda app op een iOS of Mac
-2. Klik on het icoontje naast de agenda naam in het linker gedeelte van het scherm
+2. Klik on het icoontje naast de agenda naam in het linker gedeelte van het scherm (niet "Thuis" of "Werk")
 3. Vink de checkbox aan voor "Publieke Agenda"
 4. Kopieer de link
 5. Plake de link van de agenda in de Homey IcalCalender app

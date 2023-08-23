@@ -27,8 +27,10 @@ Trouver l'url de Gmail
 
 Trouver l'url Apple iCloud
 
+Les 2 premiers calendriers Apple iCloud standard ("Maison" et "Travail") ne peuvent pas être partagés via un lien public mais uniquement sur invitation personnelle (par e-mail). Seuls les calendriers "nouveaux" et "autres que ceux par défaut" d'Apple iCloud fonctionnent via le lien public.
+
 1. Allez sur https://www.icloud.com/calendar/, ou ouvrez l'application Calendrier sur votre appareil iOS.
-2. Cliquez sur l'icône située à côté du nom du calendrier dans le volet de gauche.
+2. Cliquez sur l'icône située à côté du nom du calendrier dans le volet de gauche. (pas "Maison" ou "Travail")
 3. Cochez la case "Calendrier public".
 4. Copiez le lien
 5. Collez le lien du calendrier dans les paramètres de l'application Homey
