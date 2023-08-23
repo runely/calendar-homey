@@ -9,7 +9,7 @@ module.exports = async (app) => {
         app.log(`setupFlowTokens: Created flow token '${id}'`)
       } else app.warn(`setupFlowTokens: Flow token '${id}' not created`)
     } catch (ex) {
-      app.error(`setupFlowTokens: Failed to create flow token '${id}'`, ex)
+      app.logError(`setupFlowTokens: Failed to create flow token '${id}'`, ex)
     }
   }
 }

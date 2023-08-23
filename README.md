@@ -203,6 +203,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 2.0.3
     - Added information about `Home` and `Work` Apple iCloud calendars which doesn't support to be publicly available. [Thanks to @DoctorBazinga for finding this out](https://community.homey.app/t/app-pro-icalcalendar/80708/16)
+    - Prefix errors with `[ERROR]` in the logs
 - 2.0.2
     - IcalCalendar device: Also log out when a capability value is updated and when a new capability is registered
     - Allow to remove the last calendar from app settings

@@ -33,8 +33,11 @@ class IcalCalendar extends Homey.App {
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
 
-    // convenience function for logging warnings
+    // convenience functions for logging
     this.warn = (...args) => this.log('[WARN]', ...args)
+    this.logError = (...args) => {
+      this.error('[ERROR]', ...args)
+    }
 
     this.log(`${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
@@ -162,13 +165,13 @@ class IcalCalendar extends Homey.App {
       } catch (error) {
         const { fallbackUri } = getFallbackUri(this, uri)
         const errorString = typeof error === 'object' ? error.message : error
-        this.error(`getEvents: Failed to get events for calendar '${name}' with uri '${uri}' :`, error)
+        this.logError(`getEvents: Failed to get events for calendar '${name}' with uri '${uri}' :`, error)
         try {
           this.warn(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, 'with fallback uri', fallbackUri)
           data = await ical.fromURL(uri)
         } catch (innerError) {
           const fallbackErrorString = typeof innerError === 'object' ? innerError.message : innerError
-          this.error(`getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' :`, innerError)
+          this.logError(`getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' :`, innerError)
 
           errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' (${errorString}) and '${fallbackUri}' (${fallbackErrorString})`)
           await triggerSynchronizationError({ app: this, calendar: name, error: innerError })
@@ -199,7 +202,7 @@ class IcalCalendar extends Homey.App {
           activeEvents = null
         } catch (error) {
           const errorString = typeof error === 'object' ? error.message : error
-          this.error(`getEvents: Failed to get active events for calendar '${name}' :`, error)
+          this.logError(`getEvents: Failed to get active events for calendar '${name}' :`, error)
           errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`)
           await triggerSynchronizationError({ app: this, calendar: name, error })
           calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
@@ -223,7 +226,7 @@ class IcalCalendar extends Homey.App {
       }
     } catch (error) {
       const errorString = typeof error === 'object' ? error.message : error
-      this.error('getEvents: Failed to filter/trigger changed calendars', errorString)
+      this.logError('getEvents: Failed to filter/trigger changed calendars', errorString)
       await triggerSynchronizationError({ app: this, calendar: 'Changed calendars', error })
     }
 
@@ -278,7 +281,7 @@ class IcalCalendar extends Homey.App {
               return Promise.resolve()
             }
           } catch (ex) {
-            this.error(`getEvents: Failed to get calendar token '${tokenId}'`, ex)
+            this.logError(`getEvents: Failed to get calendar token '${tokenId}'`, ex)
           }
         }))
         this.variableMgmt.calendarTokens = []
@@ -299,7 +302,7 @@ class IcalCalendar extends Homey.App {
               return Promise.resolve()
             }
           } catch (ex) {
-            this.error(`getEvents: Failed to get next event with token '${tokenId}'`, ex)
+            this.logError(`getEvents: Failed to get next event with token '${tokenId}'`, ex)
           }
         }))
         this.variableMgmt.nextEventWithTokens = []
@@ -323,7 +326,7 @@ class IcalCalendar extends Homey.App {
                 this.warn(`getEvents: Calendar token '${id}' not created`)
               }
             } catch (ex) {
-              this.error(`getEvents: Failed to create calendar token '${id}'`, ex)
+              this.logError(`getEvents: Failed to create calendar token '${id}'`, ex)
             }
             return Promise.resolve()
           })
@@ -340,7 +343,7 @@ class IcalCalendar extends Homey.App {
                   this.warn(`getEvents: Per calendar token '${id}' not created`)
                 }
               } catch (ex) {
-                this.error(`getEvents: Failed to create per calendar token '${id}'`, ex)
+                this.logError(`getEvents: Failed to create per calendar token '${id}'`, ex)
               }
               return Promise.resolve()
             })
@@ -359,7 +362,7 @@ class IcalCalendar extends Homey.App {
               this.warn(`getEvents: Failed to create next event with token '${id}'`)
             }
           } catch (ex) {
-            this.error(`getEvents: Failed to create next event with token '${id}'`, ex)
+            this.logError(`getEvents: Failed to create next event with token '${id}'`, ex)
           }
         }
       }

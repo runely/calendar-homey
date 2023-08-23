@@ -17,8 +17,11 @@ class MyDevice extends Device {
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
 
-    // convenience function for logging warnings
+    // convenience functions for logging
     this.warn = (...args) => this.log('[WARN]', ...args)
+    this.logError = (...args) => {
+      this.error('[ERROR]', ...args)
+    }
 
     this.log(`Device v${this.homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.getTimezone()}'`)
 
@@ -76,7 +79,7 @@ class MyDevice extends Device {
               await this.removeCapability(`${lastSuccessfullSync}.${calendarName}`)
               await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`)
             } catch (ex) {
-              this.error('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
+              this.logError('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
             }
           }
         }
@@ -121,7 +124,7 @@ class MyDevice extends Device {
       await this.setCapabilityValue(id, value)
       this.log('updateCapabilityValue: - Capability', id, 'updated to', value)
     } catch {
-      this.error('setCapabilityValue - Failed to set', id, 'to', value)
+      this.logError('setCapabilityValue - Failed to set', id, 'to', value)
     }
   }
 
@@ -132,7 +135,7 @@ class MyDevice extends Device {
       await this.setCapabilityOptions(id, { title })
       this.log('newCapability: - Capability', id, 'title changed to', title)
     } catch {
-      this.error('newCapability - Failed to add', id, 'and/or set title to', title)
+      this.logError('newCapability - Failed to add', id, 'and/or set title to', title)
     }
   }
 

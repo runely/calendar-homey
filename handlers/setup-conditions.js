@@ -138,7 +138,7 @@ const getEventList = (timezone, app, calendars) => {
           }
         }
       } catch (error) {
-        app.error(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, error, event)
+        app.logError(`getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`, error, event)
         startStamp = ''
         endStamp = ''
 

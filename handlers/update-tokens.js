@@ -17,7 +17,7 @@ const updateToken = async (tokenId, value, app) => {
       app.warn(`updateToken: Token with id '${tokenId}' not found`)
     }
   } catch (error) {
-    app.error(`updateToken: Failed to update token '${tokenId}': ${error.message || error}`)
+    app.logError(`updateToken: Failed to update token '${tokenId}': ${error.message || error}`)
   }
 }
 
@@ -125,7 +125,7 @@ const updateTokens = async (options) => {
         await updateToken(tokenId, moment({ timezone }).isoWeek(), app)
       }
     } catch (error) {
-      app.error('updateTokens: Failed to update flow token', tokenId, ':', error)
+      app.logError('updateTokens: Failed to update flow token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
     }
@@ -205,7 +205,7 @@ const updateTokens = async (options) => {
 
       await updateToken(tokenId, value, app)
     } catch (error) {
-      app.error('updateTokens: Failed to update calendar token', tokenId, ':', error)
+      app.logError('updateTokens: Failed to update calendar token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
     }
@@ -237,13 +237,13 @@ const updateNextEventWithTokens = async (app, event) => {
           await updateToken(tokenId, description || '', app)
         }
       } catch (error) {
-        app.error('updateNextEventWithTokens: Failed to update next event with token', tokenId, ':', error)
+        app.logError('updateNextEventWithTokens: Failed to update next event with token', tokenId, ':', error)
 
         triggerSynchronizationError({ app, calendar: calendarName, error, event: { summary } })
       }
     }
   } catch (error) {
-    app.error('updateNextEventWithTokens: Failed to update next event with tokens:', error)
+    app.logError('updateNextEventWithTokens: Failed to update next event with tokens:', error)
   }
 }
 
