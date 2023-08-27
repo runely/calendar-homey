@@ -107,6 +107,12 @@ class IcalCalendar extends Homey.App {
     this.startJobs()
   }
 
+  getWorkTime(start, end) {
+    const seconds = (end - start) / 1000
+    if (seconds > 60) return `${seconds / 60} minutes`
+    return `${seconds} seconds`
+  }
+
   async getEvents (reregisterCalendarTokens = false) {
     this.isGettingEvents = true
 
@@ -134,6 +140,7 @@ class IcalCalendar extends Homey.App {
     // get ical events
     this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
     if (logAllEvents) this.log('getEvents: Debug - logAllEvents active')
+    const retrieveCalendarsStart = new Date()
     for (let i = 0; i < calendars.length; i++) {
       const { name } = calendars[i]
       let { uri } = calendars[i]
@@ -158,6 +165,7 @@ class IcalCalendar extends Homey.App {
       }
 
       this.log(`getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`, name, uri)
+      const retrieveCalendarStart = new Date()
 
       let data
       try {
@@ -192,17 +200,19 @@ class IcalCalendar extends Homey.App {
           this.log(`getEvents: Removed 'error' setting value from calendar '${name}'`)
         }
 
+        const retrieveCalendarEnd = new Date()
         try {
           const totalEventsSize = new Blob([JSON.stringify(data)]).size / 1000
+          this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Total event size for calendar: ${totalEventsSize}KB. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
           let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
           const activeEventsSize = new Blob([JSON.stringify(activeEvents)]).size / 1000
-          this.log(`getEvents: Events for calendar '${name}' updated. Event count: ${activeEvents.length}. Event size: ${activeEventsSize}KB. Total event count for calendar: ${Object.keys(data).length}. Total event size for calendar: ${totalEventsSize}KB`)
+          this.log(`getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Event size: ${activeEventsSize}KB. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())}`)
           calendarsEvents.push({ name, events: activeEvents })
           calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
           activeEvents = null
         } catch (error) {
           const errorString = typeof error === 'object' ? error.message : error
-          this.logError(`getEvents: Failed to get active events for calendar '${name}' :`, error)
+          this.logError(`getEvents: Failed to get active events for calendar '${name}'. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())} :`, error)
           errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`)
           await triggerSynchronizationError({ app: this, calendar: name, error })
           calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
@@ -213,7 +223,7 @@ class IcalCalendar extends Homey.App {
           this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
         }
       } else {
-        this.warn(`getEvents: Calendar '${name}' not reachable! Giving up...`)
+        this.warn(`getEvents: Calendar '${name}' not reachable! Giving up... Time used: ${this.getWorkTime(retrieveCalendarStart, new Date())}`)
       }
 
       data = null
@@ -263,7 +273,7 @@ class IcalCalendar extends Homey.App {
       curr += acu.events.length
       return curr
     }, 0)
-    this.log(`getEvents: All events count: ${allEventCount}. All event size: ${allEventSize}KB`)
+    this.log(`getEvents: All events count: ${allEventCount}. All event size: ${allEventSize}KB. Time used: ${this.getWorkTime(retrieveCalendarsStart, new Date())}`)
     this.homey.settings.set(this.variableMgmt.storage.calendarsMetadata, JSON.stringify(calendarsMetadata))
 
     if (reregisterCalendarTokens) {
