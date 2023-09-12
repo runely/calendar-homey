@@ -322,5 +322,8 @@
   },
   "2.0.2": {
     "en": "More logging. Dependency updates. Bugfix"
+  },
+  "2.0.3": {
+    "en": "Bugfix for recurring ongoing moved recurrence date. More logging and nullifying. Added more info about Apple iCloud calendars"
   }
 }
