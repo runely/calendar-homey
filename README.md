@@ -206,6 +206,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Prefix errors with `[ERROR]` in the logs
     - Show time used on calendar retrieval and finding active events
     - More logging and nullify variables for faster garbage collection
+    - Fixed a bug where `A single recurring event that has been moved to a different date, and is ongoing and has start date before the import window will not be imported.` -> [Issue #518](https://github.com/runely/calendar-homey/issues/518)
 - 2.0.2
     - IcalCalendar device: Also log out when a capability value is updated and when a new capability is registered
     - Allow to remove the last calendar from app settings
