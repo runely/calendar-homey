@@ -107,7 +107,7 @@ class IcalCalendar extends Homey.App {
     this.startJobs()
   }
 
-  getWorkTime(start, end) {
+  getWorkTime (start, end) {
     const seconds = (end - start) / 1000
     if (seconds > 60) return `${seconds / 60} minutes`
     return `${seconds} seconds`

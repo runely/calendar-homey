@@ -9,7 +9,8 @@
     "semi": "off",
     "space-before-function-paren": "off",
     "consistent-return": "off",
-    "no-else-return": "off"
+    "no-else-return": "off",
+    "no-loop-func": "off"
   },
   "ignorePatterns": [
     "**/settings/*.js"
