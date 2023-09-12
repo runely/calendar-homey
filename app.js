@@ -120,6 +120,14 @@ class IcalCalendar extends Homey.App {
     const errors = []
     // get URI from settings
     const calendars = this.homey.settings.get(this.variableMgmt.setting.icalUris)
+
+    // calendars not entered in settings page yet
+    if (!calendars) {
+      this.warn('getEvents: Calendars has not been set in Settings yet')
+      this.isGettingEvents = false
+      return
+    }
+
     // is debug logAllEvents activated
     const logAllEvents = this.homey.settings.get(this.variableMgmt.setting.logAllEvents) ?? false
     // get event limit from settings or use the default
@@ -130,17 +138,11 @@ class IcalCalendar extends Homey.App {
     const calendarsEvents = []
     const calendarsMetadata = []
 
-    // calendars not entered in settings page yet
-    if (!calendars) {
-      this.warn('getEvents: Calendars has not been set in Settings yet')
-      this.isGettingEvents = false
-      return
-    }
-
     // get ical events
     this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
     if (logAllEvents) this.log('getEvents: Debug - logAllEvents active')
     const retrieveCalendarsStart = new Date()
+
     for (let i = 0; i < calendars.length; i++) {
       const { name } = calendars[i]
       let { uri } = calendars[i]
@@ -152,7 +154,7 @@ class IcalCalendar extends Homey.App {
         calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` }
         errors.push(calendars[i].failed)
         this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
-        this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
+        this.warn(`getEvents: Added 'error' setting value to calendar '${name}' : ${calendars[i].failed}`)
         await triggerSynchronizationError({ app: this, calendar: name, error: calendars[i].failed })
         continue
       }
