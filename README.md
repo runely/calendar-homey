@@ -201,6 +201,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.0.4
+    - Don't fetch calendars IF there's less than 5 minutes since last time
 - 2.0.3
     - Added information about `Home` and `Work` Apple iCloud calendars which doesn't support to be publicly available. [Thanks to @DoctorBazinga for finding this out](https://community.homey.app/t/app-pro-icalcalendar/80708/16)
     - Prefix errors with `[ERROR]` in the logs

@@ -125,6 +125,7 @@ class IcalCalendar extends Homey.App {
     if (!calendars) {
       this.warn('getEvents: Calendars has not been set in Settings yet')
       this.isGettingEvents = false
+      this.gettingEventsLastRun = new Date()
       return
     }
 
@@ -381,6 +382,7 @@ class IcalCalendar extends Homey.App {
     }
 
     this.isGettingEvents = false
+    this.gettingEventsLastRun = new Date()
 
     if (errors.length > 0) return errors
   }
@@ -391,6 +393,9 @@ class IcalCalendar extends Homey.App {
       update: addJob('*/15 * * * *', () => {
         if (this.isGettingEvents) {
           this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
+          return
+        } else if (this.gettingEventsLastRun && ((new Date() - this.gettingEventsLastRun) / 1000 / 60) < 5) {
+          this.warn('startJobs/update: Wont update calendars from this job since there\'s less than 5 minutes since getEvents was last executed:', this.gettingEventsLastRun)
           return
         }
 
