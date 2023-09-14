@@ -404,6 +404,11 @@ class IcalCalendar extends Homey.App {
       }),
       // trigger events every 1th minute
       trigger: addJob('*/1 * * * *', () => {
+        if (this.isGettingEvents) {
+          this.warn('startJobs/trigger: Wont trigger events and update tokens since getEvents is running. Will trigger in one minute')
+          return
+        }
+
         if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
           this.log('startJobs/trigger: Triggering events and updating tokens')
           triggerEvents({ timezone: this.getTimezone(), app: this })
