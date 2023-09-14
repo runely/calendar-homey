@@ -206,6 +206,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Start calendar fetching every 15th minute and 5th second to make sure events has been triggerred and tokens has been updated
     - If calendar fetching is already running, don't trigger events and update tokens
     - Make sure trigger events and update tokens doesn't run at the same time
+    - Dependency updates
 - 2.0.3
     - Added information about `Home` and `Work` Apple iCloud calendars which doesn't support to be publicly available. [Thanks to @DoctorBazinga for finding this out](https://community.homey.app/t/app-pro-icalcalendar/80708/16)
     - Prefix errors with `[ERROR]` in the logs
