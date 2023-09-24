@@ -204,6 +204,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 2.1.0
     - Added condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within` -> [Issue #524](https://github.com/runely/calendar-homey/issues/524)
+    - Dependency updates
 - 2.0.4
     - Don't fetch calendars IF there's less than 5 minutes since last time
     - Start calendar fetching every 15th minute and 5th second to make sure events has been triggerred and tokens has been updated
