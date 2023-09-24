@@ -328,5 +328,8 @@
   },
   "2.0.4": {
     "en": "Fetching calendars and triggering events/updating tokens isnt running at the same time anymore. Dependency updates"
+  },
+  "2.1.0": {
+    "en": "Added condition 'Calendar has event where property is equal to given value and optionally starts within'. Dependency updates"
   }
 }
