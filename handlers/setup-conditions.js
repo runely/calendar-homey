@@ -1,7 +1,7 @@
 'use strict'
 
 const { momentNow } = require('../lib/moment-datetime')
-const { filterByCalendar, filterBySummary, filterByUID } = require('../lib/filter-by')
+const { filterByCalendar, filterBySummary, filterByUID, filterByProperty } = require('../lib/filter-by')
 const sortEvent = require('../lib/sort-event')
 const convertToMinutes = require('../lib/convert-to-minutes')
 const getNextEventValue = require('../lib/get-next-event-value')
@@ -94,6 +94,14 @@ const cards = [
   {
     id: 'any_event_in_calendar',
     runListenerId: 'any_in_calendar',
+    autocompleteListener: {
+      argumentId: 'calendar',
+      id: 'calendar'
+    }
+  },
+  {
+    id: 'calendar_event_equal_in',
+    runListenerId: 'equal_in',
     autocompleteListener: {
       argumentId: 'calendar',
       id: 'calendar'
@@ -191,7 +199,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id)
   } else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
     filteredEvents = app.variableMgmt.calendars || []
-  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar', 'event_containing_calendar_stops'].includes(type)) {
+  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar', 'event_containing_calendar_stops', 'equal_in'].includes(type)) {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
   } else if (type === 'event_containing_calendar_ongoing') {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
@@ -225,6 +233,21 @@ const checkEvent = async (timezone, app, args, state, type) => {
     }
 
     return false
+  } else if (type === 'equal_in') {
+    if ((args.property === undefined || args.property === '') || (args.value === undefined || args.value === '')) {
+      app.warn('checkEvent: Equal_in : property or value is missing! Returning false')
+      return false
+    }
+
+    filteredEvents = filterByProperty(filteredEvents, args.value, args.property, true)
+    if (!filteredEvents || filteredEvents.length !== 1 || !filteredEvents[0].events || filteredEvents[0].events.length === 0) {
+      return false
+    }
+
+    if (args.when === undefined || args.type === undefined || args.when === null || args.type === null) {
+      app.log(`checkEvent: Equal_in found ${filteredEvents[0].events.length} events in calendar ${filteredEvents[0].name} matching '${args.property}' with '${args.value}'. No timeframe given (when:'${args.when}', type:'${args.type}')! Returning true`)
+      return true
+    }
   }
 
   return filteredEvents.some((calendar) => {
@@ -239,7 +262,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
       eventCondition = isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Ongoing? ${eventCondition}`);
-    } else if (type === 'in') {
+    } else if (['in', 'equal_in'].includes(type)) {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
       eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);

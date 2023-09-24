@@ -2657,6 +2657,164 @@
         ]
       },
       {
+        "id": "calendar_event_equal_in",
+        "title": {
+          "en": "Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within ...",
+          "no": "Kalender har avtale hvor egenskapen !{{er|ikke er}} lik angitt verdi og starter eventuelt innen ...",
+          "nl": "Agenda bevat een evenement waar eigenschap !{{gelijk|niet gelijk}} is aan de opgegeven waarde en optioneel begint binnen ...",
+          "de": "Der Kalender hat ein Ereignis, bei dem die Eigenschaft !{{dem|nicht dem}} angegebenen Wert entspricht und optional innerhalb von ... beginnt",
+          "sv": "Kalendern har händelse där egenskapen !{{är|inte är}} lika med ett givet värde och startar valfritt inom ...",
+          "fr": "Le calendrier a un événement où la propriété !{{est|n'est pas}} égale à la valeur donnée et commence éventuellement dans..."
+        },
+        "titleFormatted": {
+          "en": "Calendar [[calendar]] has event where [[property]] !{{is|isn't}} equal to [[value]] and optionally starts within [[when]] [[type]]",
+          "no": "Kalender [[calendar]] har avtale hvor [[property]] !{{er|er ikke}} lik [[value]] og starter eventuelt innen [[when]] [[type]]",
+          "nl": "Agenda [[calendar]] bevat een evenement waarbij de [[property]] !{{gelijk|niet gelijk}} is aan de [[value]] en optioneel begint binnen [[when]] [[type]]",
+          "de": "Der Kalender [[calendar]] hat ein Ereignis, bei dem die [[property]] !{{dem|nicht dem}} [[value]] Wert entspricht und optional innerhalb von [[when]] [[type]] beginnt",
+          "sv": "Kalender [[calendar]] har händelse där [[property]] !{{är|inte är}} lika med [[value]] och startar valfritt inom [[when]] [[type]]",
+          "fr": "Le calendrier [[calendar]] a un événement où la [[property]] !{{est|n'est pas}} égale à [[value]] donnée et commence éventuellement dans [[when]] [[type]]"
+        },
+        "hint": {
+          "en": "Calendar has event that match the specified value, and if the amount and type are specified, start within the specified timeframe",
+          "no": "Kalender har avtale som matsjer angitt verdi, og hvis antall og type er angitt, starter innen angitt tidsramme",
+          "nl": "De kalender heeft afspraken die overeenkomen met de opgegeven waarde, en als de aantal en het type zijn gespecificeerd, beginnen ze binnen het opgegeven tijdsbestek",
+          "de": "Der Kalender hat Termine, die dem angegebenen Wert entsprechen, und wenn Anzahl und Typ angegeben sind, beginnen sie innerhalb des angegebenen Zeitraums",
+          "sv": "Kalendern har händelser som matchar det angivna värdet, och om antal och typ anges börjar de inom det angivna tidsintervallet",
+          "fr": "Le calendrier comporte des rendez-vous qui correspondent à la valeur spécifiée, et si la quantité et le type sont précisés, ils commencent dans la période spécifiée"
+        },
+        "args": [
+          {
+            "type": "autocomplete",
+            "name": "calendar",
+            "placeholder": {
+              "en": "Choose calendar...",
+              "no": "Velg kalender...",
+              "nl": "Selecteer kalender...",
+              "de": "Kalender auswählen...",
+              "sv": "Välj kalender...",
+              "fr": "Choisissez le calendrier..."
+            }
+          },
+          {
+            "name": "property",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "summary",
+                "label": {
+                  "en": "Title",
+                  "no": "Tittel",
+                  "nl": "Titel",
+                  "de": "Titel",
+                  "sv": "Titel",
+                  "fr": "Titre"
+                }
+              },
+              {
+                "id": "description",
+                "label": {
+                  "en": "Description",
+                  "no": "Beskrivelse",
+                  "nl": "Omschrijving",
+                  "de": "Beschreibung",
+                  "sv": "Beskrivning",
+                  "fr": "Description"
+                }
+              },
+              {
+                "id": "location",
+                "label": {
+                  "en": "Location",
+                  "no": "Sted",
+                  "nl": "Locatie",
+                  "de": "Ort",
+                  "sv": "Plats",
+                  "fr": "Localistaion"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "value",
+            "placeholder": {
+              "en": "Search value to find in event",
+              "no": "Søkeverdi for avtalen",
+              "nl": "Zoekwaarde te vinden in event",
+              "de": "Suchwert, der im Ereignis gefunden werden soll",
+              "sv": "Sökvärde att hitta i händelse",
+              "fr": "Valeur à rechercher dans l'événement"
+            }
+          },
+          {
+            "name": "when",
+            "type": "number",
+            "required": false,
+            "min": 1,
+            "step": 1,
+            "placeholder": {
+              "en": "Amount",
+              "no": "Antall",
+              "nl": "Aantal",
+              "de": "Anzahl",
+              "sv": "Antal",
+              "fr": "Valeur"
+            }
+          },
+          {
+            "name": "type",
+            "type": "dropdown",
+            "required": false,
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Minute(s)",
+                  "no": "Minutt(er)",
+                  "nl": "Minu(u)t(en)",
+                  "de": "Minute(n)",
+                  "sv": "Minut(er)",
+                  "fr": "Minute(s)"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Hour(s)",
+                  "no": "Time(r)",
+                  "nl": "U(u)r(en)",
+                  "de": "Stunde(n)",
+                  "sv": "Timma(r)",
+                  "fr": "Heure(s)"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Day(s)",
+                  "no": "Dag(er)",
+                  "nl": "Dag(en)",
+                  "de": "Tag(e)",
+                  "sv": "Dag(ar)",
+                  "fr": "Jour(s)"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Week(s)",
+                  "no": "Uke(r)",
+                  "nl": "We(e)k(en)",
+                  "de": "Woche(n)",
+                  "sv": "Vecka/veckor",
+                  "fr": "Jour(s)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "event_containing_in_calendar",
         "title": {
           "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
