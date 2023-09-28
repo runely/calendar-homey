@@ -22,7 +22,7 @@
     "standard": "17.1.0"
   },
   "dependencies": {
-    "croner": "7.0.1",
+    "croner": "7.0.2",
     "humanize-duration": "3.30.0",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.5.43",
