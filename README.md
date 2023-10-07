@@ -630,6 +630,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - [@RobHomey](https://github.com/RobHomey) : Dutch
     - [@dirkg173](https://github.com/dirkg173) : German
     - [@Lavve](https://github.com/lavve) : Swedish
+    - [@Elmago27310](https://github.com/Elmago27310) : French
 
 ---
 If you like the app, buy me a cup of :coffee:
