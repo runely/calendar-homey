@@ -128,7 +128,7 @@ These calendar providers do not use (or at least not for all events) the `CREATE
 - **Event containing ... in calendar ... ends within** - *Event containing search value in chosen calendar ends within selected time range (will fill up global tags (containing))*
 - **Any event starts within from calendar** - *will check if any event starts|doesn't start within when specified from specified calendar*
 - **Event containing ... in calendar ... is ongoing** - *will check if an event containing **value** in **calendar** is|isn't ongoing*
-- **Calendar has event where property is equal to given value and optionally starts within ...** - *will check if specified calendar has one or more events where given property is|isn't equal to given value, and if amount and type is given, also check if event starts within ...*
+- **Calendar has event where property matches given value and optionally starts within ...** - *will check if specified calendar has one or more events where given property matches|doesn't match given value, and if amount and type is given, also check if event starts within ...*
 
 ### Actions
 - **Sync calendars** - *will download new .ics files to update current events*
