@@ -1,0 +1,208 @@
+{
+  "id": "calendar_event_match_in",
+  "title": {
+    "en": "Calendar has event(s) where property !{{matches|doesn't match}} given value and optionally starts within ...",
+    "no": "Kalender har avtale(r) hvor egenskapen !{{samsvarer|ikke samsvarer}} med angitt verdi og starter eventuelt innen ...",
+    "nl": "Kalender bevat evenement(en) waarbij eigendom aanwezig is !{{overeenkomt|niet overeenkomt}} met de waarde en optioneel begint binnen ...",
+    "de": "Der Kalender enthält Ereignisse, bei denen die Eigenschaft vorhanden ist !{{mit|nicht mit}} dem Wert übereinstimmt und optional innerhalb von ... beginnt",
+    "sv": "Kalendern har händelse(r) där egenskapen !{{matchar|inte matchar}} värdet och startar valfritt inom ...",
+    "fr": "L'agenda contient des événements pour lesquels la propriété !{{correspond|ne correspond}} pas à la valeur donnée et commence éventuellement dans..."
+  },
+  "titleFormatted": {
+    "en": "Calendar [[calendar]] has event(s) where [[property]] !{{|doesn't }}[[matcher]] [[value]] and optionally starts within [[when]] [[type]]",
+    "no": "Kalender [[calendar]] har avtale(r) hvor [[property]] !{{|ikke }}[[matcher]] [[value]] og starter eventuelt innen [[when]] [[type]]",
+    "nl": "Kalender [[calendar]] heeft evenement(en) waar [[property]] !{{|niet }}[[matcher]] de [[value]] en optioneel begint binnen [[when]] [[type]]",
+    "de": "Kalender [[calendar]] enthält Ereignisse, bei denen [[property]] !{{|nicht }}[[matcher]] [[value]] Wert entspricht und optional innerhalb von [[when]] [[type]] beginnt",
+    "sv": "Kalender [[calendar]] har händelse(r) där [[property]] !{{|inte }}[[matcher]] [[value]] och startar valfritt inom [[when]] [[type]]",
+    "fr": "Le calendrier [[calendar]] comporte des événements où [[property]] !{{|n'est }}[[matcher]] [[value]] donnée et commence éventuellement dans [[when]] [[type]]"
+  },
+  "hint": {
+    "en": "Calendar has event(s) that match the specified value, and if the amount and type are specified, start within the specified timeframe",
+    "no": "Kalender har avtale(r) som matsjer angitt verdi, og hvis antall og type er angitt, starter innen angitt tidsramme",
+    "nl": "Agenda bevat gebeurtenis(sen) die overeenkomen met de opgegeven waarde, en als de aantal en het type zijn gespecificeerd, beginnen ze binnen het opgegeven tijdsbestek",
+    "de": "Der Kalender enthält Ereignisse, die mit dem angegebenen Wert übereinstimmen, und wenn Anzahl und Typ angegeben sind, beginnen sie innerhalb des angegebenen Zeitraums",
+    "sv": "Kalendern har händelse(r) som matchar det angivna värdet, och om antal och typ anges börjar de inom det angivna tidsintervallet",
+    "fr": "Le calendrier comporte des événements qui correspondent à la valeur spécifiée, et si la quantité et le type sont précisés, ils commencent dans la période spécifiée"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "no": "Velg kalender...",
+        "nl": "Selecteer kalender...",
+        "de": "Kalender auswählen...",
+        "sv": "Välj kalender...",
+        "fr": "Choisissez le calendrier..."
+      }
+    },
+    {
+      "name": "property",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "summary",
+          "label": {
+            "en": "Title",
+            "no": "Tittel",
+            "nl": "Titel",
+            "de": "Titel",
+            "sv": "Titel",
+            "fr": "Titre"
+          }
+        },
+        {
+          "id": "description",
+          "label": {
+            "en": "Description",
+            "no": "Beskrivelse",
+            "nl": "Omschrijving",
+            "de": "Beschreibung",
+            "sv": "Beskrivning",
+            "fr": "Description"
+          }
+        },
+        {
+          "id": "location",
+          "label": {
+            "en": "Location",
+            "no": "Sted",
+            "nl": "Locatie",
+            "de": "Ort",
+            "sv": "Plats",
+            "fr": "Localistaion"
+          }
+        }
+      ]
+    },
+    {
+      "name": "matcher",
+      "type": "dropdown",
+      "values": [
+        {
+          "id": "equal",
+          "label": {
+            "en": "equals to",
+            "no": "er lik",
+            "nl": "is gelijk aan",
+            "de": "ist gleich",
+            "sv": "är lika med",
+            "fr": "est égal à"
+          }
+        },
+        {
+          "id": "contains",
+          "label": {
+            "en": "contains",
+            "no": "inneholder",
+            "nl": "bevat",
+            "de": "enthält",
+            "sv": "innehåller",
+            "fr": "contient"
+          }
+        },
+        {
+          "id": "starts with",
+          "label": {
+            "en": "starts with",
+            "no": "starter med",
+            "nl": "begint met",
+            "de": "beginnt mit",
+            "sv": "börjar med",
+            "fr": "commence avec"
+          }
+        },
+        {
+          "id": "ends with",
+          "label": {
+            "en": "ends with",
+            "no": "slutter med",
+            "nl": "eindigt met",
+            "de": "endet mit",
+            "sv": "slutar med",
+            "fr": "se termine par"
+          }
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "value",
+      "placeholder": {
+        "en": "Search value to find in event",
+        "no": "Søkeverdi for avtalen",
+        "nl": "Zoekwaarde te vinden in event",
+        "de": "Suchwert, der im Ereignis gefunden werden soll",
+        "sv": "Sökvärde att hitta i händelse",
+        "fr": "Valeur à rechercher dans l'événement"
+      }
+    },
+    {
+      "name": "when",
+      "type": "number",
+      "required": false,
+      "min": 1,
+      "step": 1,
+      "placeholder": {
+        "en": "Amount",
+        "no": "Antall",
+        "nl": "Aantal",
+        "de": "Anzahl",
+        "sv": "Antal",
+        "fr": "Valeur"
+      }
+    },
+    {
+      "name": "type",
+      "type": "dropdown",
+      "required": false,
+      "values": [
+        {
+          "id": "1",
+          "label": {
+            "en": "Minute(s)",
+            "no": "Minutt(er)",
+            "nl": "Minu(u)t(en)",
+            "de": "Minute(n)",
+            "sv": "Minut(er)",
+            "fr": "Minute(s)"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "en": "Hour(s)",
+            "no": "Time(r)",
+            "nl": "U(u)r(en)",
+            "de": "Stunde(n)",
+            "sv": "Timma(r)",
+            "fr": "Heure(s)"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Day(s)",
+            "no": "Dag(er)",
+            "nl": "Dag(en)",
+            "de": "Tag(e)",
+            "sv": "Dag(ar)",
+            "fr": "Jour(s)"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Week(s)",
+            "no": "Uke(r)",
+            "nl": "We(e)k(en)",
+            "de": "Woche(n)",
+            "sv": "Vecka/veckor",
+            "fr": "Jour(s)"
+          }
+        }
+      ]
+    }
+  ]
+}

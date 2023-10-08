@@ -106,6 +106,14 @@ const cards = [
       argumentId: 'calendar',
       id: 'calendar'
     }
+  },
+  {
+    id: 'calendar_event_match_in',
+    runListenerId: 'match_in',
+    autocompleteListener: {
+      argumentId: 'calendar',
+      id: 'calendar'
+    }
   }
 ]
 
@@ -199,7 +207,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
     filteredEvents = filterByUID(app.variableMgmt.calendars || [], args.event.id)
   } else if (type === 'any_ongoing' || type === 'any_in' || type === 'any_stops_in') {
     filteredEvents = app.variableMgmt.calendars || []
-  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar', 'event_containing_calendar_stops', 'equal_in'].includes(type)) {
+  } else if (['any_in_calendar', 'any_ongoing_calendar', 'event_containing_calendar', 'event_containing_calendar_stops', 'equal_in', 'match_in'].includes(type)) {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
   } else if (type === 'event_containing_calendar_ongoing') {
     filteredEvents = filterByCalendar(app.variableMgmt.calendars, args.calendar.name) || []
@@ -239,13 +247,28 @@ const checkEvent = async (timezone, app, args, state, type) => {
       return false
     }
 
-    filteredEvents = filterByProperty(filteredEvents, args.value, args.property, true)
+    filteredEvents = filterByProperty(filteredEvents, args.value, args.property, 'equal')
     if (!filteredEvents || filteredEvents.length !== 1 || !filteredEvents[0].events || filteredEvents[0].events.length === 0) {
       return false
     }
 
     if (args.when === undefined || args.type === undefined || args.when === null || args.type === null) {
       app.log(`checkEvent: Equal_in found ${filteredEvents[0].events.length} events in calendar ${filteredEvents[0].name} matching '${args.property}' with '${args.value}'. No timeframe given (when:'${args.when}', type:'${args.type}')! Returning true`)
+      return true
+    }
+  } else if (type === 'match_in') {
+    if ((args.property === undefined || args.property === '') || (args.matcher === undefined || args.matcher === '') || (args.value === undefined || args.value === '')) {
+      app.warn('checkEvent: Match_in : property, matcher or value is missing! Returning false')
+      return false
+    }
+
+    filteredEvents = filterByProperty(filteredEvents, args.value, args.property, args.matcher)
+    if (!filteredEvents || filteredEvents.length !== 1 || !filteredEvents[0].events || filteredEvents[0].events.length === 0) {
+      return false
+    }
+
+    if (args.when === undefined || args.type === undefined || args.when === null || args.type === null) {
+      app.log(`checkEvent: Match_in found ${filteredEvents[0].events.length} events in calendar ${filteredEvents[0].name} where '${args.property}' '${args.matcher}' '${args.value}'. No timeframe given (when:'${args.when}', type:'${args.type}')! Returning true`)
       return true
     }
   }
@@ -262,7 +285,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
       eventCondition = isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Ongoing? ${eventCondition}`);
-    } else if (['in', 'equal_in'].includes(type)) {
+    } else if (['in', 'equal_in', 'match_in'].includes(type)) {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
       eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);

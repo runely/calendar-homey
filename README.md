@@ -202,6 +202,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.2.0
+    - Deprecated condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within`
+    - Added condition `Calendar has event(s) where property !{{matches|doesn't match}} given value and optionally starts within` -> [Issue #529](https://github.com/runely/calendar-homey/issues/529)
 - 2.1.0
     - Added condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within` -> [Issue #524](https://github.com/runely/calendar-homey/issues/524)
     - Dependency updates

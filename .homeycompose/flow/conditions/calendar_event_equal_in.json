@@ -1,5 +1,6 @@
 {
   "id": "calendar_event_equal_in",
+  "deprecated": true,
   "title": {
     "en": "Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within ...",
     "no": "Kalender har avtale hvor egenskapen !{{er|ikke er}} lik angitt verdi og starter eventuelt innen ...",
