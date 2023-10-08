@@ -331,5 +331,8 @@
   },
   "2.1.0": {
     "en": "Added condition 'Calendar has event where property is equal to given value and optionally starts within'. Dependency updates"
+  },
+  "2.2.0": {
+    "en": "Deprecated condition 'Calendar has event where property is equal to given value and optionally starts within' in favour of new condition 'Calendar has event(s) where property matches given value and optionally starts within'. Dependency updates"
   }
 }
