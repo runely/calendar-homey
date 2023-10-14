@@ -1,4 +1,44 @@
-﻿.full-width {
+﻿/* nav */
+nav {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.tabs {
+    display: flex;
+    text-align: center;
+    background-color: lightblue;
+}
+
+.tab {
+    width: 110px;
+    height: 30px;
+    padding-top: 10px;
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+.tab:hover {
+    font-size: 18px;
+}
+
+.active-tab {
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+/* panel */
+.panel-hidden {
+    display: none;
+}
+
+#hitcount-panel {
+    margin-bottom: 20px;
+}
+
+/* settings */
+.full-width {
     width: 100%;
     height: 35px;
 }
@@ -38,4 +78,9 @@
 
 .next-event-token-with-text-type:last-child {
     margin-right: 0;
+}
+
+/* hitcount */
+table {
+    width: 100%;
 }

@@ -56,6 +56,21 @@
             "remove": "Verwijderen"
         }
     },
+    "hitcount": {
+        "title": "Hit count",
+        "panel": {
+            "triggerHeader": "Trigger",
+            "countToday": "Vandaag",
+            "countTotal": "Totaal",
+            "lastTriggered": "Laatst"
+        },
+        "typeLabels": {
+            "1": "Minuten",
+            "2": "Uur",
+            "3": "Dagen",
+            "4": "Weken"
+        }
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Events vandaag over",
         "events_today_calendar_count": "Events vandaag (aantal) over",

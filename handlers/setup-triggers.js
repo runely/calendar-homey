@@ -2,6 +2,7 @@
 
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
+const { setupHitCount, updateHitCount } = require('../lib/hit-count')
 
 module.exports = (app) => {
   // add minutes in trigger listeners
@@ -11,6 +12,7 @@ module.exports = (app) => {
       const result = minutes === state.when
       if (result) {
         app.log(`Triggered '${triggerId}' with state:`, state)
+        updateHitCount(app, triggerId, args)
       }
 
       return result
@@ -24,6 +26,7 @@ module.exports = (app) => {
       const result = args.calendar.name === state.calendarName
       if (result) {
         app.log(`Triggered '${triggerId}' with state:`, state)
+        updateHitCount(app, triggerId, { calendar: args.calendar.name })
       }
 
       return result
@@ -47,4 +50,6 @@ module.exports = (app) => {
       })
     })
   }
+
+  setupHitCount(app)
 }

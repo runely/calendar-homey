@@ -16,6 +16,9 @@ module.exports = {
     nextEventTokensPerCalendar: 'nextEventTokensPerCalendar',
     logAllEvents: 'logAllEvents'
   },
+  hitCount: {
+    data: 'hitCountData'
+  },
   tokens: [
     {
       id: 'event_next_title',

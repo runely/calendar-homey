@@ -56,6 +56,21 @@
             "remove": "Remove"
         }
     },
+    "hitcount": {
+        "title": "Hit count",
+        "panel": {
+            "triggerHeader": "Trigger",
+            "countToday": "Today",
+            "countTotal": "Total",
+            "lastTriggered": "Last"
+        },
+        "typeLabels": {
+            "1": "Minute(s)",
+            "2": "Hour(s)",
+            "3": "Day(s)",
+            "4": "Week(s)"
+        }
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Todays events in",
         "events_today_calendar_count": "Todays events (count) in",

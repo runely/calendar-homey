@@ -11,88 +11,105 @@
       
       <body>
 
-        <h1 data-i18n="settings.title">
-            <!--
-                This field will automatically be filled by a translated string with key 'settings.title'.
-                Read more about translations at Internationalization.
-        	-->
-        </h1>
+        <nav>
+            <div class="tabs">
+                <div id="settings-tab" class="tab active-tab" data-i18n="settings.title"></div>
+                <div id="hitcount-tab" class="tab" data-i18n="hitcount.title"></div>
+            </div>
+        </nav>
 
-        <div id="calendars">
-            <fieldset class="clonable">
-                <legend data-i18n="settings.calendars.legend"></legend>
+        <div id="settings-panel">
+            <div id="calendars">
+                <fieldset class="clonable">
+                    <legend data-i18n="settings.calendars.legend"></legend>
 
-                <strong data-i18n="settings.calendars.name"></strong><br>
-                <input id="uri-name" type="text" value="" /><br><br>
+                    <strong data-i18n="settings.calendars.name"></strong><br>
+                    <input id="uri-name" type="text" value="" /><br><br>
 
-                <strong data-i18n="settings.calendars.uri"></strong><br>
-                <input id="uri-uri" type="text" value="" />
-            </fieldset>
+                    <strong data-i18n="settings.calendars.uri"></strong><br>
+                    <input id="uri-uri" type="text" value="" />
+                </fieldset>
+            </div>
+
+            <div class="full-width">
+                <p>
+                    <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
+                </p>
+            </div>
+
+            <div class="datetime">
+                <fieldset>
+                    <legend data-i18n="settings.datetime.legend"></legend>
+
+                    <p data-i18n="settings.datetime.date.description"></p>
+                    <strong data-i18n="settings.datetime.date.long_name"></strong><br>
+                    <input id="datetime-date-long" type="text" value="" /><br><br>
+
+                    <strong data-i18n="settings.datetime.date.short_name"></strong><br>
+                    <input id="datetime-date-short" type="text" value="" /><br><br>
+
+                    <strong data-i18n="settings.datetime.time.name"></strong><br>
+                    <input id="datetime-time" type="text" value="" />
+                </fieldset>
+            </div>
+
+            <div class="eventlimit">
+                <fieldset>
+                    <legend data-i18n="settings.eventlimit.legend"></legend>
+
+                    <p data-i18n="settings.eventlimit.description"></p>
+
+                    <strong data-i18n="settings.eventlimit.value"></strong>
+                    <input id="eventlimit-value" type="number" value="" min="1" /><br><br>
+
+                    <strong data-i18n="settings.eventlimit.type"></strong>
+                    <select id="eventlimit-type"></select>
+                </fieldset>
+            </div>
+
+            <div class="misc">
+                <fieldset>
+                    <legend data-i18n="settings.misc.legend"></legend>
+
+                    <div class="nextEventTokensPerCalendar settings-section">
+                        <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br><br>
+                        <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="debug">
+                <fieldset>
+                    <legend data-i18n="settings.debug.legend"></legend>
+
+                    <p data-i18n="settings.debug.description"></p>
+
+                    <div class="settings-section">
+                        <strong data-i18n="settings.debug.log_all_events"></strong><br><br>
+                        <input id="debug-logAllEvents" type="checkbox" />
+                    </div>
+                </fieldset>
+            </div>
+
+            <button id="save" class="right" data-i18n="settings.buttons.save"></button>
+
+            <div id="uri_error" class="uri-error-hidden"></div>
         </div>
 
-        <div class="full-width">
-            <p>
-                <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
-            </p>
+        <div id="hitcount-panel" class="panel-hidden">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="hitcount.panel.triggerHeader"></th>
+                        <th data-i18n="hitcount.panel.countToday"></th>
+                        <th data-i18n="hitcount.panel.countTotal"></th>
+                        <th data-i18n="hitcount.panel.lastTriggered"></th>
+                    </tr>
+                </thead>
+                <tbody id="hitcount-table">
+                </tbody>
+            </table>
         </div>
-
-        <div class="datetime">
-            <fieldset>
-                <legend data-i18n="settings.datetime.legend"></legend>
-
-                <p data-i18n="settings.datetime.date.description"></p>
-                <strong data-i18n="settings.datetime.date.long_name"></strong><br>
-                <input id="datetime-date-long" type="text" value="" /><br><br>
-
-                <strong data-i18n="settings.datetime.date.short_name"></strong><br>
-                <input id="datetime-date-short" type="text" value="" /><br><br>
-
-                <strong data-i18n="settings.datetime.time.name"></strong><br>
-                <input id="datetime-time" type="text" value="" />
-            </fieldset>
-        </div>
-
-        <div class="eventlimit">
-            <fieldset>
-                <legend data-i18n="settings.eventlimit.legend"></legend>
-
-                <p data-i18n="settings.eventlimit.description"></p>
-
-                <strong data-i18n="settings.eventlimit.value"></strong>
-                <input id="eventlimit-value" type="number" value="" min="1" /><br><br>
-
-                <strong data-i18n="settings.eventlimit.type"></strong>
-                <select id="eventlimit-type"></select>
-            </fieldset>
-        </div>
-
-        <div class="misc">
-            <fieldset>
-                <legend data-i18n="settings.misc.legend"></legend>
-
-                <div class="nextEventTokensPerCalendar settings-section">
-                    <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br><br>
-                    <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
-                </div>
-            </fieldset>
-        </div>
-
-        <div class="debug">
-            <fieldset>
-                <legend data-i18n="settings.debug.legend"></legend>
-
-                <p data-i18n="settings.debug.description"></p>
-
-                <div class="settings-section">
-                    <strong data-i18n="settings.debug.log_all_events"></strong><br><br>
-                    <input id="debug-logAllEvents" type="checkbox" />
-                </div>
-            </fieldset>
-        </div>
-
-        <button id="save" class="right" data-i18n="settings.buttons.save"></button>
-
-        <div id="uri_error" class="uri-error-hidden"></div>
 
         <p class="icons-info"><span data-i18n="settings.icons_info"></span> <a href="https://icons8.com/">Icons8</a></p>
         

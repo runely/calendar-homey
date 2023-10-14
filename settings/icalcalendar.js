@@ -11,10 +11,18 @@ function onHomeyReady (Homey) {
   const settingsEventLimit = variableMgmt.setting.eventLimit
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
   const settingsDebugLogAllEvents = variableMgmt.setting.logAllEvents
+  const hitCountDataPath = variableMgmt.hitCount.data
 
   // buttons
   const newItemElement = document.getElementById('newItem')
   const saveElement = document.getElementById('save')
+
+  // tabs and panels
+  const settingsTab = document.getElementById('settings-tab')
+  const hitCountTab = document.getElementById('hitcount-tab')
+  const panelSettings = document.getElementById('settings-panel')
+  const panelHitCount = document.getElementById('hitcount-panel')
+  const hitCountTable = document.getElementById('hitcount-table')
 
   // default settings
   const eventLimitTypes = [
@@ -36,6 +44,24 @@ function onHomeyReady (Homey) {
     }
   ]
   const eventLimitDefault = variableMgmt.setting.eventLimitDefault
+
+  const addHitCountRow = (name, todayCount = 0, totalCount = 0, lastTriggered = '') => {
+    const rowElement = document.createElement('tr')
+    const columnNameElem = document.createElement('td')
+    const columnTotalElem = document.createElement('td')
+    const columnTodayElem = document.createElement('td')
+    const columnLastTriggeredElem = document.createElement('td')
+
+    columnNameElem.innerText = name
+    columnTodayElem.innerText = todayCount
+    columnTotalElem.innerText = totalCount
+    columnLastTriggeredElem.innerText = lastTriggered
+    rowElement.appendChild(columnNameElem)
+    rowElement.appendChild(columnTodayElem)
+    rowElement.appendChild(columnTotalElem)
+    rowElement.appendChild(columnLastTriggeredElem)
+    hitCountTable.appendChild(rowElement)
+  }
 
   // get uris from settings
   Homey.get(settingsUris, (err, uris) => {
@@ -84,6 +110,38 @@ function onHomeyReady (Homey) {
   Homey.get(settingsDebugLogAllEvents, (err, state) => {
     if (err) return Homey.alert(err)
     getDebugSetting(settingsDebugLogAllEvents, state)
+  })
+
+  // get hitCountData
+  Homey.get(hitCountDataPath, (err, hitCountData) => {
+    if (err) return Homey.alert(err)
+    if (!Array.isArray(hitCountData)) {
+      if (!hitCountData) {
+        hitCountData = []
+      } else {
+        hitCountData = JSON.parse(hitCountData)
+      }
+    }
+
+    hitCountData.forEach((hitCount) => {
+      if (hitCount.variants.length === 0) {
+        addHitCountRow(hitCount.name)
+      } else {
+        hitCount.variants.forEach((variant) => {
+          let name = hitCount.name
+          for (const match of name.matchAll(/(\[\[.\w+]])/g)) {
+            if (!match || match.length <= 0 || typeof match[0] !== 'string') { continue }
+
+            const m = match[0]
+            const a = m.replace('[[', '').replace(']]', '')
+            const av = a === 'type' ? Homey.__(`hitcount.typeLabels.${variant[a]}`) : variant[a]
+            name = name.replace(m, av)
+          }
+
+          addHitCountRow(name, variant.today, variant.total, variant.lastTriggered)
+        })
+      }
+    })
   })
 
   // save settings
@@ -150,6 +208,22 @@ function onHomeyReady (Homey) {
   getUriFailedSetting(settingsUris)
 
   setInterval(() => getUriFailedSetting(settingsUris), 3000)
+
+  // tab activation
+  const activateTab = (e) => {
+    const elem = e.srcElement
+    if (elem.classList.contains('active-tab')) {
+      return
+    }
+
+    settingsTab.classList.toggle('active-tab')
+    hitCountTab.classList.toggle('active-tab')
+    panelSettings.classList.toggle('panel-hidden')
+    panelHitCount.classList.toggle('panel-hidden')
+  }
+
+  settingsTab.addEventListener('click', activateTab)
+  hitCountTab.addEventListener('click', activateTab)
 }
 
 function newCalendarItem (name = null, uri = null) {

@@ -202,6 +202,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.3.0
+    - Added hit count for triggers in settings view. This will show hit count for today, total hit count and last triggered timestamp per trigger card
 - 2.2.0
     - Deprecated condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within`
     - Added condition `Calendar has event(s) where property !{{matches|doesn't match}} given value and optionally starts within` -> [Issue #529](https://github.com/runely/calendar-homey/issues/529)

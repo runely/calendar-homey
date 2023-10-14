@@ -15,6 +15,7 @@ const getNewEvents = require('./lib/get-new-events')
 const { getLocalActiveEvents, saveLocalEvents } = require('./lib/local-events')
 const sortCalendarsEvents = require('./lib/sort-calendars')
 const { generateTokens, generatePerCalendarTokens, generateNextEventTokens } = require('./lib/generate-token-configuration')
+const { resetTodayHitCount } = require('./lib/hit-count')
 
 const { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } = require('./handlers/trigger-cards')
 const setupTriggers = require('./handlers/setup-triggers')
@@ -404,6 +405,13 @@ class IcalCalendar extends Homey.App {
       }),
       // trigger events every 1th minute
       trigger: addJob('*/1 * * * *', async () => {
+        let now = moment({ timezone: this.getTimezone() })
+        if (now.get('hours') === 0 && now.get('minutes') === 0) {
+          resetTodayHitCount(this)
+        }
+
+        now = null
+
         if (this.isGettingEvents) {
           this.warn('startJobs/trigger: Wont trigger events and update tokens since getEvents is running. Will trigger in one minute')
           return

@@ -56,6 +56,21 @@
             "remove": "Radera"
         }
     },
+    "hitcount": {
+        "title": "Hit count",
+        "panel": {
+            "triggerHeader": "Trigger",
+            "countToday": "Idag",
+            "countTotal": "Totalt",
+            "lastTriggered": "Sista"
+        },
+        "typeLabels": {
+            "1": "Minut(er)",
+            "2": "Timma(r)",
+            "3": "Dag(ar)",
+            "4": "Vecka/veckor"
+        }
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens händelser om",
         "events_today_calendar_count": "Dagens händelser (antal) om",

@@ -56,6 +56,21 @@
             "remove": "Fjern"
         }
     },
+    "hitcount": {
+        "title": "Hit count",
+        "panel": {
+            "triggerHeader": "Trigger",
+            "countToday": "I dag",
+            "countTotal": "Totalt",
+            "lastTriggered": "Siste"
+        },
+        "typeLabels": {
+            "1": "Minutt(er)",
+            "2": "Time(r)",
+            "3": "Dag(er)",
+            "4": "Uke(r)"
+        }
+    },
     "calendarTokens": {
         "events_today_calendar_title_stamps": "Dagens avtaler i",
         "events_today_calendar_count": "Dagens avtaler (antall) i",

@@ -4,6 +4,7 @@ const getEventsToTrigger = require('../lib/get-events-to-trigger')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenValue = require('../lib/get-token-value')
 const capitalize = require('../lib/capitalize')
+const { updateHitCount } = require('../lib/hit-count')
 const { isEventOngoing } = require('./conditions')
 
 const getErrorMessage = (app, error) => {
@@ -54,6 +55,7 @@ module.exports.triggerSynchronizationError = async (options) => {
     const triggerCard = app.homey.flow.getTriggerCard('synchronization_error')
     await triggerCard.trigger(tokens)
     app.log('triggerSynchronizationError: Triggered "synchronization_error"')
+    updateHitCount(app, 'synchronization_error')
   } catch (err) {
     app.logError('triggerSynchronizationError: Failed to trigger "synchronization_error" :', err)
   }
@@ -99,6 +101,7 @@ module.exports.triggerChangedCalendars = async (options) => {
             if (!changedCalendarTriggerCard.useState) {
               await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens)
               app.log(`Triggered ${changedCalendarTriggerCard.id} on '${event.uid}'`)
+              updateHitCount(app, changedCalendarTriggerCard.id)
             } else {
               await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens, state)
             }
@@ -164,6 +167,7 @@ module.exports.triggerEvents = async (options) => {
         try {
           await app.homey.flow.getTriggerCard(triggerId).trigger(tokens)
           app.log(`triggerEvents: Triggered '${triggerId}' without state for '${event.uid}'`)
+          updateHitCount(app, triggerId)
         } catch (error) {
           app.logError(`triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error)
 
