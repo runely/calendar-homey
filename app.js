@@ -391,7 +391,7 @@ class IcalCalendar extends Homey.App {
   startJobs () {
     this.jobs = {
       // calendar update every 15th minute
-      update: addJob('5 */15 * * * *', () => {
+      update: addJob('15 */15 * * * *', () => {
         if (this.isGettingEvents) {
           this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
           return
