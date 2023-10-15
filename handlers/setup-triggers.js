@@ -9,13 +9,7 @@ module.exports = (app) => {
   for (const triggerId of ['event_starts_in', 'event_stops_in']) {
     app.homey.flow.getTriggerCard(triggerId).registerRunListener((args, state) => {
       const minutes = convertToMinutes(args.when, args.type)
-      const result = minutes === state.when
-      if (result) {
-        app.log(`Triggered '${triggerId}' with state:`, state)
-        updateHitCount(app, triggerId, args)
-      }
-
-      return result
+      return minutes === state.when
     })
   }
 
@@ -23,13 +17,7 @@ module.exports = (app) => {
   for (const triggerId of ['event_starts_calendar', 'event_stops_calendar', 'event_added_calendar', 'event_changed_calendar']) {
     const eventCalendar = app.homey.flow.getTriggerCard(triggerId)
     eventCalendar.registerRunListener((args, state) => {
-      const result = args.calendar.name === state.calendarName
-      if (result) {
-        app.log(`Triggered '${triggerId}' with state:`, state)
-        updateHitCount(app, triggerId, { calendar: args.calendar.name })
-      }
-
-      return result
+      return args.calendar.name === state.calendarName
     })
 
     eventCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
