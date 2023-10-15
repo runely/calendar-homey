@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Trigger ohne Argumente registrieren die Trefferanzahl auch dann, wenn der Trigger in keinem Flow verwendet wird.",
+            "info2": "Trigger mit Argumenten registrieren die Trefferanzahl nur für Trigger, deren Status den in Flows verwendeten Argumenten entspricht.",
             "triggerHeader": "Trigger",
             "countToday": "Heute",
             "countTotal": "Gesamt",
-            "lastTriggered": "Zuletzt"
+            "lastTriggered": "Zuletzt",
+            "resetConfirm": "Dadurch werden alle Trefferzähldaten zurückgesetzt. Bist du sicher?"
         },
         "typeLabels": {
             "1": "Minute(n)",
             "2": "Stunde(n)",
             "3": "Tag(e)",
             "4": "Woche(n)"
+        },
+        "buttons": {
+            "reset": "Hit count zurücksetzen"
         }
     },
     "calendarTokens": {

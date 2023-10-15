@@ -16,6 +16,7 @@ function onHomeyReady (Homey) {
   // buttons
   const newItemElement = document.getElementById('newItem')
   const saveElement = document.getElementById('save')
+  const resetElement = document.getElementById('reset')
 
   // tabs and panels
   const settingsTab = document.getElementById('settings-tab')
@@ -202,6 +203,39 @@ function onHomeyReady (Homey) {
   // add new calendar item
   newItemElement.addEventListener('click', function (e) {
     newCalendarItem()
+  })
+
+  // reset hitCountData
+  resetElement.addEventListener('click', function (e) {
+    Homey.get(hitCountDataPath, async (err, hitCountData) => {
+      if (err) return Homey.alert(err)
+      if (!Array.isArray(hitCountData)) {
+        if (!hitCountData) {
+          hitCountData = []
+        } else {
+          hitCountData = JSON.parse(hitCountData)
+        }
+      }
+  
+      if (hitCountData.length === 0) {
+        return Homey.alert('Hit count data not set yet', 'info')
+      }
+
+      const shouldReset = await Homey.confirm(Homey.__('hitcount.panel.resetConfirm'))
+      if (!shouldReset) { return }
+
+      hitCountData.forEach((hitCount) => {
+        hitCount.variants = []
+      })
+
+      Homey.set(hitCountDataPath, JSON.stringify(hitCountData), function (err) {
+        if (err) return Homey.alert(err)
+
+        for (let i = 0; i < 10; i++) {
+          for (const child of hitCountTable.children) { hitCountTable.removeChild(child) }
+        }
+      })
+    })
   })
 
   // if uri_failed exists as a setting, show error div

@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Les déclencheurs sans arguments enregistreront le nombre d'accès même si le déclencheur n'est utilisé dans aucun flux.",
+            "info2": "Les déclencheurs avec des arguments enregistreront uniquement le nombre d'accès pour les déclencheurs dont l'état est égal aux arguments utilisés dans les flux.",
             "triggerHeader": "Trigger",
             "countToday": "Aujourd'hui",
             "countTotal": "Total",
-            "lastTriggered": "Dernier"
+            "lastTriggered": "Dernier",
+            "resetConfirm": "Cela réinitialisera toutes les données du nombre d'accès. Es-tu sûr?"
         },
         "typeLabels": {
             "1": "Minute(s)",
             "2": "Heure(s)",
             "3": "Jour(s)",
             "4": "Semaine(s)"
+        },
+        "buttons": {
+            "reset": "Réinitialiser hit count"
         }
     },
     "calendarTokens": {

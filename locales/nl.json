@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Triggers zonder argumenten registreren het aantal treffers, zelfs als de trigger in geen enkele stroom wordt gebruikt.",
+            "info2": "TriggTriggers met argumenten registreren alleen het aantal treffers voor triggers met een status die gelijk is aan de argumenten die in stromen worden gebruikt.",
             "triggerHeader": "Trigger",
             "countToday": "Vandaag",
             "countTotal": "Totaal",
-            "lastTriggered": "Laatst"
+            "lastTriggered": "Laatst",
+            "resetConfirm": "Hiermee worden alle gegevens over het aantal treffers gereset. Weet je het zeker?"
         },
         "typeLabels": {
             "1": "Minuten",
             "2": "Uur",
             "3": "Dagen",
             "4": "Weken"
+        },
+        "buttons": {
+            "reset": "Hit count opnieuw instellen"
         }
     },
     "calendarTokens": {

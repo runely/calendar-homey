@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Triggers utan argument kommer att registrera träffantalet även om triggern inte används i några flows.",
+            "info2": "Triggers med argument kommer endast att registrera träffräkning för triggers med tillstånd som är lika med argumenten som används i flows.",
             "triggerHeader": "Trigger",
             "countToday": "Idag",
             "countTotal": "Totalt",
-            "lastTriggered": "Sista"
+            "lastTriggered": "Sista",
+            "resetConfirm": "Detta kommer att återställa all hit count data. Är du säker?"
         },
         "typeLabels": {
             "1": "Minut(er)",
             "2": "Timma(r)",
             "3": "Dag(ar)",
             "4": "Vecka/veckor"
+        },
+        "buttons": {
+            "reset": "Återställa hit count"
         }
     },
     "calendarTokens": {

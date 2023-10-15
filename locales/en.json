@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Triggers without arguments will register hit count even if the trigger isn't used in any flows.",
+            "info2": "Triggers with arguments will only register hit count for triggers with state equal to the arguments used in flows.",
             "triggerHeader": "Trigger",
             "countToday": "Today",
             "countTotal": "Total",
-            "lastTriggered": "Last"
+            "lastTriggered": "Last",
+            "resetConfirm": "This will reset all hit count data. Are you sure?"
         },
         "typeLabels": {
             "1": "Minute(s)",
             "2": "Hour(s)",
             "3": "Day(s)",
             "4": "Week(s)"
+        },
+        "buttons": {
+            "reset": "Reset hit count"
         }
     },
     "calendarTokens": {

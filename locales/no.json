@@ -59,16 +59,22 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
+            "info": "Triggere uten argumenter vil registrere hit count selv om triggeren ikke brukes i noen flows.",
+            "info2": "Triggere med argumenter vil kun registrere hit count for triggere med state lik argumentene brukt i flows.",
             "triggerHeader": "Trigger",
             "countToday": "I dag",
             "countTotal": "Totalt",
-            "lastTriggered": "Siste"
+            "lastTriggered": "Siste",
+            "resetConfirm": "Dette vil resette all hit count data. Er du sikker?"
         },
         "typeLabels": {
             "1": "Minutt(er)",
             "2": "Time(r)",
             "3": "Dag(er)",
             "4": "Uke(r)"
+        },
+        "buttons": {
+            "reset": "Reset hit count"
         }
     },
     "calendarTokens": {
