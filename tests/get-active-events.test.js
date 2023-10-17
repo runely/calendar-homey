@@ -24,6 +24,14 @@ const app = {
           trigger: (tokens) => console.log('triggerCard', id, 'called with tokens:', tokens)
         }
       }
+    },
+    settings: {
+      get: () => undefined
+    }
+  },
+  variableMgmt: {
+    hitCount: {
+      data: ''
     }
   }
 }
