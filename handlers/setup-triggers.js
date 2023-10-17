@@ -2,7 +2,7 @@
 
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
-const { setupHitCount, updateHitCount } = require('../lib/hit-count')
+const { setupHitCount } = require('../lib/hit-count')
 
 module.exports = (app) => {
   // add minutes in trigger listeners
