@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Les déclencheurs sans arguments enregistreront le nombre d'accès même si le déclencheur n'est utilisé dans aucun flux.",
-            "info2": "Les déclencheurs avec des arguments enregistreront uniquement le nombre d'accès pour les déclencheurs dont l'état est égal aux arguments utilisés dans les flux.",
+            "info": {
+                "header": "Déclencheurs sans arguments",
+                "1": "Enregistrera 1 nombre de hits même si le déclencheur est utilisé dans de nombreux flux (c'est ainsi que fonctionne Homey)",
+                "2": "Enregistrera 1 nombre de hits même si le déclencheur n'est utilisé dans aucun flux (c'est ainsi que fonctionne Homey)"
+            },
+            "info2": {
+                "header": "Déclencheurs avec arguments",
+                "1": "Enregistrera 1 nombre d'accès par événement et par flux utilisant le déclencheur."
+            },
             "triggerHeader": "Trigger",
             "countToday": "Aujourd'hui",
             "countTotal": "Total",

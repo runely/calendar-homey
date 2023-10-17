@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Trigger ohne Argumente registrieren die Trefferanzahl auch dann, wenn der Trigger in keinem Flow verwendet wird.",
-            "info2": "Trigger mit Argumenten registrieren die Trefferanzahl nur für Trigger, deren Status den in Flows verwendeten Argumenten entspricht.",
+            "info": {
+                "header": "Trigger ohne Argumente",
+                "1": "Registriert 1 Trefferanzahl, auch wenn der Trigger in vielen Flows verwendet wird (so funktioniert Homey)",
+                "2": "Registriert 1 Trefferanzahl, auch wenn der Trigger in keinem Flow verwendet wird (so funktioniert Homey)"
+            },
+            "info2": {
+                "header": "Trigger mit Argumenten",
+                "1": "Registriert 1 Trefferanzahl pro Ereignis und Flow, der den Trigger verwendet"
+            },
             "triggerHeader": "Trigger",
             "countToday": "Heute",
             "countTotal": "Gesamt",

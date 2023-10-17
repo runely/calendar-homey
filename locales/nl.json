@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Triggers zonder argumenten registreren het aantal treffers, zelfs als de trigger in geen enkele stroom wordt gebruikt.",
-            "info2": "TriggTriggers met argumenten registreren alleen het aantal treffers voor triggers met een status die gelijk is aan de argumenten die in stromen worden gebruikt.",
+            "info": {
+                "header": "Triggers zonder argumenten",
+                "1": "Registreert 1 treffertelling, zelfs als de trigger in veel stromen wordt gebruikt (dit is de manier waarop Homey werkt)",
+                "2": "Registreert 1 treffertelling, zelfs als de trigger in geen enkele flow wordt gebruikt (dit is de manier waarop Homey werkt)"
+            },
+            "info2": {
+                "header": "Triggers met argumenten",
+                "1": "Registreert 1 treffertelling per gebeurtenis per stroom die de trigger gebruikt"
+            },
             "triggerHeader": "Trigger",
             "countToday": "Vandaag",
             "countTotal": "Totaal",

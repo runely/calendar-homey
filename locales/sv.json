@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Triggers utan argument kommer att registrera träffantalet även om triggern inte används i några flows.",
-            "info2": "Triggers med argument kommer endast att registrera träffräkning för triggers med tillstånd som är lika med argumenten som används i flows.",
+            "info": {
+                "header": "Triggers utan argument",
+                "1": "Kommer att registrera 1 träffar även om triggern används i många flöden (det är så här Homey fungerar)",
+                "2": "Kommer att registrera 1 träffar även om triggern inte används i några flöden (det är så här Homey fungerar)"
+            },
+            "info2": {
+                "header": "Triggers med argument",
+                "1": "Kommer att registrera 1 träffar per händelse per flöde som använder triggern"
+            },
             "triggerHeader": "Trigger",
             "countToday": "Idag",
             "countTotal": "Totalt",

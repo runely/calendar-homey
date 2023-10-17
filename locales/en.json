@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Triggers without arguments will register hit count even if the trigger isn't used in any flows.",
-            "info2": "Triggers with arguments will only register hit count for triggers with state equal to the arguments used in flows.",
+            "info": {
+                "header": "Triggers with no arguments",
+                "1": "Will register 1 hit count even if the trigger is used in many flows (this is the way Homey works)",
+                "2": "Will register 1 hit count even if the trigger is not used in any flows (this is the way Homey works)"
+            },
+            "info2": {
+                "header": "Triggers with arguments",
+                "1": "Will register 1 hit count per event per flow that uses the trigger"
+            },
             "triggerHeader": "Trigger",
             "countToday": "Today",
             "countTotal": "Total",

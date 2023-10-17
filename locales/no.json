@@ -59,8 +59,15 @@
     "hitcount": {
         "title": "Hit count",
         "panel": {
-            "info": "Triggere uten argumenter vil registrere hit count selv om triggeren ikke brukes i noen flows.",
-            "info2": "Triggere med argumenter vil kun registrere hit count for triggere med state lik argumentene brukt i flows.",
+            "info": {
+                "header": "Triggere uten argumenter",
+                "1": "Vil registrere 1 hit count selv om triggeren brukes i mange flows (det er slik Homey fungerer)",
+                "2": "Vil registrere 1 hit count selv om triggeren ikke brukes i noen flows (det er slik Homey fungerer)"
+            },
+            "info2": {
+                "header": "Triggere med argumenter",
+                "1": "Vil registrere 1 hit count per event per flow som bruker triggeren"
+            },
             "triggerHeader": "Trigger",
             "countToday": "I dag",
             "countTotal": "Totalt",
