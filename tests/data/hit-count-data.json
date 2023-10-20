@@ -1,0 +1,120 @@
+[
+  {
+    "id": "event_added",
+    "name": "Ny avtale opprettet",
+    "variants": [
+      {
+        "today": 0,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_added_calendar",
+    "name": "Ny avtale opprettet i [[calendar]]",
+    "variants": []
+  },
+  {
+    "id": "event_changed",
+    "name": "En avtale ble endret",
+    "variants": [
+      {
+        "today": 1,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_changed_calendar",
+    "name": "En avtale ble endret i [[calendar]]",
+    "variants": [
+      {
+        "calendar": "Test",
+        "today": 1,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_starts",
+    "name": "En avtale starter",
+    "variants": [
+      {
+        "today": 5,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_starts_calendar",
+    "name": "En avtale starter fra [[calendar]]",
+    "variants": [
+      {
+        "calendar": "Test",
+        "today": 2,
+        "total": 0
+      },
+      {
+        "calendar": "Test2",
+        "today": 2,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_starts_in",
+    "name": "En avtale starter om [[when]] [[type]]",
+    "variants": [
+      {
+        "when": 25,
+        "type": "1",
+        "today": 5,
+        "total": 0
+      },
+      {
+        "when": 5,
+        "type": "1",
+        "today": 5,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_stops",
+    "name": "En avtale slutter",
+    "variants": [
+      {
+        "today": 5,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_stops_calendar",
+    "name": "En avtale slutter fra [[calendar]]",
+    "variants": [
+      {
+        "calendar": "Test",
+        "today": 2,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_stops_in",
+    "name": "En avtale slutter om [[when]] [[type]]",
+    "variants": [
+      {
+        "type": "1",
+        "when": 5,
+        "today": 5,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "synchronization_error",
+    "name": "Synkroniseringsfeil oppstått",
+    "variants": []
+  }
+]

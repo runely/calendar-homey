@@ -207,6 +207,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: Moved argument trigger validation out of runListener. If a lot of events were imported, all of them would be validated in the trigger runListener which could lead to Homey disabling the flow because if were called too many times...
     - Start calendar fetching every 15th minute and 15th second to make sure events has been triggered and tokens has been updated
     - Added possibility to reset hit count in settings view
+    - Added tests for hit-count
 - 2.2.0
     - Deprecated condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within`
     - Added condition `Calendar has event(s) where property !{{matches|doesn't match}} given value and optionally starts within` -> [Issue #529](https://github.com/runely/calendar-homey/issues/529)
