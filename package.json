@@ -33,14 +33,14 @@
     "test": "standard && npm run ts:lint && env TZ=UTC jest",
     "fix": "standard --fix",
     "ts:lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "prepare": "husky install",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "browserify": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
     "homey-build": "npm run browserify && npm run test && homey app build",
     "homey-run": "npm run homey-build && homey app run",
     "homey-run-remote": "npm run homey-build && homey app run --remote",
     "homey-install": "npm run homey-build && homey app install",
-    "homey-publish": "npm run homey-build && npm run fix && homey app publish",
-    "prepare": "husky install"
+    "homey-publish": "npm run homey-build && npm run fix && homey app publish"
   },
   "standard": {
     "ignore": [
