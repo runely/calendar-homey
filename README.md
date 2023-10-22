@@ -208,6 +208,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Start calendar fetching every 15th minute and 15th second to make sure events has been triggered and tokens has been updated
     - Added possibility to reset hit count in settings view
     - Added tests for hit-count
+    - Bugfix: Recurrence in a recurring event, which was moved to a different date, might not be added
 - 2.2.0
     - Deprecated condition `Calendar has event where property !{{is|isn't}} equal to given value and optionally starts within`
     - Added condition `Calendar has event(s) where property !{{matches|doesn't match}} given value and optionally starts within` -> [Issue #529](https://github.com/runely/calendar-homey/issues/529)
