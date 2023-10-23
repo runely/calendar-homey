@@ -337,5 +337,8 @@
   },
   "2.3.0": {
     "en": "Rewritten trigger validation to prevent Homey disabling flows. Added trigger hit count in settings view. Bugfix: Recurrence in a recurring event, which was moved to a different date, might not be added"
+  },
+  "2.3.1": {
+    "en": "Bugfix: Triggers with arguments would trigger number of times the triggercard had been added to a flow 😬"
   }
 }
