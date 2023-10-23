@@ -107,7 +107,7 @@ module.exports.triggerChangedCalendars = async (options) => {
               const triggerCard = app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id)
               const triggerArgumentValues = await triggerCard.getArgumentValues()
               if (!Array.isArray(triggerArgumentValues)) {
-                throw new Error('Found no argument values for')
+                throw new Error('Found no argument values')
               } else if (triggerArgumentValues.length === 0) {
                 continue
               }
