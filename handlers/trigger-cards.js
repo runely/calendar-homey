@@ -112,6 +112,7 @@ module.exports.triggerChangedCalendars = async (options) => {
                 continue
               }
 
+              const triggerArgumentValuesTriggered = []
               for await (const triggerArgumentValue of triggerArgumentValues) {
                 if (triggerArgumentValue === null || triggerArgumentValue === undefined) {
                   app.warn(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' probably has a flow which is misconfigured or disabled:`, triggerArgumentValue)
@@ -119,9 +120,17 @@ module.exports.triggerChangedCalendars = async (options) => {
                 }
 
                 if (triggerArgumentValue.calendar !== undefined && triggerArgumentValue.calendar.name !== undefined && triggerArgumentValue.calendar.name === state.calendarName) {
+                  const triggerArgumentValueCalendar = { calendar: triggerArgumentValue.calendar.name }
+                  // if triggerArgumentValue has already been triggered for this events, do not trigger it again
+                  if (triggerArgumentValuesTriggered.filter((t) => t.calendar === state.calendarName).length === 1) {
+                    continue
+                  } else {
+                    triggerArgumentValuesTriggered.push(triggerArgumentValueCalendar)
+                  }
+
                   await triggerCard.trigger(tokens, state)
                   app.log(`Triggered '${changedCalendarTriggerCard.id}' on '${event.uid}' with state:`, state)
-                  updateHitCount(app, changedCalendarTriggerCard.id, { calendar: triggerArgumentValue.calendar.name })
+                  updateHitCount(app, changedCalendarTriggerCard.id, triggerArgumentValueCalendar)
                 }
               }
             }
@@ -203,6 +212,7 @@ module.exports.triggerEvents = async (options) => {
             continue
           }
 
+          const triggerArgumentValuesTriggered = []
           for await (const triggerArgumentValue of triggerArgumentValues) {
             if (triggerArgumentValue === null || triggerArgumentValue === undefined) {
               app.warn(`triggerEvents: '${triggerId}' probably has a flow which is misconfigured or disabled:`, triggerArgumentValue)
@@ -211,13 +221,28 @@ module.exports.triggerEvents = async (options) => {
 
             if (state.calendarName !== undefined) {
               if (triggerArgumentValue.calendar !== undefined && triggerArgumentValue.calendar.name !== undefined && triggerArgumentValue.calendar.name === state.calendarName) {
+                const triggerArgumentValueCalendar = { calendar: triggerArgumentValue.calendar.name }
+                // if triggerArgumentValue has already been triggered for this events, do not trigger it again
+                if (triggerArgumentValuesTriggered.filter((t) => t.calendar === state.calendarName).length === 1) {
+                  continue
+                } else {
+                  triggerArgumentValuesTriggered.push(triggerArgumentValueCalendar)
+                }
+
                 await triggerCard.trigger(tokens, state)
                 app.log(`triggerEvents: Triggered '${triggerId}' on '${event.uid}' with state:`, state)
-                updateHitCount(app, triggerId, { calendar: triggerArgumentValue.calendar.name })
+                updateHitCount(app, triggerId, triggerArgumentValueCalendar)
               }
             } else if (state.when !== undefined) {
               const minutes = convertToMinutes(triggerArgumentValue.when, triggerArgumentValue.type)
               if (minutes === state.when) {
+                // if triggerArgumentValue has already been triggered for this events, do not trigger it again
+                if (triggerArgumentValuesTriggered.filter((t) => t.when === triggerArgumentValue.when && t.type === triggerArgumentValue.type).length === 1) {
+                  continue
+                } else {
+                  triggerArgumentValuesTriggered.push(triggerArgumentValue)
+                }
+
                 await triggerCard.trigger(tokens, state)
                 app.log(`triggerEvents: Triggered '${triggerId}' on '${event.uid}' with state:`, state)
                 updateHitCount(app, triggerId, triggerArgumentValue)

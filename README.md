@@ -202,6 +202,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.3.1
+    - Bugfix: Triggers with arguments would trigger number of times that triggercard has been added to a flow 😬 ...
 - 2.3.0
     - Added hit count for triggers in settings view. This will show hit count for today, total hit count and last triggered timestamp per trigger card
     - Bugfix: Moved argument trigger validation out of runListener. If a lot of events were imported, all of them would be validated in the trigger runListener which could lead to Homey disabling the flow because if were called too many times...
