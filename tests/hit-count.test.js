@@ -8,6 +8,7 @@ let runtimeData = JSON.parse(dataAsText)
 const app = {
   getTimezone: () => 'Europe/Oslo',
   homey: {
+    __: jest.fn(),
     i18n: {
       getLanguage: () => 'no'
     },

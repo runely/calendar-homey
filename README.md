@@ -202,6 +202,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.3.3
+    - Bugfix: Set `Last` date on **Hit count** as localized date
 - 2.3.2
     - Bugfix: Triggers with arguments would trigger number of times that triggercard has been added to a flow 😬 ...
     - throw - Updated text
