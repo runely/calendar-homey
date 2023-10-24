@@ -343,5 +343,8 @@
   },
   "2.3.2": {
     "en": "Bugfix: Triggers with arguments would trigger number of times the triggercard had been added to a flow 😬"
+  },
+  "2.3.3": {
+    "en": "Bugfix: Set 'Last' date on Hit count as localized date. Dependency updates"
   }
 }
