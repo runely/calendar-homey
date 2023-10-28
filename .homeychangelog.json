@@ -349,5 +349,8 @@
   },
   "2.3.4": {
     "en": "Update tokens before triggering events. Dependency updates"
+  },
+  "2.3.5": {
+    "en": "Log out nextEvent only if it exists"
   }
 }
