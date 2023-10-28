@@ -346,5 +346,8 @@
   },
   "2.3.3": {
     "en": "Bugfix: Set 'Last' date on Hit count as localized date. Dependency updates"
+  },
+  "2.3.4": {
+    "en": "Update tokens before triggering events. Dependency updates"
   }
 }
