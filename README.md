@@ -202,6 +202,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.3.5
+    - Log out nextEvent only if it exists
 - 2.3.4
     - Dependency updates
     - Update tokens before triggering events.

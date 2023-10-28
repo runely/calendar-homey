@@ -65,12 +65,14 @@ const updateTokens = async (options) => {
   const eventsTomorrow = getTomorrowsEvents(eventOptions)
 
   let eventDuration
+  let nextEventStart = ''
 
   if (nextEvent.event) {
     eventDuration = getTokenDuration(app, nextEvent.event)
+    nextEventStart = `Next event happening @ '${nextEvent.event.start}'. `
   }
 
-  app.log(`updateTokens: Next event happening @ '${nextEvent.event.start}'. Updating today tag with ${eventsToday.length} events. Updating tomorrow tag with ${eventsTomorrow.length} events.`)
+  app.log(`updateTokens: ${nextEventStart}Updating today tag with ${eventsToday.length} events. Updating tomorrow tag with ${eventsTomorrow.length} events.`)
 
   // loop through flow tokens
   for await (const tokenId of app.variableMgmt.flowTokens) {
