@@ -413,15 +413,15 @@ class IcalCalendar extends Homey.App {
         now = null
 
         if (this.isGettingEvents) {
-          this.warn('startJobs/trigger: Wont trigger events and update tokens since getEvents is running. Will trigger in one minute')
+          this.warn('startJobs/trigger: Wont update tokens and trigger events since getEvents is running. Will update/trigger in one minute')
           return
         }
 
         if (this.variableMgmt.calendars && this.variableMgmt.calendars.length > 0) {
-          this.log('startJobs/trigger: Triggering events and updating tokens')
-          await triggerEvents({ timezone: this.getTimezone(), app: this })
+          this.log('startJobs/trigger: Updating tokens and triggering events')
           await updateTokens({ timezone: this.getTimezone(), app: this })
-        } else if (this.variableMgmt.calendars && this.variableMgmt.calendars.length === 0) this.warn('startJobs/trigger: Wont trigger events and update tokens since theres no calendars. Calendars:', this.variableMgmt.calendars)
+          await triggerEvents({ timezone: this.getTimezone(), app: this })
+        } else if (this.variableMgmt.calendars && this.variableMgmt.calendars.length === 0) this.warn('startJobs/trigger: Wont update tokens and trigger events since theres no calendars. Calendars:', this.variableMgmt.calendars)
       })
     }
   }

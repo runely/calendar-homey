@@ -70,6 +70,8 @@ const updateTokens = async (options) => {
     eventDuration = getTokenDuration(app, nextEvent.event)
   }
 
+  app.log(`updateTokens: Next event happening @ '${nextEvent.event.start}'. Updating today tag with ${eventsToday.length} events. Updating tomorrow tag with ${eventsTomorrow.length} events.`)
+
   // loop through flow tokens
   for await (const tokenId of app.variableMgmt.flowTokens) {
     try {

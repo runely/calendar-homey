@@ -204,6 +204,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 2.3.4
     - Dependency updates
+    - Update tokens before triggering events.
+        - Triggered full day events (and other events) which read `Todays events, title and time` and/or other global tokens which should have been updated at 00:00 were updated after the flow had been triggered
 - 2.3.3
     - Bugfix: Set `Last` date on **Hit count** as localized date
     - Dependency updates
