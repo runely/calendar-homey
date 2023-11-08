@@ -134,6 +134,14 @@ These calendar providers do not use (or at least not for all events) the `CREATE
 - **Sync calendars** - *will download new .ics files to update current events*
 - **Create local event** - *will allow you to create a local event that behaves just as a normal event, but only lives on your Homey* (`event is automatically deleted when it's finished`)
 - **Delete local event by title** - *will remove any local events with this title* (`if several local events with this title is found, all of them will be removed!`)
+- **Get calendars metadata** - *Will return a JSON representation of your calendar metadata* (`advanced flow action card`)
+- **Get calendar event** - *Returns tokens for given event in a given calendar* (`advanced flow action card`)
+
+### HomeyScripts
+
+- **get-all-events**
+    - [HP19](homeyscripts/HP19_get-all-events.js)
+    - [HP23](homeyscripts/HP23_get-all-events.js)
 
 ### Flow tags on triggers
 - Event title
@@ -202,6 +210,13 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.4.0
+    - Added advanced action cards ([Issue #545](https://github.com/runely/calendar-homey/issues/545)):
+        - `Get calendars metadata`
+            - Will return a JSON representation of your calendar metadata to use in an advanced flow
+        - `Get calendar event`
+            - Returns tokens for given event in a given calendar to use in an advanced flow
+    - Added `HomeyScripts` for [HP19](homeyscripts/HP19_get-all-events.js) and [HP23](homeyscripts/HP23_get-all-events.js) to show how to use these action cards in a HomeyScript in an advanced flow
 - 2.3.5
     - Log out nextEvent only if it exists
 - 2.3.4

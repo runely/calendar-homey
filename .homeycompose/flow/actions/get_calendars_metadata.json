@@ -1,0 +1,37 @@
+{
+  "id": "get_calendars_metadata",
+  "title": {
+    "en": "Get calendars metadata",
+    "no": "Hent kalendermetadata",
+    "nl": "Haal kalendermetadata op",
+    "de": "Kalendermetadaten abrufen",
+    "sv": "Hämta kalendermetadata",
+    "fr": "Obtenir les métadonnées des calendriers"
+  },
+  "hint": {
+    "en": "Will return a JSON representation of your calendar metadata",
+    "no": "Vil returnere en JSON-representasjon av kalendermetadataen din",
+    "nl": "Zal een JSON-representatie van uw kalendermetadata retourneren",
+    "de": "Wird eine JSON-Repräsentation Ihrer Kalendermetadaten zurückgeben",
+    "sv": "Kommer att returnera en JSON-representation av din kalendermetadata",
+    "fr": "Renvoie une représentation JSON de vos métadonnées de calendrier"
+  },
+  "advanced": true,
+  "tokens": [
+    {
+      "name": "json",
+      "type": "string",
+      "title": {
+        "en": "Metadata",
+        "no": "Metadata",
+        "nl": "Metadata",
+        "de": "Metadaten",
+        "sv": "Metadata",
+        "fr": "Métadonnées"
+      },
+      "example": {
+        "en": "{\"json\":[{\"calendarName\":\"Test\",\"events\":[0,1,2,3]}]}"
+      }
+    }
+  ]
+}

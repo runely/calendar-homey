@@ -13,7 +13,8 @@
     "no-loop-func": "off"
   },
   "ignorePatterns": [
-    "**/settings/*.js"
+    "**/settings/*.js",
+    "**/homeyscripts/*.js"
   ],
   "env": {
     "jest/globals": true
