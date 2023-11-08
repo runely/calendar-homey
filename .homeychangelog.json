@@ -352,5 +352,8 @@
   },
   "2.3.5": {
     "en": "Log out nextEvent only if it exists"
+  },
+  "2.4.0": {
+    "en": "Added advanced action cards for getting calendar metadata and getting event. Dependency updates"
   }
 }
