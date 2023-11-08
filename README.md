@@ -217,6 +217,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
         - `Get calendar event`
             - Returns tokens for given event in a given calendar to use in an advanced flow
     - Added `HomeyScripts` for [HP19](homeyscripts/HP19_get-all-events.js) and [HP23](homeyscripts/HP23_get-all-events.js) to show how to use these action cards in a HomeyScript in an advanced flow
+    - Dependency updates
 - 2.3.5
     - Log out nextEvent only if it exists
 - 2.3.4
