@@ -355,5 +355,8 @@
   },
   "2.4.0": {
     "en": "Added advanced action cards for getting calendar metadata and getting event. Dependency updates"
+  },
+  "2.5.0": {
+    "en": "Added setting 'Trigger all changed event types' to choose if you want to only trigger 'Event changed' for the first change on a event (default) or all changes on a event"
   }
 }
