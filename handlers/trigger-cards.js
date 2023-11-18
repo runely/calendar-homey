@@ -73,75 +73,88 @@ module.exports.triggerSynchronizationError = async (options) => {
  */
 module.exports.triggerChangedCalendars = async (options) => {
   const { app, calendars } = options
+  const triggerAllValues = app.homey.settings.get(app.variableMgmt.setting.triggerAllChangedEventTypes)
+  if (!triggerAllValues) {
+    app.log(`triggerChangedCalendars: ${triggerAllValues} -- Only triggering first change of a changed event`)
+  } else {
+    app.log(`triggerChangedCalendars: ${triggerAllValues} -- Triggering all changes of a changed event`)
+  }
+
   try {
     for await (const calendar of calendars) {
       for await (const event of calendar.events) {
-        const tokens = {
-          event_name: getTokenValue(event.summary),
-          event_calendar_name: calendar.name,
-          event_type: event.changed[0].type,
-          event_prev_value: getTokenValue(event.changed[0].previousValue),
-          event_new_value: getTokenValue(event.changed[0].newValue),
-          event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
-          event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent')
-        }
-
-        const changedCalendarTriggerCards = [
-          {
-            id: 'event_changed',
-            useState: false
-          },
-          {
-            id: 'event_changed_calendar',
-            useState: true
+        for await (const changed of event.changed) {
+          const tokens = {
+            event_name: getTokenValue(event.summary),
+            event_calendar_name: calendar.name,
+            event_type: changed.type,
+            event_prev_value: getTokenValue(changed.previousValue),
+            event_new_value: getTokenValue(changed.newValue),
+            event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
+            event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent')
           }
-        ]
-        for await (const changedCalendarTriggerCard of changedCalendarTriggerCards) {
-          const state = { calendarName: calendar.name }
-          try {
-            if (!changedCalendarTriggerCard.useState) {
-              await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens)
-              app.log(`Triggered ${changedCalendarTriggerCard.id} on '${event.uid}'`)
-              updateHitCount(app, changedCalendarTriggerCard.id)
-            } else {
-              const triggerCard = app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id)
-              const triggerArgumentValues = await triggerCard.getArgumentValues()
-              if (!Array.isArray(triggerArgumentValues)) {
-                throw new Error('Found no argument values')
-              } else if (triggerArgumentValues.length === 0) {
-                continue
-              }
 
-              const triggerArgumentValuesTriggered = []
-              for await (const triggerArgumentValue of triggerArgumentValues) {
-                if (triggerArgumentValue === null || triggerArgumentValue === undefined) {
-                  app.warn(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' probably has a flow which is misconfigured or disabled:`, triggerArgumentValue)
+          const changedCalendarTriggerCards = [
+            {
+              id: 'event_changed',
+              useState: false
+            },
+            {
+              id: 'event_changed_calendar',
+              useState: true
+            }
+          ]
+          for await (const changedCalendarTriggerCard of changedCalendarTriggerCards) {
+            const state = { calendarName: calendar.name }
+            try {
+              if (!changedCalendarTriggerCard.useState) {
+                await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens)
+                app.log(`Triggered ${changedCalendarTriggerCard.id} on '${event.uid}' for type ${changed.type}`)
+                updateHitCount(app, changedCalendarTriggerCard.id)
+              } else {
+                const triggerCard = app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id)
+                const triggerArgumentValues = await triggerCard.getArgumentValues()
+                if (!Array.isArray(triggerArgumentValues)) {
+                  throw new Error('Found no argument values')
+                } else if (triggerArgumentValues.length === 0) {
                   continue
                 }
 
-                if (triggerArgumentValue.calendar !== undefined && triggerArgumentValue.calendar.name !== undefined && triggerArgumentValue.calendar.name === state.calendarName) {
-                  const triggerArgumentValueCalendar = { calendar: triggerArgumentValue.calendar.name }
-                  // if triggerArgumentValue has already been triggered for this events, do not trigger it again
-                  if (triggerArgumentValuesTriggered.filter((t) => t.calendar === state.calendarName).length === 1) {
+                const triggerArgumentValuesTriggered = []
+                for await (const triggerArgumentValue of triggerArgumentValues) {
+                  if (triggerArgumentValue === null || triggerArgumentValue === undefined) {
+                    app.warn(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' probably has a flow which is misconfigured or disabled:`, triggerArgumentValue)
                     continue
-                  } else {
-                    triggerArgumentValuesTriggered.push(triggerArgumentValueCalendar)
                   }
 
-                  await triggerCard.trigger(tokens, state)
-                  app.log(`Triggered '${changedCalendarTriggerCard.id}' on '${event.uid}' with state:`, state)
-                  updateHitCount(app, changedCalendarTriggerCard.id, triggerArgumentValueCalendar)
+                  if (triggerArgumentValue.calendar !== undefined && triggerArgumentValue.calendar.name !== undefined && triggerArgumentValue.calendar.name === state.calendarName) {
+                    const triggerArgumentValueCalendar = { calendar: triggerArgumentValue.calendar.name }
+                    // if triggerArgumentValue has already been triggered for this events, do not trigger it again
+                    if (triggerArgumentValuesTriggered.filter((t) => t.calendar === state.calendarName).length === 1) {
+                      continue
+                    } else {
+                      triggerArgumentValuesTriggered.push(triggerArgumentValueCalendar)
+                    }
+
+                    await triggerCard.trigger(tokens, state)
+                    app.log(`Triggered '${changedCalendarTriggerCard.id}' on '${event.uid}' for type ${changed.type} with state:`, state)
+                    updateHitCount(app, changedCalendarTriggerCard.id, triggerArgumentValueCalendar)
+                  }
                 }
               }
-            }
-          } catch (error) {
-            if (changedCalendarTriggerCard.useState) {
-              app.logError(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' with state`, state, ':', error)
-            } else {
-              app.logError(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' :`, error)
-            }
+            } catch (error) {
+              if (changedCalendarTriggerCard.useState) {
+                app.logError(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} with state`, state, ':', error)
+              } else {
+                app.logError(`triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} :`, error)
+              }
 
-            this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
+              this.triggerSynchronizationError({ app, calendar: calendar.name, error, event })
+            }
+          }
+
+          if (!triggerAllValues) {
+            break
           }
         }
       }

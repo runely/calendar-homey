@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Diverse innstillinger",
-            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender"
+            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender",
+            "triggerAllChangedEventTypes": {
+                "title": "Utløs alle endrede avtaletyper",
+                "description": "Når <i>ikke avmerket</i>, vil bare <b>første endring</b> på en avtale utløse en <u>avtale ble endret</u>.<br>Når <i>avmerket</i>, vil <b>alle endringer</b> på en avtale utløse en <u>avtale ble endret</u>."
+            }
         },
         "debug": {
             "legend": "Diverse feilsøking",

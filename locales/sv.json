@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Andra inställningar",
-            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender"
+            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender",
+            "triggerAllChangedEventTypes": {
+                "title": "Utlös alla ändrade händelsetyper",
+                "description": "När <i>inte vald</i>, kommer endast <b>första ändringen</b> på en händelse att utlösa en <u>händelse har ändrats</u>.<br>När <i>vald</i>, kommer <b>alla ändringar</b> på en händelse att utlösa en <u>händelse har ändrats</u>."
+            }
         },
         "debug": {
             "legend": "Olika felsökning",

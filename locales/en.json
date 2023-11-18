@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Misc settings",
-            "nextEventTokensPerCalendar": "Next event tags per calendar"
+            "nextEventTokensPerCalendar": "Next event tags per calendar",
+            "triggerAllChangedEventTypes": {
+                "title": "Trigger all changed event types",
+                "description": "When <i>unselected</i>, only the <b>first change</b> on an event will trigger a <u>event changed</u>.<br>When <i>selected</i>, <b>all changes</b> on an event will trigger a <u>event changed</u>."
+            }
         },
         "debug": {
             "legend": "Various debugging options",

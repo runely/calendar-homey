@@ -14,6 +14,7 @@ module.exports = {
       type: 'months'
     },
     nextEventTokensPerCalendar: 'nextEventTokensPerCalendar',
+    triggerAllChangedEventTypes: 'triggerAllChangedEventTypes',
     logAllEvents: 'logAllEvents'
   },
   hitCount: {

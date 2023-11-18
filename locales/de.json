@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Sonstige Einstellungen",
-            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender"
+            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender",
+            "triggerAllChangedEventTypes": {
+                "title": "Alle geänderten Ereignistypen auslösen",
+                "description": "Wenn <i>nicht ausgewählt</i>, wird nur die <b>erste Änderung</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen.<br>Wenn <i>ausgewählt</i>, werden <b>alle Änderungen</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen."
+            }
         },
         "debug": {
             "legend": "Diverse Debugging-Optionen",

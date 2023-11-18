@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Overige instellingen",
-            "nextEventTokensPerCalendar": "Volgende event-tags per kalender"
+            "nextEventTokensPerCalendar": "Volgende event-tags per kalender",
+            "triggerAllChangedEventTypes": {
+                "title": "Activeer alle gewijzigde gebeurtenistypen",
+                "description": "Wanneer <i>niet geselecteerd</i>, zal alleen de <b>eerste wijziging</b> in een gebeurtenis een <u>event is gewijzigd</u> activeren.<br>Wanneer <i>geselecteerd</i>, zullen <b>alle wijzigingen</b> in een gebeurtenis een <u>event is gewijzigd</u> activeren."
+            }
         },
         "debug": {
             "legend": "Verschillende probleemoplossen",

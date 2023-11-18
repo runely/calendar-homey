@@ -43,7 +43,11 @@
         },
         "misc": {
             "legend": "Paramètres divers",
-            "nextEventTokensPerCalendar": "Prochains tags d'événement par calendrier"
+            "nextEventTokensPerCalendar": "Prochains tags d'événement par calendrier",
+            "triggerAllChangedEventTypes": {
+                "title": "Déclencher tous les types d'événements modifiés",
+                "description": "Lorsque <i>non sélectionné</i>, seule la <b>première modification</b> sur un événement déclenchera un <u>événement modifié</u>.<br>Lorsque <i>sélectionné</i>, <b>toutes les modifications</b> sur un événement déclencheront un <u>événement modifié</u>."
+            }
         },
         "debug": {
             "legend": "Diverses options de débogage",

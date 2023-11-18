@@ -75,6 +75,12 @@
                         <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br><br>
                         <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
                     </div>
+
+                    <div class="triggerAllChangedEventTypes settings-section">
+                        <strong data-i18n="settings.misc.triggerAllChangedEventTypes.title"></strong><br><br>
+                        <p data-i18n="settings.misc.triggerAllChangedEventTypes.description"></p>
+                        <input id="misc-triggerAllChangedEventTypes" type="checkbox" />
+                    </div>
                 </fieldset>
             </div>
 
@@ -126,11 +132,8 @@
         </div>
 
         <p class="icons-info"><span data-i18n="settings.icons_info"></span> <a href="https://icons8.com/">Icons8</a></p>
-        
-        <script src="icalcalendar.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-            const nextEventTokensPerCalendar = document.getElementById('misc-nextEventTokensPerCalendar')
             const toggleActive = element => {
                 if (element.checked) {
                     element.parentElement.classList.add('active')
@@ -139,9 +142,15 @@
                 }
             }
 
-            setTimeout(() => toggleActive(nextEventTokensPerCalendar), 250)
-            nextEventTokensPerCalendar.addEventListener('change', () => toggleActive(nextEventTokensPerCalendar))
+            const miscDiv = document.getElementsByClassName('misc')[0]
+            const miscCheckboxes = miscDiv.querySelectorAll('input[type=checkbox]')
+            for (const checkbox of miscCheckboxes) {
+                setTimeout(() => toggleActive(checkbox), 2500)
+                checkbox.addEventListener('change', () => toggleActive(checkbox)) 
+            }
         </script>
+
+        <script src="icalcalendar.js" type="text/javascript"></script>
 
       </body>
 </html>

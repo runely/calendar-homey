@@ -240,7 +240,7 @@ class IcalCalendar extends Homey.App {
       }
     } catch (error) {
       const errorString = typeof error === 'object' ? error.message : error
-      this.logError('getEvents: Failed to filter/trigger changed calendars', errorString)
+      this.logError('getEvents: Failed to filter/trigger changed calendars:', errorString)
       await triggerSynchronizationError({ app: this, calendar: 'Changed calendars', error })
     }
 

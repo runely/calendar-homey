@@ -12,6 +12,7 @@ function onHomeyReady (Homey) {
   const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
   const settingsDebugLogAllEvents = variableMgmt.setting.logAllEvents
   const hitCountDataPath = variableMgmt.hitCount.data
+  const triggerAllChangedEventTypes = variableMgmt.setting.triggerAllChangedEventTypes
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -107,6 +108,12 @@ function onHomeyReady (Homey) {
     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state)
   })
 
+  // get triggerAllChangedEventTypes
+  Homey.get(triggerAllChangedEventTypes, (err, state) => {
+    if (err) return Homey.alert(err)
+    getMiscSetting(triggerAllChangedEventTypes, state)
+  })
+
   // get logAllEvents from settings
   Homey.get(settingsDebugLogAllEvents, (err, state) => {
     if (err) return Homey.alert(err)
@@ -183,6 +190,11 @@ function onHomeyReady (Homey) {
 
     // save tokensPerCalendar to settings
     Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function (err) {
+      if (err) return Homey.alert(err)
+    })
+
+    // save triggerAllChangedEventTypes to settings
+    Homey.set(triggerAllChangedEventTypes, saveMiscSetting(triggerAllChangedEventTypes), function (err) {
       if (err) return Homey.alert(err)
     })
 
