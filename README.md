@@ -210,6 +210,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.5.1
+    - Dependency updates
 - 2.5.0
     - Added setting `Trigger all changed event types` to choose if you want to only trigger `Event changed` for the first change on a event (default) or all changes on a event
 - 2.4.0
