@@ -57,6 +57,9 @@ class IcalCalendar extends Homey.App {
     // setup flow tokens
     await setupFlowTokens(this)
 
+    // register cron jobs
+    this.startJobs()
+
     // setup conditions
     setupConditions({ timezone: this.getTimezone(), app: this })
 
@@ -83,7 +86,7 @@ class IcalCalendar extends Homey.App {
       }
     })
 
-    this._unload = () => {
+    this._unload = (name) => {
       this.variableMgmt = null
 
       if (!this.jobs) return
@@ -91,7 +94,7 @@ class IcalCalendar extends Homey.App {
       // unload cron jobs
       Object.getOwnPropertyNames(this.jobs).forEach((prop) => {
         if (typeof this.jobs[prop].stop === 'function') {
-          this.log('onInit/_unload: Job', prop, 'will be stopped')
+          this.log(`${name}/_unload: Job '${prop}' will be stopped`)
           this.jobs[prop].stop()
         }
       })
@@ -100,12 +103,9 @@ class IcalCalendar extends Homey.App {
     this.homey.on('unload', () => {
       if (typeof this._unload === 'function') {
         this.log('unload -- calling this._unload')
-        this._unload()
+        this._unload('unload')
       } else this.warn('unload -- this._unload is not a function')
     })
-
-    // register cron jobs
-    this.startJobs()
   }
 
   getWorkTime (start, end) {
@@ -432,7 +432,7 @@ class IcalCalendar extends Homey.App {
   async onUninit () {
     if (typeof this._unload === 'function') {
       this.log('onUninit -- calling this._unload')
-      this._unload()
+      this._unload('onUninit')
     } else this.warn('onUninit -- this._unload is not a function')
   }
 }
