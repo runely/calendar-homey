@@ -137,6 +137,19 @@
             "summary": "Titel"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Titel is ongeldig",
+            "startInvalid": "Start van evenement is ongeldig",
+            "endInvalid": "Einde van evenement is ongeldig"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Lokaal evenement met titel",
+            "eventNotFoundTwo": "niet gevonden"
+        },
+        "calendarNotFoundOne": "Kalender",
+        "calendarNotFoundTwo": "niet gevonden"
+    },
     "device": {
         "eventCountCalendar": "Aantal evenementen -",
         "lastSuccessfullSync": "Laatste succesvolle synchronisatie -"

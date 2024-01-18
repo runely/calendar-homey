@@ -137,6 +137,19 @@
             "summary": "Zusammenfassung"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Der Titel ist ungültig",
+            "startInvalid": "Der Veranstaltungsbeginn ist ungültig",
+            "endInvalid": "Das Veranstaltungsende ist ungültig"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Lokale Veranstaltung mit Titel",
+            "eventNotFoundTwo": "nicht gefunden"
+        },
+        "calendarNotFoundOne": "Kalender",
+        "calendarNotFoundTwo": "nicht gefunden"
+    },
     "device": {
         "eventCountCalendar": "Anzahl der Ereignisse -",
         "lastSuccessfullSync": "Letzte erfolgreiche Synchronisierung -"

@@ -137,6 +137,19 @@
             "summary": "Summering"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Titel är ogiltig",
+            "startInvalid": "Händelsestart är ogiltig",
+            "endInvalid": "Händelseslut är ogiltig"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Lokalt händelse med titel",
+            "eventNotFoundTwo": "hittades inte"
+        },
+        "calendarNotFoundOne": "Kalender",
+        "calendarNotFoundTwo": "hittades inte"
+    },
     "device": {
         "eventCountCalendar": "Antal händelser -",
         "lastSuccessfullSync": "Senaste framgångsrika synkroniseringen -"

@@ -137,6 +137,19 @@
             "summary": "Summary"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Title is invalid",
+            "startInvalid": "Event start is invalid",
+            "endInvalid": "Event end is invalid"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Local event with title",
+            "eventNotFoundTwo": "not found"
+        },
+        "calendarNotFoundOne": "Calendar",
+        "calendarNotFoundTwo": "not found"
+    },
     "device": {
         "eventCountCalendar": "Event count -",
         "lastSuccessfullSync": "Last successfull synchronization -"

@@ -210,8 +210,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 2.5.1
+- 2.6.0
     - Dependency updates
+    - Throws error message in flow editor if `Title`, `Event start`, `Event end` or `Calendar` is invalid on action card `Create local event`
+    - Throws error message in flow editor if `event isn't found` or `calendar not found` on action card `Delete local event by title`
 - 2.5.0
     - Added setting `Trigger all changed event types` to choose if you want to only trigger `Event changed` for the first change on a event (default) or all changes on a event
 - 2.4.0

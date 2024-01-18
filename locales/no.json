@@ -137,6 +137,19 @@
             "summary": "Tittel"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Tittel er ugyldig",
+            "startInvalid": "Avtalestart er ugyldig",
+            "endInvalid": "Avtaleslutt er ugyldig"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Lokal avtale med tittel",
+            "eventNotFoundTwo": "ble ikke funnet"
+        },
+        "calendarNotFoundOne": "Kalender",
+        "calendarNotFoundTwo": "ikke funnet"
+    },
     "device": {
         "eventCountCalendar": "Antall avtaler -",
         "lastSuccessfullSync": "Siste vellykkede synkronisering -"

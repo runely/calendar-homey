@@ -137,6 +137,19 @@
             "summary": "Résumé"
         }
     },
+    "actions": {
+        "new_event": {
+            "titleInvalid": "Le titre n'est pas valide",
+            "startInvalid": "Le début de l'événement n'est pas valide",
+            "endInvalid": "La fin de l'événement n'est pas valide"
+        },
+        "delete_event_name": {
+            "eventNotFoundOne": "Événement local avec titre",
+            "eventNotFoundTwo": "pas trouvé"
+        },
+        "calendarNotFoundOne": "Calendrier",
+        "calendarNotFoundTwo": "pas trouvé"
+    },
     "device": {
         "eventCountCalendar": "Nombre d'événements -",
         "lastSuccessfullSync": "Dernière synchronisation réussie -"

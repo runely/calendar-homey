@@ -29,13 +29,16 @@ module.exports = (app) => {
   newEventAction.registerRunListener(async (args, state) => {
     if (typeof args.event_name !== 'string' || args.event_name === '') {
       app.warn('new_event: Title is invalid:', args)
-      return false
+      throw new Error(app.homey.__('actions.new_event.titleInvalid'))
     }
     const startDate = getDateTime(args.event_start)
     const endDate = getDateTime(args.event_end)
-    if (startDate === null || endDate === null) {
-      app.warn('new_event: startDate and/or endDate is invalid:', args)
-      return false
+    if (startDate === null) {
+      app.warn('new_event: startDate is invalid:', args)
+      throw new Error(app.homey.__('actions.new_event.startInvalid'))
+    } else if (endDate === null) {
+      app.warn('new_event: endDate is invalid:', args)
+      throw new Error(app.homey.__('actions.new_event.endInvalid'))
     }
 
     const event = newEvent(app, app.getTimezone(), args)
@@ -43,7 +46,7 @@ module.exports = (app) => {
     const calendar = app.variableMgmt.calendars.find((c) => c.name === event.calendar)
     if (!calendar) {
       app.warn('new_event: Event', event.summary, 'not added because calendar', event.calendar, 'was not found')
-      return false
+      throw new Error(`${app.homey.__('actions.calendarNotFoundOne')} ${event.calendar} ${app.homey.__('actions.calendarNotFoundTwo')}`)
     }
 
     app.log('new_event: Added', event.summary, 'to calendar', event.calendar)
@@ -61,13 +64,13 @@ module.exports = (app) => {
     const event = Array.isArray(app.variableMgmt.localEvents) ? app.variableMgmt.localEvents.find((e) => e.summary === args.event_name) : null
     if (!event) {
       app.warn('delete_event_name: Local event with title', args.event_name, 'not found')
-      return false
+      throw new Error(`${app.homey.__('actions.delete_event_name.eventNotFoundOne')} ${args.event_name} ${app.homey.__('actions.delete_event_name.eventNotFoundTwo')}`)
     }
 
     const calendar = app.variableMgmt.calendars.find((c) => c.name === event.calendar)
     if (!calendar) {
       app.warn('delete_event_name: Calendar', event.calendar, 'was not found')
-      return false
+      throw new Error(`${app.homey.__('actions.calendarNotFoundOne')} ${event.calendar} ${app.homey.__('actions.calendarNotFoundTwo')}`)
     }
 
     const newCalendarEvents = calendar.events.filter((e) => e.summary !== args.event_name)
