@@ -361,5 +361,8 @@
   },
   "2.5.1": {
     "en": "Dependency updates"
+  },
+  "2.6.0": {
+    "en": "Dependency updates. Throws error message in flow editor on action cards when arguments is invalid"
   }
 }
