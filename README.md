@@ -210,6 +210,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.6.1
+    - Dependency updates
 - 2.6.0
     - Dependency updates
     - Throws error message in flow editor if `Title`, `Event start`, `Event end` or `Calendar` is invalid on action card `Create local event`
