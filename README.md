@@ -210,6 +210,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.6.2
+    - Dependency updates
 - 2.6.1
     - Dependency updates
 - 2.6.0
