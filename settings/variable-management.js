@@ -4,6 +4,7 @@
 module.exports = {
   setting: {
     icalUris: 'uris',
+    syncInterval: 'syncInterval',
     dateFormat: 'dateFormat',
     dateFormatLong: 'dateFormatLong',
     dateFormatShort: 'dateFormatShort',

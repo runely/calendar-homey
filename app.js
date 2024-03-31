@@ -23,7 +23,7 @@ const setupFlowTokens = require('./handlers/setup-flow-tokens')
 const { setupConditions } = require('./handlers/setup-conditions')
 const setupActions = require('./handlers/setup-actions')
 const { updateTokens } = require('./handlers/update-tokens')
-const { addJob } = require('./handlers/cron')
+const { addJob, isValidCron } = require('./handlers/cron')
 const { moment } = require('./lib/moment-datetime')
 
 class IcalCalendar extends Homey.App {
@@ -57,6 +57,16 @@ class IcalCalendar extends Homey.App {
     // setup flow tokens
     await setupFlowTokens(this)
 
+    // make sure sync interval is set to custom or default
+    const syncInterval = this.homey.settings.get(this.variableMgmt.setting.syncInterval)
+    if (!syncInterval) {
+      const syncIntervalDefault = { auto: true, cron: '15 */15 * * * *' }
+      this.homey.settings.set(this.variableMgmt.setting.syncInterval, syncIntervalDefault)
+      this.log('onInit: Default sync interval settings set:', syncIntervalDefault)
+    } else {
+      this.log('onInit: Sync interval settings:', syncInterval)
+    }
+
     // register cron jobs
     this.startJobs()
 
@@ -83,6 +93,9 @@ class IcalCalendar extends Homey.App {
       } else if (args && [this.variableMgmt.setting.dateFormatLong, this.variableMgmt.setting.dateFormatShort, this.variableMgmt.setting.timeFormat].includes(args)) {
         // get new date/time format
         this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
+      } else if (args && [this.variableMgmt.setting.syncInterval].includes(args)) {
+        // adjust synchronization interval
+        this.startJobs('update')
       }
     })
 
@@ -117,16 +130,23 @@ class IcalCalendar extends Homey.App {
   async getEvents (reregisterCalendarTokens = false) {
     this.isGettingEvents = true
 
+    await triggerSynchronizationError({ app: this, calendar: 'getEvents', error: `No error. But getEvents has been called. Next: ${this.jobs.update.nextRun()}` })
+
     // errors to return
     const errors = []
     // get URI from settings
     const calendars = this.homey.settings.get(this.variableMgmt.setting.icalUris)
 
     // calendars not entered in settings page yet
-    if (!calendars) {
+    if (!calendars || (Array.isArray(calendars) && calendars.length === 0)) {
       this.warn('getEvents: Calendars has not been set in Settings yet')
       this.isGettingEvents = false
       this.gettingEventsLastRun = new Date()
+
+      if (this.jobs && this.jobs.update && typeof this.jobs.update.nextRun === 'function') {
+        this.log(`getEvents: Next update in UTC: ${this.jobs.update.nextRun()}`)
+      }
+
       return
     }
 
@@ -385,26 +405,43 @@ class IcalCalendar extends Homey.App {
     this.isGettingEvents = false
     this.gettingEventsLastRun = new Date()
 
+    if (this.jobs && this.jobs.update && typeof this.jobs.update.nextRun === 'function') {
+      this.log(`getEvents: Next update in UTC: ${this.jobs.update.nextRun()}`)
+    }
+
     if (errors.length > 0) return errors
   }
 
-  startJobs () {
-    this.jobs = {
-      // calendar update every 15th minute
-      update: addJob('15 */15 * * * *', () => {
-        if (this.isGettingEvents) {
-          this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
-          return
-        } else if (this.gettingEventsLastRun && ((new Date() - this.gettingEventsLastRun) / 1000 / 60) < 5) {
-          this.warn('startJobs/update: Wont update calendars from this job since there\'s less than 5 minutes since getEvents was last executed:', this.gettingEventsLastRun)
-          return
-        }
+  startJobs (type) {
+    const updateFunc = () => {
+      if (this.isGettingEvents) {
+        this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
+        return
+      } else if (this.gettingEventsLastRun && ((new Date() - this.gettingEventsLastRun) / 1000 / 60) < 5) {
+        this.warn('startJobs/update: Wont update calendars from this job since there\'s less than 5 minutes since getEvents was last executed:', this.gettingEventsLastRun)
+        return
+      }
 
-        this.log('startJobs/update: Updating calendars without reregistering tokens')
-        this.getEvents()
-      }),
+      this.log('startJobs/update: Updating calendars without reregistering tokens')
+      this.getEvents()
+    }
+
+    const interval = this.homey.settings.get(this.variableMgmt.setting.syncInterval)
+
+    if (typeof type !== 'string') {
+      if (this.jobs) {
+        Object.getOwnPropertyNames(this.jobs).forEach((prop) => {
+          if (typeof this.jobs[prop].stop === 'function') {
+            this.log(`startJobs: Job '${prop}' will be stopped`)
+            this.jobs[prop].stop()
+          }
+        })
+      }
+
+      this.jobs = {}
+
       // trigger events every 1th minute
-      trigger: addJob('*/1 * * * *', async () => {
+      this.jobs.trigger = addJob('*/1 * * * *', async () => {
         let now = moment({ timezone: this.getTimezone() })
         if (now.get('hours') === 0 && now.get('minutes') === 0) {
           resetTodayHitCount(this)
@@ -423,6 +460,51 @@ class IcalCalendar extends Homey.App {
           await triggerEvents({ timezone: this.getTimezone(), app: this })
         } else if (this.variableMgmt.calendars && this.variableMgmt.calendars.length === 0) this.warn('startJobs/trigger: Wont update tokens and trigger events since theres no calendars. Calendars:', this.variableMgmt.calendars)
       })
+
+      // calendar update by cron syntax
+      if (!interval.auto) {
+        this.log('startJobs: Auto update is disabled. Synchronization will only be performed by flowcard!')
+        return
+      }
+
+      if (!isValidCron(interval.cron)) {
+        this.logError(`startJobs: Auto update is disabled. Invalid cron value specified in settings: '${interval.cron}'`)
+        triggerSynchronizationError({ app: this, calendar: 'cron syntax', error: `Invalid cron value specified in settings: '${interval.cron}'` })
+        interval.error = `Invalid cron value specified in settings: '${interval.cron}'`
+        this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
+        return
+      } else if (typeof interval.error === 'string') {
+        delete interval.error
+        this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
+      }
+
+      this.jobs.update = addJob(interval.cron, updateFunc)
+      this.log(`startJobs: Auto update enabled with cron value '${interval.cron}'. Next update in UTC: ${this.jobs.update.nextRun()}`)
+    } else if (type === 'update') {
+      if (this.jobs && this.jobs.update && typeof this.jobs.update.stop === 'function') {
+        this.jobs.update.stop()
+      }
+
+      if (!interval.auto) {
+        this.log('startJobs(update): Auto update is disabled. Synchronization will only be performed by flowcard!')
+        delete this.jobs.update
+        return
+      }
+
+      if (!isValidCron(interval.cron)) {
+        this.logError(`startJobs(update): Auto update is disabled. Invalid cron value specified in settings: '${interval.cron}'`)
+        delete this.jobs.update
+        triggerSynchronizationError({ app: this, calendar: 'cron syntax', error: `Invalid cron value specified in settings: '${interval.cron}'` })
+        interval.error = `Invalid cron value specified in settings: '${interval.cron}'`
+        this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
+        return
+      } else if (typeof interval.error === 'string') {
+        delete interval.error
+        this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
+      }
+
+      this.jobs.update = addJob(interval.cron, updateFunc)
+      this.log(`startJobs(update): Auto update enabled with cron value '${interval.cron}'. Next update in UTC: ${this.jobs.update.nextRun()}`)
     }
   }
 

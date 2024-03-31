@@ -48,18 +48,17 @@ nav {
     font-size: smaller;
 }
 
-.uri-error-hidden {
+.error-section-hidden {
     display: none;
 }
 
-.uri-error-show {
+.error-section-show {
     display: block;
     color: red;
     font-weight: bold;
 }
 
 .settings-section {
-    color: slategray;
     margin-bottom: 16px;
 }
 
@@ -67,7 +66,16 @@ nav {
     margin-bottom: 0;
 }
 
-.settings-section.active {
+.settings-section-dynamic {
+    color: slategray;
+    margin-bottom: 16px;
+}
+
+.settings-section-dynamic:last-child {
+    margin-bottom: 0;
+}
+
+.settings-section-dynamic.active {
     color: black;
 }
 
