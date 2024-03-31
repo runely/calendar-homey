@@ -130,8 +130,6 @@ class IcalCalendar extends Homey.App {
   async getEvents (reregisterCalendarTokens = false) {
     this.isGettingEvents = true
 
-    await triggerSynchronizationError({ app: this, calendar: 'getEvents', error: `No error. But getEvents has been called. Next: ${this.jobs.update.nextRun()}` })
-
     // errors to return
     const errors = []
     // get URI from settings
