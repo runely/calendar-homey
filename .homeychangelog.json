@@ -373,5 +373,8 @@
   },
   "2.7.0": {
     "en": "Implemented adjustable interval schedule. Dependency updates"
+  },
+  "2.7.1": {
+    "en": "Implemented adjustable interval schedule. Dependency updates"
   }
 }
