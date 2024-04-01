@@ -31,10 +31,42 @@
                 </fieldset>
             </div>
 
+            <div id="uri_error" class="error-section-hidden"></div>
+
             <div class="full-width">
                 <p>
                     <button id="newItem" class="right" data-i18n="settings.buttons.new_item"></button>
                 </p>
+            </div>
+
+            <div id="syncsettings">
+                <fieldset>
+                    <legend data-i18n="settings.syncsettings.legend"></legend>
+
+                    <div class="syncSettingsInterval settings-section">
+                        <strong data-i18n="settings.syncsettings.interval.legend"></strong>
+                        <p data-i18n="settings.syncsettings.interval.description"></p>
+                        <!-- <input id="syncsettings-interval-auto" type="checkbox" class="dynamic-checkbox" data-classname="syncsettings-interval-schedule" data-dynamic="false" /><br /><br /> -->
+                        <input id="syncsettings-interval-auto" type="checkbox" /><br /><br />
+                        
+                        <p data-i18n="settings.syncsettings.cron.description"></p>
+                        <input id="syncsettings-interval-cron" type="text" value="" minlength="9" />
+                    </div>
+                    
+                    <div id="cron_error" class="error-section-hidden"></div>
+                    <br />
+
+                    <div class="settings-section">
+                        <strong data-i18n="settings.syncsettings.eventlimit.legend"></strong>
+                        <p data-i18n="settings.syncsettings.eventlimit.description"></p>
+    
+                        <strong data-i18n="settings.syncsettings.eventlimit.value"></strong>
+                        <input id="eventlimit-value" type="number" value="" min="1" /><br><br>
+    
+                        <strong data-i18n="settings.syncsettings.eventlimit.type"></strong>
+                        <select id="eventlimit-type"></select>
+                    </div>
+                </fieldset>
             </div>
 
             <div class="datetime">
@@ -53,33 +85,19 @@
                 </fieldset>
             </div>
 
-            <div class="eventlimit">
-                <fieldset>
-                    <legend data-i18n="settings.eventlimit.legend"></legend>
-
-                    <p data-i18n="settings.eventlimit.description"></p>
-
-                    <strong data-i18n="settings.eventlimit.value"></strong>
-                    <input id="eventlimit-value" type="number" value="" min="1" /><br><br>
-
-                    <strong data-i18n="settings.eventlimit.type"></strong>
-                    <select id="eventlimit-type"></select>
-                </fieldset>
-            </div>
-
             <div class="misc">
                 <fieldset>
                     <legend data-i18n="settings.misc.legend"></legend>
 
-                    <div class="nextEventTokensPerCalendar settings-section">
+                    <div class="nextEventTokensPerCalendar settings-section-dynamic">
                         <strong data-i18n="settings.misc.nextEventTokensPerCalendar"></strong><br><br>
-                        <input id="misc-nextEventTokensPerCalendar" type="checkbox" />
+                        <input id="misc-nextEventTokensPerCalendar" type="checkbox" class="dynamic-checkbox" />
                     </div>
 
-                    <div class="triggerAllChangedEventTypes settings-section">
+                    <div class="triggerAllChangedEventTypes settings-section-dynamic">
                         <strong data-i18n="settings.misc.triggerAllChangedEventTypes.title"></strong><br><br>
                         <p data-i18n="settings.misc.triggerAllChangedEventTypes.description"></p>
-                        <input id="misc-triggerAllChangedEventTypes" type="checkbox" />
+                        <input id="misc-triggerAllChangedEventTypes" type="checkbox" class="dynamic-checkbox" />
                     </div>
                 </fieldset>
             </div>
@@ -90,16 +108,14 @@
 
                     <p data-i18n="settings.debug.description"></p>
 
-                    <div class="settings-section">
+                    <div class="settings-section-dynamic">
                         <strong data-i18n="settings.debug.log_all_events"></strong><br><br>
-                        <input id="debug-logAllEvents" type="checkbox" />
+                        <input id="debug-logAllEvents" type="checkbox" class="dynamic-checkbox" />
                     </div>
                 </fieldset>
             </div>
 
             <button id="save" class="right" data-i18n="settings.buttons.save"></button>
-
-            <div id="uri_error" class="uri-error-hidden"></div>
         </div>
 
         <div id="hitcount-panel" class="panel-hidden">
@@ -134,19 +150,35 @@
         <p class="icons-info"><span data-i18n="settings.icons_info"></span> <a href="https://icons8.com/">Icons8</a></p>
 
         <script type="text/javascript">
-            const toggleActive = element => {
+            const toggleActive = (element, className, dynamic) => {
                 if (element.checked) {
-                    element.parentElement.classList.add('active')
+                    if (dynamic) {
+                        element.parentElement.classList.add('active')
+                    }
+                    if (className) {
+                        for (const elem of document.getElementsByClassName(className)) {
+                            elem.classList.add('active')
+                        }
+                    }
                 } else {
-                    element.parentElement.classList.remove('active')
+                    if (dynamic) {
+                        element.parentElement.classList.remove('active')
+                    }
+                    if (className) {
+                        for (const elem of document.getElementsByClassName(className)) {
+                            elem.classList.remove('active')
+                        }
+                    }
                 }
             }
 
-            const miscDiv = document.getElementsByClassName('misc')[0]
-            const miscCheckboxes = miscDiv.querySelectorAll('input[type=checkbox]')
-            for (const checkbox of miscCheckboxes) {
-                setTimeout(() => toggleActive(checkbox), 2500)
-                checkbox.addEventListener('change', () => toggleActive(checkbox)) 
+            const dynamicCheckboxes = document.querySelectorAll('input[class=dynamic-checkbox]')
+            for (const checkbox of dynamicCheckboxes) {
+                const className = checkbox.dataset.classname
+                const dynamic = (checkbox.dataset.dynamic && checkbox.dataset.dynamic === 'true') || !checkbox.dataset.dynamic
+            
+                setTimeout(() => toggleActive(checkbox, className, dynamic), 2500)
+                checkbox.addEventListener('change', () => toggleActive(checkbox, className, dynamic)) 
             }
         </script>
 

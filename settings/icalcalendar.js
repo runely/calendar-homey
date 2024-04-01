@@ -5,6 +5,7 @@ function onHomeyReady (Homey) {
 
   // setting ids
   const settingsUris = variableMgmt.setting.icalUris
+  const settingsSyncInterval = variableMgmt.setting.syncInterval
   const settingsDateFormatLong = variableMgmt.setting.dateFormatLong
   const settingsDateFormatShort = variableMgmt.setting.dateFormatShort
   const settingsTimeFormat = variableMgmt.setting.timeFormat
@@ -30,19 +31,19 @@ function onHomeyReady (Homey) {
   const eventLimitTypes = [
     {
       value: 'days',
-      text: Homey.__('settings.eventlimit.types.days')
+      text: Homey.__('settings.syncsettings.eventlimit.types.days')
     },
     {
       value: 'weeks',
-      text: Homey.__('settings.eventlimit.types.weeks')
+      text: Homey.__('settings.syncsettings.eventlimit.types.weeks')
     },
     {
       value: 'months',
-      text: Homey.__('settings.eventlimit.types.months')
+      text: Homey.__('settings.syncsettings.eventlimit.types.months')
     },
     {
       value: 'years',
-      text: Homey.__('settings.eventlimit.types.years')
+      text: Homey.__('settings.syncsettings.eventlimit.types.years')
     }
   ]
   const eventLimitDefault = variableMgmt.setting.eventLimitDefault
@@ -71,6 +72,24 @@ function onHomeyReady (Homey) {
     getCalendarItems(uris)
   })
 
+  Homey.get(settingsSyncInterval, (err, interval) => {
+    if (err) return Homey.alert(err)
+    getSyncInterval(interval)
+  })
+
+  // get event limit from settings
+  Homey.get(settingsEventLimit, (err, limit) => {
+    if (err) return Homey.alert(err)
+    if (!limit) {
+      Homey.set(settingsEventLimit, eventLimitDefault, function (err) {
+        if (err) return Homey.alert(err)
+      })
+      limit = eventLimitDefault
+    }
+
+    getEventLimit(limit, eventLimitTypes)
+  })
+
   // get date long from settings
   Homey.get(settingsDateFormatLong, (err, date) => {
     if (err) return Homey.alert(err)
@@ -87,19 +106,6 @@ function onHomeyReady (Homey) {
   Homey.get(settingsTimeFormat, (err, time) => {
     if (err) return Homey.alert(err)
     getDateTimeFormat('time', time)
-  })
-
-  // get event limit from settings
-  Homey.get(settingsEventLimit, (err, limit) => {
-    if (err) return Homey.alert(err)
-    if (!limit) {
-      Homey.set(settingsEventLimit, eventLimitDefault, function (err) {
-        if (err) return Homey.alert(err)
-      })
-      limit = eventLimitDefault
-    }
-
-    getEventLimit(limit, eventLimitTypes)
   })
 
   // get nextEventTokensPerCalendar from settings
@@ -203,6 +209,10 @@ function onHomeyReady (Homey) {
       if (err) return Homey.alert(err)
     })
 
+    Homey.set(settingsSyncInterval, saveSyncInterval(), function (err) {
+      if (err) return Homey.alert(err)
+    })
+
     // save uri to settings (THIS SHOULD BE THE LAST THING BEING SAVED to prevent fetching calendars if there's other settings to be saved first)
     Homey.set(settingsUris, saveCalendarItems(), function (err) {
       if (err) return Homey.alert(err)
@@ -251,9 +261,9 @@ function onHomeyReady (Homey) {
   })
 
   // if uri_failed exists as a setting, show error div
-  getUriFailedSetting(settingsUris)
+  getUriFailedSetting(settingsUris, settingsSyncInterval)
 
-  setInterval(() => getUriFailedSetting(settingsUris), 3000)
+  setInterval(() => getUriFailedSetting(settingsUris, settingsSyncInterval), 3000)
 
   // tab activation
   const activateTab = (e) => {
@@ -311,9 +321,9 @@ function getCalendarItems (calendars) {
   }
 }
 
-function getDateTimeFormat (type, format) {
-  const dateTimeInput = document.getElementById(`datetime-${type}`)
-  dateTimeInput.value = format
+function getSyncInterval (interval) {
+  document.getElementById('syncsettings-interval-auto').checked = interval.auto
+  document.getElementById('syncsettings-interval-cron').value = interval.cron
 }
 
 function getEventLimit (limit, limitTypes) {
@@ -329,6 +339,11 @@ function getEventLimit (limit, limitTypes) {
     option.appendChild(document.createTextNode(text))
     element.appendChild(option)
   })
+}
+
+function getDateTimeFormat (type, format) {
+  const dateTimeInput = document.getElementById(`datetime-${type}`)
+  dateTimeInput.value = format
 }
 
 function getMiscSetting (setting, state) {
@@ -388,16 +403,28 @@ function saveCalendarItems () {
   })
 }
 
+function saveSyncInterval () {
+  const auto = document.getElementById('syncsettings-interval-auto').checked
+  const cron = document.getElementById('syncsettings-interval-cron').value
+
+  if (auto && cron === '') {
+    Homey.alert('Value in "Cron expression" is invalid!')
+    throw 'Value in "Cron expression" is invalid!'
+  }
+
+  return { auto, cron }
+}
+
 function saveEventLimit () {
   const limitValue = parseInt(document.getElementById('eventlimit-value').value)
   const limitType = document.getElementById('eventlimit-type').value
 
   if (Number.isNaN(limitValue)) {
-    Homey.alert(`Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`)
-    throw `Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`
+    Homey.alert(`Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`)
+    throw `Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`
   } else if (limitValue <= 0) {
-    Homey.alert(`Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`)
-    throw `Value in '${Homey.__('settings.eventlimit.legend')}' -> '${Homey.__('settings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`
+    Homey.alert(`Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`)
+    throw `Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`
   }
 
   return {
@@ -429,10 +456,10 @@ function saveDateTimeFormat (type) {
   return inputField.value
 }
 
-function getUriFailedSetting (setting) {
+function getUriFailedSetting (setting, syncInterval) {
   Homey.get(setting, (err, uris) => {
     if (err) {
-      hideError()
+      hideError('uri')
       return Homey.alert(err)
     }
 
@@ -441,7 +468,7 @@ function getUriFailedSetting (setting) {
       uris.forEach(item => {
         if (item.failed) {
           if (text === '') {
-            text = `${item.name} : ${item.failed}`
+            text = `<h3>Uri errors</h3>${item.name} : ${item.failed}`
           } else {
             text += `<br>${item.name} : ${item.failed}`
           }
@@ -450,24 +477,58 @@ function getUriFailedSetting (setting) {
     }
 
     if (text !== '') {
-      showError(text)
+      showError(text, 'uri')
     } else {
-      hideError()
+      hideError('uri')
+    }
+  })
+
+  Homey.get(syncInterval, (err, interval) => {
+    if (err) {
+      hideError('cron')
+      return Homey.alert(err)
+    }
+
+    let text = ''
+    if (interval && interval.error) {
+      text = `<b>${interval.error}</b>`
+    }
+
+    if (text !== '') {
+      showError(text, 'cron')
+    } else {
+      hideError('cron')
     }
   })
 }
 
-function hideError () {
-  const errorElement = document.getElementById('uri_error')
-
-  errorElement.classList = 'uri-error-hidden'
+function hideError (type) {
+  if (type === 'uri') { 
+    const errorElement = document.getElementById('uri_error')
+    errorElement.classList = 'error-section-hidden'
+  } else if (type === 'cron') {
+    const errorElement = document.getElementById('cron_error')
+    errorElement.classList = 'error-section-hidden'
+  } else {
+    const uriElement = document.getElementById('uri_error')
+    const cronElement = document.getElementById('cron_error')
+    uriElement.classList = 'error-section-hidden'
+    cronElement.classList = 'error-section-hidden'
+  }
 }
 
-function showError (text) {
-  const errorElement = document.getElementById('uri_error')
+function showError (text, type) {
+  if (type === 'uri') {
+    const errorElement = document.getElementById('uri_error')
 
-  errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`
-  errorElement.classList = 'uri-error-show'
+    errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`
+    errorElement.classList = 'error-section-show'
+  } else if (type === 'cron') {
+    const errorElement = document.getElementById('cron_error')
+
+    errorElement.innerHTML = text
+    errorElement.classList = 'error-section-show'
+  }
 }
 
 function unfuckHtmlFuck (fucker) {

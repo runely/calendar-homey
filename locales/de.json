@@ -16,6 +16,28 @@
             "name": "Kalenderbezeichnung",
             "uri": "URI"
         },
+        "syncsettings": {
+            "legend": "Synchronisierung",
+            "interval": {
+                "legend": "Intervall",
+                "description": "Automatische Synchronisierung aktivieren/deaktivieren<br><br>HINWEIS: Wenn deaktiviert, wird die Synchronisierung nur über die Flusskarte durchgeführt!"
+            },
+            "cron": {
+                "description": "Cron-Ausdruck für das Synchronisierungsintervall.<br>Verwenden Sie einen Generator, um die richtige Syntax zu finden, z. B .: https://crontab.cronhub.io/<br><br><b>VORSICHT</b>: Bei ungültiger Syntax wird die automatische Synchronisierung deaktiviert, bis eine gültige Syntax angegeben wird!"
+            },
+            "eventlimit": {
+                "legend": "Zeitrahmen des Ereignisses",
+                "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
+                "value": "Anzahl",
+                "type": "Typ",
+                "types": {
+                    "days": "Tage",
+                    "weeks": "Wochen",
+                    "months": "Monate",
+                    "years": "Jahre"
+                }
+            }
+        },
         "datetime": {
             "legend": "Datum/Zeit",
             "date": {
@@ -27,18 +49,6 @@
             "time": {
                 "name": "Zeitformat",
                 "default": "HH:mm"
-            }
-        },
-        "eventlimit": {
-            "legend": "Zeitrahmen des Ereignisses",
-            "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
-            "value": "Anzahl",
-            "type": "Typ",
-            "types": {
-                "days": "Tage",
-                "weeks": "Wochen",
-                "months": "Monate",
-                "years": "Jahre"
             }
         },
         "misc": {

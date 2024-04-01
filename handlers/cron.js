@@ -54,3 +54,17 @@ const { Cron } = require('croner')
 module.exports.addJob = (cron, callback, options = {}) => {
   return new Cron(cron, callback, options)
 }
+
+/**
+ * Check if cron syntax is valid
+ * @param {string} cron [second] minute hour day(month) month day(week)
+ * @returns {boolean} True if cron syntax is valid, otherwise false
+ */
+module.exports.isValidCron = (cron) => {
+  try {
+    const crontab = new Cron(cron)
+    return crontab.nextRun() instanceof Date
+  } catch (ex) {
+    return false
+  }
+}

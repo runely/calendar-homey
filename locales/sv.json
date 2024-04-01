@@ -16,6 +16,28 @@
             "name": "Kalendernamn",
             "uri": "Sökväg"
         },
+        "syncsettings": {
+            "legend": "Synkronisering",
+            "interval": {
+                "legend": "Intervall",
+                "description": "Aktivera/Inaktivera automatisk synkronisering<br><br>NOTERA: Om inaktiverad kommer synkronisering endast att göras via flödeskortet!"
+            },
+            "cron": {
+                "description": "Cron-uttryck för synkroniseringsintervall.<br>Använd en generator för att hitta korrekt syntax, till exempel: https://crontab.cronhub.io/<br><br><b>VARSNING</b>: Vid ogiltig syntax kommer automatisk synkronisering att inaktiveras tills giltig syntax anges!"
+            },
+            "eventlimit": {
+                "legend": "Händelsens tidsram",
+                "description": "Händelser med startdatum inom angiven tidsram synkroniseras om",
+                "value": "Antal",
+                "type": "Typ",
+                "types": {
+                    "days": "Dagar",
+                    "weeks": "Veckor",
+                    "months": "Månader",
+                    "years": "År"
+                }
+            }
+        },
         "datetime": {
             "legend": "Datum/Tid",
             "date": {
@@ -27,18 +49,6 @@
             "time": {
                 "name": "Tidsformat",
                 "default": "HH:mm"
-            }
-        },
-        "eventlimit": {
-            "legend": "Händelsens tidsram",
-            "description": "Händelser med startdatum inom angiven tidsram synkroniseras om",
-            "value": "Antal",
-            "type": "Typ",
-            "types": {
-                "days": "Dagar",
-                "weeks": "Veckor",
-                "months": "Månader",
-                "years": "År"
             }
         },
         "misc": {
