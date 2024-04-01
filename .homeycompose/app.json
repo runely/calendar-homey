@@ -1,6 +1,6 @@
 {
   "id": "no.runely.calendar",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
