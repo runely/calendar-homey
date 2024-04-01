@@ -4,6 +4,8 @@ Uppsättning
 
 - Öppna inställningar (konfigurera app)
     - Klistra in ical-länken och ge den ett namn
+    - Välj om du vill ha automatisk kalendersynkronisering (standardinställning är aktiverad) (om inaktiverad måste synkronisering göras via flödeskort)
+    - Välj intervallet för automatisk kalendersynkronisering (standardinställning är var 15:e minut)
     - Ändra datum/tidsformat eller använd standardvärdena (ditt val)
         - Alla tokens som stöds i "moment.format()" stöds också här: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Välj om du vill ha nästa avtalstagg per kalender eller inte. Standard är av
@@ -48,8 +50,8 @@ Detta innebär att om din kalenderleverantör bara använder egenskapen X-WR-TIM
 Om dina händelser skapas med tidszonen "Anpassad tidszon" (du kommer att se detta när du öppnar .ics-filen), skapas händelserna med största sannolikhet med rätt datum och tid och bör inte ha någon tidszon tillämpad. Den lokala tidszonen kommer därför INTE att tillämpas på dessa evenemang!
 
 Synkronisera
-- Händelser hämtas automatiskt var 15:e minut
-- Flow-kortet "Synkronisera kalendrar" kan också användas för att utlösa en synkronisering
+- Händelser hämtas automatiskt var 15:e minut (standard, kan ändras)
+- Flow-kortet "Synkronisera kalendrar" kan också användas för att utlösa en synkronisering (måste användas för att synka kalendrar om automatisk synkronisering är inaktiverad)
 
 - Endast händelser som inte har påbörjats ännu, eller möten som har påbörjats men inte avslutats och som har ett startdatum inom 2 månader eller mindre kommer att hämtas (kan ändras i inställningarna)
 - Återkommande händelser där startdatum är inom 2 månader eller mindre kommer att hämtas (kan ändras i inställningar)

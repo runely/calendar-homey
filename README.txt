@@ -4,6 +4,8 @@ Setup
 
 - Open settings (configure app)
     - Paste in the ical link and give it a name
+    - Choose if you want automatic calendar synchronization (defaults to enabled) (if disabled, synchronization must be done by flow card)
+    - Choose the interval of the automatic calendar synchronization (defaults to every 15th minute)
     - Change the date/time format or use the default (your choice)
         - All tokens supported in "moment.format()" is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose whether or not you want next event tags per calendar. Default is off
@@ -48,8 +50,8 @@ This means that if your calendar provider only uses the X-WR-TIMEZONE property, 
 If your events are created with the timezone 'Customized Time Zone' (you will see this when opening the .ics file), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will therefore NOT be applied to these events!
 
 Sync
-- Events are fetched automatically every 15 minutes
-- The "Sync calendars" action flow card can also be used to trigger a sync
+- Events are fetched automatically every 15 minutes (default, can be changed)
+- The "Sync calendars" action flow card can also be used to trigger a sync (must be used to sync calendars if automatic sync is disabled)
 
 - Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
 - Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)

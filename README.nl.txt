@@ -4,6 +4,8 @@ Instellingen
 
 - Open settings (app configuratie)
     - En plak de ical link en geef het een naam
+    - Kies of je automatische kalendersynchronisatie wilt inschakelen (standaard ingesteld op ingeschakeld) (indien uitgeschakeld, moet synchronisatie worden uitgevoerd via een flowkaart)
+    - Kies het interval van de automatische kalendersynchronisatie (standaard ingesteld op elke 15e minuut)
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
         - Alle tokens die worden ondersteund in "moment.format()" worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
@@ -48,8 +50,8 @@ Dit betekent dat als uw agendaprovider alleen de eigenschap X-WR-TIMEZONE gebrui
 Als uw evenementen zijn gemaakt met de tijdzone 'Aangepaste tijdzone' (u ziet dit bij het openen van het .ics-bestand), zijn de evenementen hoogstwaarschijnlijk gemaakt met de juiste datum/tijd en zou er geen tijdzone moeten worden toegepast. De lokale tijdzone wordt daarom NIET toegepast op deze evenementen!
 
 Sync
-- Events worden elke 15 minuten automatisch opgehaald
-- De actie flow-kaart "Sync kalenders" kan ook worden gebruikt om een synchronisatie te activeren
+- Events worden elke 15 minuten automatisch opgehaald (standaard, kan worden gewijzigd)
+- De actie flow-kaart "Sync kalenders" kan ook worden gebruikt om een synchronisatie te activeren (moet worden gebruikt om kalenders te synchroniseren als automatische synchronisatie is uitgeschakeld)
 
 - Alleen events die nog niet zijn gestart of events die zijn gestart maar niet zijn voltooid en hebben een start datum binnen 2 maanden of korter worden opgehaald. (Dit kan worden aangepast in de settings)
 - Terugkerende events waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald. (Dit kan worden aangepast in de settings)

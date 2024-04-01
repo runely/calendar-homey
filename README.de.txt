@@ -4,6 +4,8 @@ Setup
 
 - Einstellungen öffnen (App konfigurieren)
     - Den ical-Link einfügen und gib ihm einen Namen
+    - Wählen Sie, ob Sie die automatische Kalendersynchronisierung aktivieren möchten (standardmäßig aktiviert) (wenn deaktiviert, muss die Synchronisierung über eine Flusskarte erfolgen)
+    - Wählen Sie das Intervall der automatischen Kalendersynchronisierung (standardmäßig alle 15 Minuten)
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
         - Alle in "moment.format()" unterstützten Token werden auch hier unterstützt: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Wählen Sie, ob Sie „nächste Ereignis-Tags“ pro Kalender möchten. Standardeinstellung ist aus
@@ -48,8 +50,8 @@ Das bedeutet, wenn Ihr Kalenderanbieter nur die X-WR-TIMEZONE-Eigenschaft verwen
 Wenn Ihre Ereignisse mit der Zeitzone "Benutzerdefinierte Zeitzone" erstellt werden (Sie sehen dies beim Öffnen der .ics-Datei), werden die Ereignisse höchstwahrscheinlich mit dem richtigen Datum und Uhrzeit erstellt und es sollte keine Zeitzone angewendet werden. Die lokale Zeitzone wird daher bei diesen Veranstaltungen NICHT angewendet!
 
 Sync
-- Ereignisse werden alle 15 Minuten automatisch abgerufen
-- Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen
+- Ereignisse werden alle 15 Minuten automatisch abgerufen (kann geändert werden)
+- Die Aktionskarte "Kalender synchronisieren" kann auch verwendet werden, um eine Synchronisierung auszulösen (muss verwendet werden, um Kalender zu synchronisieren, wenn die automatische Synchronisierung deaktiviert ist)
 
 - Es werden nur Ereignisse abgerufen, die noch nicht gestartet oder die gestartet, aber nicht beendet wurden und deren Startdatum innerhalb von 2 Monaten oder weniger liegt (dies kann in den Einstellungen geändert werden)
 - Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen (dies kann in den Einstellungen geändert werden)

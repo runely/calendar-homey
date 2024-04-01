@@ -4,6 +4,8 @@ Installation
 
 - Ouvrir les paramètres (configurer l'application)
     - Collez le lien ical et donnez-lui un nom
+    - Choisissez si vous souhaitez activer la synchronisation automatique du calendrier (par défaut activée) (si désactivée, la synchronisation doit être effectuée via une carte de flux)
+    - Choisissez l'intervalle de la synchronisation automatique du calendrier (par défaut toutes les 15 minutes)
     - Modifiez le format de date/heure ou utilisez la valeur par défaut (votre choix)
         - Tous les jetons pris en charge dans "moment.format()" sont également pris en charge ici: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choisissez si vous voulez ou non les prochains tags d'événement par calendrier. La valeur par défaut est désactivée
@@ -48,8 +50,8 @@ Cela signifie que si votre fournisseur de calendrier n'utilise que la propriét�
 Si vos événements sont créés avec le fuseau horaire "Customized Time Zone" (vous le verrez lorsque vous ouvrirez le fichier .ics), les événements sont très probablement créés avec la bonne date et ne devraient pas avoir de fuseau horaire appliqué. Le fuseau horaire local ne sera donc PAS appliqué à ces événements !
 
 Synchronisation
-- Les événements sont récupérés automatiquement toutes les 15 minutes
-- La carte de flux d'actions "Synchroniser les calendriers" peut également être utilisée pour déclencher une synchronisation.
+- Les événements sont récupérés automatiquement toutes les 15 minutes (par défaut, peut être modifié)
+- La carte de flux d'actions "Synchroniser les calendriers" peut également être utilisée pour déclencher une synchronisation (doit être utilisée pour synchroniser les calendriers si la synchronisation automatique est désactivée)
 
 - Seuls les événements qui n'ont pas encore commencé ou les événements commencés mais non terminés et dont la date de début est inférieure ou égale à 2 mois seront récupérés (cette option peut être modifiée dans les paramètres).
 - Les événements récurrents dont la date de début est inférieure ou égale à 2 mois seront récupérés (ceci peut être modifié dans les paramètres).

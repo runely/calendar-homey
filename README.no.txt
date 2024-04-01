@@ -4,6 +4,8 @@ Oppsett
 
 - Åpne innstillinger (konfigurer app)
     - Lim inn ical-lenken og gi den et navn
+    - Velg om du ønsker automatisk kalendersynkronisering (standardinnstillingen er aktivert) (hvis deaktivert, må synkronisering gjøres via flytkort)
+    - Velg intervallet for automatisk kalendersynkronisering (standardinnstillingen er hvert 15. minutt)
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
         - Alle tokens som er supportert i "moment.format()" supporteres her også: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
@@ -48,8 +50,8 @@ Dette betyr at dersom leverandøren av din kalender bare bruker attributten X-WR
 Hvis hendelsene dine er opprettet med tidssonen "Customized Time Zone" (du vil se dette når du åpner .ics-filen), er hendelsene mest sannsynlig opprettet med riktig dato og klokkeslett og bør ikke ha en tidssone lagt til. Den lokale tidssonen vil derfor IKKE bli brukt på disse hendelsene!
 
 Sync
-- Avtaler hentes automatisk hvert 15. minutt
-- Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering
+- Avtaler hentes automatisk hvert 15. minutt (standard, kan endres)
+- Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering (må brukes for å synkronisere kalendere hvis automatisk synkronisering er deaktivert)
 
 - Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, og som har startdato innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 - Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)

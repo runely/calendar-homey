@@ -13,6 +13,8 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 
 - Open settings (configure app)
     - Paste in the ical link and give it a name
+    - Choose if you want automatic calendar synchronization (defaults to enabled) (if disabled, synchronization must be done by flow card)
+    - Choose the interval of the automatic calendar synchronization (defaults to every 15th minute)
     - Change the date/time format or use the default (your choice)
         - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose the timeframe for how many events to sync in to the app
@@ -63,7 +65,8 @@ If your events are created with the timezone `Customized Time Zone` (you will se
 ## Usage
 
 ### Sync
-- Events are fetched **automatically every 15th minute** (xx:00, xx:15, xx:30, xx:45)
+- Events are fetched **automatically every 15th minute** (xx:00, xx:15, xx:30, xx:45) (default, can be changed)
+- The "Sync calendars" action flow card can also be used to trigger a sync (must be used to sync calendars if automatic sync is disabled)
 - The following events will be fetched in to the app:
     - Events not started yet where start date is within the timeframe given in the setup
     - Recurring events where start date is within the timeframe given in the setup
@@ -210,6 +213,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.7.1
+    - Updated documentation to contain info about adjustable interval schedule
 - 2.7.0
     - Implemented adjustable interval schedule ([Issue #565](https://github.com/runely/calendar-homey/issues/565))
         - Added possibility to disable automatic calendar synchronization
