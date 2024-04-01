@@ -210,6 +210,11 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.7.0
+    - Implemented adjustable interval schedule ([Issue #565](https://github.com/runely/calendar-homey/issues/565))
+        - Added possibility to disable automatic calendar synchronization
+        - Added possibility to adjust automatic calendar synchronization by specifying a cron expression
+    - Dependency updates
 - 2.6.2
     - Dependency updates
 - 2.6.1
