@@ -91,8 +91,13 @@ module.exports.triggerChangedCalendars = async (options) => {
             event_prev_value: getTokenValue(changed.previousValue),
             event_new_value: getTokenValue(changed.newValue),
             event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
-            event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent')
+            event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent'),
+            event_start_date: event.start.format(app.variableMgmt.dateTimeFormat.long),
+            event_start_time: event.start.format(app.variableMgmt.dateTimeFormat.time),
+            event_end_date: event.end.format(app.variableMgmt.dateTimeFormat.long),
+            event_end_time: event.end.format(app.variableMgmt.dateTimeFormat.time)
           }
+          console.log('Changed calendar tokens:', tokens)
 
           const changedCalendarTriggerCards = [
             {

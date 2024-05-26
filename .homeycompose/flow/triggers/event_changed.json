@@ -124,6 +124,86 @@
         "sv": "Pågår",
         "fr": "En cours"
       }
+    },
+    {
+      "name": "event_start_date",
+      "type": "string",
+      "title": {
+        "en": "Start date",
+        "no": "Startdato",
+        "nl": "Startdatum",
+        "de": "Startdatum",
+        "sv": "Startdatum",
+        "fr": "Date de début"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22"
+      }
+    },
+    {
+      "name": "event_start_time",
+      "type": "string",
+      "title": {
+        "en": "Start time",
+        "no": "Starttidspunkt",
+        "nl": "Starttijd",
+        "de": "Beginn",
+        "sv": "Starttid",
+        "fr": "Heure de début"
+      },
+      "example": {
+        "en": "08:15",
+        "no": "08:15",
+        "nl": "08:15",
+        "de": "08:15",
+        "sv": "08:15",
+        "fr": "08h15"
+      }
+    },
+    {
+      "name": "event_end_date",
+      "type": "string",
+      "title": {
+        "en": "End date",
+        "no": "Sluttdato",
+        "nl": "Stopdatum",
+        "de": "Enddatum",
+        "sv": "Slutdatum",
+        "fr": "Date de fin"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22"
+      }
+    },
+    {
+      "name": "event_end_time",
+      "type": "string",
+      "title": {
+        "en": "End time",
+        "no": "Sluttidspunkt",
+        "nl": "Stoptijd",
+        "de": "Ende",
+        "sv": "Sluttid",
+        "fr": "Heure de fin"
+      },
+      "example": {
+        "en": "11:30",
+        "no": "11:30",
+        "nl": "11:30",
+        "de": "11:30",
+        "sv": "11:30",
+        "fr": "11h30"
+      }
     }
   ]
 }
