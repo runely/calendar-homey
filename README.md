@@ -213,6 +213,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.8.1
+    - Dependency updates
 - 2.8.0
     - Add `Start date`, `Start time`, `End date` and `End time` to triggers `Event changed` and `Event changed in calendar` ([Issue #580](https://github.com/runely/calendar-homey/issues/580))
     - Dependency updates
