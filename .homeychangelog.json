@@ -379,5 +379,8 @@
   },
   "2.8.0": {
     "en": "Add 'Start date', 'Start time', 'End date' and 'End time' to triggers 'Event changed' and 'Event changed in calendar'. Dependency updates"
+  },
+  "2.8.1": {
+    "en": "Dependency updates"
   }
 }
