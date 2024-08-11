@@ -32,7 +32,6 @@
     "test": "standard && npm run ts:lint && env TZ=UTC jest",
     "fix": "standard --fix",
     "ts:lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
-    "prepare": "husky install",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "browserify": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
     "homey-build": "npm run browserify && npm run test && homey app build",
