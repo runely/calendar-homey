@@ -385,5 +385,8 @@
   },
   "2.8.2": {
     "en": "Dependency updates"
+  },
+  "2.9.0": {
+    "en": "Translated app into Danish, Italian, Korean, Polish and Spanish. Thanks to ChatGPT"
   }
 }
