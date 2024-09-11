@@ -2,19 +2,29 @@
   "id": "any_event_ongoing_calendar",
   "title": {
     "en": "Any event !{{is|isn't}} ongoing in calendar",
-    "no": "En avtale !{{pågår|pågår ikke}} fra kalender",
-    "nl": "Een event !{{is|is niet}} bezig vanaf de kalender",
-    "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem Kalender",
-    "sv": "En händelse !{{pågår|pågår inte}} i kalender",
-    "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier"
+    "nl": "Elk evenement !{{is|is niet}} aan de gang in kalender",
+    "de": "Jedes Ereignis !{{ist|ist nicht}} gerade im Kalender",
+    "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier",
+    "it": "Qualsiasi evento !{{è|non è}} in corso nel calendario",
+    "sv": "Alla evenemang !{{är|inte är}} pågående i kalendern",
+    "no": "Hvilken som helst avtale !{{er|er ikke}} pågående i kalender",
+    "es": "Cualquier evento !{{está|no está}} en curso en el calendario",
+    "da": "Enhver begivenhed !{{er|ikke er}} i gang i kalenderen",
+    "pl": "Każde wydarzenie !{{jest|nie jest}} w trakcie w kalendarzu",
+    "ko": "모든 이벤트 !{{진행 중|진행 중이 아님}} 캘린더에"
   },
   "titleFormatted": {
     "en": "Any event !{{is|isn't}} ongoing in [[calendar]]",
-    "no": "En avtale !{{pågår|pågår ikke}} fra [[calendar]]",
-    "nl": "Een event !{{is|is niet}} bezig vanaf de [[calendar]]",
-    "de": "Irgendein Ereignis !{{ist|ist nicht}} laufend aus dem [[calendar]]",
-    "sv": "En händelse !{{pågår|pågår inte}} i kalender [[calendar]]",
-    "fr": "Tout événement !{{est|n'est pas}} en cours dans le calendrier [[calendar]]"
+    "nl": "Elk evenement !{{is|is niet}} aan de gang in [[calendar]]",
+    "de": "Jedes Ereignis !{{ist|ist nicht}} gerade in [[calendar]]",
+    "fr": "Tout événement !{{est|n'est pas}} en cours dans [[calendar]]",
+    "it": "Qualsiasi evento !{{è|non è}} in corso in [[calendar]]",
+    "sv": "Alla evenemang !{{är|inte är}} pågående i [[calendar]]",
+    "no": "Hvilken som helst avtale !{{er|er ikke}} pågående i [[calendar]]",
+    "es": "Cualquier evento !{{está|no está}} en curso en [[calendar]]",
+    "da": "Enhver begivenhed !{{er|ikke er}} i gang i [[calendar]]",
+    "pl": "Każde wydarzenie !{{jest|nie jest}} w trakcie w [[calendar]]",
+    "ko": "모든 이벤트 !{{진행 중|진행 중이 아님}} [[calendar]]"
   },
   "args": [
     {
@@ -22,11 +32,16 @@
       "name": "calendar",
       "placeholder": {
         "en": "Choose calendar...",
-        "no": "Velg kalender...",
-        "nl": "Selecteer kalender...",
+        "nl": "Kies kalender...",
         "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
         "sv": "Välj kalender...",
-        "fr": "Choisissez le calendrier..."
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
       }
     }
   ]

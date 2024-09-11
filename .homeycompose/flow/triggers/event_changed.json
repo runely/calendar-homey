@@ -2,19 +2,29 @@
   "id": "event_changed",
   "title": {
     "en": "Event changed",
-    "no": "En avtale ble endret",
-    "nl": "Een event is gewijzigd",
-    "de": "Ereignis wurde geändert",
-    "sv": "En händelse har ändrats",
-    "fr": "Événement modifié"
+    "no": "Avtale ble endret",
+    "nl": "Evenement gewijzigd",
+    "de": "Ereignis geändert",
+    "sv": "Evenemang ändrat",
+    "fr": "Événement modifié",
+    "it": "Evento modificato",
+    "es": "Evento cambiado",
+    "da": "Begivenhed ændret",
+    "pl": "Wydarzenie zmienione",
+    "ko": "이벤트가 변경됨"
   },
   "hint": {
     "en": "Triggers when an already synchronized event is changed",
-    "no": "Utløses når en allerede synkronisert avtale blir endret",
-    "nl": "Geactiveerd wanneer een reeds gesynchroniseerde event wordt gewijzigd",
+    "no": "Utløses når en allerede synkronisert avtale ble endret",
+    "nl": "Wordt geactiveerd wanneer een al gesynchroniseerd evenement wordt gewijzigd",
     "de": "Wird ausgelöst, wenn ein bereits synchronisiertes Ereignis geändert wird",
-    "sv": "Utlöses när en redan synkroniserad händelse har ändras",
-    "fr": "Se déclenche lorsqu'un événement déjà synchronisé est modifié"
+    "sv": "Utlöses när ett redan synkroniserat evenemang ändras",
+    "fr": "Déclenche lorsqu'un événement déjà synchronisé est modifié",
+    "it": "Attiva quando un evento già sincronizzato viene modificato",
+    "es": "Se activa cuando se cambia un evento ya sincronizado",
+    "da": "Udløses når en allerede synkroniseret begivenhed ændres",
+    "pl": "Wyzwalane, gdy już zsynchronizowane wydarzenie zostaje zmienione",
+    "ko": "이미 동기화된 이벤트가 변경될 때 트리거됩니다"
   },
   "tokens": [
     {
@@ -22,19 +32,29 @@
       "type": "string",
       "title": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
       },
       "example": {
         "en": "Pick up in kindergarden",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
+        "sv": "Hämta på förskolan",
         "no": "Hente i barnehagen",
-        "nl": "Kinderen ophalen",
-        "de": "Im Kindergarten abholen",
-        "sv": "Hämta på förskola",
-        "fr": "Prise en charge à l'école maternelle"
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {
@@ -42,19 +62,19 @@
       "type": "string",
       "title": {
         "en": "Calendar name",
-        "no": "Kalendernavn",
-        "nl": "Kalender naam",
-        "de": "Kalenderbezeichnung",
+        "nl": "Kalendernaam",
+        "de": "Kalendername",
+        "fr": "Nom du calendrier",
+        "it": "Nome del calendario",
         "sv": "Kalendernamn",
-        "fr": "Nom du calendrier"
+        "no": "Kalendernavn",
+        "es": "Nombre del calendario",
+        "da": "Kalendernavn",
+        "pl": "Nazwa kalendarza",
+        "ko": "캘린더 이름"
       },
       "example": {
-        "en": "Gmail",
-        "no": "Gmail",
-        "nl": "Gmail",
-        "de": "Gmail",
-        "sv": "Gmail",
-        "fr": "Gmail"
+        "en": "Gmail"
       }
     },
     {
@@ -66,15 +86,25 @@
         "nl": "Type",
         "de": "Typ",
         "sv": "Typ",
-        "fr": "Type"
+        "fr": "Type",
+        "it": "Tipo",
+        "es": "Tipo",
+        "da": "Type",
+        "pl": "Typ",
+        "ko": "종류"
       },
       "example": {
         "en": "Location",
-        "no": "Plassering",
         "nl": "Locatie",
         "de": "Ort",
+        "fr": "Emplacement",
+        "it": "Luogo",
         "sv": "Plats",
-        "fr": "Localisation"
+        "no": "Sted",
+        "es": "Ubicación",
+        "da": "Placering",
+        "pl": "Lokalizacja",
+        "ko": "위치"
       }
     },
     {
@@ -86,7 +116,12 @@
         "nl": "Vorige waarde",
         "de": "Vorheriger Wert",
         "sv": "Tidigare värde",
-        "fr": "Valeur précédente"
+        "fr": "Valeur précédente",
+        "it": "Valore precedente",
+        "es": "Valor anterior",
+        "da": "Tidligere værdi",
+        "pl": "Poprzednia wartość",
+        "ko": "이전 값"
       }
     },
     {
@@ -98,7 +133,12 @@
         "nl": "Nieuwe waarde",
         "de": "Neuer Wert",
         "sv": "Nytt värde",
-        "fr": "Nouvelle valeur"
+        "fr": "Nouvelle valeur",
+        "it": "Nuovo valore",
+        "es": "Nuevo valor",
+        "da": "Ny værdi",
+        "pl": "Nowa wartość",
+        "ko": "새 값"
       }
     },
     {
@@ -107,10 +147,15 @@
       "title": {
         "en": "Was ongoing",
         "no": "Pågikk",
-        "nl": "Was aan de gang",
+        "nl": "Was gaande",
         "de": "War im Gange",
-        "sv": "Pågick",
-        "fr": "Était en cours"
+        "sv": "Var pågående",
+        "fr": "Était en cours",
+        "it": "Era in corso",
+        "es": "Estaba en curso",
+        "da": "Var i gang",
+        "pl": "Było w toku",
+        "ko": "진행 중이었음"
       }
     },
     {
@@ -119,10 +164,15 @@
       "title": {
         "en": "Is ongoing",
         "no": "Pågår",
-        "nl": "Is bezig",
-        "de": "Ist laufend",
-        "sv": "Pågår",
-        "fr": "En cours"
+        "nl": "Is gaande",
+        "de": "Ist im Gange",
+        "sv": "Är pågående",
+        "fr": "Est en cours",
+        "it": "È in corso",
+        "es": "Está en curso",
+        "da": "Er i gang",
+        "pl": "Jest w toku",
+        "ko": "진행 중입니다"
       }
     },
     {
@@ -134,7 +184,12 @@
         "nl": "Startdatum",
         "de": "Startdatum",
         "sv": "Startdatum",
-        "fr": "Date de début"
+        "fr": "Date de début",
+        "it": "Data di inizio",
+        "es": "Fecha de inicio",
+        "da": "Startdato",
+        "pl": "Data rozpoczęcia",
+        "ko": "시작 날짜"
       },
       "example": {
         "en": "01/22/22",
@@ -142,7 +197,12 @@
         "nl": "22-01-22",
         "de": "22-01-22",
         "sv": "22-01-22",
-        "fr": "22/01/22"
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
       }
     },
     {
@@ -152,17 +212,17 @@
         "en": "Start time",
         "no": "Starttidspunkt",
         "nl": "Starttijd",
-        "de": "Beginn",
+        "de": "Startzeit",
         "sv": "Starttid",
-        "fr": "Heure de début"
+        "fr": "Heure de début",
+        "it": "Orario di inizio",
+        "es": "Hora de inicio",
+        "da": "Starttid",
+        "pl": "Godzina rozpoczęcia",
+        "ko": "시작 시간"
       },
       "example": {
-        "en": "08:15",
-        "no": "08:15",
-        "nl": "08:15",
-        "de": "08:15",
-        "sv": "08:15",
-        "fr": "08h15"
+        "en": "08:15"
       }
     },
     {
@@ -171,10 +231,15 @@
       "title": {
         "en": "End date",
         "no": "Sluttdato",
-        "nl": "Stopdatum",
+        "nl": "Einddatum",
         "de": "Enddatum",
         "sv": "Slutdatum",
-        "fr": "Date de fin"
+        "fr": "Date de fin",
+        "it": "Data di fine",
+        "es": "Fecha de finalización",
+        "da": "Slutdato",
+        "pl": "Data zakończenia",
+        "ko": "종료 날짜"
       },
       "example": {
         "en": "01/22/22",
@@ -182,7 +247,12 @@
         "nl": "22-01-22",
         "de": "22-01-22",
         "sv": "22-01-22",
-        "fr": "22/01/22"
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
       }
     },
     {
@@ -191,18 +261,18 @@
       "title": {
         "en": "End time",
         "no": "Sluttidspunkt",
-        "nl": "Stoptijd",
-        "de": "Ende",
+        "nl": "Eindtijd",
+        "de": "Endzeit",
         "sv": "Sluttid",
-        "fr": "Heure de fin"
+        "fr": "Heure de fin",
+        "it": "Orario di fine",
+        "es": "Hora de finalización",
+        "da": "Sluttid",
+        "pl": "Godzina zakończenia",
+        "ko": "종료 시간"
       },
       "example": {
-        "en": "11:30",
-        "no": "11:30",
-        "nl": "11:30",
-        "de": "11:30",
-        "sv": "11:30",
-        "fr": "11h30"
+        "en": "11:30"
       }
     }
   ]

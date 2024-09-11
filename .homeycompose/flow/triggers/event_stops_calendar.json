@@ -2,19 +2,29 @@
   "id": "event_stops_calendar",
   "title": {
     "en": "Event ends from calendar",
-    "no": "En avtale slutter fra kalender",
-    "nl": "Event stopt vanaf de kalender",
-    "de": "Ereignis endet aus dem Kalender",
-    "sv": "En händelse slutar i kalender",
-    "fr": "Fin de l'événement dans le calendrier"
+    "no": "Avtale avsluttes fra kalender",
+    "nl": "Evenement eindigt vanuit kalender",
+    "de": "Ereignis endet aus Kalender",
+    "sv": "Evenemang slutar från kalender",
+    "fr": "L'événement se termine à partir du calendrier",
+    "it": "L'evento termina dal calendario",
+    "es": "El evento termina desde el calendario",
+    "da": "Begivenhed slutter fra kalender",
+    "pl": "Wydarzenie kończy się z kalendarza",
+    "ko": "이벤트가 캘린더에서 종료됨"
   },
   "titleFormatted": {
     "en": "Event ends from [[calendar]]",
-    "no": "En avtale slutter fra [[calendar]]",
-    "nl": "Event stopt vanaf de [[calendar]]",
-    "de": "Ereignis endet aus dem [[calendar]]",
-    "sv": "En händelse slutar i [[calendar]]",
-    "fr": "Fin de l'événement dans le calendrier [[calendar]]"
+    "no": "Avtale avsluttes fra [[calendar]]",
+    "nl": "Evenement eindigt vanuit [[calendar]]",
+    "de": "Ereignis endet aus [[calendar]]",
+    "sv": "Evenemang slutar från [[calendar]]",
+    "fr": "L'événement se termine à partir de [[calendar]]",
+    "it": "L'evento termina dal [[calendar]]",
+    "es": "El evento termina desde [[calendar]]",
+    "da": "Begivenhed slutter fra [[calendar]]",
+    "pl": "Wydarzenie kończy się z [[calendar]]",
+    "ko": "[[calendar]]에서 이벤트 종료"
   },
   "args": [
     {
@@ -22,11 +32,16 @@
       "name": "calendar",
       "placeholder": {
         "en": "Choose calendar...",
-        "no": "Velg kalender...",
-        "nl": "Selecteer kalender...",
+        "nl": "Kies kalender...",
         "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
         "sv": "Välj kalender...",
-        "fr": "Choisissez le calendrier..."
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
       }
     }
   ],
@@ -36,19 +51,29 @@
       "type": "string",
       "title": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
       },
       "example": {
         "en": "Pick up in kindergarden",
-        "no": "Hente i barnehagen",
-        "nl": "Kinderen ophalen",
-        "de": "Im Kindergarten abholen",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
         "sv": "Hämta på förskolan",
-        "fr": "Prise en charge à l'école maternelle"
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {
@@ -56,19 +81,29 @@
       "type": "string",
       "title": {
         "en": "Description",
-        "no": "Beskrivelse",
-        "nl": "Omschrijving",
+        "nl": "Beschrijving",
         "de": "Beschreibung",
+        "fr": "Description",
+        "it": "Descrizione",
         "sv": "Beskrivning",
-        "fr": "Description"
+        "no": "Beskrivelse",
+        "es": "Descripción",
+        "da": "Beskrivelse",
+        "pl": "Opis",
+        "ko": "설명"
       },
       "example": {
-        "en": "Pick up kids in kindergarden",
-        "no": "Hente barna fra barnehagen",
-        "nl": "Haal de kinderen van school op",
-        "de": "Kinder im Kindergarten abholen",
-        "sv": "Hämta barnen på förskolan",
-        "fr": "Prise en charge à l'école maternelle"
+        "en": "Pick up in kindergarden",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
+        "sv": "Hämta på förskolan",
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {
@@ -76,19 +111,29 @@
       "type": "string",
       "title": {
         "en": "Location",
-        "no": "Sted",
         "nl": "Locatie",
         "de": "Ort",
+        "fr": "Emplacement",
+        "it": "Luogo",
         "sv": "Plats",
-        "fr": "Localisation"
+        "no": "Sted",
+        "es": "Ubicación",
+        "da": "Placering",
+        "pl": "Lokalizacja",
+        "ko": "위치"
       },
       "example": {
         "en": "Kindergarden street, 30",
-        "no": "Barnehagegata, 30",
-        "nl": "Schoolstraat 30",
+        "nl": "Kleuterschoolstraat 30",
         "de": "Kindergartenstraße 30",
-        "sv": "Förskolegatan 30",
-        "30": "30 rue de l'école maternelle"
+        "fr": "Rue de la Maternelle, 30",
+        "it": "Via Asilo, 30",
+        "sv": "Förskolevägen 30",
+        "no": "Barnehageveien 30",
+        "es": "Calle del Jardín de Infancia, 30",
+        "da": "Børnehavevej 30",
+        "pl": "Ulica Przedszkolna 30",
+        "ko": "유치원 거리 30"
       }
     },
     {
@@ -96,19 +141,29 @@
       "type": "string",
       "title": {
         "en": "Duration",
-        "no": "Varighet",
-        "nl": "Tijdsduur",
+        "nl": "Duur",
         "de": "Dauer",
+        "fr": "Durée",
+        "it": "Durata",
         "sv": "Varaktighet",
-        "fr": "Durée"
+        "no": "Varighet",
+        "es": "Duración",
+        "da": "Varighed",
+        "pl": "Czas trwania",
+        "ko": "지속 시간"
       },
       "example": {
         "en": "1.5 hour",
-        "no": "1.5 time",
         "nl": "1.5 uur",
         "de": "1.5 Stunden",
-        "sv": "1,5 timma",
-        "fr": "1.5 heure"
+        "fr": "1.5 heure",
+        "it": "1.5 ore",
+        "sv": "1.5 timme",
+        "no": "1.5 time",
+        "es": "1.5 horas",
+        "da": "1.5 time",
+        "pl": "1.5 godziny",
+        "ko": "1.5시간"
       }
     },
     {
@@ -116,19 +171,19 @@
       "type": "number",
       "title": {
         "en": "Duration in minutes",
-        "no": "Varighet i minutter",
-        "nl": "Tijdsduur in minuten",
+        "nl": "Duur in minuten",
         "de": "Dauer in Minuten",
+        "fr": "Durée en minutes",
+        "it": "Durata in minuti",
         "sv": "Varaktighet i minuter",
-        "fr": "Durée en minutes"
+        "no": "Varighet i minutter",
+        "es": "Duración en minutos",
+        "da": "Varighed i minutter",
+        "pl": "Czas trwania w minutach",
+        "ko": "지속 시간 (분 단위)"
       },
       "example": {
-        "en": "90",
-        "no": "90",
-        "nl": "90",
-        "de": "90",
-        "sv": "90",
-        "fr": "90"
+        "en": "90"
       }
     },
     {
@@ -136,19 +191,19 @@
       "type": "string",
       "title": {
         "en": "Calendar name",
-        "no": "Kalendernavn",
-        "nl": "Kalender naam",
-        "de": "Kalenderbezeichnung",
+        "nl": "Kalendernaam",
+        "de": "Kalendername",
+        "fr": "Nom du calendrier",
+        "it": "Nome del calendario",
         "sv": "Kalendernamn",
-        "fr": "Nom du calendrier"  
-          },
+        "no": "Kalendernavn",
+        "es": "Nombre del calendario",
+        "da": "Kalendernavn",
+        "pl": "Nazwa kalendarza",
+        "ko": "캘린더 이름"
+      },
       "example": {
-        "en": "Gmail",
-        "no": "Gmail",
-        "nl": "Gmail",
-        "de": "Gmail",
-        "sv": "Gmail",
-        "fr": "Gmail"
+        "en": "Gmail"
       }
     },
     {
@@ -156,19 +211,29 @@
       "type": "string",
       "title": {
         "en": "Status",
-        "no": "Status",
         "nl": "Status",
         "de": "Status",
+        "fr": "Statut",
+        "it": "Stato",
         "sv": "Status",
-        "fr": "Statut"
+        "no": "Status",
+        "es": "Estado",
+        "da": "Status",
+        "pl": "Status",
+        "ko": "상태"
       },
       "example": {
         "en": "Free",
-        "no": "Ledig",
         "nl": "Vrij",
         "de": "Frei",
-        "sv": "Ledig",
-        "fr": "Libre"
+        "fr": "Disponible",
+        "it": "Libero",
+        "sv": "Fri",
+        "no": "Ledig",
+        "es": "Libre",
+        "da": "Ledig",
+        "pl": "Wolny",
+        "ko": "자유"
       }
     },
     {
@@ -176,11 +241,16 @@
       "type": "string",
       "title": {
         "en": "Meeting URL",
-        "no": "Møte-URL",
         "nl": "Vergadering URL",
         "de": "Besprechungs-URL",
+        "fr": "URL de la réunion",
+        "it": "URL della riunione",
         "sv": "Mötes-URL",
-        "fr": "URL de la réunion"
+        "no": "Møte-URL",
+        "es": "URL de la reunión",
+        "da": "Møde-URL",
+        "pl": "URL spotkania",
+        "ko": "회의 URL"
       },
       "example": {
         "en": "https://meeting.url"

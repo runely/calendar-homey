@@ -2,18 +2,28 @@
   "id": "sync-calendar",
   "title": {
     "en": "Sync calendars",
-    "no": "Synkroniser kalenderene",
     "nl": "Synchroniseer kalenders",
     "de": "Kalender synchronisieren",
-    "sv": "Synkronisar kalendrar",
-    "fr": "Synchroniser les calendriers"
+    "fr": "Synchroniser les calendriers",
+    "it": "Sincronizza i calendari",
+    "sv": "Synkronisera kalendrar",
+    "no": "Synkroniser kalendere",
+    "es": "Sincronizar calendarios",
+    "da": "Synkroniser kalendere",
+    "pl": "Synchronizuj kalendarze",
+    "ko": "캘린더 동기화"
   },
   "hint": {
     "en": "Will download new .ics files to update current events",
-    "no": "Henter ned nye .ics-filer for å oppdatere nåværende avtaler",
-    "nl": "Nieuw .ics bestand wordt gedownload om de IcalCalendar app bij te werken",
-    "de": "Neue .ics-Dateien werden heruntergeladen um aktuelle Ereignisse zu aktualisieren",
-    "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella händelser",
-    "fr": "Téléchargement de nouveaux fichiers .ics pour mettre à jour les événements actuels"
+    "nl": "Zal nieuwe .ics-bestanden downloaden om huidige evenementen bij te werken",
+    "de": "Wird neue .ics-Dateien herunterladen, um aktuelle Ereignisse zu aktualisieren",
+    "fr": "Téléchargera de nouveaux fichiers .ics pour mettre à jour les événements en cours",
+    "it": "Scaricherà nuovi file .ics per aggiornare gli eventi correnti",
+    "sv": "Kommer att ladda ner nya .ics-filer för att uppdatera aktuella evenemang",
+    "no": "Vil laste ned nye .ics-filer for å oppdatere gjeldende avtaler",
+    "es": "Descargará nuevos archivos .ics para actualizar los eventos actuales",
+    "da": "Vil downloade nye .ics-filer for at opdatere aktuelle begivenheder",
+    "pl": "Pobierze nowe pliki .ics, aby zaktualizować bieżące wydarzenia",
+    "ko": ".ics 파일을 다운로드하여 현재 이벤트를 업데이트합니다"
   }
 }

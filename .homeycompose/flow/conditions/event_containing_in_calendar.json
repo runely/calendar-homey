@@ -2,27 +2,42 @@
   "id": "event_containing_in_calendar",
   "title": {
     "en": "Event containing ... in calendar ... !{{starts|doesn't start}} within ...",
+    "nl": "Evenement dat ... bevat in kalender ... !{{begint|begint niet}} binnen ...",
+    "de": "Ereignis, das ... im Kalender ... enthält !{{beginnt|beginnt nicht}} innerhalb von ...",
+    "fr": "Événement contenant ... dans le calendrier ... !{{commence|ne commence pas}} dans ...",
+    "it": "Evento che contiene ... nel calendario ... !{{inizia|non inizia}} entro ...",
+    "sv": "Evenemang som innehåller ... i kalendern ... !{{börjar|inte börjar}} inom ...",
     "no": "Avtale som inneholder ... i kalender ... !{{starter|starter ikke}} innen ...",
-    "nl": "Event met ... in kalender ... !{{begint|begint niet}} binnen ...",
-    "de": "Ereignis mit ... im Kalender ... !{{beginnt|beginnt nicht}} in ...",
-    "sv": "Händelse som innehåller ... i kalendern ... !{{börjar|börjar inte}} inom ...",
-    "fr": "Événement contenant ... dans le calendrier ... !{{démarre|ne démarre pas}} dans ..."
+    "es": "Evento que contiene ... en el calendario ... !{{empieza|no empieza}} dentro de ...",
+    "da": "Begivenhed, der indeholder ... i kalender ... !{{begynder|begynder ikke}} inden for ...",
+    "pl": "Wydarzenie zawierające ... w kalendarzu ... !{{zaczyna się|nie zaczyna się}} w ciągu ...",
+    "ko": "캘린더 ...에서 ...을 포함하는 이벤트가 !{{시작된다|시작되지 않는다}} ... 이내에"
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{starts|doesn't start}} within [[when]] [[type]]",
+    "nl": "Evenement dat [[value]] bevat in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
+    "de": "Ereignis, das [[value]] im Kalender [[calendar]] enthält !{{beginnt|beginnt nicht}} innerhalb von [[when]] [[type]]",
+    "fr": "Événement contenant [[value]] dans le calendrier [[calendar]] !{{commence|ne commence pas}} dans [[when]] [[type]]",
+    "it": "Evento che contiene [[value]] nel calendario [[calendar]] !{{inizia|non inizia}} entro [[when]] [[type]]",
+    "sv": "Evenemang som innehåller [[value]] i kalendern [[calendar]] !{{börjar|inte börjar}} inom [[when]] [[type]]",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{starter|starter ikke}} innen [[when]] [[type]]",
-    "nl": "Event met [[value]] in kalender [[calendar]] !{{begint|begint niet}} binnen [[when]] [[type]]",
-    "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{beginnt|beginnt nicht}} in [[when]] [[type]]",
-    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{börjar|börjar inte}} inom [[when]] [[type]]",
-    "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{débute|ne démarre pas}} dans [[when]]. [[type]]"
+    "es": "Evento que contiene [[value]] en el calendario [[calendar]] !{{empieza|no empieza}} dentro de [[when]] [[type]]",
+    "da": "Begivenhed, der indeholder [[value]] i kalender [[calendar]] !{{begynder|begynder ikke}} inden for [[when]] [[type]]",
+    "pl": "Wydarzenie zawierające [[value]] w kalendarzu [[calendar]] !{{zaczyna się|nie zaczyna się}} w ciągu [[when]] [[type]]",
+    "ko": "캘린더 [[calendar]]에서 [[value]]을 포함하는 이벤트가 !{{시작된다|시작되지 않는다}} [[when]] [[type]] 이내에"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar starts within selected time range",
+    "nl": "Evenement dat zoekwaarde bevat in de gekozen kalender begint binnen het geselecteerde tijdsbereik",
+    "de": "Ereignis, das Suchwert im ausgewählten Kalender enthält, beginnt innerhalb des ausgewählten Zeitraums",
+    "fr": "L'événement contenant la valeur de recherche dans le calendrier choisi commence dans la plage horaire sélectionnée",
+    "it": "Evento che contiene il valore di ricerca nel calendario scelto inizia entro l'intervallo di tempo selezionato",
+    "sv": "Evenemang som innehåller sökvärde i den valda kalendern börjar inom det valda tidsintervallet",
     "no": "Avtale som inneholder søkeverdi i valgt kalender starter innen valgt tidsrom",
-    "nl": "Event met zoekwaarde in gekozen kalender begint binnen geselecteerde tijdsbestek",
-    "de": "Ereignis mit Suchwert im ausgewählten Kalender beginnt innerhalb des ausgewählten Zeitraums",
-    "sv": "Händelse som innehåller sökvärde i vald kalender börjar inom valt tidsintervall",
-    "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi commence dans la plage de temps sélectionnée"
+    "es": "Evento que contiene el valor de búsqueda en el calendario elegido empieza dentro del rango de tiempo seleccionado",
+    "da": "Begivenhed, der indeholder søgeværdi i den valgte kalender, starter inden for det valgte tidsinterval",
+    "pl": "Wydarzenie zawierające wartość wyszukiwania w wybranym kalendarzu zaczyna się w wybranym przedziale czasowym",
+    "ko": "선택한 캘린더에서 검색 값을 포함하는 이벤트가 선택한 시간 범위 내에서 시작됩니다"
   },
   "args": [
     {
@@ -30,11 +45,16 @@
       "name": "value",
       "placeholder": {
         "en": "Search value to find in event",
+        "nl": "Zoekwaarde om te vinden in evenement",
+        "de": "Suchwert, um im Ereignis zu finden",
+        "fr": "Valeur de recherche à trouver dans l'événement",
+        "it": "Valore di ricerca da trovare nell'evento",
+        "sv": "Sökvärde att hitta i evenemanget",
         "no": "Søkeverdi for avtalen",
-        "nl": "Zoekwaarde te vinden in event",
-        "de": "Suchwert, der im Ereignis gefunden werden soll",
-        "sv": "Sökvärde att hitta i händelse",
-        "fr": "Valeur à rechercher dans l'événement"
+        "es": "Valor de búsqueda para encontrar en el evento",
+        "da": "Søgeværdi for at finde i begivenheden",
+        "pl": "Wartość wyszukiwania do znalezienia w wydarzeniu",
+        "ko": "이벤트에서 찾을 검색 값"
       }
     },
     {
@@ -42,11 +62,16 @@
       "name": "calendar",
       "placeholder": {
         "en": "Choose calendar...",
-        "no": "Velg kalender...",
-        "nl": "Selecteer kalender...",
+        "nl": "Kies kalender...",
         "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
         "sv": "Välj kalender...",
-        "fr": "Choisir un calendrier..."
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
       }
     },
     {
@@ -56,11 +81,16 @@
       "step": 1,
       "placeholder": {
         "en": "Amount",
-        "no": "Antall",
         "nl": "Aantal",
         "de": "Anzahl",
+        "fr": "Nombre",
+        "it": "Quantità",
         "sv": "Antal",
-        "fr": "Valeur"
+        "no": "Antall",
+        "es": "Cantidad",
+        "da": "Antal",
+        "pl": "Liczba",
+        "ko": "수량"
       }
     },
     {
@@ -71,44 +101,64 @@
           "id": "1",
           "label": {
             "en": "Minute(s)",
-            "no": "Minutt(er)",
-            "nl": "Minu(u)t(en)",
-            "de": "Minute(n)",
+            "nl": "Minuut/minuten",
+            "de": "Minute",
+            "fr": "Minute(s)",
+            "it": "Minuto/i",
             "sv": "Minut(er)",
-            "fr": "Minute(s)"
+            "no": "Minutt(er)",
+            "es": "Minuto(s)",
+            "da": "Minut(ter)",
+            "pl": "Minuta/y",
+            "ko": "분"
           }
         },
         {
           "id": "2",
           "label": {
             "en": "Hour(s)",
-            "no": "Time(r)",
-            "nl": "U(u)r(en)",
+            "nl": "Uur/uren",
             "de": "Stunde(n)",
-            "sv": "Timma(r)",
-            "fr": "Heure(s)"
+            "fr": "Heure(s)",
+            "it": "Ora/e",
+            "sv": "Timme/ar",
+            "no": "Time(r)",
+            "es": "Hora/s",
+            "da": "Time/r",
+            "pl": "Godzina/y",
+            "ko": "시간"
           }
         },
         {
           "id": "3",
           "label": {
             "en": "Day(s)",
-            "no": "Dag(er)",
             "nl": "Dag(en)",
             "de": "Tag(e)",
-            "sv": "Dag(ar)",
-            "fr": "Jour(s)"
+            "fr": "Jour(s)",
+            "it": "Giorno/i",
+            "sv": "Dag/ar",
+            "no": "Dag(er)",
+            "es": "Día/s",
+            "da": "Dag/e",
+            "pl": "Dzień/dni",
+            "ko": "일"
           }
         },
         {
           "id": "4",
           "label": {
             "en": "Week(s)",
-            "no": "Uke(r)",
-            "nl": "We(e)k(en)",
+            "nl": "Week(en)",
             "de": "Woche(n)",
-            "sv": "Vecka/veckor",
-            "fr": "Semaine"
+            "fr": "Semaine(s)",
+            "it": "Settimana/e",
+            "sv": "Vecka/or",
+            "no": "Uke(r)",
+            "es": "Semana/s",
+            "da": "Uge/r",
+            "pl": "Tydzień/tygodnie",
+            "ko": "주"
           }
         }
       ]

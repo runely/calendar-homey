@@ -213,6 +213,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.9.0
+    - Translated app into Danish, Italian, Korean, Polish and Spanish. Thanks to ChatGPT
 - 2.8.2
     - Dependency updates
 - 2.8.1

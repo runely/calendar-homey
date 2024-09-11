@@ -2,27 +2,42 @@
   "id": "event_containing_in_calendar_ongoing",
   "title": {
     "en": "Event containing ... in calendar ... !{{is|isn't}} ongoing",
+    "nl": "Evenement dat ... bevat in kalender ... !{{is|is niet}} bezig",
+    "de": "Ereignis, das ... in Kalender ... enthält !{{ist|ist nicht}} laufend",
+    "fr": "Événement contenant ... dans le calendrier ... !{{est|n'est pas}} en cours",
+    "it": "Evento che contiene ... nel calendario ... !{{è|non è}} in corso",
+    "sv": "Evenemang som innehåller ... i kalender ... !{{är|inte är}} pågående",
     "no": "Avtale som inneholder ... i kalender ... !{{pågår|pågår ikke}}",
-    "nl": "Event met ... in kalender ... !{{is|is niet}} bezig",
-    "de": "Ereignis mit ... im Kalender ... !{{ist|ist nicht}} laufend",
-    "sv": "Händelse som innehåller ... i kalendern ... !{{pågår|pågår inte}}",
-    "fr": "Événement contenant ... dans le calendrier ... !{{est|n'est pas}} en cours"
+    "es": "Evento que contiene ... en el calendario ... !{{está|no está}} en curso",
+    "da": "Begivenhed, der indeholder ... i kalender ... !{{er|ikke er}} igangværende",
+    "pl": "Wydarzenie zawierające ... w kalendarzu ... !{{jest|nie jest}} w toku",
+    "ko": "캘린더 ...에 ...을 포함하는 이벤트가 !{{진행 중|진행 중이 아님}}입니다"
   },
   "titleFormatted": {
     "en": "Event containing [[value]] in calendar [[calendar]] !{{is|isn't}} ongoing",
+    "nl": "Evenement dat [[value]] bevat in kalender [[calendar]] !{{is|is niet}} bezig",
+    "de": "Ereignis, das [[value]] im Kalender [[calendar]] enthält !{{ist|ist nicht}} laufend",
+    "fr": "Événement contenant [[value]] dans le calendrier [[calendar]] !{{est|n'est pas}} en cours",
+    "it": "Evento che contiene [[value]] nel calendario [[calendar]] !{{è|non è}} in corso",
+    "sv": "Evenemang som innehåller [[value]] i kalendern [[calendar]] !{{är|inte är}} pågående",
     "no": "Avtale som inneholder [[value]] i kalender [[calendar]] !{{pågår|pågår ikke}}",
-    "nl": "Event met [[value]] in kalender [[calendar]] !{{is|is niet}} bezig",
-    "de": "Ereignis mit [[value]] im Kalender [[calendar]] !{{ist|ist nicht}} laufend",
-    "sv": "Händelse som innehåller [[value]] i kalendern [[calendar]] !{{pågår|pågår inte}}",
-    "fr": "Événement contenant une [[value]] dans le calendrier [[calendar]] !{{est|n'est pas}} en cours"
+    "es": "Evento que contiene [[value]] en el calendario [[calendar]] !{{está|no está}} en curso",
+    "da": "Begivenhed, der indeholder [[value]] i kalender [[calendar]] !{{er|ikke er}} igangværende",
+    "pl": "Wydarzenie zawierające [[value]] w kalendarzu [[calendar]] !{{jest|nie jest}} w toku",
+    "ko": "캘린더 [[calendar]]에 [[value]]을 포함하는 이벤트가 !{{진행 중|진행 중이 아님}}입니다"
   },
   "hint": {
     "en": "Event containing search value in chosen calendar is ongoing",
+    "nl": "Evenement dat zoekwaarde bevat in de gekozen kalender is bezig",
+    "de": "Ereignis, das Suchwert im ausgewählten Kalender enthält, ist laufend",
+    "fr": "L'événement contenant la valeur de recherche dans le calendrier choisi est en cours",
+    "it": "Evento che contiene il valore di ricerca nel calendario scelto è in corso",
+    "sv": "Evenemang som innehåller sökvärde i den valda kalendern är pågående",
     "no": "Avtale som inneholder søkeverdi i valgt kalender pågår",
-    "nl": "Event met zoekwaarde in gekozen kalender is bezig",
-    "de": "Ereignis mit Suchwert im ausgewählten Kalender ist laufend",
-    "sv": "Händelse som innehåller sökvärde i vald kalender pågår",
-    "fr": "L'événement contenant la valeur recherchée dans le calendrier choisi est en cours"
+    "es": "Evento que contiene el valor de búsqueda en el calendario elegido está en curso",
+    "da": "Begivenhed, der indeholder søgeværdi i den valgte kalender, er igangværende",
+    "pl": "Wydarzenie zawierające wartość wyszukiwania w wybranym kalendarzu jest w toku",
+    "ko": "선택한 캘린더에서 검색 값을 포함하는 이벤트가 진행 중입니다"
   },
   "args": [
     {
@@ -30,11 +45,16 @@
       "name": "value",
       "placeholder": {
         "en": "Search value to find in event",
+        "nl": "Zoekwaarde om te vinden in evenement",
+        "de": "Suchwert, um im Ereignis zu finden",
+        "fr": "Valeur de recherche à trouver dans l'événement",
+        "it": "Valore di ricerca da trovare nell'evento",
+        "sv": "Sökvärde att hitta i evenemanget",
         "no": "Søkeverdi for avtalen",
-        "nl": "Zoekwaarde te vinden in event",
-        "de": "Suchwert, der im Ereignis gefunden werden soll",
-        "sv": "Sökvärde att hitta i händelse",
-        "fr": "Valeur à rechercher dans l'événement"
+        "es": "Valor de búsqueda para encontrar en el evento",
+        "da": "Søgeværdi for at finde i begivenheden",
+        "pl": "Wartość wyszukiwania do znalezienia w wydarzeniu",
+        "ko": "이벤트에서 찾을 검색 값"
       }
     },
     {
@@ -42,11 +62,16 @@
       "name": "calendar",
       "placeholder": {
         "en": "Choose calendar...",
-        "no": "Velg kalender...",
-        "nl": "Selecteer kalender...",
+        "nl": "Kies kalender...",
         "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
         "sv": "Välj kalender...",
-        "fr": "Choisissez le calendrier..."
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
       }
     }
   ]

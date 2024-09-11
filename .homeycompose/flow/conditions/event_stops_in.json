@@ -2,19 +2,29 @@
   "id": "event_stops_in",
   "title": {
     "en": "Specific event !{{ends|doesn't end}} within...",
-    "no": "Spesifikk avtale !{{slutter|slutter ikke}} innen...",
-    "nl": "Specifiek event !{{stopt|stopt niet}} over...",
-    "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb...",
-    "sv": "En specifik händelse !{{slutar|slutar inte}} innan...",
-    "fr" : "Evénement spécifique !{{se termine|ne se termine pas}}} dans..."
+    "nl": "Specifiek evenement !{{eindigt|eindigt niet}} binnen...",
+    "de": "Spezifisches Ereignis !{{endet|endet nicht}} innerhalb von...",
+    "fr": "Événement spécifique !{{se termine|ne se termine pas}} dans...",
+    "it": "Evento specifico !{{termina|non termina}} entro...",
+    "sv": "Specifikt evenemang !{{slutar|inte slutar}} inom...",
+    "no": "Spesifikk avtale !{{avslutter|avslutter ikke}} innen...",
+    "es": "Evento específico !{{termina|no termina}} dentro de...",
+    "da": "Specifik begivenhed !{{slutter|slutter ikke}} inden for...",
+    "pl": "Specyficzne wydarzenie !{{kończy się|nie kończy się}} w ciągu...",
+    "ko": "특정 이벤트가 !{{끝난다|끝나지 않는다}} ... 이내에"
   },
   "titleFormatted": {
     "en": "[[event]] !{{ends|doesn't end}} within [[when]] [[type]]",
-    "no": "[[event]] !{{slutter|slutter ikke}} innen [[when]] [[type]]",
-    "nl": "[[event]] !{{stopt|stopt niet}} over [[when]] [[type]]",
-    "de": "[[event]] !{{endet|endet nicht}} innerhalb [[when]] [[type]]",
-    "sv": "[[event]] !{{slutar|slutar inte}} innan [[when]] [[type]]",
-    "fr" : "[[event]] !{{se termine|ne se termine pas}}} dans [[when]] [[type]]"
+    "nl": "[[event]] !{{eindigt|eindigt niet}} binnen [[when]] [[type]]",
+    "de": "[[event]] !{{endet|endet nicht}} innerhalb von [[when]] [[type]]",
+    "fr": "[[event]] !{{se termine|ne se termine pas}} dans [[when]] [[type]]",
+    "it": "[[event]] !{{termina|non termina}} entro [[when]] [[type]]",
+    "sv": "[[event]] !{{slutar|inte slutar}} inom [[when]] [[type]]",
+    "no": "[[event]] !{{avslutter|avslutter ikke}} innen [[when]] [[type]]",
+    "es": "[[event]] !{{termina|no termina}} dentro de [[when]] [[type]]",
+    "da": "[[event]] !{{slutter|slutter ikke}} inden for [[when]] [[type]]",
+    "pl": "[[event]] !{{kończy się|nie kończy się}} w ciągu [[when]] [[type]]",
+    "ko": "[[event]] !{{끝난다|끝나지 않는다}} [[when]] [[type]] 이내에"
   },
   "args": [
     {
@@ -22,11 +32,16 @@
       "type": "autocomplete",
       "placeholder": {
         "en": "Select event...",
+        "nl": "Selecteer evenement...",
+        "de": "Wähle Ereignis...",
+        "fr": "Sélectionner événement...",
+        "it": "Seleziona evento...",
+        "sv": "Välj evenemang...",
         "no": "Velg avtale...",
-        "nl": "Selecteer event",
-        "de": "Ereignis auswählen...",
-        "sv": "Välj händelse...",
-        "fr" : "Sélectionner un événement..."
+        "es": "Seleccionar evento...",
+        "da": "Vælg begivenhed...",
+        "pl": "Wybierz wydarzenie...",
+        "ko": "이벤트 선택..."
       }
     },
     {
@@ -36,11 +51,16 @@
       "step": 1,
       "placeholder": {
         "en": "Amount",
-        "no": "Antall",
         "nl": "Aantal",
         "de": "Anzahl",
+        "fr": "Nombre",
+        "it": "Quantità",
         "sv": "Antal",
-        "fr": "Valeur"
+        "no": "Antall",
+        "es": "Cantidad",
+        "da": "Antal",
+        "pl": "Liczba",
+        "ko": "수량"
       }
     },
     {
@@ -51,44 +71,64 @@
           "id": "1",
           "label": {
             "en": "Minute(s)",
-            "no": "Minutt(er)",
-            "nl": "Minu(u)t(en)",
-            "de": "Minute(n)",
+            "nl": "Minuut/minuten",
+            "de": "Minute",
+            "fr": "Minute(s)",
+            "it": "Minuto/i",
             "sv": "Minut(er)",
-            "fr": "Minute(s)"
+            "no": "Minutt(er)",
+            "es": "Minuto(s)",
+            "da": "Minut(ter)",
+            "pl": "Minuta/y",
+            "ko": "분"
           }
         },
         {
           "id": "2",
           "label": {
             "en": "Hour(s)",
-            "no": "Time(r)",
-            "nl": "U(u)r(en)",
+            "nl": "Uur/uren",
             "de": "Stunde(n)",
-            "sv": "Timma(r)",
-            "fr": "Heure(s)"
+            "fr": "Heure(s)",
+            "it": "Ora/e",
+            "sv": "Timme/ar",
+            "no": "Time(r)",
+            "es": "Hora/s",
+            "da": "Time/r",
+            "pl": "Godzina/y",
+            "ko": "시간"
           }
         },
         {
           "id": "3",
           "label": {
             "en": "Day(s)",
-            "no": "Dag(er)",
             "nl": "Dag(en)",
             "de": "Tag(e)",
-            "sv": "Dag(ar)",
-            "fr": "Jour(s)"
+            "fr": "Jour(s)",
+            "it": "Giorno/i",
+            "sv": "Dag/ar",
+            "no": "Dag(er)",
+            "es": "Día/s",
+            "da": "Dag/e",
+            "pl": "Dzień/dni",
+            "ko": "일"
           }
         },
         {
           "id": "4",
           "label": {
             "en": "Week(s)",
-            "no": "Uke(r)",
-            "nl": "We(e)k(en)",
+            "nl": "Week(en)",
             "de": "Woche(n)",
-            "sv": "Vecka/veckor",
-            "fr": "Semaine(s)"
+            "fr": "Semaine(s)",
+            "it": "Settimana/e",
+            "sv": "Vecka/or",
+            "no": "Uke(r)",
+            "es": "Semana/s",
+            "da": "Uge/r",
+            "pl": "Tydzień/tygodnie",
+            "ko": "주"
           }
         }
       ]

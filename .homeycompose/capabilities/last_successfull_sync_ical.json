@@ -1,12 +1,17 @@
 {
   "type": "string",
   "title": {
-    "en": "Last successfull synchronization",
-    "no": "Siste vellykkede synkronisering",
+    "en": "Last successful synchronization",
     "nl": "Laatste succesvolle synchronisatie",
     "de": "Letzte erfolgreiche Synchronisierung",
-    "sv": "Senaste framgångsrika synkroniseringen",
-    "fr": "Dernière synchronisation réussie"
+    "fr": "Dernière synchronisation réussie",
+    "it": "Ultima sincronizzazione riuscita",
+    "sv": "Senaste lyckade synkronisering",
+    "no": "Siste vellykkede synkronisering",
+    "es": "Última sincronización exitosa",
+    "da": "Sidste vellykkede synkronisering",
+    "pl": "Ostatnia udana synchronizacja",
+    "ko": "마지막 성공적인 동기화"
   },
   "uiComponent": "sensor",
   "getable": true,

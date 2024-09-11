@@ -2,19 +2,29 @@
   "id": "get_calendars_metadata",
   "title": {
     "en": "Get calendars metadata",
-    "no": "Hent kalendermetadata",
-    "nl": "Haal kalendermetadata op",
-    "de": "Kalendermetadaten abrufen",
+    "nl": "Haal metadata voor kalenders op",
+    "de": "Kalender-Metadaten abrufen",
+    "fr": "Obtenir les métadonnées des calendriers",
+    "it": "Ottieni metadati dei calendari",
     "sv": "Hämta kalendermetadata",
-    "fr": "Obtenir les métadonnées des calendriers"
+    "no": "Hent kalendermetadata",
+    "es": "Obtener metadatos de los calendarios",
+    "da": "Hent kalendermetadata",
+    "pl": "Pobierz metadane kalendarzy",
+    "ko": "캘린더 메타데이터 가져오기"
   },
   "hint": {
     "en": "Will return a JSON representation of your calendar metadata",
+    "nl": "Zal een JSON-representatie van je kalendermetadata teruggeven",
+    "de": "Gibt eine JSON-Darstellung deiner Kalender-Metadaten zurück",
+    "fr": "Renvoie une représentation JSON de vos métadonnées de calendrier",
+    "it": "Restituisce una rappresentazione JSON dei metadati del tuo calendario",
+    "sv": "Kommer att returnera en JSON-representation av dina kalendermetadata",
     "no": "Vil returnere en JSON-representasjon av kalendermetadataen din",
-    "nl": "Zal een JSON-representatie van uw kalendermetadata retourneren",
-    "de": "Wird eine JSON-Repräsentation Ihrer Kalendermetadaten zurückgeben",
-    "sv": "Kommer att returnera en JSON-representation av din kalendermetadata",
-    "fr": "Renvoie une représentation JSON de vos métadonnées de calendrier"
+    "es": "Devolverá una representación JSON de los metadatos de tu calendario",
+    "da": "Vil returnere en JSON-repræsentation af dine kalendermetadata",
+    "pl": "Zwróci reprezentację JSON metadanych twojego kalendarza",
+    "ko": "캘린더 메타데이터의 JSON 표현을 반환합니다"
   },
   "advanced": true,
   "tokens": [
@@ -23,11 +33,16 @@
       "type": "string",
       "title": {
         "en": "Metadata",
-        "no": "Metadata",
         "nl": "Metadata",
         "de": "Metadaten",
+        "fr": "Méta-données",
+        "it": "Metadati",
         "sv": "Metadata",
-        "fr": "Métadonnées"
+        "no": "Metadata",
+        "es": "Metadatos",
+        "da": "Metadata",
+        "pl": "Metadane",
+        "ko": "메타데이터"
       },
       "example": {
         "en": "{\"json\":[{\"calendarName\":\"Test\",\"events\":[0,1,2,3]}]}"

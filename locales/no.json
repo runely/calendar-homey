@@ -119,7 +119,7 @@
         "event_next_duration": "Varighet neste avtale",
         "event_next_duration_minutes": "Varighet neste avtale (minutter)",
         "event_next_starts_in_minutes": "Neste avtale starter om (minutter)",
-        "event_next_stops_in_minutes": "Neste avtale slutter om (minutter)",
+        "event_next_stops_in_minutes": "Neste avtale avslutter om (minutter)",
         "event_next_description": "Beskrivelse neste avtale",
         "event_next_calendar_name": "Kalendernavn for neste avtale",
         "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",

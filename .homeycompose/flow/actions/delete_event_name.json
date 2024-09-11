@@ -2,27 +2,42 @@
   "id": "delete_event_name",
   "title": {
     "en": "Delete local event by title",
+    "nl": "Verwijder lokaal evenement op titel",
+    "de": "Lösche lokales Ereignis nach Titel",
+    "fr": "Supprimer l'événement local par titre",
+    "it": "Elimina evento locale per titolo",
+    "sv": "Ta bort lokalt evenemang efter titel",
     "no": "Slett lokal avtale etter tittel",
-    "nl": "Verwijder lokale gebeurtenis op titel",
-    "de": "Lösche lokale Veranstaltung nach Titel",
-    "sv": "Radera lokal händelse efter titel",
-    "fr": "Supprimer un événement local par titre"
+    "es": "Eliminar evento local por título",
+    "da": "Slet lokal begivenhed efter titel",
+    "pl": "Usuń lokalne wydarzenie według tytułu",
+    "ko": "제목으로 로컬 이벤트 삭제"
   },
   "titleFormatted": {
     "en": "Delete local event by title [[event_name]]",
+    "nl": "Verwijder lokaal evenement op titel [[event_name]]",
+    "de": "Lösche lokales Ereignis nach Titel [[event_name]]",
+    "fr": "Supprimer l'événement local par titre [[event_name]]",
+    "it": "Elimina evento locale per titolo [[event_name]]",
+    "sv": "Ta bort lokalt evenemang efter titel [[event_name]]",
     "no": "Slett lokal avtale med tittel [[event_name]]",
-    "nl": "Verwijder lokale gebeurtenis op titel [[event_name]]",
-    "de": "Lokale Veranstaltung nach Titel [[event_name]] löschen",
-    "sv": "Radera lokal händelse efter titel [[event_name]]",
-    "fr": "Supprimer un événement local par titre [[event_name]]"
+    "es": "Eliminar evento local por título [[event_name]]",
+    "da": "Slet lokal begivenhed efter titel [[event_name]]",
+    "pl": "Usuń lokalne wydarzenie według tytułu [[event_name]]",
+    "ko": "제목으로 로컬 이벤트 삭제 [[event_name]]"
   },
   "hint": {
     "en": "Delete local event (will not be deleted from your calendar externally)\nWill delete all local events with this title",
+    "nl": "Verwijder lokaal evenement (zal niet extern uit je agenda worden verwijderd)\nVerwijdert alle lokale evenementen met deze titel",
+    "de": "Lösche lokales Ereignis (wird nicht extern aus deinem Kalender gelöscht)\nLöscht alle lokalen Ereignisse mit diesem Titel",
+    "fr": "Supprimer l'événement local (ne sera pas supprimé de votre calendrier externe)\nSupprimera tous les événements locaux avec ce titre",
+    "it": "Elimina evento locale (non verrà eliminato esternamente dal tuo calendario)\nEliminerà tutti gli eventi locali con questo titolo",
+    "sv": "Ta bort lokalt evenemang (kommer inte att tas bort från din kalender externt)\nTar bort alla lokala evenemang med denna titel",
     "no": "Slett lokal avtale (vil ikke bli slettet fra kalenderen din eksternt)\nVil slette alle lokale avtaler med denne tittelen",
-    "nl": "Verwijder lokale gebeurtenis (wordt niet extern verwijderd uit uw kalender)\nZal alle lokale gebeurtenissen met deze titel verwijderen",
-    "de": "Löschen lokale Veranstaltung (wird nicht aus Ihrem Kalender extern gelöscht)\nEs werden alle lokalen Veranstaltungen mit diesem Titel gelöscht",
-    "sv": "Radera lokal händelse (kommer inte att raderas från din kalender externt)\nKommer att radera alla lokala händelser med denna titel",
-    "fr": "Supprimer l'événement local (ne sera pas supprimé de votre calendrier de manière externe)\nSupprimera tous les événements locaux portant ce titre."
+    "es": "Eliminar evento local (no se eliminará externamente de tu calendario)\nEliminará todos los eventos locales con este título",
+    "da": "Slet lokal begivenhed (vil ikke blive slettet fra din kalender eksternt)\nVil slette alle lokale begivenheder med denne titel",
+    "pl": "Usuń lokalne wydarzenie (nie zostanie usunięte z twojego kalendarza zewnętrznie)\nUsunie wszystkie lokalne wydarzenia o tym tytule",
+    "ko": "로컬 이벤트 삭제 (외부 캘린더에서는 삭제되지 않음)\n이 제목의 모든 로컬 이벤트를 삭제합니다"
   },
   "args": [
     {
@@ -30,20 +45,30 @@
       "name": "event_name",
       "title": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
       },
       "placeholder": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
-      }
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
+      }    
     }
   ]
 }

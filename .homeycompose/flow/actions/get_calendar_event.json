@@ -2,27 +2,42 @@
   "id": "get_calendar_event",
   "title": {
     "en": "Get calendar event",
-    "no": "Hent kalenderavtale",
-    "nl": "Haal kalenderevenement op",
-    "de": "Kalenderereignis abrufen",
+    "nl": "Haal kalender evenement op",
+    "de": "Kalenderevent abrufen",
+    "fr": "Obtenir l'événement du calendrier",
+    "it": "Ottieni evento del calendario",
     "sv": "Hämta kalenderhändelse",
-    "fr": "Obtenir un événement de calendrier"
+    "no": "Hent kalenderavtale",
+    "es": "Obtener evento del calendario",
+    "da": "Hent kalenderbegivenhed",
+    "pl": "Pobierz wydarzenie z kalendarza",
+    "ko": "캘린더 이벤트 가져오기"
   },
   "hint": {
     "en": "Returns tokens for given event in calendar",
-    "no": "Returnerer token for angitt avtale i kalenderen",
-    "nl": "Geeft tokens terug voor het opgegeven evenement in de kalender",
+    "nl": "Geeft tokens terug voor opgegeven evenement in kalender",
     "de": "Gibt Tokens für das angegebene Ereignis im Kalender zurück",
-    "sv": "Returnerar token för angivet händelse i kalendern",
-    "fr": "Renvoie des jetons pour l'événement donné dans le calendrier"
+    "fr": "Renvoie des jetons pour l'événement donné dans le calendrier",
+    "it": "Restituisce token per l'evento specificato nel calendario",
+    "sv": "Returnerar token för angivet evenemang i kalendern",
+    "no": "Returnerer token for angitt avtale i kalenderen",
+    "es": "Devuelve tokens para el evento dado en el calendario",
+    "da": "Returnerer tokens for given begivenhed i kalenderen",
+    "pl": "Zwraca tokeny dla podarowanego wydarzenia w kalendarzu",
+    "ko": "캘린더의 주어진 이벤트에 대한 토큰 반환"
   },
   "titleFormatted": {
     "en": "Get event with index [[index]] from calendar [[calendar]]",
+    "nl": "Haal evenement met index [[index]] uit kalender [[calendar]]",
+    "de": "Hole Ereignis mit Index [[index]] aus Kalender [[calendar]]",
+    "fr": "Obtenez l'événement avec l'index [[index]] du calendrier [[calendar]]",
+    "it": "Ottieni evento con indice [[index]] dal calendario [[calendar]]",
+    "sv": "Hämta evenemang med index [[index]] från kalender [[calendar]]",
     "no": "Hent avtale med indeks [[index]] fra kalenderen [[calendar]]",
-    "nl": "Haal evenement met index [[index]] uit kalender [[calendar]] op",
-    "de": "Ereignis mit Index [[index]] aus Kalender [[calendar]] abrufen",
-    "sv": "Hämta händelse med index [[index]] från kalender [[calendar]]",
-    "fr": "Obtenir l'événement avec l'index [[index]] du calendrier [[calendar]]"
+    "es": "Obtén el evento con índice [[index]] del calendario [[calendar]]",
+    "da": "Hent begivenhed med indeks [[index]] fra kalender [[calendar]]",
+    "pl": "Pobierz wydarzenie z indeksem [[index]] z kalendarza [[calendar]]",
+    "ko": "캘린더 [[calendar]]에서 인덱스 [[index]]로 이벤트 가져오기"
   },
   "advanced": true,
   "args": [
@@ -31,11 +46,16 @@
       "name": "calendar",
       "placeholder": {
         "en": "Choose calendar...",
-        "no": "Velg kalender...",
-        "nl": "Selecteer kalender...",
+        "nl": "Kies kalender...",
         "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
         "sv": "Välj kalender...",
-        "fr": "Choisissez le calendrier..."
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
       }
     },
     {
@@ -43,11 +63,16 @@
       "name": "index",
       "placeholder": {
         "en": "Event index",
-        "no": "Avtaleindeks",
-        "nl": "Evenement index",
+        "nl": "Evenementindex",
         "de": "Ereignisindex",
-        "sv": "Händelseindex",
-        "fr": "Index de l'événement"
+        "fr": "Index de l'événement",
+        "it": "Indice dell'evento",
+        "sv": "Evenemangsindex",
+        "no": "Avtaleindeks",
+        "es": "Índice del evento",
+        "da": "Begivenhedsindeks",
+        "pl": "Indeks wydarzenia",
+        "ko": "이벤트 인덱스"
       },
       "min": 0,
       "max": 500,
@@ -60,19 +85,29 @@
       "type": "string",
       "title": {
         "en": "Start",
-        "no": "Start",
         "nl": "Start",
         "de": "Start",
-        "sv": "Start",
-        "fr": "Début"
+        "fr": "Démarrer",
+        "it": "Avvia",
+        "sv": "Starta",
+        "no": "Start",
+        "es": "Iniciar",
+        "da": "Start",
+        "pl": "Start",
+        "ko": "시작"
       },
       "example": {
         "en": "sun. 05.11.23 12:00",
-        "no": "søn. 05.11.23 12:00",
-        "nl": "zon. 05.11.23 12:00",
+        "nl": "zo. 05.11.23 12:00",
         "de": "So. 05.11.23 12:00",
+        "fr": "dim. 05.11.23 12:00",
+        "it": "dom. 05.11.23 12:00",
         "sv": "sön. 05.11.23 12:00",
-        "fr": "dim. 05.11.23 12:00"
+        "no": "søn. 05.11.23 12:00",
+        "es": "dom. 05.11.23 12:00",
+        "da": "søn. 05.11.23 12:00",
+        "pl": "niedz. 05.11.23 12:00",
+        "ko": "일. 05.11.23 12:00"
       }
     },
     {
@@ -80,19 +115,29 @@
       "type": "string",
       "title": {
         "en": "End",
-        "no": "Stopp",
         "nl": "Einde",
         "de": "Ende",
+        "fr": "Fin",
+        "it": "Fine",
         "sv": "Slut",
-        "fr": "Fin"
+        "no": "Stopp",
+        "es": "Fin",
+        "da": "Slut",
+        "pl": "Koniec",
+        "ko": "끝"
       },
       "example": {
         "en": "sun. 05.11.23 12:00",
-        "no": "søn. 05.11.23 12:00",
-        "nl": "zon. 05.11.23 12:00",
+        "nl": "zo. 05.11.23 12:00",
         "de": "So. 05.11.23 12:00",
+        "fr": "dim. 05.11.23 12:00",
+        "it": "dom. 05.11.23 12:00",
         "sv": "sön. 05.11.23 12:00",
-        "fr": "dim. 05.11.23 12:00"
+        "no": "søn. 05.11.23 12:00",
+        "es": "dom. 05.11.23 12:00",
+        "da": "søn. 05.11.23 12:00",
+        "pl": "niedz. 05.11.23 12:00",
+        "ko": "일. 05.11.23 12:00"
       }
     },
     {
@@ -110,19 +155,29 @@
       "type": "string",
       "title": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
       },
       "example": {
         "en": "Pick up in kindergarden",
-        "no": "Hente i barnehagen",
-        "nl": "Kinderen ophalen",
-        "de": "Im Kindergarten abholen",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
         "sv": "Hämta på förskolan",
-        "fr": "Prise en charge à l'école maternelle"
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {
@@ -130,19 +185,29 @@
       "type": "string",
       "title": {
         "en": "Description",
-        "no": "Beskrivelse",
-        "nl": "Omschrijving",
+        "nl": "Beschrijving",
         "de": "Beschreibung",
+        "fr": "Description",
+        "it": "Descrizione",
         "sv": "Beskrivning",
-        "fr": "Description"
+        "no": "Beskrivelse",
+        "es": "Descripción",
+        "da": "Beskrivelse",
+        "pl": "Opis",
+        "ko": "설명"
       },
       "example": {
-        "en": "Pick up kids in kindergarden",
-        "no": "Hente barna fra barnehagen",
-        "nl": "Haal de kinderen van school op",
-        "de": "Kinder im Kindergarten abholen",
-        "sv": "Hämta barnen på förskolan",
-        "fr": "Aller chercher les enfants à l'école maternelle"
+        "en": "Pick up in kindergarden",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
+        "sv": "Hämta på förskolan",
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {
@@ -150,19 +215,29 @@
       "type": "string",
       "title": {
         "en": "Location",
-        "no": "Sted",
         "nl": "Locatie",
         "de": "Ort",
+        "fr": "Emplacement",
+        "it": "Luogo",
         "sv": "Plats",
-        "fr": "Localisation"
+        "no": "Sted",
+        "es": "Ubicación",
+        "da": "Placering",
+        "pl": "Lokalizacja",
+        "ko": "위치"
       },
       "example": {
         "en": "Kindergarden street, 30",
-        "no": "Barnehagegata, 30",
-        "nl": "Schoolstraat 30",
+        "nl": "Kleuterschoolstraat 30",
         "de": "Kindergartenstraße 30",
-        "sv": "Förskolegatan 30",
-        "fr": "30 rue de l'école maternelle"
+        "fr": "Rue de la Maternelle, 30",
+        "it": "Via Asilo, 30",
+        "sv": "Förskolevägen 30",
+        "no": "Barnehageveien 30",
+        "es": "Calle del Jardín de Infancia, 30",
+        "da": "Børnehavevej 30",
+        "pl": "Ulica Przedszkolna 30",
+        "ko": "유치원 거리 30"
       }
     },
     {
@@ -170,19 +245,29 @@
       "type": "string",
       "title": {
         "en": "Created",
-        "no": "Opprettet",
         "nl": "Gemaakt",
         "de": "Erstellt",
+        "fr": "Créé",
+        "it": "Creato",
         "sv": "Skapad",
-        "fr": "Créé"
+        "no": "Opprettet",
+        "es": "Creado",
+        "da": "Oprettet",
+        "pl": "Utworzony",
+        "ko": "생성됨"
       },
       "example": {
         "en": "sun. 05.11.23 12:00",
-        "no": "søn. 05.11.23 12:00",
-        "nl": "zon. 05.11.23 12:00",
+        "nl": "zo. 05.11.23 12:00",
         "de": "So. 05.11.23 12:00",
+        "fr": "dim. 05.11.23 12:00",
+        "it": "dom. 05.11.23 12:00",
         "sv": "sön. 05.11.23 12:00",
-        "fr": "dim. 05.11.23 12:00"
+        "no": "søn. 05.11.23 12:00",
+        "es": "dom. 05.11.23 12:00",
+        "da": "søn. 05.11.23 12:00",
+        "pl": "niedz. 05.11.23 12:00",
+        "ko": "일. 05.11.23 12:00"
       }
     },
     {
@@ -190,11 +275,16 @@
       "type": "boolean",
       "title": {
         "en": "Fullday event",
-        "no": "Heldagsarrangement",
-        "nl": "Volledige dag evenement",
+        "nl": "Hele dag evenement",
         "de": "Ganztägiges Ereignis",
-        "sv": "Heldagsevent",
-        "fr": "Événement sur toute la journée"
+        "fr": "Événement toute la journée",
+        "it": "Evento tutto il giorno",
+        "sv": "Heldagsevenemang",
+        "no": "Heldagsarrangement",
+        "es": "Evento de todo el día",
+        "da": "Hele dags begivenhed",
+        "pl": "Wydarzenie całodziennie",
+        "ko": "하루 종일 이벤트"
       }
     },
     {
@@ -202,19 +292,29 @@
       "type": "string",
       "title": {
         "en": "Duration",
-        "no": "Varighet",
-        "nl": "Tijdsduur",
+        "nl": "Duur",
         "de": "Dauer",
+        "fr": "Durée",
+        "it": "Durata",
         "sv": "Varaktighet",
-        "fr": "Durée"
+        "no": "Varighet",
+        "es": "Duración",
+        "da": "Varighed",
+        "pl": "Czas trwania",
+        "ko": "지속 시간"
       },
       "example": {
         "en": "1.5 hour",
-        "no": "1.5 time",
         "nl": "1.5 uur",
         "de": "1.5 Stunden",
-        "sv": "1,5 timma",
-        "fr": "1.5 heure"
+        "fr": "1.5 heure",
+        "it": "1.5 ore",
+        "sv": "1.5 timme",
+        "no": "1.5 time",
+        "es": "1.5 horas",
+        "da": "1.5 time",
+        "pl": "1.5 godziny",
+        "ko": "1.5시간"
       }
     },
     {
@@ -222,19 +322,19 @@
       "type": "number",
       "title": {
         "en": "Duration in minutes",
-        "no": "Varighet i minutter",
-        "nl": "Tijdsduur in minuten",
+        "nl": "Duur in minuten",
         "de": "Dauer in Minuten",
+        "fr": "Durée en minutes",
+        "it": "Durata in minuti",
         "sv": "Varaktighet i minuter",
-        "fr": "Durée en minutes"
+        "no": "Varighet i minutter",
+        "es": "Duración en minutos",
+        "da": "Varighed i minutter",
+        "pl": "Czas trwania w minutach",
+        "ko": "지속 시간 (분 단위)"
       },
       "example": {
-        "en": "90",
-        "no": "90",
-        "nl": "90",
-        "de": "90",
-        "sv": "90",
-        "fr": "90"
+        "en": "90"
       }
     },
     {
@@ -242,11 +342,16 @@
       "type": "string",
       "title": {
         "en": "Calendar name",
-        "no": "Kalendernavn",
-        "nl": "Kalender naam",
-        "de": "Kalenderbezeichnung",
+        "nl": "Kalendernaam",
+        "de": "Kalendername",
+        "fr": "Nom du calendrier",
+        "it": "Nome del calendario",
         "sv": "Kalendernamn",
-        "fr": "Nom du calendrier"
+        "no": "Kalendernavn",
+        "es": "Nombre del calendario",
+        "da": "Kalendernavn",
+        "pl": "Nazwa kalendarza",
+        "ko": "캘린더 이름"
       },
       "example": {
         "en": "Gmail"
@@ -257,19 +362,29 @@
       "type": "string",
       "title": {
         "en": "Status",
-        "no": "Status",
         "nl": "Status",
         "de": "Status",
+        "fr": "Statut",
+        "it": "Stato",
         "sv": "Status",
-        "fr": "Statut"
+        "no": "Status",
+        "es": "Estado",
+        "da": "Status",
+        "pl": "Status",
+        "ko": "상태"
       },
       "example": {
         "en": "Free",
-        "no": "Ledig",
         "nl": "Vrij",
         "de": "Frei",
-        "sv": "Ledig",
-        "fr": "Libre"
+        "fr": "Disponible",
+        "it": "Libero",
+        "sv": "Fri",
+        "no": "Ledig",
+        "es": "Libre",
+        "da": "Ledig",
+        "pl": "Wolny",
+        "ko": "자유"
       }
     },
     {
@@ -277,11 +392,16 @@
       "type": "string",
       "title": {
         "en": "Meeting URL",
-        "no": "Møte-URL",
         "nl": "Vergadering URL",
         "de": "Besprechungs-URL",
+        "fr": "URL de la réunion",
+        "it": "URL della riunione",
         "sv": "Mötes-URL",
-        "fr": "URL de la réunion"
+        "no": "Møte-URL",
+        "es": "URL de la reunión",
+        "da": "Møde-URL",
+        "pl": "URL spotkania",
+        "ko": "회의 URL"
       },
       "example": {
         "en": "https://meeting.url"

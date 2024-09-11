@@ -2,20 +2,29 @@
   "id": "event_ongoing",
   "title": {
     "en": "Specific event !{{is|isn't}} ongoing",
-    "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
-    "nl": "Specifiek event !{{is|is niet}} bezig",
+    "nl": "Specifiek evenement !{{is|is niet}} bezig",
     "de": "Spezifisches Ereignis !{{ist|ist nicht}} laufend",
-    "sv": "En specifik händelse !{{pågår|pågår inte}}",
-    "fr" : "Evénement spécifique !{{est|n'est pas}} en cours"
-      
+    "fr": "Événement spécifique !{{est|n'est pas}} en cours",
+    "it": "Evento specifico !{{è|non è}} in corso",
+    "sv": "Specifikt evenemang !{{är|är inte}} pågående",
+    "no": "Spesifikk avtale !{{pågår|pågår ikke}}",
+    "es": "Evento específico !{{está|no está}} en curso",
+    "da": "Specifik begivenhed !{{er|er ikke}} igangværende",
+    "pl": "Specyficzne wydarzenie !{{jest|nie jest}} w toku",
+    "ko": "특정 이벤트가 !{{진행 중|진행 중이 아님}}입니다"
   },
   "titleFormatted": {
     "en": "[[event]] !{{is|isn't}} ongoing",
-    "no": "[[event]] !{{pågår|pågår ikke}}",
     "nl": "[[event]] !{{is|is niet}} bezig",
     "de": "[[event]] !{{ist|ist nicht}} laufend",
-    "sv": "[[event]] !{{pågår|pågår inte}}",
-    "fr": "[[event]] !{{est|n'est pas}} en cours"
+    "fr": "[[event]] !{{est|n'est pas}} en cours",
+    "it": "[[event]] !{{è|non è}} in corso",
+    "sv": "[[event]] !{{är|är inte}} pågående",
+    "no": "[[event]] !{{pågår|pågår ikke}}",
+    "es": "[[event]] !{{está|no está}} en curso",
+    "da": "[[event]] !{{er|er ikke}} igangværende",
+    "pl": "[[event]] !{{jest|nie jest}} w toku",
+    "ko": "[[event]] !{{진행 중|진행 중이 아님}}"
   },
   "args": [
       {
@@ -23,11 +32,16 @@
         "type": "autocomplete",
         "placeholder": {
           "en": "Select event...",
+          "nl": "Selecteer evenement...",
+          "de": "Wähle Ereignis...",
+          "fr": "Sélectionner événement...",
+          "it": "Seleziona evento...",
+          "sv": "Välj evenemang...",
           "no": "Velg avtale...",
-          "nl": "Selecteer event...",
-          "de": "Ereignis auswählen...",
-          "sv": "Välj händelse...",
-          "fr" : "Sélectionner un événement..."
+          "es": "Seleccionar evento...",
+          "da": "Vælg begivenhed...",
+          "pl": "Wybierz wydarzenie...",
+          "ko": "이벤트 선택..."
         }
       }
   ]

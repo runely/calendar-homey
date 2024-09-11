@@ -2,39 +2,49 @@
   "id": "synchronization_error",
   "title": {
     "en": "Synchronization error occurred",
-    "no": "Synkroniseringsfeil oppstått",
+    "no": "Synkroniseringsfeil oppstod",
     "nl": "Synchronisatiefout opgetreden",
-    "de": "Synchronisationsfehler aufgetreten",
-    "sv": "Synkroniseringsfel uppstod",
-    "fr": "Une erreur de synchronisation s'est produite"
+    "de": "Synchronisierungsfehler ist aufgetreten",
+    "sv": "Synkroniseringsfel inträffade",
+    "fr": "Une erreur de synchronisation s'est produite",
+    "it": "Si è verificato un errore di sincronizzazione",
+    "es": "Se produjo un error de sincronización",
+    "da": "Synkroniseringsfejl opstod",
+    "pl": "Wystąpił błąd synchronizacji",
+    "ko": "동기화 오류 발생"
   },
   "hint": {
     "en": "Triggers when a synchronization error occurs with one of your calendars",
-    "no": "Utløses når det oppstår en synkroniseringsfeil med en av dine kalendere",
-    "nl": "Wordt geactiveerd wanneer er een synchronisatiefout optreedt met een van uw agenda's",
-    "de": "Wird ausgelöst, wenn bei einem Ihrer Kalender ein Synchronisierungsfehler auftritt",
-    "sv": "Utlöses när ett synkroniseringsfel uppstår med en av dina kalendrar",
-    "fr": "Se déclenche lorsqu'une erreur de synchronisation se produit avec l'un de vos calendriers."
-  },
+    "no": "Utløses når det oppstår en synkroniseringsfeil med en av kalenderne dine",
+    "nl": "Wordt geactiveerd wanneer een synchronisatiefout optreedt met een van je kalenders",
+    "de": "Wird ausgelöst, wenn ein Synchronisierungsfehler bei einem Ihrer Kalender auftritt",
+    "sv": "Utlöses när ett synkroniseringsfel inträffar med en av dina kalendrar",
+    "fr": "Déclenché lorsqu'une erreur de synchronisation se produit avec l'un de vos calendriers",
+    "it": "Si attiva quando si verifica un errore di sincronizzazione con uno dei tuoi calendari",
+    "es": "Se activa cuando ocurre un error de sincronización con uno de tus calendarios",
+    "da": "Aktiveres, når der opstår en synkroniseringsfejl med en af dine kalendere",
+    "pl": "Wyzwala się, gdy wystąpi błąd synchronizacji z jednym z twoich kalendarzy",
+    "ko": "캘린더 중 하나에서 동기화 오류가 발생하면 트리거됩니다"
+},
   "tokens": [
     {
       "type": "string",
       "name": "calendar_name",
       "title": {
         "en": "Calendar name",
-        "no": "Kalendernavn",
-        "nl": "Kalender naam",
-        "de": "Kalenderbezeichnung",
+        "nl": "Kalendernaam",
+        "de": "Kalendername",
+        "fr": "Nom du calendrier",
+        "it": "Nome del calendario",
         "sv": "Kalendernamn",
-        "fr": "Nom du calendrier"
+        "no": "Kalendernavn",
+        "es": "Nombre del calendario",
+        "da": "Kalendernavn",
+        "pl": "Nazwa kalendarza",
+        "ko": "캘린더 이름"
       },
       "example": {
-        "en": "Gmail",
-        "no": "Gmail",
-        "nl": "Gmail",
-        "de": "Gmail",
-        "sv": "Gmail",
-        "fr": "Gmail"
+        "en": "Gmail"
       }
     },
     {
@@ -46,15 +56,25 @@
         "nl": "Foutmelding",
         "de": "Fehlermeldung",
         "sv": "Felmeddelande",
-        "fr": "Message d'erreur"
+        "fr": "Message d'erreur",
+        "it": "Messaggio di errore",
+        "es": "Mensaje de error",
+        "da": "Fejlmeddelelse",
+        "pl": "Komunikat o błędzie",
+        "ko": "오류 메시지"
       },
       "example": {
         "en": "Invalid time value",
-        "no": "Invalid time value",
-        "nl": "Invalid time value",
-        "de": "Invalid time value",
-        "sv": "Invalid time value",
-        "fr": "Valeur de l'heure invalide"
+        "no": "Ugyldig tidsverdi",
+        "nl": "Ongeldige tijdwaarde",
+        "de": "Ungültiger Zeitwert",
+        "sv": "Ogiltigt tidsvärde",
+        "fr": "Valeur de temps invalide",
+        "it": "Valore di tempo non valido",
+        "es": "Valor de tiempo inválido",
+        "da": "Ugyldig tidsværdi",
+        "pl": "Nieprawidłowa wartość czasu",
+        "ko": "유효하지 않은 시간 값"
       }
     },
     {
@@ -76,19 +96,29 @@
       "type": "string",
       "title": {
         "en": "Title",
-        "no": "Tittel",
         "nl": "Titel",
         "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
         "sv": "Titel",
-        "fr": "Titre"
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
       },
       "example": {
         "en": "Pick up in kindergarden",
-        "no": "Hente i barnehagen",
-        "nl": "Kinderen ophalen",
-        "de": "Im Kindergarten abholen",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
         "sv": "Hämta på förskolan",
-        "fr": "Prise en charge à l'école maternelle"
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
       }
     },
     {

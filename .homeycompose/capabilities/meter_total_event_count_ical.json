@@ -2,11 +2,16 @@
   "type": "number",
   "title": {
     "en": "Total event count",
+    "nl": "Totaal aantal evenementen",
+    "de": "Gesamtzahl der Ereignisse",
+    "fr": "Nombre total d'événements",
+    "it": "Conteggio totale eventi",
+    "sv": "Totalt antal händelser",
     "no": "Totalt antall avtaler",
-    "nl": "Totaal aantal overeenkomsten",
-    "de": "Gesamtzahl der Vereinbarungen",
-    "sv": "Totalt antal avtal",
-    "fr": "Nombre total d'accords"
+    "es": "Conteo total de eventos",
+    "da": "Samlet antal begivenheder",
+    "pl": "Łączna liczba wydarzeń",
+    "ko": "총 이벤트 수"
   },
   "uiComponent": "sensor",
   "getable": true,

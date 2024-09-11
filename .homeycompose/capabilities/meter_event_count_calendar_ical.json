@@ -2,11 +2,16 @@
   "type": "number",
   "title": {
     "en": "Event count",
-    "no": "Antall avtaler",
     "nl": "Aantal evenementen",
-    "de": "Anzahl der Ereignisse",
+    "de": "Ereigniszählung",
+    "fr": "Nombre d'événements",
+    "it": "Conteggio eventi",
     "sv": "Antal händelser",
-    "fr": "Nombre d'événements"
+    "no": "Antall avtaler",
+    "es": "Conteo de eventos",
+    "da": "Antal begivenheder",
+    "pl": "Liczba wydarzeń",
+    "ko": "이벤트 수"
   },
   "uiComponent": "sensor",
   "getable": true,

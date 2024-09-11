@@ -1,7 +1,7 @@
 [
   {
     "id": "event_added",
-    "name": "Ny avtale opprettet",
+    "name": "Avtale opprettet",
     "variants": [
       {
         "today": 0,
@@ -11,12 +11,12 @@
   },
   {
     "id": "event_added_calendar",
-    "name": "Ny avtale opprettet i [[calendar]]",
+    "name": "Avtale opprettet i [[calendar]]",
     "variants": []
   },
   {
     "id": "event_changed",
-    "name": "En avtale ble endret",
+    "name": "Avtale ble endret",
     "variants": [
       {
         "today": 1,
@@ -26,7 +26,7 @@
   },
   {
     "id": "event_changed_calendar",
-    "name": "En avtale ble endret i [[calendar]]",
+    "name": "Avtale ble endret i [[calendar]]",
     "variants": [
       {
         "calendar": "Test",
@@ -37,7 +37,7 @@
   },
   {
     "id": "event_starts",
-    "name": "En avtale starter",
+    "name": "Avtale starter",
     "variants": [
       {
         "today": 5,
@@ -47,7 +47,7 @@
   },
   {
     "id": "event_starts_calendar",
-    "name": "En avtale starter fra [[calendar]]",
+    "name": "Avtale starter fra [[calendar]]",
     "variants": [
       {
         "calendar": "Test",
@@ -63,7 +63,7 @@
   },
   {
     "id": "event_starts_in",
-    "name": "En avtale starter om [[when]] [[type]]",
+    "name": "Avtale starter om [[when]] [[type]]",
     "variants": [
       {
         "when": 25,
@@ -81,7 +81,7 @@
   },
   {
     "id": "event_stops",
-    "name": "En avtale slutter",
+    "name": "Avtale avsluttes",
     "variants": [
       {
         "today": 5,
@@ -91,7 +91,7 @@
   },
   {
     "id": "event_stops_calendar",
-    "name": "En avtale slutter fra [[calendar]]",
+    "name": "Avtale avsluttes fra [[calendar]]",
     "variants": [
       {
         "calendar": "Test",
@@ -102,7 +102,7 @@
   },
   {
     "id": "event_stops_in",
-    "name": "En avtale slutter om [[when]] [[type]]",
+    "name": "Avtale avsluttes om [[when]] [[type]]",
     "variants": [
       {
         "type": "1",
@@ -114,7 +114,7 @@
   },
   {
     "id": "synchronization_error",
-    "name": "Synkroniseringsfeil oppstått",
+    "name": "Synkroniseringsfeil oppstod",
     "variants": []
   }
 ]

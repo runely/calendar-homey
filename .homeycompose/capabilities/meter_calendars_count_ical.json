@@ -2,11 +2,16 @@
   "type": "number",
   "title": {
     "en": "Calendar count",
-    "no": "Antall kalendere",
-    "nl": "Aantal kalenders",
-    "de": "Anzahl der Kalender",
-    "sv": "Antal kalendrar",
-    "fr": "Nombre de calendriers"
+    "nl": "Kalender aantal",
+    "de": "Kalenderanzahl",
+    "fr": "Nombre de calendriers",
+    "it": "Conteggio calendario",
+    "sv": "Kalenderantal",
+    "no": "Kalenderantall",
+    "es": "Conteo de calendarios",
+    "da": "Kalendertælling",
+    "pl": "Liczba kalendarzy",
+    "ko": "캘린더 수"
   },
   "uiComponent": "sensor",
   "getable": true,
