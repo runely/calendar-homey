@@ -83,6 +83,8 @@ module.exports.triggerChangedCalendars = async (options) => {
   try {
     for await (const calendar of calendars) {
       for await (const event of calendar.events) {
+        const eventDuration = getTokenDuration(app, event)
+
         for await (const changed of event.changed) {
           const tokens = {
             event_name: getTokenValue(event.summary),
@@ -95,7 +97,9 @@ module.exports.triggerChangedCalendars = async (options) => {
             event_start_date: event.start.format(app.variableMgmt.dateTimeFormat.long),
             event_start_time: event.start.format(app.variableMgmt.dateTimeFormat.time),
             event_end_date: event.end.format(app.variableMgmt.dateTimeFormat.long),
-            event_end_time: event.end.format(app.variableMgmt.dateTimeFormat.time)
+            event_end_time: event.end.format(app.variableMgmt.dateTimeFormat.time),
+            event_duration_readable: eventDuration.duration,
+            event_duration: eventDuration.durationMinutes
           }
           console.log('Changed calendar tokens:', tokens)
 

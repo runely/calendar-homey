@@ -274,6 +274,56 @@
       "example": {
         "en": "11:30"
       }
+    },
+    {
+      "name": "event_duration_readable",
+      "type": "string",
+      "title": {
+        "en": "Duration",
+        "nl": "Duur",
+        "de": "Dauer",
+        "fr": "Durée",
+        "it": "Durata",
+        "sv": "Varaktighet",
+        "no": "Varighet",
+        "es": "Duración",
+        "da": "Varighed",
+        "pl": "Czas trwania",
+        "ko": "지속 시간"
+      },
+      "example": {
+        "en": "1.5 hour",
+        "nl": "1.5 uur",
+        "de": "1.5 Stunden",
+        "fr": "1.5 heure",
+        "it": "1.5 ore",
+        "sv": "1.5 timme",
+        "no": "1.5 time",
+        "es": "1.5 horas",
+        "da": "1.5 time",
+        "pl": "1.5 godziny",
+        "ko": "1.5시간"
+      }
+    },
+    {
+      "name": "event_duration",
+      "type": "number",
+      "title": {
+        "en": "Duration in minutes",
+        "nl": "Duur in minuten",
+        "de": "Dauer in Minuten",
+        "fr": "Durée en minutes",
+        "it": "Durata in minuti",
+        "sv": "Varaktighet i minuter",
+        "no": "Varighet i minutter",
+        "es": "Duración en minutos",
+        "da": "Varighed i minutter",
+        "pl": "Czas trwania w minutach",
+        "ko": "지속 시간 (분 단위)"
+      },
+      "example": {
+        "en": "90"
+      }
     }
   ]
 }
