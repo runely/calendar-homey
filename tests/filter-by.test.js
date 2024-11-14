@@ -121,6 +121,28 @@ describe('filterBy', () => {
       expect(result[1].events.length).toBe(0)
     })
 
+    test('Return 2 calendars with 1 event in the first calendar and 0 events in the second calendar - summary "One - 1"', () => {
+      const result = filterByProperty(calendars, 'One - 1', 'summary')
+      expect(Array.isArray(result)).toBeTruthy()
+      expect(result.length).toBe(2)
+      expect(result[0].name).toBe('CalendarOne')
+      expect(result[0].events.length).toBe(1)
+      expect(result[0].events[0].summary).toBe('One - 1')
+      expect(result[1].name).toBe('CalendarTwo')
+      expect(result[1].events.length).toBe(0)
+    })
+
+    test('Return 2 calendars with 0 events in the first calendar and 1 event in the second calendar - summary "One - 2"', () => {
+      const result = filterByProperty(calendars, 'One - 2', 'summary')
+      expect(Array.isArray(result)).toBeTruthy()
+      expect(result.length).toBe(2)
+      expect(result[0].name).toBe('CalendarOne')
+      expect(result[0].events.length).toBe(0)
+      expect(result[1].name).toBe('CalendarTwo')
+      expect(result[1].events.length).toBe(1)
+      expect(result[1].events[0].summary).toBe('One - 2')
+    })
+
     test('Return 0 calendars - when calendars does not exist', () => {
       const result = filterByProperty(undefined, 'doesNotMatter', 'summary')
       expect(Array.isArray(result)).toBeTruthy()
