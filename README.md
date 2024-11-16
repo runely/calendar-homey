@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 2.10.0
   - Added `Duration` and `Duration in minutes` to trigger
     `Event changed` [Issue #613](https://github.com/runely/calendar-homey/issues/613)
+  - Dependency updates
 - 2.9.0
     - Translated app into Danish, Italian, Korean, Polish and Spanish. Thanks to ChatGPT
 - 2.8.2
