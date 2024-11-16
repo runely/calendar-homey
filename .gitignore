@@ -3,5 +3,8 @@ node_modules/
 .backlog.md
 **/.DS_Store
 
+# JetBrains Rider
+
+**/.idea/**/*
 # Added by Homey CLI
 /.homeybuild/
