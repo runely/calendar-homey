@@ -388,5 +388,8 @@
   },
   "2.9.0": {
     "en": "Translated app into Danish, Italian, Korean, Polish and Spanish. Thanks to ChatGPT"
+  },
+  "2.10.0": {
+    "en": "Added 'Duration' and 'Duration in minutes' to trigger 'Event changed'. Dependency updates"
   }
 }
