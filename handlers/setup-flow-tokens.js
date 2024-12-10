@@ -7,7 +7,9 @@ module.exports = async (app) => {
       if (token) {
         app.variableMgmt.flowTokens.push(id)
         app.log(`setupFlowTokens: Created flow token '${id}'`)
-      } else app.warn(`setupFlowTokens: Flow token '${id}' not created`)
+      } else {
+        app.warn(`setupFlowTokens: Flow token '${id}' not created`)
+      }
     } catch (ex) {
       app.logError(`setupFlowTokens: Failed to create flow token '${id}'`, ex)
     }

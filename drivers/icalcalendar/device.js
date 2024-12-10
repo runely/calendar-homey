@@ -53,39 +53,45 @@ class MyDevice extends Device {
 
   async updateCalendarsCount () {
     const calendarsConfigured = this.homey.settings.get(this.variableMgmt.setting.icalUris)
-    if (Array.isArray(calendarsConfigured)) {
-      if (this.hasCapability(calendarsCount)) {
-        await this.updateCapabilityValue(calendarsCount, calendarsConfigured.length)
-      } else this.warn('updateCalendarsCount -', calendarsCount, 'capability doesnt exist yet....')
+    if (!Array.isArray(calendarsConfigured)) {
+      this.warn('updateCalendarsCount - No calendars configured yet')
+      return
+    }
 
-      for await (const calendar of calendarsConfigured) {
-        const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
-        const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
-        if (!this.hasCapability(lastSuccessfullSyncLoop)) {
-          await this.newCapability(lastSuccessfullSyncLoop, `${this.homey.__('device.lastSuccessfullSync')} ${calendar.name}`)
-        }
-        if (!this.hasCapability(eventCountPerCalendarLoop)) {
-          await this.newCapability(eventCountPerCalendarLoop, `${this.homey.__('device.eventCountCalendar')} ${calendar.name}`)
+    if (this.hasCapability(calendarsCount)) {
+      await this.updateCapabilityValue(calendarsCount, calendarsConfigured.length)
+    } else {
+      this.warn('updateCalendarsCount -', calendarsCount, 'capability doesnt exist yet....')
+    }
+
+    for await (const calendar of calendarsConfigured) {
+      const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
+      const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
+      if (!this.hasCapability(lastSuccessfullSyncLoop)) {
+        await this.newCapability(lastSuccessfullSyncLoop, `${this.homey.__('device.lastSuccessfullSync')} ${calendar.name}`)
+      }
+      if (!this.hasCapability(eventCountPerCalendarLoop)) {
+        await this.newCapability(eventCountPerCalendarLoop, `${this.homey.__('device.eventCountCalendar')} ${calendar.name}`)
+      }
+    }
+
+    const currentCalendarCapabilities = this.getCapabilities().filter((capability) => capability.includes(lastSuccessfullSync) || capability.includes(eventCountPerCalendar)).map((capability) => capability.replace(`${lastSuccessfullSync}.`, '').replace(`${eventCountPerCalendar}.`, ''))
+    const currentCalendarNames = [...new Set(currentCalendarCapabilities)]
+    if (currentCalendarNames.length <= 0) {
+      this.warn('updateCalendarsCount - No calendar capabilities found', this.getCapabilities())
+      return
+    }
+
+    for await (const calendarName of currentCalendarNames) {
+      if (!calendarsConfigured.find((calendar) => calendar.name === calendarName)) {
+        this.warn('updateCalendarsCount -', calendarName, 'is no longer a configured calendar but has still registered capabilities. Removing capabilities for this calendar')
+        try {
+          await this.removeCapability(`${lastSuccessfullSync}.${calendarName}`)
+          await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`)
+        } catch (ex) {
+          this.logError('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
         }
       }
-
-      const currentCalendarCapabilities = this.getCapabilities().filter((capability) => capability.includes(lastSuccessfullSync) || capability.includes(eventCountPerCalendar)).map((capability) => capability.replace(`${lastSuccessfullSync}.`, '').replace(`${eventCountPerCalendar}.`, ''))
-      const currentCalendarNames = [...new Set(currentCalendarCapabilities)]
-      if (currentCalendarNames.length > 0) {
-        for await (const calendarName of currentCalendarNames) {
-          if (!calendarsConfigured.find((calendar) => calendar.name === calendarName)) {
-            this.warn('updateCalendarsCount -', calendarName, 'is no longer a configured calendar but has still registered capabilities. Removing capabilities for this calendar')
-            try {
-              await this.removeCapability(`${lastSuccessfullSync}.${calendarName}`)
-              await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`)
-            } catch (ex) {
-              this.logError('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
-            }
-          }
-        }
-      } else this.warn('updateCalendarsCount - No calendar capabilities found', this.getCapabilities())
-    } else {
-      this.warn('updateCalendarsCount - No calendars configured yet')
     }
   }
 
@@ -98,25 +104,32 @@ class MyDevice extends Device {
       return
     }
 
-    calendarsMetadata.forEach(async (calendar) => {
+    for await (const calendar of calendarsMetadata) {
       const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
       const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
       if (this.hasCapability(eventCountPerCalendarLoop)) {
         await this.updateCapabilityValue(eventCountPerCalendarLoop, calendar.eventCount)
-      } else this.warn('updateCalendarsMetadata -', eventCountPerCalendarLoop, 'capability doesnt exist yet....')
+      } else {
+        this.warn('updateCalendarsMetadata -', eventCountPerCalendarLoop, 'capability doesnt exist yet....')
+      }
 
       if (this.hasCapability(lastSuccessfullSyncLoop)) {
         await this.updateCapabilityValue(lastSuccessfullSyncLoop, moment({ timezone: this.getTimezone(), date: new Date(calendar.lastSuccessfullSync || '01.01.1970 00:00:00') }).format('DD.MM.YYYY HH:mm:ss'))
-      } else this.warn('updateCalendarsMetadata -', lastSuccessfullSyncLoop, 'capability doesnt exist yet....')
-    })
+      } else {
+        this.warn('updateCalendarsMetadata -', lastSuccessfullSyncLoop, 'capability doesnt exist yet....')
+      }
+    }
 
-    if (this.hasCapability(totalEventCount)) {
-      const eventCount = calendarsMetadata.reduce((prev, acc) => {
-        prev += acc.eventCount
-        return prev
-      }, 0)
-      await this.updateCapabilityValue(totalEventCount, eventCount)
-    } else this.warn('updateCalendarsMetadata -', totalEventCount, 'capability doesnt exist yet....')
+    if (!this.hasCapability(totalEventCount)) {
+      this.warn('updateCalendarsMetadata -', totalEventCount, 'capability doesnt exist yet....')
+      return
+    }
+
+    const eventCount = calendarsMetadata.reduce((prev, acc) => {
+      prev += acc.eventCount
+      return prev
+    }, 0)
+    await this.updateCapabilityValue(totalEventCount, eventCount)
   }
 
   async updateCapabilityValue (id, value) {

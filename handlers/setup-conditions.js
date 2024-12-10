@@ -230,7 +230,9 @@ const checkEvent = async (timezone, app, args, state, type) => {
     }
 
     return false
-  } else if (type === 'event_containing_calendar_stops') {
+  }
+
+  if (type === 'event_containing_calendar_stops') {
     const inMinutes = convertToMinutes(args.when, args.type)
     const nextEvent = getNextEventValue({ calendars: filteredEvents, specificCalendarName: args.calendar.name, value: args.value, eventType: 'ends', timezone })
     if (Object.keys(nextEvent).length > 0) {
@@ -241,7 +243,9 @@ const checkEvent = async (timezone, app, args, state, type) => {
     }
 
     return false
-  } else if (type === 'equal_in') {
+  }
+
+  if (type === 'equal_in') {
     if ((args.property === undefined || args.property === '') || (args.value === undefined || args.value === '')) {
       app.warn('checkEvent: Equal_in : property or value is missing! Returning false')
       return false
@@ -256,7 +260,9 @@ const checkEvent = async (timezone, app, args, state, type) => {
       app.log(`checkEvent: Equal_in found ${filteredEvents[0].events.length} events in calendar ${filteredEvents[0].name} matching '${args.property}' with '${args.value}'. No timeframe given (when:'${args.when}', type:'${args.type}')! Returning true`)
       return true
     }
-  } else if (type === 'match_in') {
+  }
+
+  if (type === 'match_in') {
     if ((args.property === undefined || args.property === '') || (args.matcher === undefined || args.matcher === '') || (args.value === undefined || args.value === '')) {
       app.warn('checkEvent: Match_in : property, matcher or value is missing! Returning false')
       return false
@@ -279,32 +285,41 @@ const checkEvent = async (timezone, app, args, state, type) => {
     }
 
     app.log(`checkEvent: Checking ${calendar.events.length} events from '${calendar.name}'`)
-    let eventCondition = false
 
     if (type === 'ongoing') {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = isEventOngoing(app, timezone, calendar.events)
+      return isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Ongoing? ${eventCondition}`);
-    } else if (['in', 'equal_in', 'match_in'].includes(type)) {
+    }
+
+    if (['in', 'equal_in', 'match_in'].includes(type)) {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
+      return isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Starting within ${args.when} minutes or less? ${eventCondition}`);
-    } else if (type === 'stops_in') {
+    }
+
+    if (type === 'stops_in') {
       // app.log(`checkEvent: I got an event with UID '${args.event.id}' and SUMMARY '${args.event.name}'`);
-      eventCondition = willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
+      return willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Ending within less than ${args.when} minutes? ${eventCondition}`);
-    } else if (['any_ongoing', 'any_ongoing_calendar', 'event_containing_calendar_ongoing'].includes(type)) {
-      eventCondition = isEventOngoing(app, timezone, calendar.events)
+    }
+
+    if (['any_ongoing', 'any_ongoing_calendar', 'event_containing_calendar_ongoing'].includes(type)) {
+      return isEventOngoing(app, timezone, calendar.events)
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events ongoing? ${eventCondition}`);
-    } else if (['any_in_calendar', 'any_in'].includes(type)) {
-      eventCondition = isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
+    }
+
+    if (['any_in_calendar', 'any_in'].includes(type)) {
+      return isEventIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events starting within ${args.when} minutes or less? ${eventCondition}`);
-    } else if (type === 'any_stops_in') {
-      eventCondition = willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
+    }
+
+    if (type === 'any_stops_in') {
+      return willEventNotIn(app, timezone, calendar.events, convertToMinutes(args.when, args.type))
       // app.log(`checkEvent: Is any of the ${calendar.events.length} events ending within ${args.when} minutes or less? ${eventCondition}`);
     }
 
-    return eventCondition
+    return false
   })
 }
 
@@ -317,18 +332,18 @@ const checkEvent = async (timezone, app, args, state, type) => {
 /**
  * @param {SetupConditionsOptions} options
  */
-const setupConditions = (options) => {
+const setupConditions = (app, timezone) => {
   // register condition flow cards
-  const { timezone, app } = options
   cards.forEach(({ id, runListenerId, autocompleteListener }) => {
     const conditionCard = app.homey.flow.getConditionCard(id)
     conditionCard.registerRunListener((args, state) => checkEvent(timezone, app, args, state, runListenerId))
     if (autocompleteListener.argumentId && autocompleteListener.id) {
       if (autocompleteListener.id === 'calendar') {
         conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => calendarAutocomplete(app, query))
-      } else {
-        conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, autocompleteListener.id))
+        return
       }
+
+      conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, autocompleteListener.id))
     }
   })
 }

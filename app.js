@@ -2,7 +2,6 @@
 
 const Homey = require('homey')
 const ical = require('node-ical')
-const { Blob } = require('node:buffer')
 
 const varMgmt = require('./lib/variable-management')
 const getDateTimeFormat = require('./lib/get-datetime-format')
@@ -51,27 +50,17 @@ class IcalCalendar extends Homey.App {
     // get date and time format as an object
     this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
 
-    // setup triggers
     setupTriggers(this)
 
-    // setup flow tokens
     await setupFlowTokens(this)
 
-    // make sure sync interval is set to custom or default
-    const syncInterval = this.homey.settings.get(this.variableMgmt.setting.syncInterval)
-    if (!syncInterval) {
-      const syncIntervalDefault = { auto: true, cron: '15 */15 * * * *' }
-      this.homey.settings.set(this.variableMgmt.setting.syncInterval, syncIntervalDefault)
-      this.log('onInit: Default sync interval settings set:', syncIntervalDefault)
-    } else {
-      this.log('onInit: Sync interval settings:', syncInterval)
-    }
+    this.getSyncInterval()
 
     // register cron jobs
     this.startJobs()
 
     // setup conditions
-    setupConditions({ timezone: this.getTimezone(), app: this })
+    setupConditions(this, this.getTimezone())
 
     // setup actions
     setupActions(this)
@@ -81,23 +70,7 @@ class IcalCalendar extends Homey.App {
     this.getEvents(true)
 
     // register callback when settings has been set
-    this.homey.settings.on('set', (args) => {
-      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
-        // sync calendars when calendar specific settings have been changed
-        if (!this.isGettingEvents) {
-          this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
-          this.getEvents(true)
-        } else {
-          this.log(`onInit/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
-        }
-      } else if (args && [this.variableMgmt.setting.dateFormatLong, this.variableMgmt.setting.dateFormatShort, this.variableMgmt.setting.timeFormat].includes(args)) {
-        // get new date/time format
-        this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
-      } else if (args && [this.variableMgmt.setting.syncInterval].includes(args)) {
-        // adjust synchronization interval
-        this.startJobs('update')
-      }
-    })
+    this.registerSettingCallbacks()
 
     this._unload = (name) => {
       this.variableMgmt = null
@@ -114,16 +87,61 @@ class IcalCalendar extends Homey.App {
     }
 
     this.homey.on('unload', () => {
-      if (typeof this._unload === 'function') {
-        this.log('unload -- calling this._unload')
-        this._unload('unload')
-      } else this.warn('unload -- this._unload is not a function')
+      if (typeof this._unload !== 'function') {
+        this.warn('unload -- this._unload is not a function')
+        return
+      }
+
+      this.log('unload -- calling this._unload')
+      this._unload('unload')
+    })
+  }
+
+  getSyncInterval () {
+    const syncInterval = this.homey.settings.get(this.variableMgmt.setting.syncInterval)
+    if (syncInterval) {
+      this.log('onInit: Sync interval settings:', syncInterval)
+      return
+    }
+
+    const syncIntervalDefault = { auto: true, cron: '15 */15 * * * *' }
+    this.homey.settings.set(this.variableMgmt.setting.syncInterval, syncIntervalDefault)
+    this.log('onInit: Default sync interval settings set:', syncIntervalDefault)
+  }
+
+  registerSettingCallbacks () {
+    this.homey.settings.on('set', (args) => {
+      if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
+        // sync calendars when calendar specific settings have been changed
+        if (this.isGettingEvents) {
+          this.log(`onInit/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
+          return
+        }
+
+        this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
+        this.getEvents(true)
+        return
+      }
+
+      if (args && [this.variableMgmt.setting.dateFormatLong, this.variableMgmt.setting.dateFormatShort, this.variableMgmt.setting.timeFormat].includes(args)) {
+        // get new date/time format
+        this.variableMgmt.dateTimeFormat = getDateTimeFormat(this)
+        return
+      }
+
+      if (args && [this.variableMgmt.setting.syncInterval].includes(args)) {
+        // adjust synchronization interval
+        this.startJobs('update')
+      }
     })
   }
 
   getWorkTime (start, end) {
     const seconds = (end - start) / 1000
-    if (seconds > 60) return `${seconds / 60} minutes`
+    if (seconds > 60) {
+      return `${seconds / 60} minutes`
+    }
+
     return `${seconds} seconds`
   }
 
@@ -160,7 +178,9 @@ class IcalCalendar extends Homey.App {
 
     // get ical events
     this.log(`getEvents: Getting ${calendars.length} calendars in timezone '${this.getTimezone()}'`)
-    if (logAllEvents) this.log('getEvents: Debug - logAllEvents active')
+    if (logAllEvents) {
+      this.log('getEvents: Debug - logAllEvents active')
+    }
     const retrieveCalendarsStart = new Date()
 
     for (let i = 0; i < calendars.length; i++) {
@@ -169,7 +189,9 @@ class IcalCalendar extends Homey.App {
       if (uri === '') {
         this.warn(`getEvents: Calendar '${name}' has empty uri. Skipping...`)
         continue
-      } else if (!/(http|https|webcal):\/\/.+/gi.exec(uri)) {
+      }
+
+      if (!/(http|https|webcal):\/\/.+/gi.exec(uri)) {
         this.warn(`getEvents: Uri for calendar '${name}' is invalid. Skipping...`)
         calendars[i] = { name, uri, failed: `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"` }
         errors.push(calendars[i].failed)
@@ -207,7 +229,7 @@ class IcalCalendar extends Homey.App {
           await triggerSynchronizationError({ app: this, calendar: name, error: innerError })
           calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
 
-          // set a failed setting value to show a error message on settings page
+          // set a failed setting value to show an error message on settings page
           calendars[i] = { name, uri, failed: fallbackErrorString }
           this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
           this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
@@ -224,11 +246,10 @@ class IcalCalendar extends Homey.App {
 
         const retrieveCalendarEnd = new Date()
         try {
-          const totalEventsSize = new Blob([JSON.stringify(data)]).size / 1000
+          this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
           this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Total event size for calendar: ${totalEventsSize}KB. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
           let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
-          const activeEventsSize = new Blob([JSON.stringify(activeEvents)]).size / 1000
-          this.log(`getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Event size: ${activeEventsSize}KB. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())}`)
+          this.log(`getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())}`)
           calendarsEvents.push({ name, events: activeEvents })
           calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
           activeEvents = null
@@ -239,7 +260,7 @@ class IcalCalendar extends Homey.App {
           await triggerSynchronizationError({ app: this, calendar: name, error })
           calendarsMetadata.push({ name, eventCount: 0, lastFailedSync: moment({ timezone: this.getTimezone() }) })
 
-          // set a failed setting value to show a error message on settings page
+          // set a failed setting value to show an error message on settings page
           calendars[i] = { name, uri, failed: errorString }
           this.homey.settings.set(this.variableMgmt.setting.icalUris, calendars)
           this.warn(`getEvents: Added 'error' setting value to calendar '${name}'`)
@@ -290,12 +311,11 @@ class IcalCalendar extends Homey.App {
 
     this.variableMgmt.calendars = calendarsEvents
     sortCalendarsEvents(this.variableMgmt.calendars)
-    const allEventSize = new Blob([JSON.stringify(this.variableMgmt.calendars)]).size / 1000
     const allEventCount = this.variableMgmt.calendars.reduce((curr, acu) => {
       curr += acu.events.length
       return curr
     }, 0)
-    this.log(`getEvents: All events count: ${allEventCount}. All event size: ${allEventSize}KB. Time used: ${this.getWorkTime(retrieveCalendarsStart, new Date())}`)
+    this.log(`getEvents: All events count: ${allEventCount}. Time used: ${this.getWorkTime(retrieveCalendarsStart, new Date())}`)
     this.homey.settings.set(this.variableMgmt.storage.calendarsMetadata, JSON.stringify(calendarsMetadata))
 
     if (reregisterCalendarTokens) {
@@ -308,10 +328,10 @@ class IcalCalendar extends Homey.App {
             if (token) {
               this.log(`getEvents: Calendar token '${token.id}' starting to flush`)
               return token.unregister()
-            } else {
-              this.warn(`getEvents: Calendar token '${tokenId}' not found`)
-              return Promise.resolve()
             }
+
+            this.warn(`getEvents: Calendar token '${tokenId}' not found`)
+            return Promise.resolve()
           } catch (ex) {
             this.logError(`getEvents: Failed to get calendar token '${tokenId}'`, ex)
           }
@@ -329,10 +349,10 @@ class IcalCalendar extends Homey.App {
             if (token) {
               this.log(`getEvents: Next event with token '${tokenId}' starting to flush`)
               return token.unregister()
-            } else {
-              this.warn(`getEvents: Next event with token '${tokenId}' not found`)
-              return Promise.resolve()
             }
+
+            this.warn(`getEvents: Next event with token '${tokenId}' not found`)
+            return Promise.resolve()
           } catch (ex) {
             this.logError(`getEvents: Failed to get next event with token '${tokenId}'`, ex)
           }
@@ -347,16 +367,17 @@ class IcalCalendar extends Homey.App {
       // register calendar tokens
       if (this.variableMgmt.calendars.length > 0) {
         await Promise.all(this.variableMgmt.calendars.map(async (calendar) => {
-          // register todays and tomorrows events pr calendar
+          // register todays and tomorrow's events pr calendar
           generateTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
             try {
-              const token = await this.homey.flow.createToken(id, { type, title })
+              const token = await this.homey.flow.createToken(id, { type, title, value: '' })
               if (token) {
                 this.variableMgmt.calendarTokens.push(id)
                 this.log(`getEvents: Created calendar token '${id}'`)
-              } else {
-                this.warn(`getEvents: Calendar token '${id}' not created`)
+                return Promise.resolve()
               }
+
+              this.warn(`getEvents: Calendar token '${id}' not created`)
             } catch (ex) {
               this.logError(`getEvents: Failed to create calendar token '${id}'`, ex)
             }
@@ -367,13 +388,14 @@ class IcalCalendar extends Homey.App {
           if (nextEventTokensPerCalendar) {
             generatePerCalendarTokens({ app: this, variableMgmt: this.variableMgmt, calendarName: calendar.name }).map(async ({ id, type, title }) => {
               try {
-                const token = await this.homey.flow.createToken(id, { type, title })
+                const token = await this.homey.flow.createToken(id, { type, title, value: '' })
                 if (token) {
                   this.variableMgmt.calendarTokens.push(id)
                   this.log(`getEvents: Created per calendar token '${id}'`)
-                } else {
-                  this.warn(`getEvents: Per calendar token '${id}' not created`)
+                  return Promise.resolve()
                 }
+
+                this.warn(`getEvents: Per calendar token '${id}' not created`)
               } catch (ex) {
                 this.logError(`getEvents: Failed to create per calendar token '${id}'`, ex)
               }
@@ -386,7 +408,7 @@ class IcalCalendar extends Homey.App {
         this.variableMgmt.nextEventWithTokens = []
         for await (const { id, type, title } of generateNextEventTokens({ app: this, variableMgmt: this.variableMgmt })) {
           try {
-            const token = await this.homey.flow.createToken(id, { type, title })
+            const token = await this.homey.flow.createToken(id, { type, title, value: '' })
             if (token) {
               this.variableMgmt.nextEventWithTokens.push(id)
               this.log(`getEvents: Created next event with token '${id}'`)
@@ -407,7 +429,9 @@ class IcalCalendar extends Homey.App {
       this.log(`getEvents: Next update in UTC: ${this.jobs.update.nextRun()}`)
     }
 
-    if (errors.length > 0) return errors
+    if (errors.length > 0) {
+      return errors
+    }
   }
 
   startJobs (type) {
@@ -415,7 +439,9 @@ class IcalCalendar extends Homey.App {
       if (this.isGettingEvents) {
         this.warn('startJobs/update: Wont update calendars from this job since getEvents is already running')
         return
-      } else if (this.gettingEventsLastRun && ((new Date() - this.gettingEventsLastRun) / 1000 / 60) < 5) {
+      }
+
+      if (this.gettingEventsLastRun && ((new Date() - this.gettingEventsLastRun) / 1000 / 60) < 5) {
         this.warn('startJobs/update: Wont update calendars from this job since there\'s less than 5 minutes since getEvents was last executed:', this.gettingEventsLastRun)
         return
       }
@@ -456,7 +482,9 @@ class IcalCalendar extends Homey.App {
           this.log('startJobs/trigger: Updating tokens and triggering events')
           await updateTokens({ timezone: this.getTimezone(), app: this })
           await triggerEvents({ timezone: this.getTimezone(), app: this })
-        } else if (this.variableMgmt.calendars && this.variableMgmt.calendars.length === 0) this.warn('startJobs/trigger: Wont update tokens and trigger events since theres no calendars. Calendars:', this.variableMgmt.calendars)
+        } else if (this.variableMgmt.calendars && this.variableMgmt.calendars.length === 0) {
+          this.warn('startJobs/trigger: Wont update tokens and trigger events since theres no calendars. Calendars:', this.variableMgmt.calendars)
+        }
       })
 
       // calendar update by cron syntax
@@ -478,7 +506,11 @@ class IcalCalendar extends Homey.App {
 
       this.jobs.update = addJob(interval.cron, updateFunc)
       this.log(`startJobs: Auto update enabled with cron value '${interval.cron}'. Next update in UTC: ${this.jobs.update.nextRun()}`)
-    } else if (type === 'update') {
+
+      return
+    }
+
+    if (type === 'update') {
       if (this.jobs && this.jobs.update && typeof this.jobs.update.stop === 'function') {
         this.jobs.update.stop()
       }
@@ -510,10 +542,13 @@ class IcalCalendar extends Homey.App {
    * onUninit method is called when your app is destroyed
    */
   async onUninit () {
-    if (typeof this._unload === 'function') {
-      this.log('onUninit -- calling this._unload')
-      this._unload('onUninit')
-    } else this.warn('onUninit -- this._unload is not a function')
+    if (typeof this._unload !== 'function') {
+      this.warn('onUninit -- this._unload is not a function')
+      return
+    }
+
+    this.log('onUninit -- calling this._unload')
+    this._unload('onUninit')
   }
 }
 

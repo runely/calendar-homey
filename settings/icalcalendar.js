@@ -56,8 +56,8 @@ function onHomeyReady (Homey) {
     const columnLastTriggeredElem = document.createElement('td')
 
     columnNameElem.innerText = name
-    columnTodayElem.innerText = todayCount
-    columnTotalElem.innerText = totalCount
+    columnTodayElem.innerText = todayCount.toString()
+    columnTotalElem.innerText = totalCount.toString()
     columnLastTriggeredElem.innerText = lastTriggered
     rowElement.appendChild(columnNameElem)
     rowElement.appendChild(columnTodayElem)
@@ -68,21 +68,29 @@ function onHomeyReady (Homey) {
 
   // get uris from settings
   Homey.get(settingsUris, (err, uris) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getCalendarItems(uris)
   })
 
   Homey.get(settingsSyncInterval, (err, interval) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getSyncInterval(interval)
   })
 
   // get event limit from settings
   Homey.get(settingsEventLimit, (err, limit) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     if (!limit) {
       Homey.set(settingsEventLimit, eventLimitDefault, function (err) {
-        if (err) return Homey.alert(err)
+        if (err) {
+          return Homey.alert(err)
+        }
       })
       limit = eventLimitDefault
     }
@@ -92,43 +100,57 @@ function onHomeyReady (Homey) {
 
   // get date long from settings
   Homey.get(settingsDateFormatLong, (err, date) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getDateTimeFormat('date-long', date)
   })
 
   // get date short from settings
   Homey.get(settingsDateFormatShort, (err, date) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getDateTimeFormat('date-short', date)
   })
 
   // get time from settings
   Homey.get(settingsTimeFormat, (err, time) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getDateTimeFormat('time', time)
   })
 
   // get nextEventTokensPerCalendar from settings
   Homey.get(settingsMiscNextEventTokensPerCalendar, (err, state) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getMiscSetting(settingsMiscNextEventTokensPerCalendar, state)
   })
 
   // get triggerAllChangedEventTypes
   Homey.get(triggerAllChangedEventTypes, (err, state) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getMiscSetting(triggerAllChangedEventTypes, state)
   })
 
   // get logAllEvents from settings
   Homey.get(settingsDebugLogAllEvents, (err, state) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     getDebugSetting(settingsDebugLogAllEvents, state)
   })
 
   // get hitCountData
   Homey.get(hitCountDataPath, (err, hitCountData) => {
-    if (err) return Homey.alert(err)
+    if (err) {
+      return Homey.alert(err)
+    }
     if (!Array.isArray(hitCountData)) {
       if (!hitCountData) {
         hitCountData = []
@@ -140,37 +162,44 @@ function onHomeyReady (Homey) {
     hitCountData.forEach((hitCount) => {
       if (hitCount.variants.length === 0) {
         addHitCountRow(hitCount.name)
-      } else {
-        hitCount.variants.forEach((variant) => {
-          let name = hitCount.name
-          for (const match of name.matchAll(/(\[\[.\w+]])/g)) {
-            if (!match || match.length <= 0 || typeof match[0] !== 'string') { continue }
+        return
+      }
 
-            const m = match[0]
-            const a = m.replace('[[', '').replace(']]', '')
-            const av = a === 'type' ? Homey.__(`hitcount.typeLabels.${variant[a]}`) : variant[a]
-            name = name.replace(m, av)
+      hitCount.variants.forEach((variant) => {
+        let name = hitCount.name
+        for (const match of name.matchAll(/(\[\[.\w+]])/g)) {
+          if (!match || match.length <= 0 || typeof match[0] !== 'string') {
+            continue
           }
 
-          addHitCountRow(name, variant.today, variant.total, variant.lastTriggered)
-        })
-      }
+          const m = match[0]
+          const a = m.replace('[[', '').replace(']]', '')
+          const av = a === 'type' ? Homey.__(`hitcount.typeLabels.${variant[a]}`) : variant[a]
+          name = name.replace(m, av)
+        }
+
+        addHitCountRow(name, variant.today, variant.total, variant.lastTriggered)
+      })
     })
   })
 
   // save settings
-  saveElement.addEventListener('click', function (e) {
+  saveElement.addEventListener('click', function () {
     // save date to settings
     const savedDateFormatLong = saveDateTimeFormat('date-long')
     if (savedDateFormatLong) {
       Homey.set(settingsDateFormatLong, savedDateFormatLong, function (err) {
-        if (err) return Homey.alert(err)
+        if (err) {
+          return Homey.alert(err)
+        }
       })
 
       const savedDateFormatShort = saveDateTimeFormat('date-short')
       if (savedDateFormatShort) {
         Homey.set(settingsDateFormatShort, savedDateFormatShort, function (err) {
-          if (err) return Homey.alert(err)
+          if (err) {
+            return Homey.alert(err)
+          }
         })
       } else {
         return
@@ -180,7 +209,9 @@ function onHomeyReady (Homey) {
       const savedTimeFormat = saveDateTimeFormat('time')
       if (savedTimeFormat) {
         Homey.set(settingsTimeFormat, savedTimeFormat, function (err) {
-          if (err) return Homey.alert(err)
+          if (err) {
+            return Homey.alert(err)
+          }
         })
       } else {
         return
@@ -191,31 +222,43 @@ function onHomeyReady (Homey) {
 
     // save limit to settings
     Homey.set(settingsEventLimit, saveEventLimit(), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     // save tokensPerCalendar to settings
     Homey.set(settingsMiscNextEventTokensPerCalendar, saveMiscSetting(settingsMiscNextEventTokensPerCalendar), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     // save triggerAllChangedEventTypes to settings
     Homey.set(triggerAllChangedEventTypes, saveMiscSetting(triggerAllChangedEventTypes), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     // save logAllEvents to settings
     Homey.set(settingsDebugLogAllEvents, saveDebugSetting(settingsDebugLogAllEvents), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     Homey.set(settingsSyncInterval, saveSyncInterval(), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     // save uri to settings (THIS SHOULD BE THE LAST THING BEING SAVED to prevent fetching calendars if there's other settings to be saved first)
     Homey.set(settingsUris, saveCalendarItems(), function (err) {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
     })
 
     hideError()
@@ -223,14 +266,16 @@ function onHomeyReady (Homey) {
   })
 
   // add new calendar item
-  newItemElement.addEventListener('click', function (e) {
+  newItemElement.addEventListener('click', function () {
     newCalendarItem()
   })
 
   // reset hitCountData
-  resetElement.addEventListener('click', function (e) {
+  resetElement.addEventListener('click', function () {
     Homey.get(hitCountDataPath, async (err, hitCountData) => {
-      if (err) return Homey.alert(err)
+      if (err) {
+        return Homey.alert(err)
+      }
       if (!Array.isArray(hitCountData)) {
         if (!hitCountData) {
           hitCountData = []
@@ -244,14 +289,18 @@ function onHomeyReady (Homey) {
       }
 
       const shouldReset = await Homey.confirm(Homey.__('hitcount.panel.resetConfirm'))
-      if (!shouldReset) { return }
+      if (!shouldReset) {
+        return
+      }
 
       hitCountData.forEach((hitCount) => {
         hitCount.variants = []
       })
 
       Homey.set(hitCountDataPath, JSON.stringify(hitCountData), function (err) {
-        if (err) return Homey.alert(err)
+        if (err) {
+          return Homey.alert(err)
+        }
 
         for (let i = 0; i < 10; i++) {
           for (const child of hitCountTable.children) { hitCountTable.removeChild(child) }
@@ -285,7 +334,7 @@ function onHomeyReady (Homey) {
 function newCalendarItem (name = null, uri = null) {
   const calendars = document.getElementById('calendars')
   const newElementIndex = (calendars.children.length + 1)
-  const newElement = document.getElementsByClassName('clonable')[0].cloneNode(1)
+  const newElement = document.getElementsByClassName('clonable')[0].cloneNode(true)
 
   // reset element
   newElement.classList = ''
@@ -378,7 +427,7 @@ function saveCalendarItems () {
     let uri = calendar.children[8].value
 
     // Replace webcal:// urls (from iCloud) with https://
-    // WARNING: Apple iCal URL's are case sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
+    // WARNING: Apple iCal URLs are case-sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
     uri = uri.replace('webcal://', 'https://')
 
     // control that uri starts with 'http://' || 'https://'

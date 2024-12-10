@@ -13,9 +13,10 @@ const updateToken = async (tokenId, value, app) => {
     const token = app.homey.flow.getToken(tokenId)
     if (token) {
       await token.setValue(value)
-    } else {
-      app.warn(`updateToken: Token with id '${tokenId}' not found`)
+      return
     }
+
+    app.warn(`updateToken: Token with id '${tokenId}' not found`)
   } catch (error) {
     app.logError(`updateToken: Failed to update token '${tokenId}': ${error.message || error}`)
   }

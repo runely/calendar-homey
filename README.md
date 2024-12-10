@@ -213,6 +213,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.11.0
+  - Fixed some linter warnings
 - 2.10.0
   - Added `Duration` and `Duration in minutes` to trigger
     `Event changed` [Issue #613](https://github.com/runely/calendar-homey/issues/613)
