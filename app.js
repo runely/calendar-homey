@@ -247,7 +247,6 @@ class IcalCalendar extends Homey.App {
         const retrieveCalendarEnd = new Date()
         try {
           this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
-          this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Total event size for calendar: ${totalEventsSize}KB. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
           let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
           this.log(`getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())}`)
           calendarsEvents.push({ name, events: activeEvents })
