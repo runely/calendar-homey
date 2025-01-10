@@ -41,4 +41,8 @@ for await (const calendar of metadata) {
 
 console.log('Total events from calendar(s):', eventCount)
 
-return eventCount > 0
+if (eventCount === 0) {
+  throw new Error('0 events found in calendar(s)')
+}
+
+return true
