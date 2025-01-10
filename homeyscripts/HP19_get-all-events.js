@@ -1,6 +1,6 @@
 // if set to undefined, all calendars will be fetched
 // if set to a calendar name, for instance 'Test', only events from calendar with name 'Test' will be fetched
-const calendarName = 'Rune'
+const calendarName = 'Test'
 
 const metadataResult = await Homey.flow.runFlowCardAction({
   uri: 'homey:app:no.runely.calendar',
