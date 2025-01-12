@@ -391,5 +391,8 @@
   },
   "2.10.0": {
     "en": "Added 'Duration' and 'Duration in minutes' to trigger 'Event changed'. Dependency updates"
+  },
+  "2.10.1": {
+    "en": "Dependency updates"
   }
 }
