@@ -213,7 +213,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 2.11.0
+- 2.10.1
   - Fixed some linter warnings
   - Dependency updates
 - 2.10.0
