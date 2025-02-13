@@ -2,14 +2,19 @@
 
 const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
-const { setupHitCount } = require('../lib/hit-count')
+const { updateHitCount, setupHitCount } = require('../lib/hit-count')
 
 module.exports = (app) => {
   // add minutes in trigger listeners
   for (const triggerId of ['event_starts_in', 'event_stops_in']) {
     app.homey.flow.getTriggerCard(triggerId).registerRunListener((args, state) => {
       const minutes = convertToMinutes(args.when, args.type)
-      return minutes === state.when
+      const willTrigger = minutes === state.when
+      if (willTrigger) {
+        app.log('Triggered', triggerId, '. With minutes:', minutes, '. With state:', state, '. With args:', args)
+        updateHitCount(app, triggerId, args)
+      }
+      return willTrigger
     })
   }
 
@@ -17,7 +22,12 @@ module.exports = (app) => {
   for (const triggerId of ['event_starts_calendar', 'event_stops_calendar', 'event_added_calendar', 'event_changed_calendar']) {
     const eventCalendar = app.homey.flow.getTriggerCard(triggerId)
     eventCalendar.registerRunListener((args, state) => {
-      return args.calendar.name === state.calendarName
+      const willTrigger = args.calendar.name === state.calendarName
+      if (willTrigger) {
+        app.log('Triggered', triggerId, '. With state:', state, '. With args:', args)
+        updateHitCount(app, triggerId, { calendar: args.calendar.name })
+      }
+      return willTrigger
     })
 
     eventCalendar.registerArgumentAutocompleteListener('calendar', (query, args) => {
