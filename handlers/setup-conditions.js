@@ -159,6 +159,7 @@ const getEventList = (timezone, app, calendars) => {
         endStamp = ''
 
         triggerSynchronizationError({ app, calendar: calendar.name, error, event })
+          .catch((err) => app.logError(`getEventList: Failed to trigger synchronization error: ${err}`))
       }
 
       const name = event.summary
@@ -324,13 +325,8 @@ const checkEvent = async (timezone, app, args, state, type) => {
 }
 
 /**
- * @typedef {Object} SetupConditionsOptions
- * @prop {String} timezone The timezone to use on events (IANA)
- * @prop {Homey.App} app App class inited by Homey
- */
-
-/**
- * @param {SetupConditionsOptions} options
+ * @param {Homey.App} app App class init by Homey
+ * @param {String} timezone The timezone to use on events (IANA)
  */
 const setupConditions = (app, timezone) => {
   // register condition flow cards
@@ -339,11 +335,11 @@ const setupConditions = (app, timezone) => {
     conditionCard.registerRunListener((args, state) => checkEvent(timezone, app, args, state, runListenerId))
     if (autocompleteListener.argumentId && autocompleteListener.id) {
       if (autocompleteListener.id === 'calendar') {
-        conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => calendarAutocomplete(app, query))
+        conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, _) => calendarAutocomplete(app, query))
         return
       }
 
-      conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, args) => onEventAutocomplete(timezone, app, query, autocompleteListener.id))
+      conditionCard.registerArgumentAutocompleteListener(autocompleteListener.argumentId, (query, _) => onEventAutocomplete(timezone, app, query, autocompleteListener.id))
     }
   })
 }

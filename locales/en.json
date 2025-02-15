@@ -99,8 +99,8 @@
         }
     },
     "calendarTokens": {
-        "events_today_calendar_title_stamps": "Todays events in",
-        "events_today_calendar_count": "Todays events (count) in",
+        "events_today_calendar_title_stamps": "Today's events in",
+        "events_today_calendar_count": "Today's events (count) in",
         "events_tomorrow_calendar_title_stamps": "Tomorrows events in",
         "events_tomorrow_calendar_count": "Tomorrows events (count) in",
         "event_next_title_calendar": "Next event title in",
@@ -122,9 +122,9 @@
         "event_next_stops_in_minutes": "Next event ends in (minutes)",
         "event_next_description": "Next event description",
         "event_next_calendar_name": "Calendar name of next event",
-        "events_today_title_stamps": "Todays events, title and time",
+        "events_today_title_stamps": "Today's events, title and time",
         "events_tomorrow_title_stamps": "Tomorrows events, title and time",
-        "events_today_count": "Todays events (count)",
+        "events_today_count": "Today's events (count)",
         "events_tomorrow_count": "Tomorrows events (count)",
         "events_today-tomorrow_startstamp_fullday": "full day",
         "events_today-tomorrow_start-stop_stamps_pre": "to",
@@ -162,6 +162,6 @@
     },
     "device": {
         "eventCountCalendar": "Event count -",
-        "lastSuccessfullSync": "Last successfull synchronization -"
+        "lastSuccessfulSync": "Last successful synchronization -"
     }
 }

@@ -162,6 +162,6 @@
     },
     "device": {
         "eventCountCalendar": "Antall avtaler -",
-        "lastSuccessfullSync": "Siste vellykkede synkronisering -"
+        "lastSuccessfulSync": "Siste vellykkede synkronisering -"
     }
 }

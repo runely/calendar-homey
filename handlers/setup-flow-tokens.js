@@ -3,7 +3,7 @@
 module.exports = async (app) => {
   for await (const { id, type } of app.variableMgmt.tokens) {
     try {
-      const token = await app.homey.flow.createToken(id, { type, title: app.homey.__(`flowTokens.${id}`) })
+      const token = await app.homey.flow.createToken(id, { type, title: app.homey.__(`flowTokens.${id}`), value: null })
       if (token) {
         app.variableMgmt.flowTokens.push(id)
         app.log(`setupFlowTokens: Created flow token '${id}'`)

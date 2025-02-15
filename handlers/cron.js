@@ -4,12 +4,12 @@ const { Cron } = require('croner')
 
 /**
  * @typedef {Object} CronOptions - Cron scheduler options
- * @property {boolean} [catch] - Continue exection even if a unhandled error is thrown by triggered function
+ * @property {boolean} [catch] - Continue execution even if an unhandled error is thrown by triggered function
  * @property {?} [context] - Used to pass any object to scheduled function
  * @property {number} [interval] - Minimum interval between executions, in seconds
  * @property {boolean} [kill] - Job is about to be killed or killed
  * @property {boolean} [legacyMode] - Combine day-of-month and day-of-week using true = OR, false = AND. Default is true = OR.
- * @property {number} [maxRuns] - Maximum nuber of executions
+ * @property {number} [maxRuns] - Maximum number of executions
  * @property {string} [name] - Returns the name of the function. Function names are read-only and can not be changed. (Name of a job)
  * @property {boolean} [paused] - Job is paused
  * @property {boolean} [protect] - Skip current run if job is already running

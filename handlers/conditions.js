@@ -3,7 +3,7 @@
 const { momentNow } = require('../lib/moment-datetime')
 
 /**
- * @param {Homey.App} app App class inited by Homey
+ * @param {Homey.App} app App class init by Homey
  * @param {String} timezone The timezone to use on events (IANA)
  * @param {Array} events Array of event objects
  * @param {String} caller Name of the function calling. Defaults to 'condition'
@@ -24,7 +24,7 @@ module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') =>
 }
 
 /**
- * @param {Homey.App} app App class inited by Homey
+ * @param {Homey.App} app App class init by Homey
  * @param {String} timezone The timezone to use on events (IANA)
  * @param {Array} events Array of event objects
  * @param {Number} when Number of minutes to compare against (number given in a flow)
@@ -44,7 +44,7 @@ module.exports.isEventIn = (app, timezone, events, when) => {
 }
 
 /**
- * @param {Homey.App} app App class inited by Homey
+ * @param {Homey.App} app App class init by Homey
  * @param {String} timezone The timezone to use on events (IANA)
  * @param {Array} events Array of event objects
  * @param {Number} when Number of minutes to compare against (number given in a flow)

@@ -9,16 +9,16 @@ const getTokenDuration = require('../lib/get-token-duration')
 const { triggerEvents } = require('./trigger-cards')
 
 const getDateTime = (value) => {
-  const match = /[1-2][0-9][0-9][0-9]-(([0][1-9])||([1][0-2]))-(([0][1-9])||([1][0-9])||([2][0-9])||([3][0-1]))T([0-1][0-9]||[2][0-3]):[0-5][0-9]:[0-5][0-9]Z?/g.exec(value)
+  const match = /[1-2][0-9][0-9][0-9]-((0[1-9])|(1[0-2]))-((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))T([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z?/g.exec(value)
   return Array.isArray(match) && match.length > 0 ? match[0].toUpperCase() : null
 }
 
 /**
- * @prop {Homey.App} app App class inited by Homey
+ * @prop {Homey.App} app App class init by Homey
  */
 module.exports = (app) => {
   // register run listener on action flow cards
-  app.homey.flow.getActionCard('sync-calendar').registerRunListener(async (args, state) => {
+  app.homey.flow.getActionCard('sync-calendar').registerRunListener(async (_, __) => {
     app.log(`sync-calendar: Action card triggered. ${app.isGettingEvents ? 'getEvents already running' : 'Triggering getEvents without reregistering tokens'}`)
     const getEventsFinished = app.isGettingEvents ? true : await app.getEvents()
     if (Array.isArray(getEventsFinished) && getEventsFinished.length > 0) {
@@ -28,17 +28,20 @@ module.exports = (app) => {
   })
 
   const newEventAction = app.homey.flow.getActionCard('new_event')
-  newEventAction.registerRunListener(async (args, state) => {
+  newEventAction.registerRunListener(async (args, _) => {
     if (typeof args.event_name !== 'string' || args.event_name === '') {
       app.warn('new_event: Title is invalid:', args)
       throw new Error(app.homey.__('actions.new_event.titleInvalid'))
     }
+
     const startDate = getDateTime(args.event_start)
-    const endDate = getDateTime(args.event_end)
     if (startDate === null) {
       app.warn('new_event: startDate is invalid:', args)
       throw new Error(app.homey.__('actions.new_event.startInvalid'))
-    } else if (endDate === null) {
+    }
+
+    const endDate = getDateTime(args.event_end)
+    if (endDate === null) {
       app.warn('new_event: endDate is invalid:', args)
       throw new Error(app.homey.__('actions.new_event.endInvalid'))
     }
@@ -60,9 +63,9 @@ module.exports = (app) => {
 
     return true
   })
-  newEventAction.registerArgumentAutocompleteListener('calendar', (query, args) => calendarAutocomplete(app, query))
+  newEventAction.registerArgumentAutocompleteListener('calendar', (query, _) => calendarAutocomplete(app, query))
 
-  app.homey.flow.getActionCard('delete_event_name').registerRunListener(async (args, state) => {
+  app.homey.flow.getActionCard('delete_event_name').registerRunListener(async (args, _) => {
     const event = Array.isArray(app.variableMgmt.localEvents) ? app.variableMgmt.localEvents.find((e) => e.summary === args.event_name) : null
     if (!event) {
       app.warn('delete_event_name: Local event with title', args.event_name, 'not found')
@@ -83,7 +86,7 @@ module.exports = (app) => {
     saveLocalEvents(app, app.variableMgmt.localEvents)
   })
 
-  app.homey.flow.getActionCard('get_calendars_metadata').registerRunListener((args, state) => {
+  app.homey.flow.getActionCard('get_calendars_metadata').registerRunListener((_, __) => {
     if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length === 0) {
       throw new Error('Calendars not set yet')
     }
@@ -99,7 +102,7 @@ module.exports = (app) => {
   })
 
   const getCalendarEvent = app.homey.flow.getActionCard('get_calendar_event')
-  getCalendarEvent.registerRunListener((args, state) => {
+  getCalendarEvent.registerRunListener((args, _) => {
     if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length === 0) {
       throw new Error('Calendars not set yet')
     }
@@ -136,5 +139,5 @@ module.exports = (app) => {
       event_meeting_url: event.meetingUrl
     }
   })
-  getCalendarEvent.registerArgumentAutocompleteListener('calendar', (query, args) => calendarAutocomplete(app, query))
+  getCalendarEvent.registerArgumentAutocompleteListener('calendar', (query, _) => calendarAutocomplete(app, query))
 }

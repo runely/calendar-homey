@@ -7,7 +7,7 @@ const varMgmt = require('../../lib/variable-management')
 const calendarsCount = 'meter_calendars_count_ical'
 const totalEventCount = 'meter_total_event_count_ical'
 const eventCountPerCalendar = 'meter_event_count_calendar_ical'
-const lastSuccessfullSync = 'last_successfull_sync_ical'
+const lastSuccessfulSync = 'last_successfull_sync_ical'
 
 class MyDevice extends Device {
   /**
@@ -65,17 +65,17 @@ class MyDevice extends Device {
     }
 
     for await (const calendar of calendarsConfigured) {
-      const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
+      const lastSuccessfulSyncLoop = `${lastSuccessfulSync}.${calendar.name}`
       const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
-      if (!this.hasCapability(lastSuccessfullSyncLoop)) {
-        await this.newCapability(lastSuccessfullSyncLoop, `${this.homey.__('device.lastSuccessfullSync')} ${calendar.name}`)
+      if (!this.hasCapability(lastSuccessfulSyncLoop)) {
+        await this.newCapability(lastSuccessfulSyncLoop, `${this.homey.__('device.lastSuccessfulSync')} ${calendar.name}`)
       }
       if (!this.hasCapability(eventCountPerCalendarLoop)) {
         await this.newCapability(eventCountPerCalendarLoop, `${this.homey.__('device.eventCountCalendar')} ${calendar.name}`)
       }
     }
 
-    const currentCalendarCapabilities = this.getCapabilities().filter((capability) => capability.includes(lastSuccessfullSync) || capability.includes(eventCountPerCalendar)).map((capability) => capability.replace(`${lastSuccessfullSync}.`, '').replace(`${eventCountPerCalendar}.`, ''))
+    const currentCalendarCapabilities = this.getCapabilities().filter((capability) => capability.includes(lastSuccessfulSync) || capability.includes(eventCountPerCalendar)).map((capability) => capability.replace(`${lastSuccessfulSync}.`, '').replace(`${eventCountPerCalendar}.`, ''))
     const currentCalendarNames = [...new Set(currentCalendarCapabilities)]
     if (currentCalendarNames.length <= 0) {
       this.warn('updateCalendarsCount - No calendar capabilities found', this.getCapabilities())
@@ -86,10 +86,10 @@ class MyDevice extends Device {
       if (!calendarsConfigured.find((calendar) => calendar.name === calendarName)) {
         this.warn('updateCalendarsCount -', calendarName, 'is no longer a configured calendar but has still registered capabilities. Removing capabilities for this calendar')
         try {
-          await this.removeCapability(`${lastSuccessfullSync}.${calendarName}`)
+          await this.removeCapability(`${lastSuccessfulSync}.${calendarName}`)
           await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`)
         } catch (ex) {
-          this.logError('updateCalendarsCount - Failed to remove capababilities for calendar no longer configured:', ex)
+          this.logError('updateCalendarsCount - Failed to remove capabilities for calendar no longer configured:', ex)
         }
       }
     }
@@ -105,7 +105,7 @@ class MyDevice extends Device {
     }
 
     for await (const calendar of calendarsMetadata) {
-      const lastSuccessfullSyncLoop = `${lastSuccessfullSync}.${calendar.name}`
+      const lastSuccessfulSyncLoop = `${lastSuccessfulSync}.${calendar.name}`
       const eventCountPerCalendarLoop = `${eventCountPerCalendar}.${calendar.name}`
       if (this.hasCapability(eventCountPerCalendarLoop)) {
         await this.updateCapabilityValue(eventCountPerCalendarLoop, calendar.eventCount)
@@ -113,10 +113,10 @@ class MyDevice extends Device {
         this.warn('updateCalendarsMetadata -', eventCountPerCalendarLoop, 'capability doesnt exist yet....')
       }
 
-      if (this.hasCapability(lastSuccessfullSyncLoop)) {
-        await this.updateCapabilityValue(lastSuccessfullSyncLoop, moment({ timezone: this.getTimezone(), date: new Date(calendar.lastSuccessfullSync || '01.01.1970 00:00:00') }).format('DD.MM.YYYY HH:mm:ss'))
+      if (this.hasCapability(lastSuccessfulSyncLoop)) {
+        await this.updateCapabilityValue(lastSuccessfulSyncLoop, moment({ timezone: this.getTimezone(), date: new Date(calendar.lastSuccessfullSync || '01.01.1970 00:00:00') }).format('DD.MM.YYYY HH:mm:ss'))
       } else {
-        this.warn('updateCalendarsMetadata -', lastSuccessfullSyncLoop, 'capability doesnt exist yet....')
+        this.warn('updateCalendarsMetadata -', lastSuccessfulSyncLoop, 'capability doesnt exist yet....')
       }
     }
 

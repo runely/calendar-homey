@@ -162,6 +162,6 @@
   },
   "device": {
       "eventCountCalendar": "Conteggio eventi -",
-      "lastSuccessfullSync": "Ultima sincronizzazione riuscita -"
+      "lastSuccessfulSync": "Ultima sincronizzazione riuscita -"
   }
 }

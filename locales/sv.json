@@ -162,6 +162,6 @@
     },
     "device": {
         "eventCountCalendar": "Antal händelser -",
-        "lastSuccessfullSync": "Senaste framgångsrika synkroniseringen -"
+        "lastSuccessfulSync": "Senaste framgångsrika synkroniseringen -"
     }
 }
