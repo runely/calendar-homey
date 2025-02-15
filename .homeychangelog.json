@@ -394,5 +394,8 @@
   },
   "2.10.1": {
     "en": "Dependency updates"
+  },
+  "2.11.0": {
+    "en": "- Updated French translation for the condition card 'Any event starts within...'. - Lint fixes. - Trigger bugfix."
   }
 }
