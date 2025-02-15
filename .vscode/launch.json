@@ -2,6 +2,82 @@
   "version": "1.0.0",
   "configurations": [
     {
+			"name": "Select Homey (Early 2019)",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"runtimeExecutable": "homey",
+			"args": ["select", "-n", "Homey"]
+		},
+    {
+			"name": "Select Homey Pro (Early 2023)",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"runtimeExecutable": "homey",
+			"args": ["select", "-n", "Homey Pro"]
+		},
+    {
+      "name": "Launch app on Homey (Early 2019)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": [
+        "app",
+        "run",
+        "--remote"
+      ],
+      "outputCapture": "std",
+      "env": {
+        "DEBUG": "1"
+      },
+      "serverReadyAction": {
+        "pattern": "Debugger listening on",
+        "action": "startDebugging",
+        "name": "Attach to Homey (Early 2019)"
+      }
+    },
+    {
+      "name": "Launch app on Homey Pro (Early 2023)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": [
+        "app",
+        "run",
+        "--remote"
+      ],
+      "outputCapture": "std",
+      "env": {
+        "DEBUG": "1"
+      },
+      "serverReadyAction": {
+        "pattern": "Debugger listening on",
+        "action": "startDebugging",
+        "name": "Attach to Homey Pro (Early 2023)"
+      }
+    },
+    {
+      "name": "Attach to Homey (Early 2019)",
+      "type": "node",
+      "request": "attach",
+      "address": "192.168.3.10",
+      "port": 9222,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/"
+    },
+    {
+      "name": "Attach to Homey Pro (Early 2023)",
+      "type": "node",
+      "request": "attach",
+      "address": "192.168.3.9",
+      "port": 9222,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app/"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Jest: current file",

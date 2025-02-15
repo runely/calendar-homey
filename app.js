@@ -30,6 +30,16 @@ class IcalCalendar extends Homey.App {
    * onInit is called when the app is initialized.
    */
   async onInit () {
+    if (process.env.DEBUG === '1') {
+      try {
+        require('inspector').waitForDebugger()
+        this.log('Attached inspector')
+      } catch (error) {
+        require('inspector').open(9222, '0.0.0.0', true)
+        this.log('Attached inspector:9222')
+      }
+    }
+
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
 
