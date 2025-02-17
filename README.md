@@ -217,6 +217,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Updated French translation for the condition card `Any event starts within...`
     - Rewritten how events get triggered and registered for hitcount, to fix a bug where triggers with a variable wouldn't trigger (unless the same trigger with a number also existed)
     - Lint fixes
+    - Dependency updates
 - 2.10.1
   - Fixed some linter warnings
   - Dependency updates
