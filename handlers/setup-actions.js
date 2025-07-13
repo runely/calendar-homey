@@ -14,7 +14,7 @@ const getDateTime = (value) => {
 }
 
 /**
- * @prop {Homey.App} app App class init by Homey
+ * @prop {import('homey').App} app App class init by Homey
  */
 module.exports = (app) => {
   // register run listener on action flow cards

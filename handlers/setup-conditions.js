@@ -325,7 +325,7 @@ const checkEvent = async (timezone, app, args, state, type) => {
 }
 
 /**
- * @param {Homey.App} app App class init by Homey
+ * @param {import('homey').App} app App class init by Homey
  * @param {String} timezone The timezone to use on events (IANA)
  */
 const setupConditions = (app, timezone) => {
