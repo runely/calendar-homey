@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
     "checkJs": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": [
+        "types/*"
+      ]
+    }
   },
   "include": [
-    "app.js",
+    ".",
     "drivers",
     "handlers",
     "lib",
     "settings",
     "tests",
     "types"
+  ],
+  "exclude": [
+    "node_modules",
+    ".homeybuild"
   ]
 }
