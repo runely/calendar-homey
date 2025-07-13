@@ -4,6 +4,9 @@ const constructedApp = require('./lib/construct-app')
 const getDateTimeFormat = require('../lib/get-datetime-format')
 const { settings: { datetime: { date, time } } } = require('../locales/en.json')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {
@@ -19,6 +22,9 @@ const app = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appFormatUndefined = {
   ...app,
   variableMgmt: {
@@ -31,6 +37,9 @@ const appFormatUndefined = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appDateTimeFormatLegacy = {
   ...app,
   variableMgmt: {
@@ -43,6 +52,9 @@ const appDateTimeFormatLegacy = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appDateTimeFormatShortUndefined = {
   ...app,
   variableMgmt: {
@@ -54,6 +66,9 @@ const appDateTimeFormatShortUndefined = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appDateTimeFormat = {
   ...app,
   variableMgmt: {

@@ -5,6 +5,9 @@ const { moment } = require('../lib/moment-datetime')
 const getTokenDuration = require('../lib/get-token-duration')
 const { locale: { humanize }, humanize: { conjunction } } = require('../locales/en.json')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {

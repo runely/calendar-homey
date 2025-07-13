@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "baseUrl": "."
+  },
+  "include": [
+    "app.js",
+    "drivers",
+    "handlers",
+    "lib",
+    "settings",
+    "tests",
+    "types"
+  ]
+}

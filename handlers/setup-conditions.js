@@ -325,8 +325,8 @@ const checkEvent = async (timezone, app, args, state, type) => {
 }
 
 /**
- * @param {import('homey').App} app App class init by Homey
- * @param {String} timezone The timezone to use on events (IANA)
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {String} timezone - The timezone to use on events (IANA)
  */
 const setupConditions = (app, timezone) => {
   // register condition flow cards

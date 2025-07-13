@@ -5,6 +5,9 @@ const dataAsText = JSON.stringify(require('./data/hit-count-data.json'))
 
 let runtimeData = JSON.parse(dataAsText)
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   getTimezone: () => 'Europe/Oslo',
   homey: {
@@ -24,6 +27,7 @@ const app = {
   variableMgmt: {
     dateTimeFormat: {
       long: 'ddd DD.MM.YY',
+      short: 'DD.MM',
       time: 'HH:mm'
     },
     hitCount: {
@@ -32,6 +36,9 @@ const app = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appWithoutData = {
   ...app,
   homey: {

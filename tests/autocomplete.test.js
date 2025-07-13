@@ -3,15 +3,20 @@
 const { calendarAutocomplete } = require('../lib/autocomplete')
 const constructedApp = require('./lib/construct-app')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   variableMgmt: {
     calendars: [
       {
-        name: 'One'
+        name: 'One',
+        events: []
       },
       {
-        name: 'Two'
+        name: 'Two',
+        events: []
       }
     ]
   }
@@ -19,12 +24,12 @@ const app = {
 
 describe('calendarAutocomplete', () => {
   test("Returns false when 'app.variableMgmt.calendars' doesn't exist", () => {
-    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { tokens: [] } })
+    const result = calendarAutocomplete({...constructedApp, variableMgmt: {tokens: []}}, '')
     expect(result).toBeFalsy()
   })
 
   test("Returns false when 'app.variableMgmt.calendars' is empty", () => {
-    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { calendars: [] } })
+    const result = calendarAutocomplete({...constructedApp, variableMgmt: {calendars: []}}, '')
     expect(result).toBeFalsy()
   })
 
@@ -50,8 +55,8 @@ describe('calendarAutocomplete', () => {
     expect(result[0].name).toBe('Two')
   })
 
-  test("Returns 2 calendars when query isn' present", () => {
-    const result = calendarAutocomplete(app)
+  test('Returns 2 calendars when query isn\'t present', () => {
+    const result = calendarAutocomplete(app, undefined)
     expect(Array.isArray(result)).toBeTruthy()
     expect(result.length).toBe(2)
     expect(result[0].id).toBe('One')

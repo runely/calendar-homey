@@ -1,5 +1,8 @@
 'use strict'
 
+/**
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ */
 module.exports = async (app) => {
   for await (const { id, type } of app.variableMgmt.tokens) {
     try {

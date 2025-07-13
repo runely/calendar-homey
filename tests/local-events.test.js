@@ -4,6 +4,9 @@ const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const { getLocalActiveEvents, saveLocalEvents } = require('../lib/local-events')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {

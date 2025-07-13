@@ -4,6 +4,9 @@ const convertToMinutes = require('../lib/convert-to-minutes')
 const { filterByCalendar } = require('../lib/filter-by')
 const { updateHitCount, setupHitCount } = require('../lib/hit-count')
 
+/**
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ */
 module.exports = (app) => {
   // add minutes in trigger listeners
   for (const triggerId of ['event_starts_in', 'event_stops_in']) {

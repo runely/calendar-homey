@@ -14,6 +14,9 @@ const eventLimit = {
   type: 'weeks'
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {

@@ -39,10 +39,10 @@ const getErrorMessage = (app, error) => {
 
 /**
  * @typedef {Object} TriggerSynchroniztionErrorOptions
- * @prop {import('homey').App} app App class init by Homey
- * @prop {String} calendar Calendar name with synchronization error
- * @prop {any} error Synchronization error
- * @prop {Object} [event] Event error originated from (if any)
+ * @prop {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @prop {String} calendar - Calendar name with synchronization error
+ * @prop {any} error - Synchronization error
+ * @prop {Object} [event] - Event error originated from (if any)
  */
 
 /**
@@ -73,8 +73,8 @@ module.exports.triggerSynchronizationError = async (options) => {
 
 /**
  * @typedef {Object} TriggerChangedCalendarsOptions
- * @prop {import('homey').App} app App class init by Homey
- * @prop {Array} calendars Currently loaded calendars
+ * @prop {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @prop {Array} calendars - Currently loaded calendars
  */
 
 /**
@@ -157,9 +157,9 @@ module.exports.triggerChangedCalendars = async (options) => {
 
 /**
  * @typedef {Object} TriggerEventsOptions
- * @prop {String} timezone The timezone to use on events (IANA)
- * @prop {import('homey').App} app App class init by Homey
- * @prop {Object} [event] One single event to trigger
+ * @prop {String} timezone - The timezone to use on events (IANA)
+ * @prop {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @prop {Object} [event] - One single event to trigger
  */
 
 /**

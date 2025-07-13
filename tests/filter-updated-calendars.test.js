@@ -5,6 +5,9 @@ const { moment } = require('../lib/moment-datetime')
 const filterUpdatedCalendars = require('../lib/filter-updated-calendars')
 const { triggers: { event_changed: { start, end, description, location, summary } }, settings: { datetime: { date: { default: long }, time: { default: time } } } } = require('../locales/en.json')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {
@@ -20,6 +23,7 @@ const app = {
   variableMgmt: {
     dateTimeFormat: {
       long,
+      short: 'MM/DD',
       time
     }
   }

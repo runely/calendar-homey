@@ -44,8 +44,8 @@ const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
 
 /**
  * @typedef {Object} UpdateTokensOptions
- * @prop {String} timezone The timezone to use on events (IANA)
- * @prop {import('homey').App} app App class init by Homey
+ * @prop {String} timezone - The timezone to use on events (IANA)
+ * @prop {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
  */
 
 /**
@@ -218,8 +218,8 @@ const updateTokens = async (options) => {
 }
 
 /**
- * @prop {import('homey').App} app App class init by Homey
- * @param {Object} event Update tokens from this event
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {Object} event - Update tokens from this event
  */
 const updateNextEventWithTokens = async (app, event) => {
   const { summary, start, end, description, calendarName } = event

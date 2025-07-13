@@ -24,7 +24,7 @@ module.exports.addJob = (cron, callback, options = {}) => {
 /**
  * Check if cron syntax is valid
  * @param {string} cron - [second] minute hour day(month) month day(week)
- * @returns {boolean} true if cron syntax is valid, otherwise false
+ * @returns {boolean} - true if cron syntax is valid, otherwise false
  */
 module.exports.isValidCron = (cron) => {
   try {

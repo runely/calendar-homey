@@ -4,6 +4,9 @@ const constructedApp = require('./lib/construct-app')
 const { moment } = require('../lib/moment-datetime')
 const getEventsToTrigger = require('../lib/get-events-to-trigger')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp
 }

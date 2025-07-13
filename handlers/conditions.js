@@ -3,10 +3,10 @@
 const { momentNow } = require('../lib/moment-datetime')
 
 /**
- * @param {import('homey').App} app App class init by Homey
- * @param {String} timezone The timezone to use on events (IANA)
- * @param {Array} events Array of event objects
- * @param {String} caller Name of the function calling. Defaults to 'condition'
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {String} timezone - The timezone to use on events (IANA)
+ * @param {Array} events - Array of event objects
+ * @param {String} caller - Name of the function calling. Defaults to 'condition'
  */
 module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
@@ -24,10 +24,10 @@ module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') =>
 }
 
 /**
- * @param {import('homey').App} app App class init by Homey
- * @param {String} timezone The timezone to use on events (IANA)
- * @param {Array} events Array of event objects
- * @param {Number} when Number of minutes to compare against (number given in a flow)
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {String} timezone - The timezone to use on events (IANA)
+ * @param {Array} events - Array of event objects
+ * @param {Number} when - Number of minutes to compare against (number given in a flow)
  */
 module.exports.isEventIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
@@ -44,10 +44,10 @@ module.exports.isEventIn = (app, timezone, events, when) => {
 }
 
 /**
- * @param {import('homey').App} app App class init by Homey
- * @param {String} timezone The timezone to use on events (IANA)
- * @param {Array} events Array of event objects
- * @param {Number} when Number of minutes to compare against (number given in a flow)
+ * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {String} timezone - The timezone to use on events (IANA)
+ * @param {Array} events - Array of event objects
+ * @param {Number} when - Number of minutes to compare against (number given in a flow)
  */
 module.exports.willEventNotIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
