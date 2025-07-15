@@ -24,13 +24,13 @@ const app = {
 
 describe('calendarAutocomplete', () => {
   test('Returns an empty list when \'app.variableMgmt.calendars\' doesn\'t exist', () => {
-    const result = calendarAutocomplete({...constructedApp, variableMgmt: {tokens: []}}, '')
+    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { tokens: [] } }, '')
     expect(Array.isArray(result)).toBeTruthy()
     expect(result.length).toBe(0)
   })
 
   test('Returns an empty list when \'app.variableMgmt.calendars\' is empty', () => {
-    const result = calendarAutocomplete({...constructedApp, variableMgmt: {calendars: []}}, '')
+    const result = calendarAutocomplete({ ...constructedApp, variableMgmt: { calendars: [] } }, '')
     expect(Array.isArray(result)).toBeTruthy()
     expect(result.length).toBe(0)
   })

@@ -149,12 +149,12 @@ const oldCalendarsUids = [
 ]
 
 test('When 0 new events - Will return an empty array', () => {
-  const result = getNewEvents({timezone: 'UTC', oldCalendarsUids, newCalendarsUids: [], calendarsEvents, app})
+  const result = getNewEvents({ timezone: 'UTC', oldCalendarsUids, newCalendarsUids: [], calendarsEvents, app })
   expect(result.length).toBe(0)
 })
 
 test('When 0 old events - Will return an empty array', () => {
-  const result = getNewEvents({timezone: 'UTC', oldCalendarsUids: [], newCalendarsUids: [], calendarsEvents, app})
+  const result = getNewEvents({ timezone: 'UTC', oldCalendarsUids: [], newCalendarsUids: [], calendarsEvents, app })
   expect(result.length).toBe(0)
 })
 
