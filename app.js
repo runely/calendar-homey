@@ -78,6 +78,7 @@ class IcalCalendar extends Homey.App {
     // get ical events
     this.log('onInit: Triggering getEvents and reregistering tokens')
     this.getEvents(true)
+      .catch(err => this.logError('onInit: Failed to complete getEvents(true):', err))
 
     // register callback when settings has been set
     this.registerSettingCallbacks()
@@ -85,7 +86,9 @@ class IcalCalendar extends Homey.App {
     this._unload = (name) => {
       this.variableMgmt = null
 
-      if (!this.jobs) return
+      if (!this.jobs) {
+        return
+      }
 
       // unload cron jobs
       Object.getOwnPropertyNames(this.jobs).forEach((prop) => {
@@ -124,12 +127,13 @@ class IcalCalendar extends Homey.App {
       if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
         // sync calendars when calendar specific settings have been changed
         if (this.isGettingEvents) {
-          this.log(`onInit/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
+          this.log(`registerSettingsCallbacks/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
           return
         }
 
-        this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
+        this.log(`registerSettingsCallbacks/${args}: Triggering getEvents and reregistering tokens`)
         this.getEvents(true)
+          .catch(err => this.logError(`registerSettingsCallbacks/${args}: Failed to complete getEvents(true):`, err))
         return
       }
 
@@ -457,6 +461,7 @@ class IcalCalendar extends Homey.App {
 
       this.log('startJobs/update: Updating calendars without reregistering tokens')
       this.getEvents()
+        .catch(err => this.logError('startJobs/updateFunc: Failed to complete getEvents():', err))
     }
 
     const interval = this.homey.settings.get(this.variableMgmt.setting.syncInterval)
@@ -505,6 +510,7 @@ class IcalCalendar extends Homey.App {
       if (!isValidCron(interval.cron)) {
         this.logError(`startJobs: Auto update is disabled. Invalid cron value specified in settings: '${interval.cron}'`)
         triggerSynchronizationError({ app: this, calendar: 'cron syntax', error: `Invalid cron value specified in settings: '${interval.cron}'` })
+          .catch(err => this.logError('startJobs: Failed to complete triggerSynchronizationError(...):', err))
         interval.error = `Invalid cron value specified in settings: '${interval.cron}'`
         this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
         return
@@ -534,6 +540,7 @@ class IcalCalendar extends Homey.App {
         this.logError(`startJobs(update): Auto update is disabled. Invalid cron value specified in settings: '${interval.cron}'`)
         delete this.jobs.update
         triggerSynchronizationError({ app: this, calendar: 'cron syntax', error: `Invalid cron value specified in settings: '${interval.cron}'` })
+          .catch(err => this.logError('startJobs(update): Failed to complete triggerSynchronizationError(...):', err))
         interval.error = `Invalid cron value specified in settings: '${interval.cron}'`
         this.homey.settings.set(this.variableMgmt.setting.syncInterval, interval)
         return

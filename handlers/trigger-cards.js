@@ -38,17 +38,22 @@ const getErrorMessage = (app, error) => {
 }
 
 /**
- * @typedef {Object} TriggerSynchroniztionErrorOptions
- * @prop {import('homey').App} app App class init by Homey
- * @prop {String} calendar Calendar name with synchronization error
- * @prop {any} error Synchronization error
- * @prop {Object} [event] Event error originated from (if any)
+ * @typedef {object} SummaryEvent
+ * @property {string} summary
+ */
+
+/**
+ * @typedef {object} TriggerSynchroniztionErrorOptions
+ * @property {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @property {string} calendar - Calendar name with synchronization error
+ * @property {any} error - Synchronization error
+ * @property {import('../types/VariableMgmt.type').VariableManagementCalendarEvent|SummaryEvent} [event] - Event error originated from (if any)
  */
 
 /**
  * @param {TriggerSynchroniztionErrorOptions} options
  */
-module.exports.triggerSynchronizationError = async (options) => {
+const triggerSynchronizationError = async (options) => {
   const { app, calendar, error, event } = options
   try {
     const { message, stack } = getErrorMessage(app, error)
@@ -72,15 +77,15 @@ module.exports.triggerSynchronizationError = async (options) => {
 }
 
 /**
- * @typedef {Object} TriggerChangedCalendarsOptions
- * @prop {import('homey').App} app App class init by Homey
- * @prop {Array} calendars Currently loaded calendars
+ * @typedef {object} TriggerChangedCalendarsOptions
+ * @property {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @property {import('../types/VariableMgmt.type').VariableManagementCalendars} calendars - Currently loaded calendars
  */
 
 /**
  * @param {TriggerChangedCalendarsOptions} options
  */
-module.exports.triggerChangedCalendars = async (options) => {
+const triggerChangedCalendars = async (options) => {
   const { app, calendars } = options
   const triggerAllValues = app.homey.settings.get(app.variableMgmt.setting.triggerAllChangedEventTypes)
   if (!triggerAllValues) {
@@ -156,16 +161,16 @@ module.exports.triggerChangedCalendars = async (options) => {
 }
 
 /**
- * @typedef {Object} TriggerEventsOptions
- * @prop {String} timezone The timezone to use on events (IANA)
- * @prop {import('homey').App} app App class init by Homey
- * @prop {Object} [event] One single event to trigger
+ * @typedef {object} TriggerEventsOptions
+ * @property {string} timezone - The timezone to use on events (IANA)
+ * @property {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @property {import('../types/TriggerEvents.type').TriggerEvent} [event] - One single event to trigger
  */
 
 /**
  * @param {TriggerEventsOptions} options
  */
-module.exports.triggerEvents = async (options) => {
+const triggerEvents = async (options) => {
   const { timezone, app, event } = options
   const events = event ? [event] : getEventsToTrigger({ timezone, app, calendars: app.variableMgmt.calendars })
 
@@ -222,4 +227,10 @@ module.exports.triggerEvents = async (options) => {
       app.logError('triggerEvents: Failed to trigger event', event.uid, 'from', calendarName, ':', err)
     }
   }
+}
+
+module.exports = {
+  triggerSynchronizationError,
+  triggerChangedCalendars,
+  triggerEvents
 }

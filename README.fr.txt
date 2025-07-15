@@ -36,7 +36,7 @@ Les 2 premiers calendriers Apple iCloud standard ("Maison" et "Travail") ne peuv
 3. Cochez la case "Calendrier public".
 4. Copiez le lien
 5. Collez le lien du calendrier dans les paramètres de l'application Homey
-    a. Il doit s'agir du lien original (Apple Calendar a des urls sensibles à la casse).
+    1. Il doit s'agir du lien original (Apple Calendar a des urls sensibles à la casse).
 
 Ajouter l'entité IcalCalendar
 

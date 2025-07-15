@@ -5,6 +5,9 @@ const dataAsText = JSON.stringify(require('./data/hit-count-data.json'))
 
 let runtimeData = JSON.parse(dataAsText)
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   getTimezone: () => 'Europe/Oslo',
   homey: {
@@ -13,7 +16,10 @@ const app = {
       getLanguage: () => 'no'
     },
     settings: {
-      get: (path) => JSON.stringify(runtimeData),
+      get: (path) => {
+        console.debug('path', path)
+        return JSON.stringify(runtimeData)
+      },
       set: (path, data) => {
         runtimeData = JSON.parse(data)
       }
@@ -24,6 +30,7 @@ const app = {
   variableMgmt: {
     dateTimeFormat: {
       long: 'ddd DD.MM.YY',
+      short: 'DD.MM',
       time: 'HH:mm'
     },
     hitCount: {
@@ -32,6 +39,9 @@ const app = {
   }
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const appWithoutData = {
   ...app,
   homey: {
@@ -39,7 +49,10 @@ const appWithoutData = {
       getLanguage: () => 'no'
     },
     settings: {
-      get: (path) => undefined,
+      get: (path) => {
+        console.debug('path', path)
+        return undefined
+      },
       set: (path, data) => {
         runtimeData = JSON.parse(data)
       }

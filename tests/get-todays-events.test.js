@@ -26,7 +26,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
         description: 'Desc',
         location: '',
-        summary: 'Past'
+        summary: 'Past',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: '2041-11-05T20:00:00.000Z' }),
@@ -35,7 +41,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8842',
         description: 'Desc',
         location: '',
-        summary: 'Future'
+        summary: 'Future',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: expectedStart }),
@@ -44,7 +56,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8843',
         description: 'Desc',
         location: '',
-        summary: 'Today1'
+        summary: 'Today1',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   },
@@ -58,7 +76,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8844',
         description: 'Desc',
         location: '',
-        summary: 'Future2'
+        summary: 'Future2',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: '2041-11-05T20:00:00.000Z' }),
@@ -67,7 +91,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8845',
         description: 'Desc',
         location: '',
-        summary: 'Future'
+        summary: 'Future',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: expectedStart }),
@@ -76,7 +106,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8846',
         description: 'Desc',
         location: '',
-        summary: 'Today2'
+        summary: 'Today2',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   }
