@@ -10,7 +10,7 @@
 
 /**
  * @typedef {object} HomeyAppTests
- * @property {(prop: string) => string|import('jest').fn} [__]
+ * @property {(prop: string) => string|import('@types/jest').fn} [__]
  * @property {HomeyAppTestsFlow} [flow]
  * @property {HomeyAppTestsI18n} [i18n]
  * @property {HomeyAppTestsSettings} [settings]
@@ -34,5 +34,5 @@
 /**
  * @typedef {object} HomeyAppTestsSettings
  * @property {(path: string) => string|undefined} [get]
- * @property {(path: string, data: string) => void|import('jest').fn} [set]
+ * @property {(path: string, data: string) => void|import('@types/jest').fn} [set]
  */

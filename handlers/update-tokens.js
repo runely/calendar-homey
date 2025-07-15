@@ -10,7 +10,7 @@ const { triggerSynchronizationError } = require('./trigger-cards')
 
 /**
  * @param {string} tokenId
- * @param {string|number|boolean|import('homey').Image} value
+ * @param {string|number|boolean|import('@types/homey').Image} value
  * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
  */
 const updateToken = async (tokenId, value, app) => {

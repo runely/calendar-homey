@@ -118,7 +118,7 @@ const cards = [
 ]
 
 /**
- * @typedef {import('homey').FlowCard.ArgumentAutocompleteResults} ArgumentAutocompleteResults
+ * @typedef {import('@types/homey').FlowCard.ArgumentAutocompleteResults} ArgumentAutocompleteResults
  */
 
 /**

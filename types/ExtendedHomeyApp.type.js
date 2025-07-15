@@ -7,7 +7,7 @@
  */
 
 /**
- * @typedef {import('homey').App & {
+ * @typedef {import('@types/homey').App & {
  *   getTimezone: () => string,
  *   warn: (...[*]) => void,
  *   logError: (...[*]) => void,
