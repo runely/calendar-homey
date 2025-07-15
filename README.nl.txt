@@ -36,7 +36,7 @@ De eerste twee standaard Apple iCloud-agenda's ("Thuis" en "Werk") kunnen niet w
 3. Vink de checkbox aan voor "Publieke Agenda"
 4. Kopieer de link
 5. Plake de link van de agenda in de Homey IcalCalender app
-   Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
+    1. Het moet de originele link zijn (Apple Calendar heeft hoofdlettergevoelige URL's)
 
 Voeg de entiteit IcalCalendar toe
 

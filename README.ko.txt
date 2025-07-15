@@ -36,7 +36,7 @@ Apple iCloud URL 찾기
 3. "공개 캘린더"를 선택합니다
 4. 링크를 복사합니다
 5. Homey 앱 설정에 캘린더 링크를 붙여넣습니다
-    a. 원래 링크여야 합니다 (Apple Calendar는 대소문자 구분 URL을 사용합니다)
+    1. 원래 링크여야 합니다 (Apple Calendar는 대소문자 구분 URL을 사용합니다)
 
 IcalCalendar 장치 추가
 

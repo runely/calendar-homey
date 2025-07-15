@@ -18,34 +18,34 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
     - Change the date/time format or use the default (your choice)
         - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
     - Choose the timeframe for how many events to sync in to the app
-    - Choose whether or not you want **next event tags** per calendar. Default is off
+  - Choose whether you want **next event tags** per calendar. Default is off
 
 ### Find Exchange Online ical link
 
 1. Go to https://outlook.office.com/mail/inbox
-1. Click settings -> Show all outlook setting
-1. Go to Calendar -> Shared calenders
-1. Publish a calendar, click the ics link and choose copy
-1. Paste the ical link in settings of Homey app
+2. Click settings -> Show all outlook setting
+3. Go to Calendar -> Shared calenders
+4. Publish a calendar, click the ics link and choose copy
+5. Paste the ical link in settings of Homey app
 
 ### Find Gmail ical url
 
 1. Go to https://calendar.google.com/
-1. Click the three dots next to the calendar you want to share -> Click Settings and sharing
-1. Scroll all the way down to the bottom
-1. Copy the link from Secret address in ical format
-1. Paste the ical link in settings of Homey app
+2. Click the three dots next to the calendar you want to share -> Click Settings and sharing
+3. Scroll all the way down to the bottom
+4. Copy the link from Secret address in ical format
+5. Paste the ical link in settings of Homey app
 
 ### Find Apple iCloud url
 
 > The first 2 standard Apple iCloud calendars (**Home** and **Work**) are not available to be shared by a public link but only by personal invite (via email). Only **new** and **non-default** calendars from Apple iCloud are working through the public link.
 
 1. Go to https://www.icloud.com/calendar/, or open the Calendar app on your iOS device
-1. Click on the icon next to the calendar name in the left pane (not **Home** or **Work**)
-1. Tick the checkbox for **Public calendar**
-1. Copy the link
-1. Paste the calendar link in the Homey app settings
-    - **It must be the original link (*Apple Calendar has case sensitive urls*)**
+2. Click on the icon next to the calendar name in the left pane (not **Home** or **Work**)
+3. Tick the checkbox for **Public calendar**
+4. Copy the link
+5. Paste the calendar link in the Homey app settings
+  - **It must be the original link (*Apple Calendar has case-sensitive urls*)**
 
 ### Add device `IcalCalendar`
 
@@ -54,7 +54,8 @@ Add the `IcalCalendar` device to follow along with how many calendars you have c
 ### Timezone in your calendar (*.ics)
 
 :exclamation:
-The library used in this app to parse the calendars, **[node-ical](https://github.com/jens-maus/node-ical)**, does `NOT` use the `X-WR-TIMEZONE` property to parse timezones. Instead it uses the `BEGIN:VTIMEZONE` sections to parse timezones!
+The library used in this app to parse the calendars, **[node-ical](https://github.com/jens-maus/node-ical)**, does `NOT`
+use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses the `BEGIN:VTIMEZONE` sections to parse timezones!
 
 :exclamation:
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
@@ -77,10 +78,10 @@ If your events are created with the timezone `Customized Time Zone` (you will se
 To see a list of synced in events, you can use the condition card `Specific event is ongoing` in a flow like this:
 
 1. Create a new flow, *or use an existing one (your choice)*
-1. Choose the `Flow` -> `This flow has started` as the trigger in the `WHEN` section
-1. In the `AND` section, add the `Specific event is ongoing` card from **IcalCalendar**
+2. Choose the `Flow` -> `This flow has started` as the trigger in the `WHEN` section
+3. In the `AND` section, add the `Specific event is ongoing` card from **IcalCalendar**
     1. Click `Select event...` in the condition card
-    1. This will present you with a list of all the events synced in
+   2. This will present you with a list of all the events synced in
 
 ### Local events
 
@@ -101,10 +102,10 @@ You can use the action card `Delete local event by title` to remove any local ev
 ### Triggers
 - **Event starts** - *will trigger when any event starts*
 - **Event starts in** - *will trigger when any event starts in when specified*
-- **Event starts from calendar** - *will trigger when any event in specified calender starts*
+- **Event starts from calendar** - *will trigger when any event in specified calendar starts*
 - **Event ends** - *will trigger when any event ends*
 - **Event ends in** - *will trigger when any event ends in when specified*
-- **Event ends from calendar** - *will trigger when any event in specified calender ends*
+- **Event ends from calendar** - *will trigger when any event in specified calendar ends*
 - **Event changed** - *will trigger when any of the previously synchronized events have been changed (after sync)*
 - **Event added** - *will trigger when a new event is created in one of your synced calendars*
     - **Will trigger when these requirements are met:**
@@ -125,7 +126,7 @@ These calendar providers do not use (or at least not for all events) the `CREATE
 - **Specific event ends within** - *will check if specified event ends|doesn't end within when specified*
 - **Any event is ongoing** - *will check if any event is|isn't ongoing*
 - **Any event starts within** - *will check if any event starts|doesn't start within when specified*
-- **Any event ends within** - *will check if any event ends|doesn't ends within when specified*
+- **Any event ends within** - *will check if any event ends|doesn't end within when specified*
 - **Any event ongoing in calendar** - *will check if any event is|isn't ongoing in specified calendar*
 - **Event containing ... in calendar ... starts within** - *Event containing search value in chosen calendar starts within selected time range (will fill up global tags (containing))*
 - **Event containing ... in calendar ... ends within** - *Event containing search value in chosen calendar ends within selected time range (will fill up global tags (containing))*
@@ -213,8 +214,13 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 2.11.5
+- 2.12.0
   - Updated JSDoc
+  - Types all around
+  - Fixed a type error where false could be returned instead of an empty list
+  - Added missing Promise catch
+  - Code cleanup
+  - Export functions through an object instead of directly on module.exports to easier follow usages
 - 2.11.4
   - Dependency updates
 - 2.11.3
@@ -262,7 +268,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Throws error message in flow editor if `Title`, `Event start`, `Event end` or `Calendar` is invalid on action card `Create local event`
     - Throws error message in flow editor if `event isn't found` or `calendar not found` on action card `Delete local event by title`
 - 2.5.0
-    - Added setting `Trigger all changed event types` to choose if you want to only trigger `Event changed` for the first change on a event (default) or all changes on a event
+  - Added setting `Trigger all changed event types` to choose if you want to only trigger `Event changed` for the first
+    change on an event (default) or all changes on an event
 - 2.4.0
     - Added advanced action cards ([Issue #545](https://github.com/runely/calendar-homey/issues/545)):
         - `Get calendars metadata`
@@ -320,7 +327,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 2.0.1
     - code cleanup
     - Nullify global variables when not needed anymore
-    - Correctly log warn/error when somethings wrong
+  - Correctly log warn/error when something's wrong
     - Dependency updates
     - Fixed a bug where a removed calendar wouldn't remove capabilities for this calendar -> [Issue #503](https://github.com/runely/calendar-homey/issues/503)
 - 2.0.0
@@ -337,7 +344,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Log out `uid` for an event when the property isn't string but object and `val` is used to get the string representation
     - Dependency updates
 - 1.18.3
-    - Fixed a bug where `Event changed` would be triggered when old event property had data but new event property was undefined/null OR vica versa (***sync issue***)
+  - Fixed a bug where `Event changed` would be triggered when old event property had data but new event property was
+    undefined/null OR vice versa (***sync issue***)
 - 1.18.2
     - Dependency updates
 - 1.18.1
@@ -373,7 +381,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.13.1
     - Find meeting url's by a generic pattern (----( Videogesprek )----\nhttp://meet.url/123-4567-890\n---===---)
 - 1.13.0
-    - Added `Meeting URL` tag to triggers. For now it reads meeting urls for **Microsoft Teams**, **Apple FaceTime** and **Google Meet** from the *description* field -> [Issue #420](https://github.com/runely/calendar-homey/issues/420)
+  - Added `Meeting URL` tag to triggers. For now, it reads meeting urls for **Microsoft Teams**, **Apple FaceTime** and
+    **Google Meet** from the *description* field -> [Issue #420](https://github.com/runely/calendar-homey/issues/420)
     - Added tests for `extract-meeting-url`
     - Dependency updates
 - 1.12.0
@@ -394,7 +403,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Dependency updates
 - 1.10.0
     - Dependency updates
-    - Added `Status` tag to triggers. For now it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , **MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
+  - Added `Status` tag to triggers. For now, it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , *
+    *MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
     - If event hasn't registered a timezone, don't use the local timezone from Homey either
     - Show timezone in logged event (when **Log all events** is active)
 - 1.9.0
@@ -495,7 +505,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - `Summary` of an updated calendar event is now evaluated first.
     - Include recurrence date even when utc date is previous date
 - 0.14.0
-    - Bugfix: Exchange calendars (might be others aswell) do not use the `CREATED` property. Instead they use `DTSTAMP` and `METHOD`, but these are treated both as *created* and as *modified* timestamp. So from now on only the `CREATED` property is taken into account.
+  - Bugfix: Exchange calendars (might be others aswell) do not use the `CREATED` property. Instead, they use `DTSTAMP`
+    and `METHOD`, but these are treated both as *created* and as *modified* timestamp. So from now on only the `CREATED`
+    property is taken into account.
     - Added tokens `Week day`, `Month` and `Date` to trigger **Event added**
 - 0.13.1
     - German and Swedish translation fix
@@ -580,7 +592,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.5.1
     - Bugfix: Ongoing regular events were not synced in (#199)
 - 0.5.0
-    - Updated node-ical which should fix the bug '[Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/14)'
+  - Updated node-ical which should fix the
+    bug [Unknown RRULE property 'RRULE'](https://github.com/jens-maus/node-ical/issues/14)
     - A separate [test tool is created](https://github.com/runely/calendar-homey-test) to test IcalCalendar behavior
     - Exception handling for node-ical
 - 0.4.8
@@ -615,7 +628,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.4.0
     - Added support for adding weekday in dateformat in settings
     - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
-    - Bugfix: Ongoing non recurring events were included, but ongoing recurring events were not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
+  - Bugfix: Ongoing non-recurring events were included, but ongoing recurring events were
+    not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
     - Added condition 'Any event ongoing in calendar' -> [Issue #151](https://github.com/runely/calendar-homey/issues/151)
     - Bugfix: Events over multiple days now also includes short date in tags
     - Bugfix: Full day events were not included in tomorrows events tag
@@ -705,13 +719,14 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Events in condition card is now presented with a date (and time if present) -> [Issue #2](https://github.com/runely/calendar-homey/issues/2)
     - Alert when settings saved -> [Issue #9](https://github.com/runely/calendar-homey/issues/9)
     - Show message in settings if uri fails to load
-    - Importing only active events. This is a significantly performance improvement! -> [Issue #1](https://github.com/runely/calendar-homey/issues/1)
+  - Importing only active events. This is a significant performance
+    improvement! -> [Issue #1](https://github.com/runely/calendar-homey/issues/1)
     - Event list in condition card shows if the event is recurring and/or full day
 - 0.0.2: 
     - Bugfix: "triggerEvents" failed when events were not imported yet
     - Bugfix: Tags are validated before set (replacing '\n' or '\r' or null with '')
     - Added trigger for any events started
-    - Bugfix: "Event is ongoing" validated to true when a started event was missing a end time
+  - Bugfix: "Event is ongoing" validated to true when a started event was missing an end time
     - Updated README.txt with info from README.md (and make it look good)
     - Updated app.json/Description with a really well said sentence of what this app can do
     - Changed brandColor

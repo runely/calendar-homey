@@ -32,6 +32,9 @@ const tzEvent = {
   'X-MICROSOFT-CDO-BUSYSTATUS': 'BUSY'
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {

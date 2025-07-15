@@ -3,6 +3,9 @@
 const constructedApp = require('./lib/construct-app')
 const getFallbackUri = require('../lib/get-fallback-uri')
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp
 }

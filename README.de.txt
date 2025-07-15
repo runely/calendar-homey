@@ -36,7 +36,7 @@ Die ersten beiden Standardkalender von Apple iCloud ("Zuhause" und "Arbeit") kö
 3. Kreuzen Sie das Kontrollkästchen an bzw. aktivieren Sie den Schieber für "Öffentlicher Kalender"
 4. Kopieren Sie den Link
 5. Fügen Sie den Kalenderlink in die Einstellungen der Homey-App ein
-    a. Es muss der Originallink sein (Apple Kalender hat Case Sensitive URLs)
+    1. Es muss der Originallink sein (Apple Kalender hat Case Sensitive URLs)
 
 Fügen Sie die IcalCalendar-Entität hinzu
 

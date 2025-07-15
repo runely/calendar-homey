@@ -165,6 +165,7 @@ class MyDevice extends Device {
    * @param {object} event.oldSettings The old settings object
    * @param {object} event.newSettings The new settings object
    * @param {string[]} event.changedKeys An array of keys changed since the previous version
+   *
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings ({ oldSettings, newSettings, changedKeys }) {

@@ -14,17 +14,13 @@ const eventLimit = {
   type: 'weeks'
 }
 
+/**
+ * @type {import('../types/AppTests.type').AppTests}
+ */
 const app = {
   ...constructedApp,
   homey: {
     __: () => locale.moment,
-    flow: {
-      getTriggerCard: (id) => {
-        return {
-          trigger: (tokens) => console.log('triggerCard', id, 'called with tokens:', tokens)
-        }
-      }
-    },
     settings: {
       get: () => undefined
     }
@@ -36,7 +32,14 @@ const app = {
   }
 }
 
-const activeEvents = getActiveEvents({ data, eventLimit, app })
+const activeEvents = getActiveEvents({
+  timezone: 'UTC',
+  data,
+  eventLimit,
+  calendarName: 'Test',
+  app,
+  logAllEvents: false
+})
 const onceAWeekEvents = activeEvents.filter((event) => event.summary === 'OnceAWeek')
 const alwaysOngoingEvents = activeEvents.filter((event) => event.summary === 'AlwaysOngoing')
 let dataNoTzid = []
@@ -100,7 +103,14 @@ describe('getActiveEvents returns an array', () => {
 describe('getActiveEvents throws an error', () => {
   test('When "DTSTART" is missing', () => {
     const dataNoStart = nodeIcal.sync.parseFile('./tests/data/calendar-missing-start.ics')
-    expect(() => getActiveEvents({ data: dataNoStart, eventLimit, app })).toThrow()
+    expect(() => getActiveEvents({
+      timezone: 'UTC',
+      data: dataNoStart,
+      eventLimit,
+      calendarName: 'Test',
+      app,
+      logAllEvents: false
+    })).toThrow()
   })
 })
 
@@ -122,7 +132,14 @@ describe('When "SUMMARY" is missing', () => {
 
 describe('When "TZID" is missing', () => {
   beforeAll(() => {
-    dataNoTzid = getActiveEvents({ data: nodeIcal.sync.parseFile('./tests/data/calendar-missing-timezone.ics'), eventLimit, app })
+    dataNoTzid = getActiveEvents({
+      timezone: 'UTC',
+      data: nodeIcal.sync.parseFile('./tests/data/calendar-missing-timezone.ics'),
+      eventLimit,
+      calendarName: 'Test',
+      app,
+      logAllEvents: false
+    })
   })
 
   test('on a recurring event, skipTZ should be true', () => {

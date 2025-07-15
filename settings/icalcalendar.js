@@ -384,7 +384,9 @@ function getEventLimit (limit, limitTypes) {
   limitTypes.forEach(({ value, text }) => {
     const option = document.createElement('option')
     option.setAttribute('value', value)
-    if (limit.type === value) option.setAttribute('selected', true)
+    if (limit.type === value) {
+      option.setAttribute('selected', 'true')
+    }
     option.appendChild(document.createTextNode(text))
     element.appendChild(option)
   })
@@ -554,15 +556,19 @@ function getUriFailedSetting (setting, syncInterval) {
 function hideError (type) {
   if (type === 'uri') { 
     const errorElement = document.getElementById('uri_error')
-    errorElement.classList = 'error-section-hidden'
+    errorElement.classList.add('error-section-hidden')
+    errorElement.classList.remove('error-section-show')
   } else if (type === 'cron') {
     const errorElement = document.getElementById('cron_error')
-    errorElement.classList = 'error-section-hidden'
+    errorElement.classList.add('error-section-hidden')
+    errorElement.classList.remove('error-section-show')
   } else {
     const uriElement = document.getElementById('uri_error')
     const cronElement = document.getElementById('cron_error')
-    uriElement.classList = 'error-section-hidden'
-    cronElement.classList = 'error-section-hidden'
+    uriElement.classList.add('error-section-hidden')
+    uriElement.classList.remove('error-section-show')
+    cronElement.classList.add('error-section-hidden')
+    cronElement.classList.remove('error-section-show')
   }
 }
 
@@ -571,12 +577,14 @@ function showError (text, type) {
     const errorElement = document.getElementById('uri_error')
 
     errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`
-    errorElement.classList = 'error-section-show'
+    errorElement.classList.add('error-section-show')
+    errorElement.classList.remove('error-section-hidden')
   } else if (type === 'cron') {
     const errorElement = document.getElementById('cron_error')
 
     errorElement.innerHTML = text
-    errorElement.classList = 'error-section-show'
+    errorElement.classList.add('error-section-show')
+    errorElement.classList.remove('error-section-hidden')
   }
 }
 

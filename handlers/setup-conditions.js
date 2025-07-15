@@ -117,6 +117,17 @@ const cards = [
   }
 ]
 
+/**
+ * @typedef {import('@types/homey').FlowCard.ArgumentAutocompleteResults} ArgumentAutocompleteResults
+ */
+
+/**
+ * @param {string} timezone - The timezone to use on events (IANA)
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {import('../types/VariableMgmt.type').VariableManagementCalendars} calendars - Imported calendars
+ *
+ * @returns ArgumentAutocompleteResults
+ */
 const getEventList = (timezone, app, calendars) => {
   const eventList = []
 
@@ -184,10 +195,18 @@ const getEventList = (timezone, app, calendars) => {
   return eventList
 }
 
+/**
+ * @param {string} timezone - The timezone to use on events (IANA)
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {string} query - The value to filter calendar events by summary
+ * @param {''|'calendar'|'event'} type - Autocomplete listener id
+ *
+ * @returns ArgumentAutocompleteResults
+ */
 const onEventAutocomplete = async (timezone, app, query, type) => {
   if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
     app.warn('onEventAutocomplete: Calendars not set yet. Nothing to show...')
-    return false
+    return []
   }
 
   if (type === 'event') {
@@ -199,9 +218,18 @@ const onEventAutocomplete = async (timezone, app, query, type) => {
     return getEventList(timezone, app, app.variableMgmt.calendars)
   }
 
-  return false
+  return []
 }
 
+/**
+ * @param {string} timezone - The timezone to use on events (IANA)
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {any} args - Arguments passed in from condition runListener
+ * @param {any} state - State passed in from condition runListener
+ * @param {'ongoing'|'in'|'any_ongoing'|'any_ongoing_calendar'|'any_in'|'stops_in'|'any_stops_in'|'event_containing_calendar'|'event_containing_calendar_stops'|'event_containing_calendar_ongoing'|'any_in_calendar'|'equal_in'|'match_in'} type - RunListener id
+ *
+ * @returns {boolean}
+ */
 const checkEvent = async (timezone, app, args, state, type) => {
   let filteredEvents
   if (type === 'ongoing' || type === 'in' || type === 'stops_in') {
@@ -325,8 +353,8 @@ const checkEvent = async (timezone, app, args, state, type) => {
 }
 
 /**
- * @param {import('homey').App} app App class init by Homey
- * @param {String} timezone The timezone to use on events (IANA)
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {string} timezone - The timezone to use on events (IANA)
  */
 const setupConditions = (app, timezone) => {
   // register condition flow cards
