@@ -8,7 +8,7 @@ Setup
     - Choose the interval of the automatic calendar synchronization (defaults to every 15th minute)
     - Change the date/time format or use the default (your choice)
         - All tokens supported in "moment.format()" is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
-    - Choose whether or not you want next event tags per calendar. Default is off
+    - Choose whether you want next event tags per calendar. Default is off
 - To be notified of any synchronization errors, create a flow using the trigger "Synchronization error occurred"
 
 Find Exchange Online ical link
@@ -36,7 +36,7 @@ The first 2 standard Apple iCloud calendars ("Home" and "Work") are not availabl
 3. Tick the checkbox for "Public calendar"
 4. Copy the link
 5. Paste the calendar link in the Homey app settings
-    a. It must be the original link (Apple Calendar has case sensitive urls)
+    1. It must be the original link (Apple Calendar has case-sensitive urls)
 
 Add device IcalCalendar
 
@@ -44,7 +44,7 @@ Add the "IcalCalendar" device to follow along with how many calendars you have c
 
 Timezone in your calendar (*.ics)
 
-The library used in this app to parse the calendars, node-ical, does NOT use the X-WR-TIMEZONE property to parse timezones. Instead it uses the BEGIN:VTIMEZONE sections to parse timezones!
+The library used in this app to parse the calendars, node-ical, does NOT use the X-WR-TIMEZONE property to parse timezones. Instead, it uses the BEGIN:VTIMEZONE sections to parse timezones!
 This means that if your calendar provider only uses the X-WR-TIMEZONE property, this app will assume your events is always in UTC!
 
 If your events are created with the timezone 'Customized Time Zone' (you will see this when opening the .ics file), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will therefore NOT be applied to these events!

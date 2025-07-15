@@ -36,7 +36,7 @@ De första 2 vanliga Apple iCloud-kalendrarna ("Hem" och "Arbete") är inte till
 3. Markera "Extern kalender"
 4. Kopiera länken
 5. Klistra in länken i inställningarna i Homey-appen
-    a. Det måste vara den ursprungliga länken (Apple Calendar är skiftlägeskänsligt i länken)
+    1. Det måste vara den ursprungliga länken (Apple Calendar är skiftlägeskänsligt i länken)
 
 Lägg till entiteten IcalCalendar
 

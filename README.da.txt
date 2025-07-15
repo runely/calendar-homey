@@ -36,7 +36,7 @@ De første 2 standard Apple iCloud-kalendere ("Home" og "Work") er ikke tilgæng
 3. Marker afkrydsningsfeltet for "Offentlig kalender"
 4. Kopier linket
 5. Indsæt kalenderlinket i Homey-appens indstillinger
-    a. Det skal være det originale link (Apple Kalender har case-sensitiv URLs)
+    1. Det skal være det originale link (Apple Kalender har case-sensitiv URLs)
 
 Tilføj enhed IcalCalendar
 
