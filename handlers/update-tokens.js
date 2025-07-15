@@ -150,6 +150,7 @@ const updateTokens = async (options) => {
       app.logError('updateTokens: Failed to update flow token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
+        .catch(err => app.logError('updateTokens: Failed to complete triggerSynchronizationError(...):', err))
     }
   }
 
@@ -230,6 +231,7 @@ const updateTokens = async (options) => {
       app.logError('updateTokens: Failed to update calendar token', tokenId, ':', error)
 
       triggerSynchronizationError({ app, calendar: '', error })
+        .catch(err => app.logError('updateTokens: Failed to complete triggerSynchronizationError(...):', err))
     }
   }
 }
@@ -262,6 +264,7 @@ const updateNextEventWithTokens = async (app, event) => {
         app.logError('updateNextEventWithTokens: Failed to update next event with token', tokenId, ':', error)
 
         triggerSynchronizationError({ app, calendar: calendarName, error, event: { summary } })
+          .catch(err => app.logError('updateTokens/updateNextEventWithTokens: Failed to complete triggerSynchronizationError(...):', err))
       }
     }
   } catch (error) {
