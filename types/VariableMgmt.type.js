@@ -32,7 +32,7 @@
 /**
  * @typedef SettingEventLimit
  * @property {string} value
- * @property {string} type
+ * @property {import('moment').DurationInputArg2} type
  */
 
 /**
@@ -52,14 +52,14 @@
 
 /**
  * @typedef {object} VariableManagementCalendarEvent
- * @property {import('@types/moment').Moment} start
+ * @property {import('moment').Moment} start
  * @property {import('node-ical').DateType} datetype
- * @property {import('@types/moment').Moment} end
+ * @property {import('moment').Moment} end
  * @property {string} uid
  * @property {string} description
  * @property {string} location
  * @property {string} summary
- * @property {import('@types/moment').Moment|undefined} created
+ * @property {import('moment').Moment|undefined} created
  * @property {boolean} fullDayEvent
  * @property {boolean} skipTZ
  * @property {string} freebusy
@@ -90,14 +90,14 @@
 
 /**
  * @typedef {object} VariableManagementLocalJsonEvent
- * @property {import('@types/moment').Moment|string|Date} start
+ * @property {import('moment').Moment|string|Date} start
  * @property {import('node-ical').DateType|string} datetype
- * @property {import('@types/moment').Moment|string|Date} end
+ * @property {import('moment').Moment|string|Date} end
  * @property {string} uid
  * @property {string} description
  * @property {string} location
  * @property {string} summary
- * @property {import('@types/moment').Moment|string|undefined} created
+ * @property {import('moment').Moment|string|undefined} created
  * @property {boolean} fullDayEvent
  * @property {boolean} skipTZ
  * @property {string} freebusy

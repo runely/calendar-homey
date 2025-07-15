@@ -1,5 +1,5 @@
 /**
- * @typedef {import('@types/moment').Moment} Moment
+ * @typedef {import('moment').Moment} Moment
  */
 
 /**

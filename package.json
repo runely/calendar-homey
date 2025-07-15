@@ -14,8 +14,6 @@
     "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/jest": "29.5.14",
-    "@types/moment": "^2.11.29",
-    "@types/moment-timezone": "^0.5.13",
     "@types/node": "22.16.4",
     "browserify": "17.0.1",
     "jest": "29.7.0",
