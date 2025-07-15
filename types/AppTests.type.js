@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} AppTests
+ * @typedef {object} AppTests
  * @property {{(message?: any, ...optionalParams: any[]): void, (...data: any[]): void}} [error]
  * @property {(function(...[*]): void)} [logError]
  * @property {{(message?: any, ...optionalParams: any[]): void, (...data: any[]): void}} [log]
@@ -9,7 +9,7 @@
  */
 
 /**
- * @typedef {Object} HomeyAppTests
+ * @typedef {object} HomeyAppTests
  * @property {(prop: string) => string|import('jest').fn} [__]
  * @property {HomeyAppTestsFlow} [flow]
  * @property {HomeyAppTestsI18n} [i18n]
@@ -17,22 +17,22 @@
  */
 
 /**
- * @typedef {Object} HomeyAppTestsFlow
+ * @typedef {object} HomeyAppTestsFlow
  * @property {(id: string) => HomeyAppTestsFlowTrigger}
  */
 
 /**
- * @typedef {Object} HomeyAppTestsFlowTrigger
+ * @typedef {object} HomeyAppTestsFlowTrigger
  * @property {(tokens: Object) => void} trigger
  */
 
 /**
- * @typedef {Object} HomeyAppTestsI18n
+ * @typedef {object} HomeyAppTestsI18n
  * @property {() => string} getLanguage
  */
 
 /**
- * @typedef {Object} HomeyAppTestsSettings
+ * @typedef {object} HomeyAppTestsSettings
  * @property {(path: string) => string|undefined} [get]
  * @property {(path: string, data: string) => void|import('jest').fn} [set]
  */

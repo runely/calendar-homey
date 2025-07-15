@@ -14,7 +14,7 @@ const getDateTime = (value) => {
 }
 
 /**
- * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
  */
 module.exports = (app) => {
   // register run listener on action flow cards

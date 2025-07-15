@@ -30,7 +30,13 @@ const events = [
     uid: 'cal_one_One',
     description: 'One',
     location: '',
-    summary: 'One'
+    summary: 'One',
+    created: undefined,
+    fullDayEvent: false,
+    skipTZ: true,
+    freebusy: '',
+    meetingUrl: '',
+    local: false
   },
   {
     start: moment({ date: '2021-11-06T20:00:00.000Z' }),
@@ -39,7 +45,13 @@ const events = [
     uid: 'cal_one_Two',
     description: 'Two',
     location: '',
-    summary: 'Two'
+    summary: 'Two',
+    created: undefined,
+    fullDayEvent: false,
+    skipTZ: true,
+    freebusy: '',
+    meetingUrl: '',
+    local: false
   }
 ]
 

@@ -22,7 +22,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
         description: 'Desc',
         location: '',
-        summary: 'startNow'
+        summary: 'startNow',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment().subtract(1, 'hour'),
@@ -31,7 +37,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8842',
         description: 'Desc',
         location: '',
-        summary: 'stopNow'
+        summary: 'stopNow',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   },
@@ -45,7 +57,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8843',
         description: 'Desc',
         location: '',
-        summary: 'Future2'
+        summary: 'Future2',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment().subtract(2, 'hours'),
@@ -54,7 +72,13 @@ const calendars = [
         uid: 'F7177A32-DBD4-46A9-85C7-669749EA8844',
         description: 'Desc',
         location: '',
-        summary: 'Future'
+        summary: 'Future',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   }

@@ -3,6 +3,7 @@
 const sortCalendars = require('../lib/sort-calendars')
 const { moment } = require('../lib/moment-datetime')
 
+/** @type {import('../types/VariableMgmt.type').VariableManagementCalendars} */
 const calendars = [
   {
     name: 'CalendarOne',
@@ -14,7 +15,13 @@ const calendars = [
         uid: 'cal_one_Two',
         description: 'Two',
         location: '',
-        summary: 'Two'
+        summary: 'Two',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: '2021-11-05T20:00:00.000Z' }),
@@ -23,7 +30,13 @@ const calendars = [
         uid: 'cal_one_One',
         description: 'One',
         location: '',
-        summary: 'One'
+        summary: 'One',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   },
@@ -37,7 +50,13 @@ const calendars = [
         uid: 'cal_two_Two',
         description: 'Two',
         location: '',
-        summary: 'Two'
+        summary: 'Two',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       },
       {
         start: moment({ date: '2021-11-05T20:00:00.000Z' }),
@@ -46,7 +65,13 @@ const calendars = [
         uid: 'cal_two_One',
         description: 'One',
         location: '',
-        summary: 'One'
+        summary: 'One',
+        created: undefined,
+        fullDayEvent: false,
+        skipTZ: true,
+        freebusy: '',
+        meetingUrl: '',
+        local: false
       }
     ]
   }

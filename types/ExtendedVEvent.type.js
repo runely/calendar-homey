@@ -1,11 +1,11 @@
 /**
- * @typedef {import('moment-timezone').Moment} MomentTimezone
+ * @typedef {import('moment').Moment} Moment
  */
 
 /**
  * @typedef {import('node-ical').VEvent & {
  *   skipTZ: boolean,
- *   start: MomentTimezone,
- *   end: MomentTimezone
+ *   start: Moment,
+ *   end: Moment
  * }} ExtNodeIcalVEvent
  */

@@ -8,6 +8,11 @@ const getTokenEvents = require('../lib/get-token-events')
 const { moment } = require('../lib/moment-datetime')
 const { triggerSynchronizationError } = require('./trigger-cards')
 
+/**
+ * @param {string} tokenId
+ * @param {string|number|boolean|import('homey').Image} value
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ */
 const updateToken = async (tokenId, value, app) => {
   try {
     const token = app.homey.flow.getToken(tokenId)
@@ -22,6 +27,18 @@ const updateToken = async (tokenId, value, app) => {
   }
 }
 
+/**
+ * @typedef {import('../types/NextEvent.type').NextEventObj} NextEvent
+ */
+
+/**
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {string} calendarName
+ * @param {NextEvent|null} nextEvent
+ * @param {string} timezone
+ *
+ * @returns {NextEvent|null}
+ */
 const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
   if (!nextEvent) {
     // app.log(`getNextEventByCalendar: nextEvent not set. Getting next event for calendar '${calendarName}'`);
@@ -43,9 +60,9 @@ const getNextEventByCalendar = (app, calendarName, nextEvent, timezone) => {
 }
 
 /**
- * @typedef {Object} UpdateTokensOptions
- * @prop {String} timezone - The timezone to use on events (IANA)
- * @prop {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @typedef {object} UpdateTokensOptions
+ * @property {string} timezone - The timezone to use on events (IANA)
+ * @property {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
  */
 
 /**
@@ -218,8 +235,8 @@ const updateTokens = async (options) => {
 }
 
 /**
- * @param {import('homey').App|import('../types/AppTests.type').AppTests} app - App class init by Homey
- * @param {Object} event - Update tokens from this event
+ * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
+ * @param {import('../types/VariableMgmt.type').VariableManagementCalendarEvent} event - Update tokens from this event
  */
 const updateNextEventWithTokens = async (app, event) => {
   const { summary, start, end, description, calendarName } = event

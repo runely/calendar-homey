@@ -26,7 +26,13 @@ const event = {
   uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
   description: 'Desc',
   location: '',
-  summary: 'startNow'
+  summary: 'startNow',
+  created: undefined,
+  fullDayEvent: false,
+  skipTZ: true,
+  freebusy: '',
+  meetingUrl: '',
+  local: false
 }
 
 const eventLong = {
@@ -36,7 +42,13 @@ const eventLong = {
   uid: 'F7177A32-DBD4-46A9-85C7-669749EA8841',
   description: 'Desc',
   location: '',
-  summary: 'startNow'
+  summary: 'startNow',
+  created: undefined,
+  fullDayEvent: false,
+  skipTZ: true,
+  freebusy: '',
+  meetingUrl: '',
+  local: false
 }
 
 describe('getTokenDuration', () => {

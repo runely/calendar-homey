@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} VariableManagement
+ * @typedef {object} VariableManagement
  * @property {VariableManagementSettings} [setting]
  * @property {SettingHitCount} [hitCount]
  * @property {VariableManagementTokens} [tokens]
@@ -36,12 +36,12 @@
  */
 
 /**
- * @typedef {Object} SettingHitCount
+ * @typedef {object} SettingHitCount
  * @property {string} data
  */
 
 /**
- * @typedef {Object} VariableManagementCalendar
+ * @typedef {object} VariableManagementCalendar
  * @property {string} name
  * @property {VariableManagementCalendarEvents} events
  */
@@ -51,15 +51,15 @@
  */
 
 /**
- * @typedef {Object} VariableManagementCalendarEvent
- * @property {import('moment-timezone').Moment} start
+ * @typedef {object} VariableManagementCalendarEvent
+ * @property {import('moment').Moment} start
  * @property {import('node-ical').DateType} datetype
- * @property {import('moment-timezone').Moment} end
+ * @property {import('moment').Moment} end
  * @property {string} uid
  * @property {string} description
  * @property {string} location
  * @property {string} summary
- * @property {import('moment-timezone').Moment|undefined} created
+ * @property {import('moment').Moment|undefined} created
  * @property {boolean} fullDayEvent
  * @property {boolean} skipTZ
  * @property {string} freebusy
@@ -72,7 +72,7 @@
  */
 
 /**
- * @typedef {Object} VariableManagementDateTimeFormat
+ * @typedef {object} VariableManagementDateTimeFormat
  * @property {string} long
  * @property {string} short
  * @property {string} time
@@ -89,11 +89,33 @@
  */
 
 /**
+ * @typedef {object} VariableManagementLocalJsonEvent
+ * @property {import('moment').Moment|string|Date} start
+ * @property {import('node-ical').DateType|string} datetype
+ * @property {import('moment').Moment|string|Date} end
+ * @property {string} uid
+ * @property {string} description
+ * @property {string} location
+ * @property {string} summary
+ * @property {import('moment').Moment|string|undefined} created
+ * @property {boolean} fullDayEvent
+ * @property {boolean} skipTZ
+ * @property {string} freebusy
+ * @property {string} meetingUrl
+ * @property {boolean} local
+ * @property {string} calendar
+ */
+
+/**
+ * @typedef {VariableManagementLocalJsonEvent[]} VariableManagementLocalJsonEvents
+ */
+
+/**
  * @typedef {string[]} VariableManagementTokenIds
  */
 
 /**
- * @typedef {Object} VariableManagementSettings
+ * @typedef {object} VariableManagementSettings
  * @property {string} [icalUris]
  * @property {string} [syncInterval]
  * @property {string|null} [dateFormat]
@@ -108,14 +130,14 @@
  */
 
 /**
- * @typedef {Object} VariableManagementStorage
+ * @typedef {object} VariableManagementStorage
  * @property {string} [eventUids]
  * @property {string} [localEvents]
  * @property {string} [calendarsMetadata]
  */
 
 /**
- * @typedef {Object} VariableManagementToken
+ * @typedef {object} VariableManagementToken
  * @property {string} id
  * @property {'string'|'number'} type
  */
