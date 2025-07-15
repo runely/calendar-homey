@@ -220,6 +220,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
   - Fixed a type error where false could be returned instead of an empty list
   - Added missing Promise catch
   - Code cleanup
+  - Export functions through an object instead of directly on module.exports to easier follow usages
 - 2.11.4
   - Dependency updates
 - 2.11.3

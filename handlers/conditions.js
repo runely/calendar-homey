@@ -10,7 +10,7 @@ const { momentNow } = require('../lib/moment-datetime')
  *
  * @returns boolean - true if any event is ongoing otherwise false
  */
-module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') => {
+const isEventOngoing = (app, timezone, events, caller = 'condition') => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
@@ -33,7 +33,7 @@ module.exports.isEventOngoing = (app, timezone, events, caller = 'condition') =>
  *
  * @returns boolean - true if any event is "when" minutes until start otherwise false
  */
-module.exports.isEventIn = (app, timezone, events, when) => {
+const isEventIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
@@ -55,7 +55,7 @@ module.exports.isEventIn = (app, timezone, events, when) => {
  *
  * @returns boolean - true if any event is "when" minutes or less until end otherwise false
  */
-module.exports.willEventNotIn = (app, timezone, events, when) => {
+const willEventNotIn = (app, timezone, events, when) => {
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
@@ -67,4 +67,10 @@ module.exports.willEventNotIn = (app, timezone, events, when) => {
     }
     return result
   })
+}
+
+module.exports = {
+  isEventOngoing,
+  isEventIn,
+  willEventNotIn
 }

@@ -53,7 +53,7 @@ const getErrorMessage = (app, error) => {
 /**
  * @param {TriggerSynchroniztionErrorOptions} options
  */
-module.exports.triggerSynchronizationError = async (options) => {
+const triggerSynchronizationError = async (options) => {
   const { app, calendar, error, event } = options
   try {
     const { message, stack } = getErrorMessage(app, error)
@@ -85,7 +85,7 @@ module.exports.triggerSynchronizationError = async (options) => {
 /**
  * @param {TriggerChangedCalendarsOptions} options
  */
-module.exports.triggerChangedCalendars = async (options) => {
+const triggerChangedCalendars = async (options) => {
   const { app, calendars } = options
   const triggerAllValues = app.homey.settings.get(app.variableMgmt.setting.triggerAllChangedEventTypes)
   if (!triggerAllValues) {
@@ -170,7 +170,7 @@ module.exports.triggerChangedCalendars = async (options) => {
 /**
  * @param {TriggerEventsOptions} options
  */
-module.exports.triggerEvents = async (options) => {
+const triggerEvents = async (options) => {
   const { timezone, app, event } = options
   const events = event ? [event] : getEventsToTrigger({ timezone, app, calendars: app.variableMgmt.calendars })
 
@@ -227,4 +227,10 @@ module.exports.triggerEvents = async (options) => {
       app.logError('triggerEvents: Failed to trigger event', event.uid, 'from', calendarName, ':', err)
     }
   }
+}
+
+module.exports = {
+  triggerSynchronizationError,
+  triggerChangedCalendars,
+  triggerEvents
 }
