@@ -213,8 +213,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 2.11.5
+- 2.12.0
   - Updated JSDoc
+  - Types all around
+  - Fixed a type error where false could be returned instead of an empty list
 - 2.11.4
   - Dependency updates
 - 2.11.3

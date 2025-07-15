@@ -206,7 +206,7 @@ const getEventList = (timezone, app, calendars) => {
 const onEventAutocomplete = async (timezone, app, query, type) => {
   if (!app.variableMgmt.calendars || app.variableMgmt.calendars.length <= 0) {
     app.warn('onEventAutocomplete: Calendars not set yet. Nothing to show...')
-    return false
+    return []
   }
 
   if (type === 'event') {
@@ -218,7 +218,7 @@ const onEventAutocomplete = async (timezone, app, query, type) => {
     return getEventList(timezone, app, app.variableMgmt.calendars)
   }
 
-  return false
+  return []
 }
 
 /**
