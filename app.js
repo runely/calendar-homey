@@ -86,7 +86,9 @@ class IcalCalendar extends Homey.App {
     this._unload = (name) => {
       this.variableMgmt = null
 
-      if (!this.jobs) return
+      if (!this.jobs) {
+        return
+      }
 
       // unload cron jobs
       Object.getOwnPropertyNames(this.jobs).forEach((prop) => {
@@ -125,11 +127,11 @@ class IcalCalendar extends Homey.App {
       if (args && [this.variableMgmt.setting.icalUris, this.variableMgmt.setting.eventLimit, this.variableMgmt.setting.nextEventTokensPerCalendar].includes(args)) {
         // sync calendars when calendar specific settings have been changed
         if (this.isGettingEvents) {
-          this.log(`onInit/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
+          this.log(`registerSettingsCallbacks/${args}: "getEvents" is currently running. Updated settings won't be applied until the next 15th minute!`)
           return
         }
 
-        this.log(`onInit/${args}: Triggering getEvents and reregistering tokens`)
+        this.log(`registerSettingsCallbacks/${args}: Triggering getEvents and reregistering tokens`)
         this.getEvents(true)
           .catch(err => this.logError(`registerSettingsCallbacks/${args}: Failed to complete getEvents(true):`, err))
         return

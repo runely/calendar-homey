@@ -155,7 +155,7 @@ const updateTokens = async (options) => {
   }
 
   // loop through calendar tokens
-  let calendarNextEvent
+  let calendarNextEvent = null
   for await (const tokenId of app.variableMgmt.calendarTokens) {
     try {
       const calendarId = tokenId.replace(app.variableMgmt.calendarTokensPreId, '')

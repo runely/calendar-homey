@@ -16,7 +16,10 @@ const app = {
       getLanguage: () => 'no'
     },
     settings: {
-      get: (path) => JSON.stringify(runtimeData),
+      get: (path) => {
+        console.debug('path', path)
+        return JSON.stringify(runtimeData)
+      },
       set: (path, data) => {
         runtimeData = JSON.parse(data)
       }
@@ -46,7 +49,10 @@ const appWithoutData = {
       getLanguage: () => 'no'
     },
     settings: {
-      get: (path) => undefined,
+      get: (path) => {
+        console.debug('path', path)
+        return undefined
+      },
       set: (path, data) => {
         runtimeData = JSON.parse(data)
       }
