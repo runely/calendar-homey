@@ -2,24 +2,16 @@
   "name": {
     "en": "Calendar Short"
   },
-  "height": 188,
+  "height": 999,
   "settings": [],
   "api": {
-    "getSomething": {
+    "getCalendarList": {
       "method": "GET",
-      "path": "/"
+      "path": "/calendar/list"
     },
-    "addSomething": {
-      "method": "POST",
-      "path": "/"
-    },
-    "updateSomething": {
-      "method": "PUT",
-      "path": "/:id"
-    },
-    "deleteSomething": {
-      "method": "DELETE",
-      "path": "/:id"
+    "getCalendarEvents": {
+      "method": "GET",
+      "path": "/calendar/:id"
     }
   }
 }

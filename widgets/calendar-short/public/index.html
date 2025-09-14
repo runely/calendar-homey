@@ -8,21 +8,54 @@
     </style>
   </head>
 
-  <body class="homey-widget">
-    <img src="homey-logo.png" alt="Homey logo" class="custom-image-class" />
-    <p class="homey-text-regular homey-text-align-center">Edit public/index.html and hit refresh.</p>
+  <body class="homey-widget-full">
+    <table class="homey-table-striped text-align-center">
+      <tbody>
+      </tbody>
+    </table>
 
     <script type="text/javascript">
       function onHomeyReady(Homey) {
         Homey.ready();
+        const tbody = document.querySelector('tbody');
 
         // View the settings the user provided if your widget has settings.
         console.log('Widget settings:', Homey.getSettings());
 
         // Fetch something from your app.
-        Homey.api('GET', '/', {})
-          .then((result) => {
-            console.log(result);
+        Homey.api('GET', '/calendar/list', {})
+          .then((eventsByDay) => {
+            eventsByDay.forEach((dayEvent, dayKey) => {
+              const day = dayEvent.day;
+              const events = dayEvent.events;
+              const row = document.createElement('tr');
+
+              events.forEach((event, index) => {
+                if (index == 0) {
+                  const dayCell = document.createElement('td');
+                  dayCell.setAttribute('rowspan', events.length);
+                  dayCell.innerHTML = `<span class=".homey-text-bold">${day.format('ddd')}<br />${day.format('MMM D')}</span>`;
+                  row.appendChild(dayCell);
+                }
+
+                // Create and append the second column (age)
+                const summaryCell = document.createElement('td');
+                let period = `${event.start.format('HH:MM')}`; // - ${event.end.format('HH:MM')}`;
+                //if (!event.start.isSame(event.end, 'day')) {
+                //  period = `${event.start.format('HH:MM')} - ${event.end.format('D MMMM HH:MM')}`;
+                //} 
+
+                summaryCell.innerHTML = `<span class=".homey-text-medium">${event.summary}</span><br /><span class=".homey-text-small-light">${period}</span>`;
+                row.appendChild(summaryCell);
+
+                const calendarCell = document.createElement('td');
+                calendarCell.innerHTML = `<span class=".homey-text-regular">Foobar</span>`;
+                row.appendChild(calendarCell);
+
+                // Append the row to the tbody
+                tbody.appendChild(row);
+              });
+            });
           })
           .catch(console.error);
       }
