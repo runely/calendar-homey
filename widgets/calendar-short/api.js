@@ -8,47 +8,67 @@ const getDayKey = (datetime) => {
 module.exports = {
 
   async getCalendarList({ homey, query }) {
-    let events = homey.app.variableMgmt.calendars.reduce((events, calendar) => events.concat(calendar.events), []);
+    let events = homey.app.variableMgmt.calendars.reduce(
+      (allEvents, calendar) => {
+        // Create a copy of the calendar object without the 'events' property
+        const { events: _, ...calendarWithoutEvents } = calendar;
+
+        // For each event in the calendar, add the calendar reference
+        const eventsWithCalendar = calendar.events.map(event => ({
+          ...event,
+          calendar: calendarWithoutEvents // Attach the calendar reference
+        }));
+        return allEvents.concat(eventsWithCalendar);
+      },
+      []
+    );
     events = sortEvents(events);
 
-    // Group events by day using a Map
+    // Group events by day and serialize the data
+    const serializedEvents = [];
     const eventsByDay = events.reduce((map, event) => {
       const dayKey = getDayKey(event.start).format('YYYY-MM-DD');
       if (!map.has(dayKey)) {
-        map[dayKey] = {
-          day: getDayKey(event.start), // Store as Moment object
-          events: []
-        };
+        map.set(dayKey, {
+          day: getDayKey(event.start),
+          events: [],
+        });
       }
-      map[dayKey].events.push(event);
+      map.get(dayKey).events.push(event);
       return map;
     }, new Map());
 
-      eventsByDay.forEach((dayEvent, dayKey) => {
-        const day = dayEvent.day;
-        const events = dayEvent.events;
+    eventsByDay.forEach((dayEvent, dayKey) => {
+      const day = dayEvent.day;
+      const events = dayEvent.events;
 
-          events.forEach((event, index) => {
-            if (index == 0) {
-              const lengt = events.length;
-              let dayCell = `<span class=".homey-text-bold">${day.format('ddd')}<br />${day.format('MMM D')}</span>`;
-            }
+      events.forEach((event, index) => {
+        // Create dayCell for the first event of the day
+        const dayInfo = index === 0
+          ? `<span class="homey-text-regular homey-text-align-center">${day.format('ddd')}<br />${day.format('MMM D')}</span>`
+          : null;
 
-            // Create and append the second column (age)
-            let period = `${event.start.format('HH:MM')} - ${event.end.format('HH:MM')}`;
-            if (!event.start.isSame(event.end, 'day')) {
-              period = `${event.start.format('HH:MM')} - ${event.end.format('D MMMM HH:MM')}`;
-            } 
+        // Create period string
+        let period = event.fullDayEvent ? 'All day' : event.start.format('HH:mm');
+        if (!event.start.isSame(event.end, 'day')) {
+          const after = event.fullDayEvent ? `, ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
+          period = period + after;
+        }
 
-            let summaryCell = `<span class=".homey-text-medium">${event.summary}</span><br /><span class=".homey-text-small-light">${period}</span>`;
+        // Create summaryCell and calendarCell
+        const summaryInfo = `<span class="homey-text-small">${event.summary}</span><br /><span style="color: var(--homey-color-highlight);" class="homey-text-small-light">${period}</span>`;
+        const calendarInfo = `<span style="color: ${event.calendar.color};" class="homey-text-small">${event.calendar.name}</span>`;
 
-            let calendarCell = `<span class=".homey-text-regular">Foobar</span>`;
-
-          });
-
+        // Push serialized event data
+        serializedEvents.push({
+          dayInfo,
+          summaryInfo,
+          calendarInfo,
+        });
       });
+    });
 
-    return eventsByDay;
+    return serializedEvents;
   },
 
   async getCalendarEvents({ homey, params }) {
