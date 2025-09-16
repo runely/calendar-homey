@@ -48,15 +48,18 @@ module.exports = {
       events.forEach((event, index) => {
         // Create dayCell for the first event of the day
         const dayInfo = index === 0
-          ? `<span class="homey-text-regular homey-text-align-center">${day.format('ddd')}<br />${day.format('MMM D')}</span>`
+          ? `<span class="homey-text-small homey-text-align-center">${day.format('ddd')}<br />${day.format('MMM D')}</span>`
           : null;
 
         // Create period string
+        let after =  `- ${event.end.format('HH:mm')}`;
         let period = event.fullDayEvent ? 'All day' : event.start.format('HH:mm');
+
         if (!event.start.isSame(event.end, 'day')) {
-          const after = event.fullDayEvent ? `, ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
-          period = period + after;
+          after = event.fullDayEvent ? `, until ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
         }
+
+        period = period + after;
 
         // Create summaryCell and calendarCell
         const summaryInfo = `<span class="homey-text-small">${event.summary}</span><br /><span style="color: var(--homey-color-highlight);" class="homey-text-small-light">${period}</span>`;
