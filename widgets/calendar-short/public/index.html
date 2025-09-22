@@ -112,6 +112,8 @@
               // Append the row to the tbody
               tbody.appendChild(row);
             });
+
+           Homey.setHeight(document.body.offsetHeight);
           })
           .catch(console.error);
       }
