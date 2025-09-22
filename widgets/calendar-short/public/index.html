@@ -79,13 +79,16 @@
         infoWeek.textContent = `${Homey.__('widget.weekNumber')} ${weekNumber}`;
         infoDate.textContent = now.toLocaleDateString();
 
+        infoWeek.hidden = Homey.getSettings().get('showWeekNumber');
+        infoDate.hidden = Homey.getSettings().get('showDate');
+
         const tbody = document.querySelector('tbody');
 
         // View the settings the user provided if your widget has settings.
         console.log('Widget settings:', Homey.getSettings());
 
         // Fetch something from your app.
-        Homey.api('GET', '/calendar/list', {})
+        Homey.api('GET', `/calendar/list?max=${Homey.getSettings().get('maxEvents')}`, {})
           .then((eventsByDay) => {
             eventsByDay.forEach((event, index) => {
               // Access the dayCell, summaryCell, and calendarCell for each event

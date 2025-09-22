@@ -25,7 +25,7 @@ module.exports = {
 
     // Ensure max X row is shown
     events = sortEvents(events);
-    events = events.slice(0, 10);
+    events = events.slice(0, query.max);
 
     // Group events by day and serialize the data
     const serializedEvents = [];
