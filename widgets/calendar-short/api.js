@@ -52,11 +52,11 @@ module.exports = {
           : null;
 
         // Create period string
-        let after =  `- ${event.end.format('HH:mm')}`;
-        let period = event.fullDayEvent ? 'All day' : event.start.format('HH:mm');
+        let after =  ` - ${event.end.format('HH:mm')}`;
+        let period = event.fullDayEvent ? homey.__("widget.allDay") : event.start.format('HH:mm');
 
         if (!event.start.isSame(event.end, 'day')) {
-          after = event.fullDayEvent ? `, until ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
+          after = event.fullDayEvent ? `, ${homey.__("widget.until")} ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
         }
 
         period = period + after;
