@@ -46,23 +46,29 @@
         display: inline-block;
         margin-right: var(--homey-su-1);
       }
+
+      td.widget-calendar-cell {
+        display: inline-block;
+      }
     </style>
   </head>
 
   <body class="homey-widget-full">
-    <div id="date-info" class="widget-item">
-      <div id="date-info-week">
-        <span id="date-info-week-text" class="homey-text-bold"></span>
+    <div id="widget">
+      <div id="date-info" class="widget-item">
+        <div id="date-info-week">
+          <span id="date-info-week-text" class="homey-text-bold"></span>
+        </div>
+        <div id="date-info-date">
+          <span id="date-info-date-text" class="homey-text-bold"></span>
+        </div>
       </div>
-      <div id="date-info-date">
-        <span id="date-info-date-text" class="homey-text-bold"></span>
-      </div>
-    </div>
 
-    <table class="homey-table-striped text-align-center">
-      <tbody>
-      </tbody>
-    </table>
+      <table class="homey-table-striped text-align-center">
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
     <script type="text/javascript">
       function getWeekNumber(date) {
@@ -77,6 +83,7 @@
         // Set Date info
         const now = new Date();
         const weekNumber = getWeekNumber(now);
+        const widget = document.getElementById("widget")
         const infoWeek = document.getElementById("date-info-week")
         const infoDate = document.getElementById("date-info-date")
         const divInfo = document.getElementById("date-info")
@@ -92,6 +99,8 @@
         const tbody = document.querySelector('tbody');
 
         // Fetch something from your app.
+        Homey.ready({ height: widget.offsetHeight });
+
         Homey.api('GET', `/calendar/list?max=${settings.maxEvents}`, {})
           .then((eventsByDay) => {
             eventsByDay.forEach((event, index) => {
@@ -117,7 +126,7 @@
               tbody.appendChild(row);
             });
 
-           Homey.setHeight(document.body.offsetHeight);
+           Homey.setHeight(widget.offsetHeight);
           })
           .catch(console.error);
       }
