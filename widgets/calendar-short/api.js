@@ -41,7 +41,7 @@ module.exports = {
       return map;
     }, new Map());
 
-    eventsByDay.forEach((dayEvent, dayKey) => {
+    eventsByDay.forEach((dayEvent, _) => {
       const day = dayEvent.day;
       const events = dayEvent.events;
 

@@ -2,17 +2,14 @@
   <head>
     <style>
 
-      span#date-info-week-text {
+      div#date-info-week {
+        display: block;
         color: var(--homey-color-blue);
         border-color: var(--homey-color-blue);
         border: 2px;
-        border-radius: 5%;
+        border-radius: 15%;
         border-style: solid;
-        padding: 10px;
-      }
-
-      div#date-info-week {
-        display: block;
+        padding: var(--homey-su-1);
       }
 
       div#date-info {
@@ -20,18 +17,19 @@
         justify-content: space-between; /* Pushes the child divs to the left and right */
         align-items: center;            /* Vertically centers the content (optional) */
         width: 100%;                    /* Ensures the container takes full width */
-        margin: var(--homey-su-2);
-        padding: var(--homey-su-2);
+        margin: var(--homey-su-1);
+        padding: var(--homey-su-1);
       }
 
       div#date-info-date {
         /* Optional: Add styling for the spans */
         display: block; /* Ensures the spans behave like block elements */
+        padding: var(--homey-su-4);
       }
 
       .widget-item {
-        margin: var(--homey-su-2);
-        padding: var(--homey-su-2);
+        margin: var(--homey-su-1);
+        padding: var(--homey-su-1);
       }
 
       .no-wrap {
