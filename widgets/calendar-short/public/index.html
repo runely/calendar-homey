@@ -130,7 +130,7 @@
         divInfo.style.display = (!settings.showWeekNumber && !settings.showDate) ? 'none' : '';
 
         // Fetch something from your app.
-        Homey.ready({ height: widget.offsetHeight });
+        Homey.ready();
 
         parseEvents(Homey, settings);
 
