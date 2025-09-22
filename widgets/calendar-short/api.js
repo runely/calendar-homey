@@ -8,7 +8,7 @@ const getDayKey = (datetime) => {
 module.exports = {
 
   async getCalendarList({ homey, query }) {
-    const timeFormat = homey.app.variableMgmt.setting.timeFormat;
+    const timeFormat = homey.app.variableMgmt.dateTimeFormat.time;
     let events = homey.app.variableMgmt.calendars.reduce(
       (allEvents, calendar) => {
         // Create a copy of the calendar object without the 'events' property
