@@ -8,6 +8,7 @@ const getDayKey = (datetime) => {
 module.exports = {
 
   async getCalendarList({ homey, query }) {
+    const timeFormat = homey.app.variableMgmt.setting.timeFormat;
     let events = homey.app.variableMgmt.calendars.reduce(
       (allEvents, calendar) => {
         // Create a copy of the calendar object without the 'events' property
@@ -52,11 +53,12 @@ module.exports = {
           : null;
 
         // Create period string
-        let after =  ` - ${event.end.format('HH:mm')}`;
-        let period = event.fullDayEvent ? homey.__("widget.allDay") : event.start.format('HH:mm');
+        let after =  ` - ${event.end.format(timeFormat)}`;
+        let period = event.fullDayEvent ? homey.__("widget.allDay") : event.start.format(timeFormat);
 
         if (!event.start.isSame(event.end, 'day')) {
-          after = event.fullDayEvent ? `, ${homey.__("widget.until")} ${event.end.format('D MMMM')}` : ` - ${event.end.format('D MMMM HH:mm')}`;
+          const endFormat = event.fullDayEvent ? 'D MMMM' : `D MMMM ${timeFormat}`;
+          after = event.fullDayEvent ? `, ${homey.__("widget.until")} ${event.end.format(endFormat)}` : ` - ${event.end.format(endFormat)}`;
         }
 
         period = period + after;
