@@ -63,7 +63,7 @@ module.exports = {
 
         // Create summaryCell and calendarCell
         const summaryInfo = `<span class="homey-text-small">${event.summary}</span><br /><span style="color: var(--homey-color-highlight);" class="homey-text-small-light">${period}</span>`;
-        const calendarInfo = `<span style="color: ${event.calendar.color};" class="homey-text-small"><div class="homey-calendar-icon"></div>${event.calendar.name}</span>`;
+        const calendarInfo = `<span style="color: ${event.calendar.color};" class="widget-calendar-cell homey-text-small"><div style="--homey-icon-color: ${event.calendar.color}" class="homey-custom-icon-calendar"></div>${event.calendar.name}</span>`;
 
         // Push serialized event data
         serializedEvents.push({

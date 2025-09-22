@@ -38,9 +38,13 @@
         white-space: nowrap;
       }
 
-      .homey-calendar-icon {
+      .homey-custom-icon-calendar {
+        --homey-icon-size: var(--homey-icon-size-small);
         -webkit-mask-image: url('icons/calendar-icon.svg'); /* Browser support. */
         mask-image: url('icons/calendar-icon.svg');
+        height: 15px;
+        display: inline-block;
+        margin-right: var(--homey-su-1);
       }
     </style>
   </head>
