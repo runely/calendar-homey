@@ -75,7 +75,7 @@
         return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
       }
 
-      function parseEvents(Homey) {
+      function parseEvents(Homey, settings) {
         const widget = document.getElementById("widget")
         const tbody = document.querySelector('tbody');
 
@@ -132,11 +132,11 @@
         // Fetch something from your app.
         Homey.ready({ height: widget.offsetHeight });
 
-        parseEvents(Homey);
+        parseEvents(Homey, settings);
 
         // Set interval for every 5m
         setInterval(() => {
-          parseEvents(Homey);
+          parseEvents(Homey, settings);
         }, 5 * 60 * 1000);
 
       }
