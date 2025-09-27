@@ -221,6 +221,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
   - Added missing Promise catch
   - Code cleanup
   - Export functions through an object instead of directly on module.exports to easier follow usages
+  - Dependency updates
 - 2.11.4
   - Dependency updates
 - 2.11.3
