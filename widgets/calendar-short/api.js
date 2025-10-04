@@ -1,6 +1,11 @@
 'use strict';
 const sortEvents = require('./../../lib/sort-events')
 
+/**
+ * Gets the day key for a given datetime.
+ * @param {Object} datetime - The datetime object to process.
+ * @returns {Object} - The day key for the given datetime.
+ */
 const getDayKey = (datetime) => {
   return datetime.clone().startOf('day');
 }
@@ -46,6 +51,12 @@ const listRelevantEvents = (homey) => {
 
 module.exports = {
 
+  /**
+   * Gets a list of calendar events for display.
+   * @param {Object} homey - The homey app object containing calendar data.
+   * @param {Object} query - The query parameters for filtering events.
+   * @returns {Array} - An array of serialized events for display.
+   */
   async getCalendarList({ homey, query }) {
     const timeFormat = homey.app.variableMgmt.dateTimeFormat.time;
     let events = listRelevantEvents(homey);
@@ -105,6 +116,12 @@ module.exports = {
     return serializedEvents;
   },
 
+  /**
+   * Gets calendar events based on the provided parameters.
+   * @param {Object} homey - The homey app object containing calendar data.
+   * @param {Object} params - The parameters for filtering events.
+   * @returns {Object} - An empty object as a placeholder.
+   */
   async getCalendarEvents({ homey, params }) {
     // access the post body and perform some action on it.
     return {}
