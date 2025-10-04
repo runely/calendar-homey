@@ -34,7 +34,7 @@ module.exports = {
       const dayKey = getDayKey(event.start).format('YYYY-MM-DD');
       if (!map.has(dayKey)) {
         map.set(dayKey, {
-          day: getDayKey(event.start),
+          day: dayKey,
           events: [],
         });
       }
