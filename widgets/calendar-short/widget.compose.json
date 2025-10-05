@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "Calender",
+    "nl": "Kalender"
+  },
+  "settings": [
+    {
+      "id": "maxEvents",
+      "type": "number",
+      "value": 10,
+      "min": 1,
+      "max": 50,
+      "title": {
+        "en": "Maximum of shown events.",
+        "nl": "Maximum van getoonde events."
+      }
+    },
+    {
+      "id": "showWeekNumber",
+      "type": "checkbox",
+      "value": true,
+      "title": {
+        "en": "Show week number",
+        "nl": "Toon week nummer"
+      }
+    },
+    {
+      "id": "showDate",
+      "type": "checkbox",
+      "value": true,
+      "title": {
+        "en": "Show date",
+        "nl": "Toon datum"
+      }
+    }
+  ],
+  "height": 50,
+  "api": {
+    "getCalendarList": {
+      "method": "GET",
+      "path": "/calendar/list"
+    },
+    "getCalendarEvents": {
+      "method": "GET",
+      "path": "/calendar/:id"
+    }
+  }
+}

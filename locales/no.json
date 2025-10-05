@@ -163,5 +163,11 @@
     "device": {
         "eventCountCalendar": "Antall avtaler -",
         "lastSuccessfulSync": "Siste vellykkede synkronisering -"
+    },
+    "widget": {
+        "allDay": "Hele dagen",
+        "until": "til",
+        "weekNumber": "Uke"
     }
 }
+

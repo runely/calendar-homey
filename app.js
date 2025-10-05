@@ -30,7 +30,7 @@ class IcalCalendar extends Homey.App {
    * onInit is called when the app is initialized.
    */
   async onInit () {
-    /* if (process.env.DEBUG === '1') {
+     if (process.env.DEBUG === '1') {
       try {
         require('inspector').waitForDebugger()
         this.log('Attached inspector')
@@ -38,7 +38,7 @@ class IcalCalendar extends Homey.App {
         require('inspector').open(9222, '0.0.0.0', true)
         this.log('Attached inspector:9222')
       }
-    } */
+    }
 
     // convenience function for getting current timezone
     this.getTimezone = () => this.homey.clock.getTimezone()
@@ -263,7 +263,7 @@ class IcalCalendar extends Homey.App {
           this.log(`getEvents: Events for calendar '${name}' retrieved. Total event count for calendar: ${Object.keys(data).length}. Time used: ${this.getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`)
           let activeEvents = getActiveEvents({ timezone: this.getTimezone(), data, eventLimit, calendarName: name, app: this, logAllEvents })
           this.log(`getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${this.getWorkTime(retrieveCalendarEnd, new Date())}`)
-          calendarsEvents.push({ name, events: activeEvents })
+          calendarsEvents.push({ name, color: data.vcalendar['APPLE-CALENDAR-COLOR'], events: activeEvents })
           calendarsMetadata.push({ name, eventCount: activeEvents.length, lastSuccessfullSync: moment({ timezone: this.getTimezone() }) })
           activeEvents = null
         } catch (error) {

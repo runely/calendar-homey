@@ -163,5 +163,11 @@
   "device": {
       "eventCountCalendar": "Liczba wydarzeń -",
       "lastSuccessfulSync": "Ostatnia udana synchronizacja -"
+  },
+  "widget": {
+      "allDay": "Cały dzień",
+      "until": "do",
+      "weekNumber": "Tydzień"
   }
 }
+

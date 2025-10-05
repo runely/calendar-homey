@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <style>
+
+      div#date-info-week {
+        display: block;
+        color: var(--homey-color-blue);
+        border-color: var(--homey-color-blue);
+        border: 2px;
+        border-radius: 15%;
+        border-style: solid;
+        padding: var(--homey-su-1);
+      }
+
+      div#date-info {
+        display: flex;
+        justify-content: space-between; /* Pushes the child divs to the left and right */
+        align-items: center;            /* Vertically centers the content (optional) */
+        width: 100%;                    /* Ensures the container takes full width */
+        margin: var(--homey-su-1);
+        padding: var(--homey-su-1);
+      }
+
+      div#date-info-date {
+        /* Optional: Add styling for the spans */
+        display: block; /* Ensures the spans behave like block elements */
+        padding: var(--homey-su-4);
+      }
+
+      .widget-item {
+        margin: var(--homey-su-1);
+        padding: var(--homey-su-1);
+      }
+
+      .no-wrap {
+        white-space: nowrap;
+      }
+
+      .homey-custom-icon-calendar {
+        --homey-icon-size: var(--homey-icon-size-small);
+        -webkit-mask-image: url('icons/calendar-icon.svg'); /* Browser support. */
+        mask-image: url('icons/calendar-icon.svg');
+        height: 15px;
+        display: inline-block;
+        margin-right: var(--homey-su-1);
+      }
+
+      td.widget-calendar-cell {
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body class="homey-widget-full">
+    <div id="widget">
+      <div id="date-info" class="widget-item">
+        <div id="date-info-week">
+          <span id="date-info-week-text" class="homey-text-bold"></span>
+        </div>
+        <div id="date-info-date">
+          <span id="date-info-date-text" class="homey-text-bold"></span>
+        </div>
+      </div>
+
+      <table class="homey-table-striped text-align-center">
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+      function getWeekNumber(date) {
+        const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+        const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+        return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+      }
+
+      function parseEvents(Homey, settings) {
+        const widget = document.getElementById("widget")
+        const tbody = document.querySelector('tbody');
+
+        Homey.api('GET', `/calendar/list?max=${settings.maxEvents}`, {})
+          .then((eventsByDay) => {
+            tbody.innerHTML = '';
+            eventsByDay.forEach((event, index) => {
+              // Access the dayCell, summaryCell, and calendarCell for each event
+              const { dayInfo, summaryInfo, calendarInfo } = event;
+              const row = document.createElement('tr');
+
+              const dayCell = document.createElement('td');
+              dayCell.setAttribute('class', 'no-wrap');
+              dayCell.innerHTML = dayInfo;
+              row.appendChild(dayCell);
+
+                // Create and append the second column (age)
+              const summaryCell = document.createElement('td');
+              summaryCell.innerHTML = summaryInfo;
+              row.appendChild(summaryCell);
+
+              const calendarCell = document.createElement('td');
+              calendarCell.innerHTML = calendarInfo;
+              row.appendChild(calendarCell);
+
+              // Append the row to the tbody
+              tbody.appendChild(row);
+            });
+
+           Homey.setHeight(widget.offsetHeight);
+          })
+          .catch(console.error);
+    }
+
+      function onHomeyReady(Homey) {
+        const settings = Homey.getSettings();
+
+        // Set Date info
+        const now = new Date();
+        const weekNumber = getWeekNumber(now);
+        const widget = document.getElementById("widget")
+        const infoWeek = document.getElementById("date-info-week")
+        const infoDate = document.getElementById("date-info-date")
+        const divInfo = document.getElementById("date-info")
+        
+        infoWeek.textContent = `${Homey.__('widget.weekNumber')} ${weekNumber}`;
+        infoDate.textContent = now.toLocaleDateString();
+
+        // Hide info based on settings
+        infoWeek.style.display = settings.showWeekNumber ? '' : 'none';
+        infoDate.style.display = settings.showDate ? '' : 'none';
+        divInfo.style.display = (!settings.showWeekNumber && !settings.showDate) ? 'none' : '';
+
+        // Fetch something from your app.
+        Homey.ready();
+
+        parseEvents(Homey, settings);
+
+        // Set interval for every 5m
+        setInterval(() => {
+          parseEvents(Homey, settings);
+        }, 5 * 60 * 1000);
+
+      }
+    </script>
+  </body>
+</html>

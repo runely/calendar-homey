@@ -163,5 +163,10 @@
     "device": {
         "eventCountCalendar": "Aantal evenementen -",
         "lastSuccessfulSync": "Laatste succesvolle synchronisatie -"
+    },
+    "widget": {
+        "allDay": "Gehele dag",
+        "until": "tot",
+        "weekNumber": "Week"
     }
 }
