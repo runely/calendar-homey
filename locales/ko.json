@@ -163,5 +163,10 @@
   "device": {
       "eventCountCalendar": "이벤트 수 -",
       "lastSuccessfulSync": "마지막 성공적인 동기화 -"
-  }
+  },
+  "widget": {
+    "allDay": "종일",
+    "until": "까지",
+    "weekNumber": "주차"
+    }
 }
