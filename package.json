@@ -3,24 +3,24 @@
   "version": "1.8.1",
   "main": "app.js",
   "engines": {
-    "node": ">=12.16.1"
+    "node": ">=22.0.0"
   },
   "repository": {
     "url": "https://github.com/runely/calendar-homey"
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@tsconfig/node12": "12.1.4",
+    "@tsconfig/node22": "^22.0.2",
     "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.12",
     "@types/humanize-duration": "^3.27.4",
-    "@types/jest": "29.5.14",
-    "@types/node": "22.16.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.9.2",
     "browserify": "17.0.1",
-    "jest": "29.7.0",
+    "jest": "^30.2.0",
     "standard": "17.1.2"
   },
   "dependencies": {
-    "croner": "7.0.8",
+    "croner": "^9.1.0",
     "humanize-duration": "3.33.1",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.6.0",

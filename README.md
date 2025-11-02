@@ -222,6 +222,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
   - Code cleanup
   - Export functions through an object instead of directly on module.exports to easier follow usages
   - Dependency updates
+  - IcalCalendar is limited to only run on Homey Firmware >= 12.9.0, because this has Node.js 22 as runtime
 - 2.11.4
   - Dependency updates
 - 2.11.3
