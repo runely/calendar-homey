@@ -1,6 +1,5 @@
 'use strict'
 
-const { momentNow } = require('../lib/moment-datetime')
 const { filterByCalendar, filterBySummary, filterByUID, filterByProperty } = require('../lib/filter-by')
 const sortEvent = require('../lib/sort-event')
 const convertToMinutes = require('../lib/convert-to-minutes')
@@ -136,6 +135,7 @@ const getEventList = (timezone, app, calendars) => {
     return eventList
   }
 
+  // TODO: swap moment for value with timezone
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
 
   calendars.forEach((calendar) => {
@@ -147,6 +147,7 @@ const getEventList = (timezone, app, calendars) => {
       const endMoment = event.end
 
       try {
+        // TODO: swap moment for date-fns?
         if (event.datetype === 'date-time') {
           startStamp = startMoment.format(`${app.variableMgmt.dateTimeFormat.long} ${app.variableMgmt.dateTimeFormat.time}`)
 

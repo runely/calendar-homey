@@ -108,6 +108,7 @@ const triggerChangedCalendars = async (options) => {
             event_new_value: getTokenValue(changed.newValue),
             event_was_ongoing: isEventOngoing(app, app.getTimezone(), [event.oldEvent], 'changedEvent'),
             event_ongoing: isEventOngoing(app, app.getTimezone(), [event], 'changedEvent'),
+            // TODO: swap moment for date-fns?
             event_start_date: event.start.format(app.variableMgmt.dateTimeFormat.long),
             event_start_time: event.start.format(app.variableMgmt.dateTimeFormat.time),
             event_end_date: event.end.format(app.variableMgmt.dateTimeFormat.long),
@@ -191,6 +192,7 @@ const triggerEvents = async (options) => {
       }
 
       if (['event_added', 'event_added_calendar'].includes(triggerId)) {
+        // TODO: swap moment for date-fns?
         tokens.event_start_date = event.start.format(app.variableMgmt.dateTimeFormat.long)
         tokens.event_start_time = event.start.format(app.variableMgmt.dateTimeFormat.time)
         tokens.event_end_date = event.end.format(app.variableMgmt.dateTimeFormat.long)

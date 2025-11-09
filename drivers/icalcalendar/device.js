@@ -1,7 +1,6 @@
 'use strict'
 
 const { Device } = require('homey')
-const { moment } = require('../../lib/moment-datetime')
 const varMgmt = require('../../lib/variable-management')
 
 const calendarsCount = 'meter_calendars_count_ical'
@@ -114,6 +113,7 @@ class MyDevice extends Device {
       }
 
       if (this.hasCapability(lastSuccessfulSyncLoop)) {
+        // TODO: swap moment for value with timezone
         await this.updateCapabilityValue(lastSuccessfulSyncLoop, moment({ timezone: this.getTimezone(), date: new Date(calendar.lastSuccessfullSync || '01.01.1970 00:00:00') }).format('DD.MM.YYYY HH:mm:ss'))
       } else {
         this.warn('updateCalendarsMetadata -', lastSuccessfulSyncLoop, 'capability doesnt exist yet....')

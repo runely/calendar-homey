@@ -5,7 +5,6 @@ const getTodaysEvents = require('../lib/get-todays-events')
 const getTomorrowsEvents = require('../lib/get-tomorrows-events')
 const getTokenDuration = require('../lib/get-token-duration')
 const getTokenEvents = require('../lib/get-token-events')
-const { moment } = require('../lib/moment-datetime')
 const { triggerSynchronizationError } = require('./trigger-cards')
 
 /**
@@ -95,6 +94,7 @@ const updateTokens = async (options) => {
   // loop through flow tokens
   for await (const tokenId of app.variableMgmt.flowTokens) {
     try {
+      // TODO: swap moment for date-fns?
       if (tokenId === 'event_next_title') {
         await updateToken(tokenId, nextEvent.event ? (nextEvent.event.summary || '') : '', app)
       } else if (tokenId === 'event_next_startdate') {
@@ -195,6 +195,7 @@ const updateTokens = async (options) => {
       if (['next_title', 'next_startdate', 'next_starttime', 'next_enddate', 'next_endtime', 'next_description'].includes(calendarType)) {
         calendarNextEvent = getNextEventByCalendar(app, calendarName, calendarNextEvent, timezone)
 
+        // TODO: swap moment for date-fns?
         if (calendarType === 'next_title') {
           value = calendarNextEvent.event ? (calendarNextEvent.event.summary || '') : ''
         } else if (calendarType === 'next_startdate') {
@@ -247,6 +248,7 @@ const updateNextEventWithTokens = async (app, event) => {
 
     for await (const tokenId of app.variableMgmt.nextEventWithTokens) {
       try {
+        // TODO: swap moment for date-fns?
         if (tokenId.endsWith('_title')) {
           await updateToken(tokenId, summary || '', app)
         } else if (tokenId.endsWith('_startdate')) {

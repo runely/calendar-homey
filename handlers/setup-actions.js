@@ -124,6 +124,7 @@ module.exports = (app) => {
 
     const eventDuration = getTokenDuration(app, event)
     return {
+      // TODO: swap moment for date-fns?
       event_start: event.start.format(`${app.variableMgmt.dateTimeFormat.long} ${app.variableMgmt.dateTimeFormat.time}`),
       event_end: event.end.format(`${app.variableMgmt.dateTimeFormat.long} ${app.variableMgmt.dateTimeFormat.time}`),
       event_uid: event.uid,

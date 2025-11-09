@@ -1,7 +1,5 @@
 'use strict'
 
-const { momentNow } = require('../lib/moment-datetime')
-
 /**
  * @param {import('../types/ExtendedHomeyApp.type').ExtHomeyApp|import('../types/AppTests.type').AppTests} app - App class init by Homey
  * @param {string} timezone - The timezone to use on events (IANA)
@@ -11,10 +9,12 @@ const { momentNow } = require('../lib/moment-datetime')
  * @returns boolean - true if any event is ongoing otherwise false
  */
 const isEventOngoing = (app, timezone, events, caller = 'condition') => {
+  // TODO: swap moment for value with timezone
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
+    // TODO: swap moment for date-fns?
     const startDiff = now.diff(event.start, 'seconds')
     const endDiff = now.diff(event.end, 'seconds')
     const result = (startDiff >= 0 && endDiff <= 0)
@@ -34,10 +34,12 @@ const isEventOngoing = (app, timezone, events, caller = 'condition') => {
  * @returns boolean - true if any event is "when" minutes until start otherwise false
  */
 const isEventIn = (app, timezone, events, when) => {
+  // TODO: swap moment for value with timezone
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
+    // TODO: swap moment for date-fns?
     const startDiff = event.start.diff(now, 'minutes', true)
     const result = (startDiff <= when && startDiff >= 0)
     if (result) {
@@ -56,10 +58,12 @@ const isEventIn = (app, timezone, events, when) => {
  * @returns boolean - true if any event is "when" minutes or less until end otherwise false
  */
 const willEventNotIn = (app, timezone, events, when) => {
+  // TODO: swap moment for value with timezone
   const { momentNowRegular, momentNowUtcOffset } = momentNow(timezone)
   return events.some((event) => {
     const useOffset = event.fullDayEvent || event.skipTZ
     const now = useOffset ? momentNowUtcOffset : momentNowRegular
+    // TODO: swap moment for date-fns?
     const endDiff = event.end.diff(now, 'minutes', true)
     const result = (endDiff < when && endDiff >= 0)
     if (result) {

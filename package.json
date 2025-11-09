@@ -23,8 +23,7 @@
     "croner": "^9.1.0",
     "humanize-duration": "3.33.1",
     "lodash.clonedeep": "4.5.0",
-    "moment-timezone": "0.6.0",
-    "node-ical": "0.16.1"
+    "node-ical": "^0.22.1"
   },
   "scripts": {
     "test": "standard && env TZ=UTC jest",
