@@ -10,7 +10,7 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@tsconfig/node12": "12.1.4",
+    "@tsconfig/node12": "12.1.7",
     "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/jest": "29.5.14",
