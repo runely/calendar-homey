@@ -33,7 +33,6 @@
     "browserify": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
     "homey-build": "npm run browserify && npm run test && homey app build",
     "homey-run": "npm run homey-build && homey app run",
-    "homey-run-remote": "npm run homey-build && homey app run --remote",
     "homey-install": "npm run homey-build && homey app install",
     "homey-publish": "npm run homey-build && npm run fix && homey app publish"
   },
