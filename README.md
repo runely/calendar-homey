@@ -23,15 +23,15 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
 ### Find Exchange Online ical link
 
 1. Go to https://outlook.office.com/mail/inbox
-2. Click settings -> Show all outlook setting
-3. Go to Calendar -> Shared calenders
+2. Click settings → Show all outlook setting
+3. Go to Calendar → Shared calenders
 4. Publish a calendar, click the ics link and choose copy
 5. Paste the ical link in settings of Homey app
 
 ### Find Gmail ical url
 
 1. Go to https://calendar.google.com/
-2. Click the three dots next to the calendar you want to share -> Click Settings and sharing
+2. Click the three dots next to the calendar you want to share → Click Settings and sharing
 3. Scroll all the way down to the bottom
 4. Copy the link from Secret address in ical format
 5. Paste the ical link in settings of Homey app
@@ -222,6 +222,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
   - Code cleanup
   - Export functions through an object instead of directly on module.exports to easier follow usages
   - Dependency updates
+  - IcalCalendar is limited to only run on Homey Firmware >= 12.9.0, because this has Node.js 22 as runtime
 - 2.11.4
   - Dependency updates
 - 2.11.3
@@ -324,13 +325,13 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Allow to remove the last calendar from app settings
     - Show total event size and active event size (in KB) for a calendar.
     - Dependency updates
-    - Fixed a bug where an error would be thrown when the app is shutting down and the app at the same time reaches the point where it tries to use an SDK function -> [Issue #509](https://github.com/runely/calendar-homey/issues/509)
+    - Fixed a bug where an error would be thrown when the app is shutting down and the app at the same time reaches the point where it tries to use an SDK function → [Issue #509](https://github.com/runely/calendar-homey/issues/509)
 - 2.0.1
     - code cleanup
     - Nullify global variables when not needed anymore
   - Correctly log warn/error when something's wrong
     - Dependency updates
-    - Fixed a bug where a removed calendar wouldn't remove capabilities for this calendar -> [Issue #503](https://github.com/runely/calendar-homey/issues/503)
+    - Fixed a bug where a removed calendar wouldn't remove capabilities for this calendar → [Issue #503](https://github.com/runely/calendar-homey/issues/503)
 - 2.0.0
     - Added device `IcalCalendar` which shows calendar count, total event count, and last synchronization timestamp and event count per calendar
     - Dependency updates
@@ -363,7 +364,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.16.1
     - Added `description` to a local event
 - 1.16.0
-    - Added possibility for local events -> [Issue #442](https://github.com/runely/calendar-homey/issues/442)
+    - Added possibility for local events → [Issue #442](https://github.com/runely/calendar-homey/issues/442)
     - Dependency updates
 - 1.15.0
     - Do not apply local timezone for events created with MS Outlook Custom timezone `Customized Time Zone`. This means that the raw start time set in the calendar file is what will be used
@@ -383,7 +384,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Find meeting url's by a generic pattern (----( Videogesprek )----\nhttp://meet.url/123-4567-890\n---===---)
 - 1.13.0
   - Added `Meeting URL` tag to triggers. For now, it reads meeting urls for **Microsoft Teams**, **Apple FaceTime** and
-    **Google Meet** from the *description* field -> [Issue #420](https://github.com/runely/calendar-homey/issues/420)
+    **Google Meet** from the *description* field → [Issue #420](https://github.com/runely/calendar-homey/issues/420)
     - Added tests for `extract-meeting-url`
     - Dependency updates
 - 1.12.0
@@ -405,7 +406,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.10.0
     - Dependency updates
   - Added `Status` tag to triggers. For now, it reads Freebusy status from Microsoft (**X-MICROSOFT-CDO-BUSYSTATUS** , *
-    *MICROSOFT-CDO-BUSYSTATUS**) -> [Issue #394](https://github.com/runely/calendar-homey/issues/394)
+    *MICROSOFT-CDO-BUSYSTATUS**) → [Issue #394](https://github.com/runely/calendar-homey/issues/394)
     - If event hasn't registered a timezone, don't use the local timezone from Homey either
     - Show timezone in logged event (when **Log all events** is active)
 - 1.9.0
@@ -413,7 +414,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.8.3
     - Dependency updates
 - 1.8.2
-    - Some repeating ongoing events were not included -> [Issue #380](https://github.com/runely/calendar-homey/issues/380)
+    - Some repeating ongoing events were not included → [Issue #380](https://github.com/runely/calendar-homey/issues/380)
     - Dependency updates
 - 1.8.1
     - Dependency updates
@@ -437,7 +438,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.5.0
     - Properly handle moved recurrence events
     - Dependency updates
-    - Removed sentry in favour for the synchronization error trigger card
+    - Removed sentry in favor for the synchronization error trigger card
 - 1.4.1
     - Bugfix: Trigger cards could be fired twice at every 15th minute (0, 15, 30, 45)
         - This happend because triggering cards was also added to the update schedule. And this was done because the schedule through `node-cron` was buggy.
@@ -466,7 +467,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 1.1.0 (1.1.1)
     - **Next event tags containing** added as a condition card. Settings implementation is disabled and will be removed
 - 1.1.0
-    - Added trigger 'Synchronization error occurred' -> [Issue #316](https://github.com/runely/calendar-homey/issues/316)
+    - Added trigger 'Synchronization error occurred' → [Issue #316](https://github.com/runely/calendar-homey/issues/316)
     - Translation fix
     - **Next event tags containing** added. Possibility to have a global tag with the next event matching the given search value
 - 1.0.7
@@ -525,7 +526,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 0.10.1
     - Bugfix: `Event time frame` would not be applied when saved along with a calendar change
 - 0.10.0
-    - Swedish translation. Thanks to [@Lavve](https://github.com/lavve) -> [PR #270](https://github.com/runely/calendar-homey/pull/270)
+    - Swedish translation. Thanks to [@Lavve](https://github.com/lavve) → [PR #270](https://github.com/runely/calendar-homey/pull/270)
     - Dependency updates
 - 0.9.3
     - Dependency updates
@@ -562,14 +563,14 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
         - [Issue #212](https://github.com/runely/calendar-homey/issues/212)
         - [Issue #221](https://github.com/runely/calendar-homey/issues/221)
 - 0.6.6
-    - Bugfix: Events missing end date (ongoing indefinitely) would set end date as now and could make Homey trigger 'Event ends' on those events -> [Issue #212](https://github.com/runely/calendar-homey/issues/212)
+    - Bugfix: Events missing end date (ongoing indefinitely) would set end date as now and could make Homey trigger 'Event ends' on those events → [Issue #212](https://github.com/runely/calendar-homey/issues/212)
     - `node-ical` updated to 0.12.9
     - Dependency updates
 - 0.6.5
     - Bugfix: Trigger card 'Event ends in' would not trigger if end time was equal to start time
     - Events over multiple days, where today is not start day or end day, will be set as "whole day" in flowtokens
     - Dependency updates
-    - Bugfix: Recurring events crossing over to next day isn't imported -> [Issue #218](https://github.com/runely/calendar-homey/issues/218)
+    - Bugfix: Recurring events crossing over to next day isn't imported → [Issue #218](https://github.com/runely/calendar-homey/issues/218)
 - 0.6.4
     - Bugfix: Homey v5.0.0 returns non-existing app settings differently than Homey v4.x.x
 - 0.6.3
@@ -628,10 +629,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Bugfix: Some events had wrong time after DST. Thanks to [@MatsAnd](https://github.com/MatsAnd)
 - 0.4.0
     - Added support for adding weekday in dateformat in settings
-    - Added trigger 'Event ends in' -> [Issue #149](https://github.com/runely/calendar-homey/issues/149)
+    - Added trigger 'Event ends in' → [Issue #149](https://github.com/runely/calendar-homey/issues/149)
   - Bugfix: Ongoing non-recurring events were included, but ongoing recurring events were
-    not -> [Issue #152](https://github.com/runely/calendar-homey/issues/152)
-    - Added condition 'Any event ongoing in calendar' -> [Issue #151](https://github.com/runely/calendar-homey/issues/151)
+    not → [Issue #152](https://github.com/runely/calendar-homey/issues/152)
+    - Added condition 'Any event ongoing in calendar' → [Issue #151](https://github.com/runely/calendar-homey/issues/151)
     - Bugfix: Events over multiple days now also includes short date in tags
     - Bugfix: Full day events were not included in tomorrows events tag
     - Ical engine (node-ical) updated (minor)
@@ -642,7 +643,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
         - Next event start time in %calendarname%
         - Next event end date in %calendarname%
         - Next event end time in %calendarname%
-    - Humanized next event duration -> [Issue #137](https://github.com/runely/calendar-homey/issues/137)
+    - Humanized next event duration → [Issue #137](https://github.com/runely/calendar-homey/issues/137)
     - [@RobHomey](https://github.com/RobHomey): Fixed dutch translation
 - 0.2.5
     - Date and Time format used in the app can now be changed in the settings. If not changed, default is used.
@@ -676,22 +677,22 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - German translation. Thanks to [@dirkg173](https://github.com/dirkg173) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.3
     - 'Remove button' in Settings now follows language
-    - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... -> [Issue #61](https://github.com/runely/calendar-homey/issues/61)
+    - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... → [Issue #61](https://github.com/runely/calendar-homey/issues/61)
         - To fix this in your app, replace the url in Settings page and save
     - Dutch translation. Thanks to [@RobHomey](https://github.com/RobHomey) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
     - Dutch translation typo fixes
 - 0.1.2
     - 'Remove button' in Settings now follows language
-    - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... -> [Issue #61](https://github.com/runely/calendar-homey/issues/61)
+    - Bugfix: Apple calendar failed to load because Apple calendar is case sensative on its url... → [Issue #61](https://github.com/runely/calendar-homey/issues/61)
         - To fix this in your app, replace the url in Settings page and save
     - Dutch translation. Thanks to [@RobHomey](https://github.com/RobHomey) -> [Issue #62](https://github.com/runely/calendar-homey/issues/62)
 - 0.1.1
     - Bugfix: [Typo in the Norwegian locale](https://github.com/runely/calendar-homey/issues/42)
     - Added more choices (timespan) for triggers and conditions
     - Added possibility to remove calendars from settings
-    - Added global flow tags for tomorrows events -> [Issue #36](https://github.com/runely/calendar-homey/issues/36)
-    - Todays events and Tomorrows events are now sorted by start time -> [Issue #51](https://github.com/runely/calendar-homey/issues/51)
-    - Todays and tomorrows events pr calendar -> [Issue #44](https://github.com/runely/calendar-homey/issues/44)
+    - Added global flow tags for tomorrows events → [Issue #36](https://github.com/runely/calendar-homey/issues/36)
+    - Todays events and Tomorrows events are now sorted by start time → [Issue #51](https://github.com/runely/calendar-homey/issues/51)
+    - Todays and tomorrows events pr calendar → [Issue #44](https://github.com/runely/calendar-homey/issues/44)
     - Todays and tomorrows events tags no longer include 'Todays events' and 'Tomorrows events' in the tag value
 - 0.1.0
     - Added support for Mailfence (DTSTART;VALUE=DATE-TIME / DTEND;VALUE=DATE-TIME)
@@ -703,25 +704,25 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Event list sorted by start date
     - New icon
 - 0.0.6
-    - Added global flow tags for next event and todays events -> Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
+    - Added global flow tags for next event and todays events → Part of issue [Issue #7](https://github.com/runely/calendar-homey/issues/7)
     - Added tag 'Calendar name' to 'Event starts' and 'Event ends' triggers
-    - Added trigger 'Event starts in' -> [Issue #7](https://github.com/runely/calendar-homey/issues/7)
+    - Added trigger 'Event starts in' → [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5
-    - Added support for norwegian language -> [Issue #6](https://github.com/runely/calendar-homey/issues/6)
-    - Added action for Sync calendar -> [Issue #3](https://github.com/runely/calendar-homey/issues/3)
-    - Added duration tags to trigger 'Event starts' -> [Issue #16](https://github.com/runely/calendar-homey/issues/16)
-    - Added trigger 'Event ends' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
-    - Added conditions 'Any event ends in...' and 'Event ends in...' -> [Issue #4](https://github.com/runely/calendar-homey/issues/4)
-    - Added support for multiple calendars -> [Issue #17](https://github.com/runely/calendar-homey/issues/17)
-    - Bugfix: "When Homey looses internet and tries to sync calendars, app crashes..." -> [Issue #20](https://github.com/runely/calendar-homey/issues/20)
+    - Added support for norwegian language → [Issue #6](https://github.com/runely/calendar-homey/issues/6)
+    - Added action for Sync calendar → [Issue #3](https://github.com/runely/calendar-homey/issues/3)
+    - Added duration tags to trigger 'Event starts' → [Issue #16](https://github.com/runely/calendar-homey/issues/16)
+    - Added trigger 'Event ends' → [Issue #4](https://github.com/runely/calendar-homey/issues/4)
+    - Added conditions 'Any event ends in...' and 'Event ends in...' → [Issue #4](https://github.com/runely/calendar-homey/issues/4)
+    - Added support for multiple calendars → [Issue #17](https://github.com/runely/calendar-homey/issues/17)
+    - Bugfix: "When Homey looses internet and tries to sync calendars, app crashes..." → [Issue #20](https://github.com/runely/calendar-homey/issues/20)
 - 0.0.4
     - Changelog moved out of readme...
 - 0.0.3
-    - Events in condition card is now presented with a date (and time if present) -> [Issue #2](https://github.com/runely/calendar-homey/issues/2)
-    - Alert when settings saved -> [Issue #9](https://github.com/runely/calendar-homey/issues/9)
+    - Events in condition card is now presented with a date (and time if present) → [Issue #2](https://github.com/runely/calendar-homey/issues/2)
+    - Alert when settings saved → [Issue #9](https://github.com/runely/calendar-homey/issues/9)
     - Show message in settings if uri fails to load
   - Importing only active events. This is a significant performance
-    improvement! -> [Issue #1](https://github.com/runely/calendar-homey/issues/1)
+    improvement! → [Issue #1](https://github.com/runely/calendar-homey/issues/1)
     - Event list in condition card shows if the event is recurring and/or full day
 - 0.0.2: 
     - Bugfix: "triggerEvents" failed when events were not imported yet
