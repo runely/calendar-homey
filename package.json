@@ -10,18 +10,18 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.2",
+    "@tsconfig/node22": "^22.0.5",
     "@types/homey": "npm:homey-apps-sdk-v3-types@0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.9.2",
+    "@types/node": "^25.0.2",
     "browserify": "17.0.1",
     "jest": "^30.2.0",
     "standard": "17.1.2"
   },
   "dependencies": {
     "croner": "^9.1.0",
-    "humanize-duration": "3.33.1",
+    "humanize-duration": "^3.33.2",
     "lodash.clonedeep": "4.5.0",
     "moment-timezone": "0.6.0",
     "node-ical": "0.16.1"
