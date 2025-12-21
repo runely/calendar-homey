@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 2.12.1
+  - Dependency updates
 - 2.12.0
   - Updated JSDoc
   - Types all around
