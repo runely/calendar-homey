@@ -1,4 +1,4 @@
-import { Cron } from "croner";
+import type { Cron } from "croner";
 
 export type Jobs = {
   /**

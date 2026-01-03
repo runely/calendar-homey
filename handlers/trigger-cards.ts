@@ -1,24 +1,32 @@
-import { App } from "homey";
+import type { App } from "homey";
 
-import { getEventsToTrigger } from '../lib/get-events-to-trigger.js';
-import { getTokenDuration } from '../lib/get-token-duration.js';
-import { getTokenValue } from '../lib/get-token-value.js';
-import { capitalize } from '../lib/capitalize.js';
-import { updateHitCount } from'../lib/hit-count.js';
-import { isEventOngoing } from './conditions.js';
+import { capitalize } from "../lib/capitalize.js";
+import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
+import { getTokenDuration } from "../lib/get-token-duration.js";
+import { getTokenValue } from "../lib/get-token-value.js";
+import { updateHitCount } from "../lib/hit-count.js";
 
-import { TriggerSynchronizationErrorOptions } from "../types/Options.type";
-import { EventDuration, TriggerChangedCalendarTokens, TriggerEvent, TriggerFlowTokens, TriggerState, TriggerSynchronizationTokens } from "../types/IcalCalendar.type";
-import { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type {
+  EventDuration,
+  TriggerChangedCalendarTokens,
+  TriggerEvent,
+  TriggerFlowTokens,
+  TriggerState,
+  TriggerSynchronizationTokens
+} from "../types/IcalCalendar.type";
+import type { TriggerSynchronizationErrorOptions } from "../types/Options.type";
+import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
 
-const getErrorMessage = (error: Error | string): { message: string, stack?: string } => {
+import { isEventOngoing } from "./conditions.js";
+
+const getErrorMessage = (error: Error | string): { message: string; stack?: string } => {
   if (error instanceof Error) {
     return {
       message: error.message,
       stack: error.stack
     };
   }
-  
+
   return {
     message: error
   };
@@ -47,35 +55,44 @@ const getErrorMessage = (error: Error | string): { message: string, stack?: stri
 
   app.log('getErrorMessage: Error is of type', typeof error)
   return { message: error }*/
-}
+};
 
 export const triggerSynchronizationError = async (options: TriggerSynchronizationErrorOptions): Promise<void> => {
   const { app, variableMgmt, calendar, error, event } = options;
 
   try {
     const { message, stack } = getErrorMessage(error);
-    app.log(`triggerSynchronizationError: Triggering on '${calendar}' ${event ? `for event '${event.summary}' (${event.uid})` : 'on load'}`, '-', message, `${stack ? `-> ${stack}` : ''}`);
+    app.log(
+      `triggerSynchronizationError: Triggering on '${calendar}' ${event ? `for event '${event.summary}' (${event.uid})` : "on load"}`,
+      "-",
+      message,
+      `${stack ? `-> ${stack}` : ""}`
+    );
 
     const tokens: TriggerSynchronizationTokens = {
       calendar_name: calendar,
       calendar_error: message,
       on_calendar_load: event === undefined || event === null,
       on_event_load: event !== undefined && event !== null,
-      event_name: event?.summary ?? '',
-      event_uid: event?.uid ?? ''
+      event_name: event?.summary ?? "",
+      event_uid: event?.uid ?? ""
     };
-    app.log('triggerSynchronizationError: Triggering \'synchronization_error\' with tokens :', tokens);
+    app.log("triggerSynchronizationError: Triggering 'synchronization_error' with tokens :", tokens);
 
-    await app.homey.flow.getTriggerCard('synchronization_error').trigger(tokens);
-    app.log('triggerSynchronizationError: Triggered \'synchronization_error\'');
+    await app.homey.flow.getTriggerCard("synchronization_error").trigger(tokens);
+    app.log("triggerSynchronizationError: Triggered 'synchronization_error'");
 
-    updateHitCount(app, variableMgmt, 'synchronization_error');
+    updateHitCount(app, variableMgmt, "synchronization_error");
   } catch (err) {
     app.error('[ERROR] triggerSynchronizationError: Failed to trigger "synchronization_error" :', err);
   }
-}
+};
 
-export const triggerChangedCalendars = async (app: App, variableMgmt: VariableManagement, calendars: VariableManagementCalendar[]): Promise<void> => {
+export const triggerChangedCalendars = async (
+  app: App,
+  variableMgmt: VariableManagement,
+  calendars: VariableManagementCalendar[]
+): Promise<void> => {
   const triggerAllValues: boolean = app.homey.settings.get(variableMgmt.setting.triggerAllChangedEventTypes);
 
   if (!triggerAllValues) {
@@ -85,7 +102,9 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
   }
 
   if (!variableMgmt.dateTimeFormat) {
-    app.error('[ERROR] triggerChangedCalendars: dateTimeFormat is not set in variableMgmt. Aborting triggering changed calendar events.');
+    app.error(
+      "[ERROR] triggerChangedCalendars: dateTimeFormat is not set in variableMgmt. Aborting triggering changed calendar events."
+    );
     return;
   }
 
@@ -93,7 +112,9 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
     for await (const calendar of calendars) {
       for await (const event of calendar.events) {
         if (!event.changed) {
-          app.error(`[ERROR] triggerChangedCalendars: Event '${event.uid}' in calendar '${calendar.name}' has no 'changed' properties. Skipping event`);
+          app.error(
+            `[ERROR] triggerChangedCalendars: Event '${event.uid}' in calendar '${calendar.name}' has no 'changed' properties. Skipping event`
+          );
           continue;
         }
 
@@ -106,8 +127,10 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
             event_type: changed.type,
             event_prev_value: getTokenValue(changed.previousValue),
             event_new_value: getTokenValue(changed.newValue),
-            event_was_ongoing: event.oldEvent ? isEventOngoing(app, app.homey.clock.getTimezone(), [event.oldEvent], 'changedEvent') : false,
-            event_ongoing: isEventOngoing(app, app.homey.clock.getTimezone(), [event], 'changedEvent'),
+            event_was_ongoing: event.oldEvent
+              ? isEventOngoing(app, app.homey.clock.getTimezone(), [event.oldEvent], "changedEvent")
+              : false,
+            event_ongoing: isEventOngoing(app, app.homey.clock.getTimezone(), [event], "changedEvent"),
             event_start_date: event.start.format(variableMgmt.dateTimeFormat.long),
             event_start_time: event.start.format(variableMgmt.dateTimeFormat.time),
             event_end_date: event.end.format(variableMgmt.dateTimeFormat.long),
@@ -116,13 +139,13 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
             event_duration: eventDuration.durationMinutes
           };
 
-          const changedCalendarTriggerCards: { id: string, useState: boolean }[] = [
+          const changedCalendarTriggerCards: { id: string; useState: boolean }[] = [
             {
-              id: 'event_changed',
+              id: "event_changed",
               useState: false
             },
             {
-              id: 'event_changed_calendar',
+              id: "event_changed_calendar",
               useState: true
             }
           ];
@@ -142,12 +165,26 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
               await app.homey.flow.getTriggerCard(changedCalendarTriggerCard.id).trigger(tokens, state);
             } catch (error) {
               if (changedCalendarTriggerCard.useState) {
-                app.error(`[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} with state`, state, ':', error);
+                app.error(
+                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} with state`,
+                  state,
+                  ":",
+                  error
+                );
               } else {
-                app.error(`[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} :`, error);
+                app.error(
+                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} :`,
+                  error
+                );
               }
 
-              await triggerSynchronizationError({ app, variableMgmt, calendar: calendar.name, error: error as Error | string, event });
+              await triggerSynchronizationError({
+                app,
+                variableMgmt,
+                calendar: calendar.name,
+                error: error as Error | string,
+                event
+              });
             }
           }
 
@@ -158,13 +195,18 @@ export const triggerChangedCalendars = async (app: App, variableMgmt: VariableMa
       }
     }
   } catch (err) {
-    app.error('[ERROR] triggerChangedCalendars: Failed to trigger changed calendar events :', err);
+    app.error("[ERROR] triggerChangedCalendars: Failed to trigger changed calendar events :", err);
   }
-}
+};
 
-export const triggerEvents = async (app: App, variableMgmt: VariableManagement, timezone: string, event?: TriggerEvent): Promise<void> => {
+export const triggerEvents = async (
+  app: App,
+  variableMgmt: VariableManagement,
+  timezone: string,
+  event?: TriggerEvent
+): Promise<void> => {
   if (!variableMgmt.calendars) {
-    app.error('[ERROR] triggerEvents: variableMgmt.calendars is not set. Aborting triggering events.');
+    app.error("[ERROR] triggerEvents: variableMgmt.calendars is not set. Aborting triggering events.");
     return;
   }
 
@@ -183,13 +225,15 @@ export const triggerEvents = async (app: App, variableMgmt: VariableManagement, 
         event_duration_readable: eventDuration.duration,
         event_duration: eventDuration.durationMinutes,
         event_calendar_name: calendarName,
-        event_status: event.freeBusy || '',
-        event_meeting_url: event.meetingUrl || ''
-      }
+        event_status: event.freeBusy || "",
+        event_meeting_url: event.meetingUrl || ""
+      };
 
-      if (['event_added', 'event_added_calendar'].includes(triggerId)) {
+      if (["event_added", "event_added_calendar"].includes(triggerId)) {
         if (!variableMgmt.dateTimeFormat) {
-          app.error('[ERROR] triggerEvents: dateTimeFormat is not set in variableMgmt. Aborting triggering added event.');
+          app.error(
+            "[ERROR] triggerEvents: dateTimeFormat is not set in variableMgmt. Aborting triggering added event."
+          );
           return;
         }
 
@@ -197,9 +241,9 @@ export const triggerEvents = async (app: App, variableMgmt: VariableManagement, 
         tokens.event_start_time = event.start.format(variableMgmt.dateTimeFormat.time);
         tokens.event_end_date = event.end.format(variableMgmt.dateTimeFormat.long);
         tokens.event_end_time = event.end.format(variableMgmt.dateTimeFormat.time);
-        tokens.event_weekday_readable = capitalize(event.start.format('dddd'));
-        tokens.event_month_readable = capitalize(event.start.format('MMMM'));
-        tokens.event_date_of_month = event.start.get('date');
+        tokens.event_weekday_readable = capitalize(event.start.format("dddd"));
+        tokens.event_month_readable = capitalize(event.start.format("MMMM"));
+        tokens.event_date_of_month = event.start.get("date");
       }
 
       // trigger flow card
@@ -211,7 +255,13 @@ export const triggerEvents = async (app: App, variableMgmt: VariableManagement, 
         } catch (error) {
           app.error(`[ERROR] triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error);
 
-          await triggerSynchronizationError({ app, variableMgmt, calendar: calendarName, error: error as Error | string, event });
+          await triggerSynchronizationError({
+            app,
+            variableMgmt,
+            calendar: calendarName,
+            error: error as Error | string,
+            event
+          });
         }
 
         continue;
@@ -221,12 +271,23 @@ export const triggerEvents = async (app: App, variableMgmt: VariableManagement, 
         // NOTE: hitCount is updated in the listeners for triggers with state
         await app.homey.flow.getTriggerCard(triggerId).trigger(tokens, state);
       } catch (error) {
-        app.error(`[ERROR] triggerEvents: '${triggerId}' with state`, state, `failed to trigger on '${event.uid}':`, error);
+        app.error(
+          `[ERROR] triggerEvents: '${triggerId}' with state`,
+          state,
+          `failed to trigger on '${event.uid}':`,
+          error
+        );
 
-        await triggerSynchronizationError({ app, variableMgmt, calendar: calendarName, error: error as Error | string, event });
+        await triggerSynchronizationError({
+          app,
+          variableMgmt,
+          calendar: calendarName,
+          error: error as Error | string,
+          event
+        });
       }
     } catch (err) {
       app.error(`[ERROR] triggerEvents: Failed to trigger event '${event.uid}' from '${calendarName}':`, err);
     }
   }
-}
+};

@@ -1,12 +1,12 @@
-import { DurationInputArg2, Moment } from 'moment';
-import { DateType } from 'node-ical';
+import type { DurationInputArg2, Moment } from "moment";
+import type { DateType } from "node-ical";
 
-import { Jobs } from "./Cron.type";
-import { BusyStatus, CalendarPropertyChanged } from "./IcalCalendar.type";
+import type { Jobs } from "./Cron.type";
+import type { BusyStatus, CalendarPropertyChanged } from "./IcalCalendar.type";
 
 export type ExtCalendarEvent = VariableManagementCalendarEvent & {
   calendarName: string;
-}
+};
 
 export type SettingEventLimit = {
   value: string;
@@ -33,11 +33,11 @@ export type VariableManagementCalendarEvent = {
   local: boolean;
   changed?: CalendarPropertyChanged[];
   oldEvent?: VariableManagementCalendarEvent;
-};  
+};
 
 export type VariableManagementCalendar = {
   name: string;
-  events: VariableManagementCalendarEvent[]/* | VariableManagementCalendarChangedEvent[]*/;
+  events: VariableManagementCalendarEvent[];
 };
 
 export type VariableManagementDateTimeFormat = {
@@ -91,7 +91,7 @@ export type VariableManagementStorage = {
 
 export type VariableManagementToken = {
   id: string;
-  type: 'string' | 'number';
+  type: "string" | "number";
 };
 
 export type VariableManagement = {

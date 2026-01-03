@@ -1,20 +1,21 @@
-import { App } from "homey";
+import type { App } from "homey";
+import type { CalendarResponse } from "node-ical";
 
-import { CalendarEventUid } from "./IcalCalendar.type";
-import { SettingEventLimit, VariableManagement, VariableManagementCalendar, VariableManagementCalendarEvent, VariableManagementLocalJsonEvent } from "./VariableMgmt.type";
-import {CalendarResponse} from "node-ical";
-
-export type EventOptions = {
-  timezone: string;
-  calendars: VariableManagementCalendar[];
-}
+import type { CalendarEventUid } from "./IcalCalendar.type";
+import type {
+  SettingEventLimit,
+  VariableManagement,
+  VariableManagementCalendar,
+  VariableManagementCalendarEvent,
+  VariableManagementLocalJsonEvent
+} from "./VariableMgmt.type";
 
 export type FilterUpdatedCalendarsOptions = {
   app: App;
   variableMgmt: VariableManagement;
   oldCalendars: VariableManagementCalendar[];
   newCalendars: VariableManagementCalendar[];
-}
+};
 
 export type GetActiveEventsOptions = {
   app: App;
@@ -23,7 +24,7 @@ export type GetActiveEventsOptions = {
   eventLimit: SettingEventLimit;
   calendarName: string;
   logAllEvents: boolean;
-}
+};
 
 export type GetLocalActiveEventsOptions = {
   timezone: string;
@@ -31,7 +32,7 @@ export type GetLocalActiveEventsOptions = {
   eventLimit: SettingEventLimit;
   app: App;
   logAllEvents: boolean;
-}
+};
 
 export type GetNewEventsOptions = {
   timezone: string;
@@ -39,13 +40,13 @@ export type GetNewEventsOptions = {
   newCalendarsUids: CalendarEventUid[];
   calendarsEvents: VariableManagementCalendar[];
   app: App;
-}
+};
 
 export type MomentDateTimeOptions = {
   timezone?: string;
   date?: string;
   format?: string;
-}
+};
 
 export type NewEventOptions = {
   /** Title of the event */
@@ -60,16 +61,16 @@ export type NewEventOptions = {
   apply_timezone: boolean;
   /** Calendar name this event will be added to */
   calendar: string;
-}
+};
 
 export type NextEventValueOptions = {
   timezone: string;
   calendars: VariableManagementCalendar[];
   specificCalendarName: string;
   value: string;
-  eventType: 'starts' | 'ends';
+  eventType: "starts" | "ends";
   type?: string;
-}
+};
 
 export type TriggerSynchronizationErrorOptions = {
   app: App;
@@ -77,4 +78,4 @@ export type TriggerSynchronizationErrorOptions = {
   calendar: string;
   error: Error | string;
   event?: VariableManagementCalendarEvent;
-}
+};

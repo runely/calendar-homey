@@ -12,7 +12,7 @@ export type HitCountVariant = {
   type?: string;
   /** Flow trigger argument */
   calendar?: string;
-}
+};
 
 export type HitCount = {
   /** Trigger id */
@@ -20,4 +20,4 @@ export type HitCount = {
   /** Trigger.titleFormatted || Trigger.title */
   name: string;
   variants: HitCountVariant[];
-}
+};

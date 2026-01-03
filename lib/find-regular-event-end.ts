@@ -1,9 +1,9 @@
-import { Moment } from "moment";
-import { VEvent } from "node-ical";
+import type { Moment } from "moment";
+import type { VEvent } from "node-ical";
 
-import { getMoment } from './moment-datetime.js';
+import type { VariableManagementLocalJsonEvent } from "../types/VariableMgmt.type";
 
-import { VariableManagementLocalJsonEvent } from "../types/VariableMgmt.type";
+import { getMoment } from "./moment-datetime.js";
 
 /*const durationUnits: { name: string, abbr: string }[] = [
   {
@@ -51,7 +51,7 @@ const getDurationUnit = (str, unit) => {
 }*/
 
 export const findRegularEventEnd = (event: VEvent, timezone?: string): Moment => {
-  console.log('findRegularEventEnd: Not yet implemented, returning end date as end date', event.end, timezone);
+  console.log("findRegularEventEnd: Not yet implemented, returning end date as end date", event.end, timezone);
   return getMoment({ date: event.end.toISOString(), timezone });
   /*if (event.end) {
     return event.skipTZ ? getMoment(event.end) : getMoment(event.end, timezone)
@@ -69,9 +69,9 @@ export const findRegularEventEnd = (event: VEvent, timezone?: string): Moment =>
     end = event.duration.startsWith('-') ? end.subtract(durationUnit, unit.name) : end.add(durationUnit, unit.name)
   })
   return end*/
-}
+};
 
 export const findRegularLocalEventEnd = (event: VariableManagementLocalJsonEvent, timezone?: string): Moment => {
-  console.log('findRegularLocalEventEnd: Not yet implemented, returning end date as end date', event.end, timezone);
+  console.log("findRegularLocalEventEnd: Not yet implemented, returning end date as end date", event.end, timezone);
   return getMoment({ date: event.end, timezone });
-}
+};

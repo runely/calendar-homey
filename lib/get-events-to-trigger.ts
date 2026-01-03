@@ -1,12 +1,16 @@
-import { App } from "homey";
-import { Moment } from "moment";
+import type { App } from "homey";
+import type { Moment } from "moment";
 
-import { getMomentNow } from './moment-datetime.js';
+import type { TriggerEvent } from "../types/IcalCalendar.type";
+import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
 
-import { TriggerEvent } from "../types/IcalCalendar.type";
-import {VariableManagementCalendar, VariableManagementCalendarEvent} from "../types/VariableMgmt.type";
+import { getMomentNow } from "./moment-datetime.js";
 
-export const getEventsToTrigger = (app: App, calendars: VariableManagementCalendar[], timezone: string): TriggerEvent[] => {
+export const getEventsToTrigger = (
+  app: App,
+  calendars: VariableManagementCalendar[],
+  timezone: string
+): TriggerEvent[] => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
   const events: TriggerEvent[] = [];
@@ -15,8 +19,8 @@ export const getEventsToTrigger = (app: App, calendars: VariableManagementCalend
     app.log(`getEventsToTrigger: Checking calendar '${calendarName}' for events to trigger`);
     calendar.events.forEach((event: VariableManagementCalendarEvent) => {
       const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const startDiff: number = now.diff(event.start, 'seconds');
-      const endDiff: number = now.diff(event.end, 'seconds');
+      const startDiff: number = now.diff(event.start, "seconds");
+      const endDiff: number = now.diff(event.end, "seconds");
 
       const resultStart: boolean = startDiff >= 0 && startDiff <= 55 && endDiff <= 0;
       const resultEnd: boolean = endDiff >= 0 && endDiff <= 55;
@@ -27,13 +31,13 @@ export const getEventsToTrigger = (app: App, calendars: VariableManagementCalend
         events.push({
           calendarName,
           event,
-          triggerId: 'event_starts'
+          triggerId: "event_starts"
         });
 
         events.push({
           calendarName,
           event,
-          triggerId: 'event_starts_calendar',
+          triggerId: "event_starts_calendar",
           state: { calendarName }
         });
       }
@@ -42,33 +46,33 @@ export const getEventsToTrigger = (app: App, calendars: VariableManagementCalend
         events.push({
           calendarName,
           event,
-          triggerId: 'event_stops'
+          triggerId: "event_stops"
         });
 
         events.push({
           calendarName,
           event,
-          triggerId: 'event_stops_calendar',
+          triggerId: "event_stops_calendar",
           state: { calendarName }
         });
       }
 
       if (resultStartInCheck) {
-        const startsIn: number = Math.round(event.start.diff(now, 'minutes', true));
+        const startsIn: number = Math.round(event.start.diff(now, "minutes", true));
         events.push({
           calendarName,
           event,
-          triggerId: 'event_starts_in',
+          triggerId: "event_starts_in",
           state: { when: startsIn }
         });
       }
 
       if (resultEndInCheck) {
-        const endsIn: number = Math.round(event.end.diff(now, 'minutes', true));
+        const endsIn: number = Math.round(event.end.diff(now, "minutes", true));
         events.push({
           calendarName,
           event,
-          triggerId: 'event_stops_in',
+          triggerId: "event_stops_in",
           state: { when: endsIn }
         });
       }
@@ -76,4 +80,4 @@ export const getEventsToTrigger = (app: App, calendars: VariableManagementCalend
   });
 
   return events;
-}
+};

@@ -1,12 +1,16 @@
-import { App, FlowCard } from "homey";
+import type { App, FlowCard } from "homey";
 
-import { filterByCalendar } from './filter-by.js';
+import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
 
-import { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import { filterByCalendar } from "./filter-by.js";
 
-export const calendarAutocomplete = (app: App, variableMgmt: VariableManagement, query: string): FlowCard.ArgumentAutocompleteResults => {
+export const calendarAutocomplete = (
+  app: App,
+  variableMgmt: VariableManagement,
+  query: string
+): FlowCard.ArgumentAutocompleteResults => {
   if (!variableMgmt.calendars || variableMgmt.calendars.length === 0) {
-    app.log('[WARN] calendarAutocomplete: Calendars not set yet. Nothing to show...');
+    app.log("[WARN] calendarAutocomplete: Calendars not set yet. Nothing to show...");
     return [];
   }
 
@@ -20,4 +24,4 @@ export const calendarAutocomplete = (app: App, variableMgmt: VariableManagement,
   return variableMgmt.calendars.map((calendar: VariableManagementCalendar) => {
     return { id: calendar.name, name: calendar.name };
   });
-}
+};

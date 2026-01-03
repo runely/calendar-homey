@@ -27,22 +27,22 @@
     "ko": "[[event]] !{{진행 중|진행 중이 아님}}"
   },
   "args": [
-      {
-        "name": "event",
-        "type": "autocomplete",
-        "placeholder": {
-          "en": "Select event...",
-          "nl": "Selecteer evenement...",
-          "de": "Wähle Ereignis...",
-          "fr": "Sélectionner événement...",
-          "it": "Seleziona evento...",
-          "sv": "Välj evenemang...",
-          "no": "Velg avtale...",
-          "es": "Seleccionar evento...",
-          "da": "Vælg begivenhed...",
-          "pl": "Wybierz wydarzenie...",
-          "ko": "이벤트 선택..."
-        }
+    {
+      "name": "event",
+      "type": "autocomplete",
+      "placeholder": {
+        "en": "Select event...",
+        "nl": "Selecteer evenement...",
+        "de": "Wähle Ereignis...",
+        "fr": "Sélectionner événement...",
+        "it": "Seleziona evento...",
+        "sv": "Välj evenemang...",
+        "no": "Velg avtale...",
+        "es": "Seleccionar evento...",
+        "da": "Vælg begivenhed...",
+        "pl": "Wybierz wydarzenie...",
+        "ko": "이벤트 선택..."
       }
+    }
   ]
 }

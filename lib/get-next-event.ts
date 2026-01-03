@@ -1,10 +1,15 @@
-import { Moment } from "moment";
-import { getMomentNow } from './moment-datetime.js';
+import type { Moment } from "moment";
 
-import { NextEvent } from "../types/IcalCalendar.type";
-import { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { NextEvent } from "../types/IcalCalendar.type";
+import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
 
-export const getNextEvent = (timezone: string, calendars: VariableManagementCalendar[], specificCalendarName?: string): NextEvent | null => {
+import { getMomentNow } from "./moment-datetime.js";
+
+export const getNextEvent = (
+  timezone: string,
+  calendars: VariableManagementCalendar[],
+  specificCalendarName?: string
+): NextEvent | null => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   let minutesUntilStart: number = 1057885015800000;
   let nextEvent: NextEvent | null = null;
@@ -16,8 +21,8 @@ export const getNextEvent = (timezone: string, calendars: VariableManagementCale
 
     calendar.events.forEach((event: VariableManagementCalendarEvent) => {
       const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const startDiff: number = Math.round(event.start.diff(now, 'minutes', true));
-      const endDiff: number = Math.round(event.end.diff(now, 'minutes', true));
+      const startDiff: number = Math.round(event.start.diff(now, "minutes", true));
+      const endDiff: number = Math.round(event.end.diff(now, "minutes", true));
 
       if (!(startDiff >= 0 && startDiff < minutesUntilStart)) {
         return;
@@ -34,4 +39,4 @@ export const getNextEvent = (timezone: string, calendars: VariableManagementCale
   });
 
   return nextEvent;
-}
+};

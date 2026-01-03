@@ -1,5 +1,5 @@
-import { CalendarEventUid } from "../types/IcalCalendar.type";
-import { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEventUid } from "../types/IcalCalendar.type";
+import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
 
 export const getEventUids = (calendars: VariableManagementCalendar[]): CalendarEventUid[] => {
   return calendars.reduce((acc: CalendarEventUid[], curr: VariableManagementCalendar) => {
@@ -11,4 +11,4 @@ export const getEventUids = (calendars: VariableManagementCalendar[]): CalendarE
 
     return acc;
   }, []);
-}
+};

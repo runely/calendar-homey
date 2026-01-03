@@ -3,22 +3,9 @@
     "checkJs": true,
     "baseUrl": ".",
     "paths": {
-      "@types/*": [
-        "types/*"
-      ]
+      "@types/*": ["types/*"]
     }
   },
-  "include": [
-    ".",
-    "drivers",
-    "handlers",
-    "lib",
-    "settings",
-    "tests",
-    "types"
-  ],
-  "exclude": [
-    "node_modules",
-    ".homeybuild"
-  ]
+  "include": [".", "drivers", "handlers", "lib", "settings", "tests", "types"],
+  "exclude": ["node_modules", ".homeybuild"]
 }

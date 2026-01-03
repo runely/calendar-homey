@@ -1,57 +1,60 @@
-import { App } from "homey";
-import deepClone from 'lodash.clonedeep';
-import moment, {Moment} from 'moment';
-import {DateWithTimeZone, VEvent} from "node-ical";
+/*import type { App } from "homey";
+import deepClone from "lodash.clonedeep";
+import moment, { type Moment } from "moment";
+import type { DateWithTimeZone, VEvent } from "node-ical";
 
-import { findRegularEventEnd } from './find-regular-event-end.js';
-import { fromEvent } from './generate-event-object.js';
-import { hasData } from './has-data.js';
-import { getMoment } from './moment-datetime.js';
+import { triggerSynchronizationError } from "../handlers/trigger-cards.js";*/
 
-import { triggerSynchronizationError } from '../handlers/trigger-cards.js';
-import {GetActiveEventsOptions} from "../types/Options.type";
-import {VariableManagementCalendarEvent} from "../types/VariableMgmt.type";
+import type { GetActiveEventsOptions } from "../types/Options.type";
+import type { VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+
+/*import { findRegularEventEnd } from "./find-regular-event-end.js";
+import { fromEvent } from "./generate-event-object.js";
+import { hasData } from "./has-data.js";
+import { getMoment } from "./moment-datetime.js";
 
 type ValueObject = {
   val: string;
 };
 
-const invalidTZs: string[] = ['Customized Time Zone', 'undefined'];
+const invalidTZs: string[] = ["Customized Time Zone", "undefined"];
 
-const getFormattedMoment = (value: Moment): string => value.format('DD.MM.yyyy HH:mm:ss');
+const getFormattedMoment = (value: Moment): string => value.format("DD.MM.yyyy HH:mm:ss");
 
 const getDuration = (start: DateWithTimeZone, end: DateWithTimeZone): number => end.getTime() - start.getTime();
 
 const getEnd = (start: Moment | Date, duration: number, timezone?: string): Moment => {
-  const date: string = new Date(Number.parseInt(getMoment({ date: start.toISOString() }).format('x'), 10) + duration).toISOString();
+  const date: string = new Date(
+    Number.parseInt(getMoment({ date: start.toISOString() }).format("x"), 10) + duration
+  ).toISOString();
 
-  return getMoment({ timezone, date, format: 'x' });
-}
+  return getMoment({ timezone, date, format: "x" });
+};
 
 const getPaddedDateString = (date: Moment): string => {
   const dateParts: string[] = [
-    date.get('years').toString(),
-    (date.get('months') + 1) > 9 ? (date.get('months') + 1).toString() : `0${(date.get('months') + 1)}`,
-    date.get('dates') > 9 ? date.get('dates').toString() : `0${date.get('dates')}`
+    date.get("years").toString(),
+    date.get("months") + 1 > 9 ? (date.get("months") + 1).toString() : `0${date.get("months") + 1}`,
+    date.get("dates") > 9 ? date.get("dates").toString() : `0${date.get("dates")}`
   ];
 
   const timeParts: string[] = [
-    date.get('hours') > 9 ? date.get('hours').toString() : `0${date.get('hours')}`,
-    date.get('minutes') > 9 ? date.get('minutes').toString() : `0${date.get('minutes')}`,
-    date.get('seconds') > 9 ? date.get('seconds').toString() : `0${date.get('seconds')}`
+    date.get("hours") > 9 ? date.get("hours").toString() : `0${date.get("hours")}`,
+    date.get("minutes") > 9 ? date.get("minutes").toString() : `0${date.get("minutes")}`,
+    date.get("seconds") > 9 ? date.get("seconds").toString() : `0${date.get("seconds")}`
   ];
 
-  return `${dateParts.join('-')}T${timeParts.join(':')}.000Z`;
-}
+  return `${dateParts.join("-")}T${timeParts.join(":")}.000Z`;
+};
 
 const convertToText = (app: App, prop: string, value: string | ValueObject, uid: string): string => {
-  if (typeof value === 'string') {
+  if (typeof value === "string") {
     return value;
   }
 
   app.log(`getActiveEvents/convertToText - '${prop}' was a ValueObject. Using 'val' of object '${uid}'`);
   return value.val;
-}
+};
 
 const isInvalidTZ = (tz?: string): boolean => {
   if (!tz) {
@@ -59,11 +62,11 @@ const isInvalidTZ = (tz?: string): boolean => {
   }
 
   return invalidTZs.map((i: string) => tz.includes(i)).includes(true);
-}
+};
 
 const removeInvalidTZ = (app: App, event: VEvent, calendarName: string): void => {
   // remove 'Customized Time Zone*'
-  /*try {
+  try {
     if (isInvalidTZ(event.start.tz)) {
       app.log(`[WARN] getActiveEvents: Invalid timezone (${event.start.tz}) found on`, event.summary, '--', event.uid);
       delete event.start.tz
@@ -104,10 +107,10 @@ const removeInvalidTZ = (app: App, event: VEvent, calendarName: string): void =>
 
     triggerSynchronizationError({ app, calendar: calendarName, error, event })
       .catch(err => app.error('[ERROR] getActiveEvents/removeInvalidTZ: Failed to complete triggerSynchronizationError(...):', err))
-  }*/
-}
+  }
+};*/
 
-export const getActiveEvents = (options: GetActiveEventsOptions): VariableManagementCalendarEvent[] => {
+export const getActiveEvents = (_options: GetActiveEventsOptions): VariableManagementCalendarEvent[] => {
   return [];
 
   /*const { timezone, data, eventLimit, calendarName, app, logAllEvents } = options
@@ -370,4 +373,4 @@ export const getActiveEvents = (options: GetActiveEventsOptions): VariableManage
 
   // keep only properties used
   return events.map((event) => fromEvent(app, timezone, event))*/
-}
+};

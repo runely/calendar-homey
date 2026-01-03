@@ -1,11 +1,13 @@
-import { Driver } from 'homey';
+import { Driver } from "homey";
 
 export class MyDriver extends Driver {
   /**
    * onInit is called when the driver is initialized.
    */
-  async onInit (): Promise<void> {
-    this.log(`Driver v${this.homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`);
+  async onInit(): Promise<void> {
+    this.log(
+      `Driver v${this.homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
+    );
   }
 
   /**
@@ -13,12 +15,12 @@ export class MyDriver extends Driver {
    * and the 'list_devices' view is called.
    * This should return an array with the data of devices that are available for pairing.
    */
-  async onPairListDevices (): Promise<Array<{ name: string, data: { id: string } }>> {
+  async onPairListDevices(): Promise<Array<{ name: string; data: { id: string } }>> {
     return [
       {
-        name: 'IcalCalendar',
+        name: "IcalCalendar",
         data: {
-          id: 'icalcalendar'
+          id: "icalcalendar"
         }
       }
     ];

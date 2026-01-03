@@ -1,42 +1,45 @@
-import { App } from "homey";
-import { Moment } from "moment";
+import type { App } from "homey";
+import type { Moment } from "moment";
 
-import manifest from '../app.json';
-import { getMoment } from './moment-datetime';
+import manifest from "../app.json";
 
-import { HitCount, HitCountVariant } from "../types/HitCount.type";
-import { FlowArgs, FlowTrigger } from "../types/Homey.type";
-import { VariableManagement } from "../types/VariableMgmt.type";
+import type { HitCount, HitCountVariant } from "../types/HitCount.type";
+import type { FlowArgs, FlowTrigger } from "../types/Homey.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
+
+import { getMoment } from "./moment-datetime";
 
 const generateLastTriggered = (app: App, variableMgmt: VariableManagement): string => {
   if (!variableMgmt.dateTimeFormat) {
-    app.error('[ERROR] hit-count/generateLastTriggered: Variable management initialization failed!');
-    throw new Error('Variable management initialization failed');
+    app.error("[ERROR] hit-count/generateLastTriggered: Variable management initialization failed!");
+    throw new Error("Variable management initialization failed");
   }
 
   const now: Moment = getMoment({ timezone: app.homey.clock.getTimezone() });
-  now.locale(app.homey.__('locale.moment'));
+  now.locale(app.homey.__("locale.moment"));
   return now.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
-}
+};
 
 const saveHitCountData = (app: App, variableMgmt: VariableManagement, data: HitCount[]): void => {
   app.homey.settings.set(variableMgmt.hitCount.data, JSON.stringify(data));
-}
+};
 
 export const getHitCountData = (app: App, variableMgmt: VariableManagement): HitCount[] | undefined => {
   const temp: string | null = app.homey.settings.get(variableMgmt.hitCount.data);
-  return !temp ? undefined : JSON.parse(temp) as HitCount[];
-}
+  return !temp ? undefined : (JSON.parse(temp) as HitCount[]);
+};
 
 export const resetTodayHitCount = (app: App, variableMgmt: VariableManagement): void => {
   const data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
 
   if (!data) {
-    app.log("[WARN] resetTodayHitCount : Tried to reset hit count for today but hit count data hasn't been populated yet");
+    app.log(
+      "[WARN] resetTodayHitCount : Tried to reset hit count for today but hit count data hasn't been populated yet"
+    );
     return;
   }
 
-  app.log('resetTodayHitCount : Starting to reset today hit count');
+  app.log("resetTodayHitCount : Starting to reset today hit count");
   for (const trigger of data) {
     for (const variant of trigger.variants) {
       variant.today = 0;
@@ -44,12 +47,12 @@ export const resetTodayHitCount = (app: App, variableMgmt: VariableManagement): 
   }
 
   saveHitCountData(app, variableMgmt, data);
-  app.log('resetTodayHitCount : Finished resetting today hit count');
-}
+  app.log("resetTodayHitCount : Finished resetting today hit count");
+};
 
 export const setupHitCount = (app: App, variableMgmt: VariableManagement): void => {
   let data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
-  const lang: string = app.homey.i18n.getLanguage() ?? 'en';
+  const lang: string = app.homey.i18n.getLanguage() ?? "en";
 
   if (!data) {
     data = manifest.flow.triggers.map((trigger: FlowTrigger) => {
@@ -80,19 +83,26 @@ export const setupHitCount = (app: App, variableMgmt: VariableManagement): void 
 
   if (triggersAdded.length > 0) {
     saveHitCountData(app, variableMgmt, data);
-    app.log(`setupHitCount: Added trigger(s) ${triggersAdded.join(',')} to hit count data`);
+    app.log(`setupHitCount: Added trigger(s) ${triggersAdded.join(",")} to hit count data`);
   }
-}
+};
 
-export const updateHitCount = (app: App, variableMgmt: VariableManagement, id: string, args: undefined | FlowArgs = undefined): void => {
+export const updateHitCount = (
+  app: App,
+  variableMgmt: VariableManagement,
+  id: string,
+  args: undefined | FlowArgs = undefined
+): void => {
   const data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
 
   if (!data) {
-    app.log(`[WARN] updateHitCount : Tried to update hit count for '${id}', but hit count data hasn't been populated yet`);
+    app.log(
+      `[WARN] updateHitCount : Tried to update hit count for '${id}', but hit count data hasn't been populated yet`
+    );
     return;
   }
 
-  const trigger: HitCount | undefined = data.find((t) => t.id === id);
+  const trigger: HitCount | undefined = data.find(t => t.id === id);
   if (!trigger) {
     app.log(`[WARN] updateHitCount : '${id}' doesnt exist as hit count data yet`);
     return;
@@ -122,13 +132,13 @@ export const updateHitCount = (app: App, variableMgmt: VariableManagement, id: s
 
   const argKeys: string[] = Object.keys(args);
   const argValues: (string | number)[] = Object.values(args);
-  let variant: HitCountVariant | undefined = undefined;
+  let variant: HitCountVariant | undefined;
 
   if (argKeys.length === 1) {
     // NOTE: args === { calendar: string }
     const argKey: string = argKeys[0]; // NOTE: argKey can be 'calendar' || 'when' || 'type'
     variant = trigger.variants.find((v: HitCountVariant) => {
-      const variantKey: string = Object.keys(v).filter((v: string) => v !== 'total' && v !== 'today')[0]; // NOTE: variantKey can be 'calendar' || 'when'
+      const variantKey: string = Object.keys(v).filter((v: string) => v !== "total" && v !== "today")[0]; // NOTE: variantKey can be 'calendar' || 'when'
       if (variantKey !== argKey) {
         return false;
       }
@@ -143,7 +153,7 @@ export const updateHitCount = (app: App, variableMgmt: VariableManagement, id: s
     const argKeyOne: string = argKeys[0];
     const argKeyTwo: string = argKeys[1];
     variant = trigger.variants.find((v: HitCountVariant) => {
-      const variantKeys: string[] = Object.keys(v).filter((v) => v !== 'total' && v !== 'today'); // NOTE: variantKeys can be [ 'calendar', 'lastTriggered' ] || [ 'when', 'type', 'lastTriggered' ] || [ 'type', 'when', 'lastTriggered' ]
+      const variantKeys: string[] = Object.keys(v).filter(v => v !== "total" && v !== "today"); // NOTE: variantKeys can be [ 'calendar', 'lastTriggered' ] || [ 'when', 'type', 'lastTriggered' ] || [ 'type', 'when', 'lastTriggered' ]
       if (variantKeys.length < 2) {
         return false;
       }
@@ -152,11 +162,21 @@ export const updateHitCount = (app: App, variableMgmt: VariableManagement, id: s
       const variantKeyTwo: string = variantKeys[1];
       const variantValueOne: string | number = v[variantKeyOne as keyof HitCountVariant] as string | number;
       const variantValueTwo: string | number = v[variantKeyTwo as keyof HitCountVariant] as string | number;
-      if (variantKeyOne === argKeyOne && variantValueOne === argValues[0] && variantKeyTwo === argKeyTwo && variantValueTwo === argValues[1]) {
+      if (
+        variantKeyOne === argKeyOne &&
+        variantValueOne === argValues[0] &&
+        variantKeyTwo === argKeyTwo &&
+        variantValueTwo === argValues[1]
+      ) {
         return true;
       }
 
-      return variantKeyOne === argKeyTwo && variantValueOne === argValues[1] && variantKeyTwo === argKeyOne && variantValueTwo === argValues[0];
+      return (
+        variantKeyOne === argKeyTwo &&
+        variantValueOne === argValues[1] &&
+        variantKeyTwo === argKeyOne &&
+        variantValueTwo === argValues[0]
+      );
     });
   }
 
@@ -180,4 +200,4 @@ export const updateHitCount = (app: App, variableMgmt: VariableManagement, id: s
 
   saveHitCountData(app, variableMgmt, data);
   app.log(`updateHitCount : Trigger variant for '${id}' updated`, variant);
-}
+};

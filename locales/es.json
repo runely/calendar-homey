@@ -1,167 +1,167 @@
 {
   "locale": {
-      "humanize": "es",
-      "moment": "es"
+    "humanize": "es",
+    "moment": "es"
   },
   "humanize": {
-      "conjunction": " y "
+    "conjunction": " y "
   },
   "settings": {
-      "title": "Configuraciones",
-      "saved_alert": "Configuraciones guardadas",
-      "uri_load_failure": "No se pudo cargar el/los archivo(s) .ics:",
-      "icons_info": "Íconos de",
-      "calendars": {
-          "legend": "URI del archivo .ics",
-          "name": "Nombre del calendario",
-          "uri": "URI"
+    "title": "Configuraciones",
+    "saved_alert": "Configuraciones guardadas",
+    "uri_load_failure": "No se pudo cargar el/los archivo(s) .ics:",
+    "icons_info": "Íconos de",
+    "calendars": {
+      "legend": "URI del archivo .ics",
+      "name": "Nombre del calendario",
+      "uri": "URI"
+    },
+    "syncsettings": {
+      "legend": "Sincronización",
+      "interval": {
+        "legend": "Intervalo",
+        "description": "Habilitar/Deshabilitar sincronización automática<br><br>NOTA: Si está deshabilitado, la sincronización solo se hará mediante la tarjeta de flujo!"
       },
-      "syncsettings": {
-          "legend": "Sincronización",
-          "interval": {
-              "legend": "Intervalo",
-              "description": "Habilitar/Deshabilitar sincronización automática<br><br>NOTA: Si está deshabilitado, la sincronización solo se hará mediante la tarjeta de flujo!"
-          },
-          "cron": {
-              "description": "Expresión cron para el intervalo de sincronización.<br>Utiliza un generador para encontrar la sintaxis correcta, por ejemplo: https://crontab.cronhub.io/<br><br><b>ATENCIÓN</b>: Si se proporciona una sintaxis no válida, la sincronización automática se desactivará hasta que se proporcione una sintaxis válida!"
-          },
-          "eventlimit": {
-              "legend": "Rango de tiempo del evento",
-              "description": "Los eventos con fecha de inicio dentro del rango de tiempo dado serán sincronizados en",
-              "value": "Cantidad",
-              "type": "Tipo",
-              "types": {
-                  "days": "Días",
-                  "weeks": "Semanas",
-                  "months": "Meses",
-                  "years": "Años"
-              }
-          }
+      "cron": {
+        "description": "Expresión cron para el intervalo de sincronización.<br>Utiliza un generador para encontrar la sintaxis correcta, por ejemplo: https://crontab.cronhub.io/<br><br><b>ATENCIÓN</b>: Si se proporciona una sintaxis no válida, la sincronización automática se desactivará hasta que se proporcione una sintaxis válida!"
       },
-      "datetime": {
-          "legend": "Fecha/Hora",
-          "date": {
-              "description": "<b>Formato de fecha/hora deseado</b><br><br>Soporta todos los tokens en <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Ejemplo: <i>dddd, DD.MM.YYYY</i>",
-              "long_name": "Formato de fecha largo",
-              "default": "MM/DD/YY",
-              "short_name": "Formato de fecha corto"
-          },
-          "time": {
-              "name": "Formato de hora",
-              "default": "HH:mm"
-          }
-      },
-      "misc": {
-          "legend": "Configuraciones varias",
-          "nextEventTokensPerCalendar": "Etiquetas del próximo evento por calendario",
-          "triggerAllChangedEventTypes": {
-              "title": "Activar todos los tipos de eventos modificados",
-              "description": "Cuando <i>no seleccionado</i>, solo el <b>primer cambio</b> en un evento activará un <u>evento cambiado</u>.<br>Cuando <i>seleccionado</i>, <b>todos los cambios</b> en un evento activarán un <u>evento cambiado</u>."
-          }
-      },
-      "debug": {
-          "legend": "Opciones de depuración varias",
-          "description": "Estas configuraciones solo deben activarse a solicitud del desarrollador y no deben mantenerse activadas más tiempo del necesario",
-          "log_all_events": "Registrar todos los eventos"
-      },
-      "buttons": {
-          "new_item": "Nuevo calendario",
-          "save": "Guardar",
-          "remove": "Eliminar"
+      "eventlimit": {
+        "legend": "Rango de tiempo del evento",
+        "description": "Los eventos con fecha de inicio dentro del rango de tiempo dado serán sincronizados en",
+        "value": "Cantidad",
+        "type": "Tipo",
+        "types": {
+          "days": "Días",
+          "weeks": "Semanas",
+          "months": "Meses",
+          "years": "Años"
+        }
       }
+    },
+    "datetime": {
+      "legend": "Fecha/Hora",
+      "date": {
+        "description": "<b>Formato de fecha/hora deseado</b><br><br>Soporta todos los tokens en <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Ejemplo: <i>dddd, DD.MM.YYYY</i>",
+        "long_name": "Formato de fecha largo",
+        "default": "MM/DD/YY",
+        "short_name": "Formato de fecha corto"
+      },
+      "time": {
+        "name": "Formato de hora",
+        "default": "HH:mm"
+      }
+    },
+    "misc": {
+      "legend": "Configuraciones varias",
+      "nextEventTokensPerCalendar": "Etiquetas del próximo evento por calendario",
+      "triggerAllChangedEventTypes": {
+        "title": "Activar todos los tipos de eventos modificados",
+        "description": "Cuando <i>no seleccionado</i>, solo el <b>primer cambio</b> en un evento activará un <u>evento cambiado</u>.<br>Cuando <i>seleccionado</i>, <b>todos los cambios</b> en un evento activarán un <u>evento cambiado</u>."
+      }
+    },
+    "debug": {
+      "legend": "Opciones de depuración varias",
+      "description": "Estas configuraciones solo deben activarse a solicitud del desarrollador y no deben mantenerse activadas más tiempo del necesario",
+      "log_all_events": "Registrar todos los eventos"
+    },
+    "buttons": {
+      "new_item": "Nuevo calendario",
+      "save": "Guardar",
+      "remove": "Eliminar"
+    }
   },
   "hitcount": {
-      "title": "Conteo de hits",
-      "panel": {
-          "info": {
-              "header": "Disparadores sin argumentos",
-              "1": "Registrará 1 conteo de hits incluso si el disparador se usa en muchos flujos (así es como funciona Homey)",
-              "2": "Registrará 1 conteo de hits incluso si el disparador no se usa en ningún flujo (así es como funciona Homey)"
-          },
-          "info2": {
-              "header": "Disparadores con argumentos",
-              "1": "Registrará 1 conteo de hits por evento por flujo que usa el disparador"
-          },
-          "triggerHeader": "Disparador",
-          "countToday": "Hoy",
-          "countTotal": "Total",
-          "lastTriggered": "Último",
-          "resetConfirm": "Esto reiniciará todos los datos de conteo de hits. ¿Estás seguro?"
+    "title": "Conteo de hits",
+    "panel": {
+      "info": {
+        "header": "Disparadores sin argumentos",
+        "1": "Registrará 1 conteo de hits incluso si el disparador se usa en muchos flujos (así es como funciona Homey)",
+        "2": "Registrará 1 conteo de hits incluso si el disparador no se usa en ningún flujo (así es como funciona Homey)"
       },
-      "typeLabels": {
-          "1": "Minuto(s)",
-          "2": "Hora(s)",
-          "3": "Día(s)",
-          "4": "Semana(s)"
+      "info2": {
+        "header": "Disparadores con argumentos",
+        "1": "Registrará 1 conteo de hits por evento por flujo que usa el disparador"
       },
-      "buttons": {
-          "reset": "Restablecer conteo de hits"
-      }
+      "triggerHeader": "Disparador",
+      "countToday": "Hoy",
+      "countTotal": "Total",
+      "lastTriggered": "Último",
+      "resetConfirm": "Esto reiniciará todos los datos de conteo de hits. ¿Estás seguro?"
+    },
+    "typeLabels": {
+      "1": "Minuto(s)",
+      "2": "Hora(s)",
+      "3": "Día(s)",
+      "4": "Semana(s)"
+    },
+    "buttons": {
+      "reset": "Restablecer conteo de hits"
+    }
   },
   "calendarTokens": {
-      "events_today_calendar_title_stamps": "Eventos de hoy en",
-      "events_today_calendar_count": "Eventos de hoy (conteo) en",
-      "events_tomorrow_calendar_title_stamps": "Eventos de mañana en",
-      "events_tomorrow_calendar_count": "Eventos de mañana (conteo) en",
-      "event_next_title_calendar": "Título del próximo evento en",
-      "event_next_startdate_calendar": "Fecha de inicio del próximo evento en",
-      "event_next_startstamp_calendar": "Hora de inicio del próximo evento en",
-      "event_next_enddate_calendar": "Fecha de fin del próximo evento en",
-      "event_next_endstamp_calendar": "Hora de fin del próximo evento en",
-      "event_next_description_calendar": "Descripción del próximo evento en"
+    "events_today_calendar_title_stamps": "Eventos de hoy en",
+    "events_today_calendar_count": "Eventos de hoy (conteo) en",
+    "events_tomorrow_calendar_title_stamps": "Eventos de mañana en",
+    "events_tomorrow_calendar_count": "Eventos de mañana (conteo) en",
+    "event_next_title_calendar": "Título del próximo evento en",
+    "event_next_startdate_calendar": "Fecha de inicio del próximo evento en",
+    "event_next_startstamp_calendar": "Hora de inicio del próximo evento en",
+    "event_next_enddate_calendar": "Fecha de fin del próximo evento en",
+    "event_next_endstamp_calendar": "Hora de fin del próximo evento en",
+    "event_next_description_calendar": "Descripción del próximo evento en"
   },
   "flowTokens": {
-      "event_next_title": "Título del próximo evento",
-      "event_next_startdate": "Fecha de inicio del próximo evento",
-      "event_next_startstamp": "Hora de inicio del próximo evento",
-      "event_next_stopdate": "Fecha de fin del próximo evento",
-      "event_next_stopstamp": "Hora de fin del próximo evento",
-      "event_next_duration": "Duración del próximo evento",
-      "event_next_duration_minutes": "Duración del próximo evento (minutos)",
-      "event_next_starts_in_minutes": "El próximo evento comienza en (minutos)",
-      "event_next_stops_in_minutes": "El próximo evento termina en (minutos)",
-      "event_next_description": "Descripción del próximo evento",
-      "event_next_calendar_name": "Nombre del calendario del próximo evento",
-      "events_today_title_stamps": "Eventos de hoy, título y hora",
-      "events_tomorrow_title_stamps": "Eventos de mañana, título y hora",
-      "events_today_count": "Eventos de hoy (conteo)",
-      "events_tomorrow_count": "Eventos de mañana (conteo)",
-      "events_today-tomorrow_startstamp_fullday": "día completo",
-      "events_today-tomorrow_start-stop_stamps_pre": "hasta",
-      "icalcalendar_week_number": "Número de semana"
+    "event_next_title": "Título del próximo evento",
+    "event_next_startdate": "Fecha de inicio del próximo evento",
+    "event_next_startstamp": "Hora de inicio del próximo evento",
+    "event_next_stopdate": "Fecha de fin del próximo evento",
+    "event_next_stopstamp": "Hora de fin del próximo evento",
+    "event_next_duration": "Duración del próximo evento",
+    "event_next_duration_minutes": "Duración del próximo evento (minutos)",
+    "event_next_starts_in_minutes": "El próximo evento comienza en (minutos)",
+    "event_next_stops_in_minutes": "El próximo evento termina en (minutos)",
+    "event_next_description": "Descripción del próximo evento",
+    "event_next_calendar_name": "Nombre del calendario del próximo evento",
+    "events_today_title_stamps": "Eventos de hoy, título y hora",
+    "events_tomorrow_title_stamps": "Eventos de mañana, título y hora",
+    "events_today_count": "Eventos de hoy (conteo)",
+    "events_tomorrow_count": "Eventos de mañana (conteo)",
+    "events_today-tomorrow_startstamp_fullday": "día completo",
+    "events_today-tomorrow_start-stop_stamps_pre": "hasta",
+    "icalcalendar_week_number": "Número de semana"
   },
   "nextEventWithToken": {
-      "event_next_title": "Título (contiene)",
-      "event_next_startdate": "Fecha de inicio (contiene)",
-      "event_next_startstamp": "Hora de inicio (contiene)",
-      "event_next_stopdate": "Fecha de fin (contiene)",
-      "event_next_stopstamp": "Hora de fin (contiene)",
-      "event_next_description": "Descripción (contiene)"
+    "event_next_title": "Título (contiene)",
+    "event_next_startdate": "Fecha de inicio (contiene)",
+    "event_next_startstamp": "Hora de inicio (contiene)",
+    "event_next_stopdate": "Fecha de fin (contiene)",
+    "event_next_stopstamp": "Hora de fin (contiene)",
+    "event_next_description": "Descripción (contiene)"
   },
   "triggers": {
-      "event_changed": {
-          "start": "Inicio",
-          "end": "Fin",
-          "description": "Descripción",
-          "location": "Ubicación",
-          "summary": "Resumen"
-      }
+    "event_changed": {
+      "start": "Inicio",
+      "end": "Fin",
+      "description": "Descripción",
+      "location": "Ubicación",
+      "summary": "Resumen"
+    }
   },
   "actions": {
-      "new_event": {
-          "titleInvalid": "El título no es válido",
-          "startInvalid": "El inicio del evento no es válido",
-          "endInvalid": "El fin del evento no es válido"
-      },
-      "delete_event_name": {
-          "eventNotFoundOne": "Evento local con título",
-          "eventNotFoundTwo": "no encontrado"
-      },
-      "calendarNotFoundOne": "Calendario",
-      "calendarNotFoundTwo": "no encontrado"
+    "new_event": {
+      "titleInvalid": "El título no es válido",
+      "startInvalid": "El inicio del evento no es válido",
+      "endInvalid": "El fin del evento no es válido"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Evento local con título",
+      "eventNotFoundTwo": "no encontrado"
+    },
+    "calendarNotFoundOne": "Calendario",
+    "calendarNotFoundTwo": "no encontrado"
   },
   "device": {
-      "eventCountCalendar": "Conteo de eventos -",
-      "lastSuccessfulSync": "Última sincronización exitosa -"
+    "eventCountCalendar": "Conteo de eventos -",
+    "lastSuccessfulSync": "Última sincronización exitosa -"
   }
 }

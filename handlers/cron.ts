@@ -1,4 +1,4 @@
-import { Cron, CronCallback, CronOptions } from 'croner';
+import { Cron, type CronCallback, type CronOptions } from "croner";
 
 /**
  * Create a cron scheduler
@@ -10,7 +10,7 @@ import { Cron, CronCallback, CronOptions } from 'croner';
  */
 export const addJob = (cron: string, callback: CronCallback, options: CronOptions = {}): Cron => {
   return new Cron(cron, callback, options);
-}
+};
 
 /**
  * Check if cron syntax is valid
@@ -20,10 +20,9 @@ export const addJob = (cron: string, callback: CronCallback, options: CronOption
  */
 export const isValidCron = (cron: string): boolean => {
   try {
-    
     const crontab = new Cron(cron);
     return crontab.nextRun() instanceof Date;
   } catch {
     return false;
   }
-}
+};

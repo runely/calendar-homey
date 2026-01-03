@@ -1,167 +1,167 @@
 {
-    "locale": {
-        "humanize": "en",
-        "moment": "en"
+  "locale": {
+    "humanize": "en",
+    "moment": "en"
+  },
+  "humanize": {
+    "conjunction": " and "
+  },
+  "settings": {
+    "title": "Settings",
+    "saved_alert": "Settings saved",
+    "uri_load_failure": "Failed to load .ics file(s):",
+    "icons_info": "Icons by",
+    "calendars": {
+      "legend": "URI to the .ics file",
+      "name": "Calendar name",
+      "uri": "URI"
     },
-    "humanize": {
-        "conjunction": " and "
-    },
-    "settings": {
-        "title": "Settings",
-        "saved_alert": "Settings saved",
-        "uri_load_failure": "Failed to load .ics file(s):",
-        "icons_info": "Icons by",
-        "calendars": {
-            "legend": "URI to the .ics file",
-            "name": "Calendar name",
-            "uri": "URI"
-        },
-        "syncsettings": {
-            "legend": "Synchronization",
-            "interval": {
-                "legend": "Interval",
-                "description": "Enable/Disable automatic synchronization<br><br>NOTE: If disabled, synchronization will only be done by flow card!"
-            },
-            "cron": {
-                "description": "Cron expression for synchronization interval.<br>Use a generator to find the correct syntax, for instance: https://crontab.cronhub.io/<br><br><b>CAUTION</b>: If invalid syntax is given, automatic synchronization will be disabled until valid syntax is given!"
-            },
-            "eventlimit": {
-                "legend": "Event time frame",
-                "description": "Events with start date inside given time frame will be synced in",
-                "value": "Amount",
-                "type": "Type",
-                "types": {
-                    "days": "Days",
-                    "weeks": "Weeks",
-                    "months": "Months",
-                    "years": "Years"
-                }
-            }
-        },
-        "datetime": {
-            "legend": "Date/Time",
-            "date": {
-                "description": "<b>Wanted date/time format</b><br><br>Supports all tokens in <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Example: <i>dddd, DD.MM.YYYY</i>",
-                "long_name": "Long date format",
-                "default": "MM/DD/YY",
-                "short_name": "Short date format"
-            },
-            "time": {
-                "name": "Time format",
-                "default": "HH:mm"
-            }
-        },
-        "misc": {
-            "legend": "Misc settings",
-            "nextEventTokensPerCalendar": "Next event tags per calendar",
-            "triggerAllChangedEventTypes": {
-                "title": "Trigger all changed event types",
-                "description": "When <i>unselected</i>, only the <b>first change</b> on an event will trigger a <u>event changed</u>.<br>When <i>selected</i>, <b>all changes</b> on an event will trigger a <u>event changed</u>."
-            }
-        },
-        "debug": {
-            "legend": "Various debugging options",
-            "description": "These settings should only be activated at the request of the developer and not be activated longer than necessary",
-            "log_all_events": "Log all events"
-        },
-        "buttons": {
-            "new_item": "New calendar",
-            "save": "Save",
-            "remove": "Remove"
+    "syncsettings": {
+      "legend": "Synchronization",
+      "interval": {
+        "legend": "Interval",
+        "description": "Enable/Disable automatic synchronization<br><br>NOTE: If disabled, synchronization will only be done by flow card!"
+      },
+      "cron": {
+        "description": "Cron expression for synchronization interval.<br>Use a generator to find the correct syntax, for instance: https://crontab.cronhub.io/<br><br><b>CAUTION</b>: If invalid syntax is given, automatic synchronization will be disabled until valid syntax is given!"
+      },
+      "eventlimit": {
+        "legend": "Event time frame",
+        "description": "Events with start date inside given time frame will be synced in",
+        "value": "Amount",
+        "type": "Type",
+        "types": {
+          "days": "Days",
+          "weeks": "Weeks",
+          "months": "Months",
+          "years": "Years"
         }
+      }
     },
-    "hitcount": {
-        "title": "Hit count",
-        "panel": {
-            "info": {
-                "header": "Triggers with no arguments",
-                "1": "Will register 1 hit count even if the trigger is used in many flows (this is the way Homey works)",
-                "2": "Will register 1 hit count even if the trigger is not used in any flows (this is the way Homey works)"
-            },
-            "info2": {
-                "header": "Triggers with arguments",
-                "1": "Will register 1 hit count per event per flow that uses the trigger"
-            },
-            "triggerHeader": "Trigger",
-            "countToday": "Today",
-            "countTotal": "Total",
-            "lastTriggered": "Last",
-            "resetConfirm": "This will reset all hit count data. Are you sure?"
-        },
-        "typeLabels": {
-            "1": "Minute(s)",
-            "2": "Hour(s)",
-            "3": "Day(s)",
-            "4": "Week(s)"
-        },
-        "buttons": {
-            "reset": "Reset hit count"
-        }
+    "datetime": {
+      "legend": "Date/Time",
+      "date": {
+        "description": "<b>Wanted date/time format</b><br><br>Supports all tokens in <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Example: <i>dddd, DD.MM.YYYY</i>",
+        "long_name": "Long date format",
+        "default": "MM/DD/YY",
+        "short_name": "Short date format"
+      },
+      "time": {
+        "name": "Time format",
+        "default": "HH:mm"
+      }
     },
-    "calendarTokens": {
-        "events_today_calendar_title_stamps": "Today's events in",
-        "events_today_calendar_count": "Today's events (count) in",
-        "events_tomorrow_calendar_title_stamps": "Tomorrows events in",
-        "events_tomorrow_calendar_count": "Tomorrows events (count) in",
-        "event_next_title_calendar": "Next event title in",
-        "event_next_startdate_calendar": "Next event start date in",
-        "event_next_startstamp_calendar": "Next event start time in",
-        "event_next_enddate_calendar": "Next event end date in",
-        "event_next_endstamp_calendar": "Next event end time in",
-        "event_next_description_calendar": "Next event description in"
+    "misc": {
+      "legend": "Misc settings",
+      "nextEventTokensPerCalendar": "Next event tags per calendar",
+      "triggerAllChangedEventTypes": {
+        "title": "Trigger all changed event types",
+        "description": "When <i>unselected</i>, only the <b>first change</b> on an event will trigger a <u>event changed</u>.<br>When <i>selected</i>, <b>all changes</b> on an event will trigger a <u>event changed</u>."
+      }
     },
-    "flowTokens": {
-        "event_next_title": "Next event title",
-        "event_next_startdate": "Next event start date",
-        "event_next_startstamp": "Next event start time",
-        "event_next_stopdate": "Next event end date",
-        "event_next_stopstamp": "Next event end time",
-        "event_next_duration": "Next event duration",
-        "event_next_duration_minutes": "Next event duration (minutes)",
-        "event_next_starts_in_minutes": "Next event starts in (minutes)",
-        "event_next_stops_in_minutes": "Next event ends in (minutes)",
-        "event_next_description": "Next event description",
-        "event_next_calendar_name": "Calendar name of next event",
-        "events_today_title_stamps": "Today's events, title and time",
-        "events_tomorrow_title_stamps": "Tomorrows events, title and time",
-        "events_today_count": "Today's events (count)",
-        "events_tomorrow_count": "Tomorrows events (count)",
-        "events_today-tomorrow_startstamp_fullday": "full day",
-        "events_today-tomorrow_start-stop_stamps_pre": "to",
-        "icalcalendar_week_number": "Week number"
+    "debug": {
+      "legend": "Various debugging options",
+      "description": "These settings should only be activated at the request of the developer and not be activated longer than necessary",
+      "log_all_events": "Log all events"
     },
-    "nextEventWithToken": {
-        "event_next_title": "Title (contains)",
-        "event_next_startdate": "Start date (contains)",
-        "event_next_startstamp": "Start time (contains)",
-        "event_next_stopdate": "End date (contains)",
-        "event_next_stopstamp": "End time (contains)",
-        "event_next_description": "Description (contains)"
-    },
-    "triggers": {
-        "event_changed": {
-            "start": "Start",
-            "end": "End",
-            "description": "Description",
-            "location": "Location",
-            "summary": "Summary"
-        }
-    },
-    "actions": {
-        "new_event": {
-            "titleInvalid": "Title is invalid",
-            "startInvalid": "Event start is invalid",
-            "endInvalid": "Event end is invalid"
-        },
-        "delete_event_name": {
-            "eventNotFoundOne": "Local event with title",
-            "eventNotFoundTwo": "not found"
-        },
-        "calendarNotFoundOne": "Calendar",
-        "calendarNotFoundTwo": "not found"
-    },
-    "device": {
-        "eventCountCalendar": "Event count -",
-        "lastSuccessfulSync": "Last successful synchronization -"
+    "buttons": {
+      "new_item": "New calendar",
+      "save": "Save",
+      "remove": "Remove"
     }
+  },
+  "hitcount": {
+    "title": "Hit count",
+    "panel": {
+      "info": {
+        "header": "Triggers with no arguments",
+        "1": "Will register 1 hit count even if the trigger is used in many flows (this is the way Homey works)",
+        "2": "Will register 1 hit count even if the trigger is not used in any flows (this is the way Homey works)"
+      },
+      "info2": {
+        "header": "Triggers with arguments",
+        "1": "Will register 1 hit count per event per flow that uses the trigger"
+      },
+      "triggerHeader": "Trigger",
+      "countToday": "Today",
+      "countTotal": "Total",
+      "lastTriggered": "Last",
+      "resetConfirm": "This will reset all hit count data. Are you sure?"
+    },
+    "typeLabels": {
+      "1": "Minute(s)",
+      "2": "Hour(s)",
+      "3": "Day(s)",
+      "4": "Week(s)"
+    },
+    "buttons": {
+      "reset": "Reset hit count"
+    }
+  },
+  "calendarTokens": {
+    "events_today_calendar_title_stamps": "Today's events in",
+    "events_today_calendar_count": "Today's events (count) in",
+    "events_tomorrow_calendar_title_stamps": "Tomorrows events in",
+    "events_tomorrow_calendar_count": "Tomorrows events (count) in",
+    "event_next_title_calendar": "Next event title in",
+    "event_next_startdate_calendar": "Next event start date in",
+    "event_next_startstamp_calendar": "Next event start time in",
+    "event_next_enddate_calendar": "Next event end date in",
+    "event_next_endstamp_calendar": "Next event end time in",
+    "event_next_description_calendar": "Next event description in"
+  },
+  "flowTokens": {
+    "event_next_title": "Next event title",
+    "event_next_startdate": "Next event start date",
+    "event_next_startstamp": "Next event start time",
+    "event_next_stopdate": "Next event end date",
+    "event_next_stopstamp": "Next event end time",
+    "event_next_duration": "Next event duration",
+    "event_next_duration_minutes": "Next event duration (minutes)",
+    "event_next_starts_in_minutes": "Next event starts in (minutes)",
+    "event_next_stops_in_minutes": "Next event ends in (minutes)",
+    "event_next_description": "Next event description",
+    "event_next_calendar_name": "Calendar name of next event",
+    "events_today_title_stamps": "Today's events, title and time",
+    "events_tomorrow_title_stamps": "Tomorrows events, title and time",
+    "events_today_count": "Today's events (count)",
+    "events_tomorrow_count": "Tomorrows events (count)",
+    "events_today-tomorrow_startstamp_fullday": "full day",
+    "events_today-tomorrow_start-stop_stamps_pre": "to",
+    "icalcalendar_week_number": "Week number"
+  },
+  "nextEventWithToken": {
+    "event_next_title": "Title (contains)",
+    "event_next_startdate": "Start date (contains)",
+    "event_next_startstamp": "Start time (contains)",
+    "event_next_stopdate": "End date (contains)",
+    "event_next_stopstamp": "End time (contains)",
+    "event_next_description": "Description (contains)"
+  },
+  "triggers": {
+    "event_changed": {
+      "start": "Start",
+      "end": "End",
+      "description": "Description",
+      "location": "Location",
+      "summary": "Summary"
+    }
+  },
+  "actions": {
+    "new_event": {
+      "titleInvalid": "Title is invalid",
+      "startInvalid": "Event start is invalid",
+      "endInvalid": "Event end is invalid"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Local event with title",
+      "eventNotFoundTwo": "not found"
+    },
+    "calendarNotFoundOne": "Calendar",
+    "calendarNotFoundTwo": "not found"
+  },
+  "device": {
+    "eventCountCalendar": "Event count -",
+    "lastSuccessfulSync": "Last successful synchronization -"
+  }
 }

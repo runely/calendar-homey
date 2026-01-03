@@ -5,5 +5,5 @@ export const capitalize = (word: string): string => {
     chars.push(word[i].toLowerCase());
   }
 
-  return chars.join('');
-}
+  return chars.join("");
+};
