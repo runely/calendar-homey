@@ -61,11 +61,11 @@ describe('getActiveEvents returns', () => {
     expect(activeEvents[0].end instanceof moment).toBe(true)
   })
 
-  test('an array where each object has a datetype property of type \'string\'', () => {
+  test('an array where each object has a dateType property of type \'string\'', () => {
     expect(typeof activeEvents[0].datetype).toBe('string')
   })
 
-  test('an array where each object has a datetype property with value \'date-time\'', () => {
+  test('an array where each object has a dateType property with value \'date-time\'', () => {
     expect(activeEvents[0].datetype).toBe('date-time')
   })
 

@@ -2,7 +2,7 @@
 
 const momentInstance = require('moment-timezone')
 const { moment } = require('../lib/moment-datetime')
-const getTodaysEvents = require('../lib/get-todays-events')
+const getEventsToday = require('../lib/get-todays-events')
 
 const expectedStart = moment()
   .set('hours', 23)
@@ -30,7 +30,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -45,7 +45,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -60,7 +60,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -80,7 +80,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -95,7 +95,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -110,7 +110,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -120,7 +120,7 @@ const calendars = [
 
 describe('Todays event count is', () => {
   test('2 when \'specificCalendarName\' is NOT given', () => {
-    const todaysEvents = getTodaysEvents({ calendars })
+    const todaysEvents = getEventsToday({ calendars })
     expect(Array.isArray(todaysEvents)).toBe(true)
     expect(todaysEvents.length).toBe(2)
     expect(typeof todaysEvents[0]).toBe('object')
@@ -144,7 +144,7 @@ describe('Todays event count is', () => {
   })
 
   test('1 when \'specificCalendarName\' IS given', () => {
-    const todaysEvents = getTodaysEvents({ calendars, specificCalendarName: 'events2' })
+    const todaysEvents = getEventsToday({ calendars, specificCalendarName: 'events2' })
     expect(Array.isArray(todaysEvents)).toBe(true)
     expect(todaysEvents.length).toBe(1)
     expect(typeof todaysEvents[0]).toBe('object')

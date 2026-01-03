@@ -34,7 +34,7 @@ const events = [
     created: undefined,
     fullDayEvent: false,
     skipTZ: true,
-    freebusy: '',
+    freeBusy: '',
     meetingUrl: '',
     local: false
   },
@@ -49,7 +49,7 @@ const events = [
     created: undefined,
     fullDayEvent: false,
     skipTZ: true,
-    freebusy: '',
+    freeBusy: '',
     meetingUrl: '',
     local: false
   }

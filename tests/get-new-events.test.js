@@ -26,7 +26,7 @@ const calendarsEvents = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -41,7 +41,7 @@ const calendarsEvents = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -61,7 +61,7 @@ const calendarsEvents = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -76,7 +76,7 @@ const calendarsEvents = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -91,7 +91,7 @@ const calendarsEvents = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -106,7 +106,7 @@ const calendarsEvents = [
         summary: 'Future',
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -121,7 +121,7 @@ const calendarsEvents = [
         summary: 'Future',
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }

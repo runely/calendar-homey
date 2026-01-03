@@ -2,7 +2,7 @@
 
 const momentInstance = require('moment-timezone')
 const { moment } = require('../lib/moment-datetime')
-const getTomorrowsEvents = require('../lib/get-tomorrows-events')
+const getEventsTomorrow = require('../lib/get-tomorrows-events')
 
 const expectedStart = moment()
   .add(1, 'day')
@@ -33,7 +33,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -48,7 +48,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -63,7 +63,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -83,7 +83,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -98,7 +98,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -113,7 +113,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -123,7 +123,7 @@ const calendars = [
 
 describe('Tomorrows event count is', () => {
   test('2 when \'specificCalendarName\' is NOT given', () => {
-    const tomorrowsEvents = getTomorrowsEvents({ calendars })
+    const tomorrowsEvents = getEventsTomorrow({ calendars })
     expect(Array.isArray(tomorrowsEvents)).toBe(true)
     expect(tomorrowsEvents.length).toBe(2)
     expect(typeof tomorrowsEvents[0]).toBe('object')
@@ -147,7 +147,7 @@ describe('Tomorrows event count is', () => {
   })
 
   test('1 when \'specificCalendarName\' IS given', () => {
-    const tomorrowsEvents = getTomorrowsEvents({ calendars, specificCalendarName: 'events2' })
+    const tomorrowsEvents = getEventsTomorrow({ calendars, specificCalendarName: 'events2' })
     expect(Array.isArray(tomorrowsEvents)).toBe(true)
     expect(tomorrowsEvents.length).toBe(1)
     expect(typeof tomorrowsEvents[0]).toBe('object')

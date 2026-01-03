@@ -37,7 +37,7 @@ const events = [
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
     location: '',
-    summary: 'Event without end but duration will return start IF datetype is date-time'
+    summary: 'Event without end but duration will return start IF dateType is date-time'
   },
   {
     start: '2021-11-02T00:00:00.000Z',
@@ -46,7 +46,7 @@ const events = [
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
     location: '',
-    summary: 'Event without end but duration will return (start + duration) IF datetype is date'
+    summary: 'Event without end but duration will return (start + duration) IF dateType is date'
   }
 ]
 
@@ -72,15 +72,15 @@ test('Event without end and duration will return (start + 1 day) IF dateype is d
   expect(end.toISOString()).toBe(tomorrow)
 })
 
-test('Event without end but duration will return start IF datetype is date-time', () => {
-  const event = events.find((e) => e.summary === 'Event without end but duration will return start IF datetype is date-time')
+test('Event without end but duration will return start IF dateType is date-time', () => {
+  const event = events.find((e) => e.summary === 'Event without end but duration will return start IF dateType is date-time')
   const end = findEnd({ event })
   expect(end instanceof momentInstance).toBe(true)
   expect(end.toISOString()).toBe(event.start)
 })
 
-test('Event without end but duration will return (start + duration) IF datetype is date', () => {
-  const event = events.find((e) => e.summary === 'Event without end but duration will return (start + duration) IF datetype is date')
+test('Event without end but duration will return (start + duration) IF dateType is date', () => {
+  const event = events.find((e) => e.summary === 'Event without end but duration will return (start + duration) IF dateType is date')
   const end = findEnd({ event })
   const duration = '2021-11-17T05:00:20.000Z'
   expect(end instanceof momentInstance).toBe(true)

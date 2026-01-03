@@ -24,7 +24,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -39,7 +39,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }
@@ -59,7 +59,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       },
@@ -74,7 +74,7 @@ const calendars = [
         created: undefined,
         fullDayEvent: false,
         skipTZ: true,
-        freebusy: '',
+        freeBusy: '',
         meetingUrl: '',
         local: false
       }

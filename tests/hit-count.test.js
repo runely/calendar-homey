@@ -26,7 +26,6 @@ const app = {
     }
   },
   log: console.log,
-  warn: console.warn,
   variableMgmt: {
     dateTimeFormat: {
       long: 'ddd DD.MM.YY',
