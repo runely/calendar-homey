@@ -32,8 +32,8 @@
     "node-ical": "^0.22.1"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "tsc --noEmit && biome check && env TZ=UTC jest",
+    "build": "rm -rf ./build && tsc",
+    "test": "npm run build && biome check && env TZ=UTC jest",
     "fix": "biome check --write",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "browserify": "browserify lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
@@ -44,12 +44,11 @@
   },
   "jest": {
     "modulePathIgnorePatterns": [
-      "<rootDir>/build/",
       "<rootDir>/.homeybuild/"
     ],
     "testMatch": [
-      "**/tests/**/*test.[jt]s?(x)",
-      "**/?(*.)+.(spec|test).[jt]s?(x)"
+      "<rootDir>/build/tests/**/*test.[jt]s?(x)",
+      "<rootDir>/build/?(*.)+.(spec|test).[jt]s?(x)"
     ]
   }
 }
