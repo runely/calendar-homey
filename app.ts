@@ -1,3 +1,7 @@
+import sourceMapSupport from "source-map-support";
+
+sourceMapSupport.install();
+
 import Homey from "homey";
 import type { Moment } from "moment";
 
@@ -361,4 +365,4 @@ class IcalCalendar extends Homey.App {
   }
 }
 
-module.exports = IcalCalendar;
+export default IcalCalendar;

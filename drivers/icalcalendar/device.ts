@@ -14,7 +14,7 @@ const lastSuccessfulSync: string = "last_successfull_sync_ical";
 let intervalHandle: NodeJS.Timeout | null = null;
 let variableMgmt: VariableManagement | null = null;
 
-export class MyDevice extends Device {
+class MyDevice extends Device {
   /**
    * onInit is called when the device is initialized.
    */
@@ -49,6 +49,11 @@ export class MyDevice extends Device {
   }
 
   async updateCalendarsCount(): Promise<void> {
+    if (!variableMgmt) {
+      this.error("[ERROR] updateCalendarsCount - variableMgmt is not initialized");
+      return;
+    }
+
     const calendarsConfigured: IcalSettingEntry[] = this.homey.settings.get(
       variableMgmt.setting.icalUris
     ) as IcalSettingEntry[];
@@ -117,12 +122,17 @@ export class MyDevice extends Device {
   }
 
   async updateCalendarsMetadata(): Promise<void> {
+    if (!variableMgmt) {
+      this.error("[ERROR] updateCalendarsCount - variableMgmt is not initialized");
+      return;
+    }
+
     const calendarsMetadataStr: string | null = this.homey.settings.get(variableMgmt.storage.calendarsMetadata);
     const calendarsMetadata: CalendarMetaData[] | undefined = calendarsMetadataStr
       ? JSON.parse(calendarsMetadataStr)
       : undefined;
 
-    if (calendarsMetadata) {
+    if (!calendarsMetadata) {
       this.log("[WARN] updateCalendarsMetadata - Calendar meta data not configured yet");
       return;
     }
@@ -193,6 +203,7 @@ export class MyDevice extends Device {
   /**
    * onSettings is called when the user updates the device's settings.
    */
+  // @ts-expect-error: Can be anything
   async onSettings({ oldSettings, newSettings, changedKeys }): Promise<void> {
     this.log(
       "MyDevice settings where changed. Changed keys:",
@@ -221,3 +232,5 @@ export class MyDevice extends Device {
     this.homey.clearInterval(intervalHandle);
   }
 }
+
+export default MyDevice;

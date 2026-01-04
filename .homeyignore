@@ -1,8 +1,6 @@
-tests
 renovate.json
 LICENSE
 *.md
 README*
 homeyscripts
-types
-jsconfig.json
+biome.json

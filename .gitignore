@@ -1,6 +1,5 @@
-env.json
-node_modules/
-.backlog.md
+/env.json
+/node_modules/
 **/.DS_Store
 
 # JetBrains Rider
@@ -9,4 +8,4 @@ node_modules/
 # Added by Homey CLI
 /.homeybuild/
 
-build/
+/.build/

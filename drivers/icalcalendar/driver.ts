@@ -1,6 +1,6 @@
 import { Driver } from "homey";
 
-export class MyDriver extends Driver {
+class MyDriver extends Driver {
   /**
    * onInit is called when the driver is initialized.
    */
@@ -26,3 +26,5 @@ export class MyDriver extends Driver {
     ];
   }
 }
+
+export default MyDriver;
