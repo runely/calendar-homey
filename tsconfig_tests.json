@@ -1,9 +1,8 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "outDir": ".homeybuild/",
+    "outDir": ".build/",
     "resolveJsonModule": true
   },
-  "exclude": ["homeyscripts", "tests"]
+  "include": ["handlers/**/*.ts", "lib/**/*.ts", "tests/**/*.ts", "types/**/*.ts"]
 }

@@ -33,8 +33,9 @@
     "source-map-support": "^0.5.21"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "npm run build && biome check && env TZ=UTC jest",
+    "build": "tsc -p tsconfig.json",
+    "build-tests": "tsc -p tsconfig_tests.json",
+    "test": "biome check && npm run build-tests && env TZ=UTC jest",
     "fix": "biome check --write",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "browserify": "browserify .homeybuild/lib/variable-management.js --standalone variableMgmt -o settings/variable-management.js",
@@ -44,9 +45,12 @@
     "homey-publish": "npm run homey-build && homey app publish"
   },
   "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/.homeybuild/"
+    ],
     "testMatch": [
-      "<rootDir>/.homeybuild/tests/**/*test.[jt]s?(x)",
-      "<rootDir>/.homeybuild/?(*.)+.(spec|test).[jt]s?(x)"
+      "<rootDir>/.build/tests/**/*test.[jt]s?(x)",
+      "<rootDir>/.build/?(*.)+.(spec|test).[jt]s?(x)"
     ]
   }
 }
