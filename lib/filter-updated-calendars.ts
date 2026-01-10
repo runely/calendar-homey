@@ -4,7 +4,7 @@ import moment from "moment";
 import type { AppTests } from "../types/Homey.type";
 import type { CalendarPropertyChanged, HasDataType } from "../types/IcalCalendar.type";
 import type { FilterUpdatedCalendarsOptions } from "../types/Options.type";
-import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
 
 import { hasData } from "./has-data.js";
 
@@ -44,20 +44,20 @@ function isChanged(app: App | AppTests, previous: HasDataType, current: HasDataT
   return false;
 }
 
-export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): VariableManagementCalendar[] => {
+export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): Calendar[] => {
   const { app, variableMgmt, oldCalendars, newCalendars } = options;
-  const updatedCalendars: VariableManagementCalendar[] = [];
+  const updatedCalendars: Calendar[] = [];
 
-  newCalendars.forEach((newCalendar: VariableManagementCalendar) => {
+  newCalendars.forEach((newCalendar: Calendar) => {
     const newCalendarName: string = newCalendar.name;
-    const oldCalendar: VariableManagementCalendar | undefined = oldCalendars.find(
-      (calendar: VariableManagementCalendar) => calendar.name === newCalendarName
+    const oldCalendar: Calendar | undefined = oldCalendars.find(
+      (calendar: Calendar) => calendar.name === newCalendarName
     );
-    const oldCalendarEvents: VariableManagementCalendarEvent[] = oldCalendar?.events || [];
+    const oldCalendarEvents: CalendarEvent[] = oldCalendar?.events || [];
 
-    newCalendar.events.forEach((newEvent: VariableManagementCalendarEvent) => {
-      const oldEvent: VariableManagementCalendarEvent | undefined = oldCalendarEvents.find(
-        (event: VariableManagementCalendarEvent) => event.uid === newEvent.uid
+    newCalendar.events.forEach((newEvent: CalendarEvent) => {
+      const oldEvent: CalendarEvent | undefined = oldCalendarEvents.find(
+        (event: CalendarEvent) => event.uid === newEvent.uid
       );
       if (!oldEvent) {
         return;
@@ -121,10 +121,10 @@ export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): 
         return;
       }
 
-      const updatedCalendar: VariableManagementCalendar | undefined = updatedCalendars.find(
-        (calendar: VariableManagementCalendar) => calendar.name === newCalendarName
+      const updatedCalendar: Calendar | undefined = updatedCalendars.find(
+        (calendar: Calendar) => calendar.name === newCalendarName
       );
-      const updatedEvent: VariableManagementCalendarEvent = {
+      const updatedEvent: CalendarEvent = {
         ...newEvent,
         changed,
         oldEvent

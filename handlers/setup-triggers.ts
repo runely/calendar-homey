@@ -4,7 +4,7 @@ import { convertToMinutes } from "../lib/convert-to-minutes.js";
 import { filterByCalendar } from "../lib/filter-by.js";
 import { setupHitCount, updateHitCount } from "../lib/hit-count.js";
 
-import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
 
 export const setupTriggers = (app: App, variableMgmt: VariableManagement): void => {
   // add minutes in trigger listeners
@@ -46,13 +46,13 @@ export const setupTriggers = (app: App, variableMgmt: VariableManagement): void 
         }
 
         if (query) {
-          const filteredCalendar: VariableManagementCalendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
-          return filteredCalendar.map((calendar: VariableManagementCalendar) => {
+          const filteredCalendar: Calendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
+          return filteredCalendar.map((calendar: Calendar) => {
             return { id: calendar.name, name: calendar.name };
           });
         }
 
-        return variableMgmt.calendars.map((calendar: VariableManagementCalendar) => {
+        return variableMgmt.calendars.map((calendar: Calendar) => {
           return { id: calendar.name, name: calendar.name };
         });
       }

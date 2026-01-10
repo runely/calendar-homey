@@ -2,11 +2,7 @@ import type { Moment } from "moment";
 
 import type { CalendarEventUid } from "../types/IcalCalendar.type";
 import type { GetNewEventsOptions } from "../types/Options.type";
-import type {
-  ExtCalendarEvent,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent
-} from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 import { getMoment } from "./moment-datetime";
 
@@ -20,7 +16,7 @@ const isEventNew = (timezone: string, created: Moment | undefined): boolean => {
   return now.toDate().getTime() - created.toDate().getTime() < oneDay;
 };
 
-export const getNewEvents = (options: GetNewEventsOptions): ExtCalendarEvent[] => {
+export const getNewEvents = (options: GetNewEventsOptions): CalendarEventExtended[] => {
   const { timezone, oldCalendarsUids, newCalendarsUids, calendarsEvents, app } = options;
   if (oldCalendarsUids.length === 0) {
     return [];
@@ -34,19 +30,17 @@ export const getNewEvents = (options: GetNewEventsOptions): ExtCalendarEvent[] =
     return [];
   }
 
-  const newEvents: ExtCalendarEvent[] = [];
+  const newEvents: CalendarEventExtended[] = [];
   newlyAddedEvents.forEach((newEvent: CalendarEventUid) => {
-    const calendar: VariableManagementCalendar | undefined = calendarsEvents.find(
-      (calendar: VariableManagementCalendar) => calendar.name === newEvent.calendar
+    const calendar: Calendar | undefined = calendarsEvents.find(
+      (calendar: Calendar) => calendar.name === newEvent.calendar
     );
     if (!calendar) {
       app.log(`[WARN] getNewEvents: Calendar '${newEvent.calendar}' not found 😬`);
       return;
     }
 
-    const event: VariableManagementCalendarEvent | undefined = calendar.events.find(
-      (event: VariableManagementCalendarEvent) => event.uid === newEvent.uid
-    );
+    const event: CalendarEvent | undefined = calendar.events.find((event: CalendarEvent) => event.uid === newEvent.uid);
     if (!event) {
       app.log(`[WARN] getNewEvents: Event '${newEvent.uid}' in calendar '${newEvent.calendar}' not found 😬`);
       return;

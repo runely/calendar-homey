@@ -4,7 +4,7 @@ import type { DateType } from "node-ical";
 import type { Jobs } from "./Cron.type";
 import type { BusyStatus, CalendarPropertyChanged } from "./IcalCalendar.type";
 
-export type ExtCalendarEvent = VariableManagementCalendarEvent & {
+export type CalendarEventExtended = CalendarEvent & {
   calendarName: string;
 };
 
@@ -17,7 +17,7 @@ export type SettingHitCount = {
   data: string;
 };
 
-export type VariableManagementCalendarEvent = {
+export type CalendarEvent = {
   start: Moment;
   dateType: DateType;
   end: Moment;
@@ -32,25 +32,25 @@ export type VariableManagementCalendarEvent = {
   meetingUrl?: string;
   local: boolean;
   changed?: CalendarPropertyChanged[];
-  oldEvent?: VariableManagementCalendarEvent;
+  oldEvent?: CalendarEvent;
 };
 
-export type VariableManagementCalendar = {
+export type Calendar = {
   name: string;
-  events: VariableManagementCalendarEvent[];
+  events: CalendarEvent[];
 };
 
-export type VariableManagementDateTimeFormat = {
+export type DateTimeFormat = {
   long: string;
   short: string;
   time: string;
 };
 
-export type VariableManagementLocalEvent = VariableManagementCalendarEvent & {
+export type LocalEvent = CalendarEvent & {
   calendar: string;
 };
 
-export type VariableManagementLocalJsonEvent = {
+export type LocalJsonEvent = {
   start: string;
   // TODO: will this cause problems for already stored events?
   dateType: string;
@@ -118,11 +118,11 @@ export type VariableManagement = {
   calendarTokens: string[];
   flowTokens: string[];
   nextEventWithTokens: string[];
-  localEvents: VariableManagementLocalEvent[];
+  localEvents: LocalEvent[];
   storage: VariableManagementStorage;
   gettingEventsRunning: boolean;
   gettingEventsLastRun: Date | null;
   jobs: Jobs;
-  dateTimeFormat?: VariableManagementDateTimeFormat;
-  calendars?: VariableManagementCalendar[];
+  dateTimeFormat?: DateTimeFormat;
+  calendars?: Calendar[];
 };

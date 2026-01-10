@@ -1,7 +1,7 @@
 import { getDateTimeFormat } from "../lib/get-datetime-format.js";
 import { varMgmt } from "../lib/variable-management";
 import locale from "../locales/en.json";
-import type { VariableManagement, VariableManagementDateTimeFormat } from "../types/VariableMgmt.type";
+import type { DateTimeFormat, VariableManagement } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app";
 
 const {
@@ -38,25 +38,25 @@ dateTimeFormat.setting.timeFormat = "HH.mm";
 
 describe("Date format is correct when", () => {
   test("Default format is used", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
     expect(format.short).toBe("MM/DD");
     expect(format.long).toBe("MM/DD/YY");
   });
 
   test("Legacy format from settings is used", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatLegacy);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatLegacy);
     expect(format.short).toBe("DD.MM");
     expect(format.long).toBe("DD.MM.YYYY");
   });
 
   test("Format from settings is used, short is undefined", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatShortUndefined);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatShortUndefined);
     expect(format.short).toBe("DD-MM");
     expect(format.long).toBe("DD-MM-YY");
   });
 
   test("Format from settings is used", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
     expect(format.short).toBe("DD.MM");
     expect(format.long).toBe("DD-MM-YY");
   });
@@ -64,12 +64,12 @@ describe("Date format is correct when", () => {
 
 describe("Time format is correct when", () => {
   test("Default format is used", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
     expect(format.time).toBe("HH:mm");
   });
 
   test("Format from settings is used", () => {
-    const format: VariableManagementDateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
+    const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
     expect(format.time).toBe("HH.mm");
   });
 });

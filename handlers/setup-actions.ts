@@ -8,12 +8,7 @@ import { saveLocalEvents } from "../lib/local-events.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
 import type { EventDuration } from "../types/IcalCalendar.type";
-import type {
-  VariableManagement,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent,
-  VariableManagementLocalEvent
-} from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, LocalEvent, VariableManagement } from "../types/VariableMgmt.type";
 
 import { getEvents } from "./get-events.js";
 import { triggerEvents } from "./trigger-cards.js";
@@ -65,11 +60,9 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error(app.homey.__("actions.new_event.endInvalid"));
     }
 
-    const event: VariableManagementLocalEvent = newEvent(app, app.homey.clock.getTimezone(), args);
+    const event: LocalEvent = newEvent(app, app.homey.clock.getTimezone(), args);
     app.log("new_event: Adding event", event);
-    const calendar: VariableManagementCalendar | undefined = variableMgmt.calendars.find(
-      (c: VariableManagementCalendar) => c.name === event.calendar
-    );
+    const calendar: Calendar | undefined = variableMgmt.calendars.find((c: Calendar) => c.name === event.calendar);
     if (!calendar) {
       app.log("[WARN] new_event: Event", event.summary, "not added because calendar", event.calendar, "was not found");
       throw new Error(
@@ -101,8 +94,8 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error("Calendars not set yet");
     }
 
-    const event: VariableManagementLocalEvent | undefined = Array.isArray(variableMgmt.localEvents)
-      ? variableMgmt.localEvents.find((e: VariableManagementLocalEvent) => e.summary === args.event_name)
+    const event: LocalEvent | undefined = Array.isArray(variableMgmt.localEvents)
+      ? variableMgmt.localEvents.find((e: LocalEvent) => e.summary === args.event_name)
       : undefined;
     if (!event) {
       app.log("[WARN] delete_event_name: Local event with title", args.event_name, "not found");
@@ -111,9 +104,7 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       );
     }
 
-    const calendar: VariableManagementCalendar | undefined = variableMgmt.calendars.find(
-      (c: VariableManagementCalendar) => c.name === event.calendar
-    );
+    const calendar: Calendar | undefined = variableMgmt.calendars.find((c: Calendar) => c.name === event.calendar);
     if (!calendar) {
       app.log("[WARN] delete_event_name: Calendar", event.calendar, "was not found");
       throw new Error(
@@ -121,14 +112,12 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       );
     }
 
-    const newCalendarEvents: VariableManagementCalendarEvent[] = calendar.events.filter(
-      (e: VariableManagementCalendarEvent) => e.summary !== args.event_name
+    const newCalendarEvents: CalendarEvent[] = calendar.events.filter(
+      (e: CalendarEvent) => e.summary !== args.event_name
     );
     const removedEvents: number = calendar.events.length - newCalendarEvents.length;
     calendar.events = newCalendarEvents;
-    variableMgmt.localEvents = variableMgmt.localEvents.filter(
-      (e: VariableManagementLocalEvent) => e.summary !== args.event_name
-    );
+    variableMgmt.localEvents = variableMgmt.localEvents.filter((e: LocalEvent) => e.summary !== args.event_name);
     app.log("delete_event_name: Deleted", removedEvents, "local events by title", args.event_name);
     saveLocalEvents(app, variableMgmt, variableMgmt.localEvents);
 
@@ -142,10 +131,10 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
 
     return {
       json: JSON.stringify(
-        variableMgmt.calendars.map((calendar: VariableManagementCalendar) => {
+        variableMgmt.calendars.map((calendar: Calendar) => {
           return {
             calendarName: calendar.name,
-            events: calendar.events.map((_: VariableManagementCalendarEvent, index: number) => index)
+            events: calendar.events.map((_: CalendarEvent, index: number) => index)
           };
         })
       )
@@ -162,8 +151,8 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error("Date time format not set yet");
     }
 
-    const calendar: VariableManagementCalendar | undefined = variableMgmt.calendars.find(
-      (cal: VariableManagementCalendar) => cal.name === args.calendar.name
+    const calendar: Calendar | undefined = variableMgmt.calendars.find(
+      (cal: Calendar) => cal.name === args.calendar.name
     );
     if (!calendar) {
       throw new Error(`Calendar '${args.calendar.name}' not found`);
@@ -174,7 +163,7 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error(`Index out of bounce. Index:${eventIndex}, EventCount:${calendar.events.length}`);
     }
 
-    const event: VariableManagementCalendarEvent = calendar.events[eventIndex];
+    const event: CalendarEvent = calendar.events[eventIndex];
     if (!event) {
       throw new Error(`Event with index ${eventIndex} in calendar '${calendar.name}' was not found`);
     }

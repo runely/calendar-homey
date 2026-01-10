@@ -1,9 +1,9 @@
 import { filterByCalendar, filterByProperty, filterByUID } from "../lib/filter-by.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/VariableMgmt.type";
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "CalendarOne",
     events: [
@@ -90,20 +90,20 @@ const calendars: VariableManagementCalendar[] = [
 
 describe("filterByCalendar", () => {
   test("Return 1 calendar - name 'CalendarOne'", () => {
-    const result: VariableManagementCalendar[] = filterByCalendar(calendars, "CalendarOne");
+    const result: Calendar[] = filterByCalendar(calendars, "CalendarOne");
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(1);
     expect(result[0].name).toBe("CalendarOne");
   });
 
   test("Return 0 calendars - name 'CalendarThree'", () => {
-    const result: VariableManagementCalendar[] = filterByCalendar(calendars, "CalendarThree");
+    const result: Calendar[] = filterByCalendar(calendars, "CalendarThree");
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(0);
   });
 
   test("Return 0 calendars - when calendars is empty and name is not provided", () => {
-    const result: VariableManagementCalendar[] = filterByCalendar([]);
+    const result: Calendar[] = filterByCalendar([]);
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(0);
   });
@@ -112,7 +112,7 @@ describe("filterByCalendar", () => {
 describe("filterByProperty", () => {
   describe("summary - matcher:contains", () => {
     test("Return 2 calendars with 1 event each - summary 'One'", () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "summary");
+      const result: Calendar[] = filterByProperty(calendars, "One", "summary");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -124,7 +124,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 2 calendars with 0 events - summary 'Three'", () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "Three", "summary");
+      const result: Calendar[] = filterByProperty(calendars, "Three", "summary");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -134,7 +134,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 2 calendars with 1 event in the first calendar and 0 events in the second calendar - summary 'One - 1'", () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 1", "summary");
+      const result: Calendar[] = filterByProperty(calendars, "One - 1", "summary");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -145,7 +145,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events in the first calendar and 1 event in the second calendar - summary "One - 2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 2", "summary");
+      const result: Calendar[] = filterByProperty(calendars, "One - 2", "summary");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -156,7 +156,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "summary");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "summary");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -164,7 +164,7 @@ describe("filterByProperty", () => {
 
   describe("summary - matcher:equal", () => {
     test('Return 2 calendars with 1 event in CalendarOne - summary "One - 1"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 1", "summary", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 1", "summary", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -175,7 +175,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 1 event in CalendarTwo - summary "One - 2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 2", "summary", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 2", "summary", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -186,7 +186,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - summary "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "summary", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One", "summary", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -196,7 +196,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "summary", "equal");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "summary", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -204,7 +204,7 @@ describe("filterByProperty", () => {
 
   describe("summary - matcher:starts with", () => {
     test('Return 2 calendars with 1 event in each - summary "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "summary", "starts with");
+      const result: Calendar[] = filterByProperty(calendars, "One", "summary", "starts with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -216,7 +216,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 1 event in CalendarTwo - summary "One - 2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 2", "summary", "starts with");
+      const result: Calendar[] = filterByProperty(calendars, "One - 2", "summary", "starts with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -227,7 +227,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - summary "1"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "1", "summary", "starts with");
+      const result: Calendar[] = filterByProperty(calendars, "1", "summary", "starts with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -237,7 +237,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "summary", "starts with");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "summary", "starts with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -245,7 +245,7 @@ describe("filterByProperty", () => {
 
   describe("summary - matcher:ends with", () => {
     test('Return 2 calendars with 2 events in CalendarOne - summary "1"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "1", "summary", "ends with");
+      const result: Calendar[] = filterByProperty(calendars, "1", "summary", "ends with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -257,7 +257,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 2 events in CalendarTwo - summary "2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "2", "summary", "ends with");
+      const result: Calendar[] = filterByProperty(calendars, "2", "summary", "ends with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -269,7 +269,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - summary "Two"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "Two", "summary", "ends with");
+      const result: Calendar[] = filterByProperty(calendars, "Two", "summary", "ends with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -279,7 +279,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "summary", "ends with");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "summary", "ends with");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -287,7 +287,7 @@ describe("filterByProperty", () => {
 
   describe("description - matcher:contains", () => {
     test('Return 2 calendars with 1 event each - description "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "description");
+      const result: Calendar[] = filterByProperty(calendars, "One", "description");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -299,7 +299,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - description "Three"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "Three", "description");
+      const result: Calendar[] = filterByProperty(calendars, "Three", "description");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -309,7 +309,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "description");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "description");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -317,7 +317,7 @@ describe("filterByProperty", () => {
 
   describe("description - matcher:equal", () => {
     test('Return 2 calendars with 1 event in CalendarOne - description "One - 1"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 1", "description", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 1", "description", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -328,7 +328,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 1 event in CalendarTwo - description "One - 2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 2", "description", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 2", "description", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -339,7 +339,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - description "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "description", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One", "description", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -349,7 +349,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "description", "equal");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "description", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -357,7 +357,7 @@ describe("filterByProperty", () => {
 
   describe("location - matcher:contains", () => {
     test('Return 2 calendars with 1 event each - location "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "location");
+      const result: Calendar[] = filterByProperty(calendars, "One", "location");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -369,7 +369,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - location "Three"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "Three", "location");
+      const result: Calendar[] = filterByProperty(calendars, "Three", "location");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -379,7 +379,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "location");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "location");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -387,7 +387,7 @@ describe("filterByProperty", () => {
 
   describe("location - matcher:equal", () => {
     test('Return 2 calendars with 1 event in CalendarOne - location "One - 1"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 1", "location", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 1", "location", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -398,7 +398,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 1 event in CalendarTwo - location "One - 2"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One - 2", "location", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One - 2", "location", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -409,7 +409,7 @@ describe("filterByProperty", () => {
     });
 
     test('Return 2 calendars with 0 events - location "One"', () => {
-      const result: VariableManagementCalendar[] = filterByProperty(calendars, "One", "location", "equal");
+      const result: Calendar[] = filterByProperty(calendars, "One", "location", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(2);
       expect(result[0].name).toBe("CalendarOne");
@@ -419,7 +419,7 @@ describe("filterByProperty", () => {
     });
 
     test("Return 0 calendars - when calendars is empty", () => {
-      const result: VariableManagementCalendar[] = filterByProperty([], "doesNotMatter", "location", "equal");
+      const result: Calendar[] = filterByProperty([], "doesNotMatter", "location", "equal");
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
     });
@@ -428,7 +428,7 @@ describe("filterByProperty", () => {
 
 describe("filterByUID", () => {
   test('Return 2 calendars, 1 with 1 event, and 1 with 0 events - uid "cal_one_One"', () => {
-    const result: VariableManagementCalendar[] = filterByUID(calendars, "cal_one_One");
+    const result: Calendar[] = filterByUID(calendars, "cal_one_One");
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(2);
     expect(result[0].name).toBe("CalendarOne");
@@ -438,7 +438,7 @@ describe("filterByUID", () => {
   });
 
   test('Return 2 calendars with 0 events - uid "cal_three_One"', () => {
-    const result: VariableManagementCalendar[] = filterByUID(calendars, "cal_three_One");
+    const result: Calendar[] = filterByUID(calendars, "cal_three_One");
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(2);
     expect(result[0].name).toBe("CalendarOne");
@@ -448,7 +448,7 @@ describe("filterByUID", () => {
   });
 
   test("Return 0 calendars - when calendars is empty", () => {
-    const result: VariableManagementCalendar[] = filterByUID([], "noesNotMatter");
+    const result: Calendar[] = filterByUID([], "noesNotMatter");
     expect(Array.isArray(result)).toBeTruthy();
     expect(result.length).toBe(0);
   });

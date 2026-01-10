@@ -1,18 +1,18 @@
 import type { FilterMatcher, FilterProperty } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
 
 export const filterByProperty = (
-  oldCalendars: VariableManagementCalendar[],
+  oldCalendars: Calendar[],
   query: string,
   prop: FilterProperty,
   matcher: FilterMatcher = "contains"
-): VariableManagementCalendar[] => {
-  const calendars: VariableManagementCalendar[] = [];
+): Calendar[] => {
+  const calendars: Calendar[] = [];
 
-  oldCalendars.forEach((calendar: VariableManagementCalendar) => {
+  oldCalendars.forEach((calendar: Calendar) => {
     calendars.push({
       ...calendar,
-      events: calendar.events.filter((event: VariableManagementCalendarEvent) => {
+      events: calendar.events.filter((event: CalendarEvent) => {
         if (!(prop in event) || !event[prop]) {
           return false;
         }
@@ -41,39 +41,34 @@ export const filterByProperty = (
   return calendars;
 };
 
-export const filterByCalendar = (
-  calendars: VariableManagementCalendar[],
-  name: string = ""
-): VariableManagementCalendar[] => {
-  return calendars.filter((calendar: VariableManagementCalendar) =>
-    calendar.name.toLowerCase().includes(name.toLowerCase())
-  );
+export const filterByCalendar = (calendars: Calendar[], name: string = ""): Calendar[] => {
+  return calendars.filter((calendar: Calendar) => calendar.name.toLowerCase().includes(name.toLowerCase()));
 };
 
 export const filterBySummary = (
-  oldCalendars: VariableManagementCalendar[],
+  oldCalendars: Calendar[],
   query: string,
   matcher: FilterMatcher = "contains"
-): VariableManagementCalendar[] => {
+): Calendar[] => {
   return filterByProperty(oldCalendars, query, "summary", matcher);
 };
 
 export const filterByDescription = (
-  oldCalendars: VariableManagementCalendar[],
+  oldCalendars: Calendar[],
   query: string,
   matcher: FilterMatcher = "contains"
-): VariableManagementCalendar[] => {
+): Calendar[] => {
   return filterByProperty(oldCalendars, query, "description", matcher);
 };
 
 export const filterByLocation = (
-  oldCalendars: VariableManagementCalendar[],
+  oldCalendars: Calendar[],
   query: string = "",
   matcher: FilterMatcher = "contains"
-): VariableManagementCalendar[] => {
+): Calendar[] => {
   return filterByProperty(oldCalendars, query, "location", matcher);
 };
 
-export const filterByUID = (oldCalendars: VariableManagementCalendar[], uid: string): VariableManagementCalendar[] => {
+export const filterByUID = (oldCalendars: Calendar[], uid: string): Calendar[] => {
   return filterByProperty(oldCalendars, uid, "uid", "equal");
 };

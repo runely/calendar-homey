@@ -4,19 +4,19 @@ import type { DateType } from "node-ical";
 
 import type { AppTests } from "../types/Homey.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
-import type { VariableManagement, VariableManagementLocalEvent } from "../types/VariableMgmt.type";
+import type { LocalEvent, VariableManagement } from "../types/VariableMgmt.type";
 
 import { findRegularLocalEventEnd } from "./find-regular-event-end.js";
 import { getMoment, getMomentNow } from "./moment-datetime.js";
 
-export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): VariableManagementLocalEvent[] => {
+export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): LocalEvent[] => {
   const { timezone, events, eventLimit, app, logAllEvents } = options;
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   const eventLimitStart: Moment = getMoment({ timezone }).startOf("day");
   const eventLimitEnd: Moment = getMoment({ timezone })
     .endOf("day")
     .add(Number.parseInt(eventLimit.value, 10), eventLimit.type);
-  const activeEvents: VariableManagementLocalEvent[] = [];
+  const activeEvents: LocalEvent[] = [];
 
   for (const event of events) {
     const now: Moment = event.skipTZ ? momentNowUtcOffset : momentNowRegular;
@@ -75,18 +75,14 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Vari
       start.locale(app.homey.__("locale.moment"));
       end.locale(app.homey.__("locale.moment"));
 
-      activeEvents.push({ ...event, start, end, created, dateType: dateType } as VariableManagementLocalEvent);
+      activeEvents.push({ ...event, start, end, created, dateType: dateType } as LocalEvent);
     }
   }
 
   return activeEvents;
 };
 
-export const saveLocalEvents = (
-  app: App | AppTests,
-  variableMgmt: VariableManagement,
-  events: VariableManagementLocalEvent[]
-): void => {
+export const saveLocalEvents = (app: App | AppTests, variableMgmt: VariableManagement, events: LocalEvent[]): void => {
   if (events.length === 0) {
     app.log("saveLocalEvents: No events to save");
     return;

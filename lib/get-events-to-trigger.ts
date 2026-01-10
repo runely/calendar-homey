@@ -3,22 +3,18 @@ import type { Moment } from "moment";
 
 import type { AppTests } from "../types/Homey.type";
 import type { TriggerEvent } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 
-export const getEventsToTrigger = (
-  app: App | AppTests,
-  calendars: VariableManagementCalendar[],
-  timezone: string
-): TriggerEvent[] => {
+export const getEventsToTrigger = (app: App | AppTests, calendars: Calendar[], timezone: string): TriggerEvent[] => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
   const events: TriggerEvent[] = [];
-  calendars.forEach((calendar: VariableManagementCalendar) => {
+  calendars.forEach((calendar: Calendar) => {
     const calendarName: string = calendar.name;
     app.log(`getEventsToTrigger: Checking calendar '${calendarName}' for events to trigger`);
-    calendar.events.forEach((event: VariableManagementCalendarEvent) => {
+    calendar.events.forEach((event: CalendarEvent) => {
       const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
       const startDiff: number = now.diff(event.start, "seconds");
       const endDiff: number = now.diff(event.end, "seconds");

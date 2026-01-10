@@ -1,10 +1,10 @@
 import { getNewEvents } from "../lib/get-new-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import type { CalendarEventUid } from "../types/IcalCalendar.type";
-import type { ExtCalendarEvent, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEventExtended } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app.js";
 
-const calendarsEvents: VariableManagementCalendar[] = [
+const calendarsEvents: Calendar[] = [
   {
     name: "events",
     events: [
@@ -142,7 +142,7 @@ const oldCalendarsUids: CalendarEventUid[] = [
 ];
 
 test("When 0 new events - Will return an empty array", () => {
-  const result: ExtCalendarEvent[] = getNewEvents({
+  const result: CalendarEventExtended[] = getNewEvents({
     timezone: "UTC",
     oldCalendarsUids,
     newCalendarsUids: [],
@@ -153,7 +153,7 @@ test("When 0 new events - Will return an empty array", () => {
 });
 
 test("When 0 old events - Will return an empty array", () => {
-  const result: ExtCalendarEvent[] = getNewEvents({
+  const result: CalendarEventExtended[] = getNewEvents({
     timezone: "UTC",
     oldCalendarsUids: [],
     newCalendarsUids: [],
@@ -169,7 +169,7 @@ test('When 1 new event, but "created" property is missing - Will return 0 events
     uid: "F7177A32-DBD4-46A9-85C7-669749EA8845"
   };
 
-  const result: ExtCalendarEvent[] = getNewEvents({
+  const result: CalendarEventExtended[] = getNewEvents({
     timezone: "UTC",
     oldCalendarsUids,
     newCalendarsUids: [calendarsUids],
@@ -186,7 +186,7 @@ test('When 1 new event, and "created" is more then last 24 hours - Will return 0
     uid: "F7177A32-DBD4-46A9-85C7-669749EA8847"
   };
 
-  const result: ExtCalendarEvent[] = getNewEvents({
+  const result: CalendarEventExtended[] = getNewEvents({
     timezone: "UTC",
     oldCalendarsUids,
     newCalendarsUids: [calendarsUids],
@@ -203,7 +203,7 @@ test('When 1 new event, and "created" is within the last 24 hours - Will return 
     uid: "F7177A32-DBD4-46A9-85C7-669749EA8846"
   };
 
-  const result: ExtCalendarEvent[] = getNewEvents({
+  const result: CalendarEventExtended[] = getNewEvents({
     timezone: "UTC",
     oldCalendarsUids,
     newCalendarsUids: [calendarsUids],

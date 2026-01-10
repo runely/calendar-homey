@@ -8,7 +8,7 @@ import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
 import type { EventDuration, NextEvent } from "../types/IcalCalendar.type";
-import type { ExtCalendarEvent, VariableManagement } from "../types/VariableMgmt.type";
+import type { CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
 
 import { triggerSynchronizationError } from "./trigger-cards.js";
 
@@ -69,8 +69,8 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
   }
 
   const nextEvent: NextEvent | null = getNextEvent(timezone, variableMgmt.calendars);
-  const eventsToday: ExtCalendarEvent[] = getEventsToday(timezone, variableMgmt.calendars);
-  const eventsTomorrow: ExtCalendarEvent[] = getEventsTomorrow(timezone, variableMgmt.calendars);
+  const eventsToday: CalendarEventExtended[] = getEventsToday(timezone, variableMgmt.calendars);
+  const eventsTomorrow: CalendarEventExtended[] = getEventsTomorrow(timezone, variableMgmt.calendars);
 
   let eventDuration: EventDuration | null = null;
   let nextEventStart: string = "";
@@ -210,7 +210,11 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
       let value: string | number = "";
 
       if (calendarType.includes("today")) {
-        const calendarEventsToday: ExtCalendarEvent[] = getEventsToday(timezone, variableMgmt.calendars, calendarName);
+        const calendarEventsToday: CalendarEventExtended[] = getEventsToday(
+          timezone,
+          variableMgmt.calendars,
+          calendarName
+        );
         // app.log(`updateTokens: Found '${calendarEventsToday.length}' events for today from calendar '${calendarName}'`);
         if (calendarType === "today") {
           value = getTokenEvents(app, variableMgmt, timezone, calendarEventsToday);
@@ -222,7 +226,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
       }
 
       if (calendarType.includes("tomorrow")) {
-        const calendarEventsTomorrow: ExtCalendarEvent[] = getEventsTomorrow(
+        const calendarEventsTomorrow: CalendarEventExtended[] = getEventsTomorrow(
           timezone,
           variableMgmt.calendars,
           calendarName
@@ -305,7 +309,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
 export const updateNextEventWithTokens = async (
   app: App,
   variableMgmt: VariableManagement,
-  event: ExtCalendarEvent
+  event: CalendarEventExtended
 ): Promise<void> => {
   if (!variableMgmt.dateTimeFormat) {
     app.error("[ERROR] updateNextEventWithTokens: dateTimeFormat not set in variableMgmt");

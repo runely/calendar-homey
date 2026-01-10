@@ -1,28 +1,24 @@
 import type { Moment } from "moment";
 
-import type {
-  ExtCalendarEvent,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent
-} from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 import { sortEvents } from "./sort-events.js";
 
 export const getEventsToday = (
   timezone: string,
-  calendars: VariableManagementCalendar[],
+  calendars: Calendar[],
   specificCalendarName?: string
-): ExtCalendarEvent[] => {
-  const eventsToday: ExtCalendarEvent[] = [];
+): CalendarEventExtended[] => {
+  const eventsToday: CalendarEventExtended[] = [];
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
-  calendars.forEach((calendar: VariableManagementCalendar) => {
+  calendars.forEach((calendar: Calendar) => {
     if (specificCalendarName && specificCalendarName !== calendar.name) {
       return;
     }
 
-    calendar.events.forEach((event: VariableManagementCalendarEvent) => {
+    calendar.events.forEach((event: CalendarEvent) => {
       const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
       const startDiff: number = now.diff(event.start);
       const endDiff: number = now.diff(event.end);

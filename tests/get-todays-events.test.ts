@@ -1,7 +1,7 @@
 import { getEventsToday } from "../lib/get-todays-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { ExtCalendarEvent, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 const timezone: string = "UTC";
 
@@ -16,7 +16,7 @@ const expectedEnd: string = getMoment({ timezone })
   .set("seconds", 59)
   .toISOString();
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "events",
     events: [
@@ -121,7 +121,7 @@ const calendars: VariableManagementCalendar[] = [
 
 describe("Today's event count is", () => {
   test("2 when 'specificCalendarName' is NOT given", () => {
-    const eventsToday: ExtCalendarEvent[] = getEventsToday(timezone, calendars);
+    const eventsToday: CalendarEventExtended[] = getEventsToday(timezone, calendars);
 
     expect(eventsToday.length).toBe(2);
     expect(eventsToday[0].start.toISOString()).toBe(expectedStart);
@@ -135,7 +135,7 @@ describe("Today's event count is", () => {
   });
 
   test("1 when 'specificCalendarName' IS given", () => {
-    const eventsToday: ExtCalendarEvent[] = getEventsToday(timezone, calendars, "events2");
+    const eventsToday: CalendarEventExtended[] = getEventsToday(timezone, calendars, "events2");
 
     expect(eventsToday.length).toBe(1);
     expect(eventsToday[0].start.toISOString()).toBe(expectedStart);

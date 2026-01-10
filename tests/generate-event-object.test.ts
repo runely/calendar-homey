@@ -1,7 +1,7 @@
 import type { DateWithTimeZone, VEvent } from "node-ical";
 import { fromEvent, newEvent } from "../lib/generate-event-object.js";
 import { getMoment } from "../lib/moment-datetime.js";
-import type { VariableManagementCalendarEvent, VariableManagementLocalEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent, LocalEvent } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app";
 
 const createDateWithTimeZone = (date: Date, timeZone?: string | undefined): DateWithTimeZone => {
@@ -71,7 +71,7 @@ const tzEvent: VEvent = {
 
 describe("fromEvent", () => {
   test("Returns correct object when event is UTC", () => {
-    const result: VariableManagementCalendarEvent = fromEvent(
+    const result: CalendarEvent = fromEvent(
       constructedApp,
       getMoment({ date: utcEvent.start.toISOString() }),
       getMoment({ date: utcEvent.end.toISOString() }),
@@ -86,7 +86,7 @@ describe("fromEvent", () => {
   });
 
   test("Returns correct object when event has TZ", () => {
-    const result: VariableManagementCalendarEvent = fromEvent(
+    const result: CalendarEvent = fromEvent(
       constructedApp,
       getMoment({ date: tzEvent.start.toISOString(), timezone }),
       getMoment({ date: tzEvent.end.toISOString(), timezone }),
@@ -109,7 +109,7 @@ describe("newEvent", () => {
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
     const calendarName: string = "TestCal";
-    const result: VariableManagementLocalEvent = newEvent(constructedApp, timezone, {
+    const result: LocalEvent = newEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,
@@ -140,7 +140,7 @@ describe("newEvent", () => {
     const end: string = "2023-04-06T14:00:00";
     const applyTimezone: boolean = true;
     const calendarName: string = "TestCal";
-    const result: VariableManagementLocalEvent = newEvent(constructedApp, timezone, {
+    const result: LocalEvent = newEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,

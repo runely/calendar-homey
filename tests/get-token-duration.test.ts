@@ -2,7 +2,7 @@ import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import locale from "../locales/en.json";
 import type { EventDuration } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app.js";
 
 const {
@@ -21,7 +21,7 @@ constructedApp.homey.__ = (prop: string): string => {
   return "";
 };
 
-const event: VariableManagementCalendarEvent = {
+const event: CalendarEvent = {
   start: getMoment(),
   dateType: "date-time",
   end: getMoment().add(1, "hours"),
@@ -37,7 +37,7 @@ const event: VariableManagementCalendarEvent = {
   local: false
 };
 
-const eventLong: VariableManagementCalendarEvent = {
+const eventLong: CalendarEvent = {
   start: getMoment(),
   dateType: "date-time",
   end: getMoment().add(15789, "minutes"),

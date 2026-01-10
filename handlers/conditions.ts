@@ -4,17 +4,17 @@ import type { Moment } from "moment";
 import { getMomentNow } from "../lib/moment-datetime.js";
 
 import type { ConditionCaller } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent } from "../types/VariableMgmt.type";
 
 export const isEventOngoing = (
   app: App,
   timezone: string,
-  events: VariableManagementCalendarEvent[],
+  events: CalendarEvent[],
   caller: ConditionCaller = "condition"
 ): boolean => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
-  return events.some((event: VariableManagementCalendarEvent) => {
+  return events.some((event: CalendarEvent) => {
     const useOffset: boolean = event.fullDayEvent || event.skipTZ;
     const now: Moment = useOffset ? momentNowUtcOffset : momentNowRegular;
 
@@ -34,15 +34,10 @@ export const isEventOngoing = (
   });
 };
 
-export const isEventIn = (
-  app: App,
-  timezone: string,
-  events: VariableManagementCalendarEvent[],
-  when: number
-): boolean => {
+export const isEventIn = (app: App, timezone: string, events: CalendarEvent[], when: number): boolean => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
-  return events.some((event: VariableManagementCalendarEvent) => {
+  return events.some((event: CalendarEvent) => {
     const useOffset: boolean = event.fullDayEvent || event.skipTZ;
     const now: Moment = useOffset ? momentNowUtcOffset : momentNowRegular;
 
@@ -61,15 +56,10 @@ export const isEventIn = (
   });
 };
 
-export const willEventNotIn = (
-  app: App,
-  timezone: string,
-  events: VariableManagementCalendarEvent[],
-  when: number
-): boolean => {
+export const willEventNotIn = (app: App, timezone: string, events: CalendarEvent[], when: number): boolean => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
-  return events.some((event: VariableManagementCalendarEvent) => {
+  return events.some((event: CalendarEvent) => {
     const useOffset: boolean = event.fullDayEvent || event.skipTZ;
     const now: Moment = useOffset ? momentNowUtcOffset : momentNowRegular;
 

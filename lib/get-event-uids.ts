@@ -1,9 +1,9 @@
 import type { CalendarEventUid } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
 
-export const getEventUids = (calendars: VariableManagementCalendar[]): CalendarEventUid[] => {
-  return calendars.reduce((acc: CalendarEventUid[], curr: VariableManagementCalendar) => {
-    curr.events.forEach((event: VariableManagementCalendarEvent) => {
+export const getEventUids = (calendars: Calendar[]): CalendarEventUid[] => {
+  return calendars.reduce((acc: CalendarEventUid[], curr: Calendar) => {
+    curr.events.forEach((event: CalendarEvent) => {
       if (!acc.find((accItem: CalendarEventUid) => accItem.uid === event.uid)) {
         acc.push({ calendar: curr.name, uid: event.uid });
       }

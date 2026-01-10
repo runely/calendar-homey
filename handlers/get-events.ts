@@ -17,13 +17,13 @@ import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
 import type { CalendarEventUid, CalendarMetaData, IcalSettingEntry } from "../types/IcalCalendar.type";
 import type {
-  ExtCalendarEvent,
+  Calendar,
+  CalendarEvent,
+  CalendarEventExtended,
+  LocalEvent,
+  LocalJsonEvent,
   SettingEventLimit,
-  VariableManagement,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent,
-  VariableManagementLocalEvent,
-  VariableManagementLocalJsonEvent
+  VariableManagement
 } from "../types/VariableMgmt.type";
 
 import { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } from "./trigger-cards.js";
@@ -80,7 +80,7 @@ export const getEvents = async (
       ? (JSON.parse(oldCalendarsUidsStorage) as CalendarEventUid[])
       : [];
   app.log("getEvents: oldCalendarsUids --", oldCalendarsUids.length);
-  const calendarsEvents: VariableManagementCalendar[] = [];
+  const calendarsEvents: Calendar[] = [];
   const calendarsMetadata: CalendarMetaData[] = [];
 
   // get ical events
@@ -197,7 +197,7 @@ export const getEvents = async (
         app.log(
           `getEvents: Events for calendar '${name}' retrieved. Total entry count for calendar: ${Object.keys(data).length}. Time used: ${getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`
         );
-        const activeEvents: VariableManagementCalendarEvent[] = getActiveEvents({
+        const activeEvents: CalendarEvent[] = getActiveEvents({
           app,
           timezone: app.homey.clock.getTimezone(),
           data,
@@ -251,7 +251,7 @@ export const getEvents = async (
 
   try {
     if (variableMgmt.calendars && variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
-      const updatedCalendars: VariableManagementCalendar[] = filterUpdatedCalendars({
+      const updatedCalendars: Calendar[] = filterUpdatedCalendars({
         app,
         variableMgmt,
         oldCalendars: variableMgmt.calendars,
@@ -277,7 +277,7 @@ export const getEvents = async (
 
   const newCalendarsUids: CalendarEventUid[] = getEventUids(calendarsEvents);
   app.log("getEvents: newCalendarsUids --", newCalendarsUids.length);
-  const newlyAddedEvents: ExtCalendarEvent[] = getNewEvents({
+  const newlyAddedEvents: CalendarEventExtended[] = getNewEvents({
     timezone: app.homey.clock.getTimezone(),
     oldCalendarsUids,
     newCalendarsUids,
@@ -302,10 +302,8 @@ export const getEvents = async (
 
   // get local events (only the ones that are not started yet or is ongoing)
   const localEventsJSON: string | null = app.homey.settings.get(variableMgmt.storage.localEvents);
-  const localEvents: VariableManagementLocalJsonEvent[] =
-    localEventsJSON && localEventsJSON.length > 0
-      ? (JSON.parse(localEventsJSON) as VariableManagementLocalJsonEvent[])
-      : [];
+  const localEvents: LocalJsonEvent[] =
+    localEventsJSON && localEventsJSON.length > 0 ? (JSON.parse(localEventsJSON) as LocalJsonEvent[]) : [];
   variableMgmt.localEvents = getLocalActiveEvents({
     timezone: app.homey.clock.getTimezone(),
     events: localEvents,
@@ -318,11 +316,9 @@ export const getEvents = async (
   saveLocalEvents(app, variableMgmt, variableMgmt.localEvents);
 
   // add local events to the correct calendar
-  variableMgmt.localEvents.forEach((event: VariableManagementLocalEvent) => {
-    const calendar: VariableManagementCalendar | undefined = calendarsEvents.find(
-      (c: VariableManagementCalendar) => c.name === event.calendar
-    );
-    const calendarEvent: VariableManagementCalendarEvent = event;
+  variableMgmt.localEvents.forEach((event: LocalEvent) => {
+    const calendar: Calendar | undefined = calendarsEvents.find((c: Calendar) => c.name === event.calendar);
+    const calendarEvent: CalendarEvent = event;
     if (calendar) {
       calendar.events.push(calendarEvent);
     }
@@ -330,7 +326,7 @@ export const getEvents = async (
 
   variableMgmt.calendars = calendarsEvents;
   variableMgmt.calendars = sortCalendarsEvents(variableMgmt.calendars);
-  const allEventCount: number = variableMgmt.calendars.reduce((curr: number, acu: VariableManagementCalendar) => {
+  const allEventCount: number = variableMgmt.calendars.reduce((curr: number, acu: Calendar) => {
     curr += acu.events.length;
     return curr;
   }, 0);
@@ -393,7 +389,7 @@ export const getEvents = async (
     // register calendar tokens
     if (variableMgmt.calendars && variableMgmt.calendars.length > 0) {
       await Promise.all(
-        variableMgmt.calendars.map(async (calendar: VariableManagementCalendar) => {
+        variableMgmt.calendars.map(async (calendar: Calendar) => {
           if (!variableMgmt) {
             app.error(
               `[ERROR] getEvents: Variable management initialization failed. Calendar '${calendar.name}' won't be used!`

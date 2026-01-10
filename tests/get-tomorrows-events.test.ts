@@ -1,7 +1,7 @@
 import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { ExtCalendarEvent, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 const timezone: string = "UTC";
 
@@ -18,7 +18,7 @@ const expectedEnd: string = getMoment({ timezone })
   .set("seconds", 59)
   .toISOString();
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "events",
     events: [
@@ -123,7 +123,7 @@ const calendars: VariableManagementCalendar[] = [
 
 describe("Tomorrows event count is", () => {
   test("2 when 'specificCalendarName' is NOT given", () => {
-    const tomorrowsEvents: ExtCalendarEvent[] = getEventsTomorrow(timezone, calendars);
+    const tomorrowsEvents: CalendarEventExtended[] = getEventsTomorrow(timezone, calendars);
 
     expect(tomorrowsEvents.length).toBe(2);
     expect(tomorrowsEvents[0].start.toISOString()).toBe(expectedStart);
@@ -137,7 +137,7 @@ describe("Tomorrows event count is", () => {
   });
 
   test("1 when 'specificCalendarName' IS given", () => {
-    const tomorrowsEvents: ExtCalendarEvent[] = getEventsTomorrow(timezone, calendars, "events2");
+    const tomorrowsEvents: CalendarEventExtended[] = getEventsTomorrow(timezone, calendars, "events2");
 
     expect(tomorrowsEvents.length).toBe(1);
     expect(tomorrowsEvents[0].start.toISOString()).toBe(expectedStart);

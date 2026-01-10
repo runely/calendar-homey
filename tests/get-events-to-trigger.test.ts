@@ -2,10 +2,10 @@ import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
 import { getMoment } from "../lib/moment-datetime";
 import type { TriggerEvent } from "../types/IcalCalendar.type";
 
-import type { VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app";
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "events",
     events: [

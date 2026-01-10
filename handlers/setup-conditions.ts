@@ -9,12 +9,7 @@ import { getMomentNow } from "../lib/moment-datetime.js";
 import { sortEvent } from "../lib/sort-event.js";
 
 import type { EventAutoCompleteResult } from "../types/Homey.type";
-import type {
-  ExtCalendarEvent,
-  VariableManagement,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent
-} from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
 
 import { isEventIn, isEventOngoing, willEventNotIn } from "./conditions.js";
 import { triggerSynchronizationError } from "./trigger-cards.js";
@@ -156,7 +151,7 @@ const getEventList = (
   app: App,
   variableMgmt: VariableManagement,
   timezone: string,
-  calendars: VariableManagementCalendar[]
+  calendars: Calendar[]
 ): Array<EventAutoCompleteResult> => {
   const eventList: Array<EventAutoCompleteResult> = [];
 
@@ -167,8 +162,8 @@ const getEventList = (
 
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
-  calendars.forEach((calendar: VariableManagementCalendar) => {
-    calendar.events.forEach((event: VariableManagementCalendarEvent) => {
+  calendars.forEach((calendar: Calendar) => {
+    calendar.events.forEach((event: CalendarEvent) => {
       if (!variableMgmt.dateTimeFormat) {
         app.log("[WARN] getEventList: dateTimeFormat not set yet. Returning empty array");
         return;
@@ -259,7 +254,7 @@ const onEventAutocomplete = async (
   }
 
   if (query) {
-    const filtered: VariableManagementCalendar[] = filterBySummary(variableMgmt.calendars, query);
+    const filtered: Calendar[] = filterBySummary(variableMgmt.calendars, query);
     return getEventList(app, variableMgmt, timezone, filtered);
   }
 
@@ -279,7 +274,7 @@ const checkEvent = async (
     return false;
   }
 
-  let filteredCalendars: VariableManagementCalendar[] = [];
+  let filteredCalendars: Calendar[] = [];
 
   if (type === "ongoing" || type === "in" || type === "stops_in") {
     filteredCalendars = filterByUID(variableMgmt.calendars, args.event.id);
@@ -314,7 +309,7 @@ const checkEvent = async (
 
   if (type === "event_containing_calendar") {
     const inMinutes: number = convertToMinutes(args.when, args.type);
-    const nextEvent: ExtCalendarEvent | null = getNextEventValue({
+    const nextEvent: CalendarEventExtended | null = getNextEventValue({
       calendars: filteredCalendars,
       specificCalendarName: args.calendar.name,
       value: args.value,
@@ -338,7 +333,7 @@ const checkEvent = async (
 
   if (type === "event_containing_calendar_stops") {
     const inMinutes: number = convertToMinutes(args.when, args.type);
-    const nextEvent: ExtCalendarEvent | null = getNextEventValue({
+    const nextEvent: CalendarEventExtended | null = getNextEventValue({
       calendars: filteredCalendars,
       specificCalendarName: args.calendar.name,
       value: args.value,
@@ -405,7 +400,7 @@ const checkEvent = async (
     }
   }
 
-  return filteredCalendars.some((calendar: VariableManagementCalendar) => {
+  return filteredCalendars.some((calendar: Calendar) => {
     if (calendar.events.length === 0) {
       return false;
     }

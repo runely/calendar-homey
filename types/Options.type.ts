@@ -4,18 +4,18 @@ import type { CalendarResponse } from "node-ical";
 import type { AppTests } from "./Homey.type";
 import type { CalendarEventUid } from "./IcalCalendar.type";
 import type {
+  Calendar,
+  CalendarEvent,
+  LocalJsonEvent,
   SettingEventLimit,
-  VariableManagement,
-  VariableManagementCalendar,
-  VariableManagementCalendarEvent,
-  VariableManagementLocalJsonEvent
+  VariableManagement
 } from "./VariableMgmt.type";
 
 export type FilterUpdatedCalendarsOptions = {
   app: App | AppTests;
   variableMgmt: VariableManagement;
-  oldCalendars: VariableManagementCalendar[];
-  newCalendars: VariableManagementCalendar[];
+  oldCalendars: Calendar[];
+  newCalendars: Calendar[];
 };
 
 export type GetActiveEventsOptions = {
@@ -29,7 +29,7 @@ export type GetActiveEventsOptions = {
 
 export type GetLocalActiveEventsOptions = {
   timezone: string;
-  events: VariableManagementLocalJsonEvent[];
+  events: LocalJsonEvent[];
   eventLimit: SettingEventLimit;
   app: App | AppTests;
   logAllEvents: boolean;
@@ -39,7 +39,7 @@ export type GetNewEventsOptions = {
   timezone: string;
   oldCalendarsUids: CalendarEventUid[];
   newCalendarsUids: CalendarEventUid[];
-  calendarsEvents: VariableManagementCalendar[];
+  calendarsEvents: Calendar[];
   app: App | AppTests;
 };
 
@@ -66,7 +66,7 @@ export type NewEventOptions = {
 
 export type NextEventValueOptions = {
   timezone: string;
-  calendars: VariableManagementCalendar[];
+  calendars: Calendar[];
   specificCalendarName: string;
   value: string;
   eventType: "starts" | "ends";
@@ -78,5 +78,5 @@ export type TriggerSynchronizationErrorOptions = {
   variableMgmt: VariableManagement;
   calendar: string;
   error: Error | string;
-  event?: VariableManagementCalendarEvent;
+  event?: CalendarEvent;
 };

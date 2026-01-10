@@ -15,7 +15,7 @@ import type {
   TriggerSynchronizationTokens
 } from "../types/IcalCalendar.type";
 import type { TriggerSynchronizationErrorOptions } from "../types/Options.type";
-import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
 
 import { isEventOngoing } from "./conditions.js";
 
@@ -91,7 +91,7 @@ export const triggerSynchronizationError = async (options: TriggerSynchronizatio
 export const triggerChangedCalendars = async (
   app: App,
   variableMgmt: VariableManagement,
-  calendars: VariableManagementCalendar[]
+  calendars: Calendar[]
 ): Promise<void> => {
   const triggerAllValues: boolean = app.homey.settings.get(variableMgmt.setting.triggerAllChangedEventTypes);
 

@@ -2,9 +2,9 @@ import { getEventUids } from "../lib/get-event-uids.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
 import type { CalendarEventUid } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/VariableMgmt.type";
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "events",
     events: [

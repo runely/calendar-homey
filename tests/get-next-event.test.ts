@@ -4,7 +4,7 @@ import { getNextEvent } from "../lib/get-next-event.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
 import type { NextEvent } from "../types/IcalCalendar.type";
-import type { VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/VariableMgmt.type";
 
 const timezone: string = "UTC";
 
@@ -15,7 +15,7 @@ const expectedEnd: string = addHours(2);
 const expectedFutureStart: string = "2041-11-05T20:00:00.000Z";
 const expectedFutureEnd: string = "2041-11-05T21:00:00.000Z";
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "events",
     events: [

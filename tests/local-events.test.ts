@@ -3,13 +3,13 @@ import { getMoment } from "../lib/moment-datetime.js";
 import { varMgmt } from "../lib/variable-management";
 
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
-import type { VariableManagementLocalEvent, VariableManagementLocalJsonEvent } from "../types/VariableMgmt.type";
+import type { LocalEvent, LocalJsonEvent } from "../types/VariableMgmt.type";
 
 import { constructedApp } from "./lib/construct-app.js";
 
 constructedApp.homey.settings.set = jest.fn();
 
-const events: VariableManagementLocalEvent[] = [
+const events: LocalEvent[] = [
   {
     start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
     dateType: "date-time",
@@ -44,7 +44,7 @@ const events: VariableManagementLocalEvent[] = [
   }
 ];
 
-const localEvents: VariableManagementLocalJsonEvent[] = [
+const localEvents: LocalJsonEvent[] = [
   {
     start: "2021-11-05T20:00:00.000Z",
     dateType: "date-time",
@@ -127,7 +127,7 @@ const localEvents: VariableManagementLocalJsonEvent[] = [
   }
 ];
 
-const ongoingEvents: VariableManagementLocalJsonEvent[] = [
+const ongoingEvents: LocalJsonEvent[] = [
   {
     start: getMoment({ timezone: "Europe/Oslo" }).subtract(1, "days").toISOString(),
     dateType: "date-time",
@@ -197,13 +197,9 @@ describe("saveLocalEvents", () => {
 
 describe("getLocalActiveEvents", () => {
   test("Returns 2 events", () => {
-    const result: VariableManagementLocalEvent[] = getLocalActiveEvents(options);
-    const three: VariableManagementLocalEvent | undefined = result.find(
-      (event: VariableManagementLocalEvent) => event.summary === "Three"
-    );
-    const four: VariableManagementLocalEvent | undefined = result.find(
-      (event: VariableManagementLocalEvent) => event.summary === "Four"
-    );
+    const result: LocalEvent[] = getLocalActiveEvents(options);
+    const three: LocalEvent | undefined = result.find((event: LocalEvent) => event.summary === "Three");
+    const four: LocalEvent | undefined = result.find((event: LocalEvent) => event.summary === "Four");
 
     expect(result.length).toBe(2);
     expect(three).toBeTruthy();
@@ -214,19 +210,19 @@ describe("getLocalActiveEvents", () => {
 
   test("Returns 2 events when events passed in is ongoing", () => {
     //console.log('ongoingEvents:', ongoingEvents)
-    const result: VariableManagementLocalEvent[] = getLocalActiveEvents({ ...options, events: ongoingEvents });
+    const result: LocalEvent[] = getLocalActiveEvents({ ...options, events: ongoingEvents });
 
     expect(result.length).toBe(2);
   });
 
   test("Returns empty array when no events passed in", () => {
-    const result: VariableManagementLocalEvent[] = getLocalActiveEvents({ ...options, events: [] });
+    const result: LocalEvent[] = getLocalActiveEvents({ ...options, events: [] });
 
     expect(result.length).toBe(0);
   });
 
   test("Returns empty array when events passed in isn't within eventLimit", () => {
-    const result: VariableManagementLocalEvent[] = getLocalActiveEvents({
+    const result: LocalEvent[] = getLocalActiveEvents({
       ...options,
       eventLimit: { value: "2", type: "days" }
     });

@@ -2,11 +2,11 @@ import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import { varMgmt } from "../lib/variable-management";
 import locale from "../locales/en.json";
-import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
 import { constructedApp } from "./lib/construct-app";
 
 type UpdatedCalendars = {
-  [key: string]: VariableManagementCalendar[];
+  [key: string]: Calendar[];
 };
 
 const start: string = locale.triggers.event_changed.start;
@@ -272,7 +272,7 @@ const newCalendars: UpdatedCalendars = {
 
 describe("Expect 'filterUpdatedCalendars' to return", () => {
   test("An empty array when nothing's changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.nothingChanged,
@@ -283,7 +283,7 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
   });
 
   test("'Start' when start has changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.startChanged,
@@ -297,7 +297,7 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
   });
 
   test("'End' when end has changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.endChanged,
@@ -311,7 +311,7 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
   });
 
   test("'Description' when description has changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.descriptionChanged,
@@ -325,7 +325,7 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
   });
 
   test("'Location' when location has changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.locationChanged,
@@ -339,7 +339,7 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
   });
 
   test("'Summary' when summary has changed", () => {
-    const eventsChanged: VariableManagementCalendar[] = filterUpdatedCalendars({
+    const eventsChanged: Calendar[] = filterUpdatedCalendars({
       app: constructedApp,
       variableMgmt,
       oldCalendars: oldCalendars.summaryChanged,

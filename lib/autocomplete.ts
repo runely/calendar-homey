@@ -1,7 +1,7 @@
 import type { App, FlowCard } from "homey";
 
 import type { AppTests } from "../types/Homey.type";
-import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
 
 import { filterByCalendar } from "./filter-by.js";
 
@@ -16,13 +16,13 @@ export const calendarAutocomplete = (
   }
 
   if (query) {
-    const filteredCalendar: VariableManagementCalendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
-    return filteredCalendar.map((calendar: VariableManagementCalendar) => {
+    const filteredCalendar: Calendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
+    return filteredCalendar.map((calendar: Calendar) => {
       return { id: calendar.name, name: calendar.name };
     });
   }
 
-  return variableMgmt.calendars.map((calendar: VariableManagementCalendar) => {
+  return variableMgmt.calendars.map((calendar: Calendar) => {
     return { id: calendar.name, name: calendar.name };
   });
 };

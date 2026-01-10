@@ -1,7 +1,7 @@
 import type { Moment } from "moment";
 import type { VEvent } from "node-ical";
 
-import type { VariableManagementLocalJsonEvent } from "../types/VariableMgmt.type";
+import type { LocalJsonEvent } from "../types/VariableMgmt.type";
 
 import { getMoment } from "./moment-datetime.js";
 
@@ -71,7 +71,7 @@ export const findRegularEventEnd = (event: VEvent, timezone?: string): Moment =>
   return end*/
 };
 
-export const findRegularLocalEventEnd = (event: VariableManagementLocalJsonEvent, timezone?: string): Moment => {
+export const findRegularLocalEventEnd = (event: LocalJsonEvent, timezone?: string): Moment => {
   console.log("findRegularLocalEventEnd: Not yet implemented, returning end date as end date", event.end, timezone);
   return getMoment({ date: event.end, timezone });
 };

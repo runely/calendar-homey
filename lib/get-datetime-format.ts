@@ -1,7 +1,7 @@
 import type { App } from "homey";
 
 import type { AppTests } from "../types/Homey.type";
-import type { VariableManagement, VariableManagementDateTimeFormat } from "../types/VariableMgmt.type";
+import type { DateTimeFormat, VariableManagement } from "../types/VariableMgmt.type";
 
 const getShortDateFormat = (longDateFormat: string): string => {
   let dateFormat: string = longDateFormat;
@@ -30,10 +30,7 @@ const getShortDateFormat = (longDateFormat: string): string => {
     : `${dateFormatSplit[1]}${dateSplitter}${dateFormatSplit[2]}`;
 };
 
-export const getDateTimeFormat = (
-  app: App | AppTests,
-  variableMgmt: VariableManagement
-): VariableManagementDateTimeFormat => {
+export const getDateTimeFormat = (app: App | AppTests, variableMgmt: VariableManagement): DateTimeFormat => {
   const time: string =
     app.homey.settings.get(variableMgmt.setting.timeFormat) || app.homey.__("settings.datetime.time.default");
   const long: string =
@@ -50,7 +47,7 @@ export const getDateTimeFormat = (
     app.log("getDateTimeFormat: Initial DateTimeFormat saved to settings");
   }
 
-  const format: VariableManagementDateTimeFormat = {
+  const format: DateTimeFormat = {
     long,
     short,
     time

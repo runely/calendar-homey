@@ -1,7 +1,7 @@
 import type { App } from "homey";
 import type { Moment } from "moment";
 
-import type { ExtCalendarEvent, VariableManagement } from "../types/VariableMgmt.type";
+import type { CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 
@@ -9,12 +9,12 @@ export const getTokenEvents = (
   app: App,
   variableMgmt: VariableManagement,
   timezone: string,
-  events: ExtCalendarEvent[]
+  events: CalendarEventExtended[]
 ): string => {
   const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   let value: string = "";
 
-  events.forEach((event: ExtCalendarEvent) => {
+  events.forEach((event: CalendarEventExtended) => {
     if (!variableMgmt.dateTimeFormat) {
       app.error("Variable Management Date Time Format is not defined");
       throw new Error("Variable Management Date Time Format is not defined");

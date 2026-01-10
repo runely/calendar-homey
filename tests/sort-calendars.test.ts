@@ -1,9 +1,9 @@
 import { getMoment } from "../lib/moment-datetime.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
-import type { VariableManagementCalendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/VariableMgmt.type";
 
-const calendars: VariableManagementCalendar[] = [
+const calendars: Calendar[] = [
   {
     name: "CalendarOne",
     events: [
@@ -77,7 +77,7 @@ const calendars: VariableManagementCalendar[] = [
 ];
 
 test('Calendar events are sorted after "start" datetime', () => {
-  const result: VariableManagementCalendar[] = sortCalendarsEvents(calendars);
+  const result: Calendar[] = sortCalendarsEvents(calendars);
 
   expect(result.length).toBe(2);
   expect(result[0].name).toBe("CalendarOne");

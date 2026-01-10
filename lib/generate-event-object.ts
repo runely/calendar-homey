@@ -5,7 +5,7 @@ import type { DateType, VEvent } from "node-ical";
 import type { AppTests } from "../types/Homey.type";
 import type { BusyStatus } from "../types/IcalCalendar.type";
 import type { NewEventOptions } from "../types/Options.type";
-import type { VariableManagementCalendarEvent, VariableManagementLocalEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent, LocalEvent } from "../types/VariableMgmt.type";
 
 import { extractMeetingUrl } from "./extract-meeting-url.js";
 import { getMoment } from "./moment-datetime.js";
@@ -37,12 +37,12 @@ const createNewEvent = (
   freeBusy: BusyStatus | undefined,
   meetingUrl: string | undefined,
   local: boolean
-): VariableManagementCalendarEvent => {
+): CalendarEvent => {
   // set start and end with correct locale (supports only the languages in the locales folder!)
   start.locale(app.homey.__("locale.moment"));
   end.locale(app.homey.__("locale.moment"));
 
-  const newEvent: VariableManagementCalendarEvent = {
+  const newEvent: CalendarEvent = {
     start,
     dateType,
     end,
@@ -76,7 +76,7 @@ export const fromEvent = (
   end: Moment,
   timezone: string,
   event: VEvent
-): VariableManagementCalendarEvent => {
+): CalendarEvent => {
   const created: Moment | undefined = event.created
     ? getMoment({ timezone, date: event.created.toISOString() })
     : undefined;
@@ -103,11 +103,7 @@ export const fromEvent = (
   );
 };
 
-export const newEvent = (
-  app: App | AppTests,
-  timezone: string,
-  options: NewEventOptions
-): VariableManagementLocalEvent => {
+export const newEvent = (app: App | AppTests, timezone: string, options: NewEventOptions): LocalEvent => {
   const {
     event_name: title,
     event_description: description,
@@ -134,7 +130,7 @@ export const newEvent = (
     );
   }
 
-  const newEvent: VariableManagementCalendarEvent = createNewEvent(
+  const newEvent: CalendarEvent = createNewEvent(
     app,
     startMoment,
     dateType,

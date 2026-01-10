@@ -1,6 +1,6 @@
 import type { Moment } from "moment";
 
-import type { VariableManagementCalendarEvent, VariableManagementLocalEvent } from "./VariableMgmt.type";
+import type { CalendarEvent, LocalEvent } from "./VariableMgmt.type";
 
 export type BusyStatus = "FREE" | "TENTATIVE" | "BUSY" | "OOF" | "WORKINGELSEWHERE";
 
@@ -57,7 +57,7 @@ export type IcalSettingEntry = {
 
 export type NextEvent = {
   calendarName: string;
-  event: VariableManagementCalendarEvent;
+  event: CalendarEvent;
   startsIn: number;
   endsIn: number;
 };
@@ -86,7 +86,7 @@ export type TriggerChangedCalendarTokens = {
 
 export type TriggerEvent = {
   calendarName: string;
-  event: VariableManagementCalendarEvent | VariableManagementLocalEvent;
+  event: CalendarEvent | LocalEvent;
   triggerId: string;
   state?: TriggerState;
 };

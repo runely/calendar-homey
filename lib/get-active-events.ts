@@ -6,7 +6,7 @@ import type { DateWithTimeZone, VEvent } from "node-ical";
 import { triggerSynchronizationError } from "../handlers/trigger-cards.js";*/
 
 import type { GetActiveEventsOptions } from "../types/Options.type";
-import type { VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent } from "../types/VariableMgmt.type";
 
 /*import { findRegularEventEnd } from "./find-regular-event-end.js";
 import { fromEvent } from "./generate-event-object.js";
@@ -110,7 +110,7 @@ const removeInvalidTZ = (app: App, event: VEvent, calendarName: string): void =>
   }
 };*/
 
-export const getActiveEvents = (_options: GetActiveEventsOptions): VariableManagementCalendarEvent[] => {
+export const getActiveEvents = (_options: GetActiveEventsOptions): CalendarEvent[] => {
   return [];
 
   /*const { timezone, data, eventLimit, calendarName, app, logAllEvents } = options
