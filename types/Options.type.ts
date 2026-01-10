@@ -2,14 +2,8 @@ import type { App } from "homey";
 import type { CalendarResponse } from "node-ical";
 
 import type { AppTests } from "./Homey.type";
-import type { CalendarEventUid } from "./IcalCalendar.type";
-import type {
-  Calendar,
-  CalendarEvent,
-  LocalJsonEvent,
-  SettingEventLimit,
-  VariableManagement
-} from "./VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventUid, LocalJsonEvent } from "./IcalCalendar.type";
+import type { SettingEventLimit, VariableManagement } from "./VariableMgmt.type";
 
 export type FilterUpdatedCalendarsOptions = {
   app: App | AppTests;

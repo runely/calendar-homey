@@ -1,7 +1,9 @@
 import type { DateWithTimeZone, VEvent } from "node-ical";
 import { fromEvent, newEvent } from "../lib/generate-event-object.js";
 import { getMoment } from "../lib/moment-datetime.js";
-import type { CalendarEvent, LocalEvent } from "../types/VariableMgmt.type";
+
+import type { CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
+
 import { constructedApp } from "./lib/construct-app";
 
 const createDateWithTimeZone = (date: Date, timeZone?: string | undefined): DateWithTimeZone => {

@@ -1,7 +1,8 @@
 import type { App, FlowCard } from "homey";
 
 import type { AppTests } from "../types/Homey.type";
-import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { filterByCalendar } from "./filter-by.js";
 

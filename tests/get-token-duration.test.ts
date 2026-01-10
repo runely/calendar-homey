@@ -1,8 +1,7 @@
 import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import locale from "../locales/en.json";
-import type { EventDuration } from "../types/IcalCalendar.type";
-import type { CalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent, EventDuration } from "../types/IcalCalendar.type";
 import { constructedApp } from "./lib/construct-app.js";
 
 const {

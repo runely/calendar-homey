@@ -3,8 +3,7 @@ import type { Moment } from "moment";
 
 import { getMomentNow } from "../lib/moment-datetime.js";
 
-import type { ConditionCaller } from "../types/IcalCalendar.type";
-import type { CalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent, ConditionCaller } from "../types/IcalCalendar.type";
 
 export const isEventOngoing = (
   app: App,

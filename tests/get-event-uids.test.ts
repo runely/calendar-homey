@@ -1,8 +1,7 @@
 import { getEventUids } from "../lib/get-event-uids.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { CalendarEventUid } from "../types/IcalCalendar.type";
-import type { Calendar } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEventUid } from "../types/IcalCalendar.type";
 
 const calendars: Calendar[] = [
   {

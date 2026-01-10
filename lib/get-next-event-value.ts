@@ -1,7 +1,7 @@
 import type { Moment } from "moment";
 
+import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 import type { NextEventValueOptions } from "../types/Options.type";
-import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 

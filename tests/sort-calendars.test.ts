@@ -1,7 +1,7 @@
 import { getMoment } from "../lib/moment-datetime.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
-import type { Calendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/IcalCalendar.type";
 
 const calendars: Calendar[] = [
   {

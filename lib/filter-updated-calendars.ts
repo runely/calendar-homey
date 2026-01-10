@@ -2,9 +2,8 @@ import type { App } from "homey";
 import moment from "moment";
 
 import type { AppTests } from "../types/Homey.type";
-import type { CalendarPropertyChanged, HasDataType } from "../types/IcalCalendar.type";
+import type { Calendar, CalendarEvent, CalendarEventPropertyChanged, HasDataType } from "../types/IcalCalendar.type";
 import type { FilterUpdatedCalendarsOptions } from "../types/Options.type";
-import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
 
 import { hasData } from "./has-data.js";
 
@@ -63,7 +62,7 @@ export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): 
         return;
       }
 
-      const changed: CalendarPropertyChanged[] = [];
+      const changed: CalendarEventPropertyChanged[] = [];
       const summaryChanged: boolean = isChanged(app, oldEvent.summary, newEvent.summary);
       const startChanged: boolean = isChanged(app, oldEvent.start, newEvent.start);
       const endChanged: boolean = isChanged(app, oldEvent.end, newEvent.end);

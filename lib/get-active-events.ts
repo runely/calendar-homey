@@ -5,8 +5,8 @@ import type { DateWithTimeZone, VEvent } from "node-ical";
 
 import { triggerSynchronizationError } from "../handlers/trigger-cards.js";*/
 
+import type { CalendarEvent } from "../types/IcalCalendar.type";
 import type { GetActiveEventsOptions } from "../types/Options.type";
-import type { CalendarEvent } from "../types/VariableMgmt.type";
 
 /*import { findRegularEventEnd } from "./find-regular-event-end.js";
 import { fromEvent } from "./generate-event-object.js";

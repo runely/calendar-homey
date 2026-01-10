@@ -2,7 +2,10 @@ import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import { varMgmt } from "../lib/variable-management";
 import locale from "../locales/en.json";
-import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
+
+import type { Calendar } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
+
 import { constructedApp } from "./lib/construct-app";
 
 type UpdatedCalendars = {

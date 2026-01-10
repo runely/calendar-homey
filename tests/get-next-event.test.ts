@@ -3,8 +3,7 @@ import type { DurationInputArg1 } from "moment-timezone";
 import { getNextEvent } from "../lib/get-next-event.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { NextEvent } from "../types/IcalCalendar.type";
-import type { Calendar } from "../types/VariableMgmt.type";
+import type { Calendar, NextEvent } from "../types/IcalCalendar.type";
 
 const timezone: string = "UTC";
 

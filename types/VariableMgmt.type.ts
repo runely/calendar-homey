@@ -1,11 +1,12 @@
-import type { DurationInputArg2, Moment } from "moment";
-import type { DateType } from "node-ical";
+import type { DurationInputArg2 } from "moment";
 
 import type { Jobs } from "./Cron.type";
-import type { BusyStatus, CalendarPropertyChanged } from "./IcalCalendar.type";
+import type { Calendar, LocalEvent } from "./IcalCalendar.type";
 
-export type CalendarEventExtended = CalendarEvent & {
-  calendarName: string;
+export type DateTimeFormat = {
+  long: string;
+  short: string;
+  time: string;
 };
 
 export type SettingEventLimit = {
@@ -15,58 +16,6 @@ export type SettingEventLimit = {
 
 export type SettingHitCount = {
   data: string;
-};
-
-export type CalendarEvent = {
-  start: Moment;
-  dateType: DateType;
-  end: Moment;
-  uid: string;
-  description: string;
-  location: string;
-  summary: string;
-  created?: Moment;
-  fullDayEvent: boolean;
-  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
-  freeBusy?: BusyStatus;
-  meetingUrl?: string;
-  local: boolean;
-  changed?: CalendarPropertyChanged[];
-  oldEvent?: CalendarEvent;
-};
-
-export type Calendar = {
-  name: string;
-  events: CalendarEvent[];
-};
-
-export type DateTimeFormat = {
-  long: string;
-  short: string;
-  time: string;
-};
-
-export type LocalEvent = CalendarEvent & {
-  calendar: string;
-};
-
-export type LocalJsonEvent = {
-  start: string;
-  // TODO: will this cause problems for already stored events?
-  dateType: string;
-  end: string;
-  uid: string;
-  description: string;
-  location: string;
-  summary: string;
-  created?: string;
-  fullDayEvent: boolean;
-  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
-  // TODO: will this cause problems for already stored events?
-  freeBusy?: string;
-  meetingUrl?: string;
-  local: boolean;
-  calendar: string;
 };
 
 export type VariableManagementSettings = {

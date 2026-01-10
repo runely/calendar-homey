@@ -1,9 +1,8 @@
 import { getLocalActiveEvents, saveLocalEvents } from "../lib/local-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import { varMgmt } from "../lib/variable-management";
-
+import type { LocalEvent, LocalJsonEvent } from "../types/IcalCalendar.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
-import type { LocalEvent, LocalJsonEvent } from "../types/VariableMgmt.type";
 
 import { constructedApp } from "./lib/construct-app.js";
 

@@ -7,8 +7,8 @@ import { getTokenEvents } from "../lib/get-token-events.js";
 import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { EventDuration, NextEvent } from "../types/IcalCalendar.type";
-import type { CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
+import type { CalendarEventExtended, EventDuration, NextEvent } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { triggerSynchronizationError } from "./trigger-cards.js";
 

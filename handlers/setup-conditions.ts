@@ -9,7 +9,8 @@ import { getMomentNow } from "../lib/moment-datetime.js";
 import { sortEvent } from "../lib/sort-event.js";
 
 import type { EventAutoCompleteResult } from "../types/Homey.type";
-import type { Calendar, CalendarEvent, CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { isEventIn, isEventOngoing, willEventNotIn } from "./conditions.js";
 import { triggerSynchronizationError } from "./trigger-cards.js";

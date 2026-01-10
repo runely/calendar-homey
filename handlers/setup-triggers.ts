@@ -4,7 +4,8 @@ import { convertToMinutes } from "../lib/convert-to-minutes.js";
 import { filterByCalendar } from "../lib/filter-by.js";
 import { setupHitCount, updateHitCount } from "../lib/hit-count.js";
 
-import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 export const setupTriggers = (app: App, variableMgmt: VariableManagement): void => {
   // add minutes in trigger listeners

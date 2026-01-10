@@ -1,7 +1,7 @@
 import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { Calendar, CalendarEventExtended } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEventExtended } from "../types/IcalCalendar.type";
 
 const timezone: string = "UTC";
 

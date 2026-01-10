@@ -1,15 +1,41 @@
 import type { Moment } from "moment";
-
-import type { CalendarEvent, LocalEvent } from "./VariableMgmt.type";
+import type { DateType } from "node-ical";
 
 export type BusyStatus = "FREE" | "TENTATIVE" | "BUSY" | "OOF" | "WORKINGELSEWHERE";
+
+export type Calendar = {
+  name: string;
+  events: CalendarEvent[];
+};
+
+export type CalendarEvent = {
+  start: Moment;
+  dateType: DateType;
+  end: Moment;
+  uid: string;
+  description: string;
+  location: string;
+  summary: string;
+  created?: Moment;
+  fullDayEvent: boolean;
+  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
+  freeBusy?: BusyStatus;
+  meetingUrl?: string;
+  local: boolean;
+  changed?: CalendarEventPropertyChanged[];
+  oldEvent?: CalendarEvent;
+};
+
+export type CalendarEventExtended = CalendarEvent & {
+  calendarName: string;
+};
 
 export type CalendarEventUid = {
   calendar: string;
   uid: string;
 };
 
-export type CalendarPropertyChanged = {
+export type CalendarEventPropertyChanged = {
   type: string;
   previousValue: string;
   newValue: string;
@@ -53,6 +79,29 @@ export type IcalSettingEntry = {
   name: string;
   uri: string;
   failed?: string;
+};
+
+export type LocalEvent = CalendarEvent & {
+  calendar: string;
+};
+
+export type LocalJsonEvent = {
+  start: string;
+  // TODO: will this cause problems for already stored events?
+  dateType: string;
+  end: string;
+  uid: string;
+  description: string;
+  location: string;
+  summary: string;
+  created?: string;
+  fullDayEvent: boolean;
+  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
+  // TODO: will this cause problems for already stored events?
+  freeBusy?: string;
+  meetingUrl?: string;
+  local: boolean;
+  calendar: string;
 };
 
 export type NextEvent = {

@@ -15,16 +15,17 @@ import { getLocalActiveEvents, saveLocalEvents } from "../lib/local-events.js";
 import { getMoment } from "../lib/moment-datetime.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
-import type { CalendarEventUid, CalendarMetaData, IcalSettingEntry } from "../types/IcalCalendar.type";
 import type {
   Calendar,
   CalendarEvent,
   CalendarEventExtended,
+  CalendarEventUid,
+  CalendarMetaData,
+  IcalSettingEntry,
   LocalEvent,
-  LocalJsonEvent,
-  SettingEventLimit,
-  VariableManagement
-} from "../types/VariableMgmt.type";
+  LocalJsonEvent
+} from "../types/IcalCalendar.type";
+import type { SettingEventLimit, VariableManagement } from "../types/VariableMgmt.type";
 
 import { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } from "./trigger-cards.js";
 

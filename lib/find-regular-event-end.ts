@@ -1,7 +1,7 @@
 import type { Moment } from "moment";
 import type { VEvent } from "node-ical";
 
-import type { LocalJsonEvent } from "../types/VariableMgmt.type";
+import type { LocalJsonEvent } from "../types/IcalCalendar.type";
 
 import { getMoment } from "./moment-datetime.js";
 

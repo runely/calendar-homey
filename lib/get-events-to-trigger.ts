@@ -2,8 +2,7 @@ import type { App } from "homey";
 import type { Moment } from "moment";
 
 import type { AppTests } from "../types/Homey.type";
-import type { TriggerEvent } from "../types/IcalCalendar.type";
-import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, TriggerEvent } from "../types/IcalCalendar.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 

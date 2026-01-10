@@ -1,5 +1,4 @@
-import type { FilterMatcher, FilterProperty } from "../types/IcalCalendar.type";
-import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, FilterMatcher, FilterProperty } from "../types/IcalCalendar.type";
 
 export const filterByProperty = (
   oldCalendars: Calendar[],

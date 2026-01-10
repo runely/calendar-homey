@@ -1,7 +1,8 @@
 import type { App } from "homey";
 import type { Moment } from "moment";
 
-import type { CalendarEventExtended, VariableManagement } from "../types/VariableMgmt.type";
+import type { CalendarEventExtended } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 

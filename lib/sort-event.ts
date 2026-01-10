@@ -1,5 +1,5 @@
 import type { EventAutoCompleteResult } from "../types/Homey.type";
-import type { CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
+import type { CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 
 export const sortEvent = (
   a: CalendarEventExtended | CalendarEvent | EventAutoCompleteResult,

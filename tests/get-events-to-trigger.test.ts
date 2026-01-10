@@ -1,8 +1,8 @@
 import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
 import { getMoment } from "../lib/moment-datetime";
-import type { TriggerEvent } from "../types/IcalCalendar.type";
 
-import type { Calendar } from "../types/VariableMgmt.type";
+import type { Calendar, TriggerEvent } from "../types/IcalCalendar.type";
+
 import { constructedApp } from "./lib/construct-app";
 
 const calendars: Calendar[] = [

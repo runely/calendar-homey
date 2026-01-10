@@ -1,7 +1,7 @@
 import { filterByCalendar, filterByProperty, filterByUID } from "../lib/filter-by.js";
 import { getMoment } from "../lib/moment-datetime.js";
 
-import type { Calendar } from "../types/VariableMgmt.type";
+import type { Calendar } from "../types/IcalCalendar.type";
 
 const calendars: Calendar[] = [
   {

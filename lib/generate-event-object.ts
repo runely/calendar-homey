@@ -3,9 +3,8 @@ import type { Moment } from "moment";
 import type { DateType, VEvent } from "node-ical";
 
 import type { AppTests } from "../types/Homey.type";
-import type { BusyStatus } from "../types/IcalCalendar.type";
+import type { BusyStatus, CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
 import type { NewEventOptions } from "../types/Options.type";
-import type { CalendarEvent, LocalEvent } from "../types/VariableMgmt.type";
 
 import { extractMeetingUrl } from "./extract-meeting-url.js";
 import { getMoment } from "./moment-datetime.js";

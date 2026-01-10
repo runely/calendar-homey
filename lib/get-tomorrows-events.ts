@@ -1,6 +1,6 @@
 import type { Moment } from "moment";
 
-import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 import { sortEvents } from "./sort-events.js";

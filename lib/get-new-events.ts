@@ -1,8 +1,7 @@
 import type { Moment } from "moment";
 
-import type { CalendarEventUid } from "../types/IcalCalendar.type";
+import type { Calendar, CalendarEvent, CalendarEventExtended, CalendarEventUid } from "../types/IcalCalendar.type";
 import type { GetNewEventsOptions } from "../types/Options.type";
-import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
 
 import { getMoment } from "./moment-datetime";
 

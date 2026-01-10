@@ -1,5 +1,4 @@
-import type { CalendarEventUid } from "../types/IcalCalendar.type";
-import type { Calendar, CalendarEvent } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, CalendarEventUid } from "../types/IcalCalendar.type";
 
 export const getEventUids = (calendars: Calendar[]): CalendarEventUid[] => {
   return calendars.reduce((acc: CalendarEventUid[], curr: Calendar) => {

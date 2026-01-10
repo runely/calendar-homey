@@ -7,8 +7,8 @@ import { getTokenValue } from "../lib/get-token-value.js";
 import { saveLocalEvents } from "../lib/local-events.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
-import type { EventDuration } from "../types/IcalCalendar.type";
-import type { Calendar, CalendarEvent, LocalEvent, VariableManagement } from "../types/VariableMgmt.type";
+import type { Calendar, CalendarEvent, EventDuration, LocalEvent } from "../types/IcalCalendar.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { getEvents } from "./get-events.js";
 import { triggerEvents } from "./trigger-cards.js";

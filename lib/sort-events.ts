@@ -1,4 +1,4 @@
-import type { CalendarEvent, CalendarEventExtended } from "../types/VariableMgmt.type";
+import type { CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 
 import { sortEvent } from "./sort-event";
 

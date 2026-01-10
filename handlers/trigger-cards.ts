@@ -7,6 +7,7 @@ import { getTokenValue } from "../lib/get-token-value.js";
 import { updateHitCount } from "../lib/hit-count.js";
 
 import type {
+  Calendar,
   EventDuration,
   TriggerChangedCalendarTokens,
   TriggerEvent,
@@ -15,7 +16,7 @@ import type {
   TriggerSynchronizationTokens
 } from "../types/IcalCalendar.type";
 import type { TriggerSynchronizationErrorOptions } from "../types/Options.type";
-import type { Calendar, VariableManagement } from "../types/VariableMgmt.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { isEventOngoing } from "./conditions.js";
 

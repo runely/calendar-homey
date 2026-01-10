@@ -2,8 +2,7 @@ import type { App } from "homey";
 import humanize from "humanize-duration";
 
 import type { AppTests } from "../types/Homey.type";
-import type { EventDuration } from "../types/IcalCalendar.type";
-import type { CalendarEvent } from "../types/VariableMgmt.type";
+import type { CalendarEvent, EventDuration } from "../types/IcalCalendar.type";
 
 export const getTokenDuration = (app: App | AppTests, event: CalendarEvent): EventDuration => {
   const durationMS: number = event.end.diff(event.start, "milliseconds");

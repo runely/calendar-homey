@@ -3,8 +3,9 @@ import type { Moment } from "moment";
 import type { DateType } from "node-ical";
 
 import type { AppTests } from "../types/Homey.type";
+import type { LocalEvent } from "../types/IcalCalendar.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
-import type { LocalEvent, VariableManagement } from "../types/VariableMgmt.type";
+import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { findRegularLocalEventEnd } from "./find-regular-event-end.js";
 import { getMoment, getMomentNow } from "./moment-datetime.js";
