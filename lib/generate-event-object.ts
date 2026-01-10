@@ -2,6 +2,7 @@ import type { App } from "homey";
 import type { Moment } from "moment";
 import type { DateType, VEvent } from "node-ical";
 
+import type { AppTests } from "../types/Homey.type";
 import type { BusyStatus } from "../types/IcalCalendar.type";
 import type { NewEventOptions } from "../types/Options.type";
 import type { VariableManagementCalendarEvent, VariableManagementLocalEvent } from "../types/VariableMgmt.type";
@@ -22,7 +23,7 @@ const getFreeBusyStatus = (event: VEvent): BusyStatus | undefined => {
 };
 
 const createNewEvent = (
-  app: App,
+  app: App | AppTests,
   start: Moment,
   dateType: DateType,
   end: Moment,
@@ -70,7 +71,7 @@ const createNewEvent = (
 };
 
 export const fromEvent = (
-  app: App,
+  app: App | AppTests,
   start: Moment,
   end: Moment,
   timezone: string,
@@ -82,7 +83,7 @@ export const fromEvent = (
   const fullDayEvent: boolean = event.datetype === "date";
   //const skipTZ: boolean = (event as any).skipTZ === true; // TODO: this will be removed when Moment is swapped out for luxon
   const freeBusy: BusyStatus | undefined = getFreeBusyStatus(event);
-  const meetingUrl: string | undefined = extractMeetingUrl(event);
+  const meetingUrl: string | undefined = extractMeetingUrl(event.description);
 
   return createNewEvent(
     app,
@@ -102,7 +103,11 @@ export const fromEvent = (
   );
 };
 
-export const newEvent = (app: App, timezone: string, options: NewEventOptions): VariableManagementLocalEvent => {
+export const newEvent = (
+  app: App | AppTests,
+  timezone: string,
+  options: NewEventOptions
+): VariableManagementLocalEvent => {
   const {
     event_name: title,
     event_description: description,

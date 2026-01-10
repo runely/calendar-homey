@@ -1,14 +1,15 @@
 import type { App } from "homey";
-import moment, { type Moment } from "moment";
+import moment from "moment";
 
-import type { CalendarPropertyChanged } from "../types/IcalCalendar.type";
+import type { AppTests } from "../types/Homey.type";
+import type { CalendarPropertyChanged, HasDataType } from "../types/IcalCalendar.type";
 import type { FilterUpdatedCalendarsOptions } from "../types/Options.type";
 import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
 
 import { hasData } from "./has-data.js";
 
-function isChanged<T>(app: App, previous: T, current: T): boolean {
-  if (hasData<T>(previous) && hasData<T>(current)) {
+function isChanged(app: App | AppTests, previous: HasDataType, current: HasDataType): boolean {
+  if (hasData(previous) && hasData(current)) {
     if (typeof previous === "string" && typeof current === "string") {
       return previous.toLowerCase() !== current.toLowerCase();
     }
@@ -17,28 +18,28 @@ function isChanged<T>(app: App, previous: T, current: T): boolean {
       return !previous.isSame(current);
     }
 
-    app.log(
-      `[WARN] filterUpdatedCalendars/isChanged: Previous and current has values, but are not moment or string types -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current}). isChanged should be updated to handle this type properly.`
+    app.error(
+      `[ERROR] filterUpdatedCalendars/isChanged: Previous and current has values, but are not moment or string types -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current}). isChanged should be updated to handle this type properly.`
     );
     return false;
   }
 
-  if (hasData<T>(previous) && !hasData<T>(current)) {
+  if (hasData(previous) && !hasData(current)) {
     app.log(
-      `[WARN] filterUpdatedCalendars: Previous value had data but current value does not. This is probably a sync hiccup -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
+      `filterUpdatedCalendars: Previous value had data but current value does not. This can be a sync hiccup or correct -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
     );
-    return false;
+    return true;
   }
 
-  if (!hasData<T>(previous) && hasData<T>(current)) {
+  if (!hasData(previous) && hasData(current)) {
     app.log(
-      `[WARN] filterUpdatedCalendars: Previous value did not have data but current value does. This is probably a sync hiccup -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
+      `filterUpdatedCalendars: Previous value did not have data but current value does. This can be a sync hiccup or correct -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
     );
-    return false;
+    return true;
   }
 
-  app.error(
-    `[ERROR] filterUpdatedCalendars/isChanged: Both previous and current values are missing data. This should not happen -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
+  app.log(
+    `filterUpdatedCalendars/isChanged: Both previous and current values are missing data -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
   );
   return false;
 }
@@ -63,11 +64,11 @@ export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): 
       }
 
       const changed: CalendarPropertyChanged[] = [];
-      const summaryChanged: boolean = isChanged<string>(app, oldEvent.summary, newEvent.summary);
-      const startChanged: boolean = isChanged<Moment>(app, oldEvent.start, newEvent.start);
-      const endChanged: boolean = isChanged<Moment>(app, oldEvent.end, newEvent.end);
-      const descriptionChanged: boolean = isChanged<string>(app, oldEvent.description, newEvent.description);
-      const locationChanged: boolean = isChanged<string>(app, oldEvent.location, newEvent.location);
+      const summaryChanged: boolean = isChanged(app, oldEvent.summary, newEvent.summary);
+      const startChanged: boolean = isChanged(app, oldEvent.start, newEvent.start);
+      const endChanged: boolean = isChanged(app, oldEvent.end, newEvent.end);
+      const descriptionChanged: boolean = isChanged(app, oldEvent.description, newEvent.description);
+      const locationChanged: boolean = isChanged(app, oldEvent.location, newEvent.location);
 
       if (variableMgmt.dateTimeFormat?.long === undefined || variableMgmt.dateTimeFormat?.time === undefined) {
         app.error(

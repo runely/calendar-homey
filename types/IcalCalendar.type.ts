@@ -2,7 +2,7 @@ import type { Moment } from "moment";
 
 import type { VariableManagementCalendarEvent, VariableManagementLocalEvent } from "./VariableMgmt.type";
 
-export type BusyStatus = "FREE" | "TENTATIVE" | "BUSY" | "OOF";
+export type BusyStatus = "FREE" | "TENTATIVE" | "BUSY" | "OOF" | "WORKINGELSEWHERE";
 
 export type CalendarEventUid = {
   calendar: string;
@@ -24,6 +24,8 @@ export type CalendarMetaData = {
 
 export type ConditionCaller = "condition" | "changedEvent";
 
+export type ConvertToMinutesType = undefined | "1" | "2" | "3" | "4";
+
 export type EventDuration = {
   /** Humanized duration string */
   duration: string;
@@ -40,6 +42,12 @@ export type FallbackUri = {
 export type FilterMatcher = "contains" | "ends with" | "equal" | "starts with";
 
 export type FilterProperty = "description" | "location" | "summary" | "uid";
+
+export type HasDataFalsyType = undefined | null | string | [] | object;
+
+export type HasDataTruthyType = boolean | number | [] | string | object;
+
+export type HasDataType = HasDataFalsyType | HasDataTruthyType;
 
 export type IcalSettingEntry = {
   name: string;

@@ -2,6 +2,7 @@ import type { App } from "homey";
 import type { Moment } from "moment";
 import type { DateType } from "node-ical";
 
+import type { AppTests } from "../types/Homey.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
 import type { VariableManagement, VariableManagementLocalEvent } from "../types/VariableMgmt.type";
 
@@ -82,7 +83,7 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Vari
 };
 
 export const saveLocalEvents = (
-  app: App,
+  app: App | AppTests,
   variableMgmt: VariableManagement,
   events: VariableManagementLocalEvent[]
 ): void => {

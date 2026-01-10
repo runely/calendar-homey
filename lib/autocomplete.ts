@@ -1,13 +1,14 @@
 import type { App, FlowCard } from "homey";
 
+import type { AppTests } from "../types/Homey.type";
 import type { VariableManagement, VariableManagementCalendar } from "../types/VariableMgmt.type";
 
 import { filterByCalendar } from "./filter-by.js";
 
 export const calendarAutocomplete = (
-  app: App,
+  app: App | AppTests,
   variableMgmt: VariableManagement,
-  query: string
+  query: string | undefined
 ): FlowCard.ArgumentAutocompleteResults => {
   if (!variableMgmt.calendars || variableMgmt.calendars.length === 0) {
     app.log("[WARN] calendarAutocomplete: Calendars not set yet. Nothing to show...");

@@ -1,13 +1,14 @@
 import type { App } from "homey";
 import type { Moment } from "moment";
 
+import type { AppTests } from "../types/Homey.type";
 import type { TriggerEvent } from "../types/IcalCalendar.type";
 import type { VariableManagementCalendar, VariableManagementCalendarEvent } from "../types/VariableMgmt.type";
 
 import { getMomentNow } from "./moment-datetime.js";
 
 export const getEventsToTrigger = (
-  app: App,
+  app: App | AppTests,
   calendars: VariableManagementCalendar[],
   timezone: string
 ): TriggerEvent[] => {

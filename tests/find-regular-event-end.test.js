@@ -1,13 +1,13 @@
 'use strict'
 
-const momentInstance = require('moment-timezone')
-const { moment } = require('../lib/moment-datetime')
-const findEnd = require('../lib/find-regular-event-end')
+const momentInstance from 'moment-timezone')
+import { getMoment } from '../lib/moment-datetime.js';
+const findEnd from '../lib/find-regular-event-end')
 
 const events = [
   {
     start: '2021-11-02T06:45:00.000Z',
-    datetype: 'date-time',
+    dateType: 'date-time',
     end: '2021-11-02T07:15:00.000Z',
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
@@ -16,7 +16,7 @@ const events = [
   },
   {
     start: '2021-11-02T06:45:00.000Z',
-    datetype: 'date-time',
+    dateType: 'date-time',
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
     location: '',
@@ -24,7 +24,7 @@ const events = [
   },
   {
     start: '2021-11-02T00:00:00.000Z',
-    datetype: 'date',
+    dateType: 'date',
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
     location: '',
@@ -32,7 +32,7 @@ const events = [
   },
   {
     start: '2021-11-02T00:00:00.000Z',
-    datetype: 'date-time',
+    dateType: 'date-time',
     duration: 'P15DT5H0M20S',
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
@@ -41,7 +41,7 @@ const events = [
   },
   {
     start: '2021-11-02T00:00:00.000Z',
-    datetype: 'date',
+    dateType: 'date',
     duration: 'P15DT5H0M20S',
     uid: '11E28AB2-B778-40D2-A303-A62A43234321',
     description: '',
@@ -67,7 +67,7 @@ test('Event without end and duration will return start IF dateype is date-time',
 test('Event without end and duration will return (start + 1 day) IF dateype is date', () => {
   const event = events.find((e) => e.summary === 'Event without end and duration will return (start + 1 day) IF dateype is date')
   const end = findEnd({ event })
-  const tomorrow = moment({ date: event.start }).add(1, 'day').toISOString()
+  const tomorrow = getMoment({ date: event.start }).add(1, 'day').toISOString()
   expect(end instanceof momentInstance).toBe(true)
   expect(end.toISOString()).toBe(tomorrow)
 })

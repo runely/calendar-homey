@@ -4,12 +4,12 @@ import type { Moment } from "moment";
 import manifest from "../app.json";
 
 import type { HitCount, HitCountVariant } from "../types/HitCount.type";
-import type { FlowArgs, FlowTrigger } from "../types/Homey.type";
+import type { AppTests, FlowArgs, FlowTrigger } from "../types/Homey.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { getMoment } from "./moment-datetime";
 
-const generateLastTriggered = (app: App, variableMgmt: VariableManagement): string => {
+const generateLastTriggered = (app: App | AppTests, variableMgmt: VariableManagement): string => {
   if (!variableMgmt.dateTimeFormat) {
     app.error("[ERROR] hit-count/generateLastTriggered: Variable management initialization failed!");
     throw new Error("Variable management initialization failed");
@@ -20,16 +20,16 @@ const generateLastTriggered = (app: App, variableMgmt: VariableManagement): stri
   return now.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
 };
 
-const saveHitCountData = (app: App, variableMgmt: VariableManagement, data: HitCount[]): void => {
+const saveHitCountData = (app: App | AppTests, variableMgmt: VariableManagement, data: HitCount[]): void => {
   app.homey.settings.set(variableMgmt.hitCount.data, JSON.stringify(data));
 };
 
-export const getHitCountData = (app: App, variableMgmt: VariableManagement): HitCount[] | undefined => {
+export const getHitCountData = (app: App | AppTests, variableMgmt: VariableManagement): HitCount[] | undefined => {
   const temp: string | null = app.homey.settings.get(variableMgmt.hitCount.data);
   return !temp ? undefined : (JSON.parse(temp) as HitCount[]);
 };
 
-export const resetTodayHitCount = (app: App, variableMgmt: VariableManagement): void => {
+export const resetTodayHitCount = (app: App | AppTests, variableMgmt: VariableManagement): void => {
   const data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
 
   if (!data) {
@@ -50,7 +50,7 @@ export const resetTodayHitCount = (app: App, variableMgmt: VariableManagement): 
   app.log("resetTodayHitCount : Finished resetting today hit count");
 };
 
-export const setupHitCount = (app: App, variableMgmt: VariableManagement): void => {
+export const setupHitCount = (app: App | AppTests, variableMgmt: VariableManagement): void => {
   let data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
   const lang: string = app.homey.i18n.getLanguage() ?? "en";
 
@@ -88,7 +88,7 @@ export const setupHitCount = (app: App, variableMgmt: VariableManagement): void 
 };
 
 export const updateHitCount = (
-  app: App,
+  app: App | AppTests,
   variableMgmt: VariableManagement,
   id: string,
   args: undefined | FlowArgs = undefined
@@ -102,7 +102,7 @@ export const updateHitCount = (
     return;
   }
 
-  const trigger: HitCount | undefined = data.find(t => t.id === id);
+  const trigger: HitCount | undefined = data.find((t: HitCount) => t.id === id);
   if (!trigger) {
     app.log(`[WARN] updateHitCount : '${id}' doesnt exist as hit count data yet`);
     return;

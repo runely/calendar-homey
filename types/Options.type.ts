@@ -1,6 +1,7 @@
 import type { App } from "homey";
 import type { CalendarResponse } from "node-ical";
 
+import type { AppTests } from "./Homey.type";
 import type { CalendarEventUid } from "./IcalCalendar.type";
 import type {
   SettingEventLimit,
@@ -11,7 +12,7 @@ import type {
 } from "./VariableMgmt.type";
 
 export type FilterUpdatedCalendarsOptions = {
-  app: App;
+  app: App | AppTests;
   variableMgmt: VariableManagement;
   oldCalendars: VariableManagementCalendar[];
   newCalendars: VariableManagementCalendar[];
@@ -30,7 +31,7 @@ export type GetLocalActiveEventsOptions = {
   timezone: string;
   events: VariableManagementLocalJsonEvent[];
   eventLimit: SettingEventLimit;
-  app: App;
+  app: App | AppTests;
   logAllEvents: boolean;
 };
 
@@ -39,7 +40,7 @@ export type GetNewEventsOptions = {
   oldCalendarsUids: CalendarEventUid[];
   newCalendarsUids: CalendarEventUid[];
   calendarsEvents: VariableManagementCalendar[];
-  app: App;
+  app: App | AppTests;
 };
 
 export type MomentDateTimeOptions = {

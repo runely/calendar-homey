@@ -1,11 +1,9 @@
-import type { VEvent } from "node-ical";
-
-export const extractMeetingUrl = (event: VEvent): string | undefined => {
-  if (event.description === "") {
+export const extractMeetingUrl = (description: string): string | undefined => {
+  if (description.trim() === "") {
     return undefined;
   }
 
   const match: RegExpExecArray | null =
-    /https?:\/\/teams.microsoft.com\/l\/meetup-join\/[^>]+|https?:\/\/\S[^\n]+/.exec(event.description);
+    /https?:\/\/teams.microsoft.com\/l\/meetup-join\/[^>]+|https?:\/\/\S[^\n]+/.exec(description);
   return match ? match[0] : undefined;
 };

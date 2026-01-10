@@ -1,4 +1,6 @@
-export const convertToMinutes = (value: number, type: undefined | "1" | "2" | "3" | "4"): number => {
+import type { ConvertToMinutesType } from "../types/IcalCalendar.type";
+
+export const convertToMinutes = (value: number, type: ConvertToMinutesType): number => {
   // set type to default be Minutes
   if (type === undefined) {
     type = "1";

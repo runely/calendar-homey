@@ -1,10 +1,10 @@
 'use strict'
 
-const nodeIcal = require('node-ical')
-const moment = require('moment-timezone')
-const constructedApp = require('./lib/construct-app')
-const getActiveEvents = require('../lib/get-active-events')
-const { locale } = require('../locales/en.json')
+const nodeIcal from 'node-ical')
+const moment from 'moment-timezone')
+import { constructedApp } from './lib/construct-app.js';
+const getActiveEvents from '../lib/get-active-events')
+const { locale } from '../locales/en.json')
 
 const data = nodeIcal.sync.parseFile('./tests/data/calendar.ics')
 const invalidTimezone = nodeIcal.sync.parseFile('./tests/data/calendar-invalid-timezone.ics')
@@ -62,11 +62,11 @@ describe('getActiveEvents returns', () => {
   })
 
   test('an array where each object has a dateType property of type \'string\'', () => {
-    expect(typeof activeEvents[0].datetype).toBe('string')
+    expect(typeof activeEvents[0].dateType).toBe('string')
   })
 
   test('an array where each object has a dateType property with value \'date-time\'', () => {
-    expect(activeEvents[0].datetype).toBe('date-time')
+    expect(activeEvents[0].dateType).toBe('date-time')
   })
 
   test('an array where each object has a uid property of type \'string\'', () => {

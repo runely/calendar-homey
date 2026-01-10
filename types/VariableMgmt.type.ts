@@ -63,8 +63,8 @@ export type VariableManagementLocalJsonEvent = {
   fullDayEvent: boolean;
   skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
   // TODO: will this cause problems for already stored events?
-  freeBusy: string;
-  meetingUrl: string;
+  freeBusy?: string;
+  meetingUrl?: string;
   local: boolean;
   calendar: string;
 };

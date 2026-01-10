@@ -1,8 +1,9 @@
 import type { App } from "homey";
 
+import type { AppTests } from "../types/Homey.type";
 import type { FallbackUri } from "../types/IcalCalendar.type";
 
-export const getFallbackUri = (app: App, uri: string): FallbackUri => {
+export const getFallbackUri = (app: App | AppTests, uri: string): FallbackUri => {
   const protocolMatch: RegExpExecArray | null =
     /https:\/\//gi.exec(uri) || /http:\/\//gi.exec(uri) || /webcal:\/\//gi.exec(uri) || null;
   const protocol: string = protocolMatch && protocolMatch.length > 0 ? protocolMatch[0] : "";
