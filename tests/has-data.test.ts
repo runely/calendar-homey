@@ -1,10 +1,24 @@
+import { DateTime } from "luxon";
+
+import { createDateWithTimeZone } from "../lib/generate-event-object";
 import { hasData } from "../lib/has-data.js";
 
 import type { HasDataFalsyType, HasDataTruthyType } from "../types/IcalCalendar.type";
 
 const falsy: HasDataFalsyType[] = [undefined, null, [], {}];
 
-const truthy: HasDataTruthyType[] = [true, 0, 1, false, [1], { hey: "" }, "", "hey"];
+const truthy: HasDataTruthyType[] = [
+  true,
+  0,
+  1,
+  false,
+  [1],
+  { hey: "" },
+  "",
+  "hey",
+  DateTime.now(),
+  createDateWithTimeZone(new Date(), undefined)
+];
 
 describe("Return false", () => {
   falsy.forEach((value: HasDataFalsyType) => {
