@@ -58,7 +58,7 @@ const filterOutUnwantedEvents = (
     if (!event.rrule) {
       if (!hasData(event.start) || !hasData(event.end)) {
         app.error(
-          `[ERROR] - filterOutUnwantedEvents: Missing DTSTART and/or DTEND on non-recurring event UID '${event.uid}'. Skipping event.`
+          `[ERROR] - filterOutUnwantedEvents: Missing DTSTART (${event.start} (${event.start?.tz || "undefined TZ"})) and/or DTEND (${event.end} (${event.end?.tz || "undefined TZ"})) on non-recurring event UID '${event.uid}'. Skipping event.`
         );
         regularInvalidVEvents++;
         return false;
