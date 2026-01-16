@@ -24,7 +24,7 @@ import type { VariableManagement } from "./types/VariableMgmt.type";
 
 let variableMgmt: VariableManagement | null = null;
 
-class IcalCalendar extends Homey.App {
+export default class IcalCalendar extends Homey.App {
   /**
    * onInit is called when the app is initialized.
    */
@@ -364,5 +364,3 @@ class IcalCalendar extends Homey.App {
     variableMgmt.jobs = {};
   }
 }
-
-export default IcalCalendar;
