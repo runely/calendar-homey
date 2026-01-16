@@ -2,11 +2,11 @@ import { DateTime, type DateTimeMaybeValid, type ZoneOptions } from "luxon";
 
 import type { GetDateTimeOptions } from "../types/luxon.type";
 
-export function getZonedDateTime(
+export const getZonedDateTime = (
   dateTime: DateTime<true> | DateTime<false>,
   timezone: string,
   options?: ZoneOptions
-): DateTime<true> {
+): DateTime<true> => {
   if (!dateTime.isValid) {
     throw new Error(`getZonedDateTime: Invalid DateTime object. Cannot set zone. Reason: ${dateTime.invalidReason}`);
   }
@@ -17,9 +17,9 @@ export function getZonedDateTime(
   }
 
   return zonedDateTime as DateTime<true>;
-}
+};
 
-export function getDateTime(options: GetDateTimeOptions): DateTime<true> | null {
+export const getDateTime = (options: GetDateTimeOptions): DateTime<true> | null => {
   try {
     const isoString: string = options.dateWithTimeZone.toISOString().slice(0, -5);
 
@@ -82,4 +82,4 @@ export function getDateTime(options: GetDateTimeOptions): DateTime<true> | null 
 
     return null;
   }
-}
+};
