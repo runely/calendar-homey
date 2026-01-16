@@ -234,4 +234,4 @@ class MyDevice extends Device {
   }
 }
 
-export default MyDevice;
+module.exports = MyDevice;

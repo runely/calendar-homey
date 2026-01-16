@@ -27,4 +27,4 @@ class MyDriver extends Driver {
   }
 }
 
-export default MyDriver;
+module.exports = MyDriver;
