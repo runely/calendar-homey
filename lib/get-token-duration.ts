@@ -5,8 +5,8 @@ import type { AppTests } from "../types/Homey.type";
 import type { CalendarEvent, EventDuration } from "../types/IcalCalendar.type";
 
 export const getTokenDuration = (app: App | AppTests, event: CalendarEvent): EventDuration => {
-  const durationMS: number = event.end.diff(event.start, "milliseconds");
-  const durationMinutes: number = event.end.diff(event.start, "minutes");
+  const durationMS: number = event.end.diff(event.start, "milliseconds").milliseconds;
+  const durationMinutes: number = Math.round(event.end.diff(event.start, "minutes").minutes);
 
   return {
     duration: humanize(durationMS, {

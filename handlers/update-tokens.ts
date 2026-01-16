@@ -1,11 +1,12 @@
 import type { App, FlowToken } from "homey";
+import { DateTime } from "luxon";
 
 import { getNextEvent } from "../lib/get-next-event.js";
 import { getEventsToday } from "../lib/get-todays-events.js";
 import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getTokenEvents } from "../lib/get-token-events.js";
 import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { CalendarEventExtended, EventDuration, NextEvent } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
@@ -95,14 +96,14 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         await updateToken(
           app,
           tokenId,
-          nextEvent?.event ? nextEvent.event.start.format(variableMgmt.dateTimeFormat.long) : ""
+          nextEvent?.event ? nextEvent.event.start.toFormat(variableMgmt.dateTimeFormat.long) : ""
         );
       }
 
       if (tokenId === "event_next_startstamp") {
         if (nextEvent) {
           if (nextEvent.event.dateType === "date-time") {
-            await updateToken(app, tokenId, nextEvent.event.start.format(variableMgmt.dateTimeFormat.time));
+            await updateToken(app, tokenId, nextEvent.event.start.toFormat(variableMgmt.dateTimeFormat.time));
           }
 
           if (nextEvent.event.dateType === "date") {
@@ -117,14 +118,14 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         await updateToken(
           app,
           tokenId,
-          nextEvent?.event ? nextEvent.event.end.format(variableMgmt.dateTimeFormat.long) : ""
+          nextEvent?.event ? nextEvent.event.end.toFormat(variableMgmt.dateTimeFormat.long) : ""
         );
       }
 
       if (tokenId === "event_next_stopstamp") {
         if (nextEvent) {
           if (nextEvent.event.dateType === "date-time") {
-            await updateToken(app, tokenId, nextEvent.event.end.format(variableMgmt.dateTimeFormat.time));
+            await updateToken(app, tokenId, nextEvent.event.end.toFormat(variableMgmt.dateTimeFormat.time));
           }
 
           if (nextEvent.event.dateType === "date") {
@@ -178,7 +179,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
       }
 
       if (tokenId === "icalcalendar_week_number") {
-        await updateToken(app, tokenId, getMoment({ timezone }).isoWeek());
+        await updateToken(app, tokenId, getZonedDateTime(DateTime.now(), timezone).localWeekNumber);
       }
     } catch (error) {
       app.error("[ERROR] updateTokens: Failed to update flow token", tokenId, ":", error);
@@ -254,14 +255,14 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
 
         if (calendarType === "next_startdate") {
           value = calendarNextEvent?.event
-            ? calendarNextEvent.event.start.format(variableMgmt.dateTimeFormat.long)
+            ? calendarNextEvent.event.start.toFormat(variableMgmt.dateTimeFormat.long)
             : "";
         }
 
         if (calendarType === "next_starttime") {
           if (calendarNextEvent) {
             if (calendarNextEvent.event.dateType === "date-time") {
-              value = calendarNextEvent.event.start.format(variableMgmt.dateTimeFormat.time);
+              value = calendarNextEvent.event.start.toFormat(variableMgmt.dateTimeFormat.time);
             }
 
             if (calendarNextEvent.event.dateType === "date") {
@@ -273,13 +274,15 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         }
 
         if (calendarType === "next_enddate") {
-          value = calendarNextEvent?.event ? calendarNextEvent.event.end.format(variableMgmt.dateTimeFormat.long) : "";
+          value = calendarNextEvent?.event
+            ? calendarNextEvent.event.end.toFormat(variableMgmt.dateTimeFormat.long)
+            : "";
         }
 
         if (calendarType === "next_endtime") {
           if (calendarNextEvent) {
             if (calendarNextEvent.event.dateType === "date-time") {
-              value = calendarNextEvent.event.end.format(variableMgmt.dateTimeFormat.time);
+              value = calendarNextEvent.event.end.toFormat(variableMgmt.dateTimeFormat.time);
             }
 
             if (calendarNextEvent.event.dateType === "date") {
@@ -326,19 +329,19 @@ export const updateNextEventWithTokens = async (
         }
 
         if (tokenId.endsWith("_startdate")) {
-          await updateToken(app, tokenId, event.start.format(variableMgmt.dateTimeFormat.long));
+          await updateToken(app, tokenId, event.start.toFormat(variableMgmt.dateTimeFormat.long));
         }
 
         if (tokenId.endsWith("_starttime")) {
-          await updateToken(app, tokenId, event.start.format(variableMgmt.dateTimeFormat.time));
+          await updateToken(app, tokenId, event.start.toFormat(variableMgmt.dateTimeFormat.time));
         }
 
         if (tokenId.endsWith("_enddate")) {
-          await updateToken(app, tokenId, event.end.format(variableMgmt.dateTimeFormat.long));
+          await updateToken(app, tokenId, event.end.toFormat(variableMgmt.dateTimeFormat.long));
         }
 
         if (tokenId.endsWith("_endtime")) {
-          await updateToken(app, tokenId, event.end.format(variableMgmt.dateTimeFormat.time));
+          await updateToken(app, tokenId, event.end.toFormat(variableMgmt.dateTimeFormat.time));
         }
 
         if (tokenId.endsWith("_description")) {

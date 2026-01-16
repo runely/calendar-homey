@@ -1,4 +1,4 @@
-import type { AppTests } from "../../types/Homey.type";
+import type { AppTests, HomeyAppTestsFlowTriggerCard } from "../../types/Homey.type";
 
 export const constructedApp: AppTests = {
   error: console.error,
@@ -9,7 +9,14 @@ export const constructedApp: AppTests = {
       getTimezone: (): string => "Europe/Oslo"
     },
     flow: {
-      getTriggerCard: (_id: string): jest.Mock => jest.fn()
+      getTriggerCard: (_id: string): HomeyAppTestsFlowTriggerCard => {
+        return {
+          // biome-ignore lint/suspicious/noExplicitAny: Can be anything
+          trigger: async (_tokens?: object, _state?: object): Promise<any> => {
+            return Promise.resolve();
+          }
+        };
+      }
     },
     i18n: {
       getLanguage: (): string => "en"

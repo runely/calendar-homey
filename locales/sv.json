@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "sv",
-    "moment": "sv"
+    "luxon": "sv"
   },
   "humanize": {
     "conjunction": " och "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "Datum/Tid",
       "date": {
-        "description": "<b>Önskad datum-/tidsformat</b><br><br>Stöder alla tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Exempel: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>Önskad datum-/tidsformat</b><br><br>Stöder alla tokens i <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Exempel: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "Långt datumformat",
-        "default": "YY-MM-DD",
+        "default": "yy-MM-dd",
         "short_name": "Kort datumformat"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "Titel är ogiltig",
       "startInvalid": "Händelsestart är ogiltig",
-      "endInvalid": "Händelseslut är ogiltig"
+      "endInvalid": "Händelseslut är ogiltig",
+      "createEventError": "Fel vid skapande av händelse"
     },
     "delete_event_name": {
       "eventNotFoundOne": "Lokalt händelse med titel",

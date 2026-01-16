@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "fr",
-    "moment": "fr"
+    "luxon": "fr"
   },
   "humanize": {
     "conjunction": " et "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "Date/Heure",
       "date": {
-        "description": "<b>Format de date/heure souhaité</b><br><br>Prend en charge tous les jetons dans <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Example: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>Format de date/heure souhaité</b><br><br>Prend en charge tous les jetons dans <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Example: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "Format date longue",
-        "default": "DD/MM/YY",
+        "default": "dd/MM/yy",
         "short_name": "Format de date courte"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "Le titre n'est pas valide",
       "startInvalid": "Le début de l'événement n'est pas valide",
-      "endInvalid": "La fin de l'événement n'est pas valide"
+      "endInvalid": "La fin de l'événement n'est pas valide",
+      "createEventError": "Erreur lors de la création de l'événement"
     },
     "delete_event_name": {
       "eventNotFoundOne": "Événement local avec titre",

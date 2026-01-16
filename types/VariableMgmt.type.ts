@@ -1,5 +1,3 @@
-import type { DurationInputArg2 } from "moment";
-
 import type { Jobs } from "./Cron.type";
 import type { Calendar, LocalEvent } from "./IcalCalendar.type";
 
@@ -11,8 +9,28 @@ export type DateTimeFormat = {
 
 export type SettingEventLimit = {
   value: string;
-  type: DurationInputArg2;
+  type: SettingEventLimitType;
 };
+
+export type SettingEventLimitType =
+  | "year"
+  | "years"
+  | "quarter"
+  | "quarters"
+  | "month"
+  | "months"
+  | "week"
+  | "weeks"
+  | "day"
+  | "days"
+  | "hour"
+  | "hours"
+  | "minute"
+  | "minutes"
+  | "second"
+  | "seconds"
+  | "millisecond"
+  | "milliseconds";
 
 export type SettingHitCount = {
   data: string;

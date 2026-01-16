@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "da",
-    "moment": "da"
+    "luxon": "da"
   },
   "humanize": {
     "conjunction": " og "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "Dato/Tid",
       "date": {
-        "description": "<b>Ønsket dato/tid format</b><br><br>Understøtter alle tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Eksempel: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>Ønsket dato/tid format</b><br><br>Understøtter alle tokens i <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Eksempel: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "Lang dato format",
-        "default": "MM/DD/YY",
+        "default": "MM/dd/yy",
         "short_name": "Kort dato format"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "Titlen er ugyldig",
       "startInvalid": "Event start er ugyldig",
-      "endInvalid": "Event slut er ugyldig"
+      "endInvalid": "Event slut er ugyldig",
+      "createEventError": "Fejl ved oprettelse af aftale"
     },
     "delete_event_name": {
       "eventNotFoundOne": "Lokal event med titel",

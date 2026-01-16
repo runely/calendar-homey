@@ -7,7 +7,7 @@ Konfiguracja
     - Wybierz, czy chcesz automatyczną synchronizację kalendarza (domyślnie włączona) (jeśli wyłączona, synchronizacja musi być przeprowadzona za pomocą karty przepływu)
     - Wybierz interwał automatycznej synchronizacji kalendarza (domyślnie co 15 minut)
     - Zmień format daty/godziny lub użyj domyślnego (twoje wybór)
-        - Wszystkie tokeny wspierane w "moment.format()" są również wspierane tutaj: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Wszystkie tokeny wspierane w "luxon.toFormat()" są również wspierane tutaj: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Wybierz, czy chcesz tagi następnego wydarzenia na kalendarz. Domyślnie wyłączone
 - Aby otrzymywać powiadomienia o błędach synchronizacji, utwórz przepływ używając wyzwalacza "Wystąpił błąd synchronizacji"
 

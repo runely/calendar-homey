@@ -1,4 +1,4 @@
-import type { Moment } from "moment";
+import type { DateTime } from "luxon";
 import type { DateType } from "node-ical";
 
 export type BusyStatus = "FREE" | "TENTATIVE" | "BUSY" | "OOF" | "WORKINGELSEWHERE";
@@ -9,16 +9,15 @@ export type Calendar = {
 };
 
 export type CalendarEvent = {
-  start: Moment;
+  start: DateTime<true>;
   dateType: DateType;
-  end: Moment;
+  end: DateTime<true>;
   uid: string;
   description: string;
   location: string;
   summary: string;
-  created?: Moment;
+  created?: DateTime<true>;
   fullDayEvent: boolean;
-  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
   freeBusy?: BusyStatus;
   meetingUrl?: string;
   local: boolean;
@@ -44,8 +43,8 @@ export type CalendarEventPropertyChanged = {
 export type CalendarMetaData = {
   name: string;
   eventCount: number;
-  lastFailedSync?: Moment;
-  lastSuccessfullSync?: Moment;
+  lastFailedSync?: DateTime<true>;
+  lastSuccessfullSync?: DateTime<true>;
 };
 
 export type ConditionCaller = "condition" | "changedEvent";
@@ -75,6 +74,11 @@ export type HasDataTruthyType = boolean | number | [] | string | object;
 
 export type HasDataType = HasDataFalsyType | HasDataTruthyType;
 
+export type IcalOccurence = {
+  occurenceStart: DateTime<true>;
+  lookupKey: string;
+};
+
 export type IcalSettingEntry = {
   name: string;
   uri: string;
@@ -96,7 +100,6 @@ export type LocalJsonEvent = {
   summary: string;
   created?: string;
   fullDayEvent: boolean;
-  skipTZ: boolean; // TODO: this will be removed when Moment is swapped out for luxon
   // TODO: will this cause problems for already stored events?
   freeBusy?: string;
   meetingUrl?: string;

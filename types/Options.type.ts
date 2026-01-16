@@ -1,5 +1,5 @@
 import type { App } from "homey";
-import type { CalendarResponse } from "node-ical";
+import type { CalendarResponse, VEvent } from "node-ical";
 
 import type { AppTests } from "./Homey.type";
 import type { Calendar, CalendarEvent, CalendarEventUid, LocalJsonEvent } from "./IcalCalendar.type";
@@ -13,7 +13,8 @@ export type FilterUpdatedCalendarsOptions = {
 };
 
 export type GetActiveEventsOptions = {
-  app: App;
+  app: App | AppTests;
+  variableMgmt: VariableManagement;
   timezone: string;
   data: CalendarResponse;
   eventLimit: SettingEventLimit;
@@ -68,9 +69,9 @@ export type NextEventValueOptions = {
 };
 
 export type TriggerSynchronizationErrorOptions = {
-  app: App;
+  app: App | AppTests;
   variableMgmt: VariableManagement;
   calendar: string;
   error: Error | string;
-  event?: CalendarEvent;
+  event?: CalendarEvent | VEvent;
 };

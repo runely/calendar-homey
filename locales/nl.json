@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "nl",
-    "moment": "nl"
+    "luxon": "nl"
   },
   "humanize": {
     "conjunction": " en "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "Datum/Tijd",
       "date": {
-        "description": "<b>Gewenste datum-/tijdnotatie</b><br><br>Ondersteunt alle tokens in <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Voorbeeld: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>Gewenste datum-/tijdnotatie</b><br><br>Ondersteunt alle tokens in <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Voorbeeld: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "Lange datumnotatie",
-        "default": "DD-MM-YY",
+        "default": "dd-MM-yy",
         "short_name": "Korte datumnotatie"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "Titel is ongeldig",
       "startInvalid": "Start van evenement is ongeldig",
-      "endInvalid": "Einde van evenement is ongeldig"
+      "endInvalid": "Einde van evenement is ongeldig",
+      "createEventError": "Fout bij het aanmaken van afspraak"
     },
     "delete_event_name": {
       "eventNotFoundOne": "Lokaal evenement met titel",

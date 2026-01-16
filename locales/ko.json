@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "ko",
-    "moment": "ko"
+    "luxon": "ko"
   },
   "humanize": {
     "conjunction": " 및 "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "날짜/시간",
       "date": {
-        "description": "<b>원하는 날짜/시간 형식</b><br><br>모든 토큰을 지원합니다 <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>예: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>원하는 날짜/시간 형식</b><br><br>모든 토큰을 지원합니다 <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>예: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "긴 날짜 형식",
-        "default": "MM/DD/YY",
+        "default": "MM/dd/yy",
         "short_name": "짧은 날짜 형식"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "제목이 유효하지 않습니다",
       "startInvalid": "이벤트 시작이 유효하지 않습니다",
-      "endInvalid": "이벤트 종료가 유효하지 않습니다"
+      "endInvalid": "이벤트 종료가 유효하지 않습니다",
+      "createEventError": "일정 생성 중 오류가 발생했습니다"
     },
     "delete_event_name": {
       "eventNotFoundOne": "제목이 있는 로컬 이벤트",

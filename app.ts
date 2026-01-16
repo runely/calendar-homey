@@ -3,7 +3,7 @@ import sourceMapSupport from "source-map-support";
 sourceMapSupport.install();
 
 import Homey from "homey";
-import type { Moment } from "moment";
+import { DateTime } from "luxon";
 
 import { addJob, isValidCron } from "./handlers/cron.js";
 import { getEvents } from "./handlers/get-events.js";
@@ -16,7 +16,7 @@ import { updateTokens } from "./handlers/update-tokens.js";
 
 import { getDateTimeFormat } from "./lib/get-datetime-format.js";
 import { resetTodayHitCount } from "./lib/hit-count.js";
-import { getMoment } from "./lib/moment-datetime.js";
+import { getZonedDateTime } from "./lib/luxon-fns";
 import { varMgmt } from "./lib/variable-management.js";
 
 import type { SyncInterval } from "./types/IcalCalendar.type";
@@ -210,8 +210,8 @@ class IcalCalendar extends Homey.App {
           throw new Error("Variable management initialization failed");
         }
 
-        const now: Moment = getMoment({ timezone: this.homey.clock.getTimezone() });
-        if (now.get("hours") === 0 && now.get("minutes") === 0) {
+        const now: DateTime<true> = getZonedDateTime(DateTime.now(), this.homey.clock.getTimezone());
+        if (now.hour === 0 && now.minute === 0) {
           resetTodayHitCount(this, variableMgmt);
         }
 

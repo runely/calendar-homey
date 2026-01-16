@@ -1,7 +1,11 @@
+import { DateTime } from "luxon";
+
 import { getTokenDuration } from "../lib/get-token-duration.js";
-import { getMoment } from "../lib/moment-datetime.js";
+
 import locale from "../locales/en.json";
+
 import type { CalendarEvent, EventDuration } from "../types/IcalCalendar.type";
+
 import { constructedApp } from "./lib/construct-app.js";
 
 const {
@@ -21,32 +25,30 @@ constructedApp.homey.__ = (prop: string): string => {
 };
 
 const event: CalendarEvent = {
-  start: getMoment(),
+  start: DateTime.now(),
   dateType: "date-time",
-  end: getMoment().add(1, "hours"),
+  end: DateTime.now().plus({ hour: 1 }),
   uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
   description: "Desc",
   location: "",
   summary: "startNow",
   created: undefined,
   fullDayEvent: false,
-  skipTZ: true,
   freeBusy: undefined,
   meetingUrl: undefined,
   local: false
 };
 
 const eventLong: CalendarEvent = {
-  start: getMoment(),
+  start: DateTime.now(),
   dateType: "date-time",
-  end: getMoment().add(15789, "minutes"),
+  end: DateTime.now().plus({ minutes: 15789 }),
   uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
   description: "Desc",
   location: "",
   summary: "startNow",
   created: undefined,
   fullDayEvent: false,
-  skipTZ: true,
   freeBusy: undefined,
   meetingUrl: undefined,
   local: false

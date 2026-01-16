@@ -1,5 +1,7 @@
+import { DateTime } from "luxon";
+
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 import { varMgmt } from "../lib/variable-management";
 import locale from "../locales/en.json";
 
@@ -25,7 +27,7 @@ const variableMgmt: VariableManagement = {
   ...varMgmt,
   dateTimeFormat: {
     long,
-    short: "MM/DD",
+    short: "MM/dd",
     time
   }
 };
@@ -45,15 +47,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "nothingChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
           description: "Desc",
           location: "",
           summary: "Nothing changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -64,15 +65,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "startChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8842",
           description: "Desc",
           location: "",
           summary: "Start changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -83,15 +83,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "endChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8843",
           description: "Desc",
           location: "",
           summary: "End changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -102,15 +101,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "descriptionChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8844",
           description: "Desc",
           location: "",
           summary: "Description changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -121,15 +119,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "locationChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8845",
           description: "Desc",
           location: "",
           summary: "Location changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -140,15 +137,14 @@ const oldCalendars: UpdatedCalendars = {
       name: "summaryChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8846",
           description: "Desc",
           location: "",
           summary: "Summary changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -162,15 +158,14 @@ const newCalendars: UpdatedCalendars = {
       name: "nothingChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
           description: "Desc",
           location: "",
           summary: "Nothing changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -181,15 +176,14 @@ const newCalendars: UpdatedCalendars = {
       name: "startChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T19:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T19:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8842",
           description: "Desc",
           location: "",
           summary: "Start changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -200,15 +194,14 @@ const newCalendars: UpdatedCalendars = {
       name: "endChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T22:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T22:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8843",
           description: "Desc",
           location: "",
           summary: "End changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -219,15 +212,14 @@ const newCalendars: UpdatedCalendars = {
       name: "descriptionChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8844",
           description: "",
           location: "",
           summary: "Description changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -238,15 +230,14 @@ const newCalendars: UpdatedCalendars = {
       name: "locationChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8845",
           description: "Desc",
           location: "Loc, 9867 Station",
           summary: "Location changed",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]
@@ -257,15 +248,14 @@ const newCalendars: UpdatedCalendars = {
       name: "summaryChanged",
       events: [
         {
-          start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+          start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
           dateType: "date-time",
-          end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+          end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
           uid: "F7177A32-DBD4-46A9-85C7-669749EA8846",
           description: "Desc",
           location: "",
           summary: "Summary changed again",
           fullDayEvent: false,
-          skipTZ: true,
           local: false
         }
       ]

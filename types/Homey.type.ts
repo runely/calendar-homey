@@ -1,5 +1,5 @@
 import type { FlowCard } from "homey";
-import type { Moment } from "moment";
+import type { DateTime } from "luxon";
 
 export type AppTests = {
   // biome-ignore lint/suspicious/noExplicitAny: Can be anything
@@ -10,7 +10,7 @@ export type AppTests = {
 };
 
 export type EventAutoCompleteResult = FlowCard.ArgumentAutocompleteResults[0] & {
-  start: Moment;
+  start: DateTime<true>;
 };
 
 export type FlowTrigger = {
@@ -38,7 +38,12 @@ type HomeyAppTestsClock = {
 };
 
 type HomeyAppTestsFlow = {
-  getTriggerCard: (id: string) => jest.Mock;
+  getTriggerCard: (id: string) => HomeyAppTestsFlowTriggerCard;
+};
+
+export type HomeyAppTestsFlowTriggerCard = {
+  // biome-ignore lint/suspicious/noExplicitAny: Can be anything
+  trigger: (tokens?: object | undefined, state?: object | undefined) => Promise<any>;
 };
 
 type HomeyAppTestsI18n = {

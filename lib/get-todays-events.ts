@@ -1,8 +1,6 @@
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
-
-import { getMomentNow } from "./moment-datetime.js";
+import { getZonedDateTime } from "./luxon-fns";
 import { sortEvents } from "./sort-events.js";
 
 export const getEventsToday = (
@@ -11,7 +9,6 @@ export const getEventsToday = (
   specificCalendarName?: string
 ): CalendarEventExtended[] => {
   const eventsToday: CalendarEventExtended[] = [];
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
 
   calendars.forEach((calendar: Calendar) => {
     if (specificCalendarName && specificCalendarName !== calendar.name) {
@@ -19,10 +16,10 @@ export const getEventsToday = (
     }
 
     calendar.events.forEach((event: CalendarEvent) => {
-      const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const startDiff: number = now.diff(event.start);
-      const endDiff: number = now.diff(event.end);
-      const startIsSameDay: boolean = event.start.isSame(now, "day");
+      const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+      const startDiff: number = now.diff(event.start, "milliseconds").milliseconds;
+      const endDiff: number = now.diff(event.end, "milliseconds").milliseconds;
+      const startIsSameDay: boolean = event.start.hasSame(now, "day");
 
       const todayNotStartedYet: boolean = startDiff < 0 && startIsSameDay;
       const todayAlreadyStarted: boolean = startDiff > 0 && startIsSameDay && endDiff < 0;

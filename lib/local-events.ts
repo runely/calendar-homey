@@ -1,47 +1,71 @@
 import type { App } from "homey";
-import type { Moment } from "moment";
+import { DateTime, Duration } from "luxon";
 import type { DateType } from "node-ical";
-
 import type { AppTests } from "../types/Homey.type";
 import type { LocalEvent } from "../types/IcalCalendar.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
-
-import { findRegularLocalEventEnd } from "./find-regular-event-end.js";
-import { getMoment, getMomentNow } from "./moment-datetime.js";
+import { createDateWithTimeZone } from "./generate-event-object";
+import { getDateTime, getZonedDateTime } from "./luxon-fns";
 
 export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): LocalEvent[] => {
   const { timezone, events, eventLimit, app, logAllEvents } = options;
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
-  const eventLimitStart: Moment = getMoment({ timezone }).startOf("day");
-  const eventLimitEnd: Moment = getMoment({ timezone })
+  const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+  const eventLimitStart: DateTime<true> = getZonedDateTime(DateTime.now(), timezone).startOf("day");
+  const eventLimitEnd: DateTime<true> = getZonedDateTime(DateTime.now(), timezone)
     .endOf("day")
-    .add(Number.parseInt(eventLimit.value, 10), eventLimit.type);
+    .plus(Duration.fromObject({ [eventLimit.type]: eventLimit.value }));
   const activeEvents: LocalEvent[] = [];
 
   for (const event of events) {
-    const now: Moment = event.skipTZ ? momentNowUtcOffset : momentNowRegular;
+    const start: DateTime<true> | null = getDateTime({
+      app,
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), timezone),
+      localTimeZone: timezone,
+      fullDayEvent: event.dateType === "date",
+      keepOriginalZonedTime: false,
+      quiet: !logAllEvents
+    });
+    const end: DateTime<true> | null = getDateTime({
+      app,
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), timezone),
+      localTimeZone: timezone,
+      fullDayEvent: event.dateType === "date",
+      keepOriginalZonedTime: false,
+      quiet: !logAllEvents
+    });
+    const created: DateTime<true> | null = !event.created
+      ? null
+      : getDateTime({
+          app,
+          dateWithTimeZone: createDateWithTimeZone(new Date(event.created), timezone),
+          localTimeZone: timezone,
+          fullDayEvent: event.dateType === "date",
+          keepOriginalZonedTime: false,
+          quiet: !logAllEvents
+        });
 
-    /*const startDate: Date = new Date(event.start as string);
-    const endDate: Date = new Date(event.end as string);*/
-    const start: Moment = event.skipTZ
-      ? getMoment({ date: event.start as string })
-      : getMoment({ timezone, date: event.start as string });
-    const end: Moment = event.skipTZ ? findRegularLocalEventEnd(event) : findRegularLocalEventEnd(event, timezone);
-    const created: Moment = getMoment({ timezone, date: event.created as string });
+    if (!start || !end) {
+      app.error(
+        `[ERROR] - getLocalActiveEvents: Invalid start or end date for event '${event.summary}' (${event.uid}). Skipping event.`
+      );
+      continue;
+    }
+
     const dateType: DateType = event.dateType as DateType;
+    const startDiff: number = now.diff(start, "seconds").seconds;
+    const endDiff: number = now.diff(end, "seconds").seconds;
+    const betweenLimit: boolean =
+      start.diff(eventLimitStart, "seconds").seconds >= 0 && start.diff(eventLimitEnd, "seconds").seconds <= 0;
 
     // only add event if
     //    end hasn't happened yet AND start is between eventLimitStart and eventLimitEnd
     // ||
     //    start has happened AND end hasn't happened yet (ongoing)
-    if (
-      (now.diff(end, "seconds") < 0 && start.isBetween(eventLimitStart, eventLimitEnd)) ||
-      (now.diff(start, "seconds") > 0 && now.diff(end, "seconds") < 0)
-    ) {
+    if ((endDiff < 0 && betweenLimit) || (startDiff > 0 && endDiff < 0)) {
       if (logAllEvents) {
         if (event.dateType === "date") {
-          // Regular full day event: Summary -- Start -- End -- Original Start UTC string -- UID
+          // Regular full day event: Summary -- Start -- End -- Original Start UTC string -- TZ -- UID
           app.log(
             "Local regular full day event:",
             event.summary,
@@ -50,7 +74,8 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
             "--",
             end,
             "--",
-            event.start as string,
+            event.start,
+            `-- TZ:${timezone}`,
             "--",
             event.uid
           );
@@ -64,8 +89,8 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
             "--",
             end,
             "--",
-            event.start as string,
-            `-- TZ:${event.skipTZ ? "missing/invalid" : timezone}`,
+            event.start,
+            `-- TZ:${timezone}`,
             "--",
             event.uid
           );
@@ -73,10 +98,13 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
       }
 
       // set start and end with correct locale (supports only the languages in the locales folder!)
-      start.locale(app.homey.__("locale.moment"));
-      end.locale(app.homey.__("locale.moment"));
-
-      activeEvents.push({ ...event, start, end, created, dateType: dateType } as LocalEvent);
+      activeEvents.push({
+        ...event,
+        start: start.setLocale(app.homey.__("locale.luxon")),
+        end: end.setLocale(app.homey.__("locale.luxon")),
+        created,
+        dateType
+      } as LocalEvent);
     }
   }
 

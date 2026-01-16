@@ -1,9 +1,12 @@
 import deepClone from "lodash.clonedeep";
+
 import { getHitCountData, resetTodayHitCount, setupHitCount, updateHitCount } from "../lib/hit-count.js";
 import { varMgmt } from "../lib/variable-management";
+
 import type { HitCount, HitCountVariant } from "../types/HitCount.type";
 import type { AppTests } from "../types/Homey.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
+
 import data from "./data/hit-count-data.json";
 import { constructedApp } from "./lib/construct-app.js";
 
@@ -12,6 +15,13 @@ const dataAsText: string = JSON.stringify(data);
 let runtimeData: HitCount[] = JSON.parse(dataAsText);
 
 const app: AppTests = deepClone(constructedApp);
+app.homey.__ = (prop: string): string => {
+  if (prop === "locale.luxon") {
+    return "en";
+  }
+
+  return prop;
+};
 app.homey.i18n.getLanguage = (): string => "no";
 app.homey.settings.get = (path: string): string => {
   console.debug("GET : path", path);
@@ -24,8 +34,8 @@ app.homey.settings.set = (path: string, data: string): void => {
 
 const appVariableMgmt: VariableManagement = deepClone(varMgmt);
 appVariableMgmt.dateTimeFormat = {
-  long: "ddd DD.MM.YY",
-  short: "DD.MM",
+  long: "ccc dd.MM.yy",
+  short: "dd.MM",
   time: "HH:mm"
 };
 appVariableMgmt.hitCount = {

@@ -1,4 +1,5 @@
 import type { App, FlowToken } from "homey";
+import { DateTime } from "luxon";
 import iCal, { type CalendarResponse } from "node-ical";
 
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
@@ -12,7 +13,7 @@ import { getEventUids } from "../lib/get-event-uids.js";
 import { getFallbackUri } from "../lib/get-fallback-uri.js";
 import { getNewEvents } from "../lib/get-new-events.js";
 import { getLocalActiveEvents, saveLocalEvents } from "../lib/local-events.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
 import type {
@@ -168,7 +169,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: 0,
-          lastFailedSync: getMoment({ timezone: app.homey.clock.getTimezone() })
+          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
         });
 
         // set a failed setting value to show an error message on settings page
@@ -198,8 +199,9 @@ export const getEvents = async (
         app.log(
           `getEvents: Events for calendar '${name}' retrieved. Total entry count for calendar: ${Object.keys(data).length}. Time used: ${getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`
         );
-        const activeEvents: CalendarEvent[] = getActiveEvents({
+        const activeEvents: CalendarEvent[] = await getActiveEvents({
           app,
+          variableMgmt,
           timezone: app.homey.clock.getTimezone(),
           data,
           eventLimit,
@@ -213,7 +215,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: activeEvents.length,
-          lastSuccessfullSync: getMoment({ timezone: app.homey.clock.getTimezone() })
+          lastSuccessfullSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
         });
       } catch (error) {
         const errorString: string | undefined =
@@ -231,7 +233,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: 0,
-          lastFailedSync: getMoment({ timezone: app.homey.clock.getTimezone() })
+          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
         });
 
         // set a failed setting value to show an error message on settings page

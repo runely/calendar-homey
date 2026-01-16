@@ -1,22 +1,18 @@
 import type { App } from "homey";
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { AppTests } from "../types/Homey.type";
 import type { Calendar, CalendarEvent, TriggerEvent } from "../types/IcalCalendar.type";
-
-import { getMomentNow } from "./moment-datetime.js";
+import { getZonedDateTime } from "./luxon-fns";
 
 export const getEventsToTrigger = (app: App | AppTests, calendars: Calendar[], timezone: string): TriggerEvent[] => {
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
-
   const events: TriggerEvent[] = [];
   calendars.forEach((calendar: Calendar) => {
     const calendarName: string = calendar.name;
     app.log(`getEventsToTrigger: Checking calendar '${calendarName}' for events to trigger`);
     calendar.events.forEach((event: CalendarEvent) => {
-      const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const startDiff: number = now.diff(event.start, "seconds");
-      const endDiff: number = now.diff(event.end, "seconds");
+      const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+      const startDiff: number = now.diff(event.start, "seconds").seconds;
+      const endDiff: number = now.diff(event.end, "seconds").seconds;
 
       const resultStart: boolean = startDiff >= 0 && startDiff <= 55 && endDiff <= 0;
       const resultEnd: boolean = endDiff >= 0 && endDiff <= 55;
@@ -54,7 +50,7 @@ export const getEventsToTrigger = (app: App | AppTests, calendars: Calendar[], t
       }
 
       if (resultStartInCheck) {
-        const startsIn: number = Math.round(event.start.diff(now, "minutes", true));
+        const startsIn: number = Math.round(event.start.diff(now, "minutes").minutes);
         events.push({
           calendarName,
           event,
@@ -64,7 +60,7 @@ export const getEventsToTrigger = (app: App | AppTests, calendars: Calendar[], t
       }
 
       if (resultEndInCheck) {
-        const endsIn: number = Math.round(event.end.diff(now, "minutes", true));
+        const endsIn: number = Math.round(event.end.diff(now, "minutes").minutes);
         events.push({
           calendarName,
           event,

@@ -1,5 +1,5 @@
 import type { App } from "homey";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 import type { AppTests } from "../types/Homey.type";
 import type { Calendar, CalendarEvent, CalendarEventPropertyChanged, HasDataType } from "../types/IcalCalendar.type";
@@ -13,12 +13,12 @@ function isChanged(app: App | AppTests, previous: HasDataType, current: HasDataT
       return previous.toLowerCase() !== current.toLowerCase();
     }
 
-    if (moment.isMoment(previous) && moment.isMoment(current)) {
-      return !previous.isSame(current);
+    if (DateTime.isDateTime(previous) && DateTime.isDateTime(current)) {
+      return !previous.equals(current);
     }
 
     app.error(
-      `[ERROR] filterUpdatedCalendars/isChanged: Previous and current has values, but are not moment or string types -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current}). isChanged should be updated to handle this type properly.`
+      `[ERROR] filterUpdatedCalendars/isChanged: Previous and current has values, but are not luxon or string types -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current}). isChanged should be updated to handle this type properly.`
     );
     return false;
   }
@@ -87,16 +87,16 @@ export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): 
       if (startChanged) {
         changed.push({
           type: app.homey.__("triggers.event_changed.start"),
-          previousValue: `${oldEvent.start.format(variableMgmt.dateTimeFormat.long)} ${oldEvent.start.format(variableMgmt.dateTimeFormat.time)}`,
-          newValue: `${newEvent.start.format(variableMgmt.dateTimeFormat.long)} ${newEvent.start.format(variableMgmt.dateTimeFormat.time)}`
+          previousValue: `${oldEvent.start.toFormat(variableMgmt.dateTimeFormat.long)} ${oldEvent.start.toFormat(variableMgmt.dateTimeFormat.time)}`,
+          newValue: `${newEvent.start.toFormat(variableMgmt.dateTimeFormat.long)} ${newEvent.start.toFormat(variableMgmt.dateTimeFormat.time)}`
         });
       }
 
       if (endChanged) {
         changed.push({
           type: app.homey.__("triggers.event_changed.end"),
-          previousValue: `${oldEvent.end.format(variableMgmt.dateTimeFormat.long)} ${oldEvent.end.format(variableMgmt.dateTimeFormat.time)}`,
-          newValue: `${newEvent.end.format(variableMgmt.dateTimeFormat.long)} ${newEvent.end.format(variableMgmt.dateTimeFormat.time)}`
+          previousValue: `${oldEvent.end.toFormat(variableMgmt.dateTimeFormat.long)} ${oldEvent.end.toFormat(variableMgmt.dateTimeFormat.time)}`,
+          newValue: `${newEvent.end.toFormat(variableMgmt.dateTimeFormat.long)} ${newEvent.end.toFormat(variableMgmt.dateTimeFormat.time)}`
         });
       }
 

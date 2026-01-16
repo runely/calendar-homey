@@ -1,5 +1,6 @@
+import { DateTime } from "luxon";
+
 import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
-import { getMoment } from "../lib/moment-datetime";
 
 import type { Calendar, TriggerEvent } from "../types/IcalCalendar.type";
 
@@ -10,31 +11,29 @@ const calendars: Calendar[] = [
     name: "events",
     events: [
       {
-        start: getMoment(),
+        start: DateTime.now(),
         dateType: "date-time",
-        end: getMoment().add(1, "hours"),
+        end: DateTime.now().plus({ hour: 1 }),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
         description: "Desc",
         location: "",
         summary: "startNow",
         created: undefined,
         fullDayEvent: false,
-        skipTZ: true,
         freeBusy: undefined,
         meetingUrl: undefined,
         local: false
       },
       {
-        start: getMoment().subtract(1, "hour"),
+        start: DateTime.now().minus({ hour: 1 }),
         dateType: "date-time",
-        end: getMoment(),
+        end: DateTime.now(),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8842",
         description: "Desc",
         location: "",
         summary: "stopNow",
         created: undefined,
         fullDayEvent: false,
-        skipTZ: true,
         freeBusy: undefined,
         meetingUrl: undefined,
         local: false
@@ -45,31 +44,29 @@ const calendars: Calendar[] = [
     name: "events2",
     events: [
       {
-        start: getMoment().add(2, "hours"),
+        start: DateTime.now().plus({ hour: 2 }),
         dateType: "date-time",
-        end: getMoment().add(3, "hours"),
+        end: DateTime.now().plus({ hour: 3 }),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8843",
         description: "Desc",
         location: "",
         summary: "Future2",
         created: undefined,
         fullDayEvent: false,
-        skipTZ: true,
         freeBusy: undefined,
         meetingUrl: undefined,
         local: false
       },
       {
-        start: getMoment().subtract(2, "hours"),
+        start: DateTime.now().minus({ hour: 2 }),
         dateType: "date-time",
-        end: getMoment().subtract(1, "hours"),
+        end: DateTime.now().minus({ hour: 1 }),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8844",
         description: "Desc",
         location: "",
         summary: "Future",
         created: undefined,
         fullDayEvent: false,
-        skipTZ: true,
         freeBusy: undefined,
         meetingUrl: undefined,
         local: false

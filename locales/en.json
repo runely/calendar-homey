@@ -1,7 +1,7 @@
 {
   "locale": {
     "humanize": "en",
-    "moment": "en"
+    "luxon": "en"
   },
   "humanize": {
     "conjunction": " and "
@@ -41,9 +41,9 @@
     "datetime": {
       "legend": "Date/Time",
       "date": {
-        "description": "<b>Wanted date/time format</b><br><br>Supports all tokens in <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Example: <i>dddd, DD.MM.YYYY</i>",
+        "description": "<b>Wanted date/time format</b><br><br>Supports all tokens in <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Example: <i>cccc, dd.MM.yyyy</i>",
         "long_name": "Long date format",
-        "default": "MM/DD/YY",
+        "default": "MM/dd/yy",
         "short_name": "Short date format"
       },
       "time": {
@@ -151,7 +151,8 @@
     "new_event": {
       "titleInvalid": "Title is invalid",
       "startInvalid": "Event start is invalid",
-      "endInvalid": "Event end is invalid"
+      "endInvalid": "Event end is invalid",
+      "createEventError": "Error creating event"
     },
     "delete_event_name": {
       "eventNotFoundOne": "Local event with title",

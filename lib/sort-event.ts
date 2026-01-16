@@ -5,5 +5,5 @@ export const sortEvent = (
   a: CalendarEventExtended | CalendarEvent | EventAutoCompleteResult,
   b: CalendarEventExtended | CalendarEvent | EventAutoCompleteResult
 ): number => {
-  return a.start.toDate().getTime() - b.start.toDate().getTime();
+  return a.start.toMillis() - b.start.toMillis();
 };

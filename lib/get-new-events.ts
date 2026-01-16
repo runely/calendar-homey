@@ -1,18 +1,16 @@
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { Calendar, CalendarEvent, CalendarEventExtended, CalendarEventUid } from "../types/IcalCalendar.type";
 import type { GetNewEventsOptions } from "../types/Options.type";
+import { getZonedDateTime } from "./luxon-fns";
 
-import { getMoment } from "./moment-datetime";
-
-const isEventNew = (timezone: string, created: Moment | undefined): boolean => {
+const isEventNew = (timezone: string, created: DateTime<true> | undefined): boolean => {
   if (!created) {
     return false;
   }
 
   const oneDay: number = 86400000;
-  const now: Moment = getMoment({ timezone });
-  return now.toDate().getTime() - created.toDate().getTime() < oneDay;
+  const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+  return now.toMillis() - created.toMillis() < oneDay;
 };
 
 export const getNewEvents = (options: GetNewEventsOptions): CalendarEventExtended[] => {

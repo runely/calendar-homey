@@ -1,11 +1,11 @@
 import type { App, FlowCard, FlowCardCondition } from "homey";
-import type { Moment } from "moment";
+import { DateTime } from "luxon";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
 import { convertToMinutes } from "../lib/convert-to-minutes.js";
 import { filterByCalendar, filterByProperty, filterBySummary, filterByUID } from "../lib/filter-by.js";
 import { getNextEventValue } from "../lib/get-next-event-value.js";
-import { getMomentNow } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 import { sortEvent } from "../lib/sort-event.js";
 
 import type { EventAutoCompleteResult } from "../types/Homey.type";
@@ -161,8 +161,6 @@ const getEventList = (
     return eventList;
   }
 
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
-
   calendars.forEach((calendar: Calendar) => {
     calendar.events.forEach((event: CalendarEvent) => {
       if (!variableMgmt.dateTimeFormat) {
@@ -170,35 +168,35 @@ const getEventList = (
         return;
       }
 
-      const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
+      const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
       let startStamp: string = "";
       let endStamp: string = "";
-      const startMoment: Moment = event.start;
-      const endMoment: Moment = event.end;
 
       try {
         if (event.dateType === "date-time") {
-          startStamp = startMoment.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
+          startStamp = event.start.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
 
-          if (endMoment.isSame(startMoment, "date")) {
-            endStamp = endMoment.format(variableMgmt.dateTimeFormat.time);
+          if (event.end.hasSame(event.start, "day")) {
+            endStamp = event.end.toFormat(variableMgmt.dateTimeFormat.time);
           } else {
-            endStamp = endMoment.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
+            endStamp = event.end.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
           }
         }
 
         if (event.dateType === "date") {
-          startStamp = startMoment.format(variableMgmt.dateTimeFormat.long);
+          startStamp = event.start.toFormat(variableMgmt.dateTimeFormat.long);
 
-          if (endMoment.isSame(now, "year")) {
-            endStamp = endMoment.isSame(startMoment, "date") ? "" : endMoment.format(variableMgmt.dateTimeFormat.long);
+          if (event.end.hasSame(now, "year")) {
+            endStamp = event.end.hasSame(event.start, "day")
+              ? ""
+              : event.end.toFormat(variableMgmt.dateTimeFormat.long);
           } else {
-            endStamp = endMoment.format(variableMgmt.dateTimeFormat.long);
+            endStamp = event.end.toFormat(variableMgmt.dateTimeFormat.long);
           }
         }
       } catch (error) {
         app.error(
-          `[ERROR] getEventList: Failed to parse 'start' (${startMoment}) or 'end' (${endMoment}):`,
+          `[ERROR] getEventList: Failed to parse 'start' (${event.start}) or 'end' (${event.end}):`,
           error,
           event
         );

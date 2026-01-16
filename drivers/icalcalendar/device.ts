@@ -1,6 +1,7 @@
 import { Device } from "homey";
+import { DateTime } from "luxon";
 
-import { getMoment } from "../../lib/moment-datetime.js";
+import { getZonedDateTime } from "../../lib/luxon-fns";
 import { varMgmt } from "../../lib/variable-management.js";
 
 import type { CalendarMetaData, IcalSettingEntry } from "../../types/IcalCalendar.type";
@@ -150,10 +151,10 @@ class MyDevice extends Device {
       if (this.hasCapability(lastSuccessfulSyncLoop)) {
         await this.updateCapabilityValue(
           lastSuccessfulSyncLoop,
-          getMoment({
-            timezone: this.homey.clock.getTimezone(),
-            date: calendar.lastSuccessfullSync?.toISOString() || "01.01.1970 00:00:00"
-          }).format("DD.MM.YYYY HH:mm:ss")
+          getZonedDateTime(
+            DateTime.fromISO(calendar.lastSuccessfullSync?.toISO() || "01.01.1970 00:00:00"),
+            this.homey.clock.getTimezone()
+          ).toFormat("dd.MM.yyyy HH:mm:ss")
         );
       } else {
         this.log("[WARN] updateCalendarsMetadata -", lastSuccessfulSyncLoop, "capability doesnt exist yet....");

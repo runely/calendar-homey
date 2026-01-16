@@ -1,9 +1,7 @@
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 import type { NextEventValueOptions } from "../types/Options.type";
-
-import { getMomentNow } from "./moment-datetime.js";
+import { getZonedDateTime } from "./luxon-fns";
 
 const typeContaining = (type: string, event: CalendarEvent, value: string): boolean => {
   if (!(type in event)) {
@@ -22,7 +20,6 @@ const typeContaining = (type: string, event: CalendarEvent, value: string): bool
 export const getNextEventValue = (options: NextEventValueOptions): CalendarEventExtended | null => {
   const { timezone, calendars, specificCalendarName, value, eventType, type } = options;
   const types: string[] = ["summary"];
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   let minutesUntil: number = 1057885015800000;
   let nextEvent: CalendarEventExtended | null = null;
 
@@ -40,8 +37,9 @@ export const getNextEventValue = (options: NextEventValueOptions): CalendarEvent
     });
 
     calendarEvents.forEach((event: CalendarEvent) => {
-      const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const diff: number = Math.round((eventType === "starts" ? event.start : event.end).diff(now, "minutes", true));
+      const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+      const dateTime: DateTime<true> = eventType === "starts" ? event.start : event.end;
+      const diff: number = Math.round(dateTime.diff(now, "minutes").minutes);
 
       if (!(diff >= 0 && diff < minutesUntil)) {
         return;

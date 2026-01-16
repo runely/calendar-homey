@@ -1,15 +1,12 @@
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { Calendar, CalendarEvent, NextEvent } from "../types/IcalCalendar.type";
-
-import { getMomentNow } from "./moment-datetime.js";
+import { getZonedDateTime } from "./luxon-fns";
 
 export const getNextEvent = (
   timezone: string,
   calendars: Calendar[],
   specificCalendarName?: string
 ): NextEvent | null => {
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   let minutesUntilStart: number = 1057885015800000;
   let nextEvent: NextEvent | null = null;
 
@@ -19,9 +16,9 @@ export const getNextEvent = (
     }
 
     calendar.events.forEach((event: CalendarEvent) => {
-      const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-      const startDiff: number = Math.round(event.start.diff(now, "minutes", true));
-      const endDiff: number = Math.round(event.end.diff(now, "minutes", true));
+      const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+      const startDiff: number = Math.round(event.start.diff(now, "minutes").minutes);
+      const endDiff: number = Math.round(event.end.diff(now, "minutes").minutes);
 
       if (!(startDiff >= 0 && startDiff < minutesUntilStart)) {
         return;

@@ -1,6 +1,8 @@
+import { DateTime } from "luxon";
 import type { DateWithTimeZone, VEvent } from "node-ical";
+
 import { fromEvent, newEvent } from "../lib/generate-event-object.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
 
@@ -75,13 +77,16 @@ describe("fromEvent", () => {
   test("Returns correct object when event is UTC", () => {
     const result: CalendarEvent = fromEvent(
       constructedApp,
-      getMoment({ date: utcEvent.start.toISOString() }),
-      getMoment({ date: utcEvent.end.toISOString() }),
+      getZonedDateTime(
+        DateTime.fromJSDate(utcEvent.start, { zone: utcEvent.start.tz || "utc" }),
+        utcEvent.start.tz || "utc"
+      ),
+      getZonedDateTime(DateTime.fromJSDate(utcEvent.end, { zone: utcEvent.end.tz || "utc" }), utcEvent.end.tz || "utc"),
       timezone,
       utcEvent
     );
+
     expect(result.fullDayEvent).toBe(false);
-    expect(result.skipTZ).toBe(true);
     expect(result.freeBusy).toBe("WORKINGELSEWHERE");
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBe(false);
@@ -90,13 +95,16 @@ describe("fromEvent", () => {
   test("Returns correct object when event has TZ", () => {
     const result: CalendarEvent = fromEvent(
       constructedApp,
-      getMoment({ date: tzEvent.start.toISOString(), timezone }),
-      getMoment({ date: tzEvent.end.toISOString(), timezone }),
+      getZonedDateTime(
+        DateTime.fromJSDate(tzEvent.start, { zone: tzEvent.start.tz || "utc" }),
+        tzEvent.start.tz || "utc"
+      ),
+      getZonedDateTime(DateTime.fromJSDate(tzEvent.end, { zone: tzEvent.end.tz || "utc" }), tzEvent.end.tz || "utc"),
       timezone,
       tzEvent
     );
+
     expect(result.fullDayEvent).toBe(false);
-    expect(result.skipTZ).toBe(true);
     expect(result.freeBusy).toBe("BUSY");
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBe(false);
@@ -111,7 +119,7 @@ describe("newEvent", () => {
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
     const calendarName: string = "TestCal";
-    const result: LocalEvent = newEvent(constructedApp, timezone, {
+    const result: LocalEvent | null = newEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,
@@ -120,15 +128,19 @@ describe("newEvent", () => {
       calendar: calendarName
     });
 
-    expect(result.start.get("hours")).toBe(12);
-    expect(result.end.get("hours")).toBe(14);
+    if (!result) {
+      expect(result).not.toBeNull();
+      throw new Error("Result is null");
+    }
+
+    expect(result.start.hour).toBe(12);
+    expect(result.end.hour).toBe(14);
     expect(result.uid).toBe(`local_${start}`);
     expect(result.description).toBe(description);
     expect(result.location).toBe("");
     expect(result.summary).toBe(title);
     expect(result.created).toBeTruthy();
     expect(result.fullDayEvent).toBeFalsy();
-    expect(result.skipTZ).toBeTruthy();
     expect(result.freeBusy).toBe(undefined);
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBeTruthy();
@@ -142,7 +154,7 @@ describe("newEvent", () => {
     const end: string = "2023-04-06T14:00:00";
     const applyTimezone: boolean = true;
     const calendarName: string = "TestCal";
-    const result: LocalEvent = newEvent(constructedApp, timezone, {
+    const result: LocalEvent | null = newEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,
@@ -151,16 +163,19 @@ describe("newEvent", () => {
       calendar: calendarName
     });
 
-    // TODO: Commented out until luxon migration is done
-    /*expect(result.start.get("hours")).toBe(14);
-    expect(result.end.get("hours")).toBe(16);*/
+    if (!result) {
+      expect(result).not.toBeNull();
+      throw new Error("Result is null");
+    }
+
+    expect(result.start.hour).toBe(14);
+    expect(result.end.hour).toBe(16);
     expect(result.uid).toBe(`local_${start}`);
     expect(result.description).toBe(description);
     expect(result.location).toBe("");
     expect(result.summary).toBe(title);
     expect(result.created).toBeTruthy();
     expect(result.fullDayEvent).toBeFalsy();
-    expect(result.skipTZ).toBeFalsy();
     expect(result.freeBusy).toBe(undefined);
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBeTruthy();

@@ -60,7 +60,11 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error(app.homey.__("actions.new_event.endInvalid"));
     }
 
-    const event: LocalEvent = newEvent(app, app.homey.clock.getTimezone(), args);
+    const event: LocalEvent | null = newEvent(app, app.homey.clock.getTimezone(), args);
+    if (event === null) {
+      throw new Error(app.homey.__("actions.new_event.createEventError"));
+    }
+
     app.log("new_event: Adding event", event);
     const calendar: Calendar | undefined = variableMgmt.calendars.find((c: Calendar) => c.name === event.calendar);
     if (!calendar) {
@@ -170,14 +174,14 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
 
     const eventDuration: EventDuration = getTokenDuration(app, event);
     return {
-      event_start: event.start.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`),
-      event_end: event.end.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`),
+      event_start: event.start.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`),
+      event_end: event.end.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`),
       event_uid: event.uid,
       event_name: getTokenValue(event.summary),
       event_description: getTokenValue(event.description),
       event_location: getTokenValue(event.location),
       event_created: event.created
-        ? event.created.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`)
+        ? event.created.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`)
         : "",
       event_fullday_event: event.fullDayEvent,
       event_duration_readable: eventDuration.duration,

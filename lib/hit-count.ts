@@ -1,5 +1,5 @@
 import type { App } from "homey";
-import type { Moment } from "moment";
+import { DateTime } from "luxon";
 
 import manifest from "../app.json";
 
@@ -7,7 +7,7 @@ import type { HitCount, HitCountVariant } from "../types/HitCount.type";
 import type { AppTests, FlowArgs, FlowTrigger } from "../types/Homey.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 
-import { getMoment } from "./moment-datetime";
+import { getZonedDateTime } from "./luxon-fns";
 
 const generateLastTriggered = (app: App | AppTests, variableMgmt: VariableManagement): string => {
   if (!variableMgmt.dateTimeFormat) {
@@ -15,9 +15,10 @@ const generateLastTriggered = (app: App | AppTests, variableMgmt: VariableManage
     throw new Error("Variable management initialization failed");
   }
 
-  const now: Moment = getMoment({ timezone: app.homey.clock.getTimezone() });
-  now.locale(app.homey.__("locale.moment"));
-  return now.format(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
+  const now: DateTime<true> = getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).setLocale(
+    app.homey.__("locale.luxon")
+  );
+  return now.toFormat(`${variableMgmt.dateTimeFormat.long} ${variableMgmt.dateTimeFormat.time}`);
 };
 
 const saveHitCountData = (app: App | AppTests, variableMgmt: VariableManagement, data: HitCount[]): void => {

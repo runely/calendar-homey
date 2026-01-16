@@ -1,5 +1,7 @@
+import { DateTime } from "luxon";
+
 import { filterByCalendar, filterByProperty, filterByUID } from "../lib/filter-by.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { Calendar } from "../types/IcalCalendar.type";
 
@@ -8,39 +10,36 @@ const calendars: Calendar[] = [
     name: "CalendarOne",
     events: [
       {
-        start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
         uid: "cal_one_One",
         description: "One - 1",
         location: "One - 1",
         summary: "One - 1",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2021-11-06T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-06T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-06T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-06T21:00:00.000Z"), "utc"),
         uid: "cal_one_Two",
         description: "Two - 1",
         location: "Two - 1",
         summary: "Two - 1",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2021-11-06T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-06T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-06T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-06T21:00:00.000Z"), "utc"),
         uid: "cal_one_Three",
         description: "",
         location: "",
         summary: "",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       }
     ]
@@ -49,39 +48,36 @@ const calendars: Calendar[] = [
     name: "CalendarTwo",
     events: [
       {
-        start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
         uid: "cal_two_One",
         description: "One - 2",
         location: "One - 2",
         summary: "One - 2",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2021-11-06T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-06T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-06T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-06T21:00:00.000Z"), "utc"),
         uid: "cal_two_Two",
         description: "Two - 2",
         location: "Two - 2",
         summary: "Two - 2",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2021-11-06T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-06T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-06T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-06T21:00:00.000Z"), "utc"),
         uid: "cal_two_Four",
         description: "",
         location: "",
         summary: "",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       }
     ]

@@ -132,10 +132,10 @@ export const triggerChangedCalendars = async (
               ? isEventOngoing(app, app.homey.clock.getTimezone(), [event.oldEvent], "changedEvent")
               : false,
             event_ongoing: isEventOngoing(app, app.homey.clock.getTimezone(), [event], "changedEvent"),
-            event_start_date: event.start.format(variableMgmt.dateTimeFormat.long),
-            event_start_time: event.start.format(variableMgmt.dateTimeFormat.time),
-            event_end_date: event.end.format(variableMgmt.dateTimeFormat.long),
-            event_end_time: event.end.format(variableMgmt.dateTimeFormat.time),
+            event_start_date: event.start.toFormat(variableMgmt.dateTimeFormat.long),
+            event_start_time: event.start.toFormat(variableMgmt.dateTimeFormat.time),
+            event_end_date: event.end.toFormat(variableMgmt.dateTimeFormat.long),
+            event_end_time: event.end.toFormat(variableMgmt.dateTimeFormat.time),
             event_duration_readable: eventDuration.duration,
             event_duration: eventDuration.durationMinutes
           };
@@ -238,13 +238,13 @@ export const triggerEvents = async (
           return;
         }
 
-        tokens.event_start_date = event.start.format(variableMgmt.dateTimeFormat.long);
-        tokens.event_start_time = event.start.format(variableMgmt.dateTimeFormat.time);
-        tokens.event_end_date = event.end.format(variableMgmt.dateTimeFormat.long);
-        tokens.event_end_time = event.end.format(variableMgmt.dateTimeFormat.time);
-        tokens.event_weekday_readable = capitalize(event.start.format("dddd"));
-        tokens.event_month_readable = capitalize(event.start.format("MMMM"));
-        tokens.event_date_of_month = event.start.get("date");
+        tokens.event_start_date = event.start.toFormat(variableMgmt.dateTimeFormat.long);
+        tokens.event_start_time = event.start.toFormat(variableMgmt.dateTimeFormat.time);
+        tokens.event_end_date = event.end.toFormat(variableMgmt.dateTimeFormat.long);
+        tokens.event_end_time = event.end.toFormat(variableMgmt.dateTimeFormat.time);
+        tokens.event_weekday_readable = capitalize(event.start.toFormat("cccc"));
+        tokens.event_month_readable = capitalize(event.start.toFormat("MMMM"));
+        tokens.event_date_of_month = event.start.day;
       }
 
       // trigger flow card

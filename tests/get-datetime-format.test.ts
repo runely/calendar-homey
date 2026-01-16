@@ -22,43 +22,43 @@ constructedApp.homey.settings.set = (prop: string, value: string): void => conso
 const dateTimeFormatUndefined: VariableManagement = JSON.parse(JSON.stringify(varMgmt));
 
 const dateTimeFormatLegacy: VariableManagement = JSON.parse(JSON.stringify(varMgmt));
-dateTimeFormatLegacy.setting.dateFormat = "DD.MM.YYYY";
+dateTimeFormatLegacy.setting.dateFormat = "dd.MM.yyyy";
 dateTimeFormatLegacy.setting.timeFormat = "HH.mm";
 
 const dateTimeFormatShortUndefined: VariableManagement = JSON.parse(JSON.stringify(varMgmt));
-dateTimeFormatShortUndefined.setting.dateFormat = "DD.MM.YYYY";
-dateTimeFormatShortUndefined.setting.dateFormatLong = "DD-MM-YY";
+dateTimeFormatShortUndefined.setting.dateFormat = "dd.MM.yyyy";
+dateTimeFormatShortUndefined.setting.dateFormatLong = "dd-MM-yy";
 dateTimeFormatShortUndefined.setting.timeFormat = "HH.mm";
 
 const dateTimeFormat: VariableManagement = JSON.parse(JSON.stringify(varMgmt));
-dateTimeFormat.setting.dateFormat = "DD.MM.YYYY";
-dateTimeFormat.setting.dateFormatLong = "DD-MM-YY";
-dateTimeFormat.setting.dateFormatShort = "DD.MM";
+dateTimeFormat.setting.dateFormat = "dd.MM.yyyy";
+dateTimeFormat.setting.dateFormatLong = "dd-MM-yy";
+dateTimeFormat.setting.dateFormatShort = "dd.MM";
 dateTimeFormat.setting.timeFormat = "HH.mm";
 
 describe("Date format is correct when", () => {
   test("Default format is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
-    expect(format.short).toBe("MM/DD");
-    expect(format.long).toBe("MM/DD/YY");
+    expect(format.short).toBe("MM/dd");
+    expect(format.long).toBe("MM/dd/yy");
   });
 
   test("Legacy format from settings is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatLegacy);
-    expect(format.short).toBe("DD.MM");
-    expect(format.long).toBe("DD.MM.YYYY");
+    expect(format.short).toBe("dd.MM");
+    expect(format.long).toBe("dd.MM.yyyy");
   });
 
   test("Format from settings is used, short is undefined", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatShortUndefined);
-    expect(format.short).toBe("DD-MM");
-    expect(format.long).toBe("DD-MM-YY");
+    expect(format.short).toBe("dd-MM");
+    expect(format.long).toBe("dd-MM-yy");
   });
 
   test("Format from settings is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
-    expect(format.short).toBe("DD.MM");
-    expect(format.long).toBe("DD-MM-YY");
+    expect(format.short).toBe("dd.MM");
+    expect(format.long).toBe("dd-MM-yy");
   });
 });
 

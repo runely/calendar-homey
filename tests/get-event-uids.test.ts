@@ -1,5 +1,7 @@
+import { DateTime } from "luxon";
+
 import { getEventUids } from "../lib/get-event-uids.js";
-import { getMoment } from "../lib/moment-datetime.js";
+import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { Calendar, CalendarEventUid } from "../types/IcalCalendar.type";
 
@@ -8,27 +10,25 @@ const calendars: Calendar[] = [
     name: "events",
     events: [
       {
-        start: getMoment({ date: "2021-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2021-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2021-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2021-11-05T21:00:00.000Z"), "utc"),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8841",
         description: "Desc",
         location: "",
         summary: "Past",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2041-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2041-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2041-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2041-11-05T21:00:00.000Z"), "utc"),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8842",
         description: "Desc",
         location: "",
         summary: "Future",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       }
     ]
@@ -37,27 +37,25 @@ const calendars: Calendar[] = [
     name: "events2",
     events: [
       {
-        start: getMoment({ date: "2040-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2040-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2040-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2040-11-05T21:00:00.000Z"), "utc"),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8843",
         description: "Desc",
         location: "",
         summary: "Future2",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       },
       {
-        start: getMoment({ date: "2041-11-05T20:00:00.000Z" }),
+        start: getZonedDateTime(DateTime.fromISO("2041-11-05T20:00:00.000Z"), "utc"),
         dateType: "date-time",
-        end: getMoment({ date: "2041-11-05T21:00:00.000Z" }),
+        end: getZonedDateTime(DateTime.fromISO("2041-11-05T21:00:00.000Z"), "utc"),
         uid: "F7177A32-DBD4-46A9-85C7-669749EA8842",
         description: "Desc",
         location: "",
         summary: "Future",
         fullDayEvent: false,
-        skipTZ: true,
         local: false
       }
     ]

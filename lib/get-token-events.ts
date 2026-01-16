@@ -1,10 +1,8 @@
 import type { App } from "homey";
-import type { Moment } from "moment";
-
+import { DateTime } from "luxon";
 import type { CalendarEventExtended } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
-
-import { getMomentNow } from "./moment-datetime.js";
+import { getZonedDateTime } from "./luxon-fns";
 
 export const getTokenEvents = (
   app: App,
@@ -12,7 +10,6 @@ export const getTokenEvents = (
   timezone: string,
   events: CalendarEventExtended[]
 ): string => {
-  const { momentNowRegular, momentNowUtcOffset } = getMomentNow(timezone);
   let value: string = "";
 
   events.forEach((event: CalendarEventExtended) => {
@@ -21,16 +18,16 @@ export const getTokenEvents = (
       throw new Error("Variable Management Date Time Format is not defined");
     }
 
-    const now: Moment = event.fullDayEvent || event.skipTZ ? momentNowUtcOffset : momentNowRegular;
-    let eventValue: string = "";
+    const now: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+    let eventValue: string;
 
     if (event.dateType === "date-time") {
-      if (event.start.isSame(event.end, "day")) {
-        eventValue = `${event.summary}; ${event.start.format(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.format(variableMgmt.dateTimeFormat.time)}`;
-      } else if (event.start.isSame(event.end, "year")) {
-        eventValue = `${event.summary}; ${!event.start.isSame(now, "day") && !event.end.isSame(now, "day") ? app.homey.__("flowTokens.events_today-tomorrow_startstamp_fullday") : `${event.start.format(variableMgmt.dateTimeFormat.short)} ${event.start.format(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.format(variableMgmt.dateTimeFormat.short)} ${event.end.format(variableMgmt.dateTimeFormat.time)}`}`;
+      if (event.start.hasSame(event.end, "day")) {
+        eventValue = `${event.summary}; ${event.start.toFormat(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.toFormat(variableMgmt.dateTimeFormat.time)}`;
+      } else if (event.start.hasSame(event.end, "year")) {
+        eventValue = `${event.summary}; ${!event.start.hasSame(now, "day") && !event.end.hasSame(now, "day") ? app.homey.__("flowTokens.events_today-tomorrow_startstamp_fullday") : `${event.start.toFormat(variableMgmt.dateTimeFormat.short)} ${event.start.toFormat(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.toFormat(variableMgmt.dateTimeFormat.short)} ${event.end.toFormat(variableMgmt.dateTimeFormat.time)}`}`;
       } else {
-        eventValue = `${event.summary}; ${!event.start.isSame(now, "day") && !event.end.isSame(now, "day") ? app.homey.__("flowTokens.events_today-tomorrow_startstamp_fullday") : `${event.start.format(variableMgmt.dateTimeFormat.long)} ${event.start.format(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.format(variableMgmt.dateTimeFormat.long)} ${event.end.format(variableMgmt.dateTimeFormat.time)}`}`;
+        eventValue = `${event.summary}; ${!event.start.hasSame(now, "day") && !event.end.hasSame(now, "day") ? app.homey.__("flowTokens.events_today-tomorrow_startstamp_fullday") : `${event.start.toFormat(variableMgmt.dateTimeFormat.long)} ${event.start.toFormat(variableMgmt.dateTimeFormat.time)} ${app.homey.__("flowTokens.events_today-tomorrow_start-stop_stamps_pre")} ${event.end.toFormat(variableMgmt.dateTimeFormat.long)} ${event.end.toFormat(variableMgmt.dateTimeFormat.time)}`}`;
       }
 
       if (value === "") {
