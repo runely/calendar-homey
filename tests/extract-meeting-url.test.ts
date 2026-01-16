@@ -38,6 +38,11 @@ describe("'undefined' is returned when", () => {
     expect(result).toBeUndefined();
   });
 
+  test("'undefined' is passed in", () => {
+    const result: string | undefined = extractMeetingUrl(undefined);
+    expect(result).toBeUndefined();
+  });
+
   test("a string without a meeting url is passed in", () => {
     const result: string | undefined = extractMeetingUrl("Welcome to the meeting. There is no link here.");
     expect(result).toBeUndefined();
