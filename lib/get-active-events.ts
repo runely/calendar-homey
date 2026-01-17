@@ -245,6 +245,23 @@ const getRecurrenceDates = (
   );
 };
 
+const shouldKeepOriginalZonedTime = (
+  event: VEvent,
+  eventTimezone: string | undefined,
+  localTimezone: string
+): boolean => {
+  if ("APPLE-CREATOR-IDENTITY" in event) {
+    // NOTE: Apple Calendar needs special handling here because they store the timeZoned time as local time
+    return true;
+  }
+
+  /* NOTE: Exchange Calendar uses Windows timezones and node-ical replaces them with IANA timezones.
+           Exchange Calendar stores the timeZoned time as local time, same as with Apple Calendar.
+           Interesting to see if this breaks any timezone conversion out there.
+  */
+  return eventTimezone !== localTimezone;
+};
+
 export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<CalendarEvent[]> => {
   const { app, variableMgmt, calendarName, data, eventLimit, logAllEvents, timezone } = options;
   const eventLimitStart: DateTime<true> = getZonedDateTime(DateTime.now(), timezone).startOf("day");
@@ -281,7 +298,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
       dateWithTimeZone: event.start,
       localTimeZone: timezone,
       fullDayEvent: event.datetype === "date",
-      keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezoned time as local time
+      keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.start.tz, timezone),
       quiet: !logAllEvents
     });
     const endDate: DateTime<true> | null = getDateTime({
@@ -289,7 +306,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
       dateWithTimeZone: event.end,
       localTimeZone: timezone,
       fullDayEvent: event.datetype === "date",
-      keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezoned time as local time
+      keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.end.tz, timezone),
       quiet: !logAllEvents
     });
 
@@ -352,7 +369,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
             dateWithTimeZone: createDateWithTimeZone(currentEvent.start, currentEvent.start.tz || undefined),
             localTimeZone: timezone,
             fullDayEvent: event.datetype === "date",
-            keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezoned time as local time
+            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.start.tz, timezone),
             quiet: !logAllEvents
           });
 
@@ -361,7 +378,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
             dateWithTimeZone: createDateWithTimeZone(currentEvent.end, currentEvent.end.tz || undefined),
             localTimeZone: timezone,
             fullDayEvent: event.datetype === "date",
-            keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezoned time as local time
+            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.end.tz, timezone),
             quiet: !logAllEvents
           });
 
