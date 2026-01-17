@@ -58,7 +58,7 @@ const filterOutUnwantedEvents = (
     if (!event.rrule) {
       if (!hasData(event.start) || !hasData(event.end)) {
         app.error(
-          `[ERROR] - filterOutUnwantedEvents: Missing DTSTART (${event.start} (${event.start?.tz || "undefined TZ"})) and/or DTEND (${event.end} (${event.end?.tz || "undefined TZ"})) on non-recurring event UID '${event.uid}'. Skipping event.`
+          `[ERROR] - getActiveEvents/filterOutUnwantedEvents: Missing DTSTART (${event.start} (${event.start?.tz || "undefined TZ"})) and/or DTEND (${event.end} (${event.end?.tz || "undefined TZ"})) on non-recurring event UID '${event.uid}'. Skipping event.`
         );
         regularInvalidVEvents++;
         return false;
@@ -90,7 +90,7 @@ const filterOutUnwantedEvents = (
     const untilString: string | undefined = untilMatch[1];
     if (!untilString) {
       app.log(
-        `[WARN] - filterOutUnwantedEvents: UNTIL string extraction failed for event UID '${event.uid}'. Skipping event.`
+        `[WARN] - getActiveEvents/filterOutUnwantedEvents: UNTIL string extraction failed for event UID '${event.uid}'. Skipping event.`
       );
       recurringVEventsWithoutUntil++;
       return false;
@@ -99,7 +99,7 @@ const filterOutUnwantedEvents = (
     const untilDateTime: DateTimeMaybeValid = DateTime.fromFormat(untilString, "yyyyMMdd'T'HHmmss", { zone: "utc" });
     if (!untilDateTime.isValid) {
       app.log(
-        `[WARN] - filterOutUnwantedEvents: UNTIL date parsing failed for event UID '${event.uid}'. Skipping event. Reason: ${untilDateTime.invalidReason}`
+        `[WARN] - getActiveEvents/filterOutUnwantedEvents: UNTIL date parsing failed for event UID '${event.uid}'. Skipping event. Reason: ${untilDateTime.invalidReason}`
       );
       recurringVEventsWithoutUntil++;
       return false;
@@ -122,7 +122,7 @@ const filterOutUnwantedEvents = (
 
   if (logAllEvents) {
     app.log(
-      `[WARN] - filterOutUnwantedEvents: Filtered out events numbers -- nonVEvents: ${nonVEvents} -- regularInvalidVEvents: ${regularInvalidVEvents} -- regularVEventsPast: ${regularVEventsPast} -- recurringVEventsWithPastUntil: ${recurringVEventsWithPastUntil} -- recurringVEventsWithoutUntil: ${recurringVEventsWithoutUntil} -- regularVEventsInside: ${regularVEventsInside} -- recurringVEventsWithFutureUntil: ${recurringVEventsWithFutureUntil}. Totally filtered from ${events.length} to ${filteredEvents.length} events.`
+      `getActiveEvents/filterOutUnwantedEvents: Filtered out events numbers -- nonVEvents: ${nonVEvents} -- regularInvalidVEvents: ${regularInvalidVEvents} -- regularVEventsPast: ${regularVEventsPast} -- recurringVEventsWithPastUntil: ${recurringVEventsWithPastUntil} -- recurringVEventsWithoutUntil: ${recurringVEventsWithoutUntil} -- regularVEventsInside: ${regularVEventsInside} -- recurringVEventsWithFutureUntil: ${recurringVEventsWithFutureUntil}. Totally filtered from ${events.length} to ${filteredEvents.length} events.`
     );
   }
 
@@ -152,7 +152,7 @@ const getRecurrenceDates = (
       });
       if (!occurence) {
         app.log(
-          `[WARN] - getRecurrenceDates: Invalid occurrence date for event UID '${event.uid}'. Skipping this occurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Invalid occurrence date for event UID '${event.uid}'. Skipping this occurrence.`
         );
         continue;
       }
@@ -162,21 +162,21 @@ const getRecurrenceDates = (
       const lookupKey: string | null = occurenceUtc.toISODate();
       if (!occurenceStamp || !lookupKey) {
         app.log(
-          `[WARN] - getRecurrenceDates: Invalid occurrenceStamp or lookupKey for event UID '${event.uid}'. Skipping this occurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Invalid occurrenceStamp or lookupKey for event UID '${event.uid}'. Skipping this occurrence.`
         );
         continue;
       }
 
       if (event.recurrences?.[lookupKey]) {
         app.log(
-          `[WARN] - getRecurrenceDates: Recurrence override found for event UID '${event.uid}' on date '${lookupKey}'. Skipping occurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Recurrence override found for event UID '${event.uid}' on date '${lookupKey}'. Skipping occurrence.`
         );
         continue;
       }
 
       if (instances.has(occurenceStamp)) {
         app.log(
-          `[WARN] - getRecurrenceDates: Duplicate occurrence found for event UID '${event.uid}' on date '${lookupKey}'. Skipping duplicate.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Duplicate occurrence found for event UID '${event.uid}' on date '${lookupKey}'. Skipping duplicate.`
         );
         continue;
       }
@@ -207,7 +207,7 @@ const getRecurrenceDates = (
 
       if (!recurStart || !recurId || !recurId.isValid) {
         app.log(
-          `[WARN] - getRecurrenceDates: Invalid recurrence or recurrenceId found for event UID '${event.uid}'. Skipping this recurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Invalid recurrence or recurrenceId found for event UID '${event.uid}'. Skipping this recurrence.`
         );
         continue;
       }
@@ -220,7 +220,7 @@ const getRecurrenceDates = (
       const recurUtcIso: string | null = recurUtc.toISODate();
       if (!recurUtcIso) {
         app.log(
-          `[WARN] - getRecurrenceDates: Invalid recurUtcIso for event UID '${event.uid}'. Skipping this recurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Invalid recurUtcIso for event UID '${event.uid}'. Skipping this recurrence.`
         );
         continue;
       }
@@ -228,7 +228,7 @@ const getRecurrenceDates = (
       const recurStamp: string | null = recurUtc.toISO();
       if (!recurStamp) {
         app.log(
-          `[WARN] - getRecurrenceDates: Invalid recurStamp for event UID '${event.uid}'. Skipping this recurrence.`
+          `[WARN] - getActiveEvents/getRecurrenceDates: Invalid recurStamp for event UID '${event.uid}'. Skipping this recurrence.`
         );
         continue;
       }
@@ -266,7 +266,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
   for (const event of actualEvents) {
     if (event.recurrenceid) {
       // TODO: Fix handling of recurrenceid events
-      app.log(`[WARN] - We don't care about recurrenceId for now (${event.uid})`);
+      app.log(`[WARN] - getActiveEvents - We don't care about recurrenceId for now (${event.uid})`);
       continue;
     }
 
@@ -294,7 +294,9 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
     });
 
     if (!startDate || !endDate) {
-      app.error(`[ERROR] getActiveEvents - DTSTART and/or DTEND is invalid on '${event.summary}' (${event.uid})`);
+      app.error(
+        `[ERROR] getActiveEvents - DTSTART (${startDate}) and/or DTEND (${endDate}) is invalid on '${event.summary}' (${event.uid})`
+      );
 
       await triggerSynchronizationError({
         app,
@@ -317,10 +319,19 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
         timezone,
         logAllEvents
       );
+
+      if (recurrenceDates.length === 0) {
+        app.log(
+          `[WARN] - getActiveEvents - No recurrence dates in time range found for event UID '${event.uid}'. Skipping this recurring event.`
+        );
+
+        continue;
+      }
+
       for (const { occurenceStart, lookupKey } of recurrenceDates) {
         if (event.exdate?.[lookupKey]) {
           app.log(
-            `[WARN] - ExDate found for event UID '${event.uid}' on date '${lookupKey}'. Skipping this recurrence.`
+            `[WARN] - getActiveEvents - ExDate found for event UID '${event.uid}' on date '${lookupKey}'. Skipping this recurrence.`
           );
           continue;
         }
@@ -333,7 +344,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
           // we found an override, so for this recurrence, use a potentially different start/end
           currentEvent = currentEvent.recurrences[lookupKey] as VEvent;
           app.log(
-            `[WARN] - Found recurrence override for event UID '${event.uid}' on date '${lookupKey}'. Using overridden start/end.`
+            `[WARN] - getActiveEvents - Found recurrence override for event UID '${event.uid}' on date '${lookupKey}'. Using overridden start/end.`
           );
 
           currentStartDate = getDateTime({
@@ -379,6 +390,9 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
           currentEndDate.toMillis() < eventLimitStart.toMillis() ||
           currentStartDate.toMillis() > eventLimitEnd.toMillis()
         ) {
+          app.log(
+            `getActiveEvents - Recurrence occurence is not inside event limit on event UID '${event.uid}' on date '${lookupKey}'. Start: '${currentStartDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentStartDate.toISO()} (${currentStartDate.zoneName})). End: '${currentEndDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentEndDate.toISO()} (${currentEndDate.zoneName})). Skipping this recurrence.`
+          );
           continue;
         }
 
@@ -391,7 +405,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
         if (logAllEvents) {
           app.log(
-            `[WARN] - Recurrence Summary: '${currentEvent.summary}' -- Start: '${currentStartDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentStartDate.toISO()} (${currentStartDate.zoneName})) -- End: '${currentEndDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentEndDate.toISO()} (${currentEndDate.zoneName})) -- UID: '${currentEvent.uid}' -- DateType: '${event.datetype === "date" ? "FULL DAY" : "PARTIAL DAY"}'`
+            `getActiveEvents - Recurrence Summary: '${currentEvent.summary}' -- Start: '${currentStartDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentStartDate.toISO()} (${currentStartDate.zoneName})) -- End: '${currentEndDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${currentEndDate.toISO()} (${currentEndDate.zoneName})) -- UID: '${currentEvent.uid}' -- DateType: '${event.datetype === "date" ? "FULL DAY" : "PARTIAL DAY"}'`
           );
         }
         events.push(fromEvent(app, currentStartDate, currentEndDate, timezone, currentEvent));
@@ -404,7 +418,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
     if (logAllEvents) {
       app.log(
-        `[WARN] - Summary: '${event.summary}' -- Start: '${startDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${startDate.toISO()} (${startDate.zoneName})) -- End: '${endDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${endDate.toISO()} (${endDate.zoneName})) -- UID: '${event.uid}' -- DateType: '${event.datetype === "date" ? "FULL DAY" : "PARTIAL DAY"}'`
+        `getActiveEvents - Summary: '${event.summary}' -- Start: '${startDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${startDate.toISO()} (${startDate.zoneName})) -- End: '${endDate.toFormat("dd.MM.yyyy HH:mm:ss")}' (${endDate.toISO()} (${endDate.zoneName})) -- UID: '${event.uid}' -- DateType: '${event.datetype === "date" ? "FULL DAY" : "PARTIAL DAY"}'`
       );
     }
 
@@ -412,7 +426,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
   }
 
   if (logAllEvents) {
-    app.log(`[WARN] - get-active-events: Recurrences: ${recurrenceEventCount} -- Regulars: ${regularEventCount}`);
+    app.log(`getActiveEvents - Recurrences: ${recurrenceEventCount} -- Regulars: ${regularEventCount}`);
   }
 
   return events;
