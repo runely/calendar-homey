@@ -8,18 +8,20 @@ import { getTokenEvents } from "../lib/get-token-events.js";
 import { getEventsTomorrow } from "../lib/get-tomorrows-events.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 
+import type { AppTests, HomeyAppTestsFlowToken, TokenValue } from "../types/Homey.type";
 import type { CalendarEventExtended, EventDuration, NextEvent } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 
 import { triggerSynchronizationError } from "./trigger-cards.js";
 
-const updateToken = async (
-  app: App,
-  tokenId: string,
-  value: string | number | boolean | FlowToken.Image
-): Promise<void> => {
+export const updateToken = async (app: App | AppTests, tokenId: string, value: TokenValue): Promise<void> => {
   try {
-    const token: FlowToken = app.homey.flow.getToken(tokenId);
+    if (value === undefined) {
+      app.log(`[WARN] updateToken: Value for token '${tokenId}' is undefined. Setting to empty string.`);
+      value = "";
+    }
+
+    const token: FlowToken | HomeyAppTestsFlowToken = app.homey.flow.getToken(tokenId);
     if (token) {
       await token.setValue(value);
       return;
@@ -88,15 +90,11 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
   for await (const tokenId of variableMgmt.flowTokens) {
     try {
       if (tokenId === "event_next_title") {
-        await updateToken(app, tokenId, nextEvent?.event ? nextEvent.event.summary : "");
+        await updateToken(app, tokenId, nextEvent?.event.summary);
       }
 
       if (tokenId === "event_next_startdate") {
-        await updateToken(
-          app,
-          tokenId,
-          nextEvent?.event ? nextEvent.event.start.toFormat(variableMgmt.dateTimeFormat.long) : ""
-        );
+        await updateToken(app, tokenId, nextEvent?.event.start.toFormat(variableMgmt.dateTimeFormat.long));
       }
 
       if (tokenId === "event_next_startstamp") {
@@ -114,11 +112,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
       }
 
       if (tokenId === "event_next_stopdate") {
-        await updateToken(
-          app,
-          tokenId,
-          nextEvent?.event ? nextEvent.event.end.toFormat(variableMgmt.dateTimeFormat.long) : ""
-        );
+        await updateToken(app, tokenId, nextEvent?.event.end.toFormat(variableMgmt.dateTimeFormat.long));
       }
 
       if (tokenId === "event_next_stopstamp") {
@@ -152,7 +146,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
       }
 
       if (tokenId === "event_next_description") {
-        await updateToken(app, tokenId, nextEvent?.event ? nextEvent.event.description : "");
+        await updateToken(app, tokenId, nextEvent?.event.description);
       }
 
       if (tokenId === "event_next_calendar_name") {
@@ -207,7 +201,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         .replace(variableMgmt.calendarTokensPostNextDescriptionId, "");
       const calendarType: string = calendarId.replace(`${calendarName}_`, "");
       // app.log(`calendarTokens: Setting token '${calendarType}' for calendar '${calendarName}'`);
-      let value: string | number = "";
+      let value: string | number | undefined = "";
 
       if (calendarType.includes("today")) {
         const calendarEventsToday: CalendarEventExtended[] = getEventsToday(
@@ -293,7 +287,7 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         }
 
         if (calendarType === "next_description") {
-          value = calendarNextEvent?.event ? calendarNextEvent.event.description : "";
+          value = calendarNextEvent?.event.description;
         }
       }
 

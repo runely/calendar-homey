@@ -1,4 +1,4 @@
-import type { FlowCard } from "homey";
+import type { FlowCard, FlowToken } from "homey";
 import type { DateTime } from "luxon";
 
 export type AppTests = {
@@ -38,7 +38,13 @@ type HomeyAppTestsClock = {
 };
 
 type HomeyAppTestsFlow = {
+  getToken: (id: string) => HomeyAppTestsFlowToken;
   getTriggerCard: (id: string) => HomeyAppTestsFlowTriggerCard;
+};
+
+export type HomeyAppTestsFlowToken = {
+  // biome-ignore lint/suspicious/noExplicitAny: Can be anything
+  setValue: (value: TokenValue) => Promise<any>;
 };
 
 export type HomeyAppTestsFlowTriggerCard = {
@@ -60,3 +66,5 @@ export type Token = {
   type: "string" | "number";
   title: string;
 };
+
+export type TokenValue = string | number | boolean | FlowToken.Image | undefined;

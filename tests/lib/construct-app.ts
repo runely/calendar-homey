@@ -1,4 +1,9 @@
-import type { AppTests, HomeyAppTestsFlowTriggerCard } from "../../types/Homey.type";
+import type {
+  AppTests,
+  HomeyAppTestsFlowToken,
+  HomeyAppTestsFlowTriggerCard,
+  TokenValue
+} from "../../types/Homey.type";
 
 export const constructedApp: AppTests = {
   error: console.error,
@@ -9,6 +14,14 @@ export const constructedApp: AppTests = {
       getTimezone: (): string => "Europe/Oslo"
     },
     flow: {
+      getToken: (_id: string): HomeyAppTestsFlowToken => {
+        return {
+          // biome-ignore lint/suspicious/noExplicitAny: Can be anything
+          setValue: async (_value: TokenValue): Promise<any> => {
+            return Promise.resolve();
+          }
+        };
+      },
       getTriggerCard: (_id: string): HomeyAppTestsFlowTriggerCard => {
         return {
           // biome-ignore lint/suspicious/noExplicitAny: Can be anything

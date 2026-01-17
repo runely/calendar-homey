@@ -103,8 +103,8 @@ export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): 
       if (descriptionChanged) {
         changed.push({
           type: app.homey.__("triggers.event_changed.description"),
-          previousValue: oldEvent.description,
-          newValue: newEvent.description
+          previousValue: oldEvent.description ?? "",
+          newValue: newEvent.description ?? ""
         });
       }
 

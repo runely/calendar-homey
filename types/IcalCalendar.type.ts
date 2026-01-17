@@ -13,7 +13,7 @@ export type CalendarEvent = {
   dateType: DateType;
   end: DateTime<true>;
   uid: string;
-  description: string;
+  description: string | undefined;
   location: string;
   summary: string;
   created?: DateTime<true>;
