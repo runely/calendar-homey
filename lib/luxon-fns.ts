@@ -76,7 +76,7 @@ export const getDateTime = (options: GetDateTimeOptions): DateTime<true> | null 
     return originalZonedLocalCalDate as DateTime<true>;
   } catch (error) {
     options.app.error(
-      `[ERROR] - getDateTime - Failed to get DateTime from dateWithTimeZone: ${options.dateWithTimeZone}, LocalTimeZone: ${options.localTimeZone}, KeepOriginalZonedTime: ${options.keepOriginalZonedTime}, FullDayEvent: ${options.fullDayEvent} : `,
+      `[ERROR] - getDateTime - Failed to get DateTime from dateWithTimeZone: ${options.dateWithTimeZone}, LocalTimeZone: ${options.localTimeZone}, KeepOriginalZonedTime: ${options.keepOriginalZonedTime}, FullDayEvent: ${options.fullDayEvent} ->`,
       error
     );
 

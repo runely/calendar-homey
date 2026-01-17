@@ -196,9 +196,8 @@ const getEventList = (
         }
       } catch (error) {
         app.error(
-          `[ERROR] getEventList: Failed to parse 'start' (${event.start}) or 'end' (${event.end}):`,
-          error,
-          event
+          `[ERROR] getEventList: Failed to parse 'start' (${event.start}) or 'end' (${event.end}) on uid '${event.uid}' ->`,
+          error
         );
         startStamp = "";
         endStamp = "";
@@ -209,7 +208,7 @@ const getEventList = (
           calendar: calendar.name,
           error: error as Error | string,
           event
-        }).catch(err => app.error(`[ERROR] getEventList: Failed to trigger synchronization error: ${err}`));
+        }).catch(err => app.error("[ERROR] getEventList: Failed to trigger synchronization error ->", err));
       }
 
       const name: string = event.summary;

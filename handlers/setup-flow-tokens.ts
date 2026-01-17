@@ -18,7 +18,7 @@ export const setupFlowTokens = async (app: App, variableMgmt: VariableManagement
       variableMgmt.flowTokens.push(id);
       app.log(`setupFlowTokens: Created flow token '${id}'`);
     } catch (ex) {
-      app.error(`[ERROR] setupFlowTokens: Failed to create flow token '${id}'`, ex);
+      app.error(`[ERROR] setupFlowTokens: Failed to create flow token '${id}' ->`, ex);
     }
   }
 };

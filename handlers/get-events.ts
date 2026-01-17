@@ -114,7 +114,7 @@ export const getEvents = async (
       try {
         await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: calendars[i].failed as string });
       } catch (error) {
-        app.error(`[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}':`, error);
+        app.error(`[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}' ->`, error);
       }
       continue;
     }
@@ -138,10 +138,7 @@ export const getEvents = async (
     } catch (error) {
       const { fallbackUri } = getFallbackUri(app, uri);
       const errorString: string | undefined = error instanceof Error ? `${error.message} -> ${error.stack}` : undefined;
-      app.error(
-        `[ERROR] getEvents: Failed to get events for calendar '${name}' with uri '${uri}' :`,
-        errorString || error
-      );
+      app.error(`[ERROR] getEvents: Failed to get events for calendar '${name}' with uri '${uri}' ->`, error);
       try {
         app.log(
           `[WARN] getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`,
@@ -154,8 +151,8 @@ export const getEvents = async (
         const fallbackErrorString: string | undefined =
           innerError instanceof Error ? `${innerError.message} -> ${innerError.stack}` : undefined;
         app.error(
-          `[ERROR] getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' :`,
-          fallbackErrorString || innerError
+          `[ERROR] getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' ->`,
+          innerError
         );
 
         errors.push(
@@ -164,7 +161,10 @@ export const getEvents = async (
         try {
           await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: innerError as Error | string });
         } catch (triggerError) {
-          app.error(`[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}':`, triggerError);
+          app.error(
+            `[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}' ->`,
+            triggerError
+          );
         }
         calendarsMetadata.push({
           name,
@@ -221,14 +221,17 @@ export const getEvents = async (
         const errorString: string | undefined =
           error instanceof Error ? `${error.message} -> ${error.stack}` : undefined;
         app.error(
-          `[ERROR] getEvents: Failed to get active events for calendar '${name}'. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())} :`,
-          errorString || error
+          `[ERROR] getEvents: Failed to get active events for calendar '${name}'. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())} ->`,
+          error
         );
         errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`);
         try {
           await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: error as Error | string });
         } catch (triggerError) {
-          app.error(`[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}':`, triggerError);
+          app.error(
+            `[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}' ->`,
+            triggerError
+          );
         }
         calendarsMetadata.push({
           name,
@@ -263,8 +266,7 @@ export const getEvents = async (
       await triggerChangedCalendars(app, variableMgmt, updatedCalendars);
     }
   } catch (error) {
-    const errorString: string | undefined = error instanceof Error ? `${error.message} -> ${error.stack}` : undefined;
-    app.error("[ERROR] getEvents: Failed to filter/trigger changed calendars:", errorString || error);
+    app.error("[ERROR] getEvents: Failed to filter/trigger changed calendars ->", error);
 
     try {
       await triggerSynchronizationError({
@@ -274,7 +276,7 @@ export const getEvents = async (
         error: error as Error | string
       });
     } catch (triggerError) {
-      app.error("[ERROR] getEvents: Failed to trigger synchronization error for changed calendars:", triggerError);
+      app.error("[ERROR] getEvents: Failed to trigger synchronization error for changed calendars ->", triggerError);
     }
   }
 
@@ -354,7 +356,7 @@ export const getEvents = async (
             app.log(`[WARN] getEvents: Calendar token '${tokenId}' not found`);
             return Promise.resolve();
           } catch (ex) {
-            app.error(`[ERROR] getEvents: Failed to get calendar token '${tokenId}'`, ex);
+            app.error(`[ERROR] getEvents: Failed to get calendar token '${tokenId}' ->`, ex);
           }
         })
       );
@@ -377,7 +379,7 @@ export const getEvents = async (
             app.log(`[WARN] getEvents: Next event with token '${tokenId}' not found`);
             return Promise.resolve();
           } catch (ex) {
-            app.error(`[ERROR] getEvents: Failed to get next event with token '${tokenId}'`, ex);
+            app.error(`[ERROR] getEvents: Failed to get next event with token '${tokenId}' ->`, ex);
           }
         })
       );
@@ -420,7 +422,7 @@ export const getEvents = async (
 
                 app.log(`[WARN] getEvents: Calendar token '${id}' not created`);
               } catch (ex) {
-                app.error(`[ERROR] getEvents: Failed to create calendar token '${id}'`, ex);
+                app.error(`[ERROR] getEvents: Failed to create calendar token '${id}' ->`, ex);
               }
               return Promise.resolve();
             }
@@ -447,7 +449,7 @@ export const getEvents = async (
 
                   app.log(`[WARN] getEvents: Per calendar token '${id}' not created`);
                 } catch (ex) {
-                  app.error(`[ERROR] getEvents: Failed to create per calendar token '${id}'`, ex);
+                  app.error(`[ERROR] getEvents: Failed to create per calendar token '${id}' ->`, ex);
                 }
                 return Promise.resolve();
               }
@@ -469,7 +471,7 @@ export const getEvents = async (
 
           app.log(`[WARN] getEvents: Next event with token '${id}' not created`);
         } catch (ex) {
-          app.error(`[ERROR] getEvents: Failed to create next event with token '${id}'`, ex);
+          app.error(`[ERROR] getEvents: Failed to create next event with token '${id}' ->`, ex);
         }
       }
     }

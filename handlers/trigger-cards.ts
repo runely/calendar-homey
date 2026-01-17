@@ -85,7 +85,7 @@ export const triggerSynchronizationError = async (options: TriggerSynchronizatio
 
     updateHitCount(app, variableMgmt, "synchronization_error");
   } catch (err) {
-    app.error('[ERROR] triggerSynchronizationError: Failed to trigger "synchronization_error" :', err);
+    app.error('[ERROR] triggerSynchronizationError: Failed to trigger "synchronization_error" ->', err);
   }
 };
 
@@ -167,14 +167,14 @@ export const triggerChangedCalendars = async (
             } catch (error) {
               if (changedCalendarTriggerCard.useState) {
                 app.error(
-                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} with state`,
+                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} with state:`,
                   state,
-                  ":",
+                  " ->",
                   error
                 );
               } else {
                 app.error(
-                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} :`,
+                  `[ERROR] triggerChangedCalendars: '${changedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' for type ${changed.type} ->`,
                   error
                 );
               }
@@ -196,7 +196,7 @@ export const triggerChangedCalendars = async (
       }
     }
   } catch (err) {
-    app.error("[ERROR] triggerChangedCalendars: Failed to trigger changed calendar events :", err);
+    app.error("[ERROR] triggerChangedCalendars: Failed to trigger changed calendar events ->", err);
   }
 };
 
@@ -254,7 +254,10 @@ export const triggerEvents = async (
           app.log(`triggerEvents: Triggered '${triggerId}' without state on '${event.uid}'`);
           updateHitCount(app, variableMgmt, triggerId);
         } catch (error) {
-          app.error(`[ERROR] triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}':`, error);
+          app.error(
+            `[ERROR] triggerEvents: '${triggerId}' without state failed to trigger on '${event.uid}' ->`,
+            error
+          );
 
           await triggerSynchronizationError({
             app,
@@ -273,9 +276,9 @@ export const triggerEvents = async (
         await app.homey.flow.getTriggerCard(triggerId).trigger(tokens, state);
       } catch (error) {
         app.error(
-          `[ERROR] triggerEvents: '${triggerId}' with state`,
+          `[ERROR] triggerEvents: '${triggerId}' with state:`,
           state,
-          `failed to trigger on '${event.uid}':`,
+          `failed to trigger on '${event.uid}' ->`,
           error
         );
 
@@ -288,7 +291,7 @@ export const triggerEvents = async (
         });
       }
     } catch (err) {
-      app.error(`[ERROR] triggerEvents: Failed to trigger event '${event.uid}' from '${calendarName}':`, err);
+      app.error(`[ERROR] triggerEvents: Failed to trigger event '${event.uid}' from '${calendarName}' ->`, err);
     }
   }
 };

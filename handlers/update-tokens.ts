@@ -27,8 +27,7 @@ const updateToken = async (
 
     app.log(`[WARN] updateToken: Token with id '${tokenId}' not found`);
   } catch (error) {
-    const errorMessage: string | null = error instanceof Error ? error.message : null;
-    app.error(`[ERROR] updateToken: Failed to update token '${tokenId}': ${errorMessage || error}`);
+    app.error(`[ERROR] updateToken: Failed to update token '${tokenId}' with value: '${value}' ->`, error);
   }
 };
 
@@ -182,10 +181,10 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
         await updateToken(app, tokenId, getZonedDateTime(DateTime.now(), timezone).localWeekNumber);
       }
     } catch (error) {
-      app.error("[ERROR] updateTokens: Failed to update flow token", tokenId, ":", error);
+      app.error("[ERROR] updateTokens: Failed to update flow token", tokenId, "->", error);
 
       triggerSynchronizationError({ app, variableMgmt, calendar: "", error: error as Error | string }).catch(err =>
-        app.error("[ERROR] updateTokens: Failed to complete triggerSynchronizationError(...):", err)
+        app.error("[ERROR] updateTokens: Failed to complete triggerSynchronizationError(...) ->", err)
       );
     }
   }
@@ -300,10 +299,10 @@ export const updateTokens = async (app: App, variableMgmt: VariableManagement, t
 
       await updateToken(app, tokenId, value);
     } catch (error) {
-      app.error("[ERROR] updateTokens: Failed to update calendar token", tokenId, ":", error);
+      app.error("[ERROR] updateTokens: Failed to update calendar token", tokenId, "->", error);
 
       triggerSynchronizationError({ app, variableMgmt, calendar: "", error: error as Error | string }).catch(err =>
-        app.error("[ERROR] updateTokens: Failed to complete triggerSynchronizationError(...):", err)
+        app.error("[ERROR] updateTokens: Failed to complete triggerSynchronizationError(...) ->", err)
       );
     }
   }
@@ -348,7 +347,7 @@ export const updateNextEventWithTokens = async (
           await updateToken(app, tokenId, event.description);
         }
       } catch (error) {
-        app.error("[ERROR] updateNextEventWithTokens: Failed to update next event with token", tokenId, ":", error);
+        app.error("[ERROR] updateNextEventWithTokens: Failed to update next event with token", tokenId, "->", error);
 
         triggerSynchronizationError({
           app,
@@ -358,13 +357,13 @@ export const updateNextEventWithTokens = async (
           event
         }).catch(err =>
           app.error(
-            "[ERROR] updateTokens/updateNextEventWithTokens: Failed to complete triggerSynchronizationError(...):",
+            "[ERROR] updateTokens/updateNextEventWithTokens: Failed to complete triggerSynchronizationError(...) ->",
             err
           )
         );
       }
     }
   } catch (error) {
-    app.error("[ERROR] updateNextEventWithTokens: Failed to update next event with tokens:", error);
+    app.error("[ERROR] updateNextEventWithTokens: Failed to update next event with tokens ->", error);
   }
 };

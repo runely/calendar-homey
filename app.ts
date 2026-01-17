@@ -73,7 +73,7 @@ class IcalCalendar extends Homey.App {
     // get ical events
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true).catch(err =>
-      this.error("[ERROR] onInit: Failed to complete getEvents(true):", err)
+      this.error("[ERROR] onInit: Failed to complete getEvents(true) ->", err)
     );
 
     // register callback when settings has been set
@@ -135,7 +135,7 @@ class IcalCalendar extends Homey.App {
 
         this.log(`registerSettingCallbacks/${args}: Triggering getEvents and reregistering tokens`);
         getEvents(this, variableMgmt, true).catch(err =>
-          this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete getEvents(true):`, err)
+          this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete getEvents(true) ->`, err)
         );
         return;
       }
@@ -155,7 +155,7 @@ class IcalCalendar extends Homey.App {
       if ([variableMgmt.setting.syncInterval].includes(args)) {
         // adjust synchronization interval
         this.startJobs("update").catch(err =>
-          this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete startJobs('update'):`, err)
+          this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete startJobs('update') ->`, err)
         );
       }
     });
@@ -186,7 +186,7 @@ class IcalCalendar extends Homey.App {
 
       this.log("startJobs/update: Updating calendars without reregistering tokens");
       getEvents(this, variableMgmt).catch(err =>
-        this.error("[ERROR] startJobs/updateFunc: Failed to complete getEvents():", err)
+        this.error("[ERROR] startJobs/updateFunc: Failed to complete getEvents() ->", err)
       );
     };
 
@@ -250,7 +250,7 @@ class IcalCalendar extends Homey.App {
             error: `Invalid cron value specified in settings: '${interval.cron}'`
           });
         } catch (err) {
-          this.error("[ERROR] startJobs: Failed to complete triggerSynchronizationError(...):", err);
+          this.error("[ERROR] startJobs: Failed to complete triggerSynchronizationError(...) ->", err);
         }
         interval.error = `Invalid cron value specified in settings: '${interval.cron}'`;
         this.homey.settings.set(variableMgmt.setting.syncInterval, interval);
@@ -299,7 +299,7 @@ class IcalCalendar extends Homey.App {
             error: `Invalid cron value specified in settings: '${interval.cron}'`
           });
         } catch (err) {
-          this.error("[ERROR] startJobs(update): Failed to complete triggerSynchronizationError(...):", err);
+          this.error("[ERROR] startJobs(update): Failed to complete triggerSynchronizationError(...) ->", err);
         }
         interval.error = `Invalid cron value specified in settings: '${interval.cron}'`;
         this.homey.settings.set(variableMgmt.setting.syncInterval, interval);
