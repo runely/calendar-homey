@@ -24,23 +24,21 @@ function isChanged(app: App | AppTests, previous: HasDataType, current: HasDataT
   }
 
   if (hasData(previous) && !hasData(current)) {
-    app.log(
+    /*app.log(
       `filterUpdatedCalendars: Previous value had data but current value does not. This can be a sync hiccup or correct -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
-    );
+    );*/
     return true;
   }
 
-  if (!hasData(previous) && hasData(current)) {
+  return !hasData(previous) && hasData(current);
+  /*if (!hasData(previous) && hasData(current)) {
     app.log(
       `filterUpdatedCalendars: Previous value did not have data but current value does. This can be a sync hiccup or correct -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
     );
     return true;
   }
 
-  app.log(
-    `filterUpdatedCalendars/isChanged: Both previous and current values are missing data -- Previous: '${previous}' (${typeof previous}) , Current: '${current}' (${typeof current})`
-  );
-  return false;
+  return false;*/
 }
 
 export const filterUpdatedCalendars = (options: FilterUpdatedCalendarsOptions): Calendar[] => {
