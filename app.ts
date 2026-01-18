@@ -43,9 +43,6 @@ class IcalCalendar extends Homey.App {
       `${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
     );
 
-    // set a variable to control if getEvents is already running
-    //isGettingEvents = false;
-
     variableMgmt = varMgmt;
     if (variableMgmt === null) {
       this.error("[ERROR] onInit: Variable management initialization failed! App halted.");

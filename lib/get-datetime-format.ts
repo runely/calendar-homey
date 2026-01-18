@@ -3,6 +3,26 @@ import type { App } from "homey";
 import type { AppTests } from "../types/Homey.type";
 import type { DateTimeFormat, VariableManagement } from "../types/VariableMgmt.type";
 
+type UpdateFormat = {
+  format: string;
+  converted: boolean;
+};
+
+const updateFormat = (format: string): UpdateFormat => {
+  const newFormat: string = format
+    .replace(/dddd/g, "cccc")
+    .replace(/ddd/g, "ccc")
+    .replace(/DD/g, "dd")
+    .replace(/D/g, "d")
+    .replace(/YYYY/g, "yyyy")
+    .replace(/YY/g, "yy");
+
+  return {
+    format: newFormat,
+    converted: newFormat !== format
+  };
+};
+
 const getShortDateFormat = (longDateFormat: string): string => {
   let dateFormat: string = longDateFormat;
   let dateLong: string = dateFormat;
@@ -31,26 +51,51 @@ const getShortDateFormat = (longDateFormat: string): string => {
 };
 
 export const getDateTimeFormat = (app: App | AppTests, variableMgmt: VariableManagement): DateTimeFormat => {
-  const time: string =
-    app.homey.settings.get(variableMgmt.setting.timeFormat) || app.homey.__("settings.datetime.time.default");
-  const long: string =
-    app.homey.settings.get(variableMgmt.setting.dateFormatLong) ||
-    app.homey.settings.get(variableMgmt.setting.dateFormat) ||
-    app.homey.__("settings.datetime.date.default");
-  let short: string | null = app.homey.settings.get(variableMgmt.setting.dateFormatShort);
+  const time: UpdateFormat = updateFormat(
+    app.homey.settings.get(variableMgmt.setting.timeFormat) || app.homey.__("settings.datetime.time.default")
+  );
 
-  if (!short) {
-    short = getShortDateFormat(long);
-    app.homey.settings.set(variableMgmt.setting.timeFormat, time);
-    app.homey.settings.set(variableMgmt.setting.dateFormatLong, long);
-    app.homey.settings.set(variableMgmt.setting.dateFormatShort, short);
+  const long: UpdateFormat = updateFormat(
+    app.homey.settings.get(variableMgmt.setting.dateFormatLong) ||
+      app.homey.settings.get(variableMgmt.setting.dateFormat) ||
+      app.homey.__("settings.datetime.date.default")
+  );
+
+  const shortSetting: string | null = app.homey.settings.get(variableMgmt.setting.dateFormatShort);
+  const short: UpdateFormat = shortSetting ? updateFormat(shortSetting) : updateFormat(getShortDateFormat(long.format));
+
+  if (!shortSetting) {
+    app.homey.settings.set(variableMgmt.setting.timeFormat, time.format);
+    time.converted = false;
+
+    app.homey.settings.set(variableMgmt.setting.dateFormatLong, long.format);
+    long.converted = false;
+
+    app.homey.settings.set(variableMgmt.setting.dateFormatShort, short.format);
+    short.converted = false;
+
     app.log("getDateTimeFormat: Initial DateTimeFormat saved to settings");
   }
 
+  if (time.converted) {
+    app.homey.settings.set(variableMgmt.setting.timeFormat, time.format);
+    app.log(`getDateTimeFormat: Time format converted and saved to settings: ${time.format}`);
+  }
+
+  if (long.converted) {
+    app.homey.settings.set(variableMgmt.setting.dateFormatLong, long.format);
+    app.log(`getDateTimeFormat: Long date format converted and saved to settings: ${long.format}`);
+  }
+
+  if (short.converted) {
+    app.homey.settings.set(variableMgmt.setting.dateFormatShort, short.format);
+    app.log(`getDateTimeFormat: Short date format converted and saved to settings: ${short.format}`);
+  }
+
   const format: DateTimeFormat = {
-    long,
-    short,
-    time
+    long: long.format,
+    short: short?.format || "",
+    time: time.format
   };
 
   app.log("DateTimeFormat:", format);

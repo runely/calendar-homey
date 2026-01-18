@@ -1,7 +1,12 @@
+import deepClone from "lodash.clonedeep";
+
 import { getDateTimeFormat } from "../lib/get-datetime-format.js";
 import { varMgmt } from "../lib/variable-management";
 import locale from "../locales/en.json";
+
+import type { AppTests } from "../types/Homey.type";
 import type { DateTimeFormat, VariableManagement } from "../types/VariableMgmt.type";
+
 import { constructedApp } from "./lib/construct-app";
 
 const {
@@ -59,6 +64,29 @@ describe("Date format is correct when", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
     expect(format.short).toBe("dd.MM");
     expect(format.long).toBe("dd-MM-yy");
+  });
+
+  test("Previous moment format : TimeFormat: HH:mm, LongDateFormat: dddd DD/MM/YYYY, ShortDateFormat: DD/MM : Converted correctly to luxon format", () => {
+    const momentConstructedApp: AppTests = deepClone(constructedApp);
+    momentConstructedApp.homey.settings.get = (prop: string): string | undefined => {
+      if (prop === varMgmt.setting.dateFormatLong) {
+        return "dddd DD/MM/YYYY";
+      }
+
+      if (prop === varMgmt.setting.timeFormat) {
+        return "HH:mm";
+      }
+
+      if (prop === varMgmt.setting.dateFormatShort) {
+        return "DD/MM";
+      }
+    };
+
+    const format: DateTimeFormat = getDateTimeFormat(momentConstructedApp, varMgmt);
+
+    expect(format.time).toBe("HH:mm");
+    expect(format.long).toBe("cccc dd/MM/yyyy");
+    expect(format.short).toBe("dd/MM");
   });
 });
 
