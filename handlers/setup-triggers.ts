@@ -14,7 +14,7 @@ export const setupTriggers = (app: App, variableMgmt: VariableManagement): void 
       const minutes: number = convertToMinutes(args.when, args.type);
       const willTrigger: boolean = minutes === state.when;
       if (willTrigger) {
-        app.log(`Triggered '${triggerId}'. With minutes: ${minutes}. With state: ${state}. With args: ${args}`);
+        app.log(`Triggered '${triggerId}'. With minutes: ${minutes}. With state:`, state, "- With args:", args);
         updateHitCount(app, variableMgmt, triggerId, args);
       }
       return willTrigger;
@@ -32,7 +32,7 @@ export const setupTriggers = (app: App, variableMgmt: VariableManagement): void 
     eventCalendar.registerRunListener((args, state) => {
       const willTrigger: boolean = args.calendar.name === state.calendarName;
       if (willTrigger) {
-        app.log(`Triggered '${triggerId}'. With state: ${state}. With args: ${args}`);
+        app.log(`Triggered '${triggerId}'. With state:`, state, "- With args:", args);
         updateHitCount(app, variableMgmt, triggerId, { calendar: args.calendar.name });
       }
       return willTrigger;
