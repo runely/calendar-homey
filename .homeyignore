@@ -1,4 +1,5 @@
 renovate.json
+tsconfig_tests.json
 LICENSE
 *.md
 README*
