@@ -144,7 +144,7 @@ const getRecurrenceDates = (
     for (const date of occurrences) {
       const occurence: DateTime<true> | null = getDateTime({
         app,
-        dateWithTimeZone: createDateWithTimeZone(date, event.rrule?.options.tzid || event.start.tz || undefined),
+        dateWithTimeZone: createDateWithTimeZone(date, event.start.tz || undefined),
         localTimeZone: localTimeZone,
         fullDayEvent: event.datetype === "date",
         keepOriginalZonedTime: true,

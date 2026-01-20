@@ -29,7 +29,7 @@
     "humanize-duration": "^3.33.2",
     "lodash.clonedeep": "4.5.0",
     "luxon": "^3.7.2",
-    "node-ical": "^0.22.1",
+    "node-ical": "^0.23.1",
     "source-map-support": "^0.5.21"
   },
   "scripts": {
