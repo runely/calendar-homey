@@ -43,8 +43,8 @@ export type CalendarEventPropertyChanged = {
 export type CalendarMetaData = {
   name: string;
   eventCount: number;
-  lastFailedSync?: DateTime<true>;
-  lastSuccessfullSync?: DateTime<true>;
+  lastFailedSync?: string;
+  lastSuccessfullSync?: string;
 };
 
 export type ConditionCaller = "condition" | "changedEvent";

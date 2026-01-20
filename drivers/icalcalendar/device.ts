@@ -114,7 +114,7 @@ class MyDevice extends Device {
           await this.removeCapability(`${eventCountPerCalendar}.${calendarName}`);
         } catch (ex) {
           this.error(
-            "[ERROR] updateCalendarsCount - Failed to remove capabilities for calendar no longer configured:",
+            "[ERROR] updateCalendarsCount - Failed to remove capabilities for calendar no longer configured ->",
             ex
           );
         }
@@ -152,9 +152,9 @@ class MyDevice extends Device {
         await this.updateCapabilityValue(
           lastSuccessfulSyncLoop,
           getZonedDateTime(
-            DateTime.fromISO(calendar.lastSuccessfullSync?.toISO() || "01.01.1970 00:00:00"),
+            DateTime.fromISO(calendar.lastSuccessfullSync || "01.01.1970 00:00:00"),
             this.homey.clock.getTimezone()
-          ).toFormat("dd.MM.yyyy HH:mm:ss")
+          ).toFormat("dd.MM HH:mm")
         );
       } else {
         this.log("[WARN] updateCalendarsMetadata -", lastSuccessfulSyncLoop, "capability doesnt exist yet....");

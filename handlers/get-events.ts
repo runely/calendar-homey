@@ -169,7 +169,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: 0,
-          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
+          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
         });
 
         // set a failed setting value to show an error message on settings page
@@ -215,7 +215,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: activeEvents.length,
-          lastSuccessfullSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
+          lastSuccessfullSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
         });
       } catch (error) {
         const errorString: string | undefined =
@@ -236,7 +236,7 @@ export const getEvents = async (
         calendarsMetadata.push({
           name,
           eventCount: 0,
-          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone())
+          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
         });
 
         // set a failed setting value to show an error message on settings page
