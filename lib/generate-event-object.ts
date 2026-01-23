@@ -100,14 +100,13 @@ export const fromEvent = (
   );
 };
 
-export const newEvent = (app: App | AppTests, timezone: string, options: NewEventOptions): LocalEvent | null => {
+export const newLocalEvent = (app: App | AppTests, timezone: string, options: NewEventOptions): LocalEvent | null => {
   const {
     event_name: title,
     event_description: description,
     event_start: start,
     event_end: end,
-    apply_timezone: applyTimezone,
-    calendar: calendarName
+    apply_timezone: applyTimezone
   } = options;
 
   const fullDayEvent: boolean = start.includes("00:00:00") && end.includes("00:00:00");
@@ -129,7 +128,7 @@ export const newEvent = (app: App | AppTests, timezone: string, options: NewEven
         quiet: true
       });
   if (!startLuxon) {
-    app.error(`[ERROR] - newEvent: Unable to parse start date: ${start}`);
+    app.error(`[ERROR] - newLocalEvent: Unable to parse start date: ${start}`);
     return null;
   }
 
@@ -151,7 +150,7 @@ export const newEvent = (app: App | AppTests, timezone: string, options: NewEven
         quiet: true
       });
   if (!endLuxon) {
-    app.error(`[ERROR] - newEvent: Unable to parse end date: ${end}`);
+    app.error(`[ERROR] - newLocalEvent: Unable to parse end date: ${end}`);
     return null;
   }
 
@@ -160,7 +159,7 @@ export const newEvent = (app: App | AppTests, timezone: string, options: NewEven
 
   if (!applyTimezone) {
     app.log(
-      'newEvent: Be aware: Since "applyTimezone" is set to false, start and end will not have your timezone applied:',
+      'newLocalEvent: Be aware: Since "applyTimezone" is set to false, start and end will not have your timezone applied:',
       start,
       startLuxon,
       end,
@@ -184,5 +183,5 @@ export const newEvent = (app: App | AppTests, timezone: string, options: NewEven
     true
   );
 
-  return { ...newEvent, calendar: calendarName };
+  return { ...newEvent, calendar: options.calendar.name };
 };

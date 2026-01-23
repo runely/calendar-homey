@@ -2,7 +2,7 @@ import type { App } from "homey";
 import { DateTime, Duration } from "luxon";
 import type { DateType } from "node-ical";
 import type { AppTests } from "../types/Homey.type";
-import type { LocalEvent } from "../types/IcalCalendar.type";
+import type { LocalEvent, LocalJsonEvent } from "../types/IcalCalendar.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 import { createDateWithTimeZone } from "./generate-event-object";
@@ -109,6 +109,85 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
   }
 
   return activeEvents;
+};
+
+export const getLocalEvents = (app: App | AppTests, events: string | null, timezone: string): LocalJsonEvent[] => {
+  const localJsonEvents: LocalJsonEvent[] = events && events.length > 0 ? (JSON.parse(events) as LocalJsonEvent[]) : [];
+
+  if (localJsonEvents.every((event: LocalJsonEvent) => "dateType" in event)) {
+    return localJsonEvents;
+  }
+
+  app.log("getLocalEvents: Detected old format on local events. Converting to new format. Old events:", events);
+
+  const newLocalEvents: LocalJsonEvent[] = [];
+
+  // convert old events to new format
+  for (const event of localJsonEvents) {
+    if (!("datetype" in event) && !("skipTZ" in event) && !("freebusy" in event)) {
+      newLocalEvents.push(event);
+      continue;
+    }
+
+    // @ts-expect-error - datetype is from old format
+    const oldDateType: string = event["datetype"];
+    // @ts-expect-error - skipTZ is from old format
+    const oldSkipTZ: boolean = event["skipTZ"];
+    // @ts-expect-error - freebusy is from old format
+    const oldFreeBusy: string = event["freebusy"];
+
+    // @ts-expect-error - datetype is from old format
+    delete event["datetype"];
+    // @ts-expect-error - skipTZ is from old format is not needed anymore
+    delete event["skipTZ"];
+    // @ts-expect-error - freebusy is from old format
+    delete event["freebusy"];
+
+    const start: DateTime<true> | null = getDateTime({
+      app,
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), timezone),
+      localTimeZone: timezone,
+      fullDayEvent: oldDateType === "date",
+      keepOriginalZonedTime: oldSkipTZ,
+      quiet: true
+    });
+
+    const end: DateTime<true> | null = getDateTime({
+      app,
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), timezone),
+      localTimeZone: timezone,
+      fullDayEvent: oldDateType === "date",
+      keepOriginalZonedTime: oldSkipTZ,
+      quiet: true
+    });
+
+    if (!start || !end) {
+      app.error(
+        `[ERROR] - getLocalEvents: Invalid start or end date for event '${event.summary}' (${event.uid}). Removing event!`
+      );
+      continue;
+    }
+
+    newLocalEvents.push({
+      ...event,
+      start: start.toUTC().toISO(),
+      end: end.toUTC().toISO(),
+      dateType: oldDateType,
+      freeBusy: oldFreeBusy !== "" ? oldFreeBusy : null
+    } as LocalJsonEvent);
+  }
+
+  app.log("getLocalEvents: Converted to new format. New events:", JSON.stringify(newLocalEvents));
+
+  app.log(
+    "getLocalEvents: Converted",
+    localJsonEvents.length,
+    "old local events to",
+    newLocalEvents.length,
+    "new local events with new format"
+  );
+
+  return newLocalEvents;
 };
 
 export const saveLocalEvents = (app: App | AppTests, variableMgmt: VariableManagement, events: LocalEvent[]): void => {

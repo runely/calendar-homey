@@ -1,7 +1,7 @@
 import type { App } from "homey";
 import type { CalendarResponse, VEvent } from "node-ical";
 
-import type { AppTests } from "./Homey.type";
+import type { AppTests, ArgumentAutoCompleteResult } from "./Homey.type";
 import type { Calendar, CalendarEvent, CalendarEventUid, LocalJsonEvent } from "./IcalCalendar.type";
 import type { SettingEventLimit, VariableManagement } from "./VariableMgmt.type";
 
@@ -55,8 +55,8 @@ export type NewEventOptions = {
   event_end: string;
   /** Apply your timezone to start and end datetime */
   apply_timezone: boolean;
-  /** Calendar name this event will be added to */
-  calendar: string;
+  /** Calendar auto complete result this event will be added to */
+  calendar: ArgumentAutoCompleteResult;
 };
 
 export type NextEventValueOptions = {

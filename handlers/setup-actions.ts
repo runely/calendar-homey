@@ -1,7 +1,7 @@
 import type { App, FlowCard, FlowCardAction } from "homey";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
-import { newEvent } from "../lib/generate-event-object.js";
+import { newLocalEvent } from "../lib/generate-event-object.js";
 import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getTokenValue } from "../lib/get-token-value.js";
 import { saveLocalEvents } from "../lib/local-events.js";
@@ -60,7 +60,7 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error(app.homey.__("actions.new_event.endInvalid"));
     }
 
-    const event: LocalEvent | null = newEvent(app, app.homey.clock.getTimezone(), args);
+    const event: LocalEvent | null = newLocalEvent(app, app.homey.clock.getTimezone(), args);
     if (event === null) {
       throw new Error(app.homey.__("actions.new_event.createEventError"));
     }
@@ -68,13 +68,13 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
     app.log("new_event: Adding event", event);
     const calendar: Calendar | undefined = variableMgmt.calendars.find((c: Calendar) => c.name === event.calendar);
     if (!calendar) {
-      app.log("[WARN] new_event: Event", event.summary, "not added because calendar", event.calendar, "was not found");
+      app.log(`[WARN] new_event: Event '${event.summary}' not added because calendar`, event.calendar, "was not found");
       throw new Error(
         `${app.homey.__("actions.calendarNotFoundOne")} ${event.calendar} ${app.homey.__("actions.calendarNotFoundTwo")}`
       );
     }
 
-    app.log("new_event: Added", event.summary, "to calendar", event.calendar);
+    app.log(`new_event: Added '${event.summary}' to calendar '${event.calendar}'`);
     calendar.events.push(event);
     sortCalendarsEvents(variableMgmt.calendars);
     variableMgmt.localEvents.push(event);

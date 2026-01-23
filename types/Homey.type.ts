@@ -9,7 +9,9 @@ export type AppTests = {
   homey: HomeyAppTests;
 };
 
-export type EventAutoCompleteResult = FlowCard.ArgumentAutocompleteResults[0] & {
+export type ArgumentAutoCompleteResult = FlowCard.ArgumentAutocompleteResults[0];
+
+export type EventAutoCompleteResult = ArgumentAutoCompleteResult & {
   start: DateTime<true>;
 };
 

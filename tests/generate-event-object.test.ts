@@ -1,9 +1,10 @@
 import { DateTime } from "luxon";
 import type { DateWithTimeZone, VEvent } from "node-ical";
 
-import { fromEvent, newEvent } from "../lib/generate-event-object.js";
+import { fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 
+import type { ArgumentAutoCompleteResult } from "../types/Homey.type";
 import type { CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
 
 import { constructedApp } from "./lib/construct-app";
@@ -111,21 +112,21 @@ describe("fromEvent", () => {
   });
 });
 
-describe("newEvent", () => {
+describe("newLocalEvent", () => {
   test("Returns correct object when 'applyTimezone' is false", () => {
     const title: string = "Test1";
     const description: string = "TestDesc";
     const start: string = "2023-04-06T12:00:00Z";
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
-    const calendarName: string = "TestCal";
-    const result: LocalEvent | null = newEvent(constructedApp, timezone, {
+    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+    const result: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,
       event_end: end,
       apply_timezone: applyTimezone,
-      calendar: calendarName
+      calendar
     });
 
     if (!result) {
@@ -144,7 +145,7 @@ describe("newEvent", () => {
     expect(result.freeBusy).toBe(undefined);
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBeTruthy();
-    expect(result.calendar).toBe(calendarName);
+    expect(result.calendar).toBe(calendar.name);
   });
 
   test("Returns correct object when 'applyTimezone' is true", () => {
@@ -153,14 +154,14 @@ describe("newEvent", () => {
     const start: string = "2023-04-06T12:00:00";
     const end: string = "2023-04-06T14:00:00";
     const applyTimezone: boolean = true;
-    const calendarName: string = "TestCal";
-    const result: LocalEvent | null = newEvent(constructedApp, timezone, {
+    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+    const result: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
       event_start: start,
       event_end: end,
       apply_timezone: applyTimezone,
-      calendar: calendarName
+      calendar
     });
 
     if (!result) {
@@ -179,6 +180,6 @@ describe("newEvent", () => {
     expect(result.freeBusy).toBe(undefined);
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBeTruthy();
-    expect(result.calendar).toBe(calendarName);
+    expect(result.calendar).toBe(calendar.name);
   });
 });

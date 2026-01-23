@@ -12,7 +12,7 @@ import { getActiveEvents } from "../lib/get-active-events.js";
 import { getEventUids } from "../lib/get-event-uids.js";
 import { getFallbackUri } from "../lib/get-fallback-uri.js";
 import { getNewEvents } from "../lib/get-new-events.js";
-import { getLocalActiveEvents, saveLocalEvents } from "../lib/local-events.js";
+import { getLocalActiveEvents, getLocalEvents, saveLocalEvents } from "../lib/local-events.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
 
@@ -307,8 +307,7 @@ export const getEvents = async (
 
   // get local events (only the ones that are not started yet or is ongoing)
   const localEventsJSON: string | null = app.homey.settings.get(variableMgmt.storage.localEvents);
-  const localEvents: LocalJsonEvent[] =
-    localEventsJSON && localEventsJSON.length > 0 ? (JSON.parse(localEventsJSON) as LocalJsonEvent[]) : [];
+  const localEvents: LocalJsonEvent[] = getLocalEvents(app, localEventsJSON, app.homey.clock.getTimezone());
   variableMgmt.localEvents = getLocalActiveEvents({
     timezone: app.homey.clock.getTimezone(),
     events: localEvents,
