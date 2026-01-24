@@ -111,6 +111,9 @@ describe("newLocalEvent", () => {
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
     const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+
+    const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
+
     const result: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
@@ -127,7 +130,7 @@ describe("newLocalEvent", () => {
 
     expect(result.start.hour).toBe(12);
     expect(result.end.hour).toBe(14);
-    expect(result.uid).toBe(`local_${start}`);
+    expect(result.uid.startsWith(dummyUid)).toBeTruthy();
     expect(result.description).toBe(description);
     expect(result.location).toBe("");
     expect(result.summary).toBe(title);
@@ -146,6 +149,9 @@ describe("newLocalEvent", () => {
     const end: string = "2023-04-06T14:00:00";
     const applyTimezone: boolean = true;
     const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+
+    const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
+
     const result: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
       event_name: title,
       event_description: description,
@@ -162,7 +168,7 @@ describe("newLocalEvent", () => {
 
     expect(result.start.hour).toBe(14);
     expect(result.end.hour).toBe(16);
-    expect(result.uid).toBe(`local_${start}`);
+    expect(result.uid.startsWith(dummyUid)).toBeTruthy();
     expect(result.description).toBe(description);
     expect(result.location).toBe("");
     expect(result.summary).toBe(title);
@@ -172,5 +178,48 @@ describe("newLocalEvent", () => {
     expect(result.meetingUrl).toBe(undefined);
     expect(result.local).toBeTruthy();
     expect(result.calendar).toBe(calendar.name);
+  });
+
+  test("Two local events with the same start time have different UIDs", () => {
+    const title: string = "Test1";
+    const description: string = "TestDesc";
+    const start: string = "2023-04-06T12:00:00Z";
+    const end: string = "2023-04-06T14:00:00Z";
+    const applyTimezone: boolean = false;
+    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+
+    const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
+
+    const localEventOne: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
+      event_name: title,
+      event_description: description,
+      event_start: start,
+      event_end: end,
+      apply_timezone: applyTimezone,
+      calendar
+    });
+
+    if (!localEventOne) {
+      expect(localEventOne).not.toBeNull();
+      throw new Error("Result is null");
+    }
+
+    const localEventTwo: LocalEvent | null = newLocalEvent(constructedApp, timezone, {
+      event_name: title,
+      event_description: description,
+      event_start: start,
+      event_end: end,
+      apply_timezone: applyTimezone,
+      calendar
+    });
+
+    if (!localEventTwo) {
+      expect(localEventTwo).not.toBeNull();
+      throw new Error("Result is null");
+    }
+
+    expect(localEventOne.uid).not.toBe(localEventTwo.uid);
+    expect(localEventOne.uid.startsWith(dummyUid)).toBeTruthy();
+    expect(localEventTwo.uid.startsWith(dummyUid)).toBeTruthy();
   });
 });

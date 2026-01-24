@@ -10,6 +10,20 @@ import { extractFreeBusyStatus } from "./extract-free-busy-status";
 import { extractMeetingUrl } from "./extract-meeting-url.js";
 import { getDateTime, getZonedDateTime } from "./luxon-fns";
 
+const generateRandomNumber = (count: number): number => {
+  let generatedNumber: string = "";
+
+  for (let i: number = 0; i < count; i++) {
+    generatedNumber += Math.floor(Math.random() * 10).toString();
+  }
+
+  return parseInt(generatedNumber, 10);
+};
+
+const createNewEventUid = (dateTime: DateTime<true>): string => {
+  return `local_${dateTime.toFormat(`dd.MM.yy_HH:mm:ss.${generateRandomNumber(3)}`)}`;
+};
+
 const createNewEvent = (
   app: App | AppTests,
   start: DateTime<true>,
@@ -157,22 +171,12 @@ export const newLocalEvent = (app: App | AppTests, timezone: string, options: Ne
   const created: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
   const dateType: DateType = fullDayEvent ? "date" : "date-time";
 
-  if (!applyTimezone) {
-    app.log(
-      'newLocalEvent: Be aware: Since "applyTimezone" is set to false, start and end will not have your timezone applied:',
-      start,
-      startLuxon,
-      end,
-      endLuxon
-    );
-  }
-
   const newEvent: CalendarEvent = createNewEvent(
     app,
     startLuxon,
     dateType,
     endLuxon,
-    `local_${start}`,
+    createNewEventUid(created),
     description,
     "",
     title,
