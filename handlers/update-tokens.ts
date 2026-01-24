@@ -41,7 +41,7 @@ const getNextEventByCalendar = (
   timezone: string
 ): NextEvent | null => {
   if (!variableMgmt.calendars) {
-    app.error("[ERROR] getNextEventByCalendar: calendars not set in variableMgmt");
+    app.error("[ERROR] getNextEventByCalendar: Calendars not set yet.");
     return null;
   }
 
@@ -61,7 +61,7 @@ const getNextEventByCalendar = (
 
 export const updateTokens = async (app: App, variableMgmt: VariableManagement, timezone: string): Promise<void> => {
   if (!variableMgmt.calendars) {
-    app.error("[ERROR] updateTokens: calendars not set in variableMgmt");
+    app.error("[ERROR] updateTokens: Calendars not set yet");
     return;
   }
 

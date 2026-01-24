@@ -207,7 +207,7 @@ export const triggerEvents = async (
   event?: TriggerEvent
 ): Promise<void> => {
   if (!variableMgmt.calendars) {
-    app.error("[ERROR] triggerEvents: variableMgmt.calendars is not set. Aborting triggering events.");
+    app.error("[ERROR] triggerEvents: Calendars not set yet. Aborting triggering events.");
     return;
   }
 
