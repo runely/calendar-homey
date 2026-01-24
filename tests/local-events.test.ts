@@ -256,7 +256,12 @@ describe("getLocalEvents", () => {
         calendar: ""
       }
     ]);
-    const localJsonEvents: LocalJsonEvent[] = getLocalEvents(constructedApp, eventsWithNewFormat, options.timezone);
+    const localJsonEvents: LocalJsonEvent[] = getLocalEvents(
+      constructedApp,
+      eventsWithNewFormat,
+      options.timezone,
+      true
+    );
 
     expect(localJsonEvents.length).toBe(2);
   });
@@ -296,23 +301,32 @@ describe("getLocalEvents", () => {
         calendar: ""
       }
     ]);
-    const localJsonEvents: LocalJsonEvent[] = getLocalEvents(constructedApp, eventsWithOldFormat, options.timezone);
+    const localJsonEvents: LocalJsonEvent[] = getLocalEvents(
+      constructedApp,
+      eventsWithOldFormat,
+      options.timezone,
+      true
+    );
 
     expect(localJsonEvents.length).toBe(2);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event))).toBe(true);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event))).toBe(true);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event))).toBe(true);
-    expect(localJsonEvents[0].start).toBe("2021-11-05T19:00:00.000Z");
-    expect(localJsonEvents[0].end).toBe("2021-11-05T20:00:00.000Z");
+
+    // NOTE: Event at index 0 should be converted from 20:00:00.000Z to 21:00:00.000Z and then saved back to 20:00:00.000Z (in UTC)
+    expect(localJsonEvents[0].start).toBe("2021-11-05T20:00:00.000Z");
+    expect(localJsonEvents[0].end).toBe("2021-11-05T21:00:00.000Z");
     expect(localJsonEvents[0].dateType).toBe("date-time");
     expect(localJsonEvents[0].freeBusy).toBeNull();
-    expect(localJsonEvents[1].start).toBe("2021-11-06T20:00:00.000Z");
-    expect(localJsonEvents[1].end).toBe("2021-11-06T21:00:00.000Z");
+
+    // NOTE: Event at index 1 should stay as 20:00:00.000Z and saved back as 19:00:00.000Z (in UTC)
+    expect(localJsonEvents[1].start).toBe("2021-11-06T19:00:00.000Z");
+    expect(localJsonEvents[1].end).toBe("2021-11-06T20:00:00.000Z");
     expect(localJsonEvents[1].dateType).toBe("date-time");
     expect(localJsonEvents[1].freeBusy).toBe("BUSY");
   });
 
-  test("Returns events with new format with conversion on one event since local events have one event with new format and one event with old format", () => {
+  test("Returns events with new format with conversion on two events since local events have one event with new format and two events with old format", () => {
     const eventsWithNewAndOldFormat: string = JSON.stringify([
       {
         start: "2021-11-05T20:00:00.000Z",
@@ -339,7 +353,7 @@ describe("getLocalEvents", () => {
         summary: "Two",
         created: "2021-11-05T18:00:00.000Z",
         fullDayEvent: false,
-        skipTZ: true,
+        skipTZ: false,
         freebusy: "",
         meetingUrl: undefined,
         local: true,
@@ -355,7 +369,7 @@ describe("getLocalEvents", () => {
         summary: "Two",
         created: "2021-11-05T18:00:00.000Z",
         fullDayEvent: false,
-        skipTZ: false,
+        skipTZ: true,
         freebusy: "",
         meetingUrl: undefined,
         local: true,
@@ -365,21 +379,28 @@ describe("getLocalEvents", () => {
     const localJsonEvents: LocalJsonEvent[] = getLocalEvents(
       constructedApp,
       eventsWithNewAndOldFormat,
-      options.timezone
+      options.timezone,
+      true
     );
 
     expect(localJsonEvents.length).toBe(3);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event))).toBe(true);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event))).toBe(true);
     expect(localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event))).toBe(true);
+
+    // NOTE: Event at index 0 should have no changes since it was already in new format
     expect(localJsonEvents[0].start).toBe("2021-11-05T20:00:00.000Z");
     expect(localJsonEvents[0].end).toBe("2021-11-05T21:00:00.000Z");
     expect(localJsonEvents[0].dateType).toBe("date-time");
     expect(localJsonEvents[0].freeBusy).toBeUndefined();
+
+    // NOTE: Event at index 1 should be converted from 20:00:00.000Z to 21:00:00.000Z and then saved back to 20:00:00.000Z (in UTC)
     expect(localJsonEvents[1].start).toBe("2021-11-06T20:00:00.000Z");
     expect(localJsonEvents[1].end).toBe("2021-11-06T21:00:00.000Z");
     expect(localJsonEvents[1].dateType).toBe("date-time");
     expect(localJsonEvents[1].freeBusy).toBeNull();
+
+    // NOTE: Event at index 2 should stay as 20:00:00.000Z and saved back as 19:00:00.000Z (in UTC)
     expect(localJsonEvents[2].start).toBe("2021-11-06T19:00:00.000Z");
     expect(localJsonEvents[2].end).toBe("2021-11-06T20:00:00.000Z");
     expect(localJsonEvents[2].dateType).toBe("date-time");

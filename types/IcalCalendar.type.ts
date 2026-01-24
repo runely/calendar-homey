@@ -91,7 +91,6 @@ export type LocalEvent = CalendarEvent & {
 
 export type LocalJsonEvent = {
   start: string;
-  // TODO: will this cause problems for already stored events?
   dateType: string;
   end: string;
   uid: string;
@@ -100,7 +99,6 @@ export type LocalJsonEvent = {
   summary: string;
   created?: string;
   fullDayEvent: boolean;
-  // TODO: will this cause problems for already stored events?
   freeBusy?: string;
   meetingUrl?: string;
   local: boolean;

@@ -307,7 +307,12 @@ export const getEvents = async (
 
   // get local events (only the ones that are not started yet or is ongoing)
   const localEventsJSON: string | null = app.homey.settings.get(variableMgmt.storage.localEvents);
-  const localEvents: LocalJsonEvent[] = getLocalEvents(app, localEventsJSON, app.homey.clock.getTimezone());
+  const localEvents: LocalJsonEvent[] = getLocalEvents(
+    app,
+    localEventsJSON,
+    app.homey.clock.getTimezone(),
+    logAllEvents
+  );
   variableMgmt.localEvents = getLocalActiveEvents({
     timezone: app.homey.clock.getTimezone(),
     events: localEvents,

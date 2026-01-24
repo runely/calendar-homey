@@ -20,7 +20,7 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
   for (const event of events) {
     const start: DateTime<true> | null = getDateTime({
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), timezone),
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), "utc"),
       localTimeZone: timezone,
       fullDayEvent: event.dateType === "date",
       keepOriginalZonedTime: false,
@@ -28,7 +28,7 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
     });
     const end: DateTime<true> | null = getDateTime({
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), timezone),
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), "utc"),
       localTimeZone: timezone,
       fullDayEvent: event.dateType === "date",
       keepOriginalZonedTime: false,
@@ -38,7 +38,7 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
       ? null
       : getDateTime({
           app,
-          dateWithTimeZone: createDateWithTimeZone(new Date(event.created), timezone),
+          dateWithTimeZone: createDateWithTimeZone(new Date(event.created), "utc"),
           localTimeZone: timezone,
           fullDayEvent: event.dateType === "date",
           keepOriginalZonedTime: false,
@@ -64,37 +64,22 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
     //    start has happened AND end hasn't happened yet (ongoing)
     if ((endDiff < 0 && betweenLimit) || (startDiff > 0 && endDiff < 0)) {
       if (logAllEvents) {
-        if (event.dateType === "date") {
-          // Regular full day event: Summary -- Start -- End -- Original Start UTC string -- TZ -- UID
-          app.log(
-            "Local regular full day event:",
-            event.summary,
-            "--",
-            start,
-            "--",
-            end,
-            "--",
-            event.start,
-            `-- TZ:${timezone}`,
-            "--",
-            event.uid
-          );
-        } else {
-          // Regular event: Summary -- Start -- End -- Original Start UTC string -- TZ -- UID
-          app.log(
-            "Local regular event:",
-            event.summary,
-            "--",
-            start,
-            "--",
-            end,
-            "--",
-            event.start,
-            `-- TZ:${timezone}`,
-            "--",
-            event.uid
-          );
-        }
+        // Regular full day event: Summary -- Start -- End -- Original Start UTC string -- TZ -- UID
+        //   or
+        // Regular event: Summary -- Start -- End -- Original Start UTC string -- TZ -- UID
+        app.log(
+          event.dateType === "date" ? "Local regular full day event:" : "Local regular event:",
+          event.summary,
+          "--",
+          start,
+          `(${start.toFormat("dd.MM.yy HH:mm:ss")}) --`,
+          end,
+          `(${end.toFormat("dd.MM.yy HH:mm:ss")}) --`,
+          event.start,
+          `-- TZ:${timezone}`,
+          "--",
+          event.uid
+        );
       }
 
       // set start and end with correct locale (supports only the languages in the locales folder!)
@@ -111,14 +96,22 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
   return activeEvents;
 };
 
-export const getLocalEvents = (app: App | AppTests, events: string | null, timezone: string): LocalJsonEvent[] => {
+export const getLocalEvents = (
+  app: App | AppTests,
+  events: string | null,
+  timezone: string,
+  logAllEvents: boolean
+): LocalJsonEvent[] => {
   const localJsonEvents: LocalJsonEvent[] = events && events.length > 0 ? (JSON.parse(events) as LocalJsonEvent[]) : [];
 
   if (localJsonEvents.every((event: LocalJsonEvent) => "dateType" in event)) {
     return localJsonEvents;
   }
 
-  app.log("getLocalEvents: Detected old format on local events. Converting to new format. Old events:", events);
+  app.log(
+    "getLocalEvents: Detected old format on some or all local events. Converting to new format. Old events:",
+    localJsonEvents
+  );
 
   const newLocalEvents: LocalJsonEvent[] = [];
 
@@ -145,20 +138,20 @@ export const getLocalEvents = (app: App | AppTests, events: string | null, timez
 
     const start: DateTime<true> | null = getDateTime({
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), timezone),
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), oldSkipTZ ? timezone : "utc"),
       localTimeZone: timezone,
       fullDayEvent: oldDateType === "date",
-      keepOriginalZonedTime: oldSkipTZ,
-      quiet: true
+      keepOriginalZonedTime: !oldSkipTZ,
+      quiet: !logAllEvents
     });
 
     const end: DateTime<true> | null = getDateTime({
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), timezone),
+      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), oldSkipTZ ? timezone : "utc"),
       localTimeZone: timezone,
       fullDayEvent: oldDateType === "date",
-      keepOriginalZonedTime: oldSkipTZ,
-      quiet: true
+      keepOriginalZonedTime: !oldSkipTZ,
+      quiet: !logAllEvents
     });
 
     if (!start || !end) {
@@ -177,7 +170,7 @@ export const getLocalEvents = (app: App | AppTests, events: string | null, timez
     } as LocalJsonEvent);
   }
 
-  app.log("getLocalEvents: Converted to new format. New events:", JSON.stringify(newLocalEvents));
+  app.log("getLocalEvents: Converted to new format. New events:", newLocalEvents);
 
   app.log(
     "getLocalEvents: Converted",
@@ -196,7 +189,18 @@ export const saveLocalEvents = (app: App | AppTests, variableMgmt: VariableManag
     return;
   }
 
-  const json: string = JSON.stringify(events);
+  const savableEvents: LocalJsonEvent[] = events.map((event: LocalEvent) => {
+    return {
+      ...event,
+      start: event.start.toUTC().toISO(),
+      end: event.end.toUTC().toISO(),
+      created: event.created ? event.created.toUTC().toISO() : undefined,
+      description: event.description || ""
+    };
+  });
+
+  const json: string = JSON.stringify(savableEvents);
   app.homey.settings.set(variableMgmt.storage.localEvents, json);
-  app.log("saveLocalEvents: Saved", events.length, "local events");
+  app.log("saveLocalEvents: Saved", events.length, "local events:", savableEvents);
+  app.log("saveLocalEvents: Previous events", events);
 };
