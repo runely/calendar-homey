@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
-import type { DateWithTimeZone, VEvent } from "node-ical";
+import type { VEvent } from "node-ical";
 
-import { fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
+import { createDateWithTimeZone, fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { ArgumentAutoCompleteResult } from "../types/Homey.type";
@@ -9,24 +9,15 @@ import type { CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
 
 import { constructedApp } from "./lib/construct-app";
 
-const createDateWithTimeZone = (date: Date, timeZone?: string | undefined): DateWithTimeZone => {
-  return Object.defineProperty(date, "tz", {
-    value: timeZone,
-    enumerable: false,
-    configurable: true,
-    writable: false
-  }) as DateWithTimeZone;
-};
-
 const timezone: string = "Europe/Oslo";
 
 const utcEvent: VEvent = {
   class: "PUBLIC",
   completion: "",
-  dtstamp: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  dtstamp: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   exdate: undefined,
   geo: undefined,
-  lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   method: "PUBLISH",
   sequence: "",
   transparency: "OPAQUE",
@@ -35,14 +26,14 @@ const utcEvent: VEvent = {
   params: [],
   type: "VEVENT",
   url: "",
-  start: createDateWithTimeZone(new Date("2021-11-05T20:00:00.000Z")),
+  start: createDateWithTimeZone(new Date("2021-11-05T20:00:00.000Z"), undefined),
   datetype: "date-time",
-  end: createDateWithTimeZone(new Date("2021-11-05T21:00:00.000Z")),
+  end: createDateWithTimeZone(new Date("2021-11-05T21:00:00.000Z"), undefined),
   uid: "cal_one_One",
   description: "OneDesc",
   location: "",
   summary: "One",
-  created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   // @ts-expect-error - This is actually on the object, but the exported types are missing it...
   "MICROSOFT-CDO-BUSYSTATUS": "WORKINGELSEWHERE"
 };
@@ -50,10 +41,10 @@ const utcEvent: VEvent = {
 const tzEvent: VEvent = {
   class: "PUBLIC",
   completion: "",
-  dtstamp: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  dtstamp: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   exdate: undefined,
   geo: undefined,
-  lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   method: "PUBLISH",
   sequence: "",
   transparency: "OPAQUE",
@@ -69,7 +60,7 @@ const tzEvent: VEvent = {
   description: "OneDesc",
   location: "",
   summary: "One",
-  created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z")),
+  created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   // @ts-expect-error - This is actually on the object, but the exported types are missing it...
   "X-MICROSOFT-CDO-BUSYSTATUS": "BUSY"
 };
