@@ -7,7 +7,7 @@ Opsætning
     - Vælg om du vil have automatisk kalender-synkronisering (som standard er aktiveret) (hvis deaktiveret, skal synkroniseringen ske via flow-kort)
     - Vælg intervallet for den automatiske kalender-synkronisering (som standard hvert 15. minut)
     - Ændr dato/klokkeslætsformatet eller brug standardformatet (dit valg)
-        - Alle tokens understøttet i "moment.format()" understøttes også her: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle tokens understøttet i "luxon.toFormat()" understøttes også her: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Vælg om du vil have næste event-tags pr. kalender. Standard er slået fra
 - For at blive notificeret om synkroniseringsfejl, skal du oprette et flow ved hjælp af triggeren "Synkroniseringsfejl opstod"
 

@@ -1,167 +1,168 @@
 {
-    "locale": {
-        "humanize": "de",
-        "moment": "de"
+  "locale": {
+    "humanize": "de",
+    "luxon": "de"
+  },
+  "humanize": {
+    "conjunction": " und "
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "saved_alert": "Einstellungen gespeichert",
+    "uri_load_failure": "Das Laden der .ics-Datei(en) ist fehlgeschlagen:",
+    "icons_info": "Icons von",
+    "calendars": {
+      "legend": "URI zur .ics-Datei",
+      "name": "Kalenderbezeichnung",
+      "uri": "URI"
     },
-    "humanize": {
-        "conjunction": " und "
-    },
-    "settings": {
-        "title": "Einstellungen",
-        "saved_alert": "Einstellungen gespeichert",
-        "uri_load_failure": "Das Laden der .ics-Datei(en) ist fehlgeschlagen:",
-        "icons_info": "Icons von",
-        "calendars": {
-            "legend": "URI zur .ics-Datei",
-            "name": "Kalenderbezeichnung",
-            "uri": "URI"
-        },
-        "syncsettings": {
-            "legend": "Synchronisierung",
-            "interval": {
-                "legend": "Intervall",
-                "description": "Automatische Synchronisierung aktivieren/deaktivieren<br><br>HINWEIS: Wenn deaktiviert, wird die Synchronisierung nur über die Flusskarte durchgeführt!"
-            },
-            "cron": {
-                "description": "Cron-Ausdruck für das Synchronisierungsintervall.<br>Verwenden Sie einen Generator, um die richtige Syntax zu finden, z. B .: https://crontab.cronhub.io/<br><br><b>VORSICHT</b>: Bei ungültiger Syntax wird die automatische Synchronisierung deaktiviert, bis eine gültige Syntax angegeben wird!"
-            },
-            "eventlimit": {
-                "legend": "Zeitrahmen des Ereignisses",
-                "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
-                "value": "Anzahl",
-                "type": "Typ",
-                "types": {
-                    "days": "Tage",
-                    "weeks": "Wochen",
-                    "months": "Monate",
-                    "years": "Jahre"
-                }
-            }
-        },
-        "datetime": {
-            "legend": "Datum/Zeit",
-            "date": {
-                "description": "<b>Gewünschtes Datums-/zeitformat</b><br><br>Unterstützt alle Token im <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Beispiel: <i>dddd, DD.MM.YYYY</i>",
-                "long_name": "Langes Datumsformat",
-                "default": "DD-MM-YY",
-                "short_name": "Kurzes Datumsformat"
-            },
-            "time": {
-                "name": "Zeitformat",
-                "default": "HH:mm"
-            }
-        },
-        "misc": {
-            "legend": "Sonstige Einstellungen",
-            "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender",
-            "triggerAllChangedEventTypes": {
-                "title": "Alle geänderten Ereignistypen auslösen",
-                "description": "Wenn <i>nicht ausgewählt</i>, wird nur die <b>erste Änderung</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen.<br>Wenn <i>ausgewählt</i>, werden <b>alle Änderungen</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen."
-            }
-        },
-        "debug": {
-            "legend": "Diverse Debugging-Optionen",
-            "description": "Die Einstellungen sollten nur auf Wunsch des Entwicklers und nicht länger als nötig aktiviert werden",
-            "log_all_events": "Protokollieren Sie alle Ereignisse"
-        },
-        "buttons": {
-            "new_item": "Neuer Kalender",
-            "save": "Speichern",
-            "remove": "Löschen"
+    "syncsettings": {
+      "legend": "Synchronisierung",
+      "interval": {
+        "legend": "Intervall",
+        "description": "Automatische Synchronisierung aktivieren/deaktivieren<br><br>HINWEIS: Wenn deaktiviert, wird die Synchronisierung nur über die Flusskarte durchgeführt!"
+      },
+      "cron": {
+        "description": "Cron-Ausdruck für das Synchronisierungsintervall.<br>Verwenden Sie einen Generator, um die richtige Syntax zu finden, z. B .: https://crontab.cronhub.io/<br><br><b>VORSICHT</b>: Bei ungültiger Syntax wird die automatische Synchronisierung deaktiviert, bis eine gültige Syntax angegeben wird!"
+      },
+      "eventlimit": {
+        "legend": "Zeitrahmen des Ereignisses",
+        "description": "Ereignisse mit Startdatum innerhalb des vorgegebenen Zeitrahmens werden synchronisiert in",
+        "value": "Anzahl",
+        "type": "Typ",
+        "types": {
+          "days": "Tage",
+          "weeks": "Wochen",
+          "months": "Monate",
+          "years": "Jahre"
         }
+      }
     },
-    "hitcount": {
-        "title": "Hit count",
-        "panel": {
-            "info": {
-                "header": "Trigger ohne Argumente",
-                "1": "Registriert 1 Trefferanzahl, auch wenn der Trigger in vielen Flows verwendet wird (so funktioniert Homey)",
-                "2": "Registriert 1 Trefferanzahl, auch wenn der Trigger in keinem Flow verwendet wird (so funktioniert Homey)"
-            },
-            "info2": {
-                "header": "Trigger mit Argumenten",
-                "1": "Registriert 1 Trefferanzahl pro Ereignis und Flow, der den Trigger verwendet"
-            },
-            "triggerHeader": "Trigger",
-            "countToday": "Heute",
-            "countTotal": "Gesamt",
-            "lastTriggered": "Zuletzt",
-            "resetConfirm": "Dadurch werden alle Trefferzähldaten zurückgesetzt. Bist du sicher?"
-        },
-        "typeLabels": {
-            "1": "Minute(n)",
-            "2": "Stunde(n)",
-            "3": "Tag(e)",
-            "4": "Woche(n)"
-        },
-        "buttons": {
-            "reset": "Hit count zurücksetzen"
-        }
+    "datetime": {
+      "legend": "Datum/Zeit",
+      "date": {
+        "description": "<b>Gewünschtes Datums-/zeitformat</b><br><br>Unterstützt alle Token im <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Beispiel: <i>cccc, dd.MM.yyyy</i>",
+        "long_name": "Langes Datumsformat",
+        "default": "dd-MM-yy",
+        "short_name": "Kurzes Datumsformat"
+      },
+      "time": {
+        "name": "Zeitformat",
+        "default": "HH:mm"
+      }
     },
-    "calendarTokens": {
-        "events_today_calendar_title_stamps": "Heutige Ereignisse in",
-        "events_today_calendar_count": "Heutige Ereignisse (Anzahl) in",
-        "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",
-        "events_tomorrow_calendar_count": "Morgige Ereignisse (Anzahl) in",
-        "event_next_title_calendar": "Nächster Ereignistitel in",
-        "event_next_startdate_calendar": "Startdatum des nächsten Ereignisses in",
-        "event_next_startstamp_calendar": "Beginn des nächsten Ereignisses in",
-        "event_next_enddate_calendar": "Enddatum des nächsten Ereignisses in",
-        "event_next_endstamp_calendar": "Ende des nächsten Ereignisses in",
-        "event_next_description_calendar": "Beschreibung des nächsten Ereignisses in"
+    "misc": {
+      "legend": "Sonstige Einstellungen",
+      "nextEventTokensPerCalendar": "Nächste Ereignis-Tags pro Kalender",
+      "triggerAllChangedEventTypes": {
+        "title": "Alle geänderten Ereignistypen auslösen",
+        "description": "Wenn <i>nicht ausgewählt</i>, wird nur die <b>erste Änderung</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen.<br>Wenn <i>ausgewählt</i>, werden <b>alle Änderungen</b> an einem Ereignis eine <u>Ereignis wurde geändert</u> auslösen."
+      }
     },
-    "flowTokens": {
-        "event_next_title": "Nächster Ereignistitel",
-        "event_next_startdate": "Startdatum der nächsten Ereignisses",
-        "event_next_startstamp": "Beginn des nächsten Ereignisses",
-        "event_next_stopdate": "Enddatum der nächsten Ereignisses",
-        "event_next_stopstamp": "Ende des nächsten Ereignisses",
-        "event_next_duration": "Nächste Ereignisdauer",
-        "event_next_duration_minutes": "Nächste Ereignisdauer (Minuten)",
-        "event_next_starts_in_minutes": "Nächstes Ereignis beginnt in (Minuten)",
-        "event_next_stops_in_minutes": "Nächstes Ereignis endet in (Minuten)",
-        "event_next_description": "Beschreibung der nächsten Ereignisses",
-        "event_next_calendar_name": "Kalenderbezeichnung des nächsten Ereignisses",
-        "events_today_title_stamps": "Heutige Ereignisse, Titel und Zeit",
-        "events_tomorrow_title_stamps": "Morgige Ereignisse, Titel und Zeit",
-        "events_today_count": "Heutige Ereignisse (Anzahl)",
-        "events_tomorrow_count": "Morgige Ereignisse (Anzahl)",
-        "events_today-tomorrow_startstamp_fullday": "ganztägig",
-        "events_today-tomorrow_start-stop_stamps_pre": "bis",
-        "icalcalendar_week_number": "Wochennummer"
+    "debug": {
+      "legend": "Diverse Debugging-Optionen",
+      "description": "Die Einstellungen sollten nur auf Wunsch des Entwicklers und nicht länger als nötig aktiviert werden",
+      "log_all_events": "Protokollieren Sie alle Ereignisse"
     },
-    "nextEventWithToken": {
-        "event_next_title": "Titel (mit)",
-        "event_next_startdate": "Startdatum (mit)",
-        "event_next_startstamp": "Beginn (mit)",
-        "event_next_stopdate": "Enddatum (mit)",
-        "event_next_stopstamp": "Ende (mit)",
-        "event_next_description": "Beschreibung (mit)"
-    },
-    "triggers": {
-        "event_changed": {
-            "start": "Anfang",
-            "end": "Ende",
-            "description": "Beschreibung",
-            "location": "Ort",
-            "summary": "Zusammenfassung"
-        }
-    },
-    "actions": {
-        "new_event": {
-            "titleInvalid": "Der Titel ist ungültig",
-            "startInvalid": "Der Veranstaltungsbeginn ist ungültig",
-            "endInvalid": "Das Veranstaltungsende ist ungültig"
-        },
-        "delete_event_name": {
-            "eventNotFoundOne": "Lokale Veranstaltung mit Titel",
-            "eventNotFoundTwo": "nicht gefunden"
-        },
-        "calendarNotFoundOne": "Kalender",
-        "calendarNotFoundTwo": "nicht gefunden"
-    },
-    "device": {
-        "eventCountCalendar": "Anzahl der Ereignisse -",
-        "lastSuccessfulSync": "Letzte erfolgreiche Synchronisierung -"
+    "buttons": {
+      "new_item": "Neuer Kalender",
+      "save": "Speichern",
+      "remove": "Löschen"
     }
+  },
+  "hitcount": {
+    "title": "Hit count",
+    "panel": {
+      "info": {
+        "header": "Trigger ohne Argumente",
+        "1": "Registriert 1 Trefferanzahl, auch wenn der Trigger in vielen Flows verwendet wird (so funktioniert Homey)",
+        "2": "Registriert 1 Trefferanzahl, auch wenn der Trigger in keinem Flow verwendet wird (so funktioniert Homey)"
+      },
+      "info2": {
+        "header": "Trigger mit Argumenten",
+        "1": "Registriert 1 Trefferanzahl pro Ereignis und Flow, der den Trigger verwendet"
+      },
+      "triggerHeader": "Trigger",
+      "countToday": "Heute",
+      "countTotal": "Gesamt",
+      "lastTriggered": "Zuletzt",
+      "resetConfirm": "Dadurch werden alle Trefferzähldaten zurückgesetzt. Bist du sicher?"
+    },
+    "typeLabels": {
+      "1": "Minute(n)",
+      "2": "Stunde(n)",
+      "3": "Tag(e)",
+      "4": "Woche(n)"
+    },
+    "buttons": {
+      "reset": "Hit count zurücksetzen"
+    }
+  },
+  "calendarTokens": {
+    "events_today_calendar_title_stamps": "Heutige Ereignisse in",
+    "events_today_calendar_count": "Heutige Ereignisse (Anzahl) in",
+    "events_tomorrow_calendar_title_stamps": "Morgige Ereignisse in",
+    "events_tomorrow_calendar_count": "Morgige Ereignisse (Anzahl) in",
+    "event_next_title_calendar": "Nächster Ereignistitel in",
+    "event_next_startdate_calendar": "Startdatum des nächsten Ereignisses in",
+    "event_next_startstamp_calendar": "Beginn des nächsten Ereignisses in",
+    "event_next_enddate_calendar": "Enddatum des nächsten Ereignisses in",
+    "event_next_endstamp_calendar": "Ende des nächsten Ereignisses in",
+    "event_next_description_calendar": "Beschreibung des nächsten Ereignisses in"
+  },
+  "flowTokens": {
+    "event_next_title": "Nächster Ereignistitel",
+    "event_next_startdate": "Startdatum der nächsten Ereignisses",
+    "event_next_startstamp": "Beginn des nächsten Ereignisses",
+    "event_next_stopdate": "Enddatum der nächsten Ereignisses",
+    "event_next_stopstamp": "Ende des nächsten Ereignisses",
+    "event_next_duration": "Nächste Ereignisdauer",
+    "event_next_duration_minutes": "Nächste Ereignisdauer (Minuten)",
+    "event_next_starts_in_minutes": "Nächstes Ereignis beginnt in (Minuten)",
+    "event_next_stops_in_minutes": "Nächstes Ereignis endet in (Minuten)",
+    "event_next_description": "Beschreibung der nächsten Ereignisses",
+    "event_next_calendar_name": "Kalenderbezeichnung des nächsten Ereignisses",
+    "events_today_title_stamps": "Heutige Ereignisse, Titel und Zeit",
+    "events_tomorrow_title_stamps": "Morgige Ereignisse, Titel und Zeit",
+    "events_today_count": "Heutige Ereignisse (Anzahl)",
+    "events_tomorrow_count": "Morgige Ereignisse (Anzahl)",
+    "events_today-tomorrow_startstamp_fullday": "ganztägig",
+    "events_today-tomorrow_start-stop_stamps_pre": "bis",
+    "icalcalendar_week_number": "Wochennummer"
+  },
+  "nextEventWithToken": {
+    "event_next_title": "Titel (mit)",
+    "event_next_startdate": "Startdatum (mit)",
+    "event_next_startstamp": "Beginn (mit)",
+    "event_next_stopdate": "Enddatum (mit)",
+    "event_next_stopstamp": "Ende (mit)",
+    "event_next_description": "Beschreibung (mit)"
+  },
+  "triggers": {
+    "event_changed": {
+      "start": "Anfang",
+      "end": "Ende",
+      "description": "Beschreibung",
+      "location": "Ort",
+      "summary": "Zusammenfassung"
+    }
+  },
+  "actions": {
+    "new_event": {
+      "titleInvalid": "Der Titel ist ungültig",
+      "startInvalid": "Der Veranstaltungsbeginn ist ungültig",
+      "endInvalid": "Das Veranstaltungsende ist ungültig",
+      "createEventError": "Fehler beim Erstellen des Termins"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Lokale Veranstaltung mit Titel",
+      "eventNotFoundTwo": "nicht gefunden"
+    },
+    "calendarNotFoundOne": "Kalender",
+    "calendarNotFoundTwo": "nicht gefunden"
+  },
+  "device": {
+    "eventCountCalendar": "Anzahl der Ereignisse -",
+    "lastSuccessfulSync": "Letzte erfolgreiche Synchronisierung -"
+  }
 }

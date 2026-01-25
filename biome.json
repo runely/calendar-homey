@@ -1,0 +1,75 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": ["**/*.ts", "**/*.json", "!package*.json", "!app.json", "!.homeycompose/app.json", "!settings/*.js", "!homeyscripts/*.js"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "indentStyle": "space",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "expand": "auto",
+    "lineWidth": 200,
+    "useEditorconfig": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    },
+    "includes": ["**", "!dist", "!node_modules"]
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "expand": "auto",
+      "bracketSpacing": true,
+      "bracketSameLine": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 120,
+      "arrowParentheses": "asNeeded",
+      "semicolons": "always",
+      "trailingCommas": "none"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.ts"],
+      "javascript": {
+        "globals": []
+      },
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "error"
+          },
+          "complexity": {
+            "useLiteralKeys": "off"
+          },
+          "style": {
+            "noUnusedTemplateLiteral": "error",
+            "noUselessElse": "error",
+            "useCollapsedIf": "error",
+            "useConst": "error"
+          }
+        }
+      }
+    }
+  ],
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}

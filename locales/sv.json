@@ -1,167 +1,168 @@
 {
-    "locale": {
-        "humanize": "sv",
-        "moment": "sv"
+  "locale": {
+    "humanize": "sv",
+    "luxon": "sv"
+  },
+  "humanize": {
+    "conjunction": " och "
+  },
+  "settings": {
+    "title": "Inställningar",
+    "saved_alert": "Inställningar sparat",
+    "uri_load_failure": "Misslyckad inläsning av .ics-fil(er):",
+    "icons_info": "Ikoner av",
+    "calendars": {
+      "legend": "Sökväg till .ics-fil",
+      "name": "Kalendernamn",
+      "uri": "Sökväg"
     },
-    "humanize": {
-        "conjunction": " och "
-    },
-    "settings": {
-        "title": "Inställningar",
-        "saved_alert": "Inställningar sparat",
-        "uri_load_failure": "Misslyckad inläsning av .ics-fil(er):",
-        "icons_info": "Ikoner av",
-        "calendars": {
-            "legend": "Sökväg till .ics-fil",
-            "name": "Kalendernamn",
-            "uri": "Sökväg"
-        },
-        "syncsettings": {
-            "legend": "Synkronisering",
-            "interval": {
-                "legend": "Intervall",
-                "description": "Aktivera/Inaktivera automatisk synkronisering<br><br>NOTERA: Om inaktiverad kommer synkronisering endast att göras via flödeskortet!"
-            },
-            "cron": {
-                "description": "Cron-uttryck för synkroniseringsintervall.<br>Använd en generator för att hitta korrekt syntax, till exempel: https://crontab.cronhub.io/<br><br><b>VARSNING</b>: Vid ogiltig syntax kommer automatisk synkronisering att inaktiveras tills giltig syntax anges!"
-            },
-            "eventlimit": {
-                "legend": "Händelsens tidsram",
-                "description": "Händelser med startdatum inom angiven tidsram synkroniseras om",
-                "value": "Antal",
-                "type": "Typ",
-                "types": {
-                    "days": "Dagar",
-                    "weeks": "Veckor",
-                    "months": "Månader",
-                    "years": "År"
-                }
-            }
-        },
-        "datetime": {
-            "legend": "Datum/Tid",
-            "date": {
-                "description": "<b>Önskad datum-/tidsformat</b><br><br>Stöder alla tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/ moment/04-displaying/01-format/<br><br>Exempel: <i>dddd, DD.MM.YYYY</i>",
-                "long_name": "Långt datumformat",
-                "default": "YY-MM-DD",
-                "short_name": "Kort datumformat"
-            },
-            "time": {
-                "name": "Tidsformat",
-                "default": "HH:mm"
-            }
-        },
-        "misc": {
-            "legend": "Andra inställningar",
-            "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender",
-            "triggerAllChangedEventTypes": {
-                "title": "Utlös alla ändrade händelsetyper",
-                "description": "När <i>inte vald</i>, kommer endast <b>första ändringen</b> på en händelse att utlösa en <u>händelse har ändrats</u>.<br>När <i>vald</i>, kommer <b>alla ändringar</b> på en händelse att utlösa en <u>händelse har ändrats</u>."
-            }
-        },
-        "debug": {
-            "legend": "Olika felsökning",
-            "description": "Inställningarna ska endast aktiveras på begäran av utvecklaren och inte aktiveras längre än nödvändigt",
-            "log_all_events": "Logga alle händelser"
-        },
-        "buttons": {
-            "new_item": "Ny kalendar",
-            "save": "Spara",
-            "remove": "Radera"
+    "syncsettings": {
+      "legend": "Synkronisering",
+      "interval": {
+        "legend": "Intervall",
+        "description": "Aktivera/Inaktivera automatisk synkronisering<br><br>NOTERA: Om inaktiverad kommer synkronisering endast att göras via flödeskortet!"
+      },
+      "cron": {
+        "description": "Cron-uttryck för synkroniseringsintervall.<br>Använd en generator för att hitta korrekt syntax, till exempel: https://crontab.cronhub.io/<br><br><b>VARSNING</b>: Vid ogiltig syntax kommer automatisk synkronisering att inaktiveras tills giltig syntax anges!"
+      },
+      "eventlimit": {
+        "legend": "Händelsens tidsram",
+        "description": "Händelser med startdatum inom angiven tidsram synkroniseras om",
+        "value": "Antal",
+        "type": "Typ",
+        "types": {
+          "days": "Dagar",
+          "weeks": "Veckor",
+          "months": "Månader",
+          "years": "År"
         }
+      }
     },
-    "hitcount": {
-        "title": "Hit count",
-        "panel": {
-            "info": {
-                "header": "Triggers utan argument",
-                "1": "Kommer att registrera 1 träffar även om triggern används i många flöden (det är så här Homey fungerar)",
-                "2": "Kommer att registrera 1 träffar även om triggern inte används i några flöden (det är så här Homey fungerar)"
-            },
-            "info2": {
-                "header": "Triggers med argument",
-                "1": "Kommer att registrera 1 träffar per händelse per flöde som använder triggern"
-            },
-            "triggerHeader": "Trigger",
-            "countToday": "Idag",
-            "countTotal": "Totalt",
-            "lastTriggered": "Sista",
-            "resetConfirm": "Detta kommer att återställa all hit count data. Är du säker?"
-        },
-        "typeLabels": {
-            "1": "Minut(er)",
-            "2": "Timma(r)",
-            "3": "Dag(ar)",
-            "4": "Vecka/veckor"
-        },
-        "buttons": {
-            "reset": "Återställa hit count"
-        }
+    "datetime": {
+      "legend": "Datum/Tid",
+      "date": {
+        "description": "<b>Önskad datum-/tidsformat</b><br><br>Stöder alla tokens i <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Exempel: <i>cccc, dd.MM.yyyy</i>",
+        "long_name": "Långt datumformat",
+        "default": "yy-MM-dd",
+        "short_name": "Kort datumformat"
+      },
+      "time": {
+        "name": "Tidsformat",
+        "default": "HH:mm"
+      }
     },
-    "calendarTokens": {
-        "events_today_calendar_title_stamps": "Dagens händelser om",
-        "events_today_calendar_count": "Dagens händelser (antal) om",
-        "events_tomorrow_calendar_title_stamps": "Morgondagens händeler om",
-        "events_tomorrow_calendar_count": "Morgondagens händeler (antal) om",
-        "event_next_title_calendar": "Nästa händelsetitel om",
-        "event_next_startdate_calendar": "Nästa händelse startdatum om",
-        "event_next_startstamp_calendar": "Nästa händelse startar om",
-        "event_next_enddate_calendar": "Nästa händelses slutdatum om",
-        "event_next_endstamp_calendar": "Nästa händeles sluttid om",
-        "event_next_description_calendar": "Nästa händeles beskrivning om"
+    "misc": {
+      "legend": "Andra inställningar",
+      "nextEventTokensPerCalendar": "Nästa eventtaggar per kalender",
+      "triggerAllChangedEventTypes": {
+        "title": "Utlös alla ändrade händelsetyper",
+        "description": "När <i>inte vald</i>, kommer endast <b>första ändringen</b> på en händelse att utlösa en <u>händelse har ändrats</u>.<br>När <i>vald</i>, kommer <b>alla ändringar</b> på en händelse att utlösa en <u>händelse har ändrats</u>."
+      }
     },
-    "flowTokens": {
-        "event_next_title": "Nästa händeles titel",
-        "event_next_startdate": "Nästa händeles startdatum",
-        "event_next_startstamp": "Nästa händelses starttid",
-        "event_next_stopdate": "Nästa händelse slutdatum",
-        "event_next_stopstamp": "Nästa händelse sluttid",
-        "event_next_duration": "Nästa händelses varaktighet",
-        "event_next_duration_minutes": "Nästa händelses varaktighet (minuter)",
-        "event_next_starts_in_minutes": "Nästa ändelse startar inom (minuter)",
-        "event_next_stops_in_minutes": "Nästa händelse slutar inom (minuter)",
-        "event_next_description": "Nästa händeles beskrivning",
-        "event_next_calendar_name": "Kalendernamn på nästa händelse",
-        "events_today_title_stamps": "Dagens händelser, titel och tid",
-        "events_tomorrow_title_stamps": "Morgondagens händelser, titel och tid",
-        "events_today_count": "Dagens händelser (antal)",
-        "events_tomorrow_count": "Morgondagens händelser (antal)",
-        "events_today-tomorrow_startstamp_fullday": "heldag",
-        "events_today-tomorrow_start-stop_stamps_pre": "till",
-        "icalcalendar_week_number": "Veckonummer"
+    "debug": {
+      "legend": "Olika felsökning",
+      "description": "Inställningarna ska endast aktiveras på begäran av utvecklaren och inte aktiveras längre än nödvändigt",
+      "log_all_events": "Logga alle händelser"
     },
-    "nextEventWithToken": {
-        "event_next_title": "Titel (innehåller)",
-        "event_next_startdate": "Startdatum (innehåller)",
-        "event_next_startstamp": "Starttid (innehåller)",
-        "event_next_stopdate": "Slutdatum (innehåller)",
-        "event_next_stopstamp": "Sluttid (innehåller)",
-        "event_next_description": "Beskrivning (innehåller)"
-    },
-    "triggers": {
-        "event_changed": {
-            "start": "Start",
-            "end": "Slut",
-            "description": "Beskrivning",
-            "location": "Plats",
-            "summary": "Summering"
-        }
-    },
-    "actions": {
-        "new_event": {
-            "titleInvalid": "Titel är ogiltig",
-            "startInvalid": "Händelsestart är ogiltig",
-            "endInvalid": "Händelseslut är ogiltig"
-        },
-        "delete_event_name": {
-            "eventNotFoundOne": "Lokalt händelse med titel",
-            "eventNotFoundTwo": "hittades inte"
-        },
-        "calendarNotFoundOne": "Kalender",
-        "calendarNotFoundTwo": "hittades inte"
-    },
-    "device": {
-        "eventCountCalendar": "Antal händelser -",
-        "lastSuccessfulSync": "Senaste framgångsrika synkroniseringen -"
+    "buttons": {
+      "new_item": "Ny kalendar",
+      "save": "Spara",
+      "remove": "Radera"
     }
+  },
+  "hitcount": {
+    "title": "Hit count",
+    "panel": {
+      "info": {
+        "header": "Triggers utan argument",
+        "1": "Kommer att registrera 1 träffar även om triggern används i många flöden (det är så här Homey fungerar)",
+        "2": "Kommer att registrera 1 träffar även om triggern inte används i några flöden (det är så här Homey fungerar)"
+      },
+      "info2": {
+        "header": "Triggers med argument",
+        "1": "Kommer att registrera 1 träffar per händelse per flöde som använder triggern"
+      },
+      "triggerHeader": "Trigger",
+      "countToday": "Idag",
+      "countTotal": "Totalt",
+      "lastTriggered": "Sista",
+      "resetConfirm": "Detta kommer att återställa all hit count data. Är du säker?"
+    },
+    "typeLabels": {
+      "1": "Minut(er)",
+      "2": "Timma(r)",
+      "3": "Dag(ar)",
+      "4": "Vecka/veckor"
+    },
+    "buttons": {
+      "reset": "Återställa hit count"
+    }
+  },
+  "calendarTokens": {
+    "events_today_calendar_title_stamps": "Dagens händelser om",
+    "events_today_calendar_count": "Dagens händelser (antal) om",
+    "events_tomorrow_calendar_title_stamps": "Morgondagens händeler om",
+    "events_tomorrow_calendar_count": "Morgondagens händeler (antal) om",
+    "event_next_title_calendar": "Nästa händelsetitel om",
+    "event_next_startdate_calendar": "Nästa händelse startdatum om",
+    "event_next_startstamp_calendar": "Nästa händelse startar om",
+    "event_next_enddate_calendar": "Nästa händelses slutdatum om",
+    "event_next_endstamp_calendar": "Nästa händeles sluttid om",
+    "event_next_description_calendar": "Nästa händeles beskrivning om"
+  },
+  "flowTokens": {
+    "event_next_title": "Nästa händeles titel",
+    "event_next_startdate": "Nästa händeles startdatum",
+    "event_next_startstamp": "Nästa händelses starttid",
+    "event_next_stopdate": "Nästa händelse slutdatum",
+    "event_next_stopstamp": "Nästa händelse sluttid",
+    "event_next_duration": "Nästa händelses varaktighet",
+    "event_next_duration_minutes": "Nästa händelses varaktighet (minuter)",
+    "event_next_starts_in_minutes": "Nästa ändelse startar inom (minuter)",
+    "event_next_stops_in_minutes": "Nästa händelse slutar inom (minuter)",
+    "event_next_description": "Nästa händeles beskrivning",
+    "event_next_calendar_name": "Kalendernamn på nästa händelse",
+    "events_today_title_stamps": "Dagens händelser, titel och tid",
+    "events_tomorrow_title_stamps": "Morgondagens händelser, titel och tid",
+    "events_today_count": "Dagens händelser (antal)",
+    "events_tomorrow_count": "Morgondagens händelser (antal)",
+    "events_today-tomorrow_startstamp_fullday": "heldag",
+    "events_today-tomorrow_start-stop_stamps_pre": "till",
+    "icalcalendar_week_number": "Veckonummer"
+  },
+  "nextEventWithToken": {
+    "event_next_title": "Titel (innehåller)",
+    "event_next_startdate": "Startdatum (innehåller)",
+    "event_next_startstamp": "Starttid (innehåller)",
+    "event_next_stopdate": "Slutdatum (innehåller)",
+    "event_next_stopstamp": "Sluttid (innehåller)",
+    "event_next_description": "Beskrivning (innehåller)"
+  },
+  "triggers": {
+    "event_changed": {
+      "start": "Start",
+      "end": "Slut",
+      "description": "Beskrivning",
+      "location": "Plats",
+      "summary": "Summering"
+    }
+  },
+  "actions": {
+    "new_event": {
+      "titleInvalid": "Titel är ogiltig",
+      "startInvalid": "Händelsestart är ogiltig",
+      "endInvalid": "Händelseslut är ogiltig",
+      "createEventError": "Fel vid skapande av händelse"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Lokalt händelse med titel",
+      "eventNotFoundTwo": "hittades inte"
+    },
+    "calendarNotFoundOne": "Kalender",
+    "calendarNotFoundTwo": "hittades inte"
+  },
+  "device": {
+    "eventCountCalendar": "Antal händelser -",
+    "lastSuccessfulSync": "Senaste framgångsrika synkroniseringen -"
+  }
 }

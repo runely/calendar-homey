@@ -1,167 +1,168 @@
 {
   "locale": {
-      "humanize": "da",
-      "moment": "da"
+    "humanize": "da",
+    "luxon": "da"
   },
   "humanize": {
-      "conjunction": " og "
+    "conjunction": " og "
   },
   "settings": {
-      "title": "Indstillinger",
-      "saved_alert": "Indstillinger gemt",
-      "uri_load_failure": "Kunne ikke indlæse .ics fil(er):",
-      "icons_info": "Ikoner af",
-      "calendars": {
-          "legend": "URI til .ics filen",
-          "name": "Kalender navn",
-          "uri": "URI"
+    "title": "Indstillinger",
+    "saved_alert": "Indstillinger gemt",
+    "uri_load_failure": "Kunne ikke indlæse .ics fil(er):",
+    "icons_info": "Ikoner af",
+    "calendars": {
+      "legend": "URI til .ics filen",
+      "name": "Kalender navn",
+      "uri": "URI"
+    },
+    "syncsettings": {
+      "legend": "Synkronisering",
+      "interval": {
+        "legend": "Interval",
+        "description": "Aktiver/Deaktiver automatisk synkronisering<br><br>NOTE: Hvis deaktiveret, vil synkronisering kun ske ved flow-kort!"
       },
-      "syncsettings": {
-          "legend": "Synkronisering",
-          "interval": {
-              "legend": "Interval",
-              "description": "Aktiver/Deaktiver automatisk synkronisering<br><br>NOTE: Hvis deaktiveret, vil synkronisering kun ske ved flow-kort!"
-          },
-          "cron": {
-              "description": "Cron-udtryk for synkroniseringsinterval.<br>Brug en generator til at finde den korrekte syntaks, f.eks.: https://crontab.cronhub.io/<br><br><b>ADVARSEL</b>: Hvis der gives en ugyldig syntaks, vil automatisk synkronisering blive deaktiveret, indtil en gyldig syntaks gives!"
-          },
-          "eventlimit": {
-              "legend": "Hændelses tidsramme",
-              "description": "Hændelser med startdato inden for den angivne tidsramme vil blive synkroniseret i",
-              "value": "Mængde",
-              "type": "Type",
-              "types": {
-                  "days": "Dage",
-                  "weeks": "Uger",
-                  "months": "Måneder",
-                  "years": "År"
-              }
-          }
+      "cron": {
+        "description": "Cron-udtryk for synkroniseringsinterval.<br>Brug en generator til at finde den korrekte syntaks, f.eks.: https://crontab.cronhub.io/<br><br><b>ADVARSEL</b>: Hvis der gives en ugyldig syntaks, vil automatisk synkronisering blive deaktiveret, indtil en gyldig syntaks gives!"
       },
-      "datetime": {
-          "legend": "Dato/Tid",
-          "date": {
-              "description": "<b>Ønsket dato/tid format</b><br><br>Understøtter alle tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Eksempel: <i>dddd, DD.MM.YYYY</i>",
-              "long_name": "Lang dato format",
-              "default": "MM/DD/YY",
-              "short_name": "Kort dato format"
-          },
-          "time": {
-              "name": "Tid format",
-              "default": "HH:mm"
-          }
-      },
-      "misc": {
-          "legend": "Diverse indstillinger",
-          "nextEventTokensPerCalendar": "Næste event tags per kalender",
-          "triggerAllChangedEventTypes": {
-              "title": "Udløs alle ændrede event-typer",
-              "description": "Når <i>ikke valgt</i>, vil kun <b>den første ændring</b> på et event udløse en <u>event ændret</u>.<br>Når <i>valgt</i>, vil <b>alle ændringer</b> på et event udløse en <u>event ændret</u>."
-          }
-      },
-      "debug": {
-          "legend": "Forskellige fejlfinding muligheder",
-          "description": "Disse indstillinger bør kun aktiveres efter anmodning fra udvikleren og ikke være aktiveret længere end nødvendigt",
-          "log_all_events": "Log alle events"
-      },
-      "buttons": {
-          "new_item": "Ny kalender",
-          "save": "Gem",
-          "remove": "Fjern"
+      "eventlimit": {
+        "legend": "Hændelses tidsramme",
+        "description": "Hændelser med startdato inden for den angivne tidsramme vil blive synkroniseret i",
+        "value": "Mængde",
+        "type": "Type",
+        "types": {
+          "days": "Dage",
+          "weeks": "Uger",
+          "months": "Måneder",
+          "years": "År"
+        }
       }
+    },
+    "datetime": {
+      "legend": "Dato/Tid",
+      "date": {
+        "description": "<b>Ønsket dato/tid format</b><br><br>Understøtter alle tokens i <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Eksempel: <i>cccc, dd.MM.yyyy</i>",
+        "long_name": "Lang dato format",
+        "default": "MM/dd/yy",
+        "short_name": "Kort dato format"
+      },
+      "time": {
+        "name": "Tid format",
+        "default": "HH:mm"
+      }
+    },
+    "misc": {
+      "legend": "Diverse indstillinger",
+      "nextEventTokensPerCalendar": "Næste event tags per kalender",
+      "triggerAllChangedEventTypes": {
+        "title": "Udløs alle ændrede event-typer",
+        "description": "Når <i>ikke valgt</i>, vil kun <b>den første ændring</b> på et event udløse en <u>event ændret</u>.<br>Når <i>valgt</i>, vil <b>alle ændringer</b> på et event udløse en <u>event ændret</u>."
+      }
+    },
+    "debug": {
+      "legend": "Forskellige fejlfinding muligheder",
+      "description": "Disse indstillinger bør kun aktiveres efter anmodning fra udvikleren og ikke være aktiveret længere end nødvendigt",
+      "log_all_events": "Log alle events"
+    },
+    "buttons": {
+      "new_item": "Ny kalender",
+      "save": "Gem",
+      "remove": "Fjern"
+    }
   },
   "hitcount": {
-      "title": "Hit tæller",
-      "panel": {
-          "info": {
-              "header": "Udløsere uden argumenter",
-              "1": "Registrerer 1 hit tæller, selvom udløseren bruges i mange flows (sådan fungerer Homey)",
-              "2": "Registrerer 1 hit tæller, selvom udløseren ikke bruges i nogen flows (sådan fungerer Homey)"
-          },
-          "info2": {
-              "header": "Udløsere med argumenter",
-              "1": "Registrerer 1 hit tæller pr. event pr. flow, der bruger udløseren"
-          },
-          "triggerHeader": "Udløser",
-          "countToday": "I dag",
-          "countTotal": "Total",
-          "lastTriggered": "Sidste",
-          "resetConfirm": "Dette vil nulstille alle hit tæller data. Er du sikker?"
+    "title": "Hit tæller",
+    "panel": {
+      "info": {
+        "header": "Udløsere uden argumenter",
+        "1": "Registrerer 1 hit tæller, selvom udløseren bruges i mange flows (sådan fungerer Homey)",
+        "2": "Registrerer 1 hit tæller, selvom udløseren ikke bruges i nogen flows (sådan fungerer Homey)"
       },
-      "typeLabels": {
-          "1": "Minut(ter)",
-          "2": "Time(r)",
-          "3": "Dag(e)",
-          "4": "Uge(r)"
+      "info2": {
+        "header": "Udløsere med argumenter",
+        "1": "Registrerer 1 hit tæller pr. event pr. flow, der bruger udløseren"
       },
-      "buttons": {
-          "reset": "Nulstil hit tæller"
-      }
+      "triggerHeader": "Udløser",
+      "countToday": "I dag",
+      "countTotal": "Total",
+      "lastTriggered": "Sidste",
+      "resetConfirm": "Dette vil nulstille alle hit tæller data. Er du sikker?"
+    },
+    "typeLabels": {
+      "1": "Minut(ter)",
+      "2": "Time(r)",
+      "3": "Dag(e)",
+      "4": "Uge(r)"
+    },
+    "buttons": {
+      "reset": "Nulstil hit tæller"
+    }
   },
   "calendarTokens": {
-      "events_today_calendar_title_stamps": "Dagens events i",
-      "events_today_calendar_count": "Dagens events (antal) i",
-      "events_tomorrow_calendar_title_stamps": "Morgendagens events i",
-      "events_tomorrow_calendar_count": "Morgendagens events (antal) i",
-      "event_next_title_calendar": "Næste event titel i",
-      "event_next_startdate_calendar": "Næste event startdato i",
-      "event_next_startstamp_calendar": "Næste event starttid i",
-      "event_next_enddate_calendar": "Næste event slutdato i",
-      "event_next_endstamp_calendar": "Næste event sluttid i",
-      "event_next_description_calendar": "Næste event beskrivelse i"
+    "events_today_calendar_title_stamps": "Dagens events i",
+    "events_today_calendar_count": "Dagens events (antal) i",
+    "events_tomorrow_calendar_title_stamps": "Morgendagens events i",
+    "events_tomorrow_calendar_count": "Morgendagens events (antal) i",
+    "event_next_title_calendar": "Næste event titel i",
+    "event_next_startdate_calendar": "Næste event startdato i",
+    "event_next_startstamp_calendar": "Næste event starttid i",
+    "event_next_enddate_calendar": "Næste event slutdato i",
+    "event_next_endstamp_calendar": "Næste event sluttid i",
+    "event_next_description_calendar": "Næste event beskrivelse i"
   },
   "flowTokens": {
-      "event_next_title": "Næste event titel",
-      "event_next_startdate": "Næste event startdato",
-      "event_next_startstamp": "Næste event starttid",
-      "event_next_stopdate": "Næste event slutdato",
-      "event_next_stopstamp": "Næste event sluttid",
-      "event_next_duration": "Næste event varighed",
-      "event_next_duration_minutes": "Næste event varighed (minutter)",
-      "event_next_starts_in_minutes": "Næste event starter om (minutter)",
-      "event_next_stops_in_minutes": "Næste event slutter om (minutter)",
-      "event_next_description": "Næste event beskrivelse",
-      "event_next_calendar_name": "Kalendernavn for næste event",
-      "events_today_title_stamps": "Dagens events, titel og tid",
-      "events_tomorrow_title_stamps": "Morgendagens events, titel og tid",
-      "events_today_count": "Dagens events (antal)",
-      "events_tomorrow_count": "Morgendagens events (antal)",
-      "events_today-tomorrow_startstamp_fullday": "hele dagen",
-      "events_today-tomorrow_start-stop_stamps_pre": "til",
-      "icalcalendar_week_number": "Uge nummer"
+    "event_next_title": "Næste event titel",
+    "event_next_startdate": "Næste event startdato",
+    "event_next_startstamp": "Næste event starttid",
+    "event_next_stopdate": "Næste event slutdato",
+    "event_next_stopstamp": "Næste event sluttid",
+    "event_next_duration": "Næste event varighed",
+    "event_next_duration_minutes": "Næste event varighed (minutter)",
+    "event_next_starts_in_minutes": "Næste event starter om (minutter)",
+    "event_next_stops_in_minutes": "Næste event slutter om (minutter)",
+    "event_next_description": "Næste event beskrivelse",
+    "event_next_calendar_name": "Kalendernavn for næste event",
+    "events_today_title_stamps": "Dagens events, titel og tid",
+    "events_tomorrow_title_stamps": "Morgendagens events, titel og tid",
+    "events_today_count": "Dagens events (antal)",
+    "events_tomorrow_count": "Morgendagens events (antal)",
+    "events_today-tomorrow_startstamp_fullday": "hele dagen",
+    "events_today-tomorrow_start-stop_stamps_pre": "til",
+    "icalcalendar_week_number": "Uge nummer"
   },
   "nextEventWithToken": {
-      "event_next_title": "Titel (indeholder)",
-      "event_next_startdate": "Startdato (indeholder)",
-      "event_next_startstamp": "Starttid (indeholder)",
-      "event_next_stopdate": "Slutdato (indeholder)",
-      "event_next_stopstamp": "Sluttid (indeholder)",
-      "event_next_description": "Beskrivelse (indeholder)"
+    "event_next_title": "Titel (indeholder)",
+    "event_next_startdate": "Startdato (indeholder)",
+    "event_next_startstamp": "Starttid (indeholder)",
+    "event_next_stopdate": "Slutdato (indeholder)",
+    "event_next_stopstamp": "Sluttid (indeholder)",
+    "event_next_description": "Beskrivelse (indeholder)"
   },
   "triggers": {
-      "event_changed": {
-          "start": "Start",
-          "end": "Slut",
-          "description": "Beskrivelse",
-          "location": "Placering",
-          "summary": "Resumé"
-      }
+    "event_changed": {
+      "start": "Start",
+      "end": "Slut",
+      "description": "Beskrivelse",
+      "location": "Placering",
+      "summary": "Resumé"
+    }
   },
   "actions": {
-      "new_event": {
-          "titleInvalid": "Titlen er ugyldig",
-          "startInvalid": "Event start er ugyldig",
-          "endInvalid": "Event slut er ugyldig"
-      },
-      "delete_event_name": {
-          "eventNotFoundOne": "Lokal event med titel",
-          "eventNotFoundTwo": "ikke fundet"
-      },
-      "calendarNotFoundOne": "Kalender",
-      "calendarNotFoundTwo": "ikke fundet"
+    "new_event": {
+      "titleInvalid": "Titlen er ugyldig",
+      "startInvalid": "Event start er ugyldig",
+      "endInvalid": "Event slut er ugyldig",
+      "createEventError": "Fejl ved oprettelse af aftale"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Lokal event med titel",
+      "eventNotFoundTwo": "ikke fundet"
+    },
+    "calendarNotFoundOne": "Kalender",
+    "calendarNotFoundTwo": "ikke fundet"
   },
   "device": {
-      "eventCountCalendar": "Event tæller -",
-      "lastSuccessfulSync": "Sidste vellykkede synkronisering -"
+    "eventCountCalendar": "Event tæller -",
+    "lastSuccessfulSync": "Sidste vellykkede synkronisering -"
   }
 }

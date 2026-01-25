@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "outDir": ".build/",
+    "resolveJsonModule": true
+  },
+  "include": ["handlers/**/*.ts", "lib/**/*.ts", "tests/**/*.ts", "types/**/*.ts"]
+}

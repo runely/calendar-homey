@@ -1,167 +1,168 @@
 {
   "locale": {
-      "humanize": "ko",
-      "moment": "ko"
+    "humanize": "ko",
+    "luxon": "ko"
   },
   "humanize": {
-      "conjunction": " 및 "
+    "conjunction": " 및 "
   },
   "settings": {
-      "title": "설정",
-      "saved_alert": "설정이 저장되었습니다",
-      "uri_load_failure": ".ics 파일을 로드하지 못했습니다:",
-      "icons_info": "아이콘 제공",
-      "calendars": {
-          "legend": ".ics 파일 URI",
-          "name": "일정 이름",
-          "uri": "URI"
+    "title": "설정",
+    "saved_alert": "설정이 저장되었습니다",
+    "uri_load_failure": ".ics 파일을 로드하지 못했습니다:",
+    "icons_info": "아이콘 제공",
+    "calendars": {
+      "legend": ".ics 파일 URI",
+      "name": "일정 이름",
+      "uri": "URI"
+    },
+    "syncsettings": {
+      "legend": "동기화",
+      "interval": {
+        "legend": "인터벌",
+        "description": "자동 동기화 활성화/비활성화<br><br>참고: 비활성화된 경우, 동기화는 흐름 카드로만 수행됩니다!"
       },
-      "syncsettings": {
-          "legend": "동기화",
-          "interval": {
-              "legend": "인터벌",
-              "description": "자동 동기화 활성화/비활성화<br><br>참고: 비활성화된 경우, 동기화는 흐름 카드로만 수행됩니다!"
-          },
-          "cron": {
-              "description": "동기화 인터벌을 위한 Cron 표현식.<br>정확한 구문을 찾기 위해 생성기를 사용하세요, 예를 들어: https://crontab.cronhub.io/<br><br><b>주의</b>: 잘못된 구문이 제공되면, 올바른 구문이 제공될 때까지 자동 동기화가 비활성화됩니다!"
-          },
-          "eventlimit": {
-              "legend": "이벤트 시간 범위",
-              "description": "지정된 시간 범위 내의 시작 날짜가 있는 이벤트가 동기화됩니다",
-              "value": "양",
-              "type": "유형",
-              "types": {
-                  "days": "일",
-                  "weeks": "주",
-                  "months": "월",
-                  "years": "년"
-              }
-          }
+      "cron": {
+        "description": "동기화 인터벌을 위한 Cron 표현식.<br>정확한 구문을 찾기 위해 생성기를 사용하세요, 예를 들어: https://crontab.cronhub.io/<br><br><b>주의</b>: 잘못된 구문이 제공되면, 올바른 구문이 제공될 때까지 자동 동기화가 비활성화됩니다!"
       },
-      "datetime": {
-          "legend": "날짜/시간",
-          "date": {
-              "description": "<b>원하는 날짜/시간 형식</b><br><br>모든 토큰을 지원합니다 <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>예: <i>dddd, DD.MM.YYYY</i>",
-              "long_name": "긴 날짜 형식",
-              "default": "MM/DD/YY",
-              "short_name": "짧은 날짜 형식"
-          },
-          "time": {
-              "name": "시간 형식",
-              "default": "HH:mm"
-          }
-      },
-      "misc": {
-          "legend": "기타 설정",
-          "nextEventTokensPerCalendar": "일정별 다음 이벤트 태그",
-          "triggerAllChangedEventTypes": {
-              "title": "모든 변경된 이벤트 유형 트리거",
-              "description": "<i>비선택</i> 시, 이벤트에서 <b>첫 번째 변경만</b>이벤트 변경이 트리거됩니다.<br><i>선택</i> 시, 이벤트에서 <b>모든 변경</b>이벤트 변경이 트리거됩니다."
-          }
-      },
-      "debug": {
-          "legend": "다양한 디버깅 옵션",
-          "description": "이 설정은 개발자의 요청에 따라 활성화해야 하며, 필요한 기간보다 더 길게 활성화해서는 안 됩니다",
-          "log_all_events": "모든 이벤트 기록"
-      },
-      "buttons": {
-          "new_item": "새 일정",
-          "save": "저장",
-          "remove": "제거"
+      "eventlimit": {
+        "legend": "이벤트 시간 범위",
+        "description": "지정된 시간 범위 내의 시작 날짜가 있는 이벤트가 동기화됩니다",
+        "value": "양",
+        "type": "유형",
+        "types": {
+          "days": "일",
+          "weeks": "주",
+          "months": "월",
+          "years": "년"
+        }
       }
+    },
+    "datetime": {
+      "legend": "날짜/시간",
+      "date": {
+        "description": "<b>원하는 날짜/시간 형식</b><br><br>모든 토큰을 지원합니다 <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>예: <i>cccc, dd.MM.yyyy</i>",
+        "long_name": "긴 날짜 형식",
+        "default": "MM/dd/yy",
+        "short_name": "짧은 날짜 형식"
+      },
+      "time": {
+        "name": "시간 형식",
+        "default": "HH:mm"
+      }
+    },
+    "misc": {
+      "legend": "기타 설정",
+      "nextEventTokensPerCalendar": "일정별 다음 이벤트 태그",
+      "triggerAllChangedEventTypes": {
+        "title": "모든 변경된 이벤트 유형 트리거",
+        "description": "<i>비선택</i> 시, 이벤트에서 <b>첫 번째 변경만</b>이벤트 변경이 트리거됩니다.<br><i>선택</i> 시, 이벤트에서 <b>모든 변경</b>이벤트 변경이 트리거됩니다."
+      }
+    },
+    "debug": {
+      "legend": "다양한 디버깅 옵션",
+      "description": "이 설정은 개발자의 요청에 따라 활성화해야 하며, 필요한 기간보다 더 길게 활성화해서는 안 됩니다",
+      "log_all_events": "모든 이벤트 기록"
+    },
+    "buttons": {
+      "new_item": "새 일정",
+      "save": "저장",
+      "remove": "제거"
+    }
   },
   "hitcount": {
-      "title": "히트 카운트",
-      "panel": {
-          "info": {
-              "header": "인수가 없는 트리거",
-              "1": "트리거가 여러 흐름에서 사용되더라도 1개의 히트 카운트가 등록됩니다 (이것이 Homey의 작동 방식입니다)",
-              "2": "트리거가 어떤 흐름에서도 사용되지 않더라도 1개의 히트 카운트가 등록됩니다 (이것이 Homey의 작동 방식입니다)"
-          },
-          "info2": {
-              "header": "인수가 있는 트리거",
-              "1": "트리거를 사용하는 흐름마다 이벤트당 1개의 히트 카운트가 등록됩니다"
-          },
-          "triggerHeader": "트리거",
-          "countToday": "오늘",
-          "countTotal": "총",
-          "lastTriggered": "마지막",
-          "resetConfirm": "이 작업은 모든 히트 카운트 데이터를 재설정합니다. 계속하시겠습니까?"
+    "title": "히트 카운트",
+    "panel": {
+      "info": {
+        "header": "인수가 없는 트리거",
+        "1": "트리거가 여러 흐름에서 사용되더라도 1개의 히트 카운트가 등록됩니다 (이것이 Homey의 작동 방식입니다)",
+        "2": "트리거가 어떤 흐름에서도 사용되지 않더라도 1개의 히트 카운트가 등록됩니다 (이것이 Homey의 작동 방식입니다)"
       },
-      "typeLabels": {
-          "1": "분",
-          "2": "시간",
-          "3": "일",
-          "4": "주"
+      "info2": {
+        "header": "인수가 있는 트리거",
+        "1": "트리거를 사용하는 흐름마다 이벤트당 1개의 히트 카운트가 등록됩니다"
       },
-      "buttons": {
-          "reset": "히트 카운트 재설정"
-      }
+      "triggerHeader": "트리거",
+      "countToday": "오늘",
+      "countTotal": "총",
+      "lastTriggered": "마지막",
+      "resetConfirm": "이 작업은 모든 히트 카운트 데이터를 재설정합니다. 계속하시겠습니까?"
+    },
+    "typeLabels": {
+      "1": "분",
+      "2": "시간",
+      "3": "일",
+      "4": "주"
+    },
+    "buttons": {
+      "reset": "히트 카운트 재설정"
+    }
   },
   "calendarTokens": {
-      "events_today_calendar_title_stamps": "오늘의 일정",
-      "events_today_calendar_count": "오늘의 일정 (수)",
-      "events_tomorrow_calendar_title_stamps": "내일의 일정",
-      "events_tomorrow_calendar_count": "내일의 일정 (수)",
-      "event_next_title_calendar": "다음 이벤트 제목",
-      "event_next_startdate_calendar": "다음 이벤트 시작 날짜",
-      "event_next_startstamp_calendar": "다음 이벤트 시작 시간",
-      "event_next_enddate_calendar": "다음 이벤트 종료 날짜",
-      "event_next_endstamp_calendar": "다음 이벤트 종료 시간",
-      "event_next_description_calendar": "다음 이벤트 설명"
+    "events_today_calendar_title_stamps": "오늘의 일정",
+    "events_today_calendar_count": "오늘의 일정 (수)",
+    "events_tomorrow_calendar_title_stamps": "내일의 일정",
+    "events_tomorrow_calendar_count": "내일의 일정 (수)",
+    "event_next_title_calendar": "다음 이벤트 제목",
+    "event_next_startdate_calendar": "다음 이벤트 시작 날짜",
+    "event_next_startstamp_calendar": "다음 이벤트 시작 시간",
+    "event_next_enddate_calendar": "다음 이벤트 종료 날짜",
+    "event_next_endstamp_calendar": "다음 이벤트 종료 시간",
+    "event_next_description_calendar": "다음 이벤트 설명"
   },
   "flowTokens": {
-      "event_next_title": "다음 이벤트 제목",
-      "event_next_startdate": "다음 이벤트 시작 날짜",
-      "event_next_startstamp": "다음 이벤트 시작 시간",
-      "event_next_stopdate": "다음 이벤트 종료 날짜",
-      "event_next_stopstamp": "다음 이벤트 종료 시간",
-      "event_next_duration": "다음 이벤트 지속 시간",
-      "event_next_duration_minutes": "다음 이벤트 지속 시간 (분)",
-      "event_next_starts_in_minutes": "다음 이벤트 시작까지 (분)",
-      "event_next_stops_in_minutes": "다음 이벤트 종료까지 (분)",
-      "event_next_description": "다음 이벤트 설명",
-      "event_next_calendar_name": "다음 이벤트의 일정 이름",
-      "events_today_title_stamps": "오늘의 일정, 제목 및 시간",
-      "events_tomorrow_title_stamps": "내일의 일정, 제목 및 시간",
-      "events_today_count": "오늘의 일정 (수)",
-      "events_tomorrow_count": "내일의 일정 (수)",
-      "events_today-tomorrow_startstamp_fullday": "하루 종일",
-      "events_today-tomorrow_start-stop_stamps_pre": "까지",
-      "icalcalendar_week_number": "주 번호"
+    "event_next_title": "다음 이벤트 제목",
+    "event_next_startdate": "다음 이벤트 시작 날짜",
+    "event_next_startstamp": "다음 이벤트 시작 시간",
+    "event_next_stopdate": "다음 이벤트 종료 날짜",
+    "event_next_stopstamp": "다음 이벤트 종료 시간",
+    "event_next_duration": "다음 이벤트 지속 시간",
+    "event_next_duration_minutes": "다음 이벤트 지속 시간 (분)",
+    "event_next_starts_in_minutes": "다음 이벤트 시작까지 (분)",
+    "event_next_stops_in_minutes": "다음 이벤트 종료까지 (분)",
+    "event_next_description": "다음 이벤트 설명",
+    "event_next_calendar_name": "다음 이벤트의 일정 이름",
+    "events_today_title_stamps": "오늘의 일정, 제목 및 시간",
+    "events_tomorrow_title_stamps": "내일의 일정, 제목 및 시간",
+    "events_today_count": "오늘의 일정 (수)",
+    "events_tomorrow_count": "내일의 일정 (수)",
+    "events_today-tomorrow_startstamp_fullday": "하루 종일",
+    "events_today-tomorrow_start-stop_stamps_pre": "까지",
+    "icalcalendar_week_number": "주 번호"
   },
   "nextEventWithToken": {
-      "event_next_title": "제목 (포함)",
-      "event_next_startdate": "시작 날짜 (포함)",
-      "event_next_startstamp": "시작 시간 (포함)",
-      "event_next_stopdate": "종료 날짜 (포함)",
-      "event_next_stopstamp": "종료 시간 (포함)",
-      "event_next_description": "설명 (포함)"
+    "event_next_title": "제목 (포함)",
+    "event_next_startdate": "시작 날짜 (포함)",
+    "event_next_startstamp": "시작 시간 (포함)",
+    "event_next_stopdate": "종료 날짜 (포함)",
+    "event_next_stopstamp": "종료 시간 (포함)",
+    "event_next_description": "설명 (포함)"
   },
   "triggers": {
-      "event_changed": {
-          "start": "시작",
-          "end": "종료",
-          "description": "설명",
-          "location": "위치",
-          "summary": "요약"
-      }
+    "event_changed": {
+      "start": "시작",
+      "end": "종료",
+      "description": "설명",
+      "location": "위치",
+      "summary": "요약"
+    }
   },
   "actions": {
-      "new_event": {
-          "titleInvalid": "제목이 유효하지 않습니다",
-          "startInvalid": "이벤트 시작이 유효하지 않습니다",
-          "endInvalid": "이벤트 종료가 유효하지 않습니다"
-      },
-      "delete_event_name": {
-          "eventNotFoundOne": "제목이 있는 로컬 이벤트",
-          "eventNotFoundTwo": "찾을 수 없습니다"
-      },
-      "calendarNotFoundOne": "일정",
-      "calendarNotFoundTwo": "찾을 수 없습니다"
+    "new_event": {
+      "titleInvalid": "제목이 유효하지 않습니다",
+      "startInvalid": "이벤트 시작이 유효하지 않습니다",
+      "endInvalid": "이벤트 종료가 유효하지 않습니다",
+      "createEventError": "일정 생성 중 오류가 발생했습니다"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "제목이 있는 로컬 이벤트",
+      "eventNotFoundTwo": "찾을 수 없습니다"
+    },
+    "calendarNotFoundOne": "일정",
+    "calendarNotFoundTwo": "찾을 수 없습니다"
   },
   "device": {
-      "eventCountCalendar": "이벤트 수 -",
-      "lastSuccessfulSync": "마지막 성공적인 동기화 -"
+    "eventCountCalendar": "이벤트 수 -",
+    "lastSuccessfulSync": "마지막 성공적인 동기화 -"
   }
 }

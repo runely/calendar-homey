@@ -2,32 +2,28 @@
   "version": "1.0.0",
   "configurations": [
     {
-			"name": "Select Homey (Early 2019)",
-			"type": "node",
-			"request": "launch",
-			"cwd": "${workspaceFolder}",
-			"runtimeExecutable": "homey",
-			"args": ["select", "-n", "Homey"]
-		},
+      "name": "Select Homey (Early 2019)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": ["select", "-n", "Homey"]
+    },
     {
-			"name": "Select Homey Pro (Early 2023)",
-			"type": "node",
-			"request": "launch",
-			"cwd": "${workspaceFolder}",
-			"runtimeExecutable": "homey",
-			"args": ["select", "-n", "Homey Pro"]
-		},
+      "name": "Select Homey Pro (Early 2023)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": ["select", "-n", "Homey Pro"]
+    },
     {
       "name": "Launch app on Homey (Early 2019)",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": [
-        "app",
-        "run",
-        "--remote"
-      ],
+      "args": ["app", "run", "--remote"],
       "outputCapture": "std",
       "env": {
         "DEBUG": "1"
@@ -44,11 +40,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": [
-        "app",
-        "run",
-        "--remote"
-      ],
+      "args": ["app", "run", "--remote"],
       "outputCapture": "std",
       "env": {
         "DEBUG": "1"

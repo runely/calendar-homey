@@ -1,167 +1,168 @@
 {
-    "locale": {
-        "humanize": "no",
-        "moment": "nb"
+  "locale": {
+    "humanize": "no",
+    "luxon": "nb"
+  },
+  "humanize": {
+    "conjunction": " og "
+  },
+  "settings": {
+    "title": "Innstillinger",
+    "saved_alert": "Innstillinger lagret",
+    "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
+    "icons_info": "Ikoner av",
+    "calendars": {
+      "legend": "Link til .ics-filen",
+      "name": "Kalendernavn",
+      "uri": "URI"
     },
-    "humanize": {
-        "conjunction": " og "
-    },
-    "settings": {
-        "title": "Innstillinger",
-        "saved_alert": "Innstillinger lagret",
-        "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
-        "icons_info": "Ikoner av",
-        "calendars": {
-            "legend": "Link til .ics-filen",
-            "name": "Kalendernavn",
-            "uri": "URI"
-        },
-        "syncsettings": {
-            "legend": "Synkronisering",
-            "interval": {
-                "legend": "Intervall",
-                "description": "Aktiver/Deaktiver automatisk synkronisering<br><br>MERK: Hvis deaktivert vil synkronisering kun bli utført via flow-kort!"
-            },
-            "cron": {
-                "description": "Cron-uttrykk for synkroniseringsintervall.<br>Bruk en generator for å finne riktig syntaks, for eksempel: https://crontab.cronhub.io/<br><br><b>FORSIKTIG</b>: Hvis ugyldig syntaks er gitt, vil automatisk synkronisering bli deaktivert til gyldig syntaks er gitt!"
-            },
-            "eventlimit": {
-                "legend": "Tidsrom for avtaler",
-                "description": "Avtaler med starttidspunkt innenfor angitt tidsrom blir hentet inn",
-                "value": "Antall",
-                "type": "Type",
-                "types": {
-                    "days": "Dager",
-                    "weeks": "Uker",
-                    "months": "Måneder",
-                    "years": "År"
-                }
-            }
-        },
-        "datetime": {
-            "legend": "Dato/Tid",
-            "date": {
-                "description": "<b>Ønsket dato-/tidsformat</b><br><br>Støtter alle tokens i <i>moment.format(string)</i>: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/<br><br>Eksempel: <i>dddd, DD.MM.YYYY</i>",
-                "long_name": "Langt datoformat",
-                "default": "DD.MM.YY",
-                "short_name": "Kort datoformat"
-            },
-            "time": {
-                "name": "Tidsformat",
-                "default": "HH:mm"
-            }
-        },
-        "misc": {
-            "legend": "Diverse innstillinger",
-            "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender",
-            "triggerAllChangedEventTypes": {
-                "title": "Utløs alle endrede avtaletyper",
-                "description": "Når <i>ikke avmerket</i>, vil bare <b>første endring</b> på en avtale utløse en <u>avtale ble endret</u>.<br>Når <i>avmerket</i>, vil <b>alle endringer</b> på en avtale utløse en <u>avtale ble endret</u>."
-            }
-        },
-        "debug": {
-            "legend": "Diverse feilsøking",
-            "description": "Innstillingene bør bare aktiveres på forespørsel fra utvikler og ikke være aktivert lenger enn nødvendig",
-            "log_all_events": "Logg alle avtaler"
-        },
-        "buttons": {
-            "new_item": "Ny kalender",
-            "save": "Lagre",
-            "remove": "Fjern"
+    "syncsettings": {
+      "legend": "Synkronisering",
+      "interval": {
+        "legend": "Intervall",
+        "description": "Aktiver/Deaktiver automatisk synkronisering<br><br>MERK: Hvis deaktivert vil synkronisering kun bli utført via flow-kort!"
+      },
+      "cron": {
+        "description": "Cron-uttrykk for synkroniseringsintervall.<br>Bruk en generator for å finne riktig syntaks, for eksempel: https://crontab.cronhub.io/<br><br><b>FORSIKTIG</b>: Hvis ugyldig syntaks er gitt, vil automatisk synkronisering bli deaktivert til gyldig syntaks er gitt!"
+      },
+      "eventlimit": {
+        "legend": "Tidsrom for avtaler",
+        "description": "Avtaler med starttidspunkt innenfor angitt tidsrom blir hentet inn",
+        "value": "Antall",
+        "type": "Type",
+        "types": {
+          "days": "Dager",
+          "weeks": "Uker",
+          "months": "Måneder",
+          "years": "År"
         }
+      }
     },
-    "hitcount": {
-        "title": "Hit count",
-        "panel": {
-            "info": {
-                "header": "Triggere uten argumenter",
-                "1": "Vil registrere 1 hit count selv om triggeren brukes i mange flows (det er slik Homey fungerer)",
-                "2": "Vil registrere 1 hit count selv om triggeren ikke brukes i noen flows (det er slik Homey fungerer)"
-            },
-            "info2": {
-                "header": "Triggere med argumenter",
-                "1": "Vil registrere 1 hit count per event per flow som bruker triggeren"
-            },
-            "triggerHeader": "Trigger",
-            "countToday": "I dag",
-            "countTotal": "Totalt",
-            "lastTriggered": "Siste",
-            "resetConfirm": "Dette vil resette all hit count data. Er du sikker?"
-        },
-        "typeLabels": {
-            "1": "Minutt(er)",
-            "2": "Time(r)",
-            "3": "Dag(er)",
-            "4": "Uke(r)"
-        },
-        "buttons": {
-            "reset": "Reset hit count"
-        }
+    "datetime": {
+      "legend": "Dato/Tid",
+      "date": {
+        "description": "<b>Ønsket dato-/tidsformat</b><br><br>Støtter alle tokens i <i>luxon.toFormat(string)</i>: https://moment.github.io/luxon/#/formatting?id=table-of-tokens<br><br>Eksempel: <i>cccc, dd.MM.yyyy</i>",
+        "long_name": "Langt datoformat",
+        "default": "dd.MM.yy",
+        "short_name": "Kort datoformat"
+      },
+      "time": {
+        "name": "Tidsformat",
+        "default": "HH:mm"
+      }
     },
-    "calendarTokens": {
-        "events_today_calendar_title_stamps": "Dagens avtaler i",
-        "events_today_calendar_count": "Dagens avtaler (antall) i",
-        "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
-        "events_tomorrow_calendar_count": "Morgendagens avtaler (antall) i",
-        "event_next_title_calendar": "Tittel neste avtale i",
-        "event_next_startdate_calendar": "Startdato neste avtale i",
-        "event_next_startstamp_calendar": "Starttidspunkt neste avtale i",
-        "event_next_enddate_calendar": "Sluttdato neste avtale i",
-        "event_next_endstamp_calendar": "Sluttidspunkt neste avtale i",
-        "event_next_description_calendar": "Beskrivelse neste avtale i"
+    "misc": {
+      "legend": "Diverse innstillinger",
+      "nextEventTokensPerCalendar": "Neste avtale-tagger pr kalender",
+      "triggerAllChangedEventTypes": {
+        "title": "Utløs alle endrede avtaletyper",
+        "description": "Når <i>ikke avmerket</i>, vil bare <b>første endring</b> på en avtale utløse en <u>avtale ble endret</u>.<br>Når <i>avmerket</i>, vil <b>alle endringer</b> på en avtale utløse en <u>avtale ble endret</u>."
+      }
     },
-    "flowTokens": {
-        "event_next_title": "Tittel neste avtale",
-        "event_next_startdate": "Startdato neste avtale",
-        "event_next_startstamp": "Starttidspunkt neste avtale",
-        "event_next_stopdate": "Sluttdato neste avtale",
-        "event_next_stopstamp": "Sluttidspunkt neste avtale",
-        "event_next_duration": "Varighet neste avtale",
-        "event_next_duration_minutes": "Varighet neste avtale (minutter)",
-        "event_next_starts_in_minutes": "Neste avtale starter om (minutter)",
-        "event_next_stops_in_minutes": "Neste avtale avslutter om (minutter)",
-        "event_next_description": "Beskrivelse neste avtale",
-        "event_next_calendar_name": "Kalendernavn for neste avtale",
-        "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
-        "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
-        "events_today_count": "Dagens avtaler (antall)",
-        "events_tomorrow_count": "Morgendagens avtaler (antall)",
-        "events_today-tomorrow_startstamp_fullday": "hele dagen",
-        "events_today-tomorrow_start-stop_stamps_pre": "til",
-        "icalcalendar_week_number": "Ukenummer"
+    "debug": {
+      "legend": "Diverse feilsøking",
+      "description": "Innstillingene bør bare aktiveres på forespørsel fra utvikler og ikke være aktivert lenger enn nødvendig",
+      "log_all_events": "Logg alle avtaler"
     },
-    "nextEventWithToken": {
-        "event_next_title": "Tittel (inneholder)",
-        "event_next_startdate": "Startdato (inneholder)",
-        "event_next_startstamp": "Starttidspunkt (inneholder)",
-        "event_next_stopdate": "Sluttdato (inneholder)",
-        "event_next_stopstamp": "Sluttidspunkt (inneholder)",
-        "event_next_description": "Beskrivelse (inneholder)"
-    },
-    "triggers": {
-        "event_changed": {
-            "start": "Start",
-            "end": "Slutt",
-            "description": "Beskrivelse",
-            "location": "Sted",
-            "summary": "Tittel"
-        }
-    },
-    "actions": {
-        "new_event": {
-            "titleInvalid": "Tittel er ugyldig",
-            "startInvalid": "Avtalestart er ugyldig",
-            "endInvalid": "Avtaleslutt er ugyldig"
-        },
-        "delete_event_name": {
-            "eventNotFoundOne": "Lokal avtale med tittel",
-            "eventNotFoundTwo": "ble ikke funnet"
-        },
-        "calendarNotFoundOne": "Kalender",
-        "calendarNotFoundTwo": "ikke funnet"
-    },
-    "device": {
-        "eventCountCalendar": "Antall avtaler -",
-        "lastSuccessfulSync": "Siste vellykkede synkronisering -"
+    "buttons": {
+      "new_item": "Ny kalender",
+      "save": "Lagre",
+      "remove": "Fjern"
     }
+  },
+  "hitcount": {
+    "title": "Hit count",
+    "panel": {
+      "info": {
+        "header": "Triggere uten argumenter",
+        "1": "Vil registrere 1 hit count selv om triggeren brukes i mange flows (det er slik Homey fungerer)",
+        "2": "Vil registrere 1 hit count selv om triggeren ikke brukes i noen flows (det er slik Homey fungerer)"
+      },
+      "info2": {
+        "header": "Triggere med argumenter",
+        "1": "Vil registrere 1 hit count per event per flow som bruker triggeren"
+      },
+      "triggerHeader": "Trigger",
+      "countToday": "I dag",
+      "countTotal": "Totalt",
+      "lastTriggered": "Siste",
+      "resetConfirm": "Dette vil resette all hit count data. Er du sikker?"
+    },
+    "typeLabels": {
+      "1": "Minutt(er)",
+      "2": "Time(r)",
+      "3": "Dag(er)",
+      "4": "Uke(r)"
+    },
+    "buttons": {
+      "reset": "Reset hit count"
+    }
+  },
+  "calendarTokens": {
+    "events_today_calendar_title_stamps": "Dagens avtaler i",
+    "events_today_calendar_count": "Dagens avtaler (antall) i",
+    "events_tomorrow_calendar_title_stamps": "Morgendagens avtaler i",
+    "events_tomorrow_calendar_count": "Morgendagens avtaler (antall) i",
+    "event_next_title_calendar": "Tittel neste avtale i",
+    "event_next_startdate_calendar": "Startdato neste avtale i",
+    "event_next_startstamp_calendar": "Starttidspunkt neste avtale i",
+    "event_next_enddate_calendar": "Sluttdato neste avtale i",
+    "event_next_endstamp_calendar": "Sluttidspunkt neste avtale i",
+    "event_next_description_calendar": "Beskrivelse neste avtale i"
+  },
+  "flowTokens": {
+    "event_next_title": "Tittel neste avtale",
+    "event_next_startdate": "Startdato neste avtale",
+    "event_next_startstamp": "Starttidspunkt neste avtale",
+    "event_next_stopdate": "Sluttdato neste avtale",
+    "event_next_stopstamp": "Sluttidspunkt neste avtale",
+    "event_next_duration": "Varighet neste avtale",
+    "event_next_duration_minutes": "Varighet neste avtale (minutter)",
+    "event_next_starts_in_minutes": "Neste avtale starter om (minutter)",
+    "event_next_stops_in_minutes": "Neste avtale avslutter om (minutter)",
+    "event_next_description": "Beskrivelse neste avtale",
+    "event_next_calendar_name": "Kalendernavn for neste avtale",
+    "events_today_title_stamps": "Dagens avtaler, tittel og tidspunkt",
+    "events_tomorrow_title_stamps": "Morgendagens avtaler, tittel og tidspunkt",
+    "events_today_count": "Dagens avtaler (antall)",
+    "events_tomorrow_count": "Morgendagens avtaler (antall)",
+    "events_today-tomorrow_startstamp_fullday": "hele dagen",
+    "events_today-tomorrow_start-stop_stamps_pre": "til",
+    "icalcalendar_week_number": "Ukenummer"
+  },
+  "nextEventWithToken": {
+    "event_next_title": "Tittel (inneholder)",
+    "event_next_startdate": "Startdato (inneholder)",
+    "event_next_startstamp": "Starttidspunkt (inneholder)",
+    "event_next_stopdate": "Sluttdato (inneholder)",
+    "event_next_stopstamp": "Sluttidspunkt (inneholder)",
+    "event_next_description": "Beskrivelse (inneholder)"
+  },
+  "triggers": {
+    "event_changed": {
+      "start": "Start",
+      "end": "Slutt",
+      "description": "Beskrivelse",
+      "location": "Sted",
+      "summary": "Tittel"
+    }
+  },
+  "actions": {
+    "new_event": {
+      "titleInvalid": "Tittel er ugyldig",
+      "startInvalid": "Avtalestart er ugyldig",
+      "endInvalid": "Avtaleslutt er ugyldig",
+      "createEventError": "Feil ved oppretting av avtale"
+    },
+    "delete_event_name": {
+      "eventNotFoundOne": "Lokal avtale med tittel",
+      "eventNotFoundTwo": "ble ikke funnet"
+    },
+    "calendarNotFoundOne": "Kalender",
+    "calendarNotFoundTwo": "ikke funnet"
+  },
+  "device": {
+    "eventCountCalendar": "Antall avtaler -",
+    "lastSuccessfulSync": "Siste vellykkede synkronisering -"
+  }
 }

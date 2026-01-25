@@ -7,7 +7,7 @@ Oppsett
     - Velg om du ønsker automatisk kalendersynkronisering (standardinnstillingen er aktivert) (hvis deaktivert, må synkronisering gjøres via flytkort)
     - Velg intervallet for automatisk kalendersynkronisering (standardinnstillingen er hvert 15. minutt)
     - Endre dato-/tidsformat eller bruk standardverdiene (ditt valg)
-        - Alle tokens som er supportert i "moment.format()" supporteres her også: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle tokens som er supportert i "luxon.toFormat()" supporteres her også: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Velg om du vil ha neste avtaletagger per kalender eller ikke. Standard er av
 - For å bli varslet om eventuelle synkroniseringsfeil, opprett en flyt med triggeren "Synkroniseringsfeil oppstått"
 

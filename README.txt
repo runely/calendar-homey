@@ -7,7 +7,7 @@ Setup
     - Choose if you want automatic calendar synchronization (defaults to enabled) (if disabled, synchronization must be done by flow card)
     - Choose the interval of the automatic calendar synchronization (defaults to every 15th minute)
     - Change the date/time format or use the default (your choice)
-        - All tokens supported in "moment.format()" is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - All tokens supported in "luxon.toFormat()" is also supported here: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Choose whether you want next event tags per calendar. Default is off
 - To be notified of any synchronization errors, create a flow using the trigger "Synchronization error occurred"
 
