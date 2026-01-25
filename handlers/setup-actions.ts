@@ -123,7 +123,7 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
     calendar.events = newCalendarEvents;
     variableMgmt.localEvents = variableMgmt.localEvents.filter((e: LocalEvent) => e.summary !== args.event_name);
     app.log("delete_event_name: Deleted", removedEvents, "local events by title", args.event_name);
-    saveLocalEvents(app, variableMgmt, variableMgmt.localEvents);
+    saveLocalEvents(app, variableMgmt, variableMgmt.localEvents, true);
 
     return true;
   });

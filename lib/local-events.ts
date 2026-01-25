@@ -183,8 +183,19 @@ export const getLocalEvents = (
   return newLocalEvents;
 };
 
-export const saveLocalEvents = (app: App | AppTests, variableMgmt: VariableManagement, events: LocalEvent[]): void => {
+export const saveLocalEvents = (
+  app: App | AppTests,
+  variableMgmt: VariableManagement,
+  events: LocalEvent[],
+  force: boolean = false
+): void => {
   if (events.length === 0) {
+    if (force) {
+      app.homey.settings.set(variableMgmt.storage.localEvents, JSON.stringify(events));
+      app.log("saveLocalEvents: Saved 0 local events (forced)");
+      return;
+    }
+
     app.log("saveLocalEvents: No events to save");
     return;
   }
