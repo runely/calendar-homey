@@ -214,6 +214,17 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.0 (https://github.com/runely/calendar-homey/pull/664)
+  - Converted to `TypeScript`
+  - Upgraded `node-ical` from **0.16.1** to **0.23.1**
+    - Replaces `moment` with `luxon` ([Issue #590](https://github.com/runely/calendar-homey/issues/590))
+      - POSSIBLY BREAKING: `luxon` uses a little different format tokens than `moment`. Some tokens will be converted. The rest must be changed manually in IcalCalendar settings
+  - Replaced `browserify` with `esbuild`
+  - Bugfix: Local events with the same **DTSTART** would have the same `UID`
+  - Bugfix: "Delete local event" action card would only delete the event from memory and not from storage until next calendar synchronization
+  - Replaced `standard` with `biome`
+  - Overall improved logging
+  - Dependency updates
 - 2.12.1
   - Dependency updates
 - 2.12.0
