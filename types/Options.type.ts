@@ -38,12 +38,6 @@ export type GetNewEventsOptions = {
   app: App | AppTests;
 };
 
-export type MomentDateTimeOptions = {
-  timezone?: string;
-  date?: string;
-  format?: string;
-};
-
 export type NewEventOptions = {
   /** Title of the event */
   event_name: string;
