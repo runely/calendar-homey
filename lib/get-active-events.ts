@@ -129,6 +129,20 @@ const filterOutUnwantedEvents = (
   return filteredEvents;
 };
 
+const getClonedEvent = (event: VEvent): VEvent => {
+  const clonedEvent: VEvent = deepClone(event) as VEvent;
+  clonedEvent.start = event.start;
+  clonedEvent.end = event.end;
+  clonedEvent.created = event.created;
+  clonedEvent.dtstamp = event.dtstamp;
+  clonedEvent.lastmodified = event.lastmodified;
+  clonedEvent.rrule = event.rrule;
+  clonedEvent.recurrences = event.recurrences;
+  clonedEvent.exdate = event.exdate;
+
+  return clonedEvent;
+};
+
 const getRecurrenceDates = (
   app: App | AppTests,
   event: VEvent,
@@ -248,10 +262,16 @@ const getRecurrenceDates = (
 const shouldKeepOriginalZonedTime = (
   event: VEvent,
   eventTimezone: string | undefined,
-  localTimezone: string
+  localTimezone: string,
+  isRecurrenceOverride: boolean = false
 ): boolean => {
   if ("APPLE-CREATOR-IDENTITY" in event) {
     // NOTE: Apple Calendar needs special handling here because they store the timeZoned time as local time
+    return true;
+  }
+
+  if (isRecurrenceOverride) {
+    // for recurrence overrides, we always want to keep the original timezone to avoid shifting issues
     return true;
   }
 
@@ -282,8 +302,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
   for (const event of actualEvents) {
     if (event.recurrenceid) {
-      // TODO: Fix handling of recurrenceid events
-      app.log(`[WARN] - getActiveEvents - We don't care about recurrenceId for now (${event.uid})`);
+      app.log(`getActiveEvents - RecurrenceId for (${event.uid}) should be handled in getOccurrenceDates. Skipping.`);
       continue;
     }
 
@@ -353,12 +372,12 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
           continue;
         }
 
-        let currentEvent: VEvent = deepClone(event);
+        let currentEvent: VEvent = getClonedEvent(event);
         let currentDuration: Duration<true> = endDate.diff(startDate);
         let currentStartDate: DateTime<true> | null = occurenceStart;
 
         if (currentEvent.recurrences?.[lookupKey]) {
-          // we found an override, so for this recurrence, use a potentially different start/end
+          // we found an override, so for this recurrence, use a potentially different start/end.
           currentEvent = currentEvent.recurrences[lookupKey] as VEvent;
           app.log(
             `[WARN] - getActiveEvents - Found recurrence override for event UID '${event.uid}' on date '${lookupKey}'. Using overridden start/end.`
@@ -369,7 +388,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
             dateWithTimeZone: createDateWithTimeZone(currentEvent.start, currentEvent.start.tz || undefined),
             localTimeZone: timezone,
             fullDayEvent: event.datetype === "date",
-            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.start.tz, timezone),
+            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, currentEvent.start.tz, timezone, true),
             quiet: !logAllEvents
           });
 
@@ -378,7 +397,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
             dateWithTimeZone: createDateWithTimeZone(currentEvent.end, currentEvent.end.tz || undefined),
             localTimeZone: timezone,
             fullDayEvent: event.datetype === "date",
-            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, event.end.tz, timezone),
+            keepOriginalZonedTime: shouldKeepOriginalZonedTime(event, currentEvent.end.tz, timezone, true),
             quiet: !logAllEvents
           });
 
