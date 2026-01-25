@@ -415,5 +415,8 @@
   },
   "2.12.1": {
     "en": "Dependency updates"
+  },
+  "3.0.0": {
+    "en": "Upgraded 'node-ical' to latest and replaced moment with luxon (cut app size in half). Bugfixes. Dependency updates."
   }
 }
