@@ -418,5 +418,8 @@
   },
   "3.0.0": {
     "en": "Upgraded 'node-ical' to latest and replaced moment with luxon (cut app size in half). Bugfixes. Dependency updates."
+  },
+  "3.0.1": {
+    "en": "Upgraded 'node-ical' to latest and replaced moment with luxon (cut app size in half). Bugfixes. Dependency updates."
   }
 }
