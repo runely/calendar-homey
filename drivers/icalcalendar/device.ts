@@ -151,10 +151,11 @@ class MyDevice extends Device {
       if (this.hasCapability(lastSuccessfulSyncLoop)) {
         await this.updateCapabilityValue(
           lastSuccessfulSyncLoop,
-          getZonedDateTime(
-            DateTime.fromISO(calendar.lastSuccessfullSync || "01.01.1970 00:00:00"),
-            this.homey.clock.getTimezone()
-          ).toFormat("dd.MM HH:mm")
+          calendar.lastSuccessfullSync
+            ? getZonedDateTime(DateTime.fromISO(calendar.lastSuccessfullSync), this.homey.clock.getTimezone()).toFormat(
+                "dd.MM HH:mm"
+              )
+            : "N/A"
         );
       } else {
         this.log("[WARN] updateCalendarsMetadata -", lastSuccessfulSyncLoop, "capability doesnt exist yet....");

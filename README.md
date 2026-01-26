@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.1
+  - Bugfix: If **IcalCalendar** device was added, and a non-existing/non-retrievable calendar URI was set in app settings, the app would crash on start because an invalid *luxon* ISO string was used as a fallback for missing lastSuccessfulSync value. Defaulting to not setting a DateTime but rather `N/A`
 - 3.0.0 (https://github.com/runely/calendar-homey/pull/664)
   - Converted to `TypeScript`
   - Upgraded `node-ical` from **0.16.1** to **0.23.1**
