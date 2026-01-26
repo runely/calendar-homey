@@ -39,6 +39,7 @@
     "bundle-varMgmt": "npx esbuild ./lib/variable-management.ts --bundle --format=iife --platform=browser --global-name=VariableMgmt --outfile=./settings/variable-management-settings.js",
     "homey-build": "npm run build && npm run bundle-varMgmt && npm run test && homey app build",
     "homey-run": "npm run homey-build && homey app run --remote",
+    "homey-run-clean": "npm run homey-build && homey app run --remote --clean",
     "homey-install": "npm run homey-build && homey app install",
     "homey-publish": "npm run homey-build && homey app publish"
   },
