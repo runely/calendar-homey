@@ -226,8 +226,8 @@ export const triggerEvents = async (
         event_duration_readable: eventDuration.duration,
         event_duration: eventDuration.durationMinutes,
         event_calendar_name: calendarName,
-        event_status: event.freeBusy || "",
-        event_meeting_url: event.meetingUrl || ""
+        event_status: getTokenValue(event.freeBusy),
+        event_meeting_url: getTokenValue(event.meetingUrl)
       };
 
       if (["event_added", "event_added_calendar"].includes(triggerId)) {

@@ -187,8 +187,8 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       event_duration_readable: eventDuration.duration,
       event_duration: eventDuration.durationMinutes,
       event_calendar_name: calendar.name,
-      event_status: event.freeBusy,
-      event_meeting_url: event.meetingUrl
+      event_status: getTokenValue(event.freeBusy),
+      event_meeting_url: getTokenValue(event.meetingUrl)
     };
   });
   getCalendarEvent.registerArgumentAutocompleteListener(
