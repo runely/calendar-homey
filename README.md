@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.0.2
   - Bugfix: `freeBusy` (**Status**) and `meetingUrl` (**Meeting URL**) tags returned `undefined` instead of an empty string
+  - Dependency updates: `node-ical` from 0.23.1 to 0.24.0 - Fixes some `UNTIL rule part MUST have the same value type as DTSTART` issues but not all
 - 3.0.1
   - Bugfix: If **IcalCalendar** device was added, and a non-existing/non-retrievable calendar URI was set in app settings, the app would crash on start because an invalid *luxon* ISO string was used as a fallback for missing lastSuccessfulSync value. Defaulting to not setting a DateTime but rather `N/A`
 - 3.0.0 (https://github.com/runely/calendar-homey/pull/664)
