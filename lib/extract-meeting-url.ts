@@ -1,5 +1,5 @@
-export const extractMeetingUrl = (description: string | undefined): string | undefined => {
-  if (!description || description.trim() === "") {
+export const extractMeetingUrl = (description: string): string | undefined => {
+  if (description.trim() === "") {
     return undefined;
   }
 

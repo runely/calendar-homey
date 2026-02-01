@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.3
+  - Dependency updates: `node-ical` from 0.24.0 to 0.24.2 - Fixes the rest (hopefully) of `UNTIL rule part MUST have the same value type as DTSTART` issues
 - 3.0.2
   - Bugfix: `freeBusy` (**Status**) and `meetingUrl` (**Meeting URL**) tags returned `undefined` instead of an empty string
   - Dependency updates: `node-ical` from 0.23.1 to 0.24.0 - Fixes some `UNTIL rule part MUST have the same value type as DTSTART` issues but not all

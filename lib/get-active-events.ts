@@ -9,25 +9,11 @@ import type { AppTests } from "../types/Homey.type";
 import type { CalendarEvent, IcalOccurence } from "../types/IcalCalendar.type";
 import type { GetActiveEventsOptions } from "../types/Options.type";
 
-import { createDateWithTimeZone, fromEvent } from "./generate-event-object";
+import { convertToText, createDateWithTimeZone, fromEvent } from "./generate-event-object";
 import { hasData } from "./has-data";
 import { getDateTime, getZonedDateTime } from "./luxon-fns";
 
 const untilRegexp = /UNTIL=(\d{8}T\d{6})/;
-
-const convertToText = (
-  app: App | AppTests,
-  prop: string,
-  value: { params: unknown; val: string } | string,
-  uid: string
-): string => {
-  if (typeof value === "object") {
-    app.log(`[WARN] - getActiveEvents/convertToText - '${prop}' was object. Using 'val' of object '${uid}'`);
-    return value.val;
-  }
-
-  return value;
-};
 
 const filterOutUnwantedEvents = (
   app: App | AppTests,

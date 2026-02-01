@@ -1,6 +1,6 @@
 import type { App } from "homey";
 import { DateTime } from "luxon";
-import type { DateType, DateWithTimeZone, VEvent } from "node-ical";
+import type { DateType, DateWithTimeZone, ParameterValue, VEvent } from "node-ical";
 
 import type { AppTests } from "../types/Homey.type";
 import type { BusyStatus, CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
@@ -66,6 +66,19 @@ const createNewEvent = (
   return newEvent;
 };
 
+export const convertToText = (app: App | AppTests, prop: string, value: ParameterValue, uid: string): string => {
+  if (value === undefined) {
+    return "";
+  }
+
+  if (typeof value === "string") {
+    return value;
+  }
+
+  app.log(`getActiveEvents/convertToText - '${prop}' was object. Using 'val' of object '${uid}'`);
+  return value.val;
+};
+
 export const createDateWithTimeZone = (date: Date, timeZone: string | undefined): DateWithTimeZone => {
   return Object.defineProperty(date, "tz", {
     value: timeZone,
@@ -88,14 +101,18 @@ export const fromEvent = (
         dateWithTimeZone: event.created,
         localTimeZone: timezone,
         fullDayEvent: event.datetype === "date",
-        keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezoned time as local time
+        keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezone time as local time
         quiet: true
       })
     : null;
 
+  const description: string = convertToText(app, "description", event.description, event.uid);
+  const location: string = convertToText(app, "location", event.location, event.uid);
+  const summary: string = convertToText(app, "summary", event.summary, event.uid);
+
   const fullDayEvent: boolean = event.datetype === "date";
   const freeBusy: BusyStatus | undefined = extractFreeBusyStatus(event);
-  const meetingUrl: string | undefined = extractMeetingUrl(event.description);
+  const meetingUrl: string | undefined = extractMeetingUrl(description);
 
   return createNewEvent(
     app,
@@ -103,9 +120,9 @@ export const fromEvent = (
     event.datetype,
     end,
     event.uid,
-    event.description,
-    event.location,
-    event.summary,
+    description,
+    location,
+    summary,
     created || undefined,
     fullDayEvent,
     freeBusy,

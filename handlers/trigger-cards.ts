@@ -1,6 +1,7 @@
 import type { App } from "homey";
 
 import { capitalize } from "../lib/capitalize.js";
+import { convertToText } from "../lib/generate-event-object";
 import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
 import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getTokenValue } from "../lib/get-token-value.js";
@@ -70,12 +71,17 @@ export const triggerSynchronizationError = async (options: TriggerSynchronizatio
       `${stack ? `-> ${stack}` : ""}`
     );
 
+    let summary: string = "";
+    if (event?.summary) {
+      summary = "type" in event ? convertToText(app, "summary", event.summary, event.uid) : event.summary;
+    }
+
     const tokens: TriggerSynchronizationTokens = {
       calendar_name: calendar,
       calendar_error: message,
       on_calendar_load: event === undefined || event === null,
       on_event_load: event !== undefined && event !== null,
-      event_name: event?.summary ?? "",
+      event_name: summary,
       event_uid: event?.uid ?? ""
     };
     app.log("triggerSynchronizationError: Triggering 'synchronization_error' with tokens :", tokens);
