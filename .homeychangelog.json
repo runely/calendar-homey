@@ -424,5 +424,8 @@
   },
   "3.0.2": {
     "en": "Bugfix: 'Status' tag returned undefined in action card. Dependency update on node-ical: Fixes some UNTIL rrule issues"
+  },
+  "3.0.3": {
+    "en": "Bugfix: Dependency update on node-ical - Fixes even more UNTIL rrule issues"
   }
 }
