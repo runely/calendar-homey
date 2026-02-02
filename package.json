@@ -10,7 +10,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@biomejs/biome": "2.3.12",
-    "@tsconfig/node16": "^16.1.8",
+    "@tsconfig/node18": "^18.2.0",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/jest": "^30.0.0",
