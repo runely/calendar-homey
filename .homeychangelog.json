@@ -427,5 +427,8 @@
   },
   "3.0.3": {
     "en": "Bugfix: Dependency update on node-ical - Fixes even more UNTIL rrule issues"
+  },
+  "3.0.4": {
+    "en": "Bugfix: Better DateTime calculations. Should support all calendar providers. Dependency updates"
   }
 }
