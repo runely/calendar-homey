@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.0.4
   - Bugfix: Handle all calendar providers equally and expect `node-ical` to give us correct date information
+  - Dev dependency updates
 - 3.0.3
   - Dependency updates: `node-ical` from 0.24.0 to 0.24.2 - Fixes the rest (hopefully) of `UNTIL rule part MUST have the same value type as DTSTART` issues
 - 3.0.2
