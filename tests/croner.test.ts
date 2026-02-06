@@ -46,6 +46,14 @@ const validCronJobs: CronJobTestCase[] = [
   {
     pattern: "0 0 * * 0",
     description: "Runs every Sunday at 00:00"
+  },
+  {
+    pattern: "0 0 0 1 1 * *",
+    description: "Runs every 1th of January at midnight (00:00:00) at any year"
+  },
+  {
+    pattern: "0 0 0 1 1 * 2033-2035",
+    description: "Runs every 1th of January at midnight (00:00:00) at years 2033, 2034, and 2035"
   }
 ];
 
@@ -59,8 +67,8 @@ const invalidCronJobs: CronJobTestCase[] = [
     description: "Minutes or hours must be within their valid range; 25 is outside the valid range for hours (0–23)"
   },
   {
-    pattern: "* * 0 * * * *",
-    description: "Too many fields; croner allows only 6 fields (second, minute, hour, day, month, weekday)"
+    pattern: "* * 0 * * * * *",
+    description: "Too many fields; croner allows maximum 7 fields (second, minute, hour, day, month, weekday, year)"
   },
   {
     pattern: "* * * 32 * *",
@@ -84,7 +92,7 @@ const invalidCronJobs: CronJobTestCase[] = [
   },
   {
     pattern: "* * *",
-    description: "Too few fields. Expects 5 or 6"
+    description: "Too few fields. Expects 5, 6 or 7"
   },
   {
     pattern: "0 0 24 * * *",

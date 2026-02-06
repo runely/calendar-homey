@@ -23,7 +23,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "croner": "^9.1.0",
+    "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
     "lodash.clonedeep": "4.5.0",
     "luxon": "^3.7.2",
