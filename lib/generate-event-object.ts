@@ -1,6 +1,6 @@
 import type { App } from "homey";
 import { DateTime } from "luxon";
-import type { DateType, DateWithTimeZone, ParameterValue, VEvent } from "node-ical";
+import type { DateType, ParameterValue, VEvent } from "node-ical";
 
 import type { AppTests } from "../types/Homey.type";
 import type { BusyStatus, CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
@@ -8,7 +8,7 @@ import type { NewEventOptions } from "../types/Options.type";
 
 import { extractFreeBusyStatus } from "./extract-free-busy-status";
 import { extractMeetingUrl } from "./extract-meeting-url.js";
-import { getDateTime, getZonedDateTime } from "./luxon-fns";
+import { getDateTime, getLocalEventDateTime, getZonedDateTime } from "./luxon-fns";
 
 const generateRandomNumber = (count: number): number => {
   let generatedNumber: string = "";
@@ -79,15 +79,6 @@ export const convertToText = (app: App | AppTests, prop: string, value: Paramete
   return value.val;
 };
 
-export const createDateWithTimeZone = (date: Date, timeZone: string | undefined): DateWithTimeZone => {
-  return Object.defineProperty(date, "tz", {
-    value: timeZone,
-    enumerable: false,
-    configurable: true,
-    writable: false
-  }) as DateWithTimeZone;
-};
-
 export const fromEvent = (
   app: App | AppTests,
   start: DateTime<true>,
@@ -96,14 +87,7 @@ export const fromEvent = (
   event: VEvent
 ): CalendarEvent => {
   const created: DateTime<true> | null = event.created
-    ? getDateTime({
-        app,
-        dateWithTimeZone: event.created,
-        localTimeZone: timezone,
-        fullDayEvent: event.datetype === "date",
-        keepOriginalZonedTime: "APPLE-CREATOR-IDENTITY" in event, // NOTE: Apple Calendar needs special handling here because they store the timezone time as local time
-        quiet: true
-      })
+    ? getDateTime(app, event.created, event.created.tz, timezone, false, true)
     : null;
 
   const description: string = convertToText(app, "description", event.description, event.uid);
@@ -141,45 +125,27 @@ export const newLocalEvent = (app: App | AppTests, timezone: string, options: Ne
   } = options;
 
   const fullDayEvent: boolean = start.includes("00:00:00") && end.includes("00:00:00");
-  const startLuxon: DateTime<true> | null = applyTimezone
-    ? getDateTime({
-        app,
-        dateWithTimeZone: createDateWithTimeZone(new Date(start), timezone),
-        localTimeZone: timezone,
-        fullDayEvent,
-        keepOriginalZonedTime: true,
-        quiet: true
-      })
-    : getDateTime({
-        app,
-        dateWithTimeZone: createDateWithTimeZone(new Date(start), timezone),
-        localTimeZone: timezone,
-        fullDayEvent,
-        keepOriginalZonedTime: false,
-        quiet: true
-      });
+  const startLuxon: DateTime<true> | null = getLocalEventDateTime(
+    app,
+    new Date(start),
+    "utc",
+    timezone,
+    applyTimezone,
+    true
+  );
   if (!startLuxon) {
     app.error(`[ERROR] - newLocalEvent: Unable to parse start date: ${start}`);
     return null;
   }
 
-  const endLuxon: DateTime<true> | null = applyTimezone
-    ? getDateTime({
-        app,
-        dateWithTimeZone: createDateWithTimeZone(new Date(end), timezone),
-        localTimeZone: timezone,
-        fullDayEvent,
-        keepOriginalZonedTime: true,
-        quiet: true
-      })
-    : getDateTime({
-        app,
-        dateWithTimeZone: createDateWithTimeZone(new Date(end), timezone),
-        localTimeZone: timezone,
-        fullDayEvent,
-        keepOriginalZonedTime: false,
-        quiet: true
-      });
+  const endLuxon: DateTime<true> | null = getLocalEventDateTime(
+    app,
+    new Date(end),
+    "utc",
+    timezone,
+    applyTimezone,
+    true
+  );
   if (!endLuxon) {
     app.error(`[ERROR] - newLocalEvent: Unable to parse end date: ${end}`);
     return null;

@@ -1,12 +1,13 @@
 import type { App } from "homey";
 import { DateTime, Duration } from "luxon";
 import type { DateType } from "node-ical";
+
 import type { AppTests } from "../types/Homey.type";
 import type { LocalEvent, LocalJsonEvent } from "../types/IcalCalendar.type";
 import type { GetLocalActiveEventsOptions } from "../types/Options.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
-import { createDateWithTimeZone } from "./generate-event-object";
-import { getDateTime, getZonedDateTime } from "./luxon-fns";
+
+import { getDateTime, getLocalEventDateTime, getZonedDateTime } from "./luxon-fns";
 
 export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): LocalEvent[] => {
   const { timezone, events, eventLimit, app, logAllEvents } = options;
@@ -18,32 +19,25 @@ export const getLocalActiveEvents = (options: GetLocalActiveEventsOptions): Loca
   const activeEvents: LocalEvent[] = [];
 
   for (const event of events) {
-    const start: DateTime<true> | null = getDateTime({
+    const start: DateTime<true> | null = getDateTime(
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), "utc"),
-      localTimeZone: timezone,
-      fullDayEvent: event.dateType === "date",
-      keepOriginalZonedTime: false,
-      quiet: !logAllEvents
-    });
-    const end: DateTime<true> | null = getDateTime({
+      new Date(event.start),
+      "utc",
+      timezone,
+      event.dateType === "date",
+      !logAllEvents
+    );
+    const end: DateTime<true> | null = getDateTime(
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), "utc"),
-      localTimeZone: timezone,
-      fullDayEvent: event.dateType === "date",
-      keepOriginalZonedTime: false,
-      quiet: !logAllEvents
-    });
-    const created: DateTime<true> | null = !event.created
-      ? null
-      : getDateTime({
-          app,
-          dateWithTimeZone: createDateWithTimeZone(new Date(event.created), "utc"),
-          localTimeZone: timezone,
-          fullDayEvent: event.dateType === "date",
-          keepOriginalZonedTime: false,
-          quiet: !logAllEvents
-        });
+      new Date(event.end),
+      "utc",
+      timezone,
+      event.dateType === "date",
+      !logAllEvents
+    );
+    const created: DateTime<true> | null = event.created
+      ? getDateTime(app, new Date(event.created), "utc", timezone, false, !logAllEvents)
+      : null;
 
     if (!start || !end) {
       app.error(
@@ -136,23 +130,23 @@ export const getLocalEvents = (
     // @ts-expect-error - freebusy is from old format
     delete event["freebusy"];
 
-    const start: DateTime<true> | null = getDateTime({
+    const start: DateTime<true> | null = getLocalEventDateTime(
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.start), oldSkipTZ ? timezone : "utc"),
-      localTimeZone: timezone,
-      fullDayEvent: oldDateType === "date",
-      keepOriginalZonedTime: !oldSkipTZ,
-      quiet: !logAllEvents
-    });
+      new Date(event.start),
+      "utc",
+      timezone,
+      !oldSkipTZ,
+      !logAllEvents
+    );
 
-    const end: DateTime<true> | null = getDateTime({
+    const end: DateTime<true> | null = getLocalEventDateTime(
       app,
-      dateWithTimeZone: createDateWithTimeZone(new Date(event.end), oldSkipTZ ? timezone : "utc"),
-      localTimeZone: timezone,
-      fullDayEvent: oldDateType === "date",
-      keepOriginalZonedTime: !oldSkipTZ,
-      quiet: !logAllEvents
-    });
+      new Date(event.end),
+      "utc",
+      timezone,
+      !oldSkipTZ,
+      !logAllEvents
+    );
 
     if (!start || !end) {
       app.error(

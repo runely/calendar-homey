@@ -1,5 +1,5 @@
-![Node.js CI](https://github.com/runely/calendar-homey/workflows/Node.js%20CI/badge.svg)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_and_Linted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
 
 # IcalCalendar
 
@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.4
+  - Bugfix: Handle all calendar providers equally and expect `node-ical` to give us correct date information
 - 3.0.3
   - Dependency updates: `node-ical` from 0.24.0 to 0.24.2 - Fixes the rest (hopefully) of `UNTIL rule part MUST have the same value type as DTSTART` issues
 - 3.0.2

@@ -1,7 +1,8 @@
 import { DateTime } from "luxon";
 import type { VEvent } from "node-ical";
 
-import { createDateWithTimeZone, fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
+import { createDateWithTimeZone } from "../lib/create-date-with-timezone.js";
+import { fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 
 import type { ArgumentAutoCompleteResult } from "../types/Homey.type";

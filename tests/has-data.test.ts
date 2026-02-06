@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-import { createDateWithTimeZone } from "../lib/generate-event-object";
+import { createDateWithTimeZone } from "../lib/create-date-with-timezone.js";
 import { hasData } from "../lib/has-data.js";
 
 import type { HasDataFalsyType, HasDataTruthyType } from "../types/IcalCalendar.type";
