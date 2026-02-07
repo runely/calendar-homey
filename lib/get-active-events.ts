@@ -270,7 +270,9 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
     const eventEnd: DateWithTimeZone = event.end ?? event.start;
     if (!event.end) {
-      app.log(`[WARN] - getActiveEvents - End is not specified on event UID '${event.uid}'. Using start as end: ${event.start} (${event.start.tz || "undefined TZ"})`);
+      app.log(
+        `[WARN] - getActiveEvents - End is not specified on event UID '${event.uid}'. Using start as end: ${event.start} (${event.start.tz || "undefined TZ"})`
+      );
     }
 
     // set properties to be text value IF it's an object
