@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import type { VEvent } from "node-ical";
+import type { DateWithTimeZone, VEvent } from "node-ical";
 
 import { createDateWithTimeZone } from "../lib/create-date-with-timezone.js";
 import { fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
@@ -20,7 +20,6 @@ const utcEvent: VEvent = {
   geo: undefined,
   lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   method: "PUBLISH",
-  sequence: "",
   transparency: "OPAQUE",
   organizer: "CN=Balle",
   recurrenceid: undefined,
@@ -35,7 +34,6 @@ const utcEvent: VEvent = {
   location: "",
   summary: "One",
   created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
-  // @ts-expect-error - This is actually on the object, but the exported types are missing it...
   "MICROSOFT-CDO-BUSYSTATUS": "WORKINGELSEWHERE"
 };
 
@@ -47,7 +45,6 @@ const tzEvent: VEvent = {
   geo: undefined,
   lastmodified: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
   method: "PUBLISH",
-  sequence: "",
   transparency: "OPAQUE",
   organizer: "CN=Balle",
   recurrenceid: undefined,
@@ -62,19 +59,20 @@ const tzEvent: VEvent = {
   location: "",
   summary: "One",
   created: createDateWithTimeZone(new Date("2021-11-05T18:00:00.000Z"), undefined),
-  // @ts-expect-error - This is actually on the object, but the exported types are missing it...
   "X-MICROSOFT-CDO-BUSYSTATUS": "BUSY"
 };
 
 describe("fromEvent", () => {
   test("Returns correct object when event is UTC", () => {
+    const eventEnd: DateWithTimeZone = utcEvent.end ?? utcEvent.start;
+
     const result: CalendarEvent = fromEvent(
       constructedApp,
       getZonedDateTime(
         DateTime.fromJSDate(utcEvent.start, { zone: utcEvent.start.tz || "utc" }),
         utcEvent.start.tz || "utc"
       ),
-      getZonedDateTime(DateTime.fromJSDate(utcEvent.end, { zone: utcEvent.end.tz || "utc" }), utcEvent.end.tz || "utc"),
+      getZonedDateTime(DateTime.fromJSDate(eventEnd, { zone: eventEnd.tz || "utc" }), eventEnd.tz || "utc"),
       timezone,
       utcEvent
     );
@@ -86,13 +84,15 @@ describe("fromEvent", () => {
   });
 
   test("Returns correct object when event has TZ", () => {
+    const eventEnd: DateWithTimeZone = tzEvent.end ?? tzEvent.start;
+
     const result: CalendarEvent = fromEvent(
       constructedApp,
       getZonedDateTime(
         DateTime.fromJSDate(tzEvent.start, { zone: tzEvent.start.tz || "utc" }),
         tzEvent.start.tz || "utc"
       ),
-      getZonedDateTime(DateTime.fromJSDate(tzEvent.end, { zone: tzEvent.end.tz || "utc" }), tzEvent.end.tz || "utc"),
+      getZonedDateTime(DateTime.fromJSDate(eventEnd, { zone: eventEnd.tz || "utc" }), eventEnd.tz || "utc"),
       timezone,
       tzEvent
     );

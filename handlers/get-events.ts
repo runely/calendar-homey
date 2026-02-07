@@ -203,7 +203,7 @@ export const getEvents = async (
           app,
           variableMgmt,
           timezone: app.homey.clock.getTimezone(),
-          data,
+          data: Object.values(data),
           eventLimit,
           calendarName: name,
           logAllEvents

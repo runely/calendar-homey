@@ -66,7 +66,12 @@ const createNewEvent = (
   return newEvent;
 };
 
-export const convertToText = (app: App | AppTests, prop: string, value: ParameterValue, uid: string): string => {
+export const convertToText = (
+  app: App | AppTests,
+  prop: string,
+  value: ParameterValue | undefined,
+  uid: string
+): string => {
   if (value === undefined) {
     return "";
   }
@@ -75,7 +80,7 @@ export const convertToText = (app: App | AppTests, prop: string, value: Paramete
     return value;
   }
 
-  app.log(`getActiveEvents/convertToText - '${prop}' was object. Using 'val' of object '${uid}'`);
+  app.log(`getActiveEvents/convertToText - '${prop}' has params. Using 'val' of ParameterValue for '${uid}'`);
   return value.val;
 };
 

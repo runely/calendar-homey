@@ -1,7 +1,7 @@
 import type { App } from "homey";
 import deepClone from "lodash.clonedeep";
 import { DateTime, type DateTimeMaybeValid, Duration } from "luxon";
-import type { CalendarComponent, VEvent } from "node-ical";
+import type { CalendarComponent, DateWithTimeZone, VEvent } from "node-ical";
 
 import { triggerSynchronizationError } from "../handlers/trigger-cards";
 
@@ -18,7 +18,7 @@ const untilRegexp = /UNTIL=(\d{8}T\d{6})/;
 const filterOutUnwantedEvents = (
   app: App | AppTests,
   logAllEvents: boolean,
-  events: CalendarComponent[],
+  events: (CalendarComponent | undefined)[],
   eventLimitStart: DateTime<true>,
   eventLimitEnd: DateTime<true>
 ): VEvent[] => {
@@ -34,7 +34,12 @@ const filterOutUnwantedEvents = (
   let recurringVEventsWithPastUntil: number = 0;
   let recurringVEventsWithFutureUntil: number = 0;
 
-  const filteredEvents: VEvent[] = events.filter((event: CalendarComponent) => {
+  const filteredEvents: VEvent[] = events.filter((event: CalendarComponent | undefined) => {
+    if (!event) {
+      nonVEvents++;
+      return false;
+    }
+
     // Needed to let TypeScript know that event is of type VEvent
     if (event.type !== "VEVENT") {
       nonVEvents++;
@@ -42,16 +47,16 @@ const filterOutUnwantedEvents = (
     }
 
     if (!event.rrule) {
-      if (!hasData(event.start) || !hasData(event.end)) {
+      if (!hasData(event.start)) {
         app.error(
-          `[ERROR] - getActiveEvents/filterOutUnwantedEvents: Missing DTSTART (${event.start} (${event.start?.tz || "undefined TZ"})) and/or DTEND (${event.end} (${event.end?.tz || "undefined TZ"})) on non-recurring event UID '${event.uid}'. Skipping event.`
+          `[ERROR] - getActiveEvents/filterOutUnwantedEvents: Missing DTSTART (${event.start} (${event.start?.tz || "undefined TZ"})) on non-recurring event UID '${event.uid}'. Skipping event.`
         );
         regularInvalidVEvents++;
         return false;
       }
 
       const startMillis: number = event.start.getTime();
-      const endMillis: number = event.end.getTime();
+      const endMillis: number = (event.end ?? event.start).getTime();
       const isRegularEventInside: boolean =
         (startMillis >= eventLimitStartMillis && endMillis <= eventLimitEndMillis) || // event fully inside range
         (startMillis <= eventLimitStartMillis && endMillis >= eventLimitEndMillis) || // event fully outside range (ongoing)
@@ -189,7 +194,7 @@ const getRecurrenceDates = (
   }
 
   if (event.recurrences) {
-    for (const recurrence of Object.values(event.recurrences)) {
+    for (const recurrence of Object.values(event.recurrences) as VEvent[]) {
       const recurStart: DateTime<true> | null =
         recurrence?.start instanceof Date
           ? getDateTime(
@@ -255,18 +260,17 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
   let recurrenceEventCount: number = 0;
   let regularEventCount: number = 0;
 
-  const actualEvents: VEvent[] = filterOutUnwantedEvents(
-    app,
-    logAllEvents,
-    Object.values(data),
-    eventLimitStart,
-    eventLimitEnd
-  );
+  const actualEvents: VEvent[] = filterOutUnwantedEvents(app, logAllEvents, data, eventLimitStart, eventLimitEnd);
 
   for (const event of actualEvents) {
     if (event.recurrenceid) {
       app.log(`getActiveEvents - RecurrenceId for (${event.uid}) should be handled in getOccurrenceDates. Skipping.`);
       continue;
+    }
+
+    const eventEnd: DateWithTimeZone = event.end ?? event.start;
+    if (!event.end) {
+      app.log(`[WARN] - getActiveEvents - End is not specified on event UID '${event.uid}'. Using start as end.`);
     }
 
     // set properties to be text value IF it's an object
@@ -285,8 +289,8 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
     );
     const endDate: DateTime<true> | null = getDateTime(
       app,
-      event.end,
-      event.end.tz,
+      eventEnd,
+      eventEnd.tz,
       timezone,
       event.datetype === "date",
       !logAllEvents
@@ -294,7 +298,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
     if (!startDate || !endDate) {
       app.error(
-        `[ERROR] getActiveEvents - DTSTART (${startDate}) and/or DTEND (${endDate}) is invalid on '${event.summary}' (${event.uid})`
+        `[ERROR] getActiveEvents - start (${startDate}) and/or end (${endDate}) is invalid on '${event.summary}' (${event.uid})`
       );
 
       await triggerSynchronizationError({
@@ -355,10 +359,12 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
             !logAllEvents
           );
 
+          const currentEventEnd: DateWithTimeZone = currentEvent.end ?? currentEvent.start;
+
           const overrideEndDate: DateTime<true> | null = getDateTime(
             app,
-            currentEvent.end,
-            event.end.tz,
+            currentEventEnd,
+            eventEnd.tz,
             timezone,
             event.datetype === "date",
             !logAllEvents
@@ -366,14 +372,14 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
           if (!currentStartDate || !overrideEndDate) {
             app.error(
-              `[ERROR] getActiveEvents - DTSTART and/or DTEND is invalid on RECURRENCE OVERRIDE for '${currentEvent.summary}' (${currentEvent.uid}) with lookupKey '${lookupKey}'`
+              `[ERROR] getActiveEvents - start and/or end is invalid on recurrence override for '${currentEvent.summary}' (${currentEvent.uid}) with lookupKey '${lookupKey}'`
             );
 
             await triggerSynchronizationError({
               app,
               variableMgmt,
               calendar: calendarName,
-              error: `DTSTART and/or DTEND is invalid on RECURRENCE OVERRIDE for '${currentEvent.summary}'`,
+              error: `start and/or end is invalid on recurrence override for '${currentEvent.summary}'`,
               event: currentEvent
             });
 

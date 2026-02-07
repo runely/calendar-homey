@@ -1,4 +1,4 @@
-import nodeIcal, { type CalendarComponent, type CalendarResponse, type VEvent } from "node-ical";
+import nodeIcal, { type CalendarComponent, type CalendarResponse, type DateWithTimeZone, type VEvent } from "node-ical";
 
 import { getActiveEvents } from "../lib/get-active-events.js";
 import { varMgmt } from "../lib/variable-management";
@@ -33,7 +33,7 @@ describe("getActiveEvents returns an array", () => {
       app: constructedApp,
       variableMgmt: varMgmt,
       timezone: "UTC",
-      data,
+      data: Object.values(data),
       eventLimit,
       calendarName: "Test",
       logAllEvents: false
@@ -63,13 +63,15 @@ describe("getActiveEvents filter out", () => {
       app: constructedApp,
       variableMgmt: varMgmt,
       timezone: "UTC",
-      data: dataNoStart,
+      data: Object.values(dataNoStart),
       eventLimit,
       calendarName: "Test",
       logAllEvents: false
     });
 
-    expect(Object.values(dataNoStart).filter((event: CalendarComponent) => event.type === "VEVENT").length).toBe(1);
+    expect(
+      Object.values(dataNoStart).filter((event: CalendarComponent | undefined) => event?.type === "VEVENT").length
+    ).toBe(1);
     expect(activeEvents.length).toBe(0);
   });
 });
@@ -80,7 +82,9 @@ describe('When "DTEND" is missing', () => {
     const dataNoEndEvent: VEvent = dataNoEnd["noEnd"] as VEvent;
     const { start, end } = dataNoEndEvent;
 
-    expect(start.toISOString()).toBe(end.toISOString());
+    const eventEnd: DateWithTimeZone = end ?? start;
+
+    expect(start.toISOString()).toBe(eventEnd.toISOString());
   });
 });
 
@@ -102,7 +106,7 @@ describe('When "TZID" is missing', () => {
       app: constructedApp,
       variableMgmt: varMgmt,
       timezone: localTimeZone,
-      data: nodeIcal.sync.parseFile("./tests/data/calendar-missing-timezone.ics"),
+      data: Object.values(nodeIcal.sync.parseFile("./tests/data/calendar-missing-timezone.ics")),
       eventLimit,
       calendarName: "Test",
       logAllEvents: false
@@ -130,7 +134,7 @@ describe('When "TZID" is missing', () => {
 
 describe('Invalid timezone should have been replaced by "node-ical"', () => {
   for (const event of Object.values(invalidTimezone)) {
-    if (event.type !== "VEVENT") {
+    if (event?.type !== "VEVENT") {
       continue;
     }
 
@@ -138,8 +142,10 @@ describe('Invalid timezone should have been replaced by "node-ical"', () => {
       expect(event.start.tz === event.summary).toBeFalsy();
     });
 
-    test(`"${event.summary}" should have its end TZ replaced from "${event.summary}" to a valid timezone ("${event.end.tz}")`, () => {
-      expect(event.end.tz === event.summary).toBeFalsy();
+    const eventEnd: DateWithTimeZone = event.end ?? event.start;
+
+    test(`"${event.summary}" should have its end TZ replaced from "${event.summary}" to a valid timezone ("${eventEnd.tz}")`, () => {
+      expect(eventEnd.tz === event.summary).toBeFalsy();
     });
   }
 });

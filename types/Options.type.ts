@@ -1,5 +1,5 @@
 import type { App } from "homey";
-import type { CalendarResponse, VEvent } from "node-ical";
+import type { CalendarComponent, VEvent } from "node-ical";
 
 import type { AppTests, ArgumentAutoCompleteResult } from "./Homey.type";
 import type { Calendar, CalendarEvent, CalendarEventUid, LocalJsonEvent } from "./IcalCalendar.type";
@@ -16,7 +16,7 @@ export type GetActiveEventsOptions = {
   app: App | AppTests;
   variableMgmt: VariableManagement;
   timezone: string;
-  data: CalendarResponse;
+  data: (CalendarComponent | undefined)[];
   eventLimit: SettingEventLimit;
   calendarName: string;
   logAllEvents: boolean;
