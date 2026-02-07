@@ -270,7 +270,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
     const eventEnd: DateWithTimeZone = event.end ?? event.start;
     if (!event.end) {
-      app.log(`[WARN] - getActiveEvents - End is not specified on event UID '${event.uid}'. Using start as end.`);
+      app.log(`[WARN] - getActiveEvents - End is not specified on event UID '${event.uid}'. Using start as end: ${event.start} (${event.start.tz || "undefined TZ"})`);
     }
 
     // set properties to be text value IF it's an object
@@ -298,7 +298,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
     if (!startDate || !endDate) {
       app.error(
-        `[ERROR] getActiveEvents - start (${startDate}) and/or end (${endDate}) is invalid on '${event.summary}' (${event.uid})`
+        `[ERROR] getActiveEvents - start (${startDate}) and/or end (${endDate}) is invalid on '${event.summary}' (${event.uid}). Skipping this event`
       );
 
       await triggerSynchronizationError({
@@ -372,7 +372,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
           if (!currentStartDate || !overrideEndDate) {
             app.error(
-              `[ERROR] getActiveEvents - start and/or end is invalid on recurrence override for '${currentEvent.summary}' (${currentEvent.uid}) with lookupKey '${lookupKey}'`
+              `[ERROR] getActiveEvents - start and/or end is invalid on recurrence override for '${currentEvent.summary}' (${currentEvent.uid}) with lookupKey '${lookupKey}'. Skipping this recurrence`
             );
 
             await triggerSynchronizationError({
