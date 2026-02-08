@@ -23,7 +23,7 @@
         "description": "Habilitar/Deshabilitar sincronización automática<br><br>NOTA: Si está deshabilitado, la sincronización solo se hará mediante la tarjeta de flujo!"
       },
       "cron": {
-        "description": "Expresión cron para el intervalo de sincronización.<br>Utiliza un generador para encontrar la sintaxis correcta, por ejemplo: https://crontab.cronhub.io/<br><br><b>ATENCIÓN</b>: Si se proporciona una sintaxis no válida, la sincronización automática se desactivará hasta que se proporcione una sintaxis válida!"
+        "description": "Expresión cron para el intervalo de sincronización.<br>Utiliza un generador para encontrar la sintaxis correcta, por ejemplo: https://www.compu-tools.com/cron/<br><br>Admite formatos/patrones de 5 campos, 6 campos y 7 campos.<br>Uso: https://croner.56k.guru/usage/pattern/<br><br><b>ATENCIÓN</b>: Si se proporciona una sintaxis no válida, la sincronización automática se desactivará hasta que se proporcione una sintaxis válida!"
       },
       "eventlimit": {
         "legend": "Rango de tiempo del evento",

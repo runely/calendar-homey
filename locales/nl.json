@@ -23,7 +23,7 @@
         "description": "Automatische synchronisatie in- of uitschakelen<br><br>LET OP: Als dit uitgeschakeld is, wordt synchronisatie alleen uitgevoerd via het stroomkaart!"
       },
       "cron": {
-        "description": "Cron-uitdrukking voor synchronisatie-interval.<br>Gebruik een generator om de juiste syntaxis te vinden, bijvoorbeeld: https://crontab.cronhub.io/<br><br><b>LET OP</b>: Bij ongeldige syntaxis wordt automatische synchronisatie uitgeschakeld totdat geldige syntaxis wordt opgegeven!"
+        "description": "Cron-uitdrukking voor synchronisatie-interval.<br>Gebruik een generator om de juiste syntaxis te vinden, bijvoorbeeld: https://www.compu-tools.com/cron/<br><br>Ondersteunt formaten/patronen met 5 velden, 6 velden en 7 velden.<br>Gebruik: https://croner.56k.guru/usage/pattern/<br><br><b>LET OP</b>: Bij ongeldige syntaxis wordt automatische synchronisatie uitgeschakeld totdat geldige syntaxis wordt opgegeven!"
       },
       "eventlimit": {
         "legend": "Event tijdsframe",

@@ -23,7 +23,7 @@
         "description": "Automatische Synchronisierung aktivieren/deaktivieren<br><br>HINWEIS: Wenn deaktiviert, wird die Synchronisierung nur über die Flusskarte durchgeführt!"
       },
       "cron": {
-        "description": "Cron-Ausdruck für das Synchronisierungsintervall.<br>Verwenden Sie einen Generator, um die richtige Syntax zu finden, z. B .: https://crontab.cronhub.io/<br><br><b>VORSICHT</b>: Bei ungültiger Syntax wird die automatische Synchronisierung deaktiviert, bis eine gültige Syntax angegeben wird!"
+        "description": "Cron-Ausdruck für das Synchronisierungsintervall.<br>Verwenden Sie einen Generator, um die richtige Syntax zu finden, z. B .: https://www.compu-tools.com/cron/<br><br>Unterstützt Formate/Muster mit 5 Feldern, 6 Feldern und 7 Feldern.<br>Verwendung: https://croner.56k.guru/usage/pattern/<br><br><b>VORSICHT</b>: Bei ungültiger Syntax wird die automatische Synchronisierung deaktiviert, bis eine gültige Syntax angegeben wird!"
       },
       "eventlimit": {
         "legend": "Zeitrahmen des Ereignisses",

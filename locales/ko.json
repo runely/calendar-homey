@@ -23,7 +23,7 @@
         "description": "자동 동기화 활성화/비활성화<br><br>참고: 비활성화된 경우, 동기화는 흐름 카드로만 수행됩니다!"
       },
       "cron": {
-        "description": "동기화 인터벌을 위한 Cron 표현식.<br>정확한 구문을 찾기 위해 생성기를 사용하세요, 예를 들어: https://crontab.cronhub.io/<br><br><b>주의</b>: 잘못된 구문이 제공되면, 올바른 구문이 제공될 때까지 자동 동기화가 비활성화됩니다!"
+        "description": "동기화 인터벌을 위한 Cron 표현식.<br>정확한 구문을 찾기 위해 생성기를 사용하세요, 예를 들어: https://www.compu-tools.com/cron/<br><br>5필드, 6필드 및 7필드 형식/패턴을 지원합니다.<br>사용법: https://croner.56k.guru/usage/pattern/<br><br><b>주의</b>: 잘못된 구문이 제공되면, 올바른 구문이 제공될 때까지 자동 동기화가 비활성화됩니다!"
       },
       "eventlimit": {
         "legend": "이벤트 시간 범위",

@@ -23,7 +23,7 @@
         "description": "Włącz/Wyłącz automatyczną synchronizację<br><br>UWAGA: Jeśli wyłączone, synchronizacja będzie wykonywana tylko za pomocą karty przepływu!"
       },
       "cron": {
-        "description": "Wyrażenie cron dla interwału synchronizacji.<br>Użyj generatora, aby znaleźć poprawną składnię, na przykład: https://crontab.cronhub.io/<br><br><b>OSTRZEŻENIE</b>: Jeśli podano nieprawidłową składnię, automatyczna synchronizacja zostanie wyłączona, aż do momentu podania poprawnej składni!"
+        "description": "Wyrażenie cron dla interwału synchronizacji.<br>Użyj generatora, aby znaleźć poprawną składnię, na przykład: https://www.compu-tools.com/cron/<br><br>Obsługuje formaty/wzorce z 5 polami, 6 polami i 7 polami.<br>Użycie: https://croner.56k.guru/usage/pattern/<br><br><b>OSTRZEŻENIE</b>: Jeśli podano nieprawidłową składnię, automatyczna synchronizacja zostanie wyłączona, aż do momentu podania poprawnej składni!"
       },
       "eventlimit": {
         "legend": "Ramka czasowa zdarzenia",
