@@ -23,7 +23,7 @@
         "description": "Aktiver/Deaktiver automatisk synkronisering<br><br>NOTE: Hvis deaktiveret, vil synkronisering kun ske ved flow-kort!"
       },
       "cron": {
-        "description": "Cron-udtryk for synkroniseringsinterval.<br>Brug en generator til at finde den korrekte syntaks, f.eks.: https://crontab.cronhub.io/<br><br><b>ADVARSEL</b>: Hvis der gives en ugyldig syntaks, vil automatisk synkronisering blive deaktiveret, indtil en gyldig syntaks gives!"
+        "description": "Cron-udtryk for synkroniseringsinterval.<br>Brug en generator til at finde den korrekte syntaks, f.eks.: https://www.compu-tools.com/cron/<br><br>Understøtter formater/mønstre med 5 felter, 6 felter og 7 felter.<br>Brug: https://croner.56k.guru/usage/pattern/<br><br><b>ADVARSEL</b>: Hvis der gives en ugyldig syntaks, vil automatisk synkronisering blive deaktiveret, indtil en gyldig syntaks gives!"
       },
       "eventlimit": {
         "legend": "Hændelses tidsramme",

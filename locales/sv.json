@@ -23,7 +23,7 @@
         "description": "Aktivera/Inaktivera automatisk synkronisering<br><br>NOTERA: Om inaktiverad kommer synkronisering endast att göras via flödeskortet!"
       },
       "cron": {
-        "description": "Cron-uttryck för synkroniseringsintervall.<br>Använd en generator för att hitta korrekt syntax, till exempel: https://crontab.cronhub.io/<br><br><b>VARSNING</b>: Vid ogiltig syntax kommer automatisk synkronisering att inaktiveras tills giltig syntax anges!"
+        "description": "Cron-uttryck för synkroniseringsintervall.<br>Använd en generator för att hitta korrekt syntax, till exempel: https://www.compu-tools.com/cron/<br><br>Stöder format/mönster med 5 fält, 6 fält och 7 fält.<br>Användning: https://croner.56k.guru/usage/pattern/<br><br><b>VARSNING</b>: Vid ogiltig syntax kommer automatisk synkronisering att inaktiveras tills giltig syntax anges!"
       },
       "eventlimit": {
         "legend": "Händelsens tidsram",

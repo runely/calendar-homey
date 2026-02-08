@@ -23,7 +23,7 @@
         "description": "Abilita/Disabilita sincronizzazione automatica<br><br>NOTA: Se disabilitato, la sincronizzazione avverrà solo tramite la scheda di flusso!"
       },
       "cron": {
-        "description": "Espressione cron per l'intervallo di sincronizzazione.<br>Utilizza un generatore per trovare la sintassi corretta, ad esempio: https://crontab.cronhub.io/<br><br><b>ATTENZIONE</b>: Se viene fornita una sintassi non valida, la sincronizzazione automatica sarà disabilitata fino a quando non verrà fornita una sintassi valida!"
+        "description": "Espressione cron per l'intervallo di sincronizzazione.<br>Utilizza un generatore per trovare la sintassi corretta, ad esempio: https://www.compu-tools.com/cron/<br><br>Supporta formati/modelli a 5 campi, 6 campi e 7 campi.<br>Utilizzo: https://croner.56k.guru/usage/pattern/<br><br><b>ATTENZIONE</b>: Se viene fornita una sintassi non valida, la sincronizzazione automatica sarà disabilitata fino a quando non verrà fornita una sintassi valida!"
       },
       "eventlimit": {
         "legend": "Periodo dell'evento",

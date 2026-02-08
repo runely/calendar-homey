@@ -23,7 +23,7 @@
         "description": "Enable/Disable automatic synchronization<br><br>NOTE: If disabled, synchronization will only be done by flow card!"
       },
       "cron": {
-        "description": "Cron expression for synchronization interval.<br>Use a generator to find the correct syntax, for instance: https://crontab.cronhub.io/<br><br><b>CAUTION</b>: If invalid syntax is given, automatic synchronization will be disabled until valid syntax is given!"
+        "description": "Cron expression for synchronization interval.<br>Use a generator to find the correct syntax, for instance: https://www.compu-tools.com/cron/<br><br>Supports 5-fields, 6-fields and 7-fields format/pattern.<br>Usage: https://croner.56k.guru/usage/pattern/<br><br><b>CAUTION</b>: If invalid syntax is given, automatic synchronization will be disabled until valid syntax is given!"
       },
       "eventlimit": {
         "legend": "Event time frame",

@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.0.5
   - Dependency update of `node-ical` from **0.24.2** to **0.25.1**
+  - Reference to a OCPS 1.4 generator in the settings page, as well as link to the pattern usage.
 - 3.0.4
   - Bugfix: Handle all calendar providers equally and expect `node-ical` to give us correct date information
   - Dev dependency updates

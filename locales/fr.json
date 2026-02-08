@@ -23,7 +23,7 @@
         "description": "Activer/Désactiver la synchronisation automatique<br><br>NOTE : Si désactivé, la synchronisation ne se fera que par carte de flux !"
       },
       "cron": {
-        "description": "Expression cron pour l'intervalle de synchronisation.<br>Utilisez un générateur pour trouver la syntaxe correcte, par exemple : https://crontab.cronhub.io/<br><br><b>ATTENTION</b> : Si une syntaxe invalide est donnée, la synchronisation automatique sera désactivée jusqu'à ce qu'une syntaxe valide soit donnée !"
+        "description": "Expression cron pour l'intervalle de synchronisation.<br>Utilisez un générateur pour trouver la syntaxe correcte, par exemple : https://www.compu-tools.com/cron/<br><br>Prend en charge les formats/motifs à 5 champs, 6 champs et 7 champs.<br>Utilisation: https://croner.56k.guru/usage/pattern/<br><br><b>ATTENTION</b> : Si une syntaxe invalide est donnée, la synchronisation automatique sera désactivée jusqu'à ce qu'une syntaxe valide soit donnée !"
       },
       "eventlimit": {
         "legend": "Période de l'événement",
