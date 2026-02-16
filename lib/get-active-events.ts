@@ -177,11 +177,10 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
       eventInstance.summary = eventInstance.event.summary; // ensure eventInstance summary is converted to text as well
 
-      // TODO: Use eventInstance.start/end after node-ical update > 0.25.1
-      const eventEndTz: string | undefined = eventInstance.event.end?.tz || eventInstance.event.start.tz;
+      const eventEndTz: string | undefined = eventInstance.end?.tz || eventInstance.start.tz;
       if (!eventInstance.event.end) {
         app.log(
-          `[WARN] - getActiveEvents - End is not specified on event UID '${eventInstance.event.uid}'. Using start TZ as end TZ: ${event.start.tz || "undefined TZ"}`
+          `[WARN] - getActiveEvents - End is not specified on event UID '${eventInstance.event.uid}'. Using start TZ as end TZ: ${eventEndTz || "undefined TZ"}`
         );
       }
 
