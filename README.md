@@ -110,7 +110,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - **Event added** - *will trigger when a new event is created in one of your synced calendars*
     - **Will trigger when these requirements are met:**
         - The event has the `CREATED` property
-        - The created events start time is inside the current datetime frame beeing synced in
+        - The created events start time is inside the current datetime frame being synced in
         - The created event is created within the last 24 hours
 - **Synchronization error occurred** - *will trigger when a synchronization error occurs with one of your calendars*
 
@@ -215,7 +215,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 ## Changelog
 
 - 3.0.5
-  - Dependency update of `node-ical` from **0.24.2** to **0.25.1**
+  - Dependency update of `node-ical` from **0.24.2** to **0.25.2**: Fixes: [Issue #675](https://github.com/runely/calendar-homey/issues/675)
+    - Using `expandRecurringEvent` from `node-ical` to expand recurring events instead of doing it manually. This should fix some edge cases with recurring events.
   - Reference to a OCPS 1.4 generator in the settings page, as well as link to the pattern usage.
 - 3.0.4
   - Bugfix: Handle all calendar providers equally and expect `node-ical` to give us correct date information
@@ -735,7 +736,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added tag 'Calendar name' to 'Event starts' and 'Event ends' triggers
     - Added trigger 'Event starts in' → [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5
-    - Added support for norwegian language → [Issue #6](https://github.com/runely/calendar-homey/issues/6)
+    - Added support for Norwegian language → [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar → [Issue #3](https://github.com/runely/calendar-homey/issues/3)
     - Added duration tags to trigger 'Event starts' → [Issue #16](https://github.com/runely/calendar-homey/issues/16)
     - Added trigger 'Event ends' → [Issue #4](https://github.com/runely/calendar-homey/issues/4)
