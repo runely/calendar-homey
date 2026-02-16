@@ -68,13 +68,15 @@ describe("fromEvent", () => {
 
     const result: CalendarEvent = fromEvent(
       constructedApp,
+      utcEvent,
       getZonedDateTime(
         DateTime.fromJSDate(utcEvent.start, { zone: utcEvent.start.tz || "utc" }),
         utcEvent.start.tz || "utc"
       ),
       getZonedDateTime(DateTime.fromJSDate(eventEnd, { zone: eventEnd.tz || "utc" }), eventEnd.tz || "utc"),
       timezone,
-      utcEvent
+      utcEvent.uid,
+      utcEvent.datetype === "date"
     );
 
     expect(result.fullDayEvent).toBe(false);
@@ -88,13 +90,15 @@ describe("fromEvent", () => {
 
     const result: CalendarEvent = fromEvent(
       constructedApp,
+      tzEvent,
       getZonedDateTime(
         DateTime.fromJSDate(tzEvent.start, { zone: tzEvent.start.tz || "utc" }),
         tzEvent.start.tz || "utc"
       ),
       getZonedDateTime(DateTime.fromJSDate(eventEnd, { zone: eventEnd.tz || "utc" }), eventEnd.tz || "utc"),
       timezone,
-      tzEvent
+      tzEvent.uid,
+      tzEvent.datetype === "date"
     );
 
     expect(result.fullDayEvent).toBe(false);

@@ -20,12 +20,12 @@
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.27.3",
     "jest": "^30.2.0",
+    "lodash.clonedeep": "^4.5.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
-    "lodash.clonedeep": "4.5.0",
     "luxon": "^3.7.2",
     "node-ical": "0.25.1",
     "source-map-support": "^0.5.21"

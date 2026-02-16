@@ -86,20 +86,21 @@ export const convertToText = (
 
 export const fromEvent = (
   app: App | AppTests,
+  event: VEvent,
   start: DateTime<true>,
   end: DateTime<true>,
   timezone: string,
-  event: VEvent
+  uid: string,
+  isFullDay: boolean
 ): CalendarEvent => {
   const created: DateTime<true> | null = event.created
     ? getDateTime(app, event.created, event.created.tz, timezone, false, true)
     : null;
 
-  const description: string = convertToText(app, "description", event.description, event.uid);
-  const location: string = convertToText(app, "location", event.location, event.uid);
-  const summary: string = convertToText(app, "summary", event.summary, event.uid);
+  const description: string = convertToText(app, "description", event.description, uid);
+  const location: string = convertToText(app, "location", event.location, uid);
+  const summary: string = convertToText(app, "summary", event.summary, uid);
 
-  const fullDayEvent: boolean = event.datetype === "date";
   const freeBusy: BusyStatus | undefined = extractFreeBusyStatus(event);
   const meetingUrl: string | undefined = extractMeetingUrl(description);
 
@@ -108,12 +109,12 @@ export const fromEvent = (
     start,
     event.datetype,
     end,
-    event.uid,
+    uid,
     description,
     location,
     summary,
     created || undefined,
-    fullDayEvent,
+    isFullDay,
     freeBusy,
     meetingUrl,
     false
