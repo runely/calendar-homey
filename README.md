@@ -55,13 +55,10 @@ Add the `IcalCalendar` device to follow along with how many calendars you have c
 
 :exclamation:
 The library used in this app to parse the calendars, **[node-ical](https://github.com/jens-maus/node-ical)**, does `NOT`
-use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses the `BEGIN:VTIMEZONE` sections to parse timezones!
+use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses timezone per event! If no timezone is registered on an event, the event is assumed to be in UTC.
 
 :exclamation:
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
-
-:exclamation:
-If your events are created with the timezone `Customized Time Zone` (you will see this when opening the .ics file in a text editor), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will Therefore `NOT` be applied to these events!
 
 ## Usage
 
