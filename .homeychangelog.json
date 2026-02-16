@@ -430,5 +430,8 @@
   },
   "3.0.4": {
     "en": "Bugfix: Better DateTime calculations. Should support all calendar providers. Dependency updates"
+  },
+  "3.0.5": {
+    "en": "Bugfix: Excluded whole day event on a recurring whole day event series could remove wrong occurence. Dependency updates"
   }
 }
