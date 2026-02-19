@@ -211,6 +211,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.6
+  - Dev dependency updates
 - 3.0.5
   - Dependency update of `node-ical` from **0.24.2** to **0.25.2**: Fixes: [Issue #675](https://github.com/runely/calendar-homey/issues/675)
     - Using `expandRecurringEvent` from `node-ical` to expand recurring events instead of doing it manually. This should fix some edge cases with recurring events.
