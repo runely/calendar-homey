@@ -433,5 +433,8 @@
   },
   "3.0.5": {
     "en": "Bugfix: Excluded whole day event on a recurring whole day event series could remove wrong occurence. Dependency updates"
+  },
+  "3.0.6": {
+    "en": "Bugfix: Whole day recurring events in Exchange were not moved correctly"
   }
 }
