@@ -27,7 +27,7 @@
     "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
     "luxon": "^3.7.2",
-    "node-ical": "0.25.3",
+    "node-ical": "0.25.4",
     "source-map-support": "^0.5.21"
   },
   "scripts": {
