@@ -211,6 +211,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.0.7
+  - Dependency updates
 - 3.0.6
   - Dev dependency updates
   - Dependency update of `node-ical` from **0.25.2** to **0.25.3**: Fixes: [Issue #677](https://github.com/runely/calendar-homey/issues/677)
