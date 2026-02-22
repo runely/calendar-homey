@@ -436,5 +436,8 @@
   },
   "3.0.6": {
     "en": "Bugfix: Whole day recurring events in Exchange were not moved correctly"
+  },
+  "3.0.7": {
+    "en": "Dependency updates"
   }
 }
