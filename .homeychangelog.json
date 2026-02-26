@@ -439,5 +439,8 @@
   },
   "3.0.7": {
     "en": "Dependency updates"
+  },
+  "3.1.0": {
+    "en": "Added 'Full day event' tag to triggers. This tag will be 'true' if the event is a full day event, and 'false' if not"
   }
 }
