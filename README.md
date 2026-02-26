@@ -211,6 +211,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.1.0
+  - Added `Full day event` tag to triggers. This tag will be `true` if the event is a full day event, and `false` if not.
 - 3.0.7
   - Dependency updates
 - 3.0.6

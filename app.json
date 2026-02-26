@@ -479,6 +479,23 @@
             }
           },
           {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
+            }
+          },
+          {
             "name": "event_weekday_readable",
             "type": "string",
             "title": {
@@ -929,6 +946,23 @@
             },
             "example": {
               "en": "11:30"
+            }
+          },
+          {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
             }
           },
           {
@@ -1830,6 +1864,23 @@
             }
           },
           {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
+            }
+          },
+          {
             "name": "event_status",
             "type": "string",
             "title": {
@@ -2090,6 +2141,23 @@
             }
           },
           {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
+            }
+          },
+          {
             "name": "event_status",
             "type": "string",
             "title": {
@@ -2328,6 +2396,23 @@
             },
             "example": {
               "en": "Gmail"
+            }
+          },
+          {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
             }
           },
           {
@@ -2650,6 +2735,23 @@
             }
           },
           {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
+            }
+          },
+          {
             "name": "event_status",
             "type": "string",
             "title": {
@@ -2910,6 +3012,23 @@
             }
           },
           {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
+            }
+          },
+          {
             "name": "event_status",
             "type": "string",
             "title": {
@@ -3148,6 +3267,23 @@
             },
             "example": {
               "en": "Gmail"
+            }
+          },
+          {
+            "name": "event_fullday_event",
+            "type": "boolean",
+            "title": {
+              "en": "Full day event",
+              "nl": "Hele dag evenement",
+              "de": "Ganztägiges Ereignis",
+              "fr": "Événement toute la journée",
+              "it": "Evento tutto il giorno",
+              "sv": "Heldagsevenemang",
+              "no": "Heldagsarrangement",
+              "es": "Evento de todo el día",
+              "da": "Hele dags begivenhed",
+              "pl": "Wydarzenie całodziennie",
+              "ko": "하루 종일 이벤트"
             }
           },
           {
@@ -5474,7 +5610,7 @@
             "name": "event_fullday_event",
             "type": "boolean",
             "title": {
-              "en": "Fullday event",
+              "en": "Full day event",
               "nl": "Hele dag evenement",
               "de": "Ganztägiges Ereignis",
               "fr": "Événement toute la journée",

@@ -143,6 +143,7 @@ export type TriggerFlowTokens = {
   event_duration_readable: string;
   event_duration: number;
   event_calendar_name: string;
+  event_fullday_event: boolean;
   event_status: string;
   event_meeting_url: string;
 
