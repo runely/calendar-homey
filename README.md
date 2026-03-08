@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.1.1
   - Note about `Customized Time Zone` from Microsoft and how it is handled in the app
+  - Dependency updates
 - 3.1.0
   - Added `Full day event` tag to triggers. This tag will be `true` if the event is a full day event, and `false` if not.
   - Dependency updates

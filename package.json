@@ -9,14 +9,14 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@biomejs/biome": "2.4.4",
+    "@biomejs/biome": "2.4.6",
     "@tsconfig/node24": "^24.0.4",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/jest": "^30.0.0",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.1",
-    "@types/node": "^25.3.1",
+    "@types/node": "^25.3.5",
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.27.3",
     "jest": "^30.2.0",
@@ -27,7 +27,7 @@
     "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
     "luxon": "^3.7.2",
-    "node-ical": "0.25.4",
+    "node-ical": "0.25.5",
     "source-map-support": "^0.5.21"
   },
   "scripts": {
