@@ -61,7 +61,7 @@ use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses timezone p
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
 
 :exclamation:
-If your calendar provider uses the `Customized Time Zone` from Microsoft, the library parser **[node-ical](https://github.com/jens-maus/node-ical)** will try to convert this to the local timezone of your Homey. Unfortunately, Homey core sets the local `TZ` to **UTC**, so `Customized Time Zone` events will be treated as if they are in **UTC** timezone.
+If your calendar provider uses the `Customized Time Zone` from Microsoft, the library parser **[node-ical](https://github.com/jens-maus/node-ical)** will try to use the timezone information (if present) in the `VTIMEZONE` section.
 
 ## Usage
 
@@ -214,6 +214,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.1.2
+  - Dependency update of `node-ical` from **0.25.5** to **0.25.6**: Fixes: [Issue #680](https://github.com/runely/calendar-homey/issues/680)
+  - Note about `Customized Time Zone` from Microsoft and how it is handled in the app by reading timezone information from the `VTIMEZONE` section in the calendar file, if present
 - 3.1.1
   - Note about `Customized Time Zone` from Microsoft and how it is handled in the app
   - Dependency updates
