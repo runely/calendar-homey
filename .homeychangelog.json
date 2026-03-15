@@ -445,5 +445,8 @@
   },
   "3.1.1": {
     "en": "Dependency updates"
+  },
+  "3.1.2": {
+    "en": "Dependency updates. Handle 'Customized Time Zone' by using VTIMEZONE info"
   }
 }
