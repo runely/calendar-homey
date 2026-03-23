@@ -21,7 +21,7 @@
     "esbuild": "^0.27.4",
     "jest": "^30.2.0",
     "lodash.clonedeep": "^4.5.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.0"
   },
   "dependencies": {
     "croner": "^10.0.1",
