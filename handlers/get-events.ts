@@ -136,9 +136,10 @@ export const getEvents = async (
     try {
       data = await iCal.fromURL(uri);
     } catch (error) {
-      const { fallbackUri } = getFallbackUri(app, uri);
-      const errorString: string | undefined = error instanceof Error ? `${error.message} -> ${error.stack}` : undefined;
       app.error(`[ERROR] getEvents: Failed to get events for calendar '${name}' with uri '${uri}' ->`, error);
+      const errorString: string | undefined = error instanceof Error ? error.message : undefined;
+
+      const { fallbackUri } = getFallbackUri(app, uri);
       try {
         app.log(
           `[WARN] getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`,
@@ -148,12 +149,11 @@ export const getEvents = async (
         );
         data = await iCal.fromURL(uri);
       } catch (innerError) {
-        const fallbackErrorString: string | undefined =
-          innerError instanceof Error ? `${innerError.message} -> ${innerError.stack}` : undefined;
         app.error(
           `[ERROR] getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' ->`,
           innerError
         );
+        const fallbackErrorString: string | undefined = innerError instanceof Error ? innerError.message : undefined;
 
         errors.push(
           `Failed to get events for calendar '${name}' with uri '${uri}' (${errorString}) and '${fallbackUri}' (${fallbackErrorString})`
@@ -218,13 +218,13 @@ export const getEvents = async (
           lastSuccessfullSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
         });
       } catch (error) {
-        const errorString: string | undefined =
-          error instanceof Error ? `${error.message} -> ${error.stack}` : undefined;
         app.error(
           `[ERROR] getEvents: Failed to get active events for calendar '${name}'. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())} ->`,
           error
         );
+        const errorString: string | undefined = error instanceof Error ? error.message : undefined;
         errors.push(`Failed to get active events for calendar '${name}' : ${errorString})`);
+
         try {
           await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: error as Error | string });
         } catch (triggerError) {
