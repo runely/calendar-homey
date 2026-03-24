@@ -2,7 +2,9 @@
   "extends": "@tsconfig/node24/tsconfig.json",
   "compilerOptions": {
     "outDir": ".homeybuild/",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "moduleResolution": "NodeNext",
+    "types": ["node", "jest"]
   },
   "exclude": ["homeyscripts", "tests"]
 }

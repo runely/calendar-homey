@@ -2,8 +2,9 @@
   "extends": "@tsconfig/node24/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "commonjs",
-    "moduleResolution": "Node",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "types": ["node", "jest"],
     "outDir": ".build/",
     "resolveJsonModule": true
   },
