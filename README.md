@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.1.3
+  - Dev dependency updates
 - 3.1.2
   - Dependency update of `node-ical` from **0.25.5** to **0.25.6**: Fixes: [Issue #680](https://github.com/runely/calendar-homey/issues/680)
   - Note about `Customized Time Zone` from Microsoft and how it is handled in the app by reading timezone information from the `VTIMEZONE` section in the calendar file, if present
