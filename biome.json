@@ -17,7 +17,8 @@
     "bracketSpacing": true,
     "expand": "auto",
     "lineWidth": 200,
-    "useEditorconfig": true
+    "useEditorconfig": true,
+    "lineEnding": "auto"
   },
   "linter": {
     "enabled": true,
