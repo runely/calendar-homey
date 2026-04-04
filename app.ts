@@ -200,7 +200,7 @@ class IcalCalendar extends Homey.App {
 
       variableMgmt.jobs = {};
 
-      // trigger events every 1th minute
+      // trigger events every 1st minute
       variableMgmt.jobs.trigger = addJob("*/1 * * * *", async (): Promise<void> => {
         if (!variableMgmt) {
           this.error("[ERROR] startJobs/trigger: Variable management initialization failed. App halted!");

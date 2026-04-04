@@ -2,6 +2,8 @@ import { DateTime } from "luxon";
 
 import type { HasDataType } from "../types/IcalCalendar.type";
 
+const PRIMITIVE_TYPES: string[] = ["boolean", "number"];
+
 export const hasData = (data: HasDataType): boolean => {
   if (data === undefined || data === null) {
     return false;
@@ -27,5 +29,5 @@ export const hasData = (data: HasDataType): boolean => {
     return Object.keys(data).length > 0;
   }
 
-  return ["boolean", "number"].includes(typeof data);
+  return PRIMITIVE_TYPES.includes(typeof data);
 };

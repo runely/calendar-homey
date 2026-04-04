@@ -24,6 +24,8 @@ const filterOutUnwantedEvents = (
 ): VEvent[] => {
   const eventLimitStartMillis: number = eventLimitStart.toUTC().toJSDate().getTime();
   const eventLimitEndMillis: number = eventLimitEnd.toUTC().toJSDate().getTime();
+  const largeWarnLimit: number = 1500;
+  const largeErrorLimit: number = 3500;
 
   // statistics only
   let nonVEvents: number = 0;
@@ -115,6 +117,22 @@ const filterOutUnwantedEvents = (
     app.log(
       `getActiveEvents/filterOutUnwantedEvents: Filtered out events numbers -- nonVEvents: ${nonVEvents} -- regularInvalidVEvents: ${regularInvalidVEvents} -- regularVEventsPast: ${regularVEventsPast} -- recurringVEventsWithPastUntil: ${recurringVEventsWithPastUntil} -- recurringVEventsWithoutUntil: ${recurringVEventsWithoutUntil} -- regularVEventsInside: ${regularVEventsInside} -- recurringVEventsWithFutureUntil: ${recurringVEventsWithFutureUntil}. Totally filtered from ${events.length} to ${filteredEvents.length} events.`
     );
+
+    const regularCount: number = regularVEventsInside + regularVEventsPast + regularInvalidVEvents;
+    const recurringCount: number =
+      recurringVEventsWithoutUntil + recurringVEventsWithPastUntil + recurringVEventsWithFutureUntil;
+    if (
+      (regularCount >= largeWarnLimit && regularCount < largeErrorLimit) ||
+      (recurringCount >= largeWarnLimit && recurringCount < largeErrorLimit)
+    ) {
+      app.log(
+        `[WARN] - getActiveEvents/filterOutUnwantedEvents: LARGE CALENDAR DETECTED (> ${largeWarnLimit} events). Regular count: ${regularCount}. Recurring count: ${recurringCount}`
+      );
+    } else if (regularCount >= largeErrorLimit || recurringCount >= largeErrorLimit) {
+      app.error(
+        `getActiveEvents/filterOutUnwantedEvents: VERY LARGE CALENDAR DETECTED (> ${largeErrorLimit} events). Regular count: ${regularCount}. Recurring count: ${recurringCount}`
+      );
+    }
   }
 
   return filteredEvents;
@@ -229,7 +247,15 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
         );
 
         events.push(
-          fromEvent(app, eventInstance.event, startDate, endDate, timezone, recurringEventUid, eventInstance.isFullDay)
+          fromEvent(
+            app,
+            eventInstance.event,
+            startDate,
+            endDate,
+            timezone,
+            recurringEventUid,
+            Boolean(eventInstance.isFullDay)
+          )
         );
 
         continue;
@@ -248,8 +274,8 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
           startDate,
           endDate,
           timezone,
-          eventInstance.event.uid,
-          eventInstance.isFullDay
+          String(eventInstance.event.uid),
+          Boolean(eventInstance.isFullDay)
         )
       );
     }

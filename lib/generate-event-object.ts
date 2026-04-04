@@ -77,11 +77,11 @@ export const convertToText = (
   }
 
   if (typeof value === "string") {
-    return value;
+    return String(value);
   }
 
   app.log(`getActiveEvents/convertToText - '${prop}' has params. Using 'val' of ParameterValue for '${uid}'`);
-  return value.val;
+  return String(value.val);
 };
 
 export const fromEvent = (
@@ -107,7 +107,7 @@ export const fromEvent = (
   return createNewEvent(
     app,
     start,
-    event.datetype,
+    String(event.datetype) as DateType,
     end,
     uid,
     description,

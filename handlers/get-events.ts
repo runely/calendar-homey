@@ -1,6 +1,6 @@
 import type { App, FlowToken } from "homey";
 import { DateTime } from "luxon";
-import iCal, { type CalendarResponse } from "node-ical";
+import iCal, { type CalendarComponent, type CalendarResponse } from "node-ical";
 
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
 import {
@@ -194,20 +194,27 @@ export const getEvents = async (
         app.log(`getEvents: Removed 'error' setting value from calendar '${name}'`);
       }
 
+      const dataValues: (CalendarComponent | undefined)[] = Object.values(data);
       const retrieveCalendarEnd: Date = new Date();
+
       try {
         app.log(
-          `getEvents: Events for calendar '${name}' retrieved. Total entry count for calendar: ${Object.keys(data).length}. Time used: ${getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`
+          `getEvents: Events for calendar '${name}' retrieved. Total entry count for calendar: ${dataValues.length}. Time used: ${getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`
         );
         const activeEvents: CalendarEvent[] = await getActiveEvents({
           app,
           variableMgmt,
           timezone: app.homey.clock.getTimezone(),
-          data: Object.values(data),
+          data: dataValues,
           eventLimit,
           calendarName: name,
           logAllEvents
         });
+
+        // make sure V8 can GC everything related to the calendar data
+        data = null;
+        dataValues.length = 0;
+
         app.log(
           `getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())}`
         );
@@ -333,8 +340,10 @@ export const getEvents = async (
     }
   });
 
-  variableMgmt.calendars = calendarsEvents;
-  variableMgmt.calendars = sortCalendarsEvents(variableMgmt.calendars);
+  // make sure old events are gone
+  variableMgmt.calendars = undefined;
+  // add newly found events
+  variableMgmt.calendars = sortCalendarsEvents(calendarsEvents);
   const allEventCount: number = variableMgmt.calendars.reduce((curr: number, acu: Calendar) => {
     curr += acu.events.length;
     return curr;

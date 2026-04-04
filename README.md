@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.1.4
+  - GC optimization by nullifying variables when not needed anymore
 - 3.1.3
   - Dev dependency updates
   - Move from `TypeScript` **5.x** to **6.x**
