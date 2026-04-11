@@ -1,7 +1,6 @@
 import type { App, FlowToken } from "homey";
 import { DateTime } from "luxon";
 import iCal, { type CalendarComponent, type CalendarResponse } from "node-ical";
-
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
 import {
   generateNextEventTokens,
@@ -10,12 +9,10 @@ import {
 } from "../lib/generate-token-configuration.js";
 import { getActiveEvents } from "../lib/get-active-events.js";
 import { getEventUids } from "../lib/get-event-uids.js";
-import { getFallbackUri } from "../lib/get-fallback-uri.js";
 import { getNewEvents } from "../lib/get-new-events.js";
 import { getLocalActiveEvents, getLocalEvents, saveLocalEvents } from "../lib/local-events.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
-
 import type {
   Calendar,
   CalendarEvent,
@@ -27,6 +24,7 @@ import type {
   LocalJsonEvent
 } from "../types/IcalCalendar.type";
 import type { SettingEventLimit, VariableManagement } from "../types/VariableMgmt.type";
+import { getFilteredIcsContent } from "./get-filtered-ics-content.js";
 
 import { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } from "./trigger-cards.js";
 
@@ -134,53 +132,34 @@ export const getEvents = async (
 
     let data: CalendarResponse | null = null;
     try {
-      data = await iCal.fromURL(uri);
+      const filteredIcsContent: string = await getFilteredIcsContent(app, uri, eventLimit);
+      data = await iCal.async.parseICS(filteredIcsContent);
     } catch (error) {
       app.error(`[ERROR] getEvents: Failed to get events for calendar '${name}' with uri '${uri}' ->`, error);
       const errorString: string | undefined = error instanceof Error ? error.message : undefined;
 
-      const { fallbackUri } = getFallbackUri(app, uri);
+      errors.push(`Failed to get events for calendar '${name}' with uri '${uri}' -> (${errorString})`);
+
       try {
-        app.log(
-          `[WARN] getEvents: Getting events (${eventLimit.value} ${eventLimit.type} ahead) for calendar`,
-          name,
-          "with fallback uri",
-          fallbackUri
-        );
-        data = await iCal.fromURL(uri);
-      } catch (innerError) {
-        app.error(
-          `[ERROR] getEvents: Failed to get events for calendar '${name}' with fallback uri '${fallbackUri}' ->`,
-          innerError
-        );
-        const fallbackErrorString: string | undefined = innerError instanceof Error ? innerError.message : undefined;
-
-        errors.push(
-          `Failed to get events for calendar '${name}' with uri '${uri}' (${errorString}) and '${fallbackUri}' (${fallbackErrorString})`
-        );
-        try {
-          await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: innerError as Error | string });
-        } catch (triggerError) {
-          app.error(
-            `[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}' ->`,
-            triggerError
-          );
-        }
-        calendarsMetadata.push({
-          name,
-          eventCount: 0,
-          lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
-        });
-
-        // set a failed setting value to show an error message on settings page
-        calendars[i] = {
-          name,
-          uri,
-          failed: fallbackErrorString
-        };
-        app.homey.settings.set(variableMgmt.setting.icalUris, calendars);
-        app.log(`[WARN] getEvents: Added 'error' setting value to calendar '${name}'`);
+        await triggerSynchronizationError({ app, variableMgmt, calendar: name, error: error as Error | string });
+      } catch (triggerError) {
+        app.error(`[ERROR] getEvents: Failed to trigger synchronization error for calendar '${name}' ->`, triggerError);
       }
+
+      calendarsMetadata.push({
+        name,
+        eventCount: 0,
+        lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
+      });
+
+      // set a failed setting value to show an error message on settings page
+      calendars[i] = {
+        name,
+        uri,
+        failed: errorString
+      };
+      app.homey.settings.set(variableMgmt.setting.icalUris, calendars);
+      app.log(`[WARN] getEvents: Added 'error' setting value to calendar '${name}'`);
     }
 
     if (data) {
