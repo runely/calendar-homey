@@ -214,6 +214,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+
+- 3.2.1
+  - Dev dependency updates
 - 3.2.0
   - GC optimization by nullifying variables when not needed anymore
   - Filter the raw ics content before parsing it through `node-ical` to only work on relevant events, to minimize the RAM and CPU usage
