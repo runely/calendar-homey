@@ -454,5 +454,8 @@
   },
   "3.2.0": {
     "en": "RAM and CPU usage optimization by filtering the raw ics content before parsing"
+  },
+  "3.2.1": {
+    "en": "Dependency updates"
   }
 }
