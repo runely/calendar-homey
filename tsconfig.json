@@ -4,7 +4,7 @@
     "outDir": ".homeybuild/",
     "resolveJsonModule": true,
     "moduleResolution": "NodeNext",
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "exclude": ["homeyscripts", "tests"]
 }
