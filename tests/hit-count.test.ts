@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { beforeEach, describe, test } from "node:test";
+
 import deepClone from "lodash.clonedeep";
 
 import { getHitCountData, resetTodayHitCount, setupHitCount, updateHitCount } from "../lib/hit-count.js";
@@ -72,17 +75,17 @@ describe("getHitCountData", () => {
   test("Should return parsed JSON when data is present", () => {
     const data: HitCount[] | undefined = getHitCountData(app, appVariableMgmt);
 
-    expect(Array.isArray(data)).toBeTruthy();
-    expect(data?.length).toBe(11);
-    expect(data?.[0].id).toBe("event_added");
-    expect(getIdsWithTodayNotZero(data).length).toBeGreaterThan(0);
+    assert.ok(Array.isArray(data));
+    assert.strictEqual(data?.length, 11);
+    assert.strictEqual(data?.[0].id, "event_added");
+    assert.ok(getIdsWithTodayNotZero(data).length > 0);
   });
 
   test("Should return undefined when data is not present", () => {
     const data: HitCount[] | undefined = getHitCountData(appWithoutData, varMgmt);
 
-    expect(Array.isArray(data)).toBeFalsy();
-    expect(data).toBe(undefined);
+    assert.ok(!Array.isArray(data));
+    assert.strictEqual(data, undefined);
   });
 });
 
@@ -92,17 +95,17 @@ describe("resetTodayHitCount", () => {
   });
 
   test("today on all trigger variants should be set to zero when data is present", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBeGreaterThan(0);
+    assert.ok(getIdsWithTodayNotZero(runtimeData).length > 0);
 
     resetTodayHitCount(app, appVariableMgmt);
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
   });
 
   test("reset should not do anything when data is not present", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBeGreaterThan(0);
+    assert.ok(getIdsWithTodayNotZero(runtimeData).length > 0);
 
     resetTodayHitCount(appWithoutData, varMgmt);
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBeGreaterThan(0);
+    assert.ok(getIdsWithTodayNotZero(runtimeData).length > 0);
   });
 });
 
@@ -114,19 +117,19 @@ describe("setupHitCount", () => {
   test("Should create a skeleton for hit count data if data is not present", () => {
     setupHitCount(appWithoutData, varMgmt);
 
-    expect(runtimeData.length).toBe(11);
-    expect(runtimeData.filter((t: HitCount) => t.variants.length > 0).length).toBe(0);
+    assert.strictEqual(runtimeData.length, 11);
+    assert.strictEqual(runtimeData.filter((t: HitCount) => t.variants.length > 0).length, 0);
   });
 
   test('Should add missing trigger when data is present and missing "synchronization_error"', () => {
     runtimeData = runtimeData.filter((t: HitCount) => t.id !== "synchronization_error");
 
-    expect(runtimeData.length).toBe(10);
+    assert.strictEqual(runtimeData.length, 10);
 
     setupHitCount(app, appVariableMgmt);
-    expect(runtimeData.length).toBe(11);
-    expect(runtimeData[10].id).toBe("synchronization_error");
-    expect(runtimeData[10].variants.length).toBe(0);
+    assert.strictEqual(runtimeData.length, 11);
+    assert.strictEqual(runtimeData[10].id, "synchronization_error");
+    assert.strictEqual(runtimeData[10].variants.length, 0);
   });
 });
 
@@ -136,111 +139,111 @@ describe("updateHitCount", () => {
   });
 
   test("Should not do anything when data is not present", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
 
     updateHitCount(appWithoutData, varMgmt, "synchronization_error");
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
   });
 
   test("Should not do anything when triggerId not found", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
 
     updateHitCount(appWithoutData, varMgmt, "non_existing_trigger");
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
   });
 
   test("Should update only given triggerId with no arguments", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
-    expect(runtimeData.find((t: HitCount) => t.id === "synchronization_error")?.variants.length).toBe(0);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
+    assert.strictEqual(runtimeData.find((t: HitCount) => t.id === "synchronization_error")?.variants.length, 0);
 
     updateHitCount(app, appVariableMgmt, "synchronization_error");
     const updatedIds: string[] = getIdsWithTodayNotZero(runtimeData);
 
-    expect(updatedIds.length).toBe(1);
-    expect(updatedIds[0]).toBe("synchronization_error");
+    assert.strictEqual(updatedIds.length, 1);
+    assert.strictEqual(updatedIds[0], "synchronization_error");
 
     const trigger: HitCount | undefined = runtimeData.find((t: HitCount) => t.id === "synchronization_error");
 
-    expect(trigger).toBeTruthy();
-    expect(trigger?.variants.length).toBe(1);
-    expect(trigger?.variants[0].total).toBe(1);
-    expect(trigger?.variants[0].today).toBe(1);
+    assert.ok(trigger);
+    assert.strictEqual(trigger?.variants.length, 1);
+    assert.strictEqual(trigger?.variants[0].total, 1);
+    assert.strictEqual(trigger?.variants[0].today, 1);
   });
 
   // test update with one argument
   test("Should update only given triggerId with one argument", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
-    expect(runtimeData.find((t: HitCount) => t.id === "event_changed_calendar")?.variants.length).toBe(1);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
+    assert.strictEqual(runtimeData.find((t: HitCount) => t.id === "event_changed_calendar")?.variants.length, 1);
 
     const calendar: string = "Test";
     updateHitCount(app, appVariableMgmt, "event_changed_calendar", { calendar });
     const updatedIds: string[] = getIdsWithTodayNotZero(runtimeData);
 
-    expect(updatedIds.length).toBe(1);
-    expect(updatedIds[0]).toBe("event_changed_calendar");
+    assert.strictEqual(updatedIds.length, 1);
+    assert.strictEqual(updatedIds[0], "event_changed_calendar");
 
     const trigger: HitCount | undefined = runtimeData.find((t: HitCount) => t.id === "event_changed_calendar");
 
-    expect(trigger).toBeTruthy();
-    expect(trigger?.variants.length).toBe(1);
-    expect(trigger?.variants[0].calendar).toBe(calendar);
-    expect(trigger?.variants[0].total).toBe(1);
-    expect(trigger?.variants[0].today).toBe(1);
+    assert.ok(trigger);
+    assert.strictEqual(trigger?.variants.length, 1);
+    assert.strictEqual(trigger?.variants[0].calendar, calendar);
+    assert.strictEqual(trigger?.variants[0].total, 1);
+    assert.strictEqual(trigger?.variants[0].today, 1);
   });
 
   // test update with two arguments
   test("Should update only given triggerId with two arguments", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
-    expect(runtimeData.find((t: HitCount) => t.id === "event_starts_in")?.variants.length).toBe(2);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
+    assert.strictEqual(runtimeData.find((t: HitCount) => t.id === "event_starts_in")?.variants.length, 2);
 
     const when: number = 5;
     const type: string = "1";
     updateHitCount(app, appVariableMgmt, "event_starts_in", { when, type });
     const updatedIds: string[] = getIdsWithTodayNotZero(runtimeData);
 
-    expect(updatedIds.length).toBe(1);
-    expect(updatedIds[0]).toBe("event_starts_in");
+    assert.strictEqual(updatedIds.length, 1);
+    assert.strictEqual(updatedIds[0], "event_starts_in");
 
     const trigger: HitCount | undefined = runtimeData.find((t: HitCount) => t.id === "event_starts_in");
 
-    expect(trigger).toBeTruthy();
-    expect(trigger?.variants.length).toBe(2);
-    expect(trigger?.variants[0].lastTriggered).toBe(undefined);
-    expect(trigger?.variants[0].when).toBe(25);
-    expect(trigger?.variants[0].type).toBe(type);
-    expect(trigger?.variants[0].total).toBe(0);
-    expect(trigger?.variants[0].today).toBe(0);
-    expect(trigger?.variants[1].when).toBe(when);
-    expect(trigger?.variants[1].type).toBe(type);
-    expect(trigger?.variants[1].total).toBe(1); // this should be 1 because no other tests have updated this triggerId yet
-    expect(trigger?.variants[1].today).toBe(1);
+    assert.ok(trigger);
+    assert.strictEqual(trigger?.variants.length, 2);
+    assert.strictEqual(trigger?.variants[0].lastTriggered, undefined);
+    assert.strictEqual(trigger?.variants[0].when, 25);
+    assert.strictEqual(trigger?.variants[0].type, type);
+    assert.strictEqual(trigger?.variants[0].total, 0);
+    assert.strictEqual(trigger?.variants[0].today, 0);
+    assert.strictEqual(trigger?.variants[1].when, when);
+    assert.strictEqual(trigger?.variants[1].type, type);
+    assert.strictEqual(trigger?.variants[1].total, 1); // this should be 1 because no other tests have updated this triggerId yet
+    assert.strictEqual(trigger?.variants[1].today, 1);
   });
 
   // test update with two arguments (switched order)
   test("Should update only given triggerId with two arguments (switched order)", () => {
-    expect(getIdsWithTodayNotZero(runtimeData).length).toBe(0);
-    expect(runtimeData.find((t: HitCount) => t.id === "event_starts_in")?.variants.length).toBe(2);
+    assert.strictEqual(getIdsWithTodayNotZero(runtimeData).length, 0);
+    assert.strictEqual(runtimeData.find((t: HitCount) => t.id === "event_starts_in")?.variants.length, 2);
 
     const when: number = 5;
     const type: string = "1";
     updateHitCount(app, appVariableMgmt, "event_starts_in", { type, when });
     const updatedIds: string[] = getIdsWithTodayNotZero(runtimeData);
 
-    expect(updatedIds.length).toBe(1);
-    expect(updatedIds[0]).toBe("event_starts_in");
+    assert.strictEqual(updatedIds.length, 1);
+    assert.strictEqual(updatedIds[0], "event_starts_in");
 
     const trigger: HitCount | undefined = runtimeData.find((t: HitCount) => t.id === "event_starts_in");
 
-    expect(trigger).toBeTruthy();
-    expect(trigger?.variants.length).toBe(2);
-    expect(trigger?.variants[0].lastTriggered).toBe(undefined);
-    expect(trigger?.variants[0].when).toBe(25);
-    expect(trigger?.variants[0].type).toBe(type);
-    expect(trigger?.variants[0].total).toBe(0);
-    expect(trigger?.variants[0].today).toBe(0);
-    expect(trigger?.variants[1].when).toBe(when);
-    expect(trigger?.variants[1].type).toBe(type);
-    expect(trigger?.variants[1].total).toBe(2); // this should be 2 because the previous test updated this triggerId as well
-    expect(trigger?.variants[1].today).toBe(1); // this should be 1 because the beforeEach reset it
+    assert.ok(trigger);
+    assert.strictEqual(trigger?.variants.length, 2);
+    assert.strictEqual(trigger?.variants[0].lastTriggered, undefined);
+    assert.strictEqual(trigger?.variants[0].when, 25);
+    assert.strictEqual(trigger?.variants[0].type, type);
+    assert.strictEqual(trigger?.variants[0].total, 0);
+    assert.strictEqual(trigger?.variants[0].today, 0);
+    assert.strictEqual(trigger?.variants[1].when, when);
+    assert.strictEqual(trigger?.variants[1].type, type);
+    assert.strictEqual(trigger?.variants[1].total, 2); // this should be 2 because the previous test updated this triggerId as well
+    assert.strictEqual(trigger?.variants[1].today, 1); // this should be 1 because the beforeEach reset it
   });
 });

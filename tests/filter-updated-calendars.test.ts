@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
@@ -271,8 +274,8 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.nothingChanged,
       newCalendars: newCalendars.nothingChanged
     });
-    expect(Array.isArray(eventsChanged)).toBe(true);
-    expect(eventsChanged.length).toBe(0);
+    assert.ok(Array.isArray(eventsChanged));
+    assert.strictEqual(eventsChanged.length, 0);
   });
 
   test("'Start' when start has changed", () => {
@@ -282,11 +285,11 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.startChanged,
       newCalendars: newCalendars.startChanged
     });
-    expect(eventsChanged.length).toBe(1);
-    expect(eventsChanged[0].events.length).toBe(1);
-    expect(Array.isArray(eventsChanged[0].events[0].changed)).toBe(true);
-    expect(eventsChanged[0].events[0].changed?.length).toBe(1);
-    expect(eventsChanged[0].events[0].changed?.[0].type).toBe(start);
+    assert.strictEqual(eventsChanged.length, 1);
+    assert.strictEqual(eventsChanged[0].events.length, 1);
+    assert.ok(Array.isArray(eventsChanged[0].events[0].changed));
+    assert.strictEqual(eventsChanged[0].events[0].changed?.length, 1);
+    assert.strictEqual(eventsChanged[0].events[0].changed?.[0].type, start);
   });
 
   test("'End' when end has changed", () => {
@@ -296,11 +299,11 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.endChanged,
       newCalendars: newCalendars.endChanged
     });
-    expect(eventsChanged.length).toBe(1);
-    expect(eventsChanged[0].events.length).toBe(1);
-    expect(Array.isArray(eventsChanged[0].events[0].changed)).toBe(true);
-    expect(eventsChanged[0].events[0].changed?.length).toBe(1);
-    expect(eventsChanged[0].events[0].changed?.[0].type).toBe(end);
+    assert.strictEqual(eventsChanged.length, 1);
+    assert.strictEqual(eventsChanged[0].events.length, 1);
+    assert.ok(Array.isArray(eventsChanged[0].events[0].changed));
+    assert.strictEqual(eventsChanged[0].events[0].changed?.length, 1);
+    assert.strictEqual(eventsChanged[0].events[0].changed?.[0].type, end);
   });
 
   test("'Description' when description has changed", () => {
@@ -310,11 +313,11 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.descriptionChanged,
       newCalendars: newCalendars.descriptionChanged
     });
-    expect(eventsChanged.length).toBe(1);
-    expect(eventsChanged[0].events.length).toBe(1);
-    expect(Array.isArray(eventsChanged[0].events[0].changed)).toBe(true);
-    expect(eventsChanged[0].events[0].changed?.length).toBe(1);
-    expect(eventsChanged[0].events[0].changed?.[0].type).toBe(description);
+    assert.strictEqual(eventsChanged.length, 1);
+    assert.strictEqual(eventsChanged[0].events.length, 1);
+    assert.ok(Array.isArray(eventsChanged[0].events[0].changed));
+    assert.strictEqual(eventsChanged[0].events[0].changed?.length, 1);
+    assert.strictEqual(eventsChanged[0].events[0].changed?.[0].type, description);
   });
 
   test("'Location' when location has changed", () => {
@@ -324,11 +327,11 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.locationChanged,
       newCalendars: newCalendars.locationChanged
     });
-    expect(eventsChanged.length).toBe(1);
-    expect(eventsChanged[0].events.length).toBe(1);
-    expect(Array.isArray(eventsChanged[0].events[0].changed)).toBe(true);
-    expect(eventsChanged[0].events[0].changed?.length).toBe(1);
-    expect(eventsChanged[0].events[0].changed?.[0].type).toBe(location);
+    assert.strictEqual(eventsChanged.length, 1);
+    assert.strictEqual(eventsChanged[0].events.length, 1);
+    assert.ok(Array.isArray(eventsChanged[0].events[0].changed));
+    assert.strictEqual(eventsChanged[0].events[0].changed?.length, 1);
+    assert.strictEqual(eventsChanged[0].events[0].changed?.[0].type, location);
   });
 
   test("'Summary' when summary has changed", () => {
@@ -338,10 +341,10 @@ describe("Expect 'filterUpdatedCalendars' to return", () => {
       oldCalendars: oldCalendars.summaryChanged,
       newCalendars: newCalendars.summaryChanged
     });
-    expect(eventsChanged.length).toBe(1);
-    expect(eventsChanged[0].events.length).toBe(1);
-    expect(Array.isArray(eventsChanged[0].events[0].changed)).toBe(true);
-    expect(eventsChanged[0].events[0].changed?.length).toBe(1);
-    expect(eventsChanged[0].events[0].changed?.[0].type).toBe(summary);
+    assert.strictEqual(eventsChanged.length, 1);
+    assert.strictEqual(eventsChanged[0].events.length, 1);
+    assert.ok(Array.isArray(eventsChanged[0].events[0].changed));
+    assert.strictEqual(eventsChanged[0].events[0].changed?.length, 1);
+    assert.strictEqual(eventsChanged[0].events[0].changed?.[0].type, summary);
   });
 });

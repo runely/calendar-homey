@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import deepClone from "lodash.clonedeep";
 
 import { getDateTimeFormat } from "../lib/get-datetime-format.js";
@@ -44,26 +47,26 @@ dateTimeFormat.setting.timeFormat = "HH.mm";
 describe("Date format is correct when", () => {
   test("Default format is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
-    expect(format.short).toBe("MM/dd");
-    expect(format.long).toBe("MM/dd/yy");
+    assert.strictEqual(format.short, "MM/dd");
+    assert.strictEqual(format.long, "MM/dd/yy");
   });
 
   test("Legacy format from settings is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatLegacy);
-    expect(format.short).toBe("dd.MM");
-    expect(format.long).toBe("dd.MM.yyyy");
+    assert.strictEqual(format.short, "dd.MM");
+    assert.strictEqual(format.long, "dd.MM.yyyy");
   });
 
   test("Format from settings is used, short is undefined", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatShortUndefined);
-    expect(format.short).toBe("dd-MM");
-    expect(format.long).toBe("dd-MM-yy");
+    assert.strictEqual(format.short, "dd-MM");
+    assert.strictEqual(format.long, "dd-MM-yy");
   });
 
   test("Format from settings is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
-    expect(format.short).toBe("dd.MM");
-    expect(format.long).toBe("dd-MM-yy");
+    assert.strictEqual(format.short, "dd.MM");
+    assert.strictEqual(format.long, "dd-MM-yy");
   });
 
   test("Previous moment format : TimeFormat: HH:mm, LongDateFormat: dddd DD/MM/YYYY, ShortDateFormat: DD/MM : Converted correctly to luxon format", () => {
@@ -84,20 +87,20 @@ describe("Date format is correct when", () => {
 
     const format: DateTimeFormat = getDateTimeFormat(momentConstructedApp, varMgmt);
 
-    expect(format.time).toBe("HH:mm");
-    expect(format.long).toBe("cccc dd/MM/yyyy");
-    expect(format.short).toBe("dd/MM");
+    assert.strictEqual(format.time, "HH:mm");
+    assert.strictEqual(format.long, "cccc dd/MM/yyyy");
+    assert.strictEqual(format.short, "dd/MM");
   });
 });
 
 describe("Time format is correct when", () => {
   test("Default format is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormatUndefined);
-    expect(format.time).toBe("HH:mm");
+    assert.strictEqual(format.time, "HH:mm");
   });
 
   test("Format from settings is used", () => {
     const format: DateTimeFormat = getDateTimeFormat(constructedApp, dateTimeFormat);
-    expect(format.time).toBe("HH.mm");
+    assert.strictEqual(format.time, "HH.mm");
   });
 });

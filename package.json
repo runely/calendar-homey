@@ -13,13 +13,11 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/humanize-duration": "^3.27.4",
-    "@types/jest": "^30.0.0",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.1",
     "@types/node": "^25.7.0",
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.28.0",
-    "jest": "^30.4.2",
     "lodash.clonedeep": "^4.5.0",
     "typescript": "^6.0.3"
   },
@@ -34,7 +32,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build-tests": "tsc -p tsconfig_tests.json",
-    "test": "biome check && npm run build-tests && env TZ=UTC jest",
+    "test": "biome check && npm run build-tests && env TZ=UTC node --test '.build/tests/**/*.test.js'",
     "fix": "biome check --write",
     "refresh": "rm -rf node_modules/ && rm package-lock.json && npm i",
     "bundle-varMgmt": "npx esbuild ./lib/variable-management.ts --bundle --format=iife --platform=browser --global-name=VariableMgmt --outfile=./settings/variable-management-settings.js",
@@ -43,14 +41,5 @@
     "homey-run-clean": "npm run homey-build && homey app run --remote --clean",
     "homey-install": "npm run homey-build && homey app install",
     "homey-publish": "npm run homey-build && homey app publish"
-  },
-  "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/.homeybuild/"
-    ],
-    "testMatch": [
-      "<rootDir>/.build/tests/**/*test.[jt]s?(x)",
-      "<rootDir>/.build/?(*.)+.(spec|test).[jt]s?(x)"
-    ]
   }
 }

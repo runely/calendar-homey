@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { before, describe, test } from "node:test";
+
 import nodeIcal, { type CalendarComponent, type CalendarResponse, type DateWithTimeZone, type VEvent } from "node-ical";
 
 import { getActiveEvents } from "../lib/get-active-events.js";
@@ -28,7 +31,7 @@ let alwaysOngoingEvents: CalendarEvent[];
 let dataNoTzId: CalendarEvent[];
 
 describe("getActiveEvents returns an array", () => {
-  beforeAll(async () => {
+  before(async () => {
     activeEvents = await getActiveEvents({
       app: constructedApp,
       variableMgmt: varMgmt,
@@ -44,15 +47,17 @@ describe("getActiveEvents returns an array", () => {
   });
 
   test("Where all 'OnceAWeek' events has a unique uid", () => {
-    expect(
-      onceAWeekEvents.filter((event: CalendarEvent) => event.uid === `hidden_${event.start.toISODate()}`).length
-    ).toBe(onceAWeekEvents.length);
+    assert.strictEqual(
+      onceAWeekEvents.filter((event: CalendarEvent) => event.uid === `hidden_${event.start.toISODate()}`).length,
+      onceAWeekEvents.length
+    );
   });
 
   test("Where all 'AlwaysOngoing' events has a unique uid", () => {
-    expect(
-      alwaysOngoingEvents.filter((event: CalendarEvent) => event.uid === `hidden2_${event.start.toISODate()}`).length
-    ).toBe(alwaysOngoingEvents.length);
+    assert.strictEqual(
+      alwaysOngoingEvents.filter((event: CalendarEvent) => event.uid === `hidden2_${event.start.toISODate()}`).length,
+      alwaysOngoingEvents.length
+    );
   });
 });
 
@@ -69,10 +74,11 @@ describe("getActiveEvents filter out", () => {
       logAllEvents: false
     });
 
-    expect(
-      Object.values(dataNoStart).filter((event: CalendarComponent | undefined) => event?.type === "VEVENT").length
-    ).toBe(1);
-    expect(activeEvents.length).toBe(0);
+    assert.strictEqual(
+      Object.values(dataNoStart).filter((event: CalendarComponent | undefined) => event?.type === "VEVENT").length,
+      1
+    );
+    assert.strictEqual(activeEvents.length, 0);
   });
 });
 
@@ -84,7 +90,7 @@ describe('When "DTEND" is missing', () => {
 
     const eventEnd: DateWithTimeZone = end ?? start;
 
-    expect(start.toISOString()).toBe(eventEnd.toISOString());
+    assert.strictEqual(start.toISOString(), eventEnd.toISOString());
   });
 });
 
@@ -94,14 +100,14 @@ describe('When "SUMMARY" is missing', () => {
     const dataNoSummaryEvent: VEvent = dataNoSummary["noSummary"] as VEvent;
     const { summary } = dataNoSummaryEvent;
 
-    expect(summary).toBe(undefined);
+    assert.strictEqual(summary, undefined);
   });
 });
 
 describe('When "TZID" is missing', () => {
   const localTimeZone: string = "UTC";
 
-  beforeAll(async () => {
+  before(async () => {
     dataNoTzId = await getActiveEvents({
       app: constructedApp,
       variableMgmt: varMgmt,
@@ -118,8 +124,8 @@ describe('When "TZID" is missing', () => {
       (event: CalendarEvent) => event.summary === "RecurringNoTzid"
     );
 
-    expect(dataNoTzIdEvent).not.toBeUndefined();
-    expect(dataNoTzIdEvent?.start.zoneName).toBe(localTimeZone);
+    assert.ok(dataNoTzIdEvent !== undefined);
+    assert.strictEqual(dataNoTzIdEvent?.start.zoneName, localTimeZone);
   });
 
   test("on a regular event, zoneName should be timezone used on system", () => {
@@ -127,8 +133,8 @@ describe('When "TZID" is missing', () => {
       (event: CalendarEvent) => event.summary === "RegularNoTzid"
     );
 
-    expect(dataNoTzIdEvent).not.toBeUndefined();
-    expect(dataNoTzIdEvent?.start.zoneName).toBe(localTimeZone);
+    assert.ok(dataNoTzIdEvent !== undefined);
+    assert.strictEqual(dataNoTzIdEvent?.start.zoneName, localTimeZone);
   });
 });
 
@@ -139,13 +145,13 @@ describe('Invalid timezone should have been replaced by "node-ical"', () => {
     }
 
     test(`"${event.summary}" should have its start TZ replaced from "${event.summary}" to a valid timezone ("${event.start.tz}")`, () => {
-      expect(event.start.tz === event.summary).toBeFalsy();
+      assert.ok(!(event.start.tz === event.summary));
     });
 
     const eventEnd: DateWithTimeZone = event.end ?? event.start;
 
     test(`"${event.summary}" should have its end TZ replaced from "${event.summary}" to a valid timezone ("${eventEnd.tz}")`, () => {
-      expect(eventEnd.tz === event.summary).toBeFalsy();
+      assert.ok(!(eventEnd.tz === event.summary));
     });
   }
 });

@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import type { Cron } from "croner";
 import { addJob, isValidCron } from "../handlers/cron.js";
 
@@ -121,8 +124,8 @@ describe("croner.addJob", () => {
     );
     console.log("Expected next run:", then);
 
-    expect(nextRun).toBeInstanceOf(Date);
-    expect(nextRun?.getTime()).toBe(then.getTime());
+    assert.ok(nextRun instanceof Date);
+    assert.strictEqual(nextRun?.getTime(), then.getTime());
   });
 
   test("'next' Cron job is at the next 15th minute", () => {
@@ -160,21 +163,21 @@ describe("croner.addJob", () => {
     );
     console.log("Expected next run:", then);
 
-    expect(nextRun).toBeInstanceOf(Date);
-    expect(nextRun?.getTime()).toBe(then.getTime());
+    assert.ok(nextRun instanceof Date);
+    assert.strictEqual(nextRun?.getTime(), then.getTime());
   });
 });
 
 describe("croner.isValidCron", () => {
   validCronJobs.forEach(({ pattern, description }: CronJobTestCase) => {
     test(`returns true for valid cron pattern '${pattern}' - ${description}`, () => {
-      expect(isValidCron(pattern)).toBeTruthy();
+      assert.ok(isValidCron(pattern));
     });
   });
 
   invalidCronJobs.forEach(({ pattern, description }: CronJobTestCase) => {
     test(`returns false for invalid cron pattern '${pattern}' - ${description}`, () => {
-      expect(isValidCron(pattern)).toBeFalsy();
+      assert.ok(!isValidCron(pattern));
     });
   });
 });

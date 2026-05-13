@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { createDateWithTimeZone } from "../lib/create-date-with-timezone.js";
@@ -24,7 +27,7 @@ describe("Return false", () => {
   falsy.forEach((value: HasDataFalsyType) => {
     test(`When data is ${JSON.stringify(value)}`, () => {
       const result: boolean = hasData(value);
-      expect(result).toBeFalsy();
+      assert.ok(!result);
     });
   });
 });
@@ -33,7 +36,7 @@ describe("Return true", () => {
   truthy.forEach((value: HasDataTruthyType) => {
     test(`When data is ${JSON.stringify(value)}`, () => {
       const result: boolean = hasData(value);
-      expect(result).toBeTruthy();
+      assert.ok(result);
     });
   });
 });

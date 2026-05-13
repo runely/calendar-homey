@@ -4,7 +4,7 @@
     "target": "ESNext",
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "types": ["node", "jest"],
+    "types": ["node"],
     "outDir": ".build/",
     "resolveJsonModule": true
   },

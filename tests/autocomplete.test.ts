@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import type { FlowCard } from "homey";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
@@ -22,8 +25,8 @@ const variableMgmt: VariableManagement = {
 describe("calendarAutocomplete", () => {
   test("Returns an empty list when 'variableMgmt.calendars' doesn't exist", () => {
     const result: FlowCard.ArgumentAutocompleteResults = calendarAutocomplete(constructedApp, varMgmt, "");
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(0);
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 0);
   });
 
   test("Returns an empty list when 'variableMgmt.calendars' is empty", () => {
@@ -32,39 +35,39 @@ describe("calendarAutocomplete", () => {
       { ...varMgmt, calendars: [] },
       ""
     );
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(0);
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 0);
   });
 
   test("Returns an empty list when query isn't a calendar name present", () => {
     const result: FlowCard.ArgumentAutocompleteResults = calendarAutocomplete(constructedApp, variableMgmt, "Three");
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(0);
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 0);
   });
 
   test("Returns 1 calendar when query is 'One'", () => {
     const result: FlowCard.ArgumentAutocompleteResults = calendarAutocomplete(constructedApp, variableMgmt, "One");
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(1);
-    expect(result[0].id).toBe("One");
-    expect(result[0].name).toBe("One");
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 1);
+    assert.strictEqual(result[0].id, "One");
+    assert.strictEqual(result[0].name, "One");
   });
 
   test("Returns 1 calendar when query is 'Two'", () => {
     const result: FlowCard.ArgumentAutocompleteResults = calendarAutocomplete(constructedApp, variableMgmt, "Two");
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(1);
-    expect(result[0].id).toBe("Two");
-    expect(result[0].name).toBe("Two");
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 1);
+    assert.strictEqual(result[0].id, "Two");
+    assert.strictEqual(result[0].name, "Two");
   });
 
   test("Returns 2 calendars when query isn't present", () => {
     const result: FlowCard.ArgumentAutocompleteResults = calendarAutocomplete(constructedApp, variableMgmt, undefined);
-    expect(Array.isArray(result)).toBeTruthy();
-    expect(result.length).toBe(2);
-    expect(result[0].id).toBe("One");
-    expect(result[0].name).toBe("One");
-    expect(result[1].id).toBe("Two");
-    expect(result[1].name).toBe("Two");
+    assert.ok(Array.isArray(result));
+    assert.strictEqual(result.length, 2);
+    assert.strictEqual(result[0].id, "One");
+    assert.strictEqual(result[0].name, "One");
+    assert.strictEqual(result[1].id, "Two");
+    assert.strictEqual(result[1].name, "Two");
   });
 });

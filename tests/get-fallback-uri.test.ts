@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { getFallbackUri } from "../lib/get-fallback-uri.js";
 import type { FallbackUri } from "../types/IcalCalendar.type";
 import { constructedApp } from "./lib/construct-app";
@@ -63,9 +66,9 @@ describe("fallback uri found for protocol", () => {
       const uri: string = `${protocol}test.com`;
       const fallback: FallbackUri = getFallbackUri(constructedApp, uri);
 
-      expect(fallback.fallbackProtocol).toBe(expectedFallbackProtocol);
-      expect(fallback.fallbackUri).toBe(uri.replace(protocol, expectedFallbackProtocol));
-      expect(fallback.protocol).toBe(protocol);
+      assert.strictEqual(fallback.fallbackProtocol, expectedFallbackProtocol);
+      assert.strictEqual(fallback.fallbackUri, uri.replace(protocol, expectedFallbackProtocol));
+      assert.strictEqual(fallback.protocol, protocol);
     });
   });
 });
@@ -76,9 +79,9 @@ describe('fallback uri should be equal to uri, fallbackProtocol and protocol sho
       const uri: string = `${protocol}test.com`;
       const fallback: FallbackUri = getFallbackUri(constructedApp, uri);
 
-      expect(fallback.fallbackProtocol).toBe("");
-      expect(fallback.fallbackUri).toBe(uri);
-      expect(fallback.protocol).toBe("");
+      assert.strictEqual(fallback.fallbackProtocol, "");
+      assert.strictEqual(fallback.fallbackUri, uri);
+      assert.strictEqual(fallback.protocol, "");
     });
   });
 });

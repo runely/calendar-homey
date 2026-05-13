@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getEventUids } from "../lib/get-event-uids.js";
@@ -64,10 +67,10 @@ const calendars: Calendar[] = [
 
 test("No calendars returns an empty array", () => {
   const result: CalendarEventUid[] = getEventUids([]);
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test("Will return only unique uids", () => {
   const result: CalendarEventUid[] = getEventUids(calendars);
-  expect(result.length).toBe(3);
+  assert.strictEqual(result.length, 3);
 });

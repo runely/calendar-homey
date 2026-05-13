@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getZonedDateTime } from "../lib/luxon-fns";
@@ -77,13 +80,13 @@ const calendars: Calendar[] = [
 test('Calendar events are sorted after "start" datetime', () => {
   const result: Calendar[] = sortCalendarsEvents(calendars);
 
-  expect(result.length).toBe(2);
-  expect(result[0].name).toBe("CalendarOne");
-  expect(result[0].events.length).toBe(2);
-  expect(result[0].events[0].uid).toBe("cal_one_One");
-  expect(result[0].events[1].uid).toBe("cal_one_Two");
-  expect(result[1].name).toBe("CalendarTwo");
-  expect(result[1].events.length).toBe(2);
-  expect(result[1].events[0].uid).toBe("cal_two_One");
-  expect(result[1].events[1].uid).toBe("cal_two_Two");
+  assert.strictEqual(result.length, 2);
+  assert.strictEqual(result[0].name, "CalendarOne");
+  assert.strictEqual(result[0].events.length, 2);
+  assert.strictEqual(result[0].events[0].uid, "cal_one_One");
+  assert.strictEqual(result[0].events[1].uid, "cal_one_Two");
+  assert.strictEqual(result[1].name, "CalendarTwo");
+  assert.strictEqual(result[1].events.length, 2);
+  assert.strictEqual(result[1].events[0].uid, "cal_two_One");
+  assert.strictEqual(result[1].events[1].uid, "cal_two_Two");
 });

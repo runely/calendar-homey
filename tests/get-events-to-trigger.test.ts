@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getEventsToTrigger } from "../lib/get-events-to-trigger.js";
@@ -79,52 +82,52 @@ const calendarResult: TriggerEvent[] = getEventsToTrigger(constructedApp, calend
 
 test("No calendars will return an empty array", () => {
   const result: TriggerEvent[] = getEventsToTrigger(constructedApp, [], "UTC");
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test("When start is now - Will return 3 events", () => {
   const result: TriggerEvent[] = calendarResult.filter(
     (res: TriggerEvent) => res.event.uid === "F7177A32-DBD4-46A9-85C7-669749EA8841"
   );
-  expect(result.length).toBe(3);
-  expect(result[0].triggerId).toBe("event_starts");
-  expect(result[0].state).toBeFalsy();
-  expect(result[1].triggerId).toBe("event_starts_calendar");
-  expect(result[1].state).toBeTruthy();
-  expect(result[1].state?.calendarName).toBe("events");
-  expect(result[2].triggerId).toBe("event_stops_in");
-  expect(result[2].state).toBeTruthy();
-  expect(result[2].state?.when).toBe(60);
+  assert.strictEqual(result.length, 3);
+  assert.strictEqual(result[0].triggerId, "event_starts");
+  assert.ok(!result[0].state);
+  assert.strictEqual(result[1].triggerId, "event_starts_calendar");
+  assert.ok(result[1].state);
+  assert.strictEqual(result[1].state?.calendarName, "events");
+  assert.strictEqual(result[2].triggerId, "event_stops_in");
+  assert.ok(result[2].state);
+  assert.strictEqual(result[2].state?.when, 60);
 });
 
 test("When end is now - Will return 2 events", () => {
   const result: TriggerEvent[] = calendarResult.filter(
     (res: TriggerEvent) => res.event.uid === "F7177A32-DBD4-46A9-85C7-669749EA8842"
   );
-  expect(result.length).toBe(2);
-  expect(result[0].triggerId).toBe("event_stops");
-  expect(result[0].state).toBeFalsy();
-  expect(result[1].triggerId).toBe("event_stops_calendar");
-  expect(result[1].state).toBeTruthy();
-  expect(result[1].state?.calendarName).toBe("events");
+  assert.strictEqual(result.length, 2);
+  assert.strictEqual(result[0].triggerId, "event_stops");
+  assert.ok(!result[0].state);
+  assert.strictEqual(result[1].triggerId, "event_stops_calendar");
+  assert.ok(result[1].state);
+  assert.strictEqual(result[1].state?.calendarName, "events");
 });
 
 test("When start is in 2 hours - Will return 2 events", () => {
   const result: TriggerEvent[] = calendarResult.filter(
     (res: TriggerEvent) => res.event.uid === "F7177A32-DBD4-46A9-85C7-669749EA8843"
   );
-  expect(result.length).toBe(2);
-  expect(result[0].triggerId).toBe("event_starts_in");
-  expect(result[0].state).toBeTruthy();
-  expect(result[0].state?.when).toBe(120);
-  expect(result[1].triggerId).toBe("event_stops_in");
-  expect(result[1].state).toBeTruthy();
-  expect(result[1].state?.when).toBe(180);
+  assert.strictEqual(result.length, 2);
+  assert.strictEqual(result[0].triggerId, "event_starts_in");
+  assert.ok(result[0].state);
+  assert.strictEqual(result[0].state?.when, 120);
+  assert.strictEqual(result[1].triggerId, "event_stops_in");
+  assert.ok(result[1].state);
+  assert.strictEqual(result[1].state?.when, 180);
 });
 
 test("When start and end has past - Will return 0 events", () => {
   const result: TriggerEvent[] = calendarResult.filter(
     (res: TriggerEvent) => res.event.uid === "F7177A32-DBD4-46A9-85C7-669749EA8844"
   );
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });

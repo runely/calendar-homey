@@ -217,6 +217,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 3.2.2
   - Show raw ics size in logs for better diagnostics and troubleshooting
   - Dependency updates
+  - Migrated tests from `jest` to `node:test`. This removes **292** npm dev packages!!!
 - 3.2.1
   - Dev dependency updates
   - Dependency update of `node-ical` from **0.25.6** to **0.26.0**

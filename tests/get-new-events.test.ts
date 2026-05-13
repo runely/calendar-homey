@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getNewEvents } from "../lib/get-new-events.js";
@@ -144,7 +147,7 @@ test("When 0 new events - Will return an empty array", () => {
     calendarsEvents,
     app: constructedApp
   });
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test("When 0 old events - Will return an empty array", () => {
@@ -155,7 +158,7 @@ test("When 0 old events - Will return an empty array", () => {
     calendarsEvents,
     app: constructedApp
   });
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test('When 1 new event, but "created" property is missing - Will return 0 events', () => {
@@ -172,7 +175,7 @@ test('When 1 new event, but "created" property is missing - Will return 0 events
     app: constructedApp
   });
 
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test('When 1 new event, and "created" is more then last 24 hours - Will return 0 event', () => {
@@ -189,7 +192,7 @@ test('When 1 new event, and "created" is more then last 24 hours - Will return 0
     app: constructedApp
   });
 
-  expect(result.length).toBe(0);
+  assert.strictEqual(result.length, 0);
 });
 
 test('When 1 new event, and "created" is within the last 24 hours - Will return 1 event', () => {
@@ -206,7 +209,7 @@ test('When 1 new event, and "created" is within the last 24 hours - Will return 
     app: constructedApp
   });
 
-  expect(result.length).toBe(1);
-  expect(result[0].calendarName).toBe(calendarsUids.calendar);
-  expect(result[0].uid).toBe(calendarsUids.uid);
+  assert.strictEqual(result.length, 1);
+  assert.strictEqual(result[0].calendarName, calendarsUids.calendar);
+  assert.strictEqual(result[0].uid, calendarsUids.uid);
 });

@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { extractMeetingUrl } from "../lib/extract-meeting-url.js";
 
 type MeetingTest = {
@@ -35,12 +38,12 @@ const meetingTests: MeetingTest[] = [
 describe("'undefined' is returned when", () => {
   test("an empty string is passed in", () => {
     const result: string | undefined = extractMeetingUrl("");
-    expect(result).toBeUndefined();
+    assert.strictEqual(result, undefined);
   });
 
   test("a string without a meeting url is passed in", () => {
     const result: string | undefined = extractMeetingUrl("Welcome to the meeting. There is no link here.");
-    expect(result).toBeUndefined();
+    assert.strictEqual(result, undefined);
   });
 });
 
@@ -48,7 +51,7 @@ describe("meeting url found when", () => {
   meetingTests.forEach(({ name, description, url }: MeetingTest) => {
     test(`string with ${name} url is present`, () => {
       const result: string | undefined = extractMeetingUrl(description);
-      expect(result).toBe(url);
+      assert.strictEqual(result, url);
     });
   });
 });

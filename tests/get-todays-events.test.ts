@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getEventsToday } from "../lib/get-todays-events.js";
@@ -115,24 +118,24 @@ describe("Today's event count is", () => {
   test("2 when 'specificCalendarName' is NOT given", () => {
     const eventsToday: CalendarEventExtended[] = getEventsToday(timezone, calendars);
 
-    expect(eventsToday.length).toBe(2);
-    expect(eventsToday[0].start.toISO()).toBe(expectedStart);
-    expect(eventsToday[0].end.toISO()).toBe(expectedEnd);
-    expect(eventsToday[0].summary).toBe("Today1");
-    expect(eventsToday[0].calendarName).toBe("events");
-    expect(eventsToday[1].start.toISO()).toBe(expectedStart);
-    expect(eventsToday[1].end.toISO()).toBe(expectedEnd);
-    expect(eventsToday[1].summary).toBe("Today2");
-    expect(eventsToday[1].calendarName).toBe("events2");
+    assert.strictEqual(eventsToday.length, 2);
+    assert.strictEqual(eventsToday[0].start.toISO(), expectedStart);
+    assert.strictEqual(eventsToday[0].end.toISO(), expectedEnd);
+    assert.strictEqual(eventsToday[0].summary, "Today1");
+    assert.strictEqual(eventsToday[0].calendarName, "events");
+    assert.strictEqual(eventsToday[1].start.toISO(), expectedStart);
+    assert.strictEqual(eventsToday[1].end.toISO(), expectedEnd);
+    assert.strictEqual(eventsToday[1].summary, "Today2");
+    assert.strictEqual(eventsToday[1].calendarName, "events2");
   });
 
   test("1 when 'specificCalendarName' IS given", () => {
     const eventsToday: CalendarEventExtended[] = getEventsToday(timezone, calendars, "events2");
 
-    expect(eventsToday.length).toBe(1);
-    expect(eventsToday[0].start.toISO()).toBe(expectedStart);
-    expect(eventsToday[0].end.toISO()).toBe(expectedEnd);
-    expect(eventsToday[0].summary).toBe("Today2");
-    expect(eventsToday[0].calendarName).toBe("events2");
+    assert.strictEqual(eventsToday.length, 1);
+    assert.strictEqual(eventsToday[0].start.toISO(), expectedStart);
+    assert.strictEqual(eventsToday[0].end.toISO(), expectedEnd);
+    assert.strictEqual(eventsToday[0].summary, "Today2");
+    assert.strictEqual(eventsToday[0].calendarName, "events2");
   });
 });

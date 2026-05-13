@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 import type { DateWithTimeZone, VEvent } from "node-ical";
 
@@ -79,10 +82,10 @@ describe("fromEvent", () => {
       utcEvent.datetype === "date"
     );
 
-    expect(result.fullDayEvent).toBe(false);
-    expect(result.freeBusy).toBe("WORKINGELSEWHERE");
-    expect(result.meetingUrl).toBe(undefined);
-    expect(result.local).toBe(false);
+    assert.strictEqual(result.fullDayEvent, false);
+    assert.strictEqual(result.freeBusy, "WORKINGELSEWHERE");
+    assert.strictEqual(result.meetingUrl, undefined);
+    assert.strictEqual(result.local, false);
   });
 
   test("Returns correct object when event has TZ", () => {
@@ -101,10 +104,10 @@ describe("fromEvent", () => {
       tzEvent.datetype === "date"
     );
 
-    expect(result.fullDayEvent).toBe(false);
-    expect(result.freeBusy).toBe("BUSY");
-    expect(result.meetingUrl).toBe(undefined);
-    expect(result.local).toBe(false);
+    assert.strictEqual(result.fullDayEvent, false);
+    assert.strictEqual(result.freeBusy, "BUSY");
+    assert.strictEqual(result.meetingUrl, undefined);
+    assert.strictEqual(result.local, false);
   });
 });
 
@@ -129,22 +132,22 @@ describe("newLocalEvent", () => {
     });
 
     if (!result) {
-      expect(result).not.toBeNull();
+      assert.ok(result !== null);
       throw new Error("Result is null");
     }
 
-    expect(result.start.hour).toBe(12);
-    expect(result.end.hour).toBe(14);
-    expect(result.uid.startsWith(dummyUid)).toBeTruthy();
-    expect(result.description).toBe(description);
-    expect(result.location).toBe("");
-    expect(result.summary).toBe(title);
-    expect(result.created).toBeTruthy();
-    expect(result.fullDayEvent).toBeFalsy();
-    expect(result.freeBusy).toBe(undefined);
-    expect(result.meetingUrl).toBe(undefined);
-    expect(result.local).toBeTruthy();
-    expect(result.calendar).toBe(calendar.name);
+    assert.strictEqual(result.start.hour, 12);
+    assert.strictEqual(result.end.hour, 14);
+    assert.ok(result.uid.startsWith(dummyUid));
+    assert.strictEqual(result.description, description);
+    assert.strictEqual(result.location, "");
+    assert.strictEqual(result.summary, title);
+    assert.ok(result.created);
+    assert.ok(!result.fullDayEvent);
+    assert.strictEqual(result.freeBusy, undefined);
+    assert.strictEqual(result.meetingUrl, undefined);
+    assert.ok(result.local);
+    assert.strictEqual(result.calendar, calendar.name);
   });
 
   test("Returns correct object when 'applyTimezone' is true", () => {
@@ -167,22 +170,22 @@ describe("newLocalEvent", () => {
     });
 
     if (!result) {
-      expect(result).not.toBeNull();
+      assert.ok(result !== null);
       throw new Error("Result is null");
     }
 
-    expect(result.start.hour).toBe(14);
-    expect(result.end.hour).toBe(16);
-    expect(result.uid.startsWith(dummyUid)).toBeTruthy();
-    expect(result.description).toBe(description);
-    expect(result.location).toBe("");
-    expect(result.summary).toBe(title);
-    expect(result.created).toBeTruthy();
-    expect(result.fullDayEvent).toBeFalsy();
-    expect(result.freeBusy).toBe(undefined);
-    expect(result.meetingUrl).toBe(undefined);
-    expect(result.local).toBeTruthy();
-    expect(result.calendar).toBe(calendar.name);
+    assert.strictEqual(result.start.hour, 14);
+    assert.strictEqual(result.end.hour, 16);
+    assert.ok(result.uid.startsWith(dummyUid));
+    assert.strictEqual(result.description, description);
+    assert.strictEqual(result.location, "");
+    assert.strictEqual(result.summary, title);
+    assert.ok(result.created);
+    assert.ok(!result.fullDayEvent);
+    assert.strictEqual(result.freeBusy, undefined);
+    assert.strictEqual(result.meetingUrl, undefined);
+    assert.ok(result.local);
+    assert.strictEqual(result.calendar, calendar.name);
   });
 
   test("Two local events with the same start time have different UIDs", () => {
@@ -205,7 +208,7 @@ describe("newLocalEvent", () => {
     });
 
     if (!localEventOne) {
-      expect(localEventOne).not.toBeNull();
+      assert.ok(localEventOne !== null);
       throw new Error("Result is null");
     }
 
@@ -219,12 +222,12 @@ describe("newLocalEvent", () => {
     });
 
     if (!localEventTwo) {
-      expect(localEventTwo).not.toBeNull();
+      assert.ok(localEventTwo !== null);
       throw new Error("Result is null");
     }
 
-    expect(localEventOne.uid).not.toBe(localEventTwo.uid);
-    expect(localEventOne.uid.startsWith(dummyUid)).toBeTruthy();
-    expect(localEventTwo.uid.startsWith(dummyUid)).toBeTruthy();
+    assert.notStrictEqual(localEventOne.uid, localEventTwo.uid);
+    assert.ok(localEventOne.uid.startsWith(dummyUid));
+    assert.ok(localEventTwo.uid.startsWith(dummyUid));
   });
 });

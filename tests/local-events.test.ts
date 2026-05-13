@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getLocalActiveEvents, getLocalEvents, saveLocalEvents } from "../lib/local-events.js";
@@ -9,7 +12,10 @@ import type { GetLocalActiveEventsOptions } from "../types/Options.type";
 
 import { constructedApp } from "./lib/construct-app.js";
 
-constructedApp.homey.settings.set = jest.fn();
+let settingsSetCallCount = 0;
+constructedApp.homey.settings.set = (_path: string, _data: string): void => {
+  settingsSetCallCount++;
+};
 
 const events: LocalEvent[] = [
   {
@@ -168,23 +174,15 @@ const options: GetLocalActiveEventsOptions = {
 
 describe("saveLocalEvents", () => {
   test("Does not save when 'events' has no items", () => {
-    if (!("mock" in constructedApp.homey.settings.set)) {
-      throw new Error("settings.set is not mocked");
-    }
-
+    settingsSetCallCount = 0;
     saveLocalEvents(constructedApp, varMgmt, []);
-
-    expect(constructedApp.homey.settings.set.mock.calls).toHaveLength(0);
+    assert.strictEqual(settingsSetCallCount, 0);
   });
 
   test("Does save when 'events' is an array", () => {
-    if (!("mock" in constructedApp.homey.settings.set)) {
-      throw new Error("settings.set is not mocked");
-    }
-
+    settingsSetCallCount = 0;
     saveLocalEvents(constructedApp, varMgmt, events);
-
-    expect(constructedApp.homey.settings.set.mock.calls).toHaveLength(1);
+    assert.strictEqual(settingsSetCallCount, 1);
   });
 });
 
@@ -194,22 +192,22 @@ describe("getLocalActiveEvents", () => {
     const three: LocalEvent | undefined = result.find((event: LocalEvent) => event.summary === "Three");
     const four: LocalEvent | undefined = result.find((event: LocalEvent) => event.summary === "Four");
 
-    expect(result.length).toBe(2);
-    expect(three).toBeTruthy();
-    expect(four).toBeTruthy();
+    assert.strictEqual(result.length, 2);
+    assert.ok(three);
+    assert.ok(four);
   });
 
   test("Returns 2 events when events passed in is ongoing", () => {
     //console.log('ongoingEvents:', ongoingEvents)
     const result: LocalEvent[] = getLocalActiveEvents({ ...options, events: ongoingEvents });
 
-    expect(result.length).toBe(2);
+    assert.strictEqual(result.length, 2);
   });
 
   test("Returns empty array when no events passed in", () => {
     const result: LocalEvent[] = getLocalActiveEvents({ ...options, events: [] });
 
-    expect(result.length).toBe(0);
+    assert.strictEqual(result.length, 0);
   });
 
   test("Returns empty array when events passed in isn't within eventLimit", () => {
@@ -218,7 +216,7 @@ describe("getLocalActiveEvents", () => {
       eventLimit: { value: "2", type: "days" }
     });
 
-    expect(result.length).toBe(0);
+    assert.strictEqual(result.length, 0);
   });
 });
 
@@ -263,7 +261,7 @@ describe("getLocalEvents", () => {
       true
     );
 
-    expect(localJsonEvents.length).toBe(2);
+    assert.strictEqual(localJsonEvents.length, 2);
   });
 
   test("Returns events with new format with conversion since local events have old format", () => {
@@ -308,22 +306,31 @@ describe("getLocalEvents", () => {
       true
     );
 
-    expect(localJsonEvents.length).toBe(2);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event))).toBe(true);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event))).toBe(true);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event))).toBe(true);
+    assert.strictEqual(localJsonEvents.length, 2);
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event)),
+      true
+    );
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event)),
+      true
+    );
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event)),
+      true
+    );
 
     // NOTE: Event at index 0 should be converted from 20:00:00.000Z to 21:00:00.000Z and then saved back to 20:00:00.000Z (in UTC)
-    expect(localJsonEvents[0].start).toBe("2021-11-05T20:00:00.000Z");
-    expect(localJsonEvents[0].end).toBe("2021-11-05T21:00:00.000Z");
-    expect(localJsonEvents[0].dateType).toBe("date-time");
-    expect(localJsonEvents[0].freeBusy).toBeNull();
+    assert.strictEqual(localJsonEvents[0].start, "2021-11-05T20:00:00.000Z");
+    assert.strictEqual(localJsonEvents[0].end, "2021-11-05T21:00:00.000Z");
+    assert.strictEqual(localJsonEvents[0].dateType, "date-time");
+    assert.strictEqual(localJsonEvents[0].freeBusy, null);
 
     // NOTE: Event at index 1 should stay as 20:00:00.000Z and saved back as 19:00:00.000Z (in UTC)
-    expect(localJsonEvents[1].start).toBe("2021-11-06T19:00:00.000Z");
-    expect(localJsonEvents[1].end).toBe("2021-11-06T20:00:00.000Z");
-    expect(localJsonEvents[1].dateType).toBe("date-time");
-    expect(localJsonEvents[1].freeBusy).toBe("BUSY");
+    assert.strictEqual(localJsonEvents[1].start, "2021-11-06T19:00:00.000Z");
+    assert.strictEqual(localJsonEvents[1].end, "2021-11-06T20:00:00.000Z");
+    assert.strictEqual(localJsonEvents[1].dateType, "date-time");
+    assert.strictEqual(localJsonEvents[1].freeBusy, "BUSY");
   });
 
   test("Returns events with new format with conversion on two events since local events have one event with new format and two events with old format", () => {
@@ -383,27 +390,36 @@ describe("getLocalEvents", () => {
       true
     );
 
-    expect(localJsonEvents.length).toBe(3);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event))).toBe(true);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event))).toBe(true);
-    expect(localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event))).toBe(true);
+    assert.strictEqual(localJsonEvents.length, 3);
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("datetype" in event)),
+      true
+    );
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("skipTZ" in event)),
+      true
+    );
+    assert.strictEqual(
+      localJsonEvents.every((event: LocalJsonEvent) => !("freebusy" in event)),
+      true
+    );
 
     // NOTE: Event at index 0 should have no changes since it was already in new format
-    expect(localJsonEvents[0].start).toBe("2021-11-05T20:00:00.000Z");
-    expect(localJsonEvents[0].end).toBe("2021-11-05T21:00:00.000Z");
-    expect(localJsonEvents[0].dateType).toBe("date-time");
-    expect(localJsonEvents[0].freeBusy).toBeUndefined();
+    assert.strictEqual(localJsonEvents[0].start, "2021-11-05T20:00:00.000Z");
+    assert.strictEqual(localJsonEvents[0].end, "2021-11-05T21:00:00.000Z");
+    assert.strictEqual(localJsonEvents[0].dateType, "date-time");
+    assert.strictEqual(localJsonEvents[0].freeBusy, undefined);
 
     // NOTE: Event at index 1 should be converted from 20:00:00.000Z to 21:00:00.000Z and then saved back to 20:00:00.000Z (in UTC)
-    expect(localJsonEvents[1].start).toBe("2021-11-06T20:00:00.000Z");
-    expect(localJsonEvents[1].end).toBe("2021-11-06T21:00:00.000Z");
-    expect(localJsonEvents[1].dateType).toBe("date-time");
-    expect(localJsonEvents[1].freeBusy).toBeNull();
+    assert.strictEqual(localJsonEvents[1].start, "2021-11-06T20:00:00.000Z");
+    assert.strictEqual(localJsonEvents[1].end, "2021-11-06T21:00:00.000Z");
+    assert.strictEqual(localJsonEvents[1].dateType, "date-time");
+    assert.strictEqual(localJsonEvents[1].freeBusy, null);
 
     // NOTE: Event at index 2 should stay as 20:00:00.000Z and saved back as 19:00:00.000Z (in UTC)
-    expect(localJsonEvents[2].start).toBe("2021-11-06T19:00:00.000Z");
-    expect(localJsonEvents[2].end).toBe("2021-11-06T20:00:00.000Z");
-    expect(localJsonEvents[2].dateType).toBe("date-time");
-    expect(localJsonEvents[2].freeBusy).toBeNull();
+    assert.strictEqual(localJsonEvents[2].start, "2021-11-06T19:00:00.000Z");
+    assert.strictEqual(localJsonEvents[2].end, "2021-11-06T20:00:00.000Z");
+    assert.strictEqual(localJsonEvents[2].dateType, "date-time");
+    assert.strictEqual(localJsonEvents[2].freeBusy, null);
   });
 });

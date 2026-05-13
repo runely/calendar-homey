@@ -60,7 +60,7 @@ type HomeyAppTestsI18n = {
 
 type HomeyAppTestsSettings = {
   get: (path: string) => string | undefined;
-  set: ((path: string, data: string) => void) | jest.Mock;
+  set: (path: string, data: string) => void;
 };
 
 export type Token = {

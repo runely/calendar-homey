@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getTokenDuration } from "../lib/get-token-duration.js";
@@ -57,16 +60,16 @@ const eventLong: CalendarEvent = {
 describe("getTokenDuration", () => {
   test('Returns an object where "duration" is "1 hour"', () => {
     const result: EventDuration = getTokenDuration(constructedApp, event);
-    expect(result.duration).toBe("1 hour");
+    assert.strictEqual(result.duration, "1 hour");
   });
 
   test('Returns an object where "duration" is "1 week, 3 days and 23 hours"', () => {
     const result: EventDuration = getTokenDuration(constructedApp, eventLong);
-    expect(result.duration).toBe("1 week, 3 days and 23 hours");
+    assert.strictEqual(result.duration, "1 week, 3 days and 23 hours");
   });
 
   test('Returns an object where "durationMinutes" is 60', () => {
     const result: EventDuration = getTokenDuration(constructedApp, event);
-    expect(result.durationMinutes).toBe(60);
+    assert.strictEqual(result.durationMinutes, 60);
   });
 });

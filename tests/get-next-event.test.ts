@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { DateTime } from "luxon";
 
 import { getNextEvent } from "../lib/get-next-event.js";
@@ -87,18 +90,18 @@ describe("Next event has", () => {
   test("expectedStart and expectedEnd when 'specificCalendarName' is NOT given", () => {
     const nextEvent: NextEvent | null = getNextEvent(timezone, calendars);
 
-    expect(nextEvent).not.toBeNull();
-    expect(nextEvent?.event.start.toISO()).toBe(expectedStart);
-    expect(nextEvent?.event.end.toISO()).toBe(expectedEnd);
-    expect(nextEvent?.calendarName).toBe("events2");
+    assert.ok(nextEvent !== null);
+    assert.strictEqual(nextEvent?.event.start.toISO(), expectedStart);
+    assert.strictEqual(nextEvent?.event.end.toISO(), expectedEnd);
+    assert.strictEqual(nextEvent?.calendarName, "events2");
   });
 
   test("start and end in year 2041 when 'specificCalendarName' IS given", () => {
     const nextEvent: NextEvent | null = getNextEvent(timezone, calendars, "events");
 
-    expect(nextEvent).not.toBeNull();
-    expect(nextEvent?.event.start.toISO()).toBe(expectedFutureStart);
-    expect(nextEvent?.event.end.toISO()).toBe(expectedFutureEnd);
-    expect(nextEvent?.calendarName).toBe("events");
+    assert.ok(nextEvent !== null);
+    assert.strictEqual(nextEvent?.event.start.toISO(), expectedFutureStart);
+    assert.strictEqual(nextEvent?.event.end.toISO(), expectedFutureEnd);
+    assert.strictEqual(nextEvent?.calendarName, "events");
   });
 });

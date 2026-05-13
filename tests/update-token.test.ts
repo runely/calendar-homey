@@ -1,3 +1,6 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
+
 import { updateToken } from "../handlers/update-tokens.js";
 
 import type { TokenValue } from "../types/Homey.type";
@@ -61,10 +64,10 @@ describe("updateToken", () => {
         await updateToken(constructedApp, "test_token", value);
       } catch {
         // NOTE: just to let the test fail in the catch block
-        expect(true).toBe(false);
+        assert.strictEqual(true, false);
       }
 
-      expect(updatedTokenValue).toBe(expected);
+      assert.strictEqual(updatedTokenValue, expected);
     });
   });
 });
