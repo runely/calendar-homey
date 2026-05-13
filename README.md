@@ -214,7 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-
+- 3.2.2
+  - Show raw ics size in logs for better diagnostics and troubleshooting
 - 3.2.1
   - Dev dependency updates
   - Dependency update of `node-ical` from **0.25.6** to **0.26.0**

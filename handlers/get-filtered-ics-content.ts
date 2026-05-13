@@ -9,7 +9,9 @@ import type { SettingEventLimit } from "../types/VariableMgmt.type";
 
 export const getFilteredIcsContent = async (app: App, url: string, eventLimit: SettingEventLimit): Promise<string> => {
   const icsContent: string = await getIcsContent(app, url);
-  app.log(`getFilteredIcsContent: Raw ics content length: ${icsContent.length}`);
+  app.log(
+    `getFilteredIcsContent: Raw ics content length: ${icsContent.length} (${(icsContent.length / (1024 * 1024)).toFixed(2)} MB)`
+  );
 
   const now: DateTime<true> = DateTime.now().startOf("day");
 
@@ -21,7 +23,9 @@ export const getFilteredIcsContent = async (app: App, url: string, eventLimit: S
     `getFilteredIcsContent: Filtering events starting from '${now.toFormat("dd.MM.yyyy HH:mm:ss")}' until '${eventLimitEnd.toFormat("dd.MM.yyyy HH:mm:ss")}'`
   );
   const filteredIcsContent: string = icsFilter(icsContent, now.toJSDate(), eventLimitEnd.toJSDate());
-  app.log(`getFilteredIcsContent: Filtered ics content length: ${filteredIcsContent.length}`);
+  app.log(
+    `getFilteredIcsContent: Filtered ics content length: ${filteredIcsContent.length} (${(filteredIcsContent.length / (1024 * 1024)).toFixed(2)} MB)`
+  );
 
   return filteredIcsContent;
 };
