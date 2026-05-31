@@ -214,6 +214,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.2.3
+  - Dependency updates
 - 3.2.2
   - Show raw ics size in logs for better diagnostics and troubleshooting
   - Dependency updates

@@ -15,7 +15,7 @@
     "@types/humanize-duration": "^3.27.4",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.1",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.9.1",
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.28.0",
     "lodash.clonedeep": "^4.5.0",
@@ -24,7 +24,7 @@
   "dependencies": {
     "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
-    "ics-filter": "^1.0.0",
+    "ics-filter": "^1.0.1",
     "luxon": "^3.7.2",
     "node-ical": "^0.26.1",
     "source-map-support": "^0.5.21"
