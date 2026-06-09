@@ -9,13 +9,13 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@biomejs/biome": "2.4.15",
+    "@biomejs/biome": "2.4.16",
     "@tsconfig/node24": "^24.0.4",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.1",
-    "@types/node": "^25.9.1",
+    "@types/node": "^25.9.2",
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.28.0",
     "lodash.clonedeep": "^4.5.0",
@@ -24,7 +24,7 @@
   "dependencies": {
     "croner": "^10.0.1",
     "humanize-duration": "^3.33.2",
-    "ics-filter": "^1.0.1",
+    "ics-filter": "^1.0.2",
     "luxon": "^3.7.2",
     "node-ical": "^0.26.1",
     "source-map-support": "^0.5.21"
