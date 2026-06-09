@@ -3,13 +3,8 @@
     "en": "IcalCalendar"
   },
   "class": "other",
-  "capabilities": [
-    "meter_calendars_count_ical",
-    "meter_total_event_count_ical"
-  ],
-  "platforms": [
-    "local"
-  ],
+  "capabilities": ["meter_calendars_count_ical", "meter_total_event_count_ical"],
+  "platforms": ["local"],
   "connectivity": [],
   "icon": "{{driverAssetsPath}}/icon.svg",
   "images": {

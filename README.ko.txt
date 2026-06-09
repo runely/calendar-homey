@@ -7,7 +7,7 @@ IcalCalendar는 Homey 흐름 카드를 통해 캘린더 이벤트를 트리거�
     - 자동 캘린더 동기화 여부를 선택합니다 (기본값은 활성화됨) (비활성화된 경우, 흐름 카드를 통해 동기화해야 함)
     - 자동 캘린더 동기화 간격을 선택합니다 (기본값은 15분마다)
     - 날짜/시간 형식을 변경하거나 기본값을 사용합니다 (선택 사항)
-        - "moment.format()"에서 지원되는 모든 토큰도 여기에서 지원됩니다: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - "luxon.toFormat()"에서 지원되는 모든 토큰도 여기에서 지원됩니다: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - 다음 이벤트 태그를 캘린더별로 사용할지 여부를 선택합니다. 기본값은 꺼져 있습니다
 - 동기화 오류를 알림받으려면 "동기화 오류 발생" 트리거를 사용하여 흐름을 생성합니다
 

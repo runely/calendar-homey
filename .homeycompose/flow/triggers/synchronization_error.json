@@ -25,7 +25,7 @@
     "da": "Aktiveres, når der opstår en synkroniseringsfejl med en af dine kalendere",
     "pl": "Wyzwala się, gdy wystąpi błąd synchronizacji z jednym z twoich kalendarzy",
     "ko": "캘린더 중 하나에서 동기화 오류가 발생하면 트리거됩니다"
-},
+  },
   "tokens": [
     {
       "type": "string",

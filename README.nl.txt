@@ -7,7 +7,7 @@ Instellingen
     - Kies of je automatische kalendersynchronisatie wilt inschakelen (standaard ingesteld op ingeschakeld) (indien uitgeschakeld, moet synchronisatie worden uitgevoerd via een flowkaart)
     - Kies het interval van de automatische kalendersynchronisatie (standaard ingesteld op elke 15e minuut)
     - Wijzig de datum- / tijdnotatie of gebruik de standaardinstelling (uw keuze)
-        - Alle tokens die worden ondersteund in "moment.format()" worden ook hier ondersteund: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle tokens die worden ondersteund in "luxon.toFormat()" worden ook hier ondersteund: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Kies of u de volgende event-tags per kalender wilt hebben. Standaard is uitgeschakeld
 - Als u op de hoogte wilt worden gehouden van eventuele synchronisatiefouten, maakt u een stroom met behulp van de trigger "Synchronisatiefout opgetreden"
 

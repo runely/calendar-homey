@@ -7,7 +7,7 @@ Uppsättning
     - Välj om du vill ha automatisk kalendersynkronisering (standardinställning är aktiverad) (om inaktiverad måste synkronisering göras via flödeskort)
     - Välj intervallet för automatisk kalendersynkronisering (standardinställning är var 15:e minut)
     - Ändra datum/tidsformat eller använd standardvärdena (ditt val)
-        - Alla tokens som stöds i "moment.format()" stöds också här: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alla tokens som stöds i "luxon.toFormat()" stöds också här: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Välj om du vill ha nästa avtalstagg per kalender eller inte. Standard är av
 - För att bli meddelad om eventuella synkroniseringsfel, skapa ett flow med triggern "Synkroniseringsfel uppstod"
 

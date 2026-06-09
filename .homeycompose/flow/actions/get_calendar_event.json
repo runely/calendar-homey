@@ -274,7 +274,7 @@
       "name": "event_fullday_event",
       "type": "boolean",
       "title": {
-        "en": "Fullday event",
+        "en": "Full day event",
         "nl": "Hele dag evenement",
         "de": "Ganztägiges Ereignis",
         "fr": "Événement toute la journée",

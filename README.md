@@ -1,5 +1,5 @@
-![Node.js CI](https://github.com/runely/calendar-homey/workflows/Node.js%20CI/badge.svg)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_and_Linted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
 
 # IcalCalendar
 
@@ -16,7 +16,7 @@ A separate [test tool is created](https://github.com/runely/calendar-homey-test)
     - Choose if you want automatic calendar synchronization (defaults to enabled) (if disabled, synchronization must be done by flow card)
     - Choose the interval of the automatic calendar synchronization (defaults to every 15th minute)
     - Change the date/time format or use the default (your choice)
-        - All tokens supported in **moment.format()** is also supported here: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - All tokens supported in **luxon.toFormat()** is also supported here: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Choose the timeframe for how many events to sync in to the app
   - Choose whether you want **next event tags** per calendar. Default is off
 
@@ -55,13 +55,13 @@ Add the `IcalCalendar` device to follow along with how many calendars you have c
 
 :exclamation:
 The library used in this app to parse the calendars, **[node-ical](https://github.com/jens-maus/node-ical)**, does `NOT`
-use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses the `BEGIN:VTIMEZONE` sections to parse timezones!
+use the `X-WR-TIMEZONE` property to parse timezones. Instead, it uses timezone per event! If no timezone is registered on an event, the event is assumed to be in UTC.
 
 :exclamation:
 This means that if your calendar provider only uses the `X-WR-TIMEZONE` property, this app will assume your events is always in UTC!
 
 :exclamation:
-If your events are created with the timezone `Customized Time Zone` (you will see this when opening the .ics file in a text editor), the events are most likely created with the correct datetime and should not have a timezone applied. The local timezone will Therefore `NOT` be applied to these events!
+If your calendar provider uses the `Customized Time Zone` from Microsoft, the library parser **[node-ical](https://github.com/jens-maus/node-ical)** will try to use the timezone information (if present) in the `VTIMEZONE` section.
 
 ## Usage
 
@@ -110,7 +110,7 @@ You can use the action card `Delete local event by title` to remove any local ev
 - **Event added** - *will trigger when a new event is created in one of your synced calendars*
     - **Will trigger when these requirements are met:**
         - The event has the `CREATED` property
-        - The created events start time is inside the current datetime frame beeing synced in
+        - The created events start time is inside the current datetime frame being synced in
         - The created event is created within the last 24 hours
 - **Synchronization error occurred** - *will trigger when a synchronization error occurs with one of your calendars*
 
@@ -214,6 +214,63 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.2.3
+  - Dependency updates
+- 3.2.2
+  - Show raw ics size in logs for better diagnostics and troubleshooting
+  - Dependency updates
+  - Migrated tests from `jest` to `node:test`. This removes **292** npm dev packages!!!
+- 3.2.1
+  - Dev dependency updates
+  - Dependency update of `node-ical` from **0.25.6** to **0.26.0**
+  - Security update
+- 3.2.0
+  - GC optimization by nullifying variables when not needed anymore
+  - Filter the raw ics content before parsing it through `node-ical` to only work on relevant events, to minimize the RAM and CPU usage
+- 3.1.3
+  - Dev dependency updates
+  - Move from `TypeScript` **5.x** to **6.x**
+- 3.1.2
+  - Dependency update of `node-ical` from **0.25.5** to **0.25.6**: Fixes: [Issue #680](https://github.com/runely/calendar-homey/issues/680)
+  - Note about `Customized Time Zone` from Microsoft and how it is handled in the app by reading timezone information from the `VTIMEZONE` section in the calendar file, if present
+  - Dependency updates
+- 3.1.1
+  - Note about `Customized Time Zone` from Microsoft and how it is handled in the app
+  - Dependency updates
+- 3.1.0
+  - Added `Full day event` tag to triggers. This tag will be `true` if the event is a full day event, and `false` if not.
+  - Dependency updates
+- 3.0.7
+  - Dependency updates
+- 3.0.6
+  - Dev dependency updates
+  - Dependency update of `node-ical` from **0.25.2** to **0.25.3**: Fixes: [Issue #677](https://github.com/runely/calendar-homey/issues/677)
+- 3.0.5
+  - Dependency update of `node-ical` from **0.24.2** to **0.25.2**: Fixes: [Issue #675](https://github.com/runely/calendar-homey/issues/675)
+    - Using `expandRecurringEvent` from `node-ical` to expand recurring events instead of doing it manually. This should fix some edge cases with recurring events.
+  - Reference to a OCPS 1.4 generator in the settings page, as well as link to the pattern usage.
+- 3.0.4
+  - Bugfix: Handle all calendar providers equally and expect `node-ical` to give us correct date information
+  - Dev dependency updates
+  - Dependency updates: `croner` from **9.1.0** to **10.0.1**
+- 3.0.3
+  - Dependency updates: `node-ical` from 0.24.0 to 0.24.2 - Fixes the rest (hopefully) of `UNTIL rule part MUST have the same value type as DTSTART` issues
+- 3.0.2
+  - Bugfix: `freeBusy` (**Status**) and `meetingUrl` (**Meeting URL**) tags returned `undefined` instead of an empty string
+  - Dependency updates: `node-ical` from 0.23.1 to 0.24.0 - Fixes some `UNTIL rule part MUST have the same value type as DTSTART` issues but not all
+- 3.0.1
+  - Bugfix: If **IcalCalendar** device was added, and a non-existing/non-retrievable calendar URI was set in app settings, the app would crash on start because an invalid *luxon* ISO string was used as a fallback for missing lastSuccessfulSync value. Defaulting to not setting a DateTime but rather `N/A`
+- 3.0.0 (https://github.com/runely/calendar-homey/pull/664)
+  - Converted to `TypeScript`
+  - Upgraded `node-ical` from **0.16.1** to **0.23.1**
+    - Replaces `moment` with `luxon` ([Issue #590](https://github.com/runely/calendar-homey/issues/590))
+      - POSSIBLY BREAKING: `luxon` uses a little different format tokens than `moment`. Some tokens will be converted. The rest must be changed manually in IcalCalendar settings
+  - Replaced `browserify` with `esbuild`
+  - Bugfix: Local events with the same **DTSTART** would have the same `UID`
+  - Bugfix: "Delete local event" action card would only delete the event from memory and not from storage until next calendar synchronization
+  - Replaced `standard` with `biome`
+  - Overall improved logging
+  - Dependency updates
 - 2.12.1
   - Dependency updates
 - 2.12.0
@@ -710,7 +767,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Added tag 'Calendar name' to 'Event starts' and 'Event ends' triggers
     - Added trigger 'Event starts in' → [Issue #7](https://github.com/runely/calendar-homey/issues/7)
 - 0.0.5
-    - Added support for norwegian language → [Issue #6](https://github.com/runely/calendar-homey/issues/6)
+    - Added support for Norwegian language → [Issue #6](https://github.com/runely/calendar-homey/issues/6)
     - Added action for Sync calendar → [Issue #3](https://github.com/runely/calendar-homey/issues/3)
     - Added duration tags to trigger 'Event starts' → [Issue #16](https://github.com/runely/calendar-homey/issues/16)
     - Added trigger 'Event ends' → [Issue #4](https://github.com/runely/calendar-homey/issues/4)

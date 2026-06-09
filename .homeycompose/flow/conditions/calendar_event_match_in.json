@@ -145,7 +145,7 @@
             "da": "indeholder",
             "pl": "zawiera",
             "ko": "포함하다"
-        }
+          }
         },
         {
           "id": "starts with",
@@ -196,7 +196,7 @@
         "da": "Søgeværdi for at finde i begivenheden",
         "pl": "Wartość wyszukiwania do znalezienia w wydarzeniu",
         "ko": "이벤트에서 찾을 검색 값"
-    }
+      }
     },
     {
       "name": "when",

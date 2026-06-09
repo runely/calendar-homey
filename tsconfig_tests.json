@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "types": ["node"],
+    "outDir": ".build/",
+    "resolveJsonModule": true
+  },
+  "include": ["handlers/**/*.ts", "lib/**/*.ts", "tests/**/*.ts", "types/**/*.ts"]
+}
