@@ -14,15 +14,15 @@ Oppsett
 Hvordan finne Exchange Online ical-lenken
 
 1. Gå til https://outlook.office.com/mail/inbox
-2. Klikk på instillinger -> Vis alle Outlook-innstillinger
-3. Gå til Kalender -> Delte kalendere
+2. Klikk på Innstillinger → Vis alle Outlook-innstillinger
+3. Gå til Kalender → Delte kalendere
 4. Publiser en kalender, klikk på ics-lenken og velg kopier kobling
-5. Lim inn ical-lenken i innstillinger i Homey-appen
+5. Lim inn ical-lenken i innstillingene til Homey-appen
 
 Hvordan finne Gmail ical-lenken
 
 1. Gå til https://calendar.google.com/
-2. Klikk på de tre dottene ved siden av kalenderen du ønsker å dele -> Klikk Innstillinger og deling
+2. Klikk på de tre dottene ved siden av kalenderen du ønsker å dele → Klikk Innstillinger og deling
 3. Scroll helt ned til bunnen
 4. Kopier lenken fra feltet Hemmelig adresse i iCal-format
 5. Lim inn ical-lenken i innstillinger i Homey-appen
@@ -44,16 +44,16 @@ Legg til "IcalCalendar"-enheten for å følge med på hvor mange kalendere du ha
 
 Tidssone for din kalender (*.ics)
 
-Biblioteket som er brukt i denne appen for å parse dine kalendere, node-ical, bruker ikke attributten X-WR-TIMEZONE for å parse tidssoner. Istedenfor så brukes BEGIN:VTIMEZONE seksjonene for å parse tidssoner.
+Biblioteket som er brukt i denne appen for å parse dine kalendere, node-ical, bruker ikke attributten X-WR-TIMEZONE for å parse tidssoner. Istedenfor så brukes BEGIN:VTIMEZONE-seksjonene for å parse tidssoner.
 Dette betyr at dersom leverandøren av din kalender bare bruker attributten X-WR-TIMEZONE, vil denne appen alltid gå utifra at dine kalenderoppføringer er i UTC!
 
 Hvis hendelsene dine er opprettet med tidssonen "Customized Time Zone" (du vil se dette når du åpner .ics-filen), er hendelsene mest sannsynlig opprettet med riktig dato og klokkeslett og bør ikke ha en tidssone lagt til. Den lokale tidssonen vil derfor IKKE bli brukt på disse hendelsene!
 
 Sync
 - Avtaler hentes automatisk hvert 15. minutt (standard, kan endres)
-- Action kortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering (må brukes for å synkronisere kalendere hvis automatisk synkronisering er deaktivert)
+- Handlingskortet "Synkroniser kalenderene" kan også brukes til å utløse en synkronisering (Må brukes for å synkronisere kalendere hvis automatisk synkronisering er deaktivert)
 
 - Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, og som har startdato innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 - Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 
-Mer info og changelog finnes på GitHub
+Mer info og endringslogg finnes på GitHub
