@@ -218,6 +218,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
   - README.no.txt spelling update
   - Dev dependency updates
   - Dependency updates
+  - GitHub action:
+    - Enabled PR only
+    - Disabled script execution for npm ci
+    - Use tagged commits for actions
 - 3.2.4
   - Dependency updates
 - 3.2.3
