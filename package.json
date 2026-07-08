@@ -1,6 +1,6 @@
 {
   "name": "no.runely.calendar",
-  "version": "1.8.1",
+  "version": "3.2.5",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -9,13 +9,13 @@
   },
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
+    "@biomejs/biome": "2.5.3",
     "@tsconfig/node24": "^24.0.4",
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "@types/humanize-duration": "^3.27.4",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.2",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "@types/source-map-support": "^0.5.10",
     "esbuild": "^0.28.1",
     "lodash.clonedeep": "^4.5.0",
