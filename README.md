@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.2.5
   - README.no.txt spelling update
+  - Dev dependency updates
 - 3.2.4
   - Dependency updates
 - 3.2.3
