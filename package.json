@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "croner": "^10.0.1",
-    "humanize-duration": "^3.33.2",
-    "ics-filter": "^1.0.2",
+    "humanize-duration": "^3.34.0",
+    "ics-filter": "^1.0.3",
     "luxon": "^3.7.2",
     "node-ical": "^0.26.1",
     "source-map-support": "^0.5.21"
