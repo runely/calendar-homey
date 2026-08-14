@@ -26,7 +26,7 @@
     "humanize-duration": "^3.34.0",
     "ics-filter": "^1.0.3",
     "luxon": "^3.7.2",
-    "node-ical": "^0.26.1",
+    "node-ical": "^0.27.0",
     "source-map-support": "^0.5.21"
   },
   "scripts": {
