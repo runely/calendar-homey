@@ -216,6 +216,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.2.6
   - Dependency updates
+  - Migrated `typescript` from **6.0.3** to **7.0.2**
 - 3.2.5
   - README.no.txt spelling update
   - Dev dependency updates
