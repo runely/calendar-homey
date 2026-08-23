@@ -3,17 +3,19 @@ function onHomeyReady (Homey) {
   // Tell Homey we're ready to be displayed
   Homey.ready()
 
+  const { varMgmt } = VariableMgmt;
+
   // setting ids
-  const settingsUris = variableMgmt.setting.icalUris
-  const settingsSyncInterval = variableMgmt.setting.syncInterval
-  const settingsDateFormatLong = variableMgmt.setting.dateFormatLong
-  const settingsDateFormatShort = variableMgmt.setting.dateFormatShort
-  const settingsTimeFormat = variableMgmt.setting.timeFormat
-  const settingsEventLimit = variableMgmt.setting.eventLimit
-  const settingsMiscNextEventTokensPerCalendar = variableMgmt.setting.nextEventTokensPerCalendar
-  const settingsDebugLogAllEvents = variableMgmt.setting.logAllEvents
-  const hitCountDataPath = variableMgmt.hitCount.data
-  const triggerAllChangedEventTypes = variableMgmt.setting.triggerAllChangedEventTypes
+  const settingsUris = varMgmt.setting.icalUris
+  const settingsSyncInterval = varMgmt.setting.syncInterval
+  const settingsDateFormatLong = varMgmt.setting.dateFormatLong
+  const settingsDateFormatShort = varMgmt.setting.dateFormatShort
+  const settingsTimeFormat = varMgmt.setting.timeFormat
+  const settingsEventLimit = varMgmt.setting.eventLimit
+  const settingsMiscNextEventTokensPerCalendar = varMgmt.setting.nextEventTokensPerCalendar
+  const settingsDebugLogAllEvents = varMgmt.setting.logAllEvents
+  const hitCountDataPath = varMgmt.hitCount.data
+  const triggerAllChangedEventTypes = varMgmt.setting.triggerAllChangedEventTypes
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -46,7 +48,7 @@ function onHomeyReady (Homey) {
       text: Homey.__('settings.syncsettings.eventlimit.types.years')
     }
   ]
-  const eventLimitDefault = variableMgmt.setting.eventLimitDefault
+  const eventLimitDefault = varMgmt.setting.eventLimitDefault
 
   const addHitCountRow = (name, todayCount = 0, totalCount = 0, lastTriggered = '') => {
     const rowElement = document.createElement('tr')

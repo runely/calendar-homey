@@ -7,7 +7,7 @@ Setup
     - Wählen Sie, ob Sie die automatische Kalendersynchronisierung aktivieren möchten (standardmäßig aktiviert) (wenn deaktiviert, muss die Synchronisierung über eine Flusskarte erfolgen)
     - Wählen Sie das Intervall der automatischen Kalendersynchronisierung (standardmäßig alle 15 Minuten)
     - Ändern Sie das Datums- / Uhrzeitformat oder verwenden Sie die Standardeinstellung (Ihre Wahl)
-        - Alle in "moment.format()" unterstützten Token werden auch hier unterstützt: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Alle in "luxon.toFormat()" unterstützten Token werden auch hier unterstützt: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Wählen Sie, ob Sie „nächste Ereignis-Tags“ pro Kalender möchten. Standardeinstellung ist aus
 - Um über Synchronisierungsfehler benachrichtigt zu werden, erstellen Sie einen Flow mit dem Trigger "Synchronisationsfehler aufgetreten"
 

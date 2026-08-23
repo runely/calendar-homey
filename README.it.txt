@@ -7,7 +7,7 @@ Impostazioni
     - Scegli se vuoi la sincronizzazione automatica del calendario (di default è abilitata) (se disabilitata, la sincronizzazione deve essere effettuata tramite carta di flusso)
     - Scegli l'intervallo della sincronizzazione automatica del calendario (di default ogni 15 minuti)
     - Cambia il formato della data/ora o usa quello predefinito (a tua scelta)
-        - Tutti i token supportati in "moment.format()" sono supportati anche qui: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Tutti i token supportati in "luxon.toFormat()" sono supportati anche qui: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Scegli se vuoi i tag del prossimo evento per calendario. Il predefinito è disattivato
 - Per essere avvisato di eventuali errori di sincronizzazione, crea un flusso utilizzando il trigger "Errore di sincronizzazione occorso"
 

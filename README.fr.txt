@@ -7,7 +7,7 @@ Installation
     - Choisissez si vous souhaitez activer la synchronisation automatique du calendrier (par défaut activée) (si désactivée, la synchronisation doit être effectuée via une carte de flux)
     - Choisissez l'intervalle de la synchronisation automatique du calendrier (par défaut toutes les 15 minutes)
     - Modifiez le format de date/heure ou utilisez la valeur par défaut (votre choix)
-        - Tous les jetons pris en charge dans "moment.format()" sont également pris en charge ici: https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/
+        - Tous les jetons pris en charge dans "luxon.toFormat()" sont également pris en charge ici: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
     - Choisissez si vous voulez ou non les prochains tags d'événement par calendrier. La valeur par défaut est désactivée
 - Pour être averti d'éventuelles erreurs de synchronisation, créez un flux à l'aide du déclencheur "Une erreur de synchronisation s'est produite"
 

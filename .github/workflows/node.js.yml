@@ -4,10 +4,8 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -16,17 +14,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [22.x] # Needs to follow the Node.js version used on Homey
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies (CI)
-      run: npm ci
+      run: npm ci --ignore-scripts
     - name: Build (if present)
       run: npm run build --if-present
     - name: Test

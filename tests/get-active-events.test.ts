@@ -1,0 +1,157 @@
+import assert from "node:assert/strict";
+import { before, describe, test } from "node:test";
+
+import nodeIcal, { type CalendarComponent, type CalendarResponse, type DateWithTimeZone, type VEvent } from "node-ical";
+
+import { getActiveEvents } from "../lib/get-active-events.js";
+import { varMgmt } from "../lib/variable-management";
+import locale from "../locales/en.json";
+
+import type { CalendarEvent } from "../types/IcalCalendar.type";
+import type { SettingEventLimit } from "../types/VariableMgmt.type";
+
+import { constructedApp } from "./lib/construct-app.js";
+
+const data: CalendarResponse = nodeIcal.sync.parseFile("./tests/data/calendar.ics");
+const invalidTimezone: CalendarResponse = nodeIcal.sync.parseFile("./tests/data/calendar-invalid-timezone.ics");
+
+const eventLimit: SettingEventLimit = {
+  value: "3",
+  type: "weeks"
+};
+
+constructedApp.homey.__ = () => locale.locale.luxon;
+constructedApp.homey.settings.get = () => undefined;
+
+varMgmt.hitCount.data = "";
+
+let activeEvents: CalendarEvent[];
+let onceAWeekEvents: CalendarEvent[];
+let alwaysOngoingEvents: CalendarEvent[];
+let dataNoTzId: CalendarEvent[];
+
+describe("getActiveEvents returns an array", () => {
+  before(async () => {
+    activeEvents = await getActiveEvents({
+      app: constructedApp,
+      variableMgmt: varMgmt,
+      timezone: "UTC",
+      data: Object.values(data),
+      eventLimit,
+      calendarName: "Test",
+      logAllEvents: false
+    });
+
+    onceAWeekEvents = activeEvents.filter((event: CalendarEvent) => event.summary === "OnceAWeek");
+    alwaysOngoingEvents = activeEvents.filter((event: CalendarEvent) => event.summary === "AlwaysOngoing");
+  });
+
+  test("Where all 'OnceAWeek' events has a unique uid", () => {
+    assert.strictEqual(
+      onceAWeekEvents.filter((event: CalendarEvent) => event.uid === `hidden_${event.start.toISODate()}`).length,
+      onceAWeekEvents.length
+    );
+  });
+
+  test("Where all 'AlwaysOngoing' events has a unique uid", () => {
+    assert.strictEqual(
+      alwaysOngoingEvents.filter((event: CalendarEvent) => event.uid === `hidden2_${event.start.toISODate()}`).length,
+      alwaysOngoingEvents.length
+    );
+  });
+});
+
+describe("getActiveEvents filter out", () => {
+  test('Events where "DTSTART" is missing', async () => {
+    const dataNoStart: CalendarResponse = nodeIcal.sync.parseFile("./tests/data/calendar-missing-start.ics");
+    const activeEvents = await getActiveEvents({
+      app: constructedApp,
+      variableMgmt: varMgmt,
+      timezone: "UTC",
+      data: Object.values(dataNoStart),
+      eventLimit,
+      calendarName: "Test",
+      logAllEvents: false
+    });
+
+    assert.strictEqual(
+      Object.values(dataNoStart).filter((event: CalendarComponent | undefined) => event?.type === "VEVENT").length,
+      1
+    );
+    assert.strictEqual(activeEvents.length, 0);
+  });
+});
+
+describe('When "DTEND" is missing', () => {
+  test('"DTEND" is set to "DTSTART"', () => {
+    const dataNoEnd: CalendarResponse = nodeIcal.sync.parseFile("./tests/data/calendar-missing-end.ics");
+    const dataNoEndEvent: VEvent = dataNoEnd["noEnd"] as VEvent;
+    const { start, end } = dataNoEndEvent;
+
+    const eventEnd: DateWithTimeZone = end ?? start;
+
+    assert.strictEqual(start.toISOString(), eventEnd.toISOString());
+  });
+});
+
+describe('When "SUMMARY" is missing', () => {
+  test('"SUMMARY" is undefined', () => {
+    const dataNoSummary = nodeIcal.sync.parseFile("./tests/data/calendar-missing-summary.ics");
+    const dataNoSummaryEvent: VEvent = dataNoSummary["noSummary"] as VEvent;
+    const { summary } = dataNoSummaryEvent;
+
+    assert.strictEqual(summary, undefined);
+  });
+});
+
+describe('When "TZID" is missing', () => {
+  const localTimeZone: string = "UTC";
+
+  before(async () => {
+    dataNoTzId = await getActiveEvents({
+      app: constructedApp,
+      variableMgmt: varMgmt,
+      timezone: localTimeZone,
+      data: Object.values(nodeIcal.sync.parseFile("./tests/data/calendar-missing-timezone.ics")),
+      eventLimit,
+      calendarName: "Test",
+      logAllEvents: false
+    });
+  });
+
+  test("on a recurring event, zoneName should be timezone used on system", () => {
+    const dataNoTzIdEvent: CalendarEvent | undefined = dataNoTzId.find(
+      (event: CalendarEvent) => event.summary === "RecurringNoTzid"
+    );
+
+    assert.ok(dataNoTzIdEvent !== undefined);
+    assert.strictEqual(dataNoTzIdEvent?.start.zoneName, localTimeZone);
+  });
+
+  test("on a regular event, zoneName should be timezone used on system", () => {
+    const dataNoTzIdEvent: CalendarEvent | undefined = dataNoTzId.find(
+      (event: CalendarEvent) => event.summary === "RegularNoTzid"
+    );
+
+    assert.ok(dataNoTzIdEvent !== undefined);
+    assert.strictEqual(dataNoTzIdEvent?.start.zoneName, localTimeZone);
+  });
+});
+
+describe('Invalid timezone should have been replaced by "node-ical"', () => {
+  for (const event of Object.values(invalidTimezone)) {
+    if (event?.type !== "VEVENT") {
+      continue;
+    }
+
+    test(`"${event.summary}" should have its start TZ replaced from "${event.summary}" to a valid timezone ("${event.start.tz}")`, () => {
+      assert.ok(!(event.start.tz === event.summary));
+    });
+
+    const eventEnd: DateWithTimeZone = event.end ?? event.start;
+
+    test(`"${event.summary}" should have its end TZ replaced from "${event.summary}" to a valid timezone ("${eventEnd.tz}")`, () => {
+      assert.ok(!(eventEnd.tz === event.summary));
+    });
+  }
+});

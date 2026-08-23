@@ -1,9 +1,8 @@
-tests
 renovate.json
+tsconfig_tests.json
 LICENSE
 *.md
 README*
 homeyscripts
-types
-jsconfig.json
-widgets/calendar-short/widget_preview.fig
+biome.json
+tests
