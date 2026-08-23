@@ -6,7 +6,7 @@ const sortEvents = require('./../../lib/sort-events')
  * @param {Object} datetime - The datetime object to process.
  * @returns {Object} - The day key for the given datetime.
  */
-const getDayKey = (datetime) => {
+const getDayKey = (datetime: any) => {
   return datetime.clone().startOf('day')
 }
 
@@ -15,7 +15,7 @@ const getDayKey = (datetime) => {
  * @param {Object} calendar - The calendar object to process.
  * @returns {Object} - The calendar object without the 'events' property.
  */
-const createCalendarWithoutEvents = (calendar) => {
+const createCalendarWithoutEvents = (calendar: any) => {
   const { events: _, ...calendarWithoutEvents } = calendar
   return calendarWithoutEvents
 }
@@ -26,8 +26,8 @@ const createCalendarWithoutEvents = (calendar) => {
  * @param {Object} calendarWithoutEvents - The calendar object without the 'events' property.
  * @returns {Array} - An array of events with the calendar reference added.
  */
-const addCalendarReferenceToEvents = (calendar, calendarWithoutEvents) => {
-  return calendar.events.map(event => ({
+const addCalendarReferenceToEvents = (calendar: any, calendarWithoutEvents: any) => {
+  return calendar.events.map((event: any) => ({
     ...event,
     calendar: calendarWithoutEvents
   }))
@@ -38,9 +38,9 @@ const addCalendarReferenceToEvents = (calendar, calendarWithoutEvents) => {
  * @param {Object} homey - The homey app object containing calendar data.
  * @returns {Array} - An array of all relevant events with calendar references.
  */
-const listRelevantEvents = (homey) => {
+const listRelevantEvents = (homey: any) => {
   return homey.app.variableMgmt.calendars.reduce(
-    (allEvents, calendar) => {
+    (allEvents: any, calendar: any) => {
       const calendarWithoutEvents = createCalendarWithoutEvents(calendar)
       const eventsWithCalendar = addCalendarReferenceToEvents(calendar, calendarWithoutEvents)
       return allEvents.concat(eventsWithCalendar)
@@ -57,7 +57,7 @@ module.exports = {
    * @param {Object} query - The query parameters for filtering events.
    * @returns {Array} - An array of serialized events for display.
    */
-  async getCalendarList ({ homey, query }) {
+  async getCalendarList ({ homey, query }: { homey: any, query: any }) {
     const timeFormat = homey.app.variableMgmt.dateTimeFormat.time
     let events = listRelevantEvents(homey)
 
@@ -66,8 +66,8 @@ module.exports = {
     events = events.slice(0, query.max)
 
     // Group events by day and serialize the data
-    const serializedEvents = []
-    const eventsByDay = events.reduce((map, event) => {
+    const serializedEvents: any[] = []
+    const eventsByDay = events.reduce((map: any, event: any) => {
       const dayKey = getDayKey(event.start).format('YYYY-MM-DD')
       if (!map.has(dayKey)) {
         map.set(dayKey, {
@@ -79,11 +79,11 @@ module.exports = {
       return map
     }, new Map())
 
-    eventsByDay.forEach((dayEvent, _) => {
+    eventsByDay.forEach((dayEvent: any, _: any) => {
       const day = dayEvent.day
       const events = dayEvent.events
 
-      events.forEach((event, index) => {
+      events.forEach((event: any, index: number) => {
         // Create dayCell for the first event of the day
         const dayInfo = index === 0
           ? `<span class='homey-text-small homey-text-align-center'>${day.format('ddd')}<br />${day.format('MMM D')}</span>`
@@ -102,7 +102,7 @@ module.exports = {
 
         // Create summaryCell and calendarCell
         const summaryInfo = `<span class='homey-text-small'>${event.summary}</span><br /><span style='color: var(--homey-color-highlight);' class='homey-text-small-light'>${period}</span>`
-        const calendarInfo = `<span style='color: ${event.calendar.color};' class='widget-calendar-cell homey-text-small'><div style='--homey-icon-color: ${event.calendar.color}' class='homey-custom-icon-calendar'></div>${event.calendar.name}</span>`
+        const calendarInfo = `<span style='color: ${event.calendar?.color};' class='widget-calendar-cell homey-text-small'><div style='--homey-icon-color: ${event.calendar?.color}' class='homey-custom-icon-calendar'></div>${event.calendar.name}</span>`
 
         // Push serialized event data
         serializedEvents.push({
@@ -122,7 +122,7 @@ module.exports = {
    * @param {Object} params - The parameters for filtering events.
    * @returns {Object} - An empty object as a placeholder.
    */
-  async getCalendarEvents ({ homey, params }) {
+  async getCalendarEvents ({ homey, params }: { homey: any, params: any }) {
     // access the post body and perform some action on it.
     return {}
   }
