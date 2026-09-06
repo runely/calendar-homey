@@ -16,6 +16,12 @@
       "name": "일정 이름",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "캘린더 색상",
+      "description": "각 캘린더의 색상을 선택하세요. 캘린더별 색상을 지원하는 위젯은 각 이벤트 옆의 강조 바와 점에 이 색상을 사용합니다. 위에서 캘린더를 추가하거나 이름을 변경한 후 '새로 고침'을 클릭하여 목록을 업데이트하세요.",
+      "empty": "아직 구성된 캘린더가 없습니다.",
+      "refresh": "위의 캘린더에서 목록 새로 고침"
+    },
     "syncsettings": {
       "legend": "동기화",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "이벤트 수 -",
     "lastSuccessfulSync": "마지막 성공적인 동기화 -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "약속 없음",
+      "emptyHint": "이것이 올바르지 않다면 새로 고침을 누르세요",
+      "today": "오늘",
+      "allDay": "종일",
+      "refresh": "새로 고침",
+      "eventCount": {
+        "one": "약속 __count__개",
+        "many": "약속 __count__개"
+      }
+    }
   }
 }

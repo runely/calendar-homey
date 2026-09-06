@@ -56,4 +56,10 @@ Sync
 - Only events not started yet or events started but not finished and has start date within 2 months or less will be fetched (this can be overridden in the settings)
 - Recurring events where start date is within 2 months or less will be fetched (this can be overridden in the settings)
 
+Widget
+
+The "Upcoming events" widget shows your next calendar events on the Homey dashboard. Add it from the dashboard editor. In the widget settings you can choose how many days ahead to show, whether to show the calendar name, and the maximum widget height. Pick a color per calendar under the app settings (Calendar colors) - the widget uses these colors for each event.
+
+The widget updates on each calendar sync. Tap the refresh button in the lower right corner to refresh manually - for example after adding a new calendar or if the widget looks out of date.
+
 More info and changelog can be found on GitHub

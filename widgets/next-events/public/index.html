@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    :root {
+      /* Accent for the calendar app. Change here to re-brand the whole widget. */
+      --accent: #05A22C;
+      /* Subtle card fill that works in both light and dark mode. */
+      --card-fill: rgba(127, 127, 127, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+
+    /* .homey-widget gives us Homey's standard padding + text color + background. */
+    body {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--homey-su-2);
+      flex-shrink: 0;
+    }
+    .cal-date {
+      display: flex;
+      align-items: center;
+      gap: var(--homey-su-3);
+    }
+    .cal-date-num {
+      font-size: 42px;
+      line-height: 0.9;
+      font-weight: var(--homey-font-weight-bold);
+      letter-spacing: -0.04em;
+      color: var(--homey-text-color);
+    }
+    .cal-weekday {
+      font-size: var(--homey-font-size-default);
+      font-weight: var(--homey-font-weight-medium);
+      line-height: 1.1;
+      text-transform: capitalize;
+      color: var(--homey-text-color);
+    }
+    .cal-monthyear {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      line-height: 1.2;
+    }
+    .cal-count {
+      font-size: var(--homey-font-size-small);
+      font-weight: var(--homey-font-weight-medium);
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .cal-list {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      margin-top: var(--homey-su-4);
+    }
+
+    .cal-day-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--homey-su-2);
+      margin: var(--homey-su-3) 2px var(--homey-su-2);
+    }
+    .cal-day-header:first-child { margin-top: 0; }
+    .cal-day-label {
+      font-size: var(--homey-font-size-small);
+      font-weight: var(--homey-font-weight-bold);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cal-day-sub {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+    }
+
+    .cal-event {
+      display: flex;
+      gap: var(--homey-su-3);
+      align-items: stretch;
+      padding: 9px 11px;
+      border-radius: var(--homey-border-radius-default);
+      background: var(--card-fill);
+      border-left: 3px solid var(--accent);
+      margin-bottom: 7px;
+      cursor: pointer;
+    }
+    .cal-time {
+      width: 50px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .cal-time-start {
+      font-size: var(--homey-font-size-small);
+      font-weight: var(--homey-font-weight-bold);
+      color: var(--homey-text-color);
+      line-height: 1.2;
+    }
+    .cal-time-end {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      line-height: 1.2;
+    }
+    .cal-body { flex: 1; min-width: 0; }
+    .cal-title {
+      font-size: var(--homey-font-size-default);
+      font-weight: var(--homey-font-weight-medium);
+      line-height: 1.25;
+      color: var(--homey-text-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cal-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 3px;
+    }
+    .cal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cal-cal {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cal-allday {
+      align-self: center;
+      font-size: 10px;
+      font-weight: var(--homey-font-weight-bold);
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      padding: 3px 7px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .cal-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--homey-su-1);
+      color: var(--homey-text-color-light);
+      padding: var(--homey-su-2) 0;
+      text-align: center;
+    }
+    .cal-empty .label {
+      font-size: var(--homey-font-size-default);
+      font-weight: var(--homey-font-weight-medium);
+    }
+    .cal-empty .hint {
+      font-size: var(--homey-font-size-small);
+      opacity: 0.85;
+    }
+
+    .cal-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: var(--homey-su-2);
+      flex-shrink: 0;
+    }
+    .cal-refresh {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cal-refresh:hover {
+      background: color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+    .cal-refresh:active {
+      transform: scale(0.94);
+    }
+    .cal-refresh svg {
+      display: block;
+    }
+    .cal-refresh.loading svg {
+      animation: cal-spin 0.9s linear infinite;
+    }
+    @keyframes cal-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="homey-widget">
+  <div class="cal-header">
+    <div class="cal-date">
+      <span class="cal-date-num" id="dateNum"></span>
+      <div>
+        <div class="cal-weekday" id="weekday"></div>
+        <div class="cal-monthyear" id="monthYear"></div>
+      </div>
+    </div>
+    <span class="cal-count" id="count" style="display:none"></span>
+  </div>
+  <div class="cal-list" id="list"></div>
+  <div class="cal-footer">
+    <button type="button" class="cal-refresh" id="refresh">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <path fill="currentColor" d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08a5.99 5.99 0 0 1-5.65 4c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script type="text/javascript">
+    let Homey;
+    let locale = 'en';
+    let weekdayFmt;
+    let daySubFmt;
+    let monthYearFmt;
+
+    function initFormatters() {
+      weekdayFmt = new Intl.DateTimeFormat(locale, { weekday: 'long' });
+      daySubFmt = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' });
+      monthYearFmt = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' });
+    }
+
+    function dayKey(d) {
+      return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+    }
+
+    function fmtTime(iso) {
+      const d = new Date(iso);
+      return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    }
+
+    function escapeHtml(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function renderHeader() {
+      const now = new Date();
+      document.getElementById('dateNum').textContent = now.getDate();
+      document.getElementById('weekday').textContent = weekdayFmt.format(now);
+      document.getElementById('monthYear').textContent = monthYearFmt.format(now);
+    }
+
+    function renderEvents(events) {
+      const list = document.getElementById('list');
+      const count = document.getElementById('count');
+
+      if (!events || events.length === 0) {
+        count.textContent = '';
+        count.style.display = 'none';
+        list.innerHTML =
+          '<div class="cal-empty">' +
+          '<span class="label">' + escapeHtml(Homey.__('widget.nextEvents.empty')) + '</span>' +
+          '<span class="hint">' + escapeHtml(Homey.__('widget.nextEvents.emptyHint')) + '</span>' +
+          '</div>';
+        return;
+      }
+
+      count.style.display = '';
+      const countKey = events.length === 1 ? 'widget.nextEvents.eventCount.one' : 'widget.nextEvents.eventCount.many';
+      count.textContent = Homey.__(countKey, { count: events.length });
+
+      // Sort by start (all-day first within a day), then time.
+      events.sort((a, b) => {
+        const da = new Date(a.start), db = new Date(b.start);
+        const dayDiff = new Date(da.getFullYear(), da.getMonth(), da.getDate()) - new Date(db.getFullYear(), db.getMonth(), db.getDate());
+        if (dayDiff !== 0) {
+          return dayDiff;
+        }
+
+        if (a.allDay !== b.allDay) {
+          return a.allDay ? -1 : 1;
+        }
+
+        return da - db;
+      });
+
+      const todayKey = dayKey(new Date());
+      const todayLabel = Homey.__('widget.nextEvents.today');
+      const allDayLabel = Homey.__('widget.nextEvents.allDay');
+      let html = '';
+      let lastKey = null;
+
+      for (const event of events) {
+        const start = new Date(event.start);
+        const key = dayKey(start);
+
+        if (key !== lastKey) {
+          lastKey = key;
+          const label = key === todayKey ? todayLabel : weekdayFmt.format(start);
+          const sub = daySubFmt.format(start);
+          html +=
+            '<div class="cal-day-header">' +
+            '<span class="cal-day-label">' + escapeHtml(label) + '</span>' +
+            '<span class="cal-day-sub">' + escapeHtml(sub) + '</span>' +
+            '</div>';
+        }
+
+        const color = event.color || 'var(--accent)';
+        const timeCell = event.allDay
+          ? '<div class="cal-time-start">00:00</div><div class="cal-time-end">00:00</div>'
+          : '<div class="cal-time-start">' + fmtTime(event.start) + '</div>' +
+            (event.end ? '<div class="cal-time-end">' + fmtTime(event.end) + '</div>' : '');
+        const allDayBadge = event.allDay ? '<span class="cal-allday">' + escapeHtml(allDayLabel) + '</span>' : '';
+
+        html +=
+          '<div class="cal-event" data-id="' + escapeHtml(event.id) + '" style="border-left-color:' + escapeHtml(color) + '">' +
+          '<div class="cal-time">' + timeCell + '</div>' +
+          '<div class="cal-body">' +
+          '<div class="cal-title">' + escapeHtml(event.title) + '</div>' +
+          '<div class="cal-meta">' +
+          '<span class="cal-dot" style="background:' + escapeHtml(color) + '"></span>' +
+          '<span class="cal-cal">' + escapeHtml(event.calendar || '') + '</span>' +
+          '</div></div>' +
+          allDayBadge +
+          '</div>';
+      }
+
+      list.innerHTML = html;
+    }
+
+    function currentMaxHeight() {
+      const s = Homey.getSettings() || {};
+      const raw = Number(s.maxHeight);
+      return Number.isFinite(raw) && raw > 0 ? raw : 400;
+    }
+
+    function resizeToContent() {
+      const header = document.querySelector('.cal-header');
+      const list = document.getElementById('list');
+      const footer = document.querySelector('.cal-footer');
+      if (!header || !list) {
+        return;
+      }
+
+      const listStyle = getComputedStyle(list);
+      const bodyStyle = getComputedStyle(document.body);
+      const listMarginTop = parseFloat(listStyle.marginTop) || 0;
+      const bodyPadding =
+        (parseFloat(bodyStyle.paddingTop) || 0) +
+        (parseFloat(bodyStyle.paddingBottom) || 0);
+
+      let footerHeight = 0;
+      if (footer) {
+        const footerStyle = getComputedStyle(footer);
+        footerHeight = footer.offsetHeight + (parseFloat(footerStyle.marginTop) || 0);
+      }
+
+      const natural = header.offsetHeight + listMarginTop + list.scrollHeight + footerHeight + bodyPadding;
+      Homey.setHeight(Math.min(natural, currentMaxHeight()));
+    }
+
+    async function load() {
+      try {
+        const s = Homey.getSettings() || {};
+        const daysAhead = s.daysAhead != null ? s.daysAhead : 7;
+        const showCalendarName = s.showCalendarName !== false;
+        const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
+                     '&showCalendarName=' + encodeURIComponent(showCalendarName);
+        const events = await Homey.api('GET', path, {});
+        renderEvents(events);
+      } catch (err) {
+        console.error('Failed to load events', err);
+        renderEvents([]);
+      }
+      requestAnimationFrame(resizeToContent);
+    }
+
+    async function onHomeyReady(_Homey) {
+      Homey = _Homey;
+
+      // Initialize formatters with the fallback locale and register the update
+      // listener BEFORE any async work. Otherwise an app broadcast that lands
+      // during the language fetch would be missed, and the widget would stay
+      // stuck on its initial (possibly empty) render until the next 15-min sync.
+      initFormatters();
+      Homey.on('update', () => {
+        renderHeader();
+        load();
+      });
+
+      // Manual refresh button. Haptic must be triggered synchronously in the
+      // click handler to satisfy Homey's timing check.
+      const refreshBtn = document.getElementById('refresh');
+      refreshBtn.addEventListener('click', () => {
+        Homey.hapticFeedback();
+        refreshBtn.classList.add('loading');
+        renderHeader();
+        load().finally(() => refreshBtn.classList.remove('loading'));
+      });
+
+      Homey.ready();
+
+      try {
+        const lang = await Homey.api('GET', '/language', {});
+        if (typeof lang === 'string' && lang.length > 0) {
+          locale = lang;
+          initFormatters();
+        }
+        refreshBtn.setAttribute('aria-label', Homey.__('widget.nextEvents.refresh'));
+      } catch (err) {
+        console.error('Failed to load language, falling back to', locale, err);
+      }
+
+      renderHeader();
+      // Show the empty state (with the "tap refresh if this seems wrong" hint)
+      // immediately, so the widget never renders a blank list while the first
+      // load() is in flight.
+      renderEvents([]);
+      load();
+    }
+  </script>
+</body>
+</html>

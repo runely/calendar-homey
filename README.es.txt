@@ -56,4 +56,10 @@ Sincronización
 - Solo se recuperarán eventos que aún no hayan comenzado o eventos que hayan comenzado pero no terminado y tengan una fecha de inicio dentro de 2 meses o menos (esto se puede anular en la configuración)
 - Los eventos recurrentes con una fecha de inicio dentro de 2 meses o menos se recuperarán (esto se puede anular en la configuración)
 
+Widget
+
+El widget "Próximos eventos" muestra tus próximos eventos del calendario en el panel de Homey. Añádelo desde el editor del panel. En los ajustes del widget puedes elegir cuántos días por adelantado mostrar, si mostrar el nombre del calendario, y la altura máxima del widget. Elige un color por calendario en los ajustes de la app (Colores de calendario) - el widget usa estos colores para cada evento.
+
+El widget se actualiza con cada sincronización del calendario. Toca el botón de actualizar en la esquina inferior derecha para actualizar manualmente - por ejemplo después de añadir un nuevo calendario o si el widget parece desactualizado.
+
 Más información y el registro de cambios se pueden encontrar en GitHub

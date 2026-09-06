@@ -16,6 +16,12 @@
       "name": "Kalender naam",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Kalenderkleuren",
+      "description": "Kies een kleur per kalender. Widgets die per-kalender kleuren ondersteunen, gebruiken deze voor de accentbalk en de stip naast elke gebeurtenis. Na het toevoegen of hernoemen van kalenders hierboven, klik op 'Vernieuwen' om de lijst bij te werken.",
+      "empty": "Nog geen kalenders geconfigureerd.",
+      "refresh": "Lijst vernieuwen vanuit kalenders hierboven"
+    },
     "syncsettings": {
       "legend": "Synchronisatie",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Aantal evenementen -",
     "lastSuccessfulSync": "Laatste succesvolle synchronisatie -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Geen afspraken",
+      "emptyHint": "Tik op vernieuwen als dit niet klopt",
+      "today": "Vandaag",
+      "allDay": "Hele dag",
+      "refresh": "Vernieuwen",
+      "eventCount": {
+        "one": "__count__ afspraak",
+        "many": "__count__ afspraken"
+      }
+    }
   }
 }

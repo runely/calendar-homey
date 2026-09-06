@@ -16,6 +16,8 @@ function onHomeyReady (Homey) {
   const settingsDebugLogAllEvents = varMgmt.setting.logAllEvents
   const hitCountDataPath = varMgmt.hitCount.data
   const triggerAllChangedEventTypes = varMgmt.setting.triggerAllChangedEventTypes
+  const settingsCalendarColors = varMgmt.setting.calendarColors
+  const defaultCalendarColor = '#05A22C'
 
   // buttons
   const newItemElement = document.getElementById('newItem')
@@ -74,6 +76,19 @@ function onHomeyReady (Homey) {
       return Homey.alert(err)
     }
     getCalendarItems(uris)
+
+    Homey.get(settingsCalendarColors, (colorErr, colors) => {
+      if (colorErr) {
+        return Homey.alert(colorErr)
+      }
+      renderCalendarColorRows((uris || []).map(u => u.name), colors || {}, defaultCalendarColor)
+    })
+  })
+
+  document.getElementById('calendarcolors-refresh').addEventListener('click', () => {
+    const names = readCurrentCalendarNames()
+    const existing = readCurrentColors()
+    renderCalendarColorRows(names, existing, defaultCalendarColor)
   })
 
   Homey.get(settingsSyncInterval, (err, interval) => {
@@ -251,6 +266,13 @@ function onHomeyReady (Homey) {
     })
 
     Homey.set(settingsSyncInterval, saveSyncInterval(), function (err) {
+      if (err) {
+        return Homey.alert(err)
+      }
+    })
+
+    // save calendar colors to settings
+    Homey.set(settingsCalendarColors, readCurrentColors(), function (err) {
       if (err) {
         return Homey.alert(err)
       }
@@ -588,6 +610,58 @@ function showError (text, type) {
     errorElement.classList.add('error-section-show')
     errorElement.classList.remove('error-section-hidden')
   }
+}
+
+function renderCalendarColorRows (calendarNames, savedColors, defaultColor) {
+  const list = document.getElementById('calendarcolors-list')
+  list.innerHTML = ''
+
+  const names = (calendarNames || []).filter((n) => typeof n === 'string' && n.length > 0)
+  if (names.length === 0) {
+    const empty = document.createElement('p')
+    empty.className = 'calendarcolor-empty'
+    empty.textContent = Homey.__('settings.calendarColors.empty')
+    list.appendChild(empty)
+    return
+  }
+
+  names.forEach((name) => {
+    const row = document.createElement('div')
+    row.className = 'calendarcolor-row'
+
+    const label = document.createElement('label')
+    label.textContent = name
+    label.className = 'calendarcolor-name'
+
+    const input = document.createElement('input')
+    input.type = 'color'
+    input.className = 'calendarcolor-picker'
+    input.value = (savedColors && savedColors[name]) || defaultColor
+    input.dataset.calendarName = name
+
+    row.appendChild(label)
+    row.appendChild(input)
+    list.appendChild(row)
+  })
+}
+
+function readCurrentCalendarNames () {
+  const calendars = unfuckHtmlFuck(document.getElementById('calendars').children)
+  return calendars
+    .filter((c) => c.localName === 'fieldset')
+    .map((c) => c.children[3].value)
+    .filter((n) => typeof n === 'string' && n.length > 0)
+}
+
+function readCurrentColors () {
+  const inputs = document.querySelectorAll('#calendarcolors-list input[type=color]')
+  const map = {}
+  inputs.forEach((input) => {
+    if (input.dataset.calendarName) {
+      map[input.dataset.calendarName] = input.value
+    }
+  })
+  return map
 }
 
 function unfuckHtmlFuck (fucker) {

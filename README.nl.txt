@@ -56,4 +56,10 @@ Sync
 - Alleen events die nog niet zijn gestart of events die zijn gestart maar niet zijn voltooid en hebben een start datum binnen 2 maanden of korter worden opgehaald. (Dit kan worden aangepast in de settings)
 - Terugkerende events waarvan de startdatum binnen 2 maanden of korter is, worden opgehaald. (Dit kan worden aangepast in de settings)
 
+Widget
+
+De widget "Aankomende evenementen" toont je volgende agenda-items op het Homey-dashboard. Voeg de widget toe via de dashboard-editor. In de widget-instellingen kun je kiezen hoeveel dagen vooruit worden getoond, of de kalendernaam wordt weergegeven, en de maximale hoogte van de widget. Kies onder de app-instellingen (Kalenderkleuren) een kleur per kalender - de widget gebruikt deze kleuren voor elke afspraak.
+
+De widget wordt bijgewerkt bij elke agenda-synchronisatie. Tik op de vernieuwen-knop rechtsonder om handmatig te vernieuwen - bijvoorbeeld nadat je een nieuwe kalender hebt toegevoegd of als de widget verouderd lijkt.
+
 Meer info en changelog zijn te vinden op GitHub

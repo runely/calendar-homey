@@ -6055,6 +6055,121 @@
       "id": "icalcalendar"
     }
   ],
+  "widgets": {
+    "next-events": {
+      "name": {
+        "en": "Upcoming events",
+        "no": "Kommende avtaler",
+        "nl": "Aankomende evenementen",
+        "de": "Bevorstehende Veranstaltungen",
+        "sv": "Kommande händelser",
+        "fr": "Événements à venir",
+        "it": "Eventi in programma",
+        "es": "Próximos eventos",
+        "da": "Kommende begivenheder",
+        "pl": "Nadchodzące wydarzenia",
+        "ko": "다가오는 이벤트"
+      },
+      "height": 400,
+      "settings": [
+        {
+          "id": "daysAhead",
+          "type": "number",
+          "title": {
+            "en": "Days ahead",
+            "no": "Dager fremover",
+            "nl": "Dagen vooruit",
+            "de": "Tage im Voraus",
+            "sv": "Dagar framåt",
+            "fr": "Jours à venir",
+            "it": "Giorni a venire",
+            "es": "Días por adelantado",
+            "da": "Dage fremover",
+            "pl": "Dni naprzód",
+            "ko": "앞으로 며칠"
+          },
+          "hint": {
+            "en": "How many days of upcoming events to show.",
+            "no": "Hvor mange dager fremover som vises.",
+            "nl": "Hoeveel dagen aan aankomende afspraken worden weergegeven.",
+            "de": "Wie viele Tage im Voraus Ereignisse angezeigt werden.",
+            "sv": "Hur många dagar av kommande händelser som visas.",
+            "fr": "Combien de jours d'événements à venir afficher.",
+            "it": "Quanti giorni di eventi futuri mostrare.",
+            "es": "Cuántos días de eventos próximos se mostrarán.",
+            "da": "Hvor mange dage frem der vises begivenheder for.",
+            "pl": "Ile dni nadchodzących wydarzeń wyświetlać.",
+            "ko": "앞으로 며칠 동안의 이벤트를 표시할지 설정합니다."
+          },
+          "value": 3,
+          "min": 1,
+          "max": 60
+        },
+        {
+          "id": "showCalendarName",
+          "type": "checkbox",
+          "title": {
+            "en": "Show calendar name",
+            "no": "Vis kalendernavn",
+            "nl": "Kalendernaam tonen",
+            "de": "Kalendername anzeigen",
+            "sv": "Visa kalendernamn",
+            "fr": "Afficher le nom du calendrier",
+            "it": "Mostra nome del calendario",
+            "es": "Mostrar nombre del calendario",
+            "da": "Vis kalendernavn",
+            "pl": "Pokaż nazwę kalendarza",
+            "ko": "캘린더 이름 표시"
+          },
+          "value": true
+        },
+        {
+          "id": "maxHeight",
+          "type": "number",
+          "title": {
+            "en": "Max height (px)",
+            "no": "Maksimal høyde (px)",
+            "nl": "Maximale hoogte (px)",
+            "de": "Maximale Höhe (px)",
+            "sv": "Maxhöjd (px)",
+            "fr": "Hauteur max (px)",
+            "it": "Altezza massima (px)",
+            "es": "Altura máxima (px)",
+            "da": "Maks. højde (px)",
+            "pl": "Maks. wysokość (px)",
+            "ko": "최대 높이 (px)"
+          },
+          "hint": {
+            "en": "The widget grows with the number of events, up to this height. Events beyond this height are hidden.",
+            "no": "Widgeten vokser med antall hendelser, opp til denne høyden. Hendelser utover denne høyden skjules.",
+            "nl": "De widget groeit met het aantal afspraken, tot deze hoogte. Afspraken boven deze hoogte worden verborgen.",
+            "de": "Das Widget wächst mit der Anzahl der Ereignisse, bis zu dieser Höhe. Ereignisse darüber werden ausgeblendet.",
+            "sv": "Widgeten växer med antalet händelser, upp till denna höjd. Händelser över denna höjd döljs.",
+            "fr": "Le widget grandit avec le nombre d'événements, jusqu'à cette hauteur. Les événements au-delà sont masqués.",
+            "it": "Il widget cresce con il numero di eventi, fino a questa altezza. Gli eventi oltre questa altezza sono nascosti.",
+            "es": "El widget crece con el número de eventos, hasta esta altura. Los eventos por encima de esta altura se ocultan.",
+            "da": "Widgeten vokser med antallet af begivenheder, op til denne højde. Begivenheder ud over denne højde skjules.",
+            "pl": "Widżet rośnie wraz z liczbą wydarzeń, do tej wysokości. Wydarzenia powyżej tej wysokości są ukryte.",
+            "ko": "위젯은 이벤트 수에 따라 이 높이까지 커집니다. 이 높이를 초과하는 이벤트는 숨겨집니다."
+          },
+          "value": 400,
+          "min": 150,
+          "max": 1200
+        }
+      ],
+      "api": {
+        "getEvents": {
+          "method": "GET",
+          "path": "/"
+        },
+        "getLanguage": {
+          "method": "GET",
+          "path": "/language"
+        }
+      },
+      "id": "next-events"
+    }
+  },
   "capabilities": {
     "last_successfull_sync_ical": {
       "type": "string",

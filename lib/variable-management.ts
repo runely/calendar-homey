@@ -15,7 +15,8 @@ export const varMgmt: VariableManagement = {
     },
     nextEventTokensPerCalendar: "nextEventTokensPerCalendar",
     triggerAllChangedEventTypes: "triggerAllChangedEventTypes",
-    logAllEvents: "logAllEvents"
+    logAllEvents: "logAllEvents",
+    calendarColors: "calendarColors"
   },
   hitCount: {
     data: "hitCountData"

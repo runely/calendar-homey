@@ -19,8 +19,13 @@ import { resetTodayHitCount } from "./lib/hit-count.js";
 import { getZonedDateTime } from "./lib/luxon-fns";
 import { varMgmt } from "./lib/variable-management.js";
 
-import type { SyncInterval } from "./types/IcalCalendar.type";
+import type { Calendar, SyncInterval } from "./types/IcalCalendar.type";
 import type { VariableManagement } from "./types/VariableMgmt.type";
+
+// The SDK Widget type is missing the emit method — narrow to just what we need.
+type WidgetWithEmit = { emit(event: string): void };
+
+const WIDGET_ID: string = "next-events";
 
 let variableMgmt: VariableManagement | null = null;
 
@@ -67,11 +72,10 @@ class IcalCalendar extends Homey.App {
     // setup actions
     setupActions(this, variableMgmt);
 
-    // get ical events
     this.log("onInit: Triggering getEvents and reregistering tokens");
-    getEvents(this, variableMgmt, true).catch(err =>
-      this.error("[ERROR] onInit: Failed to complete getEvents(true) ->", err)
-    );
+    getEvents(this, variableMgmt, true)
+      .then(() => this.broadcastCalendarUpdate())
+      .catch(err => this.error("[ERROR] onInit: Failed to complete getEvents(true) ->", err));
 
     // register callback when settings has been set
     this.registerSettingCallbacks();
@@ -131,9 +135,11 @@ class IcalCalendar extends Homey.App {
         }
 
         this.log(`registerSettingCallbacks/${args}: Triggering getEvents and reregistering tokens`);
-        getEvents(this, variableMgmt, true).catch(err =>
-          this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete getEvents(true) ->`, err)
-        );
+        getEvents(this, variableMgmt, true)
+          .then(() => this.broadcastCalendarUpdate())
+          .catch(err =>
+            this.error(`[ERROR] registerSettingCallbacks/${args}: Failed to complete getEvents(true) ->`, err)
+          );
         return;
       }
 
@@ -182,9 +188,9 @@ class IcalCalendar extends Homey.App {
       }
 
       this.log("startJobs/update: Updating calendars without reregistering tokens");
-      getEvents(this, variableMgmt).catch(err =>
-        this.error("[ERROR] startJobs/updateFunc: Failed to complete getEvents() ->", err)
-      );
+      getEvents(this, variableMgmt)
+        .then(() => this.broadcastCalendarUpdate())
+        .catch(err => this.error("[ERROR] startJobs/updateFunc: Failed to complete getEvents() ->", err));
     };
 
     if (!variableMgmt) {
@@ -331,6 +337,29 @@ class IcalCalendar extends Homey.App {
 
     this.log("onUninit -- calling this._unload");
     this._unload("onUninit");
+  }
+
+  getCalendars(): Calendar[] {
+    return variableMgmt?.calendars ?? [];
+  }
+
+  getCalendarColors(): Record<string, string> {
+    if (!variableMgmt) return {};
+    const stored = this.homey.settings.get(variableMgmt.setting.calendarColors) as Record<string, string> | null;
+    return stored ?? {};
+  }
+
+  getLanguage(): string {
+    return this.homey.i18n.getLanguage();
+  }
+
+  broadcastCalendarUpdate(): void {
+    try {
+      (this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
+    } catch (error) {
+      // widget may not be registered yet on first boot
+      this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);
+    }
   }
 
   _unload(name: string): void {

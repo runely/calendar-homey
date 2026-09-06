@@ -16,6 +16,12 @@
       "name": "Nome del calendario",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Colori del calendario",
+      "description": "Scegli un colore per calendario. I widget che supportano i colori per calendario li useranno per la barra di accento e il punto accanto a ogni evento. Dopo aver aggiunto o rinominato calendari sopra, fai clic su 'Aggiorna' per aggiornare l'elenco.",
+      "empty": "Nessun calendario configurato finora.",
+      "refresh": "Aggiorna l'elenco dai calendari sopra"
+    },
     "syncsettings": {
       "legend": "Sincronizzazione",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Conteggio eventi -",
     "lastSuccessfulSync": "Ultima sincronizzazione riuscita -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Nessun appuntamento",
+      "emptyHint": "Tocca aggiorna se questo non sembra corretto",
+      "today": "Oggi",
+      "allDay": "Tutto il giorno",
+      "refresh": "Aggiorna",
+      "eventCount": {
+        "one": "__count__ appuntamento",
+        "many": "__count__ appuntamenti"
+      }
+    }
   }
 }

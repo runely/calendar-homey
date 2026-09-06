@@ -56,4 +56,10 @@ Synchronisation
 - Seuls les événements qui n'ont pas encore commencé ou les événements commencés mais non terminés et dont la date de début est inférieure ou égale à 2 mois seront récupérés (cette option peut être modifiée dans les paramètres).
 - Les événements récurrents dont la date de début est inférieure ou égale à 2 mois seront récupérés (ceci peut être modifié dans les paramètres).
 
+Widget
+
+Le widget "Événements à venir" affiche vos prochains événements de calendrier sur le tableau de bord Homey. Ajoutez-le depuis l'éditeur du tableau de bord. Dans les paramètres du widget, vous pouvez choisir combien de jours à venir afficher, si le nom du calendrier doit être affiché, et la hauteur maximale du widget. Choisissez une couleur par calendrier dans les paramètres de l'app (Couleurs de calendrier) - le widget utilise ces couleurs pour chaque événement.
+
+Le widget se met à jour à chaque synchronisation du calendrier. Appuyez sur le bouton d'actualisation en bas à droite pour actualiser manuellement - par exemple après avoir ajouté un nouveau calendrier ou si le widget semble obsolète.
+
 Plus d'informations et le journal des modifications peuvent être trouvés sur GitHub
