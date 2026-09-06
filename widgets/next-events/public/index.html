@@ -234,6 +234,8 @@
     let daySubFmt;
     let monthYearFmt;
 
+    const fallbackMaxHeight = 5000;
+
     function initFormatters() {
       weekdayFmt = new Intl.DateTimeFormat(locale, { weekday: 'long' });
       daySubFmt = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' });
@@ -344,7 +346,7 @@
     function currentMaxHeight() {
       const s = Homey.getSettings() || {};
       const raw = Number(s.maxHeight);
-      return Number.isFinite(raw) && raw > 0 ? raw : 400;
+      return Number.isFinite(raw) && raw > 0 ? raw : fallbackMaxHeight;
     }
 
     function resizeToContent() {
