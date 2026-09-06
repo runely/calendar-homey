@@ -56,4 +56,10 @@ Synchronizacja
 - Tylko wydarzenia, które jeszcze się nie zaczęły lub wydarzenia, które zaczęły się, ale nie zakończyły i mają datę rozpoczęcia w ciągu 2 miesięcy lub mniej, będą pobierane (to można nadpisać w ustawieniach)
 - Wydarzenia cykliczne, gdzie data rozpoczęcia jest w ciągu 2 miesięcy lub mniej, będą pobierane (to można nadpisać w ustawieniach)
 
+Widżet
+
+Widżet "Nadchodzące wydarzenia" pokazuje twoje najbliższe wydarzenia z kalendarza na pulpicie Homey. Dodaj go z edytora pulpitu. W ustawieniach widżetu możesz wybrać, ile dni naprzód pokazywać, czy wyświetlać nazwę kalendarza, oraz maksymalną wysokość widżetu. Wybierz kolor dla każdego kalendarza w ustawieniach aplikacji (Kolory kalendarza) - widżet używa tych kolorów dla każdego wydarzenia.
+
+Widżet aktualizuje się przy każdej synchronizacji kalendarza. Naciśnij przycisk odświeżania w prawym dolnym rogu, aby odświeżyć ręcznie - na przykład po dodaniu nowego kalendarza lub gdy widżet wygląda na nieaktualny.
+
 Więcej informacji i dziennik zmian można znaleźć na GitHubie

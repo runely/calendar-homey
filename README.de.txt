@@ -56,4 +56,10 @@ Sync
 - Es werden nur Ereignisse abgerufen, die noch nicht gestartet oder die gestartet, aber nicht beendet wurden und deren Startdatum innerhalb von 2 Monaten oder weniger liegt (dies kann in den Einstellungen geändert werden)
 - Wiederkehrende Ereignisse, deren Startdatum innerhalb von 2 Monaten oder weniger liegt, werden abgerufen (dies kann in den Einstellungen geändert werden)
 
+Widget
+
+Das Widget "Bevorstehende Veranstaltungen" zeigt deine nächsten Kalenderereignisse auf dem Homey-Dashboard an. Füge es über den Dashboard-Editor hinzu. In den Widget-Einstellungen kannst du wählen, wie viele Tage im Voraus angezeigt werden, ob der Kalendername angezeigt wird, und die maximale Höhe des Widgets. Wähle in den App-Einstellungen (Kalenderfarben) eine Farbe pro Kalender - das Widget verwendet diese Farben für jedes Ereignis.
+
+Das Widget aktualisiert sich bei jeder Kalendersynchronisierung. Tippe auf die Aktualisieren-Schaltfläche unten rechts, um manuell zu aktualisieren - zum Beispiel nach dem Hinzufügen eines neuen Kalenders oder wenn das Widget veraltet aussieht.
+
 Weitere Informationen und ein Änderungsprotokoll finden Sie auf GitHub

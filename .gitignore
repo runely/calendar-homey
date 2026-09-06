@@ -9,3 +9,6 @@
 /.homeybuild/
 
 /.build/
+
+# Claude skill
+SKILL.md

@@ -203,6 +203,32 @@ These calendar providers do not use (or at least not for all events) the `CREATE
 > These tags are used together with condition *Event containing ... in calendar ... starts within* `OR` *Event containing ... in calendar ... ends within*.
 > If the condition evaluates to **true**, these tags will be filled with the event found, and the tags can be used in any action card
 
+## Widget
+
+The **Upcoming events** widget shows your next calendar events on the Homey mobile-app dashboard.
+
+### Add the widget
+
+Open the Homey app, go to the Dashboard, enter edit mode, tap `+`, and pick **IcalCalendar → Upcoming events**.
+
+### Widget settings
+
+- **Days ahead** *(default `3`, min `1`, max `60`)* — how many days into the future to include events from.
+- **Show calendar name** *(default `on`)* — shows the source calendar name below each event.
+- **Max height (px)** *(default `400`, min `150`, max `1200`)* — caps how tall the widget can grow. The widget grows to fit the number of events, up to this height. Events beyond this height are hidden (there is no in-widget scroll — see the note below).
+
+### Calendar colors
+
+Pick a color per calendar in the app settings (`IcalCalendar → App Settings → Calendar colors`). Each event in the widget uses its calendar's color for the left accent bar and the dot next to the calendar name. Calendars without a color assigned fall back to the app's brand color.
+
+If you add or rename a calendar in the URI list above, click **Refresh list from calendars above** in the Calendar colors section to update the color rows before saving.
+
+### Refresh behavior
+
+- The widget refreshes each time the app finishes a calendar sync (every 15 min by default, configurable via the sync interval setting).
+- A small refresh button in the lower-right corner forces an immediate refetch — use it after adding a calendar, or if the widget looks out of date.
+- Just-ended events may stay visible until the next sync (or a tap of the refresh button).
+
 ## Recurring events
 
 ### Be aware of *multiple/duplicate* "recurring" events:
@@ -214,6 +240,8 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.3.0
+  - `Upcoming events` widget showing your next calendar events
 - 3.2.6
   - Dependency updates
   - Migrated `typescript` from **6.0.3** to **7.0.2**

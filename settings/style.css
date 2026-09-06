@@ -88,6 +88,33 @@ nav {
     margin-right: 0;
 }
 
+/* calendar colors */
+.calendarcolor-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.calendarcolor-name {
+    flex: 1;
+    min-width: 0;
+}
+
+.calendarcolor-picker {
+    width: 40px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid #ccc;
+    background: none;
+    cursor: pointer;
+}
+
+.calendarcolor-empty {
+    color: slategray;
+    font-style: italic;
+}
+
 /* hitcount */
 table {
     width: 100%;

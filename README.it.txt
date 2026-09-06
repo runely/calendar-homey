@@ -56,4 +56,10 @@ Sincronizzazione
 - Solo eventi non ancora iniziati o eventi iniziati ma non terminati e con data di inizio entro 2 mesi o meno verranno recuperati (questo può essere sovrascritto nelle impostazioni)
 - Eventi ricorrenti con data di inizio entro 2 mesi o meno verranno recuperati (questo può essere sovrascritto nelle impostazioni)
 
+Widget
+
+Il widget "Eventi in programma" mostra i tuoi prossimi eventi del calendario sul dashboard di Homey. Aggiungilo dall'editor del dashboard. Nelle impostazioni del widget puoi scegliere quanti giorni in avanti mostrare, se mostrare il nome del calendario, e l'altezza massima del widget. Scegli un colore per calendario nelle impostazioni dell'app (Colori del calendario) - il widget usa questi colori per ogni evento.
+
+Il widget si aggiorna a ogni sincronizzazione del calendario. Tocca il pulsante di aggiornamento in basso a destra per aggiornare manualmente - ad esempio dopo aver aggiunto un nuovo calendario o se il widget sembra obsoleto.
+
 Maggiori informazioni e changelog possono essere trovati su GitHub

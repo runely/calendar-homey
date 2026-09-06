@@ -16,6 +16,12 @@
       "name": "Calendar name",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Calendar colors",
+      "description": "Pick a color per calendar. Widgets that support per-calendar colors will use these for the accent bar and dot next to each event. After adding or renaming calendars above, click 'Refresh' to update the list.",
+      "empty": "No calendars configured yet.",
+      "refresh": "Refresh list from calendars above"
+    },
     "syncsettings": {
       "legend": "Synchronization",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Event count -",
     "lastSuccessfulSync": "Last successful synchronization -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "No appointments",
+      "emptyHint": "Tap refresh if this doesn't look right",
+      "today": "Today",
+      "allDay": "All day",
+      "refresh": "Refresh",
+      "eventCount": {
+        "one": "__count__ appointment",
+        "many": "__count__ appointments"
+      }
+    }
   }
 }

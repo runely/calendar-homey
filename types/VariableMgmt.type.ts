@@ -48,6 +48,7 @@ export type VariableManagementSettings = {
   nextEventTokensPerCalendar: string;
   triggerAllChangedEventTypes: string;
   logAllEvents: string;
+  calendarColors: string;
 };
 
 export type VariableManagementStorage = {

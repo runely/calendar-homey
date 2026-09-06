@@ -56,4 +56,10 @@ Sync
 - Kun avtaler som ikke er startet ennå, eller avtaler som er startet men ikke fullført, og som har startdato innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 - Gjentagende avtaler der startdato er innenfor 2 måneder eller mindre vil bli hentet (kan endres i innstillinger)
 
+Widget
+
+Widgeten "Kommende avtaler" viser de neste kalenderhendelsene dine på Homey-dashbordet. Legg den til fra dashbord-redigeringen. I widget-innstillingene kan du velge hvor mange dager fremover som skal vises, om kalendernavnet skal vises, og maksimal høyde på widgeten. Velg en farge per kalender under app-innstillingene (Kalenderfarger) - widgeten bruker disse fargene på hver hendelse.
+
+Widgeten oppdateres ved hver kalendersynkronisering. Trykk på oppdater-knappen nederst til høyre for å oppdatere manuelt - for eksempel etter at du har lagt til en ny kalender eller hvis widgeten ser utdatert ut.
+
 Mer info og endringslogg finnes på GitHub

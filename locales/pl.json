@@ -16,6 +16,12 @@
       "name": "Nazwa kalendarza",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Kolory kalendarza",
+      "description": "Wybierz kolor dla każdego kalendarza. Widżety obsługujące kolory poszczególnych kalendarzy użyją ich dla paska akcentu i kropki obok każdego wydarzenia. Po dodaniu lub zmianie nazwy kalendarzy powyżej kliknij 'Odśwież', aby zaktualizować listę.",
+      "empty": "Nie skonfigurowano jeszcze żadnych kalendarzy.",
+      "refresh": "Odśwież listę z kalendarzy powyżej"
+    },
     "syncsettings": {
       "legend": "Synchronizacja",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Liczba wydarzeń -",
     "lastSuccessfulSync": "Ostatnia udana synchronizacja -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Brak spotkań",
+      "emptyHint": "Naciśnij odśwież, jeśli to nie wygląda dobrze",
+      "today": "Dzisiaj",
+      "allDay": "Cały dzień",
+      "refresh": "Odśwież",
+      "eventCount": {
+        "one": "__count__ spotkanie",
+        "many": "__count__ spotkań"
+      }
+    }
   }
 }

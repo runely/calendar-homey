@@ -16,6 +16,12 @@
       "name": "Kalenderbezeichnung",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Kalenderfarben",
+      "description": "Wähle eine Farbe pro Kalender. Widgets, die kalenderspezifische Farben unterstützen, verwenden diese für den Akzentbalken und den Punkt neben jedem Ereignis. Nach dem Hinzufügen oder Umbenennen von Kalendern oben klicke auf 'Aktualisieren', um die Liste zu aktualisieren.",
+      "empty": "Noch keine Kalender konfiguriert.",
+      "refresh": "Liste aus Kalendern oben aktualisieren"
+    },
     "syncsettings": {
       "legend": "Synchronisierung",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Anzahl der Ereignisse -",
     "lastSuccessfulSync": "Letzte erfolgreiche Synchronisierung -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Keine Termine",
+      "emptyHint": "Auf Aktualisieren tippen, wenn dies nicht richtig aussieht",
+      "today": "Heute",
+      "allDay": "Ganztags",
+      "refresh": "Aktualisieren",
+      "eventCount": {
+        "one": "__count__ Termin",
+        "many": "__count__ Termine"
+      }
+    }
   }
 }

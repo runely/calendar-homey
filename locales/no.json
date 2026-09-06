@@ -16,6 +16,12 @@
       "name": "Kalendernavn",
       "uri": "URI"
     },
+    "calendarColors": {
+      "legend": "Kalenderfarger",
+      "description": "Velg en farge per kalender. Widgets som støtter farger per kalender bruker disse på aksentstripen og prikken ved hver hendelse. Etter at du har lagt til eller endret navn på kalendere over, klikk 'Oppdater' for å oppdatere listen.",
+      "empty": "Ingen kalendere er konfigurert enda.",
+      "refresh": "Oppdater listen fra kalendere over"
+    },
     "syncsettings": {
       "legend": "Synkronisering",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Antall avtaler -",
     "lastSuccessfulSync": "Siste vellykkede synkronisering -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Ingen avtaler",
+      "emptyHint": "Trykk oppdater dersom dette ikke ser riktig ut",
+      "today": "I dag",
+      "allDay": "Heldags",
+      "refresh": "Oppdater",
+      "eventCount": {
+        "one": "__count__ avtale",
+        "many": "__count__ avtaler"
+      }
+    }
   }
 }

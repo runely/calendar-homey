@@ -16,6 +16,12 @@
       "name": "Kalendernamn",
       "uri": "Sökväg"
     },
+    "calendarColors": {
+      "legend": "Kalenderfärger",
+      "description": "Välj en färg per kalender. Widgets som stöder färger per kalender använder dessa för accentlinjen och punkten bredvid varje händelse. Efter att du har lagt till eller bytt namn på kalendrar ovan, klicka på 'Uppdatera' för att uppdatera listan.",
+      "empty": "Inga kalendrar är konfigurerade ännu.",
+      "refresh": "Uppdatera listan från kalendrar ovan"
+    },
     "syncsettings": {
       "legend": "Synkronisering",
       "interval": {
@@ -164,5 +170,18 @@
   "device": {
     "eventCountCalendar": "Antal händelser -",
     "lastSuccessfulSync": "Senaste framgångsrika synkroniseringen -"
+  },
+  "widget": {
+    "nextEvents": {
+      "empty": "Inga möten",
+      "emptyHint": "Tryck på uppdatera om detta inte ser rätt ut",
+      "today": "Idag",
+      "allDay": "Heldag",
+      "refresh": "Uppdatera",
+      "eventCount": {
+        "one": "__count__ möte",
+        "many": "__count__ möten"
+      }
+    }
   }
 }

@@ -56,4 +56,10 @@ Synkronisering
 - Kun begivenheder, der ikke er startet endnu, eller begivenheder, der er startet men ikke afsluttet og har startdato inden for 2 måneder eller mindre, vil blive hentet (dette kan overskrives i indstillingerne)
 - Gentagne begivenheder, hvor startdatoen er inden for 2 måneder eller mindre, vil blive hentet (dette kan overskrives i indstillingerne)
 
+Widget
+
+Widgeten "Kommende begivenheder" viser de næste kalenderbegivenheder på Homey-dashboardet. Tilføj den fra dashboard-editoren. I widget-indstillingerne kan du vælge hvor mange dage frem der skal vises, om kalendernavnet skal vises, og widgetens maksimale højde. Vælg en farve per kalender under app-indstillingerne (Kalenderfarver) - widgeten bruger disse farver på hver begivenhed.
+
+Widgeten opdateres ved hver kalendersynkronisering. Tryk på opdater-knappen nederst til højre for at opdatere manuelt - for eksempel efter du har tilføjet en ny kalender eller hvis widgeten ser forældet ud.
+
 Mere info og ændringslog findes på GitHub
