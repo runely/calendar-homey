@@ -115,12 +115,35 @@
       color: var(--homey-text-color-light);
       line-height: 1.2;
     }
+    .cal-multiday {
+      font-size: 10px;
+      font-weight: var(--homey-font-weight-bold);
+      letter-spacing: 0.03em;
+      color: var(--homey-text-color-light);
+      background: rgba(127, 127, 127, 0.15);
+      padding: 3px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .cal-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+    }
     .cal-body { flex: 1; min-width: 0; }
     .cal-title {
       font-size: var(--homey-font-size-default);
       font-weight: var(--homey-font-weight-medium);
       line-height: 1.25;
       color: var(--homey-text-color);
+      overflow-wrap: anywhere;
+    }
+    .cal-span {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      margin-top: 3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -137,9 +160,24 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+    .cal-sep {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      flex-shrink: 0;
+    }
+    .cal-loc {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
     }
     .cal-allday {
-      align-self: center;
       font-size: 10px;
       font-weight: var(--homey-font-weight-bold);
       letter-spacing: 0.03em;
@@ -231,11 +269,15 @@
     let Homey;
     let locale = 'en';
     let weekdayFmt;
+    let weekdayShortFmt;
     let daySubFmt;
     let monthYearFmt;
 
+    const fallbackMaxHeight = 5000;
+
     function initFormatters() {
       weekdayFmt = new Intl.DateTimeFormat(locale, { weekday: 'long' });
+      weekdayShortFmt = new Intl.DateTimeFormat(locale, { weekday: 'short' });
       daySubFmt = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' });
       monthYearFmt = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' });
     }
@@ -244,9 +286,52 @@
       return d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
     }
 
+    function startOfDay(d) {
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
+    function expandToOccurrences(events) {
+      const todayStart = startOfDay(new Date());
+      const occurrences = [];
+
+      for (const event of events) {
+        const start = new Date(event.start);
+        const startDay = startOfDay(start);
+        const span = Math.max(1, event.daySpan | 0);
+
+        for (let i = 0; i < span; i++) {
+          const day = new Date(startDay.getTime() + i * 24 * 60 * 60 * 1000);
+          if (day < todayStart) {
+            continue;
+          }
+
+          occurrences.push({ event, dayIndex: i, span, day });
+        }
+      }
+
+      return occurrences;
+    }
+
     function fmtTime(iso) {
       const d = new Date(iso);
       return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    }
+
+    function formatEventSpan(event) {
+      const start = new Date(event.start);
+
+      if (event.allDay) {
+        const endDay = new Date(start.getFullYear(), start.getMonth(), start.getDate() + event.daySpan - 1);
+        return weekdayShortFmt.format(start) + ' → ' + weekdayShortFmt.format(endDay);
+      }
+
+      if (!event.end) {
+        return '';
+      }
+
+      const end = new Date(event.end);
+      return weekdayShortFmt.format(start) + ' ' + fmtTime(event.start) +
+        ' → ' + weekdayShortFmt.format(end) + ' ' + fmtTime(event.end);
     }
 
     function escapeHtml(s) {
@@ -280,19 +365,20 @@
       const countKey = events.length === 1 ? 'widget.nextEvents.eventCount.one' : 'widget.nextEvents.eventCount.many';
       count.textContent = Homey.__(countKey, { count: events.length });
 
-      // Sort by start (all-day first within a day), then time.
-      events.sort((a, b) => {
-        const da = new Date(a.start), db = new Date(b.start);
-        const dayDiff = new Date(da.getFullYear(), da.getMonth(), da.getDate()) - new Date(db.getFullYear(), db.getMonth(), db.getDate());
+      const occurrences = expandToOccurrences(events);
+
+      // Sort by day, then all-day first, then start time within the day.
+      occurrences.sort((a, b) => {
+        const dayDiff = a.day - b.day;
         if (dayDiff !== 0) {
           return dayDiff;
         }
 
-        if (a.allDay !== b.allDay) {
-          return a.allDay ? -1 : 1;
+        if (a.event.allDay !== b.event.allDay) {
+          return a.event.allDay ? -1 : 1;
         }
 
-        return da - db;
+        return new Date(a.event.start) - new Date(b.event.start);
       });
 
       const todayKey = dayKey(new Date());
@@ -301,14 +387,14 @@
       let html = '';
       let lastKey = null;
 
-      for (const event of events) {
-        const start = new Date(event.start);
-        const key = dayKey(start);
+      for (const occurrence of occurrences) {
+        const event = occurrence.event;
+        const key = dayKey(occurrence.day);
 
         if (key !== lastKey) {
           lastKey = key;
-          const label = key === todayKey ? todayLabel : weekdayFmt.format(start);
-          const sub = daySubFmt.format(start);
+          const label = key === todayKey ? todayLabel : weekdayFmt.format(occurrence.day);
+          const sub = daySubFmt.format(occurrence.day);
           html +=
             '<div class="cal-day-header">' +
             '<span class="cal-day-label">' + escapeHtml(label) + '</span>' +
@@ -317,14 +403,46 @@
         }
 
         const color = event.color || 'var(--accent)';
-        const timeCell = event.allDay
-          ? '<div class="cal-time-start">00:00</div><div class="cal-time-end">00:00</div>'
-          : '<div class="cal-time-start">' + fmtTime(event.start) + '</div>' +
-            (event.end ? '<div class="cal-time-end">' + fmtTime(event.end) + '</div>' : '');
-        const allDayBadge = event.allDay ? '<span class="cal-allday">' + escapeHtml(allDayLabel) + '</span>' : '';
+        const isFirstDay = occurrence.dayIndex === 0;
+        const isLastDay = occurrence.dayIndex === occurrence.span - 1;
 
-        const metaRow = event.calendar
-          ? '<div class="cal-meta"><span class="cal-cal">' + escapeHtml(event.calendar) + '</span></div>'
+        let timeCell;
+        if (event.allDay) {
+          timeCell = '<div class="cal-time-start">00:00</div><div class="cal-time-end">00:00</div>';
+        } else if (occurrence.span === 1) {
+          timeCell = '<div class="cal-time-start">' + fmtTime(event.start) + '</div>' +
+            (event.end ? '<div class="cal-time-end">' + fmtTime(event.end) + '</div>' : '');
+        } else {
+          const startSlot = isFirstDay
+            ? '<div class="cal-time-start">' + fmtTime(event.start) + '</div>'
+            : '<div class="cal-time-start">&nbsp;</div>';
+          const endSlot = isLastDay && event.end
+            ? '<div class="cal-time-end">' + fmtTime(event.end) + '</div>'
+            : '<div class="cal-time-end">&nbsp;</div>';
+          timeCell = startSlot + endSlot;
+        }
+
+        const spanLine = occurrence.span > 1
+          ? '<div class="cal-span">' + escapeHtml(formatEventSpan(event)) + '</div>'
+          : '';
+
+        const allDayBadge = event.allDay ? '<span class="cal-allday">' + escapeHtml(allDayLabel) + '</span>' : '';
+        const multiDayBadge = occurrence.span > 1
+          ? '<span class="cal-multiday">' + (occurrence.dayIndex + 1) + '/' + occurrence.span + '</span>'
+          : '';
+
+        const metaParts = [];
+        if (event.calendar) {
+          metaParts.push('<span class="cal-cal">' + escapeHtml(event.calendar) + '</span>');
+        }
+        if (event.location) {
+          if (metaParts.length > 0) {
+            metaParts.push('<span class="cal-sep">-</span>');
+          }
+          metaParts.push('<span class="cal-loc">' + escapeHtml(event.location) + '</span>');
+        }
+        const metaRow = metaParts.length > 0
+          ? '<div class="cal-meta">' + metaParts.join('') + '</div>'
           : '';
 
         html +=
@@ -332,9 +450,12 @@
           '<div class="cal-time">' + timeCell + '</div>' +
           '<div class="cal-body">' +
           '<div class="cal-title">' + escapeHtml(event.title) + '</div>' +
+          spanLine +
           metaRow +
           '</div>' +
-          allDayBadge +
+          (allDayBadge || multiDayBadge
+            ? '<div class="cal-badges">' + allDayBadge + multiDayBadge + '</div>'
+            : '') +
           '</div>';
       }
 
@@ -344,7 +465,7 @@
     function currentMaxHeight() {
       const s = Homey.getSettings() || {};
       const raw = Number(s.maxHeight);
-      return Number.isFinite(raw) && raw > 0 ? raw : 400;
+      return Number.isFinite(raw) && raw > 0 ? raw : fallbackMaxHeight;
     }
 
     function resizeToContent() {
@@ -377,8 +498,10 @@
         const s = Homey.getSettings() || {};
         const daysAhead = s.daysAhead != null ? s.daysAhead : 7;
         const showCalendarName = s.showCalendarName !== false;
+        const showLocation = s.showLocation === true;
         const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
-                     '&showCalendarName=' + encodeURIComponent(showCalendarName);
+                     '&showCalendarName=' + encodeURIComponent(showCalendarName) +
+                     '&showLocation=' + encodeURIComponent(showLocation);
         const events = await Homey.api('GET', path, {});
         renderEvents(events);
       } catch (err) {

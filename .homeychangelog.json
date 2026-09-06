@@ -475,5 +475,8 @@
   },
   "3.3.0": {
     "en": "Added an 'Upcoming events' widget"
+  },
+  "3.3.1": {
+    "en": "Widget improvements: 1. Increased max height. 2. Long titles wrap. 3. New widget setting for showing location. 4. Bugfix: A multiday event would only be shown on the day it started"
   }
 }
