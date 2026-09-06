@@ -243,6 +243,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
+- 3.3.1
+  - `Upcoming events` widget improvements
+    - Removed the calendar dot under the calendar title. The dot was still shown when `Show calendar name` was turned off in the widget settings. And the bar on the left already shows the calendar color 
 - 3.3.0
   - `Upcoming events` widget showing your next calendar events
 - 3.2.6
