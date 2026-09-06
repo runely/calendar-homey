@@ -472,5 +472,8 @@
   },
   "3.2.6": {
     "en": "Dependency updates"
+  },
+  "3.3.0": {
+    "en": "Added an 'Upcoming events' widget"
   }
 }
