@@ -217,6 +217,9 @@ Open the Homey app, go to the Dashboard, enter edit mode, tap `+`, and pick **Ic
 - **Show calendar name** *(default `on`)* — shows the source calendar name below each event.
 - **Max height (px)** *(default `400`, min `150`, max `1200`)* — caps how tall the widget can grow. The widget grows to fit the number of events, up to this height. Events beyond this height are hidden (there is no in-widget scroll — see the note below).
 
+> **Why no in-widget scroll?**
+> Homey dashboard widgets run inside an iframe whose height is set by the widget itself (`Homey.setHeight`). Any touch gesture inside the widget is captured by the dashboard to scroll the dashboard itself, so an inner scroll region would fight the parent scroll and can't be interacted with reliably. Use **Max height** together with **Days ahead** to shape how much is visible, and scroll the dashboard to reach a taller widget.
+
 ### Calendar colors
 
 Pick a color per calendar in the app settings (`IcalCalendar → App Settings → Calendar colors`). Each event in the widget uses its calendar's color for the left accent bar and the dot next to the calendar name. Calendars without a color assigned fall back to the app's brand color.
