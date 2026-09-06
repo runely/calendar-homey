@@ -215,6 +215,7 @@ Open the Homey app, go to the Dashboard, enter edit mode, tap `+`, and pick **Ic
 
 - **Days ahead** *(default `3`, min `1`, max `60`)* — how many days into the future to include events from.
 - **Show calendar name** *(default `on`)* — shows the source calendar name below each event.
+- **Show location** *(default `off`)* — shows the event location below each event. When shown together with the calendar name, the two are separated by a hyphen.
 - **Max height (px)** *(default `400`, min `150`, max `5000`)* — caps how tall the widget can grow. The widget grows to fit the number of events, up to this height. Events beyond this height are hidden (there is no in-widget scroll — see the note below).
 
 > **Why no in-widget scroll?**
@@ -248,6 +249,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Removed the calendar dot under the calendar title. The dot was still shown when `Show calendar name` was turned off in the widget settings. And the bar on the left already shows the calendar color
     - Increased the `max height` to **5000** to allow for much more visible events, since scrolling isn't an option
     - Long titles now wrap onto next lines instead of showing ... at the end
+    - Added a widget setting for showing location of the event
 - 3.3.0
   - `Upcoming events` widget showing your next calendar events
 - 3.2.6

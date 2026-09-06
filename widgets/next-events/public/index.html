@@ -135,6 +135,22 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+    .cal-sep {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      flex-shrink: 0;
+    }
+    .cal-loc {
+      font-size: var(--homey-font-size-small);
+      color: var(--homey-text-color-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
     }
     .cal-allday {
       align-self: center;
@@ -323,8 +339,18 @@
             (event.end ? '<div class="cal-time-end">' + fmtTime(event.end) + '</div>' : '');
         const allDayBadge = event.allDay ? '<span class="cal-allday">' + escapeHtml(allDayLabel) + '</span>' : '';
 
-        const metaRow = event.calendar
-          ? '<div class="cal-meta"><span class="cal-cal">' + escapeHtml(event.calendar) + '</span></div>'
+        const metaParts = [];
+        if (event.calendar) {
+          metaParts.push('<span class="cal-cal">' + escapeHtml(event.calendar) + '</span>');
+        }
+        if (event.location) {
+          if (metaParts.length > 0) {
+            metaParts.push('<span class="cal-sep">-</span>');
+          }
+          metaParts.push('<span class="cal-loc">' + escapeHtml(event.location) + '</span>');
+        }
+        const metaRow = metaParts.length > 0
+          ? '<div class="cal-meta">' + metaParts.join('') + '</div>'
           : '';
 
         html +=
@@ -377,8 +403,10 @@
         const s = Homey.getSettings() || {};
         const daysAhead = s.daysAhead != null ? s.daysAhead : 7;
         const showCalendarName = s.showCalendarName !== false;
+        const showLocation = s.showLocation === true;
         const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
-                     '&showCalendarName=' + encodeURIComponent(showCalendarName);
+                     '&showCalendarName=' + encodeURIComponent(showCalendarName) +
+                     '&showLocation=' + encodeURIComponent(showLocation);
         const events = await Homey.api('GET', path, {});
         renderEvents(events);
       } catch (err) {

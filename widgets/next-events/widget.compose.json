@@ -66,6 +66,24 @@
       "value": true
     },
     {
+      "id": "showLocation",
+      "type": "checkbox",
+      "title": {
+        "en": "Show location",
+        "no": "Vis sted",
+        "nl": "Locatie tonen",
+        "de": "Ort anzeigen",
+        "sv": "Visa plats",
+        "fr": "Afficher le lieu",
+        "it": "Mostra posizione",
+        "es": "Mostrar ubicación",
+        "da": "Vis lokation",
+        "pl": "Pokaż lokalizację",
+        "ko": "위치 표시"
+      },
+      "value": false
+    },
+    {
       "id": "maxHeight",
       "type": "number",
       "title": {

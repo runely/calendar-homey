@@ -23,6 +23,7 @@ type CalendarWidgetEvent = {
   end: string | null;
   allDay: boolean;
   calendar: string;
+  location: string;
   color?: string;
 };
 
@@ -40,6 +41,7 @@ export default {
 
     const daysAhead: number = Math.max(1, Math.min(60, Number(query.daysAhead) || 7));
     const showCalendarName: boolean = query.showCalendarName !== "false";
+    const showLocation: boolean = query.showLocation === "true";
 
     const now: Date = new Date();
     const startOfToday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -68,6 +70,7 @@ export default {
           end: event.fullDayEvent ? null : (event.end.toISO() ?? null),
           allDay: event.fullDayEvent,
           calendar: showCalendarName ? calendar.name : "",
+          location: showLocation ? event.location : "",
           color
         });
       }
