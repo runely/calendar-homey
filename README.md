@@ -250,6 +250,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - Increased the `max height` to **5000** to allow for much more visible events, since scrolling isn't an option
     - Long titles now wrap onto next lines instead of showing ... at the end
     - Added a widget setting for showing location of the event
+    - Bugfix: A multiday event would only be shown on the day it started
 - 3.3.0
   - `Upcoming events` widget showing your next calendar events
 - 3.2.6

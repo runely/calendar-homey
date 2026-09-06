@@ -22,6 +22,7 @@ type CalendarWidgetEvent = {
   start: string;
   end: string | null;
   allDay: boolean;
+  daySpan: number;
   calendar: string;
   location: string;
   color?: string;
@@ -63,12 +64,18 @@ export default {
           continue;
         }
 
+        const startDay: number = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
+        const lastMoment: Date = event.fullDayEvent ? new Date(end.getTime() - MS_PER_DAY) : end;
+        const lastDay: number = new Date(lastMoment.getFullYear(), lastMoment.getMonth(), lastMoment.getDate()).getTime();
+        const daySpan: number = Math.max(1, Math.round((lastDay - startDay) / MS_PER_DAY) + 1);
+
         upcoming.push({
           id: event.uid,
           title: event.summary,
           start: event.start.toISO() ?? "",
           end: event.fullDayEvent ? null : (event.end.toISO() ?? null),
           allDay: event.fullDayEvent,
+          daySpan,
           calendar: showCalendarName ? calendar.name : "",
           location: showLocation ? event.location : "",
           color
