@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "croner": "^10.0.1",
-    "humanize-duration": "^3.34.0",
+    "humanize-duration": "^3.35.0",
     "ics-filter": "^1.0.5",
     "luxon": "^3.7.2",
-    "node-ical": "^0.27.1",
+    "node-ical": "^0.27.2",
     "source-map-support": "^0.5.21"
   },
   "scripts": {
