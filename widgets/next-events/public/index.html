@@ -503,7 +503,7 @@
                      '&showCalendarName=' + encodeURIComponent(showCalendarName) +
                      '&showLocation=' + encodeURIComponent(showLocation);
 
-        const displayHeader = s.showHeader ? 'inline' : 'flex';
+        const displayHeader = s.showHeader ? 'flex' : 'none';
         const displayFooter = s.showFooter ? 'flex' : 'none';
 
         document.getElementById("cal-header").style.display = displayHeader;
