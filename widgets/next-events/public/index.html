@@ -358,6 +358,7 @@
           '<span class="label">' + escapeHtml(Homey.__('widget.nextEvents.empty')) + '</span>' +
           '<span class="hint">' + escapeHtml(Homey.__('widget.nextEvents.emptyHint')) + '</span>' +
           '</div>';
+        requestAnimationFrame(resizeToContent);
         return;
       }
 
@@ -460,6 +461,7 @@
       }
 
       list.innerHTML = html;
+      requestAnimationFrame(resizeToContent);
     }
 
     function currentMaxHeight() {
