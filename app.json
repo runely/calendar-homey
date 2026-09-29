@@ -6124,6 +6124,42 @@
           "value": true
         },
         {
+          "id": "showHeader",
+          "type": "checkbox",
+          "title": {
+            "en": "Show calendar header",
+            "no": "Vis kalenderoverskrift",
+            "nl": "Kalenderkoptekst tonen",
+            "de": "Kalenderkopfzeile anzeigen",
+            "sv": "Visa kalenderrubrik",
+            "fr": "Afficher l'en-tête du calendrier",
+            "it": "Mostra intestazione del calendario",
+            "es": "Mostrar encabezado del calendario",
+            "da": "Vis kalenderoverskrift",
+            "pl": "Pokaż nagłówek kalendarza",
+            "ko": "캘린더 머리글 표시"
+          },
+          "value": true
+        },
+        {
+          "id": "showFooter",
+          "type": "checkbox",
+          "title": {
+            "en": "Show calendar footer",
+            "no": "Vis kalenderbunntekst",
+            "nl": "Kalendervoettekst tonen",
+            "de": "Kalenderfußzeile anzeigen",
+            "sv": "Visa kalendersidfot",
+            "fr": "Afficher le pied de page du calendrier",
+            "it": "Mostra piè di pagina del calendario",
+            "es": "Mostrar pie de página del calendario",
+            "da": "Vis kalendersidefod",
+            "pl": "Pokaż stopkę kalendarza",
+            "ko": "캘린더 바닥글 표시"
+          },
+          "value": true
+        },
+        {
           "id": "showLocation",
           "type": "checkbox",
           "title": {
