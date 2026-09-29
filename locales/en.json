@@ -183,5 +183,8 @@
         "many": "__count__ appointments"
       }
     }
+  },
+  "calendar" : {
+    "all" : "All"
   }
 }

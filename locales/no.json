@@ -183,5 +183,8 @@
         "many": "__count__ avtaler"
       }
     }
+  },
+  "calendar" : {
+    "all" : "Alle"
   }
 }

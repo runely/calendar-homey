@@ -183,5 +183,8 @@
         "many": "__count__ citas"
       }
     }
+  },
+  "calendar" : {
+    "all" : "Todo"
   }
 }

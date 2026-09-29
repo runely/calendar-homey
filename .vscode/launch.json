@@ -1,86 +1,110 @@
 {
-  "version": "1.0.0",
+  "version": "0.2.0",
   "configurations": [
     {
-      "name": "Select Homey (Early 2019)",
+      "name": "Select Homey",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": ["select", "-n", "Homey"]
+      "args": [
+        "select",
+        "-n",
+        "Homey"
+      ]
     },
     {
-      "name": "Select Homey Pro (Early 2023)",
+      "name": "Select Homey Pro Early 2023",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": ["select", "-n", "Homey Pro"]
+      "args": [
+        "select",
+        "-n",
+        "Homey Pro van Arie J."
+      ]
     },
     {
-      "name": "Launch app on Homey (Early 2019)",
+      "name": "Launch app on Homey",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": ["app", "run", "--remote"],
+      "args": [
+        "app",
+        "run"
+      ],
       "outputCapture": "std",
-      "env": {
-        "DEBUG": "1"
-      },
       "serverReadyAction": {
         "pattern": "Debugger listening on",
         "action": "startDebugging",
-        "name": "Attach to Homey (Early 2019)"
+        "name": "Attach to Homey"
       }
     },
     {
-      "name": "Launch app on Homey Pro (Early 2023)",
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "homey",
-      "args": ["app", "run", "--remote"],
-      "outputCapture": "std",
-      "env": {
-        "DEBUG": "1"
-      },
-      "serverReadyAction": {
-        "pattern": "Debugger listening on",
-        "action": "startDebugging",
-        "name": "Attach to Homey Pro (Early 2023)"
-      }
-    },
-    {
-      "name": "Attach to Homey (Early 2019)",
+      "name": "Attach to Homey",
       "type": "node",
       "request": "attach",
-      "address": "192.168.3.10",
+      "address": "192.168.1.17",
       "port": 9222,
       "localRoot": "${workspaceFolder}",
       "remoteRoot": "/"
     },
     {
-      "name": "Attach to Homey Pro (Early 2023)",
-      "type": "node",
-      "request": "attach",
-      "address": "192.168.3.9",
-      "port": 9222,
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/app/"
-    },
-    {
+      "name": "Launch app on Homey Pro Early 2023",
       "type": "node",
       "request": "launch",
-      "name": "Jest: current file",
-      "env": { "TZ": "UTC" },
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["${fileBasenameNoExtension}"],
-      "console": "integratedTerminal",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": [
+        "app",
+        "run",
+        "--remote"
+      ],
+      "outputCapture": "std",
+      "serverReadyAction": {
+        "pattern": "Debugger listening on",
+        "action": "startDebugging",
+        "name": "Attach to Homey Pro Early 2023"
       }
+    },
+    {
+      "name": "Attach to Homey Pro Early 2023",
+      "type": "node",
+      "request": "attach",
+      "address": "192.168.1.17",
+      "port": 9222,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app/",
+      "restart": true
+    }, 
+    {
+      "name": "Launch app on Docker",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": [
+        "app",
+        "run"
+      ],
+      "outputCapture": "std",
+      "serverReadyAction": {
+        "pattern": "Debugger listening on",
+        "action": "startDebugging",
+        "name": "Attach to Docker"
+      }
+    },
+    {
+      "name": "Attach to Docker",
+      "type": "node",
+      "request": "attach",
+      "address": "0.0.0.0",
+      "port": 9229,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app/",
+      "restart": true
     }
   ]
 }

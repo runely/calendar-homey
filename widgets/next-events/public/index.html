@@ -63,10 +63,13 @@
     }
 
     .cal-list {
-      flex: 1;
+      /* flex: 1; */
+      display: inline-block;
       min-height: 0;
       overflow: hidden;
+      overflow-y:auto;
       margin-top: var(--homey-su-4);
+      margin-bottom: calc(var(--homey-su-4) + var(--homey-su-2));
     }
 
     .cal-day-header {
@@ -209,6 +212,9 @@
     }
 
     .cal-footer {
+      position: fixed;
+      bottom:var(--homey-su-2);
+      right: var(--homey-su-2);
       display: flex;
       justify-content: flex-end;
       margin-top: var(--homey-su-2);
@@ -272,6 +278,11 @@
     let weekdayShortFmt;
     let daySubFmt;
     let monthYearFmt;
+    let s;
+    let daysAhead;
+    let showCalendarName;
+    let showLocation;
+    let useFixedHeight = false;
 
     const fallbackMaxHeight = 5000;
 
@@ -465,12 +476,15 @@
     }
 
     function currentMaxHeight() {
-      const s = Homey.getSettings() || {};
       const raw = Number(s.maxHeight);
       return Number.isFinite(raw) && raw > 0 ? raw : fallbackMaxHeight;
     }
 
     function resizeToContent() {
+      if(useFixedHeight) {
+        Homey.setHeight(currentMaxHeight());
+        return;
+      }
       const header = document.querySelector('.cal-header');
       const list = document.getElementById('list');
       const footer = document.querySelector('.cal-footer');
@@ -497,10 +511,6 @@
 
     async function load() {
       try {
-        const s = Homey.getSettings() || {};
-        const daysAhead = s.daysAhead != null ? s.daysAhead : 7;
-        const showCalendarName = s.showCalendarName !== false;
-        const showLocation = s.showLocation === true;
         const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
                      '&showCalendarName=' + encodeURIComponent(showCalendarName) +
                      '&showLocation=' + encodeURIComponent(showLocation);
@@ -515,6 +525,12 @@
 
     async function onHomeyReady(_Homey) {
       Homey = _Homey;
+      s = Homey.getSettings() || {};
+      daysAhead = s.daysAhead != null ? s.daysAhead : 7;
+      showCalendarName = s.showCalendarName !== false;
+      showLocation = s.showLocation === true;
+      useFixedHeight = s.useFixedHeight === true;
+      
 
       // Initialize formatters with the fallback locale and register the update
       // listener BEFORE any async work. Otherwise an app broadcast that lands
@@ -533,7 +549,9 @@
         Homey.hapticFeedback();
         refreshBtn.classList.add('loading');
         renderHeader();
-        load().finally(() => refreshBtn.classList.remove('loading'));
+        load().finally(() => {
+          refreshBtn.classList.remove('loading');
+        });
       });
 
       Homey.ready();

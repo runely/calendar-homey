@@ -183,5 +183,8 @@
         "many": "__count__ rendez-vous"
       }
     }
+  },
+  "calendar" : {
+    "all" : "Tout"
   }
 }

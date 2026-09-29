@@ -183,5 +183,8 @@
         "many": "__count__ appuntamenti"
       }
     }
+  },
+  "calendar" : {
+    "all" : "Tutto"
   }
 }

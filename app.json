@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "no.runely.calendar",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "compatibility": ">=12.9.0",
   "sdk": 3,
   "platforms": [
@@ -51,6 +51,10 @@
       {
         "name": "Rune Moskvil Lyngås",
         "email": "runely85@gmail.com"
+      },
+      {
+        "name": "Arie J. Godschalk",
+        "email": "arie@qluster-it.nl"
       }
     ],
     "translators": [
@@ -6158,21 +6162,83 @@
             "ko": "최대 높이 (px)"
           },
           "hint": {
-            "en": "The widget grows with the number of events, up to this height. Events beyond this height are hidden.",
-            "no": "Widgeten vokser med antall hendelser, opp til denne høyden. Hendelser utover denne høyden skjules.",
-            "nl": "De widget groeit met het aantal afspraken, tot deze hoogte. Afspraken boven deze hoogte worden verborgen.",
-            "de": "Das Widget wächst mit der Anzahl der Ereignisse, bis zu dieser Höhe. Ereignisse darüber werden ausgeblendet.",
-            "sv": "Widgeten växer med antalet händelser, upp till denna höjd. Händelser över denna höjd döljs.",
-            "fr": "Le widget grandit avec le nombre d'événements, jusqu'à cette hauteur. Les événements au-delà sont masqués.",
-            "it": "Il widget cresce con il numero di eventi, fino a questa altezza. Gli eventi oltre questa altezza sono nascosti.",
-            "es": "El widget crece con el número de eventos, hasta esta altura. Los eventos por encima de esta altura se ocultan.",
-            "da": "Widgeten vokser med antallet af begivenheder, op til denne højde. Begivenheder ud over denne højde skjules.",
-            "pl": "Widżet rośnie wraz z liczbą wydarzeń, do tej wysokości. Wydarzenia powyżej tej wysokości są ukryte.",
-            "ko": "위젯은 이벤트 수에 따라 이 높이까지 커집니다. 이 높이를 초과하는 이벤트는 숨겨집니다."
+            "en": "The widget grows with the number of events, up to this height. Events beyond this height are scrollable.",
+            "nl": "De widget groeit mee met het aantal evenementen, tot deze hoogte. Evenementen boven deze hoogte zijn scrollbaar.",
+            "da": "Widgeten vokser med antallet af begivenheder, op til denne højde. Begivenheder ud over denne højde kan rulles igennem.",
+            "de": "Das Widget wächst mit der Anzahl der Ereignisse bis zu dieser Höhe. Ereignisse, die über diese Höhe hinausgehen, sind scrollbar.",
+            "es": "El widget crece con el número de eventos, hasta esta altura. Los eventos que superan esta altura se pueden desplazar.",
+            "fr": "Le widget s'agrandit avec le nombre d'événements, jusqu'à cette hauteur. Les événements au-delà de cette hauteur sont défilables.",
+            "it": "Il widget cresce con il numero di eventi, fino a questa altezza. Gli eventi oltre questa altezza sono scorrevoli.",
+            "no": "Widgeten vokser med antall hendelser, opp til denne høyden. Hendelser utover denne høyden kan rulles.",
+            "sv": "Widgeten växer med antalet händelser, upp till denna höjd. Händelser utöver denna höjd är rullbara.",
+            "pl": "Widżet rośnie wraz z liczbą wydarzeń, aż do tej wysokości. Wydarzenia przekraczające tę wysokość można przewijać.",
+            "ko": "위젯은 이벤트 수에 따라 이 높이까지 커집니다. 이 높이를 초과하는 이벤트는 스크롤할 수 있습니다."
           },
           "value": 400,
           "min": 150,
           "max": 5000
+        },
+        {
+          "id": "useFixedHeight",
+          "type": "checkbox",
+          "title": {
+            "en": "Use fixed height",
+            "nl": "Gebruik vaste hoogte",
+            "da": "Brug fast højde",
+            "de": "Feste Höhe verwenden",
+            "es": "Usar altura fija",
+            "fr": "Utiliser une hauteur fixe",
+            "it": "Usa altezza fissa",
+            "no": "Bruk fast høyde",
+            "sv": "Använd fast höjd",
+            "pl": "Użyj stałej wysokości",
+            "ko": "고정 높이 사용"
+          },
+          "hint": {
+            "en": "Use fixed height (defined in Max Height).",
+            "nl": "Gebruik vaste hoogte (zoals gedefinieerd in Max Hoogte).",
+            "da": "Brug fast højde (defineret i Maksimal Højde).",
+            "de": "Verwenden Sie eine feste Höhe (definiert in Maximalhöhe).",
+            "es": "Usar altura fija (definida en Altura Máxima).",
+            "fr": "Utiliser une hauteur fixe (définie dans Hauteur Max).",
+            "it": "Usa un'altezza fissa (definita in Altezza Massima).",
+            "no": "Bruk fast høyde (definert i Maks høyde).",
+            "sv": "Använd fast höjd (definierad i Maxhöjd).",
+            "pl": "Użyj stałej wysokości (zdefiniowanej w Maksymalnej Wysokości).",
+            "ko": "최대 높이에서 정의된 고정 높이를 사용하세요."
+          },
+          "value": false
+        },
+        {
+          "id": "calendar",
+          "type": "autocomplete",
+          "title": {
+            "en": "Calendar to show",
+            "nl": "Kalender om te tonen",
+            "da": "Kalender at vise",
+            "de": "Anzuzeigender Kalender",
+            "es": "Calendario para mostrar",
+            "fr": "Calendrier à afficher",
+            "it": "Calendario da mostrare",
+            "no": "Kalender å vise",
+            "sv": "Kalender att visa",
+            "pl": "Kalendarz do wyświetlenia",
+            "ko": "표시할 캘린더"
+          },
+          "all": {
+            "en": "All",
+            "nl": "Alles",
+            "da": "Alle",
+            "de": "Alle",
+            "es": "Todo",
+            "fr": "Tout",
+            "it": "Tutto",
+            "no": "Alle",
+            "sv": "Alla",
+            "pl": "Wszystko",
+            "ko": "모두"
+          },
+          "value": null
         }
       ],
       "api": {

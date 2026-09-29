@@ -2,7 +2,7 @@ import sourceMapSupport from "source-map-support";
 
 sourceMapSupport.install();
 
-import Homey from "homey";
+import Homey, { Widget } from "homey";
 import { DateTime } from "luxon";
 
 import { addJob, isValidCron } from "./handlers/cron.js";
@@ -34,7 +34,7 @@ class IcalCalendar extends Homey.App {
    * onInit is called when the app is initialized.
    */
   async onInit(): Promise<void> {
-    /* if (process.env.DEBUG === '1') {
+    if (process.env.DEBUG === '1') {
       try {
         require('inspector').waitForDebugger();
         this.log('Attached inspector');
@@ -42,7 +42,7 @@ class IcalCalendar extends Homey.App {
         require('inspector').open(9222, '0.0.0.0', true);
         this.log('Attached inspector:9222');
       }
-    } */
+    }
 
     this.log(
       `${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
@@ -71,6 +71,15 @@ class IcalCalendar extends Homey.App {
 
     // setup actions
     setupActions(this, variableMgmt);
+
+    const widget = this.homey.dashboards.getWidget(WIDGET_ID);
+
+    widget.registerSettingAutocompleteListener('calendar', async (query:string, settings:any): Promise<Widget.SettingAutocompleteResults> => {
+      let results = [{name:'All'}] as [Calendar];
+      results.push(this.getCalendars().filter((item) => item.name.toLowerCase().includes(query.toLowerCase())));      
+      return results;
+    });
+
 
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true)

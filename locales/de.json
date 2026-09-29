@@ -183,5 +183,8 @@
         "many": "__count__ Termine"
       }
     }
+  },
+  "calendar" : {
+    "all" : "Alle"
   }
 }
