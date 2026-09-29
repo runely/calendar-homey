@@ -364,8 +364,12 @@ export class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
-      this.log('broadcastCalendarUpdate');
-      (this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
+      //this.log('broadcastCalendarUpdate', (this.homey.dashboards.getWidget(WIDGET_ID) as any).realtime);
+      // widget emit will only emit internally, not to the API.
+      //(this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
+
+      this.homey.api.realtime('update_widget_'+WIDGET_ID, null);
+      
     } catch (error) {
       // widget may not be registered yet on first boot
       this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);

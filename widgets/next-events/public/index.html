@@ -540,8 +540,7 @@
       // during the language fetch would be missed, and the widget would stay
       // stuck on its initial (possibly empty) render until the next 15-min sync.
       initFormatters();
-      Homey.on('update', () => {
-        refreshBtn = document.getElementById('refresh').innerText = 'UPDATE';
+      Homey.on('update_widget_next-events', () => {
         renderHeader();
         load();
       });
