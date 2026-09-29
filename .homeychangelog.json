@@ -483,6 +483,6 @@
     "en": "Dependency updates"
   },
   "3.3.3": {
-    "en": "Widget improvements: Fixed height, scrollable, auto-sync when new appointments are received, show per-calendar, height re-adjusts after (auto)refreshing."
+    "en": "Widget improvements: Fixed height option, scrollable, auto-sync when new appointments are received, show per-calendar, height re-adjusts after (auto)refreshing."
   }
 }
