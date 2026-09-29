@@ -29,7 +29,7 @@ const WIDGET_ID: string = "next-events";
 
 let variableMgmt: VariableManagement | null = null;
 
-class IcalCalendar extends Homey.App {
+export class IcalCalendar extends Homey.App {
   /**
    * onInit is called when the app is initialized.
    */
@@ -74,9 +74,9 @@ class IcalCalendar extends Homey.App {
 
     const widget = this.homey.dashboards.getWidget(WIDGET_ID);
 
-    widget.registerSettingAutocompleteListener('calendar', async (query:string, settings:any): Promise<Widget.SettingAutocompleteResults> => {
-      let results = [{name:'All'}] as [Calendar];
-      results.push(this.getCalendars().filter((item) => item.name.toLowerCase().includes(query.toLowerCase())));      
+    widget.registerSettingAutocompleteListener('calendarToShow', async (query:string, settings:any): Promise<Widget.SettingAutocompleteResults> => {
+      let results = [{id:"__all__", name:this.homey.__("calendar.all")}] as any;
+      results.push(...this.getCalendars().filter((item) => item.name.toLowerCase().includes(query.toLowerCase())));      
       return results;
     });
 
@@ -364,6 +364,7 @@ class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
+      this.log('broadcastCalendarUpdate');
       (this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
     } catch (error) {
       // widget may not be registered yet on first boot

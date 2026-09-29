@@ -283,6 +283,7 @@
     let showCalendarName;
     let showLocation;
     let useFixedHeight = false;
+    let calendarToShow;
 
     const fallbackMaxHeight = 5000;
 
@@ -513,7 +514,8 @@
       try {
         const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
                      '&showCalendarName=' + encodeURIComponent(showCalendarName) +
-                     '&showLocation=' + encodeURIComponent(showLocation);
+                     '&showLocation=' + encodeURIComponent(showLocation) +
+                     '&calendarToShow=' + encodeURIComponent(calendarToShow);
         const events = await Homey.api('GET', path, {});
         renderEvents(events);
       } catch (err) {
@@ -530,6 +532,7 @@
       showCalendarName = s.showCalendarName !== false;
       showLocation = s.showLocation === true;
       useFixedHeight = s.useFixedHeight === true;
+      calendarToShow = s.calendarToShow ? (s.calendarToShow.id || s.calendarToShow.name) : '__all__';
       
 
       // Initialize formatters with the fallback locale and register the update
@@ -538,6 +541,7 @@
       // stuck on its initial (possibly empty) render until the next 15-min sync.
       initFormatters();
       Homey.on('update', () => {
+        refreshBtn = document.getElementById('refresh').innerText = 'UPDATE';
         renderHeader();
         load();
       });

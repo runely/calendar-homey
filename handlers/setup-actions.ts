@@ -1,4 +1,5 @@
-import type { App, FlowCard, FlowCardAction } from "homey";
+import type { FlowCard, FlowCardAction } from "homey";
+import { IcalCalendar } from "../app.js";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
 import { newLocalEvent } from "../lib/generate-event-object.js";
@@ -21,13 +22,13 @@ const getDateTime = (value: string): string | null => {
   return Array.isArray(match) && match.length > 0 ? match[0].toUpperCase() : null;
 };
 
-export const setupActions = (app: App, variableMgmt: VariableManagement): void => {
+export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement): void => {
   // register run listener on action flow cards
   app.homey.flow.getActionCard("sync-calendar").registerRunListener(async (_, __) => {
     app.log(
       `sync-calendar: Action card triggered. ${variableMgmt.gettingEventsRunning ? "getEvents already running" : "Triggering getEvents without reregistering tokens"}`
     );
-    const getEventsFinished: string[] = variableMgmt.gettingEventsRunning ? [] : await getEvents(app, variableMgmt);
+    const getEventsFinished: string[] = variableMgmt.gettingEventsRunning ? [] : await (getEvents(app, variableMgmt).then(x=>{ app.broadcastCalendarUpdate(); return x;})) as string[];
 
     if (getEventsFinished.length > 0) {
       throw new Error(getEventsFinished.join("\n\n"));

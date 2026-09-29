@@ -6210,7 +6210,7 @@
           "value": false
         },
         {
-          "id": "calendar",
+          "id": "calendarToShow",
           "type": "autocomplete",
           "title": {
             "en": "Calendar to show",
@@ -6224,19 +6224,6 @@
             "sv": "Kalender att visa",
             "pl": "Kalendarz do wyświetlenia",
             "ko": "표시할 캘린더"
-          },
-          "all": {
-            "en": "All",
-            "nl": "Alles",
-            "da": "Alle",
-            "de": "Alle",
-            "es": "Todo",
-            "fr": "Tout",
-            "it": "Tutto",
-            "no": "Alle",
-            "sv": "Alla",
-            "pl": "Wszystko",
-            "ko": "모두"
           },
           "value": null
         }
