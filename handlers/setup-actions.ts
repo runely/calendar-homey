@@ -1,4 +1,5 @@
-import type { App, FlowCard, FlowCardAction } from "homey";
+import type { FlowCard, FlowCardAction } from "homey";
+import type { IcalCalendar } from "../app.js";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
 import { newLocalEvent } from "../lib/generate-event-object.js";
@@ -21,7 +22,7 @@ const getDateTime = (value: string): string | null => {
   return Array.isArray(match) && match.length > 0 ? match[0].toUpperCase() : null;
 };
 
-export const setupActions = (app: App, variableMgmt: VariableManagement): void => {
+export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement): void => {
   // register run listener on action flow cards
   app.homey.flow.getActionCard("sync-calendar").registerRunListener(async (_, __) => {
     app.log(
@@ -31,6 +32,9 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
 
     if (getEventsFinished.length > 0) {
       throw new Error(getEventsFinished.join("\n\n"));
+    }
+    if (getEventsFinished.length === 0) {
+      app.broadcastCalendarUpdate();
     }
 
     return true;

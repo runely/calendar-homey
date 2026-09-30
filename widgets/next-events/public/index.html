@@ -63,10 +63,12 @@
     }
 
     .cal-list {
-      flex: 1;
+      display: inline-block;
       min-height: 0;
       overflow: hidden;
+      overflow-y:auto;
       margin-top: var(--homey-su-4);
+      margin-bottom: calc(var(--homey-su-4) + var(--homey-su-2));
     }
 
     .cal-day-header {
@@ -209,6 +211,9 @@
     }
 
     .cal-footer {
+      position: fixed;
+      bottom:var(--homey-su-2);
+      right: var(--homey-su-2);
       display: flex;
       justify-content: flex-end;
       margin-top: var(--homey-su-2);
@@ -272,6 +277,12 @@
     let weekdayShortFmt;
     let daySubFmt;
     let monthYearFmt;
+    let settings;
+    let daysAhead;
+    let showCalendarName;
+    let showLocation;
+    let useFixedHeight = false;
+    let calendarToShow;
 
     const fallbackMaxHeight = 5000;
 
@@ -358,6 +369,7 @@
           '<span class="label">' + escapeHtml(Homey.__('widget.nextEvents.empty')) + '</span>' +
           '<span class="hint">' + escapeHtml(Homey.__('widget.nextEvents.emptyHint')) + '</span>' +
           '</div>';
+        requestAnimationFrame(resizeToContent);
         return;
       }
 
@@ -460,15 +472,19 @@
       }
 
       list.innerHTML = html;
+      requestAnimationFrame(resizeToContent);
     }
 
     function currentMaxHeight() {
-      const s = Homey.getSettings() || {};
-      const raw = Number(s.maxHeight);
+      const raw = Number(settings.maxHeight);
       return Number.isFinite(raw) && raw > 0 ? raw : fallbackMaxHeight;
     }
 
     function resizeToContent() {
+      if(useFixedHeight) {
+        Homey.setHeight(currentMaxHeight());
+        return;
+      }
       const header = document.querySelector('.cal-header');
       const list = document.getElementById('list');
       const footer = document.querySelector('.cal-footer');
@@ -495,16 +511,13 @@
 
     async function load() {
       try {
-        const s = Homey.getSettings() || {};
-        const daysAhead = s.daysAhead != null ? s.daysAhead : 7;
-        const showCalendarName = s.showCalendarName !== false;
-        const showLocation = s.showLocation === true;
         const path = '/?daysAhead=' + encodeURIComponent(daysAhead) +
                      '&showCalendarName=' + encodeURIComponent(showCalendarName) +
-                     '&showLocation=' + encodeURIComponent(showLocation);
+                     '&showLocation=' + encodeURIComponent(showLocation) +
+                     '&calendarToShow=' + encodeURIComponent(calendarToShow);
 
-        const displayHeader = s.showHeader ? 'flex' : 'none';
-        const displayFooter = s.showFooter ? 'flex' : 'none';
+        const displayHeader = settings.showHeader ? 'flex' : 'none';
+        const displayFooter = settings.showFooter ? 'flex' : 'none';
 
         document.getElementById("cal-header").style.display = displayHeader;
         document.getElementById("cal-footer").style.display = displayFooter;
@@ -520,13 +533,20 @@
 
     async function onHomeyReady(_Homey) {
       Homey = _Homey;
+      settings = Homey.getSettings() || {};
+      daysAhead = settings.daysAhead != null ? settings.daysAhead : 7;
+      showCalendarName = settings.showCalendarName !== false;
+      showLocation = settings.showLocation === true;
+      useFixedHeight = settings.useFixedHeight === true;
+      calendarToShow = settings.calendarToShow ? (settings.calendarToShow.id || settings.calendarToShow.name) : '__all__';
+      
 
       // Initialize formatters with the fallback locale and register the update
       // listener BEFORE any async work. Otherwise an app broadcast that lands
       // during the language fetch would be missed, and the widget would stay
       // stuck on its initial (possibly empty) render until the next 15-min sync.
       initFormatters();
-      Homey.on('update', () => {
+      Homey.on('update_widget_next-events', () => {
         renderHeader();
         load();
       });
@@ -538,7 +558,9 @@
         Homey.hapticFeedback();
         refreshBtn.classList.add('loading');
         renderHeader();
-        load().finally(() => refreshBtn.classList.remove('loading'));
+        load().finally(() => {
+          refreshBtn.classList.remove('loading');
+        });
       });
 
       Homey.ready();
