@@ -63,7 +63,6 @@
     }
 
     .cal-list {
-      /* flex: 1; */
       display: inline-block;
       min-height: 0;
       overflow: hidden;
@@ -278,7 +277,7 @@
     let weekdayShortFmt;
     let daySubFmt;
     let monthYearFmt;
-    let s;
+    let settings;
     let daysAhead;
     let showCalendarName;
     let showLocation;
@@ -477,7 +476,7 @@
     }
 
     function currentMaxHeight() {
-      const raw = Number(s.maxHeight);
+      const raw = Number(settings.maxHeight);
       return Number.isFinite(raw) && raw > 0 ? raw : fallbackMaxHeight;
     }
 
@@ -527,12 +526,12 @@
 
     async function onHomeyReady(_Homey) {
       Homey = _Homey;
-      s = Homey.getSettings() || {};
-      daysAhead = s.daysAhead != null ? s.daysAhead : 7;
-      showCalendarName = s.showCalendarName !== false;
-      showLocation = s.showLocation === true;
-      useFixedHeight = s.useFixedHeight === true;
-      calendarToShow = s.calendarToShow ? (s.calendarToShow.id || s.calendarToShow.name) : '__all__';
+      settings = Homey.getSettings() || {};
+      daysAhead = settings.daysAhead != null ? settings.daysAhead : 7;
+      showCalendarName = settings.showCalendarName !== false;
+      showLocation = settings.showLocation === true;
+      useFixedHeight = settings.useFixedHeight === true;
+      calendarToShow = settings.calendarToShow ? (settings.calendarToShow.id || settings.calendarToShow.name) : '__all__';
       
 
       // Initialize formatters with the fallback locale and register the update

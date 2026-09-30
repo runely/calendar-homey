@@ -28,10 +28,13 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
     app.log(
       `sync-calendar: Action card triggered. ${variableMgmt.gettingEventsRunning ? "getEvents already running" : "Triggering getEvents without reregistering tokens"}`
     );
-    const getEventsFinished: string[] = variableMgmt.gettingEventsRunning ? [] : await (getEvents(app, variableMgmt).then(x=>{ app.broadcastCalendarUpdate(); return x;})) as string[];
+    const getEventsFinished: string[] = variableMgmt.gettingEventsRunning ? [] : await getEvents(app, variableMgmt);
 
     if (getEventsFinished.length > 0) {
       throw new Error(getEventsFinished.join("\n\n"));
+    }
+    if(getEventsFinished.length === 0) {
+      app.broadcastCalendarUpdate();
     }
 
     return true;

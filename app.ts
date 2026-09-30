@@ -34,7 +34,7 @@ export class IcalCalendar extends Homey.App {
    * onInit is called when the app is initialized.
    */
   async onInit(): Promise<void> {
-    if (process.env.DEBUG === '1') {
+    /* if (process.env.DEBUG === '1') {
       try {
         require('inspector').waitForDebugger();
         this.log('Attached inspector');
@@ -42,7 +42,7 @@ export class IcalCalendar extends Homey.App {
         require('inspector').open(9222, '0.0.0.0', true);
         this.log('Attached inspector:9222');
       }
-    }
+    } */
 
     this.log(
       `${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
@@ -364,12 +364,7 @@ export class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
-      //this.log('broadcastCalendarUpdate', (this.homey.dashboards.getWidget(WIDGET_ID) as any).realtime);
-      // widget emit will only emit internally, not to the API.
-      //(this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
-
-      this.homey.api.realtime('update_widget_'+WIDGET_ID, null);
-      
+      this.homey.api.realtime('update_widget_'+WIDGET_ID, null);      
     } catch (error) {
       // widget may not be registered yet on first boot
       this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);

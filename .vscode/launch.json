@@ -47,7 +47,7 @@
       "type": "node",
       "request": "attach",
       "address": "192.168.1.17",
-      "port": 9222,
+      "port": 9219,
       "localRoot": "${workspaceFolder}",
       "remoteRoot": "/"
     },
@@ -74,11 +74,11 @@
       "type": "node",
       "request": "attach",
       "address": "192.168.1.17",
-      "port": 9222,
+      "port": 9219,
       "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/app/",      
+      "remoteRoot": "/app/",
       "restart": true
-    }, 
+    },
     {
       "name": "Launch app on Docker",
       "type": "node",
