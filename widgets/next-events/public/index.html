@@ -516,8 +516,8 @@
                      '&showLocation=' + encodeURIComponent(showLocation) +
                      '&calendarToShow=' + encodeURIComponent(calendarToShow);
 
-        const displayHeader = s.showHeader ? 'flex' : 'none';
-        const displayFooter = s.showFooter ? 'flex' : 'none';
+        const displayHeader = settings.showHeader ? 'flex' : 'none';
+        const displayFooter = settings.showFooter ? 'flex' : 'none';
 
         document.getElementById("cal-header").style.display = displayHeader;
         document.getElementById("cal-footer").style.display = displayFooter;
