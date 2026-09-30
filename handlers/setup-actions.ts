@@ -1,5 +1,5 @@
 import type { FlowCard, FlowCardAction } from "homey";
-import { IcalCalendar } from "../app.js";
+import type { IcalCalendar } from "../app.js";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
 import { newLocalEvent } from "../lib/generate-event-object.js";
@@ -33,7 +33,7 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
     if (getEventsFinished.length > 0) {
       throw new Error(getEventsFinished.join("\n\n"));
     }
-    if(getEventsFinished.length === 0) {
+    if (getEventsFinished.length === 0) {
       app.broadcastCalendarUpdate();
     }
 

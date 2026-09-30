@@ -1,110 +1,86 @@
 {
-  "version": "0.2.0",
+  "version": "1.0.0",
   "configurations": [
     {
-      "name": "Select Homey",
+      "name": "Select Homey (Early 2019)",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": [
-        "select",
-        "-n",
-        "Homey"
-      ]
+      "args": ["select", "-n", "Homey"]
     },
     {
-      "name": "Select Homey Pro Early 2023",
+      "name": "Select Homey Pro (Early 2023)",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": [
-        "select",
-        "-n",
-        "Homey Pro van Arie J."
-      ]
+      "args": ["select", "-n", "Homey Pro"]
     },
     {
-      "name": "Launch app on Homey",
+      "name": "Launch app on Homey (Early 2019)",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "homey",
-      "args": [
-        "app",
-        "run"
-      ],
+      "args": ["app", "run", "--remote"],
       "outputCapture": "std",
+      "env": {
+        "DEBUG": "1"
+      },
       "serverReadyAction": {
         "pattern": "Debugger listening on",
         "action": "startDebugging",
-        "name": "Attach to Homey"
+        "name": "Attach to Homey (Early 2019)"
       }
     },
     {
-      "name": "Attach to Homey",
+      "name": "Launch app on Homey Pro (Early 2023)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "homey",
+      "args": ["app", "run", "--remote"],
+      "outputCapture": "std",
+      "env": {
+        "DEBUG": "1"
+      },
+      "serverReadyAction": {
+        "pattern": "Debugger listening on",
+        "action": "startDebugging",
+        "name": "Attach to Homey Pro (Early 2023)"
+      }
+    },
+    {
+      "name": "Attach to Homey (Early 2019)",
       "type": "node",
       "request": "attach",
-      "address": "192.168.1.17",
-      "port": 9219,
+      "address": "192.168.3.10",
+      "port": 9222,
       "localRoot": "${workspaceFolder}",
       "remoteRoot": "/"
     },
     {
-      "name": "Launch app on Homey Pro Early 2023",
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "homey",
-      "args": [
-        "app",
-        "run",
-        "--remote"
-      ],
-      "outputCapture": "std",
-      "serverReadyAction": {
-        "pattern": "Debugger listening on",
-        "action": "startDebugging",
-        "name": "Attach to Homey Pro Early 2023"
-      }
-    },
-    {
-      "name": "Attach to Homey Pro Early 2023",
+      "name": "Attach to Homey Pro (Early 2023)",
       "type": "node",
       "request": "attach",
-      "address": "192.168.1.17",
-      "port": 9219,
+      "address": "192.168.3.9",
+      "port": 9222,
       "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/app/",
-      "restart": true
+      "remoteRoot": "/app/"
     },
     {
-      "name": "Launch app on Docker",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "homey",
-      "args": [
-        "app",
-        "run"
-      ],
-      "outputCapture": "std",
-      "serverReadyAction": {
-        "pattern": "Debugger listening on",
-        "action": "startDebugging",
-        "name": "Attach to Docker"
+      "name": "Jest: current file",
+      "env": { "TZ": "UTC" },
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": ["${fileBasenameNoExtension}"],
+      "console": "integratedTerminal",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
-    },
-    {
-      "name": "Attach to Docker",
-      "type": "node",
-      "request": "attach",
-      "address": "0.0.0.0",
-      "port": 9229,
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/app/",
-      "restart": true
     }
   ]
 }

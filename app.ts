@@ -2,7 +2,8 @@ import sourceMapSupport from "source-map-support";
 
 sourceMapSupport.install();
 
-import Homey, { Widget } from "homey";
+import type { Widget } from "homey";
+import Homey from "homey";
 import { DateTime } from "luxon";
 
 import { addJob, isValidCron } from "./handlers/cron.js";
@@ -21,9 +22,6 @@ import { varMgmt } from "./lib/variable-management.js";
 
 import type { Calendar, SyncInterval } from "./types/IcalCalendar.type";
 import type { VariableManagement } from "./types/VariableMgmt.type";
-
-// The SDK Widget type is missing the emit method — narrow to just what we need.
-type WidgetWithEmit = { emit(event: string): void };
 
 const WIDGET_ID: string = "next-events";
 
@@ -74,12 +72,14 @@ export class IcalCalendar extends Homey.App {
 
     const widget = this.homey.dashboards.getWidget(WIDGET_ID);
 
-    widget.registerSettingAutocompleteListener('calendarToShow', async (query:string, settings:any): Promise<Widget.SettingAutocompleteResults> => {
-      let results = [{id:"__all__", name:this.homey.__("calendar.all")}] as any;
-      results.push(...this.getCalendars().filter((item) => item.name.toLowerCase().includes(query.toLowerCase())));      
-      return results;
-    });
-
+    widget.registerSettingAutocompleteListener(
+      "calendarToShow",
+      async (query: string, _settings): Promise<Widget.SettingAutocompleteResults> => {
+        const results = [{ id: "__all__", name: this.homey.__("calendar.all") }] as any;
+        results.push(...this.getCalendars().filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+        return results;
+      }
+    );
 
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true)
@@ -364,7 +364,7 @@ export class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
-      this.homey.api.realtime('update_widget_'+WIDGET_ID, null);      
+      this.homey.api.realtime(`update_widget_${WIDGET_ID}`, null);
     } catch (error) {
       // widget may not be registered yet on first boot
       this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);
