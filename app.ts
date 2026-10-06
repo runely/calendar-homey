@@ -2,6 +2,7 @@ import sourceMapSupport from "source-map-support";
 
 sourceMapSupport.install();
 
+import type { Widget } from "homey";
 import Homey from "homey";
 import { DateTime } from "luxon";
 
@@ -22,14 +23,11 @@ import { varMgmt } from "./lib/variable-management.js";
 import type { Calendar, SyncInterval } from "./types/IcalCalendar.type";
 import type { VariableManagement } from "./types/VariableMgmt.type";
 
-// The SDK Widget type is missing the emit method — narrow to just what we need.
-type WidgetWithEmit = { emit(event: string): void };
-
 const WIDGET_ID: string = "next-events";
 
 let variableMgmt: VariableManagement | null = null;
 
-class IcalCalendar extends Homey.App {
+export class IcalCalendar extends Homey.App {
   /**
    * onInit is called when the app is initialized.
    */
@@ -71,6 +69,26 @@ class IcalCalendar extends Homey.App {
 
     // setup actions
     setupActions(this, variableMgmt);
+
+    const widget = this.homey.dashboards.getWidget(WIDGET_ID);
+
+    widget.registerSettingAutocompleteListener(
+      "calendarToShow",
+      async (query: string, _settings): Promise<Widget.SettingAutocompleteResults> => {
+        const results = [{ id: "", name: this.homey.__("calendar.all") }] as Widget.SettingAutocompleteResults;
+        const calendarsFiltered = this.getCalendars().filter(item =>
+          item.name.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (calendarsFiltered.length > 0) {
+          for (let IcalCalendar = 0; IcalCalendar < calendarsFiltered.length; IcalCalendar++) {
+            const calendar = calendarsFiltered[IcalCalendar];
+            results.push({ name: calendar.name });
+          }
+        }
+        return results;
+      }
+    );
 
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true)
@@ -355,7 +373,7 @@ class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
-      (this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
+      this.homey.api.realtime("update", null);
     } catch (error) {
       // widget may not be registered yet on first boot
       this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);
