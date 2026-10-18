@@ -246,10 +246,10 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 - 3.3.3
   - `Upcoming events` widget improvements
-    - Added widget settings for showing footer/header [Thanks to @rkokkelk](https://github.com/rkokkelk)
-    - Dev dependency updates
-    - Dependency updates
-    - Removed `source-map-support` since `.map` files has never been bundled, hence it did nothing at runtime
+  - Added widget settings for showing footer/header [Thanks to @rkokkelk](https://github.com/rkokkelk)
+  - Dev dependency updates
+  - Dependency updates
+  - Removed `source-map-support` since `.map` files have never been bundled, hence it did nothing at runtime
 - 3.3.2
   - Dev dependency updates
   - Dependency updates
