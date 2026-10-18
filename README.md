@@ -247,6 +247,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 - 3.3.3
   - `Upcoming events` widget improvements
     - Added widget settings for showing footer/header [Thanks to @rkokkelk](https://github.com/rkokkelk)
+    - Dev dependency updates
     - Dependency updates
 - 3.3.2
   - Dev dependency updates
