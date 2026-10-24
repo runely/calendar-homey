@@ -40,7 +40,15 @@ export const filterByProperty = (
   return calendars;
 };
 
-export const filterByCalendar = (calendars: Calendar[], name: string = ""): Calendar[] => {
+export const filterByCalendar = (
+  calendars: Calendar[],
+  name: string = "",
+  matcher: Extract<FilterMatcher, "contains" | "equal"> = "contains"
+): Calendar[] => {
+  if (matcher === "equal") {
+    return calendars.filter((calendar: Calendar) => calendar.name === name);
+  }
+
   return calendars.filter((calendar: Calendar) => calendar.name.toLowerCase().includes(name.toLowerCase()));
 };
 

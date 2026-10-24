@@ -214,20 +214,23 @@ class IcalCalendar extends Homey.App {
           resetTodayHitCount(this, variableMgmt);
         }
 
-        if (variableMgmt.gettingEventsRunning) {
-          this.log(
-            "[WARN] startJobs/trigger: Wont update tokens and trigger events since getEvents is running. Will update/trigger in one minute"
-          );
-          return;
-        }
-
         if (!variableMgmt?.calendars || variableMgmt.calendars.length === 0) {
           this.log("[WARN] startJobs/trigger: Can't update tokens and trigger events since theres no calendars.");
           return;
         }
 
-        this.log("startJobs/trigger: Updating tokens and triggering events");
-        await updateTokens(this, variableMgmt, this.homey.clock.getTimezone());
+        // getEvents replaces variableMgmt.calendars in one assignment, so triggering on the current calendars is safe while it runs.
+        // Tokens might be reregistered by getEvents, so they are first updated on the next run
+        if (variableMgmt.gettingEventsRunning) {
+          this.log(
+            "[WARN] startJobs/trigger: Wont update tokens since getEvents is running. Will update in one minute"
+          );
+        } else {
+          this.log("startJobs/trigger: Updating tokens");
+          await updateTokens(this, variableMgmt, this.homey.clock.getTimezone());
+        }
+
+        this.log("startJobs/trigger: Triggering events");
         await triggerEvents(this, variableMgmt, this.homey.clock.getTimezone());
       });
 

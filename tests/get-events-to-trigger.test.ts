@@ -125,6 +125,38 @@ test("When start is in 2 hours - Will return 2 events", () => {
   assert.strictEqual(result[1].state?.when, 180);
 });
 
+test("When a zero duration event starts now - Will return both start and stop events", () => {
+  const now: DateTime<true> = DateTime.now();
+  const zeroDurationCalendars: Calendar[] = [
+    {
+      name: "reminders",
+      events: [
+        {
+          start: now.minus({ second: 1 }),
+          dateType: "date-time",
+          end: now.minus({ second: 1 }),
+          uid: "F7177A32-DBD4-46A9-85C7-669749EA8845",
+          description: "Desc",
+          location: "",
+          summary: "Reminder",
+          created: undefined,
+          fullDayEvent: false,
+          freeBusy: undefined,
+          meetingUrl: undefined,
+          local: false
+        }
+      ]
+    }
+  ];
+
+  const result: TriggerEvent[] = getEventsToTrigger(constructedApp, zeroDurationCalendars, "UTC");
+
+  assert.deepStrictEqual(
+    result.map((res: TriggerEvent) => res.triggerId),
+    ["event_starts", "event_starts_calendar", "event_stops", "event_stops_calendar"]
+  );
+});
+
 test("When start and end has past - Will return 0 events", () => {
   const result: TriggerEvent[] = calendarResult.filter(
     (res: TriggerEvent) => res.event.uid === "F7177A32-DBD4-46A9-85C7-669749EA8844"

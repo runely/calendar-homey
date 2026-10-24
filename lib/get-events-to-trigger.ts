@@ -14,7 +14,8 @@ export const getEventsToTrigger = (app: App | AppTests, calendars: Calendar[], t
       const startDiff: number = now.diff(event.start, "seconds").seconds;
       const endDiff: number = now.diff(event.end, "seconds").seconds;
 
-      const resultStart: boolean = startDiff >= 0 && startDiff <= 55 && endDiff <= 0;
+      const isZeroDuration: boolean = event.start.toMillis() === event.end.toMillis();
+      const resultStart: boolean = startDiff >= 0 && startDiff <= 55 && (endDiff <= 0 || isZeroDuration);
       const resultEnd: boolean = endDiff >= 0 && endDiff <= 55;
       const resultStartInCheck: boolean = !resultStart && startDiff < 0;
       const resultEndInCheck: boolean = !resultEnd && endDiff < 0;

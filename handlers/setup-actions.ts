@@ -84,6 +84,12 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       event,
       triggerId: "event_added"
     });
+    await triggerEvents(app, variableMgmt, app.homey.clock.getTimezone(), {
+      calendarName: event.calendar,
+      event,
+      triggerId: "event_added_calendar",
+      state: { calendarName: event.calendar }
+    });
 
     return true;
   });
@@ -98,30 +104,22 @@ export const setupActions = (app: App, variableMgmt: VariableManagement): void =
       throw new Error("Calendars not set yet");
     }
 
-    const event: LocalEvent | undefined = Array.isArray(variableMgmt.localEvents)
-      ? variableMgmt.localEvents.find((e: LocalEvent) => e.summary === args.event_name)
-      : undefined;
-    if (!event) {
+    const isLocalEventToDelete = (e: CalendarEvent): boolean => e.local && e.summary === args.event_name;
+    const remainingLocalEvents: LocalEvent[] = Array.isArray(variableMgmt.localEvents)
+      ? variableMgmt.localEvents.filter((e: LocalEvent) => !isLocalEventToDelete(e))
+      : [];
+    const removedEvents: number = (variableMgmt.localEvents?.length ?? 0) - remainingLocalEvents.length;
+    if (removedEvents === 0) {
       app.log("[WARN] delete_event_name: Local event with title", args.event_name, "not found");
       throw new Error(
         `${app.homey.__("actions.delete_event_name.eventNotFoundOne")} ${args.event_name} ${app.homey.__("actions.delete_event_name.eventNotFoundTwo")}`
       );
     }
 
-    const calendar: Calendar | undefined = variableMgmt.calendars.find((c: Calendar) => c.name === event.calendar);
-    if (!calendar) {
-      app.log("[WARN] delete_event_name: Calendar", event.calendar, "was not found");
-      throw new Error(
-        `${app.homey.__("actions.calendarNotFoundOne")} ${event.calendar} ${app.homey.__("actions.calendarNotFoundTwo")}`
-      );
+    for (const calendar of variableMgmt.calendars) {
+      calendar.events = calendar.events.filter((e: CalendarEvent) => !isLocalEventToDelete(e));
     }
-
-    const newCalendarEvents: CalendarEvent[] = calendar.events.filter(
-      (e: CalendarEvent) => e.summary !== args.event_name
-    );
-    const removedEvents: number = calendar.events.length - newCalendarEvents.length;
-    calendar.events = newCalendarEvents;
-    variableMgmt.localEvents = variableMgmt.localEvents.filter((e: LocalEvent) => e.summary !== args.event_name);
+    variableMgmt.localEvents = remainingLocalEvents;
     app.log("delete_event_name: Deleted", removedEvents, "local events by title", args.event_name);
     saveLocalEvents(app, variableMgmt, variableMgmt.localEvents, true);
 

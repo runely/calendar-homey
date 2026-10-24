@@ -292,11 +292,11 @@ const checkEvent = async (
       "match_in"
     ].includes(type)
   ) {
-    filteredCalendars = filterByCalendar(variableMgmt.calendars, args.calendar.name);
+    filteredCalendars = filterByCalendar(variableMgmt.calendars, args.calendar.name, "equal");
   }
 
   if (type === "event_containing_calendar_ongoing") {
-    filteredCalendars = filterByCalendar(variableMgmt.calendars, args.calendar.name);
+    filteredCalendars = filterByCalendar(variableMgmt.calendars, args.calendar.name, "equal");
     filteredCalendars = filterBySummary(filteredCalendars, args.value);
   }
 

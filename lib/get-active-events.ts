@@ -140,10 +140,11 @@ const filterOutUnwantedEvents = (
 
 export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<CalendarEvent[]> => {
   const { app, variableMgmt, calendarName, data, eventLimit, logAllEvents, timezone } = options;
-  const eventLimitStart: DateTime<true> = getZonedDateTime(DateTime.now(), timezone).startOf("day");
+  const zonedNow: DateTime<true> = getZonedDateTime(DateTime.now(), timezone);
+  const eventLimitStart: DateTime<true> = zonedNow.startOf("day");
 
   const eventLimitDuration: Duration = Duration.fromObject({ [eventLimit.type]: eventLimit.value });
-  const eventLimitEnd: DateTime<true> = DateTime.now().endOf("day").plus(eventLimitDuration);
+  const eventLimitEnd: DateTime<true> = zonedNow.endOf("day").plus(eventLimitDuration);
   const events: CalendarEvent[] = [];
   let recurrenceEventCount: number = 0;
   let regularEventCount: number = 0;

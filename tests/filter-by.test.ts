@@ -101,6 +101,24 @@ describe("filterByCalendar", () => {
     assert.strictEqual(result.length, 0);
   });
 
+  test("Return calendars containing the name when matcher is not provided", () => {
+    const result: Calendar[] = filterByCalendar(calendars, "calendar");
+    assert.strictEqual(result.length, 2);
+  });
+
+  test("Return only the calendar with the exact name when matcher is 'equal'", () => {
+    const result: Calendar[] = filterByCalendar(calendars, "CalendarOne", "equal");
+    assert.deepStrictEqual(
+      result.map((calendar: Calendar) => calendar.name),
+      ["CalendarOne"]
+    );
+  });
+
+  test("Return 0 calendars when matcher is 'equal' and the name is only a part of a calendar name", () => {
+    const result: Calendar[] = filterByCalendar(calendars, "Calendar", "equal");
+    assert.strictEqual(result.length, 0);
+  });
+
   test("Return 0 calendars - when calendars is empty and name is not provided", () => {
     const result: Calendar[] = filterByCalendar([]);
     assert.ok(Array.isArray(result));
