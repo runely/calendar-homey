@@ -11,7 +11,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "@tsconfig/node24": "^24.0.5",
-    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^1.0.0",
     "@types/humanize-duration": "^3.27.4",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.7.5",
