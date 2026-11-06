@@ -1,4 +1,4 @@
-import Homey from "homey";
+import Homey, { type Widget } from "homey";
 import { DateTime } from "luxon";
 
 import { addJob, isValidCron } from "./handlers/cron.js";
@@ -18,14 +18,11 @@ import { varMgmt } from "./lib/variable-management.js";
 import type { Calendar, SyncInterval } from "./types/IcalCalendar.type";
 import type { VariableManagement } from "./types/VariableMgmt.type";
 
-// The SDK Widget type is missing the emit method — narrow to just what we need.
-type WidgetWithEmit = { emit(event: string): void };
-
 const WIDGET_ID: string = "next-events";
 
 let variableMgmt: VariableManagement | null = null;
 
-class IcalCalendar extends Homey.App {
+export class IcalCalendar extends Homey.App {
   /**
    * onInit is called when the app is initialized.
    */
@@ -67,6 +64,32 @@ class IcalCalendar extends Homey.App {
 
     // setup actions
     setupActions(this, variableMgmt);
+
+    const widget = this.homey.dashboards.getWidget(WIDGET_ID);
+
+    widget.registerSettingAutocompleteListener(
+      "calendarToShow",
+      async (query: string, _settings): Promise<Widget.SettingAutocompleteResults> => {
+        const results: Widget.SettingAutocompleteResults = [
+          {
+            id: "",
+            name: this.homey.__("calendar.all")
+          }
+        ];
+        const calendarsFiltered: Calendar[] = this.getCalendars().filter((item: Calendar) =>
+          item.name.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (calendarsFiltered.length > 0) {
+          for (let calendarIndex: number = 0; calendarIndex < calendarsFiltered.length; calendarIndex++) {
+            const calendar: Calendar = calendarsFiltered[calendarIndex];
+            results.push({ name: calendar.name });
+          }
+        }
+
+        return results;
+      }
+    );
 
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true)
@@ -215,7 +238,7 @@ class IcalCalendar extends Homey.App {
         }
 
         if (!variableMgmt?.calendars || variableMgmt.calendars.length === 0) {
-          this.log("[WARN] startJobs/trigger: Can't update tokens and trigger events since theres no calendars.");
+          this.log("[WARN] startJobs/trigger: Can't update tokens and trigger events since there's no calendars.");
           return;
         }
 
@@ -354,7 +377,7 @@ class IcalCalendar extends Homey.App {
 
   broadcastCalendarUpdate(): void {
     try {
-      (this.homey.dashboards.getWidget(WIDGET_ID) as unknown as WidgetWithEmit).emit("update");
+      this.homey.api.realtime("update", null);
     } catch (error) {
       // widget may not be registered yet on first boot
       this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);

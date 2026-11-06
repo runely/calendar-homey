@@ -183,5 +183,8 @@
         "many": "__count__ afspraken"
       }
     }
+  },
+  "calendar": {
+    "all": "Alles"
   }
 }
