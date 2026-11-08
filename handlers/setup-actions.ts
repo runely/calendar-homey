@@ -30,11 +30,11 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
     );
     const getEventsFinished: string[] = variableMgmt.gettingEventsRunning ? [] : await getEvents(app, variableMgmt);
 
+    app.broadcastCalendarUpdate();
+
     if (getEventsFinished.length > 0) {
       throw new Error(getEventsFinished.join("\n\n"));
     }
-
-    app.broadcastCalendarUpdate();
 
     return true;
   });
