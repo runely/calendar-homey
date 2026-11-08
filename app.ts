@@ -10,6 +10,7 @@ import { setupTriggers } from "./handlers/setup-triggers.js";
 import { triggerEvents, triggerSynchronizationError } from "./handlers/trigger-cards.js";
 import { updateTokens } from "./handlers/update-tokens.js";
 
+import { calendarAutocomplete } from "./lib/autocomplete.js";
 import { getDateTimeFormat } from "./lib/get-datetime-format.js";
 import { resetTodayHitCount } from "./lib/hit-count.js";
 import { getZonedDateTime } from "./lib/luxon-fns";
@@ -65,31 +66,24 @@ export class IcalCalendar extends Homey.App {
     // setup actions
     setupActions(this, variableMgmt);
 
-    const widget = this.homey.dashboards.getWidget(WIDGET_ID);
+    try {
+      const widget = this.homey.dashboards.getWidget(WIDGET_ID);
+      const widgetVariableMgmt: VariableManagement = variableMgmt;
 
-    widget.registerSettingAutocompleteListener(
-      "calendarToShow",
-      async (query: string, _settings): Promise<Widget.SettingAutocompleteResults> => {
-        const results: Widget.SettingAutocompleteResults = [
-          {
-            id: "",
-            name: this.homey.__("calendar.all")
-          }
-        ];
-        const calendarsFiltered: Calendar[] = this.getCalendars().filter((item: Calendar) =>
-          item.name.toLowerCase().includes(query.toLowerCase())
-        );
-
-        if (calendarsFiltered.length > 0) {
-          for (let calendarIndex: number = 0; calendarIndex < calendarsFiltered.length; calendarIndex++) {
-            const calendar: Calendar = calendarsFiltered[calendarIndex];
-            results.push({ name: calendar.name });
-          }
-        }
-
-        return results;
-      }
-    );
+      widget.registerSettingAutocompleteListener(
+        "calendarToShow",
+        async (query: string, _settings): Promise<Widget.SettingAutocompleteResults> => [
+          { id: "", name: this.homey.__("calendar.all") },
+          ...calendarAutocomplete(this, widgetVariableMgmt, query)
+        ]
+      );
+    } catch (error) {
+      // widget may not be registered yet on first boot
+      this.error(
+        `[WARN] onInit: failed to get widget or register setting autocomplete listener for '${WIDGET_ID}' ->`,
+        error
+      );
+    }
 
     this.log("onInit: Triggering getEvents and reregistering tokens");
     getEvents(this, variableMgmt, true)
@@ -380,7 +374,7 @@ export class IcalCalendar extends Homey.App {
       this.homey.api.realtime("update", null);
     } catch (error) {
       // widget may not be registered yet on first boot
-      this.error(`[WARN] broadcastCalendarUpdate: failed to emit 'update' for '${WIDGET_ID}' ->`, error);
+      this.error(`[WARN] broadcastCalendarUpdate: failed to emit realtime 'update' ->`, error);
     }
   }
 
