@@ -292,7 +292,7 @@
     let daysAhead;
     let showCalendarName;
     let showLocation;
-    let useFixedHeight = false;
+    let shouldUseFixedHeight = false;
     let calendarToShow;
 
     const fallbackMaxHeight = 5000;
@@ -492,32 +492,28 @@
     }
 
     function resizeToContent() {
-      if (useFixedHeight) {
+      if (shouldUseFixedHeight) {
         Homey.setHeight(currentMaxHeight());
         return;
       }
 
       const header = document.querySelector('.cal-header');
       const list = document.getElementById('list');
-      const footer = document.querySelector('.cal-footer');
       if (!header || !list) {
         return;
       }
 
+      // The footer is position: fixed (out of flow); the list's margin-bottom reserves its space.
       const listStyle = getComputedStyle(list);
       const bodyStyle = getComputedStyle(document.body);
-      const listMarginTop = parseFloat(listStyle.marginTop) || 0;
+      const listMargins =
+        (parseFloat(listStyle.marginTop) || 0) +
+        (parseFloat(listStyle.marginBottom) || 0);
       const bodyPadding =
         (parseFloat(bodyStyle.paddingTop) || 0) +
         (parseFloat(bodyStyle.paddingBottom) || 0);
 
-      let footerHeight = 0;
-      if (footer) {
-        const footerStyle = getComputedStyle(footer);
-        footerHeight = footer.offsetHeight + (parseFloat(footerStyle.marginTop) || 0);
-      }
-
-      const natural = header.offsetHeight + listMarginTop + list.scrollHeight + footerHeight + bodyPadding;
+      const natural = header.offsetHeight + listMargins + list.scrollHeight + bodyPadding;
       Homey.setHeight(Math.min(natural, currentMaxHeight()));
     }
 
@@ -534,7 +530,6 @@
         console.error('Failed to load events', err);
         renderEvents([]);
       }
-      requestAnimationFrame(resizeToContent);
     }
 
     async function onHomeyReady(_Homey) {
@@ -543,8 +538,8 @@
       daysAhead = settings.daysAhead != null ? settings.daysAhead : 7;
       showCalendarName = settings.showCalendarName !== false;
       showLocation = settings.showLocation === true;
-      useFixedHeight = settings.useFixedHeight === true;
-      calendarToShow = settings.calendarToShow ? (settings.calendarToShow.id === '' ? settings.calendarToShow.id : settings.calendarToShow.name) : '';
+      shouldUseFixedHeight = settings.shouldUseFixedHeight === true;
+      calendarToShow = settings.calendarToShow?.id ?? '';
 
       const bodyElement = document.getElementById('cal-body');
 

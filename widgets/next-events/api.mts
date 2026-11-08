@@ -34,12 +34,12 @@ export default {
   async getEvents({ homey, query }: ReqNoBody): Promise<CalendarWidgetEvent[]> {
     const calendarToShow: string = query.calendarToShow;
     const app = homey.app as unknown as App;
-    let calendars = app.getCalendars();
+    let calendars: Calendar[] = app.getCalendars();
     if (calendars.length === 0) {
       return [];
     }
-    if (calendarToShow && calendarToShow !== '') {
-      calendars = calendars.filter(x => x.name === calendarToShow);
+    if (calendarToShow !== '') {
+      calendars = calendars.filter((calendar: Calendar) => calendar.name === calendarToShow);
     }
 
     const colors = app.getCalendarColors();
