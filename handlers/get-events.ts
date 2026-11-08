@@ -72,8 +72,6 @@ export const getEvents = async (
     // calendars not entered in settings page yet
     if (!calendars || calendars.length === 0) {
       app.log("[WARN] getEvents: Calendars has not been set in Settings yet");
-      variableMgmt.gettingEventsRunning = false;
-      variableMgmt.gettingEventsLastRun = new Date();
 
       if (variableMgmt.jobs.update) {
         app.log(`getEvents: Next update in UTC: ${variableMgmt.jobs.update.nextRun()}`);
