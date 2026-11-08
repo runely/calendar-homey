@@ -82,11 +82,15 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
     sortCalendarsEvents(variableMgmt.calendars);
     variableMgmt.localEvents.push(event);
     saveLocalEvents(app, variableMgmt, variableMgmt.localEvents);
+
+    app.broadcastCalendarUpdate();
+
     await triggerEvents(app, variableMgmt, app.homey.clock.getTimezone(), {
       calendarName: event.calendar,
       event,
       triggerId: "event_added"
     });
+
     await triggerEvents(app, variableMgmt, app.homey.clock.getTimezone(), {
       calendarName: event.calendar,
       event,
