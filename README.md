@@ -267,6 +267,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - `Delete local event by title` now deletes *only* local events.
     - Zero duration events (start equals end) now fire both start and stop.
     - The sync now only finishes once every calendar tokens exists.
+    - If a calendar fails to synchronize, show the previous calendar event count in metadata
 - 3.3.2
   - Dev dependency updates
   - Dependency updates

@@ -37,6 +37,10 @@ const getPreviousCalendar = (variableMgmt: VariableManagement, name: string): Ca
   return { name, events: previousCalendar.events.filter((event: CalendarEvent) => !event.local) };
 };
 
+// a failed calendar keeps its previous events, so its metadata must report those as well
+const getPreviousEventCount = (variableMgmt: VariableManagement, name: string): number =>
+  getPreviousCalendar(variableMgmt, name)?.events.length ?? 0;
+
 const getWorkTime = (start: Date, end: Date): string => {
   const seconds: number = (end.getTime() - start.getTime()) / 1000;
   if (seconds > 60) {
@@ -167,7 +171,7 @@ export const getEvents = async (
 
         calendarsMetadata.push({
           name,
-          eventCount: 0,
+          eventCount: getPreviousEventCount(variableMgmt, name),
           lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
         });
 
@@ -240,7 +244,7 @@ export const getEvents = async (
           }
           calendarsMetadata.push({
             name,
-            eventCount: 0,
+            eventCount: getPreviousEventCount(variableMgmt, name),
             lastFailedSync: getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone()).toISO()
           });
 
