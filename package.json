@@ -22,7 +22,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "croner": "^10.0.1",
+    "croner": "^11.0.0",
     "humanize-duration": "^3.35.0",
     "ics-filter": "^1.0.5",
     "luxon": "^3.7.2",
