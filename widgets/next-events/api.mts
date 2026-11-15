@@ -32,10 +32,14 @@ const MS_PER_DAY: number = 24 * 60 * 60 * 1000;
 
 export default {
   async getEvents({ homey, query }: ReqNoBody): Promise<CalendarWidgetEvent[]> {
+    const calendarToShow: string = query.calendarToShow;
     const app = homey.app as unknown as App;
-    const calendars = app.getCalendars();
+    let calendars: Calendar[] = app.getCalendars();
     if (calendars.length === 0) {
       return [];
+    }
+    if (calendarToShow !== '') {
+      calendars = calendars.filter((calendar: Calendar) => calendar.name === calendarToShow);
     }
 
     const colors = app.getCalendarColors();

@@ -1,8 +1,9 @@
-import type { App, FlowCard, FlowCardTrigger } from "homey";
+import type { App, FlowCardTrigger } from "homey";
 
 import { convertToMinutes } from "../lib/convert-to-minutes.js";
 import { filterByCalendar } from "../lib/filter-by.js";
 import { setupHitCount, updateHitCount } from "../lib/hit-count.js";
+import type { ArgumentAutoCompleteResult } from "../types/Homey.type.js";
 
 import type { Calendar } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
@@ -38,26 +39,23 @@ export const setupTriggers = (app: App, variableMgmt: VariableManagement): void 
       return willTrigger;
     });
 
-    eventCalendar.registerArgumentAutocompleteListener(
-      "calendar",
-      (query: string, _): FlowCard.ArgumentAutocompleteResults => {
-        if (!variableMgmt.calendars) {
-          app.log(`[WARN] ${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`);
-          return [];
-        }
+    eventCalendar.registerArgumentAutocompleteListener("calendar", (query: string, _): ArgumentAutoCompleteResult[] => {
+      if (!variableMgmt.calendars) {
+        app.log(`[WARN] ${triggerId}.onAutocompleteListener: Calendars not set yet. Nothing to show...`);
+        return [];
+      }
 
-        if (query) {
-          const filteredCalendar: Calendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
-          return filteredCalendar.map((calendar: Calendar) => {
-            return { id: calendar.name, name: calendar.name };
-          });
-        }
-
-        return variableMgmt.calendars.map((calendar: Calendar) => {
+      if (query) {
+        const filteredCalendar: Calendar[] = filterByCalendar(variableMgmt.calendars, query) || [];
+        return filteredCalendar.map((calendar: Calendar) => {
           return { id: calendar.name, name: calendar.name };
         });
       }
-    );
+
+      return variableMgmt.calendars.map((calendar: Calendar) => {
+        return { id: calendar.name, name: calendar.name };
+      });
+    });
   }
 
   setupHitCount(app, variableMgmt);

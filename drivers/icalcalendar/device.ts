@@ -39,14 +39,18 @@ class MyDevice extends Device {
     this.homey.on("unload", (): void => {
       this.log("MyDevice has been unloaded");
 
-      this.homey.clearInterval(intervalHandle);
+      if (intervalHandle) {
+        this.homey.clearInterval(intervalHandle);
+      }
     });
   }
 
   async onUninit(): Promise<void> {
     this.log("MyDevice has been uninited");
 
-    this.homey.clearInterval(intervalHandle);
+    if (intervalHandle) {
+      this.homey.clearInterval(intervalHandle);
+    }
   }
 
   async updateCalendarsCount(): Promise<void> {
@@ -231,7 +235,9 @@ class MyDevice extends Device {
   async onDeleted(): Promise<void> {
     this.log("MyDevice has been deleted");
 
-    this.homey.clearInterval(intervalHandle);
+    if (intervalHandle) {
+      this.homey.clearInterval(intervalHandle);
+    }
   }
 }
 

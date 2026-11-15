@@ -3,6 +3,7 @@ import { icsFilter } from "ics-filter";
 import { DateTime, Duration } from "luxon";
 
 import { getFallbackUri } from "../lib/get-fallback-uri";
+import { getZonedDateTime } from "../lib/luxon-fns.js";
 
 import type { FallbackUri } from "../types/IcalCalendar.type";
 import type { SettingEventLimit } from "../types/VariableMgmt.type";
@@ -13,9 +14,11 @@ export const getFilteredIcsContent = async (app: App, url: string, eventLimit: S
     `getFilteredIcsContent: Raw ics content length: ${icsContent.length} (${(icsContent.length / (1024 * 1024)).toFixed(2)} MB)`
   );
 
-  const now: DateTime<true> = DateTime.now().startOf("day");
+  const zonedNow: DateTime<true> = getZonedDateTime(DateTime.now(), app.homey.clock.getTimezone());
 
-  const eventLimitEnd: DateTime<true> = DateTime.now()
+  const now: DateTime<true> = zonedNow.startOf("day");
+
+  const eventLimitEnd: DateTime<true> = zonedNow
     .endOf("day")
     .plus(Duration.fromObject({ [eventLimit.type]: eventLimit.value }));
 

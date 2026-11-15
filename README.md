@@ -95,6 +95,10 @@ When the event is finished, it will automatically be removed, just as any other 
 :exclamation:
 If you set `Apply your timezone` to **True**, this will treat the datetimes given as UTC and your timezone difference will be added!
 
+> :exclamation:
+> Events created with a date time further into the future than the import timeframe, will be dropped at next sync!<br />
+> Keep date time inside the import timeframe
+
 #### Delete local event by title
 
 You can use the action card `Delete local event by title` to remove any local events containing the **title** given.
@@ -244,9 +248,29 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 3.3.3
-  - `Upcoming events` widget improvements
-    - Added widget settings for showing footer/header [Thanks to @rkokkelk](https://github.com/rkokkelk)
+- 3.4.0
+  - `Upcoming events` widget improvements [Thanks to @XeroxQ](https://github.com/XeroxQ)
+    - Fixed height option
+    - Auto-sync when new appointments are received
+    - Show per-calendar
+    - Height re-adjusts after (auto)refreshing
+  - Added widget settings for showing footer/header [Thanks to @rkokkelk](https://github.com/rkokkelk)
+  - Dev dependency updates
+  - Dependency updates
+  - Removed `source-map-support` since `.map` files have never been bundled, hence it did nothing at runtime
+  - Code improvements:
+    - `handler/get-events.ts`: Prevent synchronization skip IF getEvents() has failed somehow by resetting `gettingEventsRunning` to **false**.
+    - Documented that creating a local event with date time further into the future than the import timeframe, will be dropped at next sync!
+    - A failed calendar fetch (for any reason) does not remove previous calendar events but keeps them as is until next successful synchronization.
+    - Event limit window now uses the Homey timezone instead of UTC.
+    - A new local event now also fires `Event added in calendar`.
+    - `Delete local event by title` now deletes *only* local events.
+    - Zero duration events (start equals end) now fire both start and stop.
+    - The sync now only finishes once every calendar tokens exists.
+    - If a calendar fails to synchronize, show the previous calendar event count in metadata
+    - Broadcast calendar update when new local event was added
+  - `croner` updated from `10.x` to `11.x`
+  - Updated @types/homey from `0.3.12` to `1.8.3`
 - 3.3.2
   - Dev dependency updates
   - Dependency updates
