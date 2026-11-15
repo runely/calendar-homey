@@ -1,6 +1,6 @@
 {
   "name": "no.runely.calendar",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "engines": {
     "node": ">=22.0.0"
   },

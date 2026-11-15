@@ -248,7 +248,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 3.3.3
+- 3.4.0
   - `Upcoming events` widget improvements [Thanks to @XeroxQ](https://github.com/XeroxQ)
     - Fixed height option
     - Auto-sync when new appointments are received
