@@ -270,6 +270,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - If a calendar fails to synchronize, show the previous calendar event count in metadata
     - Broadcast calendar update when new local event was added
   - `croner` updated from `10.x` to `11.x`
+  - Updated @types/homey from `0.3.12` to `1.8.3`
 - 3.3.2
   - Dev dependency updates
   - Dependency updates

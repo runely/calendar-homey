@@ -38,8 +38,10 @@ export class IcalCalendar extends Homey.App {
       }
     } */
 
+    const appName: string =
+      typeof Homey.manifest.name === "string" ? Homey.manifest.name : (Homey.manifest.name.en ?? "IcalCalendar");
     this.log(
-      `${Homey.manifest.name.en} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
+      `${appName} v${Homey.manifest.version} is running on firmware ${this.homey.version} with Timezone: '${this.homey.clock.getTimezone()}'`
     );
 
     variableMgmt = varMgmt;

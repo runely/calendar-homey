@@ -1,4 +1,4 @@
-import type { FlowCard, FlowCardAction } from "homey";
+import type { FlowCardAction } from "homey";
 import type { IcalCalendar } from "../app.js";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
@@ -7,6 +7,7 @@ import { getTokenDuration } from "../lib/get-token-duration.js";
 import { getTokenValue } from "../lib/get-token-value.js";
 import { saveLocalEvents } from "../lib/local-events.js";
 import { sortCalendarsEvents } from "../lib/sort-calendars.js";
+import type { ArgumentAutoCompleteResult } from "../types/Homey.type.js";
 
 import type { Calendar, CalendarEvent, EventDuration, LocalEvent } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
@@ -100,9 +101,8 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
 
     return true;
   });
-  newEventAction.registerArgumentAutocompleteListener(
-    "calendar",
-    (query: string, _): FlowCard.ArgumentAutocompleteResults => calendarAutocomplete(app, variableMgmt, query)
+  newEventAction.registerArgumentAutocompleteListener("calendar", (query: string, _): ArgumentAutoCompleteResult[] =>
+    calendarAutocomplete(app, variableMgmt, query)
   );
 
   app.homey.flow.getActionCard("delete_event_name").registerRunListener(async (args, _) => {
@@ -196,8 +196,7 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
       event_meeting_url: getTokenValue(event.meetingUrl)
     };
   });
-  getCalendarEvent.registerArgumentAutocompleteListener(
-    "calendar",
-    (query: string, _): FlowCard.ArgumentAutocompleteResults => calendarAutocomplete(app, variableMgmt, query)
+  getCalendarEvent.registerArgumentAutocompleteListener("calendar", (query: string, _): ArgumentAutoCompleteResult[] =>
+    calendarAutocomplete(app, variableMgmt, query)
   );
 };

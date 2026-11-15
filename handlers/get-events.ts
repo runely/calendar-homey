@@ -436,7 +436,7 @@ export const getEvents = async (
             // register today's and tomorrow's events pr calendar
             await Promise.all(
               generateTokens(app, variableMgmt, calendar.name).map(
-                async ({ id, type, title }: { id: string; type: string; title: string }) => {
+                async ({ id, type, title }: { id: string; type: FlowToken.FlowTokenType; title: string }) => {
                   try {
                     if (!variableMgmt) {
                       app.error(
@@ -465,7 +465,7 @@ export const getEvents = async (
             if (nextEventTokensPerCalendar) {
               await Promise.all(
                 generatePerCalendarTokens(app, variableMgmt, calendar.name).map(
-                  async ({ id, type, title }: { id: string; type: string; title: string }) => {
+                  async ({ id, type, title }: { id: string; type: FlowToken.FlowTokenType; title: string }) => {
                     try {
                       if (!variableMgmt) {
                         app.error(
