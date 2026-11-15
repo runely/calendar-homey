@@ -21,9 +21,9 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "croner": "^11.0.0",
+    "croner": "^11.0.1",
     "humanize-duration": "^3.35.1",
-    "ics-filter": "^1.0.5",
+    "ics-filter": "^1.0.6",
     "luxon": "^3.7.2",
     "node-ical": "^0.27.6"
   },
