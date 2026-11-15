@@ -269,6 +269,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - The sync now only finishes once every calendar tokens exists.
     - If a calendar fails to synchronize, show the previous calendar event count in metadata
     - Broadcast calendar update when new local event was added
+  - `croner` updated from `10.x` to `11.x`
 - 3.3.2
   - Dev dependency updates
   - Dependency updates
