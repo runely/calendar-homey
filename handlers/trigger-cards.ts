@@ -213,7 +213,7 @@ export const triggerEvents = async (
         event_meeting_url: getTokenValue(event.meetingUrl)
       };
 
-      if (["event_added", "event_added_calendar"].includes(triggerId)) {
+      if (["event_added", "event_added_calendar", "event_starts_in", "event_stops_in"].includes(triggerId)) {
         if (!variableMgmt.dateTimeFormat) {
           app.error(
             "[ERROR] triggerEvents: dateTimeFormat is not set in variableMgmt. Aborting triggering added event."
@@ -221,19 +221,27 @@ export const triggerEvents = async (
           return;
         }
 
-        tokens.event_start_date = event.start.toFormat(variableMgmt.dateTimeFormat.long);
-        tokens.event_start_time = event.start.toFormat(variableMgmt.dateTimeFormat.time);
-        tokens.event_end_date = event.end.toFormat(variableMgmt.dateTimeFormat.long);
-        tokens.event_end_time = event.end.toFormat(variableMgmt.dateTimeFormat.time);
-        tokens.event_weekday_readable = capitalize(event.start.toFormat("cccc"));
-        tokens.event_month_readable = capitalize(event.start.toFormat("MMMM"));
-        tokens.event_date_of_month = event.start.day;
-        tokens.event_ongoing = isEventOngoing(
-          app,
-          app.homey.clock.getTimezone(),
-          [event],
-          triggerId as ConditionCaller
-        );
+        if (["event_added", "event_added_calendar", "event_starts_in"].includes(triggerId)) {
+          tokens.event_start_date = event.start.toFormat(variableMgmt.dateTimeFormat.long);
+          tokens.event_start_time = event.start.toFormat(variableMgmt.dateTimeFormat.time);
+        }
+
+        if (["event_added", "event_added_calendar", "event_stops_in"].includes(triggerId)) {
+          tokens.event_end_date = event.end.toFormat(variableMgmt.dateTimeFormat.long);
+          tokens.event_end_time = event.end.toFormat(variableMgmt.dateTimeFormat.time);
+        }
+
+        if (["event_added", "event_added_calendar"].includes(triggerId)) {
+          tokens.event_weekday_readable = capitalize(event.start.toFormat("cccc"));
+          tokens.event_month_readable = capitalize(event.start.toFormat("MMMM"));
+          tokens.event_date_of_month = event.start.day;
+          tokens.event_ongoing = isEventOngoing(
+            app,
+            app.homey.clock.getTimezone(),
+            [event],
+            triggerId as ConditionCaller
+          );
+        }
       }
 
       // trigger flow card

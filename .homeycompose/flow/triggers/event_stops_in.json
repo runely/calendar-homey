@@ -253,6 +253,56 @@
       "example": {
         "en": "https://meeting.url"
       }
+    },
+    {
+      "name": "event_end_date",
+      "type": "string",
+      "title": {
+        "en": "End date",
+        "no": "Sluttdato",
+        "nl": "Einddatum",
+        "de": "Enddatum",
+        "sv": "Slutdatum",
+        "fr": "Date de fin",
+        "it": "Data di fine",
+        "es": "Fecha de finalización",
+        "da": "Slutdato",
+        "pl": "Data zakończenia",
+        "ko": "종료 날짜"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
+      }
+    },
+    {
+      "name": "event_end_time",
+      "type": "string",
+      "title": {
+        "en": "End time",
+        "no": "Sluttidspunkt",
+        "nl": "Eindtijd",
+        "de": "Endzeit",
+        "sv": "Sluttid",
+        "fr": "Heure de fin",
+        "it": "Orario di fine",
+        "es": "Hora de finalización",
+        "da": "Sluttid",
+        "pl": "Godzina zakończenia",
+        "ko": "종료 시간"
+      },
+      "example": {
+        "en": "11:30"
+      }
     }
   ],
   "args": [

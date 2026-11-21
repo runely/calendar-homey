@@ -253,6 +253,56 @@
       "example": {
         "en": "https://meeting.url"
       }
+    },
+    {
+      "name": "event_start_date",
+      "type": "string",
+      "title": {
+        "en": "Start date",
+        "no": "Startdato",
+        "nl": "Startdatum",
+        "de": "Startdatum",
+        "sv": "Startdatum",
+        "fr": "Date de début",
+        "it": "Data di inizio",
+        "es": "Fecha de inicio",
+        "da": "Startdato",
+        "pl": "Data rozpoczęcia",
+        "ko": "시작 날짜"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
+      }
+    },
+    {
+      "name": "event_start_time",
+      "type": "string",
+      "title": {
+        "en": "Start time",
+        "no": "Starttidspunkt",
+        "nl": "Starttijd",
+        "de": "Startzeit",
+        "sv": "Starttid",
+        "fr": "Heure de début",
+        "it": "Orario di inizio",
+        "es": "Hora de inicio",
+        "da": "Starttid",
+        "pl": "Godzina rozpoczęcia",
+        "ko": "시작 시간"
+      },
+      "example": {
+        "en": "08:15"
+      }
     }
   ],
   "args": [
