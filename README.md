@@ -248,8 +248,9 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
 
 ## Changelog
 
-- 3.4.1
+- 3.5.0
   - Updated `@types/homey` to **npm:homey-apps-sdk-v3-types@^1.8.4** since it contained the bugfix reported in https://github.com/athombv/homey-apps-sdk-issues/issues/493
+  - Added token `Is ongoing` to triggers `Event added` and `Event added in calendar`
 - 3.4.0
   - `Upcoming events` widget improvements [Thanks to @XeroxQ](https://github.com/XeroxQ)
     - Fixed height option

@@ -47,7 +47,7 @@ export type CalendarMetaData = {
   lastSuccessfullSync?: string;
 };
 
-export type ConditionCaller = "condition" | "changedEvent";
+export type ConditionCaller = "condition" | "changedEvent" | "event_added" | "event_added_calendar";
 
 export type ConvertToMinutesType = undefined | "1" | "2" | "3" | "4";
 
@@ -154,6 +154,7 @@ export type TriggerFlowTokens = {
   event_weekday_readable?: string;
   event_month_readable?: string;
   event_date_of_month?: number;
+  event_ongoing?: boolean;
 };
 
 export type TriggerState = {

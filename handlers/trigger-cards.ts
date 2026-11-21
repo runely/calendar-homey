@@ -9,6 +9,7 @@ import { updateHitCount } from "../lib/hit-count.js";
 
 import type {
   Calendar,
+  ConditionCaller,
   EventDuration,
   TriggerChangedCalendarTokens,
   TriggerEvent,
@@ -227,6 +228,12 @@ export const triggerEvents = async (
         tokens.event_weekday_readable = capitalize(event.start.toFormat("cccc"));
         tokens.event_month_readable = capitalize(event.start.toFormat("MMMM"));
         tokens.event_date_of_month = event.start.day;
+        tokens.event_ongoing = isEventOngoing(
+          app,
+          app.homey.clock.getTimezone(),
+          [event],
+          triggerId as ConditionCaller
+        );
       }
 
       // trigger flow card

@@ -574,6 +574,23 @@
             "example": {
               "en": "30"
             }
+          },
+          {
+            "name": "event_ongoing",
+            "type": "boolean",
+            "title": {
+              "en": "Is ongoing",
+              "no": "Pågår",
+              "nl": "Is gaande",
+              "de": "Ist im Gange",
+              "sv": "Är pågående",
+              "fr": "Est en cours",
+              "it": "È in corso",
+              "es": "Está en curso",
+              "da": "Er i gang",
+              "pl": "Jest w toku",
+              "ko": "진행 중입니다"
+            }
           }
         ]
       },
@@ -1043,6 +1060,23 @@
             },
             "example": {
               "en": "30"
+            }
+          },
+          {
+            "name": "event_ongoing",
+            "type": "boolean",
+            "title": {
+              "en": "Is ongoing",
+              "no": "Pågår",
+              "nl": "Is gaande",
+              "de": "Ist im Gange",
+              "sv": "Är pågående",
+              "fr": "Est en cours",
+              "it": "È in corso",
+              "es": "Está en curso",
+              "da": "Er i gang",
+              "pl": "Jest w toku",
+              "ko": "진행 중입니다"
             }
           }
         ]
