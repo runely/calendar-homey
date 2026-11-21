@@ -9,12 +9,7 @@ export type AppTests = {
   homey: HomeyAppTests;
 };
 
-// TODO: This custom type, or at least the custom addon index signature, should go as soon as @types/homey implements this themselves! (https://github.com/athombv/homey-apps-sdk-issues/issues/493)
-export type ArgumentAutoCompleteResult = FlowCard.ArgumentAutocompleteResults & {
-  id: string;
-};
-
-export type EventAutoCompleteResult = ArgumentAutoCompleteResult & {
+export type EventAutoCompleteResult = FlowCard.ArgumentAutocompleteResult & {
   start: DateTime<true>;
 };
 

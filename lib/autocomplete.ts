@@ -1,6 +1,6 @@
-import type { App } from "homey";
+import type { App, FlowCard } from "homey";
 
-import type { AppTests, ArgumentAutoCompleteResult } from "../types/Homey.type";
+import type { AppTests } from "../types/Homey.type";
 import type { Calendar } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 
@@ -10,7 +10,7 @@ export const calendarAutocomplete = (
   app: App | AppTests,
   variableMgmt: VariableManagement,
   query: string | undefined
-): ArgumentAutoCompleteResult[] => {
+): FlowCard.ArgumentAutocompleteResults => {
   if (!variableMgmt.calendars || variableMgmt.calendars.length === 0) {
     app.log("[WARN] calendarAutocomplete: Calendars not set yet. Nothing to show...");
     return [];

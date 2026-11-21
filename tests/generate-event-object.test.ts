@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
+import type { FlowCard } from "homey";
 import { DateTime } from "luxon";
 import type { DateWithTimeZone, VEvent } from "node-ical";
 
@@ -8,7 +9,6 @@ import { createDateWithTimeZone } from "../lib/create-date-with-timezone.js";
 import { fromEvent, newLocalEvent } from "../lib/generate-event-object.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 
-import type { ArgumentAutoCompleteResult } from "../types/Homey.type";
 import type { CalendarEvent, LocalEvent } from "../types/IcalCalendar.type";
 
 import { constructedApp } from "./lib/construct-app";
@@ -118,7 +118,7 @@ describe("newLocalEvent", () => {
     const start: string = "2023-04-06T12:00:00Z";
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
-    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+    const calendar: FlowCard.ArgumentAutocompleteResult = { id: "This has no effect here", name: "TestCal" };
 
     const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
 
@@ -156,7 +156,7 @@ describe("newLocalEvent", () => {
     const start: string = "2023-04-06T12:00:00";
     const end: string = "2023-04-06T14:00:00";
     const applyTimezone: boolean = true;
-    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+    const calendar: FlowCard.ArgumentAutocompleteResult = { id: "This has no effect here", name: "TestCal" };
 
     const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
 
@@ -194,7 +194,7 @@ describe("newLocalEvent", () => {
     const start: string = "2023-04-06T12:00:00Z";
     const end: string = "2023-04-06T14:00:00Z";
     const applyTimezone: boolean = false;
-    const calendar: ArgumentAutoCompleteResult = { id: "This has no effect here", name: "TestCal" };
+    const calendar: FlowCard.ArgumentAutocompleteResult = { id: "This has no effect here", name: "TestCal" };
 
     const dummyUid: string = `local_${getZonedDateTime(DateTime.now(), timezone).toFormat("dd.MM.yy_HH:mm:ss")}.`;
 

@@ -1,4 +1,4 @@
-import type { App, FlowCardCondition } from "homey";
+import type { App, FlowCard, FlowCardCondition } from "homey";
 import { DateTime } from "luxon";
 
 import { calendarAutocomplete } from "../lib/autocomplete.js";
@@ -8,7 +8,7 @@ import { getNextEventValue } from "../lib/get-next-event-value.js";
 import { getZonedDateTime } from "../lib/luxon-fns";
 import { sortEvent } from "../lib/sort-event.js";
 
-import type { ArgumentAutoCompleteResult, EventAutoCompleteResult } from "../types/Homey.type";
+import type { EventAutoCompleteResult } from "../types/Homey.type";
 import type { Calendar, CalendarEvent, CalendarEventExtended } from "../types/IcalCalendar.type";
 import type { VariableManagement } from "../types/VariableMgmt.type";
 
@@ -451,14 +451,14 @@ export const setupConditions = (app: App, variableMgmt: VariableManagement, time
       if (autocompleteListener.id === "calendar") {
         conditionCard.registerArgumentAutocompleteListener(
           autocompleteListener.argumentId,
-          (query: string, _): ArgumentAutoCompleteResult[] => calendarAutocomplete(app, variableMgmt, query)
+          (query: string, _): FlowCard.ArgumentAutocompleteResults => calendarAutocomplete(app, variableMgmt, query)
         );
         return;
       }
 
       conditionCard.registerArgumentAutocompleteListener(
         autocompleteListener.argumentId,
-        async (query: string, _): Promise<ArgumentAutoCompleteResult[]> =>
+        async (query: string, _): Promise<FlowCard.ArgumentAutocompleteResults> =>
           onEventAutocomplete(app, variableMgmt, timezone, query, autocompleteListener.id)
       );
     }
