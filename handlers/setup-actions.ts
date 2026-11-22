@@ -115,7 +115,7 @@ export const setupActions = (app: IcalCalendar, variableMgmt: VariableManagement
     const remainingLocalEvents: LocalEvent[] = Array.isArray(variableMgmt.localEvents)
       ? variableMgmt.localEvents.filter((e: LocalEvent) => !isLocalEventToDelete(e))
       : [];
-    const removedEvents: number = (variableMgmt.localEvents?.length ?? 0) - remainingLocalEvents.length;
+    const removedEvents: number = variableMgmt.localEvents.length - remainingLocalEvents.length;
     if (removedEvents === 0) {
       app.log("[WARN] delete_event_name: Local event with title", args.event_name, "not found");
       throw new Error(

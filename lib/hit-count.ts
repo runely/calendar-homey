@@ -53,7 +53,7 @@ export const resetTodayHitCount = (app: App | AppTests, variableMgmt: VariableMa
 
 export const setupHitCount = (app: App | AppTests, variableMgmt: VariableManagement): void => {
   let data: HitCount[] | undefined = getHitCountData(app, variableMgmt);
-  const lang: string = app.homey.i18n.getLanguage() ?? "en";
+  const lang: string = app.homey.i18n.getLanguage();
 
   if (!data) {
     data = manifest.flow.triggers.map((trigger: FlowTrigger) => {

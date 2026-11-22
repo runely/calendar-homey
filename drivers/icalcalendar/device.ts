@@ -59,7 +59,7 @@ class MyDevice extends Device {
       return;
     }
 
-    const calendarsConfigured: IcalSettingEntry[] = this.homey.settings.get(
+    const calendarsConfigured: IcalSettingEntry[] | null = this.homey.settings.get(
       variableMgmt.setting.icalUris
     ) as IcalSettingEntry[];
 

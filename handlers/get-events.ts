@@ -67,7 +67,9 @@ export const getEvents = async (
 
   try {
     // get URI from settings
-    const calendars: IcalSettingEntry[] = app.homey.settings.get(variableMgmt.setting.icalUris) as IcalSettingEntry[];
+    const calendars: IcalSettingEntry[] | null = app.homey.settings.get(
+      variableMgmt.setting.icalUris
+    ) as IcalSettingEntry[];
 
     // calendars not entered in settings page yet
     if (!calendars || calendars.length === 0) {
@@ -81,7 +83,8 @@ export const getEvents = async (
     }
 
     // is debug logAllEvents activated
-    const logAllEvents: boolean = (app.homey.settings.get(variableMgmt.setting.logAllEvents) as boolean) ?? false;
+    const logAllEvents: boolean =
+      (app.homey.settings.get(variableMgmt.setting.logAllEvents) as boolean | null) ?? false;
     // get event limit from settings or use the default
     const eventLimit: SettingEventLimit =
       (app.homey.settings.get(variableMgmt.setting.eventLimit) as SettingEventLimit) ||
@@ -274,7 +277,7 @@ export const getEvents = async (
         if (previousCalendar) {
           calendarsEvents.push(previousCalendar);
           app.log(
-            `getEvents: Calendar '${name}' do have ${previousCalendar.events.length} events which will be kept as is until next successful synchronization!`
+            `[WARN] getEvents: Calendar '${name}' do have ${previousCalendar.events.length} events which will be kept as is until next successful synchronization!`
           );
         }
       }

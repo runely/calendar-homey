@@ -104,7 +104,7 @@ export const getDateTimeFormat = (app: App | AppTests, variableMgmt: VariableMan
 
   const format: DateTimeFormat = {
     long: long.newFormat,
-    short: short?.newFormat || "",
+    short: short.newFormat,
     time: time.newFormat
   };
 

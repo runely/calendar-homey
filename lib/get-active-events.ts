@@ -196,7 +196,7 @@ export const getActiveEvents = async (options: GetActiveEventsOptions): Promise<
 
       eventInstance.summary = eventInstance.event.summary; // ensure eventInstance summary is converted to text as well
 
-      const eventEndTz: string | undefined = eventInstance.end?.tz || eventInstance.start.tz;
+      const eventEndTz: string | undefined = eventInstance.end.tz || eventInstance.start.tz;
       if (!eventInstance.event.end) {
         app.log(
           `[WARN] - getActiveEvents - End is not specified on event UID '${eventInstance.event.uid}'. Using start TZ as end TZ: ${eventEndTz || "undefined TZ"}`
