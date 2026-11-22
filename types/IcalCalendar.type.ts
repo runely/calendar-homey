@@ -47,7 +47,7 @@ export type CalendarMetaData = {
   lastSuccessfullSync?: string;
 };
 
-export type ConditionCaller = "condition" | "changedEvent" | "event_added" | "event_added_calendar";
+export type ConditionCaller = "condition" | "changedEvent" | "deletedEvent" | "event_added" | "event_added_calendar";
 
 export type ConvertToMinutesType = undefined | "1" | "2" | "3" | "4";
 

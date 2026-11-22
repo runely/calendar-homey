@@ -1,6 +1,7 @@
 import type { App, FlowToken } from "homey";
 import { DateTime } from "luxon";
 import iCal, { type CalendarComponent, type CalendarResponse } from "node-ical";
+import { filterDeletedCalendarsEvents } from "../lib/filter-deleted-calendars-events.js";
 import { filterUpdatedCalendars } from "../lib/filter-updated-calendars.js";
 import {
   generateNextEventTokens,
@@ -26,7 +27,12 @@ import type {
 import type { SettingEventLimit, VariableManagement } from "../types/VariableMgmt.type";
 import { getFilteredIcsContent } from "./get-filtered-ics-content.js";
 
-import { triggerChangedCalendars, triggerEvents, triggerSynchronizationError } from "./trigger-cards.js";
+import {
+  triggerChangedCalendars,
+  triggerDeletedCalendarsEvents,
+  triggerEvents,
+  triggerSynchronizationError
+} from "./trigger-cards.js";
 
 const getPreviousCalendar = (variableMgmt: VariableManagement, name: string): Calendar | null => {
   const previousCalendar: Calendar | undefined = variableMgmt.calendars?.find((cal: Calendar) => cal.name === name);
@@ -305,6 +311,30 @@ export const getEvents = async (
         });
       } catch (triggerError) {
         app.error("[ERROR] getEvents: Failed to trigger synchronization error for changed calendars ->", triggerError);
+      }
+    }
+
+    try {
+      if (variableMgmt.calendars && variableMgmt.calendars.length > 0 && calendarsEvents.length > 0) {
+        const deletedCalendarsEvents: Calendar[] = filterDeletedCalendarsEvents({
+          app,
+          oldCalendars: variableMgmt.calendars,
+          newCalendars: calendarsEvents
+        });
+        await triggerDeletedCalendarsEvents(app, variableMgmt, deletedCalendarsEvents);
+      }
+    } catch (error) {
+      app.error("[ERROR] getEvents: Failed to filter/trigger deleted calendars ->", error);
+
+      try {
+        await triggerSynchronizationError({
+          app,
+          variableMgmt,
+          calendar: "Deleted calendars events",
+          error: error as Error | string
+        });
+      } catch (triggerError) {
+        app.error("[ERROR] getEvents: Failed to trigger synchronization error for deleted calendars ->", triggerError);
       }
     }
 

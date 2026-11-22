@@ -12,6 +12,8 @@ export type FilterUpdatedCalendarsOptions = {
   newCalendars: Calendar[];
 };
 
+export type FilterDeletedCalendarsEventsOptions = Omit<FilterUpdatedCalendarsOptions, "variableMgmt">;
+
 export type GetActiveEventsOptions = {
   app: App | AppTests;
   variableMgmt: VariableManagement;

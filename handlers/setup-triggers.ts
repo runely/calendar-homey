@@ -26,7 +26,8 @@ export const setupTriggers = (app: App, variableMgmt: VariableManagement): void 
     "event_starts_calendar",
     "event_stops_calendar",
     "event_added_calendar",
-    "event_changed_calendar"
+    "event_changed_calendar",
+    "event_deleted_calendar"
   ]) {
     const eventCalendar: FlowCardTrigger = app.homey.flow.getTriggerCard(triggerId);
     eventCalendar.registerRunListener((args, state) => {

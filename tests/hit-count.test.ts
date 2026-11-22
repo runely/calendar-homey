@@ -13,6 +13,8 @@ import type { VariableManagement } from "../types/VariableMgmt.type";
 import data from "./data/hit-count-data.json";
 import { constructedApp } from "./lib/construct-app.js";
 
+const totalCountOfTriggers: number = 13;
+
 const dataAsText: string = JSON.stringify(data);
 
 let runtimeData: HitCount[] = JSON.parse(dataAsText);
@@ -75,9 +77,10 @@ describe("getHitCountData", () => {
   test("Should return parsed JSON when data is present", () => {
     const data: HitCount[] | undefined = getHitCountData(app, appVariableMgmt);
 
+    assert.ok(data !== undefined);
     assert.ok(Array.isArray(data));
-    assert.strictEqual(data?.length, 11);
-    assert.strictEqual(data?.[0].id, "event_added");
+    assert.strictEqual(data.length, totalCountOfTriggers);
+    assert.strictEqual(data[0].id, "event_added");
     assert.ok(getIdsWithTodayNotZero(data).length > 0);
   });
 
@@ -117,19 +120,22 @@ describe("setupHitCount", () => {
   test("Should create a skeleton for hit count data if data is not present", () => {
     setupHitCount(appWithoutData, varMgmt);
 
-    assert.strictEqual(runtimeData.length, 11);
+    assert.strictEqual(runtimeData.length, totalCountOfTriggers);
     assert.strictEqual(runtimeData.filter((t: HitCount) => t.variants.length > 0).length, 0);
   });
 
   test('Should add missing trigger when data is present and missing "synchronization_error"', () => {
     runtimeData = runtimeData.filter((t: HitCount) => t.id !== "synchronization_error");
 
-    assert.strictEqual(runtimeData.length, 10);
+    const expectedCountOfTriggersWithoutSyncError: number = totalCountOfTriggers - 1;
+    const syncErrorIndex: number = expectedCountOfTriggersWithoutSyncError;
+
+    assert.strictEqual(runtimeData.length, expectedCountOfTriggersWithoutSyncError);
 
     setupHitCount(app, appVariableMgmt);
-    assert.strictEqual(runtimeData.length, 11);
-    assert.strictEqual(runtimeData[10].id, "synchronization_error");
-    assert.strictEqual(runtimeData[10].variants.length, 0);
+    assert.strictEqual(runtimeData.length, totalCountOfTriggers);
+    assert.strictEqual(runtimeData[syncErrorIndex].id, "synchronization_error");
+    assert.strictEqual(runtimeData[syncErrorIndex].variants.length, 0);
   });
 });
 

@@ -182,6 +182,95 @@ export const triggerChangedCalendars = async (
   }
 };
 
+export const triggerDeletedCalendarsEvents = async (
+  app: App,
+  variableMgmt: VariableManagement,
+  calendars: Calendar[]
+): Promise<void> => {
+  if (!variableMgmt.dateTimeFormat) {
+    app.error(
+      "[ERROR] triggerDeletedCalendarsEvents: dateTimeFormat is not set in variableMgmt. Aborting triggering deleted calendar events."
+    );
+    return;
+  }
+
+  try {
+    for await (const calendar of calendars) {
+      for await (const event of calendar.events) {
+        const eventDuration: EventDuration = getTokenDuration(app, event);
+
+        const tokens: TriggerFlowTokens = {
+          event_name: getTokenValue(event.summary),
+          event_description: event.description || "",
+          event_location: event.location,
+          event_duration_readable: eventDuration.duration,
+          event_duration: eventDuration.durationMinutes,
+          event_calendar_name: calendar.name,
+          event_fullday_event: event.fullDayEvent,
+          event_status: getTokenValue(event.freeBusy),
+          event_meeting_url: event.meetingUrl || "",
+          event_start_date: event.start.toFormat(variableMgmt.dateTimeFormat.long),
+          event_start_time: event.start.toFormat(variableMgmt.dateTimeFormat.time),
+          event_end_date: event.end.toFormat(variableMgmt.dateTimeFormat.long),
+          event_end_time: event.end.toFormat(variableMgmt.dateTimeFormat.time),
+          event_ongoing: isEventOngoing(app, app.homey.clock.getTimezone(), [event], "deletedEvent")
+        };
+
+        const deletedCalendarTriggerCards: { id: string; useState: boolean }[] = [
+          {
+            id: "event_deleted",
+            useState: false
+          },
+          {
+            id: "event_deleted_calendar",
+            useState: true
+          }
+        ];
+
+        for await (const deletedCalendarTriggerCard of deletedCalendarTriggerCards) {
+          const state: TriggerState = { calendarName: calendar.name };
+
+          try {
+            if (!deletedCalendarTriggerCard.useState) {
+              await app.homey.flow.getTriggerCard(deletedCalendarTriggerCard.id).trigger(tokens);
+              app.log(`Triggered '${deletedCalendarTriggerCard.id}' on '${event.uid}'`);
+              updateHitCount(app, variableMgmt, deletedCalendarTriggerCard.id);
+              continue;
+            }
+
+            // NOTE: hitCount is updated in the listeners for triggers with state
+            await app.homey.flow.getTriggerCard(deletedCalendarTriggerCard.id).trigger(tokens, state);
+          } catch (error) {
+            if (deletedCalendarTriggerCard.useState) {
+              app.error(
+                `[ERROR] triggerDeletedCalendarsEvents: '${deletedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' with state:`,
+                state,
+                " ->",
+                error
+              );
+            } else {
+              app.error(
+                `[ERROR] triggerDeletedCalendarsEvents: '${deletedCalendarTriggerCard.id}' failed to trigger on '${event.uid}' ->`,
+                error
+              );
+            }
+
+            await triggerSynchronizationError({
+              app,
+              variableMgmt,
+              calendar: calendar.name,
+              error: error as Error | string,
+              event
+            });
+          }
+        }
+      }
+    }
+  } catch (err) {
+    app.error("[ERROR] triggerDeletedCalendarsEvents: Failed to trigger deleted calendar events ->", err);
+  }
+};
+
 export const triggerEvents = async (
   app: App,
   variableMgmt: VariableManagement,

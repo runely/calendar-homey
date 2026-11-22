@@ -36,6 +36,21 @@
     ]
   },
   {
+    "id": "event_deleted",
+    "name": "Avtale slettet",
+    "variants": [
+      {
+        "today": 0,
+        "total": 0
+      }
+    ]
+  },
+  {
+    "id": "event_deleted_calendar",
+    "name": "Avtale slettet fra [[calendar]]",
+    "variants": []
+  },
+  {
     "id": "event_starts",
     "name": "Avtale starter",
     "variants": [

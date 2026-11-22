@@ -1,0 +1,407 @@
+{
+  "id": "event_deleted_calendar",
+  "title": {
+    "en": "Event deleted from calendar",
+    "nl": "Evenement verwijderd uit kalender",
+    "de": "Ereignis aus Kalender gelöscht",
+    "fr": "Événement supprimé du calendrier",
+    "it": "Evento eliminato dal calendario",
+    "sv": "Evenemang borttaget från kalendern",
+    "no": "Avtale slettet fra kalender",
+    "es": "Evento eliminado del calendario",
+    "da": "Begivenhed slettet fra kalender",
+    "pl": "Wydarzenie usunięte z kalendarza",
+    "ko": "캘린더에서 삭제된 이벤트"
+  },
+  "hint": {
+    "en": "Triggers when an already existing, non-finished event is deleted from specified calendar",
+    "nl": "Wordt geactiveerd wanneer een bestaand, nog niet afgelopen evenement wordt verwijderd uit de opgegeven kalender",
+    "de": "Wird ausgelöst, wenn ein bereits bestehendes, noch nicht beendetes Ereignis aus dem angegebenen Kalender gelöscht wird",
+    "fr": "Se déclenche lorsqu'un événement existant et non terminé est supprimé du calendrier spécifié",
+    "it": "Si attiva quando un evento esistente e non ancora concluso viene eliminato dal calendario specificato",
+    "sv": "Utlöses när ett befintligt evenemang som ännu inte har avslutats tas bort från den angivna kalendern",
+    "no": "Utløses når en eksisterende avtale som ikke er avsluttet, slettes fra den valgte kalenderen",
+    "es": "Se activa cuando se elimina un evento existente y no finalizado del calendario especificado",
+    "da": "Udløses når en eksisterende begivenhed, der endnu ikke er afsluttet, slettes fra den angivne kalender",
+    "pl": "Wyzwalane, gdy istniejące, niezakończone wydarzenie zostanie usunięte z określonego kalendarza",
+    "ko": "지정된 캘린더에서 아직 종료되지 않은 기존 이벤트가 삭제될 때 트리거됩니다"
+  },
+  "titleFormatted": {
+    "en": "Event deleted from [[calendar]]",
+    "nl": "Evenement verwijderd uit [[calendar]]",
+    "de": "Ereignis aus [[calendar]] gelöscht",
+    "fr": "Événement supprimé de [[calendar]]",
+    "it": "Evento eliminato da [[calendar]]",
+    "sv": "Evenemang borttaget från [[calendar]]",
+    "no": "Avtale slettet fra [[calendar]]",
+    "es": "Evento eliminado de [[calendar]]",
+    "da": "Begivenhed slettet fra [[calendar]]",
+    "pl": "Wydarzenie usunięte z [[calendar]]",
+    "ko": "[[calendar]]에서 삭제된 이벤트"
+  },
+  "args": [
+    {
+      "type": "autocomplete",
+      "name": "calendar",
+      "placeholder": {
+        "en": "Choose calendar...",
+        "nl": "Kies kalender...",
+        "de": "Kalender auswählen...",
+        "fr": "Choisir un calendrier...",
+        "it": "Scegli calendario...",
+        "sv": "Välj kalender...",
+        "no": "Velg kalender...",
+        "es": "Elegir calendario...",
+        "da": "Vælg kalender...",
+        "pl": "Wybierz kalendarz...",
+        "ko": "캘린더 선택..."
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "event_name",
+      "type": "string",
+      "title": {
+        "en": "Title",
+        "nl": "Titel",
+        "de": "Titel",
+        "fr": "Titre",
+        "it": "Titolo",
+        "sv": "Titel",
+        "no": "Tittel",
+        "es": "Título",
+        "da": "Titel",
+        "pl": "Tytuł",
+        "ko": "제목"
+      },
+      "example": {
+        "en": "Pick up in kindergarden",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
+        "sv": "Hämta på förskolan",
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
+      }
+    },
+    {
+      "name": "event_description",
+      "type": "string",
+      "title": {
+        "en": "Description",
+        "nl": "Beschrijving",
+        "de": "Beschreibung",
+        "fr": "Description",
+        "it": "Descrizione",
+        "sv": "Beskrivning",
+        "no": "Beskrivelse",
+        "es": "Descripción",
+        "da": "Beskrivelse",
+        "pl": "Opis",
+        "ko": "설명"
+      },
+      "example": {
+        "en": "Pick up in kindergarden",
+        "nl": "Ophalen in de kleuterschool",
+        "de": "Abholung im Kindergarten",
+        "fr": "Ramassage à la maternelle",
+        "it": "Ritiro all'asilo",
+        "sv": "Hämta på förskolan",
+        "no": "Hente i barnehagen",
+        "es": "Recoger en el jardín de infancia",
+        "da": "Hent i børnehaven",
+        "pl": "Odbiór w przedszkolu",
+        "ko": "유치원에서 픽업"
+      }
+    },
+    {
+      "name": "event_location",
+      "type": "string",
+      "title": {
+        "en": "Location",
+        "nl": "Locatie",
+        "de": "Ort",
+        "fr": "Emplacement",
+        "it": "Luogo",
+        "sv": "Plats",
+        "no": "Sted",
+        "es": "Ubicación",
+        "da": "Placering",
+        "pl": "Lokalizacja",
+        "ko": "위치"
+      },
+      "example": {
+        "en": "Kindergarden street, 30",
+        "nl": "Kleuterschoolstraat 30",
+        "de": "Kindergartenstraße 30",
+        "fr": "Rue de la Maternelle, 30",
+        "it": "Via Asilo, 30",
+        "sv": "Förskolevägen 30",
+        "no": "Barnehageveien 30",
+        "es": "Calle del Jardín de Infancia, 30",
+        "da": "Børnehavevej 30",
+        "pl": "Ulica Przedszkolna 30",
+        "ko": "유치원 거리 30"
+      }
+    },
+    {
+      "name": "event_duration_readable",
+      "type": "string",
+      "title": {
+        "en": "Duration",
+        "nl": "Duur",
+        "de": "Dauer",
+        "fr": "Durée",
+        "it": "Durata",
+        "sv": "Varaktighet",
+        "no": "Varighet",
+        "es": "Duración",
+        "da": "Varighed",
+        "pl": "Czas trwania",
+        "ko": "지속 시간"
+      },
+      "example": {
+        "en": "1.5 hour",
+        "nl": "1.5 uur",
+        "de": "1.5 Stunden",
+        "fr": "1.5 heure",
+        "it": "1.5 ore",
+        "sv": "1.5 timme",
+        "no": "1.5 time",
+        "es": "1.5 horas",
+        "da": "1.5 time",
+        "pl": "1.5 godziny",
+        "ko": "1.5시간"
+      }
+    },
+    {
+      "name": "event_duration",
+      "type": "number",
+      "title": {
+        "en": "Duration in minutes",
+        "nl": "Duur in minuten",
+        "de": "Dauer in Minuten",
+        "fr": "Durée en minutes",
+        "it": "Durata in minuti",
+        "sv": "Varaktighet i minuter",
+        "no": "Varighet i minutter",
+        "es": "Duración en minutos",
+        "da": "Varighed i minutter",
+        "pl": "Czas trwania w minutach",
+        "ko": "지속 시간 (분 단위)"
+      },
+      "example": {
+        "en": "90"
+      }
+    },
+    {
+      "name": "event_calendar_name",
+      "type": "string",
+      "title": {
+        "en": "Calendar name",
+        "nl": "Kalendernaam",
+        "de": "Kalendername",
+        "fr": "Nom du calendrier",
+        "it": "Nome del calendario",
+        "sv": "Kalendernamn",
+        "no": "Kalendernavn",
+        "es": "Nombre del calendario",
+        "da": "Kalendernavn",
+        "pl": "Nazwa kalendarza",
+        "ko": "캘린더 이름"
+      },
+      "example": {
+        "en": "Gmail"
+      }
+    },
+    {
+      "name": "event_status",
+      "type": "string",
+      "title": {
+        "en": "Status",
+        "nl": "Status",
+        "de": "Status",
+        "fr": "Statut",
+        "it": "Stato",
+        "sv": "Status",
+        "no": "Status",
+        "es": "Estado",
+        "da": "Status",
+        "pl": "Status",
+        "ko": "상태"
+      },
+      "example": {
+        "en": "Free",
+        "nl": "Vrij",
+        "de": "Frei",
+        "fr": "Disponible",
+        "it": "Libero",
+        "sv": "Fri",
+        "no": "Ledig",
+        "es": "Libre",
+        "da": "Ledig",
+        "pl": "Wolny",
+        "ko": "자유"
+      }
+    },
+    {
+      "name": "event_meeting_url",
+      "type": "string",
+      "title": {
+        "en": "Meeting URL",
+        "nl": "Vergadering URL",
+        "de": "Besprechungs-URL",
+        "fr": "URL de la réunion",
+        "it": "URL della riunione",
+        "sv": "Mötes-URL",
+        "no": "Møte-URL",
+        "es": "URL de la reunión",
+        "da": "Møde-URL",
+        "pl": "URL spotkania",
+        "ko": "회의 URL"
+      },
+      "example": {
+        "en": "https://meeting.url"
+      }
+    },
+    {
+      "name": "event_start_date",
+      "type": "string",
+      "title": {
+        "en": "Start date",
+        "no": "Startdato",
+        "nl": "Startdatum",
+        "de": "Startdatum",
+        "sv": "Startdatum",
+        "fr": "Date de début",
+        "it": "Data di inizio",
+        "es": "Fecha de inicio",
+        "da": "Startdato",
+        "pl": "Data rozpoczęcia",
+        "ko": "시작 날짜"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
+      }
+    },
+    {
+      "name": "event_start_time",
+      "type": "string",
+      "title": {
+        "en": "Start time",
+        "no": "Starttidspunkt",
+        "nl": "Starttijd",
+        "de": "Startzeit",
+        "sv": "Starttid",
+        "fr": "Heure de début",
+        "it": "Orario di inizio",
+        "es": "Hora de inicio",
+        "da": "Starttid",
+        "pl": "Godzina rozpoczęcia",
+        "ko": "시작 시간"
+      },
+      "example": {
+        "en": "08:15"
+      }
+    },
+    {
+      "name": "event_end_date",
+      "type": "string",
+      "title": {
+        "en": "End date",
+        "no": "Sluttdato",
+        "nl": "Einddatum",
+        "de": "Enddatum",
+        "sv": "Slutdatum",
+        "fr": "Date de fin",
+        "it": "Data di fine",
+        "es": "Fecha de finalización",
+        "da": "Slutdato",
+        "pl": "Data zakończenia",
+        "ko": "종료 날짜"
+      },
+      "example": {
+        "en": "01/22/22",
+        "no": "22.01.22",
+        "nl": "22-01-22",
+        "de": "22-01-22",
+        "sv": "22-01-22",
+        "fr": "22/01/22",
+        "it": "22/01/22",
+        "es": "22/01/22",
+        "da": "22-01-22",
+        "pl": "22.01.22",
+        "ko": "22/01/22"
+      }
+    },
+    {
+      "name": "event_end_time",
+      "type": "string",
+      "title": {
+        "en": "End time",
+        "no": "Sluttidspunkt",
+        "nl": "Eindtijd",
+        "de": "Endzeit",
+        "sv": "Sluttid",
+        "fr": "Heure de fin",
+        "it": "Orario di fine",
+        "es": "Hora de finalización",
+        "da": "Sluttid",
+        "pl": "Godzina zakończenia",
+        "ko": "종료 시간"
+      },
+      "example": {
+        "en": "11:30"
+      }
+    },
+    {
+      "name": "event_fullday_event",
+      "type": "boolean",
+      "title": {
+        "en": "Full day event",
+        "nl": "Hele dag evenement",
+        "de": "Ganztägiges Ereignis",
+        "fr": "Événement toute la journée",
+        "it": "Evento tutto il giorno",
+        "sv": "Heldagsevenemang",
+        "no": "Heldagsarrangement",
+        "es": "Evento de todo el día",
+        "da": "Hele dags begivenhed",
+        "pl": "Wydarzenie całodziennie",
+        "ko": "하루 종일 이벤트"
+      }
+    },
+    {
+      "name": "event_ongoing",
+      "type": "boolean",
+      "title": {
+        "en": "Is ongoing",
+        "no": "Pågår",
+        "nl": "Is gaande",
+        "de": "Ist im Gange",
+        "sv": "Är pågående",
+        "fr": "Est en cours",
+        "it": "È in corso",
+        "es": "Está en curso",
+        "da": "Er i gang",
+        "pl": "Jest w toku",
+        "ko": "진행 중입니다"
+      }
+    }
+  ]
+}
