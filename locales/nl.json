@@ -12,9 +12,10 @@
     "uri_load_failure": "Fout bij het laden van .ics bestand(en):",
     "icons_info": "Icons by",
     "calendars": {
-      "legend": "URI naar .ics bestand",
+      "legend": "Instellingen voor het .ics-bestand",
       "name": "Kalender naam",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Alleen evenementen opnemen waarvan de 'beschrijving' het volgende bevat. Leeg betekent alle evenementen. Evenementen zonder 'beschrijving' worden NIET opgenomen wanneer dit veld is ingevuld"
     },
     "calendarColors": {
       "legend": "Kalenderkleuren",

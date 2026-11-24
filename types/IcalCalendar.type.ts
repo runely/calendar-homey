@@ -77,6 +77,7 @@ export type HasDataType = HasDataFalsyType | HasDataTruthyType;
 export type IcalSettingEntry = {
   name: string;
   uri: string;
+  includeOnlyPattern?: string;
   failed?: string;
 };
 

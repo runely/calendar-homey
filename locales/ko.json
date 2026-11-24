@@ -12,9 +12,10 @@
     "uri_load_failure": ".ics 파일을 로드하지 못했습니다:",
     "icons_info": "아이콘 제공",
     "calendars": {
-      "legend": ".ics 파일 URI",
+      "legend": ".ics 파일 설정",
       "name": "일정 이름",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "'설명'에 다음 내용이 포함된 이벤트만 포함합니다. 비워 두면 모든 이벤트가 포함됩니다. 이 항목을 입력하면 '설명'이 없는 이벤트는 포함되지 않습니다"
     },
     "calendarColors": {
       "legend": "캘린더 색상",

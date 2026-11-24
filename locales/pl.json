@@ -12,9 +12,10 @@
     "uri_load_failure": "Nie udało się załadować pliku/plików .ics:",
     "icons_info": "Ikony od",
     "calendars": {
-      "legend": "URI pliku .ics",
+      "legend": "Ustawienia pliku .ics",
       "name": "Nazwa kalendarza",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Uwzględniaj tylko wydarzenia, których 'opis' zawiera poniższy tekst. Puste oznacza wszystkie wydarzenia. Wydarzenia bez 'opisu' NIE zostaną uwzględnione, gdy to pole jest wypełnione"
     },
     "calendarColors": {
       "legend": "Kolory kalendarza",

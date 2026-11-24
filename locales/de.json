@@ -12,9 +12,10 @@
     "uri_load_failure": "Das Laden der .ics-Datei(en) ist fehlgeschlagen:",
     "icons_info": "Icons von",
     "calendars": {
-      "legend": "URI zur .ics-Datei",
+      "legend": "Einstellungen für die .ics-Datei",
       "name": "Kalenderbezeichnung",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Nur Ereignisse einbeziehen, deren 'Beschreibung' Folgendes enthält. Leer bedeutet alle Ereignisse. Ereignisse ohne 'Beschreibung' werden NICHT einbezogen, wenn dieses Feld ausgefüllt ist"
     },
     "calendarColors": {
       "legend": "Kalenderfarben",

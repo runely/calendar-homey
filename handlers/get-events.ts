@@ -9,6 +9,7 @@ import {
   generateTokens
 } from "../lib/generate-token-configuration.js";
 import { getActiveEvents } from "../lib/get-active-events.js";
+import { getAllValuesOrIncludedOnly } from "../lib/get-all-values-or-included-only.js";
 import { getEventUids } from "../lib/get-event-uids.js";
 import { getNewEvents } from "../lib/get-new-events.js";
 import { getLocalActiveEvents, getLocalEvents, saveLocalEvents } from "../lib/local-events.js";
@@ -120,12 +121,15 @@ export const getEvents = async (
         continue;
       }
 
+      const includeOnlyPattern: string = calendars[i].includeOnlyPattern || "";
+
       if (!/(http|https|webcal):\/\/.+/gi.exec(uri)) {
         app.log(`[WARN] getEvents: Uri for calendar '${name}' is invalid. Skipping...`);
         const failed: string = `Uri for calendar '${name}' is invalid. Missing "http://", "https://" or "webcal://"`;
         calendars[i] = {
           name,
           uri,
+          includeOnlyPattern,
           failed
         };
         errors.push(failed);
@@ -149,7 +153,8 @@ export const getEvents = async (
         app.log(`getEvents: Calendar '${name}': webcal:// found and replaced with https://`);
         calendars[i] = {
           name,
-          uri
+          uri,
+          includeOnlyPattern
         };
         app.homey.settings.set(variableMgmt.setting.icalUris, calendars);
       }
@@ -186,6 +191,7 @@ export const getEvents = async (
         calendars[i] = {
           name,
           uri,
+          includeOnlyPattern,
           failed: errorString
         };
         app.homey.settings.set(variableMgmt.setting.icalUris, calendars);
@@ -197,7 +203,8 @@ export const getEvents = async (
         if (calendars[i].failed) {
           calendars[i] = {
             name,
-            uri
+            uri,
+            includeOnlyPattern
           };
           app.homey.settings.set(variableMgmt.setting.icalUris, calendars);
           app.log(`getEvents: Removed 'error' setting value from calendar '${name}'`);
@@ -210,11 +217,24 @@ export const getEvents = async (
           app.log(
             `getEvents: Events for calendar '${name}' retrieved. Total entry count for calendar: ${dataValues.length}. Time used: ${getWorkTime(retrieveCalendarStart, retrieveCalendarEnd)}`
           );
+
+          const allValuesOrIncludedOnly: (CalendarComponent | undefined)[] = getAllValuesOrIncludedOnly(
+            app,
+            dataValues,
+            includeOnlyPattern
+          );
+          const getAllValuesOrIncludedOnlyEnd: Date = new Date();
+          if (includeOnlyPattern.length > 0) {
+            app.log(
+              `getEvents: Only included events for calendar '${name}' retrieved. Included entry count for calendar: ${allValuesOrIncludedOnly.length}. Time used: ${getWorkTime(retrieveCalendarEnd, getAllValuesOrIncludedOnlyEnd)}`
+            );
+          }
+
           const activeEvents: CalendarEvent[] = await getActiveEvents({
             app,
             variableMgmt,
             timezone: app.homey.clock.getTimezone(),
-            data: dataValues,
+            data: allValuesOrIncludedOnly,
             eventLimit,
             calendarName: name,
             logAllEvents
@@ -223,9 +243,10 @@ export const getEvents = async (
           // make sure V8 can GC everything related to the calendar data
           data = null;
           dataValues.length = 0;
+          allValuesOrIncludedOnly.length = 0;
 
           app.log(
-            `getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())}`
+            `getEvents: Active events for calendar '${name}' updated. Event count: ${activeEvents.length}. Time used: ${getWorkTime(getAllValuesOrIncludedOnlyEnd, new Date())}`
           );
           calendarsEvents.push({ name, events: activeEvents });
           calendarsMetadata.push({
@@ -235,7 +256,7 @@ export const getEvents = async (
           });
         } catch (error) {
           app.error(
-            `[ERROR] getEvents: Failed to get active events for calendar '${name}'. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())} ->`,
+            `[ERROR] getEvents: Failed to get allOrIncludedOnly events or active events for calendar '${name}'. Time used: ${getWorkTime(retrieveCalendarEnd, new Date())} ->`,
             error
           );
           const errorString: string | undefined = error instanceof Error ? error.message : undefined;
@@ -259,6 +280,7 @@ export const getEvents = async (
           calendars[i] = {
             name,
             uri,
+            includeOnlyPattern,
             failed: errorString
           };
           app.homey.settings.set(variableMgmt.setting.icalUris, calendars);

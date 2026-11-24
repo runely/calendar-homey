@@ -12,9 +12,10 @@
     "uri_load_failure": "Feilet ved innlasting av .ics-filen(e):",
     "icons_info": "Ikoner av",
     "calendars": {
-      "legend": "Link til .ics-filen",
+      "legend": "Innstillinger til .ics-filen",
       "name": "Kalendernavn",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Inkluder bare med avtaler der 'beskrivelse' inneholder følgende. Tomt betyr alle avtaler. Avtaler som mangler 'beskrivelse', blir IKKE tatt med når dette feltet er fylt ut"
     },
     "calendarColors": {
       "legend": "Kalenderfarger",

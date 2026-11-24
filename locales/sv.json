@@ -12,9 +12,10 @@
     "uri_load_failure": "Misslyckad inläsning av .ics-fil(er):",
     "icons_info": "Ikoner av",
     "calendars": {
-      "legend": "Sökväg till .ics-fil",
+      "legend": "Inställningar för .ics-filen",
       "name": "Kalendernamn",
-      "uri": "Sökväg"
+      "uri": "Sökväg",
+      "include_only_pattern": "Inkludera endast evenemang där 'beskrivning' innehåller följande. Tomt betyder alla evenemang. Evenemang som saknar 'beskrivning' inkluderas INTE när detta fält är ifyllt"
     },
     "calendarColors": {
       "legend": "Kalenderfärger",

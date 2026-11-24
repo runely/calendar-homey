@@ -12,9 +12,10 @@
     "uri_load_failure": "No se pudo cargar el/los archivo(s) .ics:",
     "icons_info": "Íconos de",
     "calendars": {
-      "legend": "URI del archivo .ics",
+      "legend": "Configuración del archivo .ics",
       "name": "Nombre del calendario",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Incluir solo los eventos cuya 'descripción' contenga lo siguiente. Vacío significa todos los eventos. Los eventos sin 'descripción' NO se incluirán cuando este campo esté rellenado"
     },
     "calendarColors": {
       "legend": "Colores de calendario",

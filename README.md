@@ -255,6 +255,7 @@ Visit [this tutorial](https://community.athom.com/t/trigger-a-flow-using-calenda
     - `Start date` and `Start time` to trigger `Event starts in`
     - `End date` and `End time` to trigger `Event ends in`
   - Added triggers `Event deleted` and `Event deleted from calendar`
+  - Added possibility to only import events where `description` contains a certain **word** or **phrase**
 - 3.4.0
   - `Upcoming events` widget improvements [Thanks to @XeroxQ](https://github.com/XeroxQ)
     - Fixed height option

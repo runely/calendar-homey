@@ -347,7 +347,7 @@ function onHomeyReady (Homey) {
   hitCountTab.addEventListener('click', activateTab)
 }
 
-function newCalendarItem (name = null, uri = null) {
+function newCalendarItem (name = null, uri = null, includeOnlyPattern = null) {
   const calendars = document.getElementById('calendars')
   const newElementIndex = calendars.children.length + 1
   const newElement = document.getElementsByClassName('clonable')[0].cloneNode(true)
@@ -356,6 +356,7 @@ function newCalendarItem (name = null, uri = null) {
   newElement.classList = ''
   newElement.children[3].id = `uri-name${newElementIndex}`
   newElement.children[8].id = `uri-uri${newElementIndex}`
+  newElement.children[13].id = `uri-include-only${newElementIndex}`
 
   // create remove button
   const removeButton = document.createElement('button')
@@ -370,19 +371,23 @@ function newCalendarItem (name = null, uri = null) {
   // set values
   newElement.children[3].value = name || ''
   newElement.children[8].value = uri || ''
+  newElement.children[13].value = includeOnlyPattern || ''
 
   // append new calendar
   calendars.appendChild(newElement)
 }
 
 function getCalendarItems (calendars) {
-  if (calendars && calendars.length > 0) {
-    document.getElementById('uri-name').value = calendars[0].name
-    document.getElementById('uri-uri').value = calendars[0].uri
+  if (!(calendars && calendars.length > 0)) {
+    return
+  }
 
-    for (let i = 1; i < calendars.length; i++) {
-      newCalendarItem(calendars[i].name, calendars[i].uri)
-    }
+  document.getElementById('uri-name').value = calendars[0].name
+  document.getElementById('uri-uri').value = calendars[0].uri
+  document.getElementById('uri-include-only').value = calendars[0].includeOnlyPattern || ""
+
+  for (let i = 1; i < calendars.length; i++) {
+    newCalendarItem(calendars[i].name, calendars[i].uri, calendars[i].includeOnlyPattern || '')
   }
 }
 
@@ -453,6 +458,7 @@ function saveCalendarItems () {
   return calendars.filter(calendar => calendar.localName === 'fieldset' && (calendar.children[3].value !== '' || calendar.children[8].value !== '')).map(calendar => {
     const name = calendar.children[3].value
     let uri = calendar.children[8].value
+    const includeOnlyPattern = calendar.children[13].value
 
     // Replace webcal:// urls (from iCloud) with https://
     // WARNING: Apple iCal URLs are case-sensitive!!!!!!!!! DO NOT LOWER CASE!!!!!!!!
@@ -474,8 +480,9 @@ function saveCalendarItems () {
     calendarIndex++
 
     return {
-      name: name,
-      uri: uri
+      name,
+      uri,
+      includeOnlyPattern
     }
   })
 }

@@ -12,9 +12,10 @@
     "uri_load_failure": "Failed to load .ics file(s):",
     "icons_info": "Icons by",
     "calendars": {
-      "legend": "URI to the .ics file",
+      "legend": "Settings for the .ics file",
       "name": "Calendar name",
-      "uri": "URI"
+      "uri": "URI",
+      "include_only_pattern": "Include only events where 'description' includes the following. Empty means all events. Events where 'description' is not present will NOT be included when this is filled out"
     },
     "calendarColors": {
       "legend": "Calendar colors",

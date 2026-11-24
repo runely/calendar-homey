@@ -12,9 +12,10 @@
     "uri_load_failure": "Kunne ikke indlæse .ics fil(er):",
     "icons_info": "Ikoner af",
     "calendars": {
-      "legend": "URI til .ics filen",
-      "name": "Kalender navn",
-      "uri": "URI"
+      "legend": "Indstillinger for .ics-filen",
+      "name": "Kalendernavn",
+      "uri": "URI",
+      "include_only_pattern": "Medtag kun begivenheder, hvor 'beskrivelse' indeholder følgende. Tom betyder alle begivenheder. Begivenheder uden 'beskrivelse' medtages IKKE, når dette felt er udfyldt"
     },
     "calendarColors": {
       "legend": "Kalenderfarver",
