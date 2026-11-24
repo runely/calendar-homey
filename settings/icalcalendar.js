@@ -169,11 +169,7 @@ function onHomeyReady (Homey) {
       return Homey.alert(err)
     }
     if (!Array.isArray(hitCountData)) {
-      if (!hitCountData) {
-        hitCountData = []
-      } else {
-        hitCountData = JSON.parse(hitCountData)
-      }
+      hitCountData = !hitCountData ? [] : JSON.parse(hitCountData)
     }
 
     hitCountData.forEach((hitCount) => {
@@ -204,38 +200,38 @@ function onHomeyReady (Homey) {
   saveElement.addEventListener('click', function () {
     // save date to settings
     const savedDateFormatLong = saveDateTimeFormat('date-long')
-    if (savedDateFormatLong) {
-      Homey.set(settingsDateFormatLong, savedDateFormatLong, function (err) {
-        if (err) {
-          return Homey.alert(err)
-        }
-      })
-
-      const savedDateFormatShort = saveDateTimeFormat('date-short')
-      if (savedDateFormatShort) {
-        Homey.set(settingsDateFormatShort, savedDateFormatShort, function (err) {
-          if (err) {
-            return Homey.alert(err)
-          }
-        })
-      } else {
-        return
-      }
-
-      // save time to settings
-      const savedTimeFormat = saveDateTimeFormat('time')
-      if (savedTimeFormat) {
-        Homey.set(settingsTimeFormat, savedTimeFormat, function (err) {
-          if (err) {
-            return Homey.alert(err)
-          }
-        })
-      } else {
-        return
-      }
-    } else {
+    if (!savedDateFormatLong) {
       return
     }
+
+    Homey.set(settingsDateFormatLong, savedDateFormatLong, function (err) {
+      if (err) {
+        return Homey.alert(err)
+      }
+    })
+
+    const savedDateFormatShort = saveDateTimeFormat('date-short')
+    if (!savedDateFormatShort) {
+      return
+    }
+
+    Homey.set(settingsDateFormatShort, savedDateFormatShort, function (err) {
+      if (err) {
+        return Homey.alert(err)
+      }
+    })
+
+    // save time to settings
+    const savedTimeFormat = saveDateTimeFormat('time')
+    if (!savedTimeFormat) {
+      return
+    }
+
+    Homey.set(settingsTimeFormat, savedTimeFormat, function (err) {
+      if (err) {
+        return Homey.alert(err)
+      }
+    })
 
     // save limit to settings
     Homey.set(settingsEventLimit, saveEventLimit(), function (err) {
@@ -301,11 +297,7 @@ function onHomeyReady (Homey) {
         return Homey.alert(err)
       }
       if (!Array.isArray(hitCountData)) {
-        if (!hitCountData) {
-          hitCountData = []
-        } else {
-          hitCountData = JSON.parse(hitCountData)
-        }
+        hitCountData = !hitCountData ? [] : JSON.parse(hitCountData)
       }
   
       if (hitCountData.length === 0) {
@@ -357,7 +349,7 @@ function onHomeyReady (Homey) {
 
 function newCalendarItem (name = null, uri = null) {
   const calendars = document.getElementById('calendars')
-  const newElementIndex = (calendars.children.length + 1)
+  const newElementIndex = calendars.children.length + 1
   const newElement = document.getElementsByClassName('clonable')[0].cloneNode(true)
 
   // reset element
@@ -422,24 +414,34 @@ function getDateTimeFormat (type, format) {
 }
 
 function getMiscSetting (setting, state) {
-  if (state) {
-    const element = document.getElementById(`misc-${setting}`)
-    if (typeof state === 'boolean') {
-      element.checked = state
-    } else if (typeof state === 'string') {
-      element.value = state
-    }
+  if (!state) {
+    return
+  }
+
+  const element = document.getElementById(`misc-${setting}`)
+  if (typeof state === 'boolean') {
+    element.checked = state
+    return
+  }
+
+  if (typeof state === 'string') {
+    element.value = state
   }
 }
 
 function getDebugSetting (setting, state) {
-  if (state) {
-    const element = document.getElementById(`debug-${setting}`)
-    if (typeof state === 'boolean') {
-      element.checked = state
-    } else if (typeof state === 'string') {
-      element.value = state
-    }
+  if (!state) {
+    return
+  }
+
+  const element = document.getElementById(`debug-${setting}`)
+  if (typeof state === 'boolean') {
+    element.checked = state
+    return
+  }
+
+  if (typeof state === 'string') {
+    element.value = state
   }
 }
 
@@ -462,14 +464,14 @@ function saveCalendarItems () {
       throw `Uri for calendar '${name}' is invalid`
     }
 
-    // calendar name must be unique to no mess up flow tokens
+    // calendar name must be unique to not mess up flow tokens
     if (calendarNames.includes(name)) {
       Homey.alert(`Calendar entry ${calendarIndex} (${name}) is invalid. Unique names are required!`)
       throw `Calendar entry ${calendarIndex} (${name}) is invalid. Unique names are required!`
-    } else {
-      calendarNames.push(name)
-      calendarIndex++
     }
+
+    calendarNames.push(name)
+    calendarIndex++
 
     return {
       name: name,
@@ -497,7 +499,9 @@ function saveEventLimit () {
   if (Number.isNaN(limitValue)) {
     Homey.alert(`Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`)
     throw `Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting only Numbers!`
-  } else if (limitValue <= 0) {
+  }
+
+  if (limitValue <= 0) {
     Homey.alert(`Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`)
     throw `Value in '${Homey.__('settings.syncsettings.eventlimit.legend')}' -> '${Homey.__('settings.syncsettings.eventlimit.value')}' is invalid.\nExpecting greater than 0!`
   }
@@ -541,21 +545,25 @@ function getUriFailedSetting (setting, syncInterval) {
     let text = ''
     if (uris !== null && uris !== undefined && Array.isArray(uris)) {
       uris.forEach(item => {
-        if (item.failed) {
-          if (text === '') {
-            text = `<h3>Uri errors</h3>${item.name} : ${item.failed}`
-          } else {
-            text += `<br>${item.name} : ${item.failed}`
-          }
+        if (!item.failed) {
+          return
         }
+
+        if (text === '') {
+          text = `<h3>Uri errors</h3>${item.name} : ${item.failed}`
+          return
+        }
+
+        text += `<br>${item.name} : ${item.failed}`
       })
     }
 
     if (text !== '') {
       showError(text, 'uri')
-    } else {
-      hideError('uri')
+      return
     }
+
+    hideError('uri')
   })
 
   Homey.get(syncInterval, (err, interval) => {
@@ -571,9 +579,10 @@ function getUriFailedSetting (setting, syncInterval) {
 
     if (text !== '') {
       showError(text, 'cron')
-    } else {
-      hideError('cron')
+      return
     }
+
+    hideError('cron')
   })
 }
 
@@ -582,18 +591,22 @@ function hideError (type) {
     const errorElement = document.getElementById('uri_error')
     errorElement.classList.add('error-section-hidden')
     errorElement.classList.remove('error-section-show')
-  } else if (type === 'cron') {
+    return
+  }
+
+  if (type === 'cron') {
     const errorElement = document.getElementById('cron_error')
     errorElement.classList.add('error-section-hidden')
     errorElement.classList.remove('error-section-show')
-  } else {
-    const uriElement = document.getElementById('uri_error')
-    const cronElement = document.getElementById('cron_error')
-    uriElement.classList.add('error-section-hidden')
-    uriElement.classList.remove('error-section-show')
-    cronElement.classList.add('error-section-hidden')
-    cronElement.classList.remove('error-section-show')
+    return
   }
+
+  const uriElement = document.getElementById('uri_error')
+  const cronElement = document.getElementById('cron_error')
+  uriElement.classList.add('error-section-hidden')
+  uriElement.classList.remove('error-section-show')
+  cronElement.classList.add('error-section-hidden')
+  cronElement.classList.remove('error-section-show')
 }
 
 function showError (text, type) {
@@ -603,7 +616,10 @@ function showError (text, type) {
     errorElement.innerHTML = `${Homey.__('settings.uri_load_failure')}<br>${text}`
     errorElement.classList.add('error-section-show')
     errorElement.classList.remove('error-section-hidden')
-  } else if (type === 'cron') {
+    return
+  }
+
+  if (type === 'cron') {
     const errorElement = document.getElementById('cron_error')
 
     errorElement.innerHTML = text
